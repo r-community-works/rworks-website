@@ -3,10 +3,11 @@ title: "September 2024: Top 40 New CRAN Packages"
 author: "Joseph Rickert"
 description:  'Two hundred thirty new packages made it to CRAN in September. Here are my "Top 40" selections in 17 categories.'
 categories: "Top 40"
-date: "2024-10-29"
+date: "2024-10-30"
 format: html
 editor: source
 image: images/ggalign.png
+draft: true
 ---
 
 Two hundred thirty new packages made it to CRAN in September, many of them were interesting, and selecting only forty made for some difficult decisions. When there a difficult choice, I opted in favor of the sciences. Here are my picks for the Top 40 new packages in fifteen categories: AI, Archaeology, Biology, Computational Methods, Data, Genomics, Linguistics, Machine Learning, Medicine, Networks, Pharma, Physics, Statistics, Utilities, and Visualization.
