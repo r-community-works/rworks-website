@@ -1,0 +1,163 @@
+---
+title: "August 2024: Top 40 New CRAN Packages"
+author: "Joseph Rickert"
+description: '"Top 40" is back, broadcasting on the new R Works blog.'
+categories: "Top 40"
+date: "2024-10-29"
+format: html
+editor: source
+---
+
+"Top 40" is back, broadcasting on the new R Works blog. I hope to continue the monthly evaluation of R packages that ran for several years on RStudio's [R Views Blog](https://rviews.rstudio.com/). The following is an idiosyncratic selection of the forty best new R packages submitted to CRAN in August 2024 organized into fourteen categories: Artificial Intelligence, Computational Methods, Data, Ecology, Environment, Genomics, Machine Learning, Medicine, Pharma, Science, Statistics, Time Series, Utilities, and Visualization.
+
+### Artificial Intelligence
+
+[gemini.R](https://cran.r-project.org/package=gemini.R) v0.5.2: Provides an R interface to [Google Gemini API](https://ai.google.dev/api?lang=python) for advanced language processing, text generation, and other AI-driven capabilities within the R environment. See [README](https://cran.r-project.org/web/packages/gemini.R/readme/README.html) to get started.
+
+[promptr](https://cran.r-project.org/package=promptr) v1.0.0: Provides functions to form and submit prompts to OpenAI's Large Language Models. Designed to be particularly useful for text classification problems in the social sciences. See [Ornstein, Blasingame, & Truscott (2024)](https://joeornstein.github.io/publications/ornstein-blasingame-truscott.pdf) for details and [README](https://cran.r-project.org/web/packages/promptr/readme/README.html) for an example.
+
+![](./images/promptr.png){fig-align="center" fig-alt="Scatter plot: GPT-3.5 computed sentiment vs. hand coded sentiment"}
+
+### Computational Methods
+
+[qvirus](https://cran.r-project.org/package=qvirus) v 0.0.2: Provides code and resources to explore the intersection of quantum computing and artificial intelligence (AI) in the context of analyzing Cluster of Differentiation 4 (CD4) lymphocytes and optimizing antiretroviral therapy (ART) for human immunodeficiency virus (HIV). See the vignettes [Introduction](https://cran.r-project.org/web/packages/qvirus/vignettes/Introduction.html), [Applications](https://cran.r-project.org/web/packages/qvirus/vignettes/Applications.html), and [Entanglement](https://cran.r-project.org/web/packages/qvirus/vignettes/Entanglement.html).
+
+[RcppBessel](https://cran.r-project.org/package=RcppBessel) v1.0.0: Exports an `Rcpp` interface for the Bessel functions in the 'Bessel' package, which can then be called from the `C++` code of other packages. For the original 'Fortran' implementation of these functions, see [Amos (1995)](https://dl.acm.org/doi/10.1145/212066.212078). There is a [vignette](https://cran.r-project.org/web/packages/RcppBessel/vignettes/RcppBessel.html).
+
+### Data
+
+[aebdata](https://cran.r-project.org/package=aebdata) v0.1.0: Facilitates access to the data from the [Atlas do Estado Brasileiro](https://www.ipea.gov.br/atlasestado/) maintained by the Instituto de Pesquisa Econômica Aplicada (Ipea). It allows users to search for specific series, list series, or themes, and download data when available. See the [vignette](https://cran.r-project.org/web/packages/aebdata/vignettes/exploring-data.html).
+
+[capesData](https://CRAN.R-project.org/package=capesData) v0.0.1: Provides information on activities to promote scholarships in Brazil and abroad for international mobility programs recorded in the [CAPES database](https://dadosabertos.capes.gov.br/dataset/) from 2010 to 2019. See [README](https://cran.r-project.org/web/packages/capesData/readme/README.html) to get started.
+
+### Ecology
+
+[priorCON](https://cran.r-project.org/package=priorCON) v0.1.1: Provides a tool set that incorporates graph community detection methods into systematic conservation planning. It is designed to enhance spatial prioritization by focusing on the protection of areas with high ecological connectivity and on clusters of features that exhibit strong ecological linkages. See the [Introduction](https://cran.r-project.org/web/packages/priorCON/vignettes/Introduction.html).
+
+![](./images/priorCON.png){fig-align="center" fig-alt="Flowchart of priorCon analysis"  width=80%}
+
+### Environment
+
+[prior3D](https://CRAN.R-project.org/package=prior3D) v0.1.0: Offers a comprehensive toolset for 3D systematic conservation planning, conducting nested prioritization analyses across multiple depth levels and ensuring efficient resource allocation throughout the water column. See [Doxa et al. (2022)](https://onlinelibrary.wiley.com/doi/10.1111/gcb.16268) for background and the [vignette](https://cran.r-project.org/web/packages/prior3D/vignettes/Introduction.html) for an example.
+
+![](./images/prior3D.jpeg){fig-align="center" fig-alt="Flow chart for 3D Prioritization Analysis"  width=80%}
+
+[raem](https://cran.r-project.org/package=raem) v0.1.0: Implements a model of single-layer groundwater flow in steady-state under the Dupuit-Forchheimer assumption can be created by placing elements such as wells, area-sinks, and line-sinks at arbitrary locations in the flow field. See [Haitjema (1995)](https://www.sciencedirect.com/book/9780123165503/analytic-element-modeling-of-groundwater-flow?via=ihub=) for the underlying theory and the vignettes [Overview](https://cran.r-project.org/web/packages/raem/vignettes/vign-01-overview.html) and [Exporting spatial data](https://cran.r-project.org/web/packages/raem/vignettes/vign-02-export-spatial.html).
+
+![](./images/raem.png){fig-align="center" fig-alt="Contour plot of well head with streamlines"}
+
+### Genomics
+
+[kmeRtone](https://CRAN.R-project.org/package=kmeRtone) v 1.0: Provides functions for multi-purpose k-meric enrichment analysis, which measures the enrichment of k-mers by comparing the population of k-mers in the case loci with an internal negative control group consisting of k-mers from regions close to, yet sufficiently distant from, the case loci. This method captures both the local sequencing variations and broader sequence influences while also correcting for potential biases. See the [GitHub repo](https://github.com/SahakyanLab/kmeRtone) for an overview.
+
+[rYWAASB](https://cran.r-project.org/package=rYWAASB) v0.1: Provides a new ranking algorithm to distinguish the top-ranked genotypes. "WAASB" refers to the "Weighted Average of Absolute Scores" provided by [Olivoto et al. (2019)](https://acsess.onlinelibrary.wiley.com/doi/10.2134/agronj2019.03.0220), which quantifies the stability of genotypes across different environments using linear mixed-effect models. See the [vignette](https://cran.r-project.org/web/packages/rYWAASB/vignettes/rYWAASB_manual.html) for an example.
+
+![](./images/WAASB.png){fig-align="center" fig-alt="WAASB Biplot"}
+
+### Machine Learning
+
+[cvLM](https://cran.r-project.org/package=cvLM) v1.0.4: Provides efficient implementations of cross-validation techniques for linear and ridge regression models, leveraging `C++` code with `Rcpp` that supports leave-one-out, generalized, and K-fold cross-validation methods. See [README](https://cran.r-project.org/web/packages/cvLM/readme/README.html) for an example.
+
+[geodl](https://cran.r-project.org/package=geodl) v0.2.0: Provides tools for semantic segmentation of geospatial data using convolutional neural network-based deep learning, including utility functions for manipulating data, model checks, functions to implement a UNet architecture with four blocks in the encoder, assessment metrics, and more. The package relies on [torch](http://torch.ch/) but does not require installing a Python environment. Models can be trained using a Compute Unified Device Architecture (CUDA)-enabled graphics processing unit (GPU). There are ten vignettes, including [spatialPredictionDemo](https://cran.r-project.org/web/packages/geodl/vignettes/spatialPredictionDemo.html) and [topoDLDemo](https://cran.r-project.org/web/packages/geodl/vignettes/topoDLDemo.html).
+
+![](./images/geodl.png){fig-align="center" fig-alt="Plot of topo chips examples"}
+
+[idiolect](https://cran.r-project.org/package=idiolect) v1.0.1: Provides functions for the comparative authorship analysis of disputed and undisputed texts within the Likelihood Ratio Framework for expressing evidence in forensic science and implements well-known algorithms, including [Smith and Aldridge's (2011)](https://www.tandfonline.com/doi/abs/10.1080/09296174.2011.533591) Cosine Delta and [Koppel and Winter's (2014)](https://asistdl.onlinelibrary.wiley.com/doi/10.1002/asi.22954) Impostors Method. See the [vignette](https://cran.r-project.org/web/packages/idiolect/vignettes/idiolect.htm).
+
+![](./images/idiolect.png){fig-align="center" fig-alt="Plots of Score densities"}
+
+[kdml](https://cran.r-project.org/package=kdml) v1.0.0: Implements distance metrics for mixed-type data consisting of continuous, nominal, and ordinal variables, which can be used in any distance-based algorithm, such as distance-based clustering. See [Ghashti and Thompson (2024)](https://arxiv.org/abs/2306.01890) for `dkps()` methodology, [Ghashti (2024)](https://open.library.ubc.ca/soa/cIRcle/collections/ubctheses/24/items/1.0443975) for `dkss()` methodology, and the [vignette](https://cran.r-project.org/web/packages/kdml/vignettes/kdml.html%20for%20an%20example).
+
+[kerntools](https://cran.r-project.org/package=kerntools) v1.0.2: Provides kernel functions for diverse types of data including, but not restricted to: non-negative and real vectors, real matrices, categorical and ordinal variables, sets, strings, plus other utilities like kernel similarity, kernel Principal Components Analysis (PCA) and features' importance for Support Vector Machines (SVMs). See the [vignette](https://cran.r-project.org/web/packages/kerntools/vignettes/kerntools.html).
+
+![Scatter plot for Drac kernal PCA](./images/kerntools.png)
+
+[MorphoRegions](https://cran.r-project.org/package=MorphoRegions) v0.1.0: Provides functions to computationally identify regions in serially homologous structures such as, but not limited to, the vertebrate backbone. Regions are modeled as segmented linear regressions, with each segment corresponding to a region and region boundaries (or breakpoints) corresponding to changes along the serially homologous structure.
+
+![](./images/Morpho.gif){fig-align="center" fig-alt="Animation of process of serially identifying regions" width=80%}
+
+### Medicine
+
+[neuroUP](https://CRAN.R-project.org/package=neuroUp) v0.3.1: Provides functions to calculate the precision in mean differences (raw or Cohen's D) and correlation coefficients for different sample sizes using permutations of the collected functional magnetic resonance imaging (fMRI) data. See [Klapwijk et al. (2024)](https://osf.io/preprints/psyarxiv/cz32t) for background and the [vignette](https://cran.r-project.org/web/packages/neuroUp/vignettes/neuroUp.html) for an introduction.
+
+![](./images/neuroUp.png){fig-align="center" fig-alt="Barplot of proportion permutations" width=80%}
+
+[smiles](https://cran.r-project.org/package=smiles) v0.1-0: Provides tools aimed at making data synthesis and evidence evaluation easier for both experienced practitioners and newcomers. See the [Cochrane Handbook for Systematic Reviews of Interventions](https://onlinelibrary.wiley.com/doi/10.1002/9781119536604.ch22) and the [vignette](https://cran.r-project.org/web/packages/smiles/vignettes/An_overview_on_pakcage_smiles.html) for examples.
+
+![](./images/smiles.png){fig-align="center" fig-alt="Plots of trials sequence analysis for treatment vs. placebo" width=80%}
+
+[tsgc](https://cran.r-project.org/package=tsgc) v0.0: Provides tools to analyze and forecast epidemic trajectories based on a dynamic Gompertz model and a state space approach that uses the Kalman filter for robust estimation of the non-linear growth pattern commonly observed in epidemic data. See [Harvey and Kattuman (2020)](https://hdsr.mitpress.mit.edu/pub/ozgjx0yn/release/4), [Harvey and Kattuman (2021)](https://royalsocietypublishing.org/doi/10.1098/rsif.2021.0179), and [Ashby et al. (2024)](https://www.jbs.cam.ac.uk/wp-content/uploads/2024/03/cchle-tsgc-paper-2024.pdf) for background and the [vignette](https://cran.r-project.org/web/packages/tsgc/vignettes/tsgc_vignette.html) for details.
+
+![](./images/tsgc.png){fig-align="center" fig-alt="Time series of moving averages for Covid-19 model"  width=80%}
+
+### Pharma
+
+[admiralpeds](https://CRAN.R-project.org/package=admiralpeds) v0.1.0: Provides a toolbox for programming Clinical Data Standards Interchange Consortium [(CDISC)](https://www.cdisc.org/standards/foundational/adam) compliant Analysis Data Model (ADaM) data sets in R. See the [vignette](https://cran.r-project.org/web/packages/admiralpeds/vignettes/advs.html) for an example.
+
+[MALDIcellassay](https://cran.r-project.org/package=MALDIcellassay) v0.4.47: Implements tools to conduct automated cell-based assays using Matrix-Assisted Laser Desorption/Ionization (MALDI) methods for high-throughput screening of signals responsive to treatments. The methodologies were introduced by [Weigt et al. (2018)](https://www.nature.com/articles/s41598-018-29677-z) and [Unger et al. (2021)](https://www.nature.com/articles/s41596-021-00624-z). See the [vignette](https://cran.r-project.org/web/packages/MALDIcellassay/vignettes/Example.html) for an example.
+
+![](./images/MALDI.png){fig-align="center" fig-alt="Spectral Plot"}
+
+### Science
+
+[barrks](https://cran.r-project.org/package=barrks) v1.0.0: Implements models to calculate the bark beetle phenology and their submodels, onset of infestation, beetle development, diapause initiation, and mortality, which can be customized and combined. Models include PHENIPS-Clim, [PHENIPS](https://www.sciencedirect.com/science/article/abs/pii/S0378112707004057?via%3Dihub), [RITY](https://www.sciencedirect.com/science/article/abs/pii/S0304380019302832?via%3Dihub), [CHAPY](https://www.sciencedirect.com/science/article/pii/S0304380020302088?via%3Dihub), and [BSO](https://onlinelibrary.wiley.com/doi/10.1111/gcb.14766). There are five vignettes, including [The BSO model](https://cran.r-project.org/web/packages/barrks/vignettes/bso.html) and [Example: Model Comparison](https://cran.r-project.org/web/packages/barrks/vignettes/model-comparison.html).
+
+![](./images/barrks.png){fig-align="center" fig-alt="Plots of generations calculated by RITY"  width=80%}
+
+[fluxible](https://cran.r-project.org/package=fluxible) v0.0.1: Provides functions to process the raw data from closed loop flux chamber (or tent) setups into ecosystem gas fluxes usable for analysis. Implemented models include exponential [Zhao et al. (2018)](https://www.sciencedirect.com/science/article/pii/S0168192318302880?via%3Dihub) and quadratic and linear models to estimate the fluxes from the raw data. See the [vignette](https://cran.r-project.org/web/packages/fluxible/vignettes/fluxible_practical_example.html) for an example.
+
+### Statistics
+
+[bage](https://cran.r-project.org/package=bage) v0.7.4: Provides functions for Bayesian estimation and forecasting of age-specific rates, probabilities, and means based on the [Template Model Builder](https://kaskr.github.io/adcomp/Introduction.html). There are six vignettes, including the [Mathematical Details](https://cran.r-project.org/web/packages/bage/vignettes/vig2_math.html) and an [Example](https://cran.r-project.org/web/packages/bage/vignettes/vig6_mortality.html).
+
+![](./images/bage.png){fig-alt="Scatter plots estimating mortality rates" fig-align="center" width=80%}
+
+[clustMC](https://CRAN.R-project.org/package=ClustMC) v0.1.1: Implements cluster-based multiple comparisons tests and also provides a visual representation in the form of a dendrogram. See [Rienzo, Guzmán & Casanoves (2002)](https://www.jstor.org/stable/1400690) and [Bautista, Smith & Steiner (1997)](https://www.jstor.org/stable/1400402?origin=crossref), and the [vignette](https://cran.r-project.org/web/packages/ClustMC/vignettes/CustomPlots.html) for examples.
+
+![](./images/clustMC.png){fig-align="center" fig-alt="Dendogram plot"}
+
+[svycdiff](https://cran.r-project.org/package=svycdiff) v0.1.1: Provides three methods for estimating the population average controlled difference for a given outcome between levels of a binary treatment, exposure, or other group membership variables of interest for clustered, stratified survey samples where sample selection depends on the comparison group. See [Salerno et al. (2024)](https://arxiv.org/abs/2406.19597) for background and the [vignette](https://cran.r-project.org/web/packages/svycdiff/vignettes/svycdiff.html) for an example.
+
+[wishmom](https://cran.r-project.org/package=wishmom) v1.1.0: Provides functions for computing moments and coefficients related to the Beta-Wishart and Inverse Beta-Wishart distributions, including functions for calculating the expectation of matrix-valued functions of the Beta-Wishart distribution, coefficient matrices, and expectation of matrix-valued functions of the inverse Beta-Wishart distribution. See the [vignette](https://cran.r-project.org/web/packages/wishmom/vignettes/wishmom_vignettes.html) for details.
+
+### Time Series
+
+[tican](https://cran.r-project.org/web/packages/tican/index.html) v1.0.1: Provides functions to analyze and plot time-intensity curves such as those that arise from contrast-enhanced ultrasound images. See the [vignette](https://cran.r-project.org/web/packages/tican/vignettes/tican-vignette.html).
+
+[tidychangepoint](https://cran.r-project.org/package=tsgc) v0.0.1: Provides a tidy, unified interface for several different changepoint detection algorithms, along with a consistent numerical and graphical reporting leveraging the `broom` and `ggplot2` packages. See the [vignette](https://cran.r-project.org/web/packages/tidychangepoint/vignettes/tidychangepoint.html).
+
+![](./images/tidychange.png){fig-align="center" fig-alt="Time series with change points"}
+
+### Utilities
+
+[fio](https://cran.r-project.org/package=fio) v0.1.2: Provides tools to simplify the process of importing and managing input-output matrices from Microsoft `Excel` into R. It leverages the `R6` class for memory-efficient object-oriented programming implements all linear algebra computations in `Rust`. See the [vignette](https://cran.r-project.org/web/packages/fio/vignettes/getting_started.html).
+
+[litedown](https://cran.r-project.org/package=litedown) v0.2: Implements a lightweight version of R Markdown, which enables rendering R Markdown to Markdown without using `knitr`, and Markdown to lightweight `HTML/LaTeX` documents using the `commonmark` package instead of `Pandoc`. This package can be viewed as a trimmed-down version of R Markdown and `knitr`, which does not aim at rich Markdown features or a large variety of output formats. There are vignettes on [Markdown Examples](https://cran.r-project.org/web/packages/litedown/vignettes/markdown-examples.html), [HTML Output Examples](https://cran.r-project.org/web/packages/litedown/vignettes/markdown-output.html), and [Making HTMLSlides](https://cran.r-project.org/web/packages/litedown/vignettes/slides.html).
+
+[maestro](https://cran.r-project.org/package=maestro) v0.2.0: Implements a framework for creating and orchestrating data pipelines allowing users to organize, orchestrate, and monitor multiple pipelines in a single project. There are four vignettes, including a [Quick Start](https://cran.r-project.org/web/packages/maestro/vignettes/maestro-1-quick-start.html) Guide and [Use Cases](https://cran.r-project.org/web/packages/maestro/vignettes/maestro-3-use-cases.html).
+
+[osum](https://cran.r-project.org/package=osum) v0.1.0: Inspired by `S-PLUS` function `objects.summary()`, provides a function that returns data class, storage mode, mode, type, dimension, and size information for R objects in the specified environment. Various filtering and sorting options are also proposed. See the [vignette](https://cran.r-project.org/web/packages/osum/vignettes/osum.html).
+
+[overtureR](https://cran.r-project.org/package=overtureR) v0.2.3: Implements n integrated R interface to the [Overture' API](https://docs.overturemaps.org/) which allows R users to return Overture data as `dbplyr` data frames or materialized `sf` spatial data frames. See [README](https://cran.r-project.org/web/packages/overtureR/readme/README.html) for examples.
+
+![](./images/overtureR.png){fig-align="center" fig-alt="Overture map of Broadway"}
+
+[RcppMagicEnum](https://cran.r-project.org/package=RcppMagicEnum) v0.0.1: Provides `Rcpp` bindings to header-only modern `C++` template library [Magic Enum](https://github.com/Neargye/magic_enum). See [README](https://cran.r-project.org/web/packages/RcppMagicEnum/readme/README.html) to get started.
+
+![](./images/tidymodelr.png){fig-align="center" fig-alt="PCA Graph"}
+
+[tidymodelr](https://cran.r-project.org/package=tidymodlr) v1.0.0: Provides a function to transform long data into a matrix form to allow for ease of input into modeling packages for regression, principal components, imputation, or machine learning along with level analysis wrapper functions for correlation and principal components analysis. See [README](https://cran.r-project.org/web/packages/tidymodlr/readme/README.html) for examples.
+
+### Visualization
+
+[bullseye](https://cran.r-project.org/package=bullseye) v0.1.0: Provides a tidy data structure and visualizations for multiple or grouped variable correlations, general association measures, diagnostics, and other pairwise scores suitable for numerical, ordinal, and nominal variables. Supported measures include distance correlation, maximal information, ace correlation, Kendall's tau, and polychoric correlation. There are three vignettes including [Calculating Pairwise Scores](https://cran.r-project.org/web/packages/bullseye/vignettes/calc_pairwise.html) and [Visualizing Pairwise Scores](https://cran.r-project.org/web/packages/bullseye/vignettes/vis_pairwise.html).
+
+![](./images/bullseye.png){fig-align="center" fig-alt="Visualizing pairwise scores"}
+
+[flowmapper](https://cran.r-project.org/package=flowmapper) v0.1.2: Adds flow maps to `ggplot2` plots. These are layers that visualize the nodes as circles and the bilateral flows between the nodes as bidirectional half-arrows. Look [here](https://github.com/JohMast/flowmapper) for details and examples.
+
+![](./images/flowmapper.png){fig-align="center" fig-alt="Flow map"  width=80%}
+
+[ggreveal](https://cran.r-project.org/package=ggreveal) v0.1.3: Provides functions that make it easy to reveal `ggplot2` graphs incrementally. The functions take a plot produced with `ggplot2` and return a list of plots showing data incrementally by panels, layers, groups, the values in an axis, or any arbitrary aesthetic. See the [GitHub repo](https://github.com/weverthonmachado/ggreveal) for examples.
+
+![](./images/ggreveal.gif){fig-align="center" fig-alt="Revealed layers of ggplot"  width=80%}

@@ -1,0 +1,188 @@
+---
+title: "September 2024: Top 40 New CRAN Packages"
+author: "Joseph Rickert"
+description:  'Two hundred thirty new packages made it to CRAN in September. Here are my "Top 40" selections in 17 categories.'
+categories: "Top 40"
+date: "2024-10-29"
+format: html
+editor: source
+image: images/ggalign.png
+---
+
+Two hundred thirty new packages made it to CRAN in September, many of them were interesting, and selecting only forty made for some difficult decisions. When there a difficult choice, I opted in favor of the sciences. Here are my picks for the Top 40 new packages in fifteen categories: AI, Archaeology, Biology, Computational Methods, Data, Genomics, Linguistics, Machine Learning, Medicine, Networks, Pharma, Physics, Statistics, Utilities, and Visualization.
+
+
+### AI
+
+[groqR](https://cran.r-project.org/package=groqR) v0.0.1: Provides a suite of functions and `RStudio` Add-ins leveraging the capabilities of open-source Large Language Models (LLMs) to support R developers. Features include text rewriting, translation, and general query capabilities. Programming-focused functions provide assistance with debugging, translating, commenting, documenting, and unit testing code, as well as suggesting variable and function names. Look [here](https://github.com/GabrielKaiserQFin/groqR) for examples.
+
+### Archaeology
+
+[eratosthenes](https://cran.r-project.org/package=eratosthenes) v0.0.2: Estimates unknown historical or archaeological dates subject to relationships with other dates and absolute constraints, derived as marginal densities from the full joint conditional distribution. Includes rule-based estimation of the production dates of artifact types. See [Collins-Elliott (2024)](https://volweb.utk.edu/~scolli46/sceGUTChronology.pdf) for background and the vignettes on [aligning relative sequences](https://cran.r-project.org/web/packages/eratosthenes/vignettes/aligning-relative-sequences.html) and [gibbs sampling for archaeology dates](https://cran.r-project.org/web/packages/eratosthenes/vignettes/gibbs-sampling-for-archaeological-dates.html).
+
+### Biology
+
+[pcvr](https://cran.r-project.org/package=pcvr) v1.0.0: Provides functions to analyse common types of plant phenotyping data and a simplified interface to longitudinal growth modeling and select Bayesian statistics. See [Kruschke (2018)](https://journals.sagepub.com/doi/10.1177/2515245918771304), [Kruschke (2013)](https://psycnet.apa.org/doiLanding?doi=10.1037%2Fa0029146) and [Kruschke (2021)](https://www.nature.com/articles/s41562-021-01177-7) for background on the Bayesian methods. There are four vignettes including [Bellwether workflow](https://cran.r-project.org/web/packages/pcvr/vignettes/bellwether.Rmd) and [Longitudinal Growth Modeling](https://cran.r-project.org/web/packages/pcvr/vignettes/longitudinal.html).
+
+![](images/pcvr.png){fig-alt="Plot of water use efficiency by genotype" fig-align="center"}
+
+[orthGS](https://cran.r-project.org/package=orthGS) v0.1.5: Provides tools to analyze and infer orthology and paralogy relationships between glutamine synthetase proteins in seed plants. See the vignettes [Searching for Orthologous](https://cran.r-project.org/web/packages/orthGS/vignettes/Searching_for_Orthologous.html) and [Unraveling the Hiden Paralogous](https://cran.r-project.org/web/packages/orthGS/vignettes/Unraveling_the_hiden_paralogous.html).
+
+![](images/orthGS.png){fig-alt="Plot of species and protein tree" fig-align="center" width=60%}
+
+### Chemistry
+
+[MethodOpt](https://cran.r-project.org/package=MethodOpt) v1.0.0: Implements a GUI to apply an advanced method optimization algorithm to various sampling and analysis instruments. Functions include generating experimental designs, uploading and viewing data, and performing various analyses to determine the optimal method. See [Granger & Mannion (2024)](https://pubs.acs.org/doi/10.1021/acs.analchem.3c05763) for details and the [vignette](https://cran.r-project.org/web/packages/MethodOpt/vignettes/MethodOpt-vignette.html) for examples.
+
+[SCFMonitor](https://cran.r-project.org/package=SCFMonitor) v0.3.5: Self-Consistent Field(SCF) calculation method is one of the most important steps in the calculation methods of quantum chemistry. See [Ehrenreich & Cohen (1959)](https://journals.aps.org/pr/abstract/10.1103/PhysRev.115.786) . This package enables Gaussian quantum chemistry calculation software users to easily read the Gaussian .log files and monitor the SCF convergence and geometry optimization process. Look [here](https://github.com/AzuleneG/SCFMonitor) for examples.
+
+![](images/SCF.png){fig-alt="Plots of SCF process by data type" fig-align="center" width=80%}
+
+### Computational Methods
+
+[XDNUTS](https://cran.r-project.org/package=XDNUTS) v1.2: Implements Hamiltonian Monte Carlo for both continuous and discontinuous posterior distributions with customisable trajectory length termination criterion. See [Nishimura et al. (2020)](https://academic.oup.com/biomet/article/107/2/365/5799014?login=false) for the original Discontinuous Hamiltonian Monte Carlo; and [Hoffman et al. (2014)](https://arxiv.org/abs/1111.4246) and [Betancourt (2016)](https://arxiv.org/abs/1601.00225) possible Hamiltonian Monte Carlo termination criteria. The [vignette](https://cran.r-project.org/web/packages/XDNUTS/vignettes/Intro_to_XDNUTS.html) offers examples.
+
+![](images/XDNUTS.png){fig-alt="Plots examining marginal densities" fig-align="center"}
+
+### Data
+
+[clintrialx](https://cran.r-project.org/package=clintrialx) v0.1.0: Provides functions to fetch clinical trial data from sources like \[ClinicalTrials.gov\](https://clinicaltrials.gov/} and the Clinical Trials [Access to Aggregate Content](https://aact.ctti-clinicaltrials.org/) database that supports pagination and bulk downloads. See the [vignette](https://cran.r-project.org/web/packages/clintrialx/vignettes/usecase-doc.html).
+
+![](images/clintrialsx.png){fig-alt="Histogram of the number of studies in each status category" fig-align="center" width=80%}
+
+[ColOpenData](https://cran.r-project.org/package=ColOpenData) v0.3.0: Provides tools to download and wrangle Colombian socioeconomic, geospatial,population and climate data from [DANE](https://www.dane.gov.co/) at the National Administrative Department of Statistics and [IDEAM](https://ideam.gov.co) at the Institute of Hydrology, Meteorology and Environmental Studies. It solves the problem of Colombian data being issued in different web pages and sources by using functions that allow the user to select the desired database and download it without having to do the exhausting acquisition process. There are six vignettes including [How to download climate data](https://cran.r-project.org/web/packages/ColOpenData/vignettes/climate_data.html) and [Population Projections](https://cran.r-project.org/web/packages/ColOpenData/vignettes/population_projections.html).
+
+![](images/ColOpenData.png){fig-alt="Map of Columbia showing Internet Coverage." fig-align="center"}
+
+[modgo](https://cran.r-project.org/package=modgo) v1.0.1: Provides functions to generate synthetic data from a real dataset using the combination of rank normal inverse transformation with the calculation of correlation matrix and completely artificial data may be generated through the use of [Generalized Lambda Distribution](https://www.taylorfrancis.com/books/mono/10.1201/9781420038040/fitting-statistical-distributions-zaven-karian-edward-dudewicz) and Generalized Poisson Distribution. See the [vignette](https://cran.r-project.org/web/packages/modgo/vignettes/modgo_vignette.html).
+
+![](images/modgo.png){fig-alt="Correlation matrices for simulated and real data" fig-align="center" width=80%}
+
+[dtmapi](https://cran.r-project.org/package=dtmapi) v0.0.2: Provides functions to allow humanitarian community, academia, media, government, and non-governmental organizations to utilize the data collected by the [Displacement Tracking Matrix](https://dtm.iom.int), a unit in the International Organization for Migration. See the [vignette](https://cran.r-project.org/web/packages/dtmapi/vignettes/introduction.html) to get started.
+
+
+### Ecology
+
+[douconca](https://cran.r-project.org/package=douconca) v1.2.1: Implements the two step double constrained correspondence analysis (dc-CA) for analyzing multi-trait multi-environment ecological data described in[ter Braak et al. (2018)](https://link.springer.com/article/10.1007/s10651-017-0395-x). This algorithm combines and extends community or sample and species-level analyses. 
+
+![](images/douconca.png ){fig-alt="Plots showing impact of environmental variables" fig-align="center"  width=80%}
+
+[GeoThinneR](https://cran.r-project.org/web/packages/GeoThinneR/index.html#:~:text=https%3A//CRAN.R%2Dproject.org/package%3DGeoThinneR) v1.1.0: Provides efficient geospatial thinning algorithms to reduce the density of coordinate data while maintaining spatial relationships. Implements K-D Tree and brute-force distance-based thinning, as well as grid-based and precision-based thinning methods. See [Elseberg et al. (2012)](https://hdl.handle.net/10446/86202) for background and the [vignette](https://cran.r-project.org/web/packages/GeoThinneR/vignettes/GeoThinneR.html) for examples.
+
+![](images/GeoThinneR.png ){fig-alt="Simulated species data by longitude and lattitude" fig-align="center"}
+
+### Genomics
+
+[easybio](https://cran.r-project.org/package=easybio) v1.1.0: Provides a toolkit for single-cell annotation with the [CellMarker2.0](https://pmc.ncbi.nlm.nih.gov/articles/PMC9825416/) database and streamlines biological label assignment in single-cell RNA-seq data and facilitates transcriptomic analysis, including preparation of [TCGA](https://portal.gdc.cancer.gov/) and [GEO](https://www.ncbi.nlm.nih.gov/geo/) datasets, differential expression analysis and visualization of enrichment analysis results. See [Wei Cui (2024)](https://www.biorxiv.org/content/10.1101/2024.09.14.609619v1) for details and the two vignettes [bulk RNAsewuence workflow](https://cran.r-project.org/web/packages/easybio/vignettes/example-bulk-rna-seq-workflow.html) and [Single Cell Annotation](https://cran.r-project.org/web/packages/easybio/vignettes/example-single-cell-annotation.html) for examples.
+
+![](images/easybio.png){fig-alt="Plots showing criteria for differential expression" fig-align="center"}
+
+[GenoPop](https://cran.r-project.org/package=GenoPop) v0.9.3: Implements tools for efficient processing of large, whole genome genotype data sets in variant call format including several functions to calculate commonly used population genomic metrics and a method for reference panel free genotype imputation. See [Gurke & Mayer (2024)](https://www.authorea.com/users/825581/articles/1221193-genopop-impute-efficient-and-accurate-whole-genome-genotype-imputation-in-non-model-species-for-evolutionary-genomic-research) for background and the [vignette](https://cran.r-project.org/web/packages/GenoPop/GenoPop.pdf) to get started. 
+![](images/GenoPop.png){fig-alt="Plots of gene populations" fig-align="center"}
+
+[SuperCell](https://cran.r-project.org/package=SuperCell) v1.0: Provides tools to aggregate large single-cell data into metacell dataset by merging together gene expression of very similar cells See the vignettes [Example of SuperCell pipeline](https://cran.r-project.org/web/packages/SuperCell/vignettes/a_SuperCell.html) and [SuperCell runs for different samples](https://cran.r-project.org/web/packages/SuperCell/vignettes/b_Combined_vs_independent_sample_processing.html).
+
+![](images/SuperCell.png){fig-alt="Plots of metacells clusters" fig-align="center"}
+
+### Lingusitics
+
+[maxent.ot](https://cran.r-project.org/package=maxent.ot) v1.0.0: Provides tools to fit Maximum Entropy models to phonology data. See [Mayer, Tan & Zuraw](https://sites.socsci.uci.edu/~cjmayer/papers/cmayer_et_al_maxent_ot_accepted.pdf) and the [vignette](https://cran.r-project.org/web/packages/maxent.ot/vignettes/maxent-ot_vignette.html) for an overview.
+
+### Machine Learning
+
+[conversim](https://cran.r-project.org/package=conversim) v0.1.0: Provides tools to analyze and compare conversations using various similarity measures including topic, lexical, semantic, structural, stylistic, sentiment, participant, and timing similarities. Methods are based on established research: For example see [Landauer et al. (1998)](https://www.tandfonline.com/doi/abs/10.1080/01638539809545028)  [Jaccard (1912)](https://nph.onlinelibrary.wiley.com/doi/10.1111/j.1469-8137.1912.tb05611.x) and [Salton & Buckley (1988)](https://www.sciencedirect.com/science/article/abs/pii/0306457388900210?via%3Dihub). Thee are four vignettes including analyzing similarities [between two long speaches](https://cran.r-project.org/web/packages/conversim/vignettes/Analyzing_Similarities_between_Two_Long_Speeches.html) and analyzing similarities in conversational sequence [in one Dyad](https://cran.r-project.org/web/packages/conversim/vignettes/Analyzing_Similarities_in_Conversational_Sequence_in_One_Dyad.html) and [across multiple Dyads](https://cran.r-project.org/web/packages/conversim/vignettes/Analyzing_Similarities_in_Conversational_Sequences_across_Multiple_Dyads.html).
+
+
+[dsld](https://cran.r-project.org/package=dsld) v0.2.2: Provides statistical and graphical tools for detecting and measuring discrimination and bias, be it racial, gender, age or other. Detection and remediation of bias in machine learning algorithms. See the [Quick Start Guide](https://cran.r-project.org/web/packages/dsld/vignettes/Quick_Start.html).
+
+
+### Medicine
+
+[SurvMA](https://cran.r-project.org/package=SurvMA) v1.6.8: Implements a model averaging approach to predict personalized survival probabilities by using a weighted average of multiple candidate models to  approximate the conditional survival function.Two scenarios of candidate models are allowed: the partial linear Cox model and the time-varying coefficient Cox model. See [Wang (2023)](https://www.sciencedirect.com/science/article/abs/pii/S0167947323000701?via%3Dihub) for details and look [here](https://github.com/Stat-WangXG/SurvMA) for an example.
+
+![](images/SurvMA.png){fig-alt="Schmatic of model fitting process" fig-align="center"  width=80%}
+
+[wintime](https://cran.r-project.org/package=wintime) v0.2.0: Provides methods to perform an analysis of time-to-event clinical trial data using various methods that calculate and compare treatment effects on ordered composite endpoints. See [Troendle et al. (2024)](https://pubmed.ncbi.nlm.nih.gov/38417455/) for the details of the methods and the [vignette](https://cran.r-project.org/web/packages/wintime/vignettes/wintime_vignette.html) for examples.
+
+### Networks
+
+[arlclustering](https://cran.r-project.org/package=arlclustering) v1.0.5: Implements an innovative approach to community detection in social networks using Association Rules Learning providing tools for processing graph and rules objects, generating association rules, and detecting communities based on node interactions. See [El-Moussaoui et al. (2021)](https://link.springer.com/chapter/10.1007/978-3-030-66840-2_3) for details. There are eight vignettes including [General Introduction](https://cran.r-project.org/web/packages/arlclustering/vignettes/General-Introduction.html) and [Testing WordAdjacency dataset](https://cran.r-project.org/web/packages/arlclustering/vignettes/Word_Adjacencies-Dataset.html).
+
+[ggtangle](https://cran.r-project.org/package=ggtangle) v0.0.2: Extends the `ggplot2` plotting system to support network visualization for network associated data. See the [vignette](https://cran.r-project.org/web/packages/ggtangle/vignettes/ggtangle.html).
+
+![](images/ggtangle.png){fig-alt="Various network plots" fig-align="center"  width=80%}
+
+### Pharma
+
+[sdtm.oak](https://cran.r-project.org/package=sdtm.oak) v0.1.0: Provides a framework to develop CDISC, [SDTM](https://www.cdisc.org/standards/foundational/sdtmig) datasets in R and potentially automate the process. There are six vignettes including on on [Algorithms](https://cran.r-project.org/web/packages/sdtm.oak/vignettes/algorithms.html).
+
+![](images/sdtm.jpeg){fig-alt="Schematic of algorithms" fig-align="center"  width=80%}
+
+### Physics
+
+[rice](https://cran.r-project.org/package=rice) v0.3.0: Provides functions to calibrate radiocarbon dates, different radiocarbon realms (C14 age, F14C, pMC, D14C) and to estimate the effects of contamination or local reservoir offsets. See [Reimer and Reimer 2001](https://www.cambridge.org/core/journals/radiocarbon/article/marine-reservoir-correction-database-and-online-interface/052F4CD7B140707538E4CFD02E7FCA73) and [Stuiver and Polach (1977)](https://www.cambridge.org/core/journals/radiocarbon/article/discussion-reporting-of-14c-data/D686D7894B8BAC3212589AFE418E147E) for background and the [vignette](https://cran.r-project.org/web/packages/rice/vignettes/rice.html) for examples. 
+
+![](images/rice.png){fig-alt="Plot showing levels of contamination in 14C estimates." fig-align="center"}
+
+[STICr](https://cran.r-project.org/package=STICr) v1.0: Comprises a collection of functions for processing raw data from Stream Temperature, Intermittency, and Conductivity (STIC) loggers. 'STICr' (pronounced "sticker") that includes functions for tidying, calibrating, classifying, and doing quality checks on data from STIC sensors. See [Wheeler/Zipper et al. (2023)](https://eartharxiv.org/repository/view/4909/) for background and the vignette for an [Introduction](https://cran.r-project.org/web/packages/STICr/vignettes/intro-to-STICr.html).
+
+![](images/STICr.png){fig-alt="A specific conductivity time series." fig-align="center"}
+
+### Statistics
+
+[dpasurv](https://cran.r-project.org/package=dpasurv) v0.1.0: Provides functions to implement dynamic path analysis for survival data via Aalen's additive hazards model. See [Fosen et al., (2006)](https://link.springer.com/article/10.1007/s10985-006-9004-2) for details. There is an [oveview](https://cran.r-project.org/web/packages/dpasurv/vignettes/dpa.Rmd) and a [vignette](https://cran.r-project.org/web/packages/dpasurv/vignettes/ggplot_demo.html) on plotting with `ggplot2`.
+
+![](images/dpasurv.png){fig-alt="Plot showing mediator variable over time by dose response." fig-align="center"}
+
+[LearnVizLLM](https://cran.r-project.org/package=LearnVizLMM) v1.0.0: Implements tools to summarize the characteristics of linear fixed models without data or a fitted model by converting code code for fitting `nlme::lme()` and `lme4::lmer()` models into tables, equations, and visuals. See the [vignette](https://cran.r-project.org/web/packages/LearnVizLMM/vignettes/LearnVizLMM.html) for details.
+
+![](images/LearnVizLLM.png){fig-alt="Schematic of mutilevel, nested model" fig-align="center"}
+
+[lnmixsurv](https://cran.r-project.org/package=lnmixsurv) v3.1.6: Combines the mixture distributions of [Fruhwirth-Schnatter(2006)](https://link.springer.com/article/10.1007/s11336-009-9121-4) and the data augmentation techniques of [Tanner and Wong (1987)](https://www.tandfonline.com/doi/abs/10.1080/01621459.1987.10478458) to implement Bayesian Survival models that accommodate different behavior over time and consider higher censored survival times. There are five vignettes including a [Get started guide}
+
+[Path.Analysis](https://cran.r-project.org/package=Path.Analysis) v0.1: Provides functions for conducting sequential path coefficient analysis and testing direct effects and functions for estimating correlation, drawing correlograms, heatmaps, and path diagrams. See [Arminian et al. (2008)](https://www.tandfonline.com/doi/abs/10.1080/15427520802043182) for background and the [vignette](https://cran.r-project.org/web/packages/Path.Analysis/vignettes/Path.Analysis_manual.html) for examples.
+
+![](images/Path.png){fig-alt="Diagram of coefficient paths" fig-align="center"}
+
+### Utilities
+
+[charcuterie](https://cran.r-project.org/package=charcuterie) v0.0.4: Creates a new chars class which looks like a string but is actually a vector of individual characters, making strings iterable and enabling vector operations on 'strings' such as reverse, sort, head, and set operations. See the vignettes [Example Usage](https://cran.r-project.org/web/packages/charcuterie/vignettes/usage.html) and [Use Cases](https://cran.r-project.org/web/packages/charcuterie/vignettes/use_cases.html).
+
+![](images/charcuterie.jpeg){fig-alt="The Spongebob case: every second letter upper case" fig-align="center"}
+
+[dtreg](https://cran.r-project.org/package=dtreg) v1.0.0: Provides tools to interact with data type registries and create machine-readable data. See the [vinette](https://cran.r-project.org/web/packages/dtreg/vignettes/dtreg.html).
+
+
+[fctutils](https://CRAN.R-project.org/package=fctutils) v0.0.7: Provides a collection of utility functions for manipulating and analyzing factor vectors in R. It offers tools for filtering, splitting, combining, and reordering factor levels based on various criteria. See the [vignette](https://cran.r-project.org/web/packages/fctutils/vignettes/fctutils.html).
+
+[interface](https://cran.r-project.org/package=interface) v0.1.2: Provides a run time type system, allowing users to define and implement interfaces, enums, typed data.frame/data.table, as well as typed functions. This package enables stricter type checking and validation, improving code structure, robustness and reliability. There is a [vignette](https://cran.r-project.org/web/packages/interface/vignettes/intro-to-interface.html) and a way to [support the author](https://cran.r-project.org/web/packages/interface/vignettes/donate.html).
+
+
+
+[pikchr](https://cran.r-project.org/package=pikchr)V0.97 : Provides an interface to [pikchr](https://pikchr.org) q markup language for creating diagrams within technical documentation. See the [vignette](https://cran.r-project.org/web/packages/pikchr/vignettes/Examples.html) for examples.
+
+![](images/pitchar.png){fig-alt="Example block diagram" fig-align="center"}
+
+[rnix](<https://cran.r-project.org/package=rix>) v0.12.4: Provides tools to run the [nix package manager](<https://en.wikipedia.org/wiki/Nix_(package_manager)>). There are fifteen vignettes including a [Getting Started Gude](<https://cran.r-project.org/web/packages/rix/vignettes/a-getting-started.html>).
+
+[qs2](https://CRAN.R-project.org/package=qs2) v0.1.1: Provides tools to efficiently serialize `R` objects using one of two compression formats: the `qs2` format, which uses R serialization while optimizing compression and disk I/O, and the `qdata` format which uses custom serialization to achieve slightly faster performance and better compression. `qs2` format can be directly converted to the standard `RDS`. See the [vignette](https://cran.r-project.org/web/packages/qs2/vignettes/vignette.rmd)
+
+### Visualization
+
+[ggalign](https://cran.r-project.org/package=ggalign) v0.0.4: Implements an extension to `ggplot2` that offers various tools for organizing and arranging plots including the ability to consistently align a specific axis across multiple `ggplot` objects. There are seven vignettes including [Examples](https://cran.r-project.org/web/packages/ggalign/vignettes/complete-examples.html) and [Heatmap Layout](https://cran.r-project.org/web/packages/ggalign/vignettes/heatmap-layout.html).
+
+![](images/ggalign.png){fig-alt="Heatmap with bar chart" fig-align="center"  width=80%}
+
+
+
+[sfcurv](https://CRAN.R-project.org/package=sfcurve) v1.0: Implements  all possible forms of 2x2 and 3x3 space-filling curves, i.e., the generalized forms of the [Hilbert curve](https://en.wikipedia.org/wiki/Hilbert_curve), the [Peano curve](https://en.wikipedia.org/wiki/Peano_curve) and the Peano curve in the [meander type](https://eudml.org/doc/141086). Look [here](https://jokergoo.github.io/sfcurve/) for examples.
+
+![](images/sfcurve.png){fig-alt="Plot of 8 space filling curves" fig-align="center"}
+
+[surreal](https://cran.r-project.org/package=surreal) v0.0.1: Implements the *Residual (Sur)Realism* algorithm described by [Stefanski (2007)]() to generate datasets that reveal hidden images or messages in their residual plots. See [README](https://cran.r-project.org/web/packages/surreal/readme/README.html) for examples.
+
+![](images/surreal.png){fig-alt="R logohiddenina residual plot" fig-align="center"  width=80%}
+
+[survSAKK](https://cran.r-project.org/package=survSAKK) v1.3.1: Provides functions to incorporate various statistics and layout customization options to enhance the efficiency and adaptability of the Kaplan-Meier plots. See the [vignette](https://cran.r-project.org/web/packages/survSAKK/vignettes/surv.plot.html).
+
+![](images/survSAKK.png){fig-alt="Kaplan-Meier curve with risk table" fig-align="center"  width=80%}

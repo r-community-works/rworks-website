@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joseph Rickert">
+<meta name="dcterms.date" content="2024-10-29">
+<meta name="description" content="Two hundred thirty new packages made it to CRAN in September. Here are my “Top 40” selections in 17 categories.">
+
+<title>September 2024: Top 40 New CRAN Packages – R Works</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #FFF;
+      }
+</style>
+
+
+<meta property="og:title" content="September 2024: Top 40 New CRAN Packages – R Works">
+<meta property="og:description" content="Two hundred thirty new packages made it to CRAN in September. Here are my “Top 40” selections in 17 categories.">
+<meta property="og:image" content="rworks.org/posts/september-2024-top-40-new-cran-packages/images/ggalign.png">
+<meta property="og:site_name" content="R Works">
+<meta property="og:image:height" content="768">
+<meta property="og:image:width" content="960">
+<meta name="twitter:title" content="September 2024: Top 40 New CRAN Packages – R Works">
+<meta name="twitter:description" content="Two hundred thirty new packages made it to CRAN in September. Here are my “Top 40” selections in 17 categories.">
+<meta name="twitter:image" content="rworks.org/posts/september-2024-top-40-new-cran-packages/images/ggalign.png">
+<meta name="twitter:image-height" content="768">
+<meta name="twitter:image-width" content="960">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">R Works</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../how-to-contribute.html"> 
+<span class="menu-text">How to Contribute</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://bsky.app/profile/rworks.bsky.social"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="simple-icons:bluesky" aria-label="Icon bluesky from simple-icons Iconify.design set." title="Icon bluesky from simple-icons Iconify.design set."></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://rcommunityblog.org/index.xml"> <i class="bi bi-rss" role="img" aria-label="R Works Blog RSS">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">September 2024: Top 40 New CRAN Packages</h1>
+                  <div>
+        <div class="description">
+          Two hundred thirty new packages made it to CRAN in September. Here are my “Top 40” selections in 17 categories.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Top 40</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Joseph Rickert </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">October 29, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p>Two hundred thirty new packages made it to CRAN in September, many of them were interesting, and selecting only forty made for some difficult decisions. When there a difficult choice, I opted in favor of the sciences. Here are my picks for the Top 40 new packages in fifteen categories: AI, Archaeology, Biology, Computational Methods, Data, Genomics, Linguistics, Machine Learning, Medicine, Networks, Pharma, Physics, Statistics, Utilities, and Visualization.</p>
+<section id="ai" class="level3">
+<h3 class="anchored" data-anchor-id="ai">AI</h3>
+<p><a href="https://cran.r-project.org/package=groqR">groqR</a> v0.0.1: Provides a suite of functions and <code>RStudio</code> Add-ins leveraging the capabilities of open-source Large Language Models (LLMs) to support R developers. Features include text rewriting, translation, and general query capabilities. Programming-focused functions provide assistance with debugging, translating, commenting, documenting, and unit testing code, as well as suggesting variable and function names. Look <a href="https://github.com/GabrielKaiserQFin/groqR">here</a> for examples.</p>
+</section>
+<section id="archaeology" class="level3">
+<h3 class="anchored" data-anchor-id="archaeology">Archaeology</h3>
+<p><a href="https://cran.r-project.org/package=eratosthenes">eratosthenes</a> v0.0.2: Estimates unknown historical or archaeological dates subject to relationships with other dates and absolute constraints, derived as marginal densities from the full joint conditional distribution. Includes rule-based estimation of the production dates of artifact types. See <a href="https://volweb.utk.edu/~scolli46/sceGUTChronology.pdf">Collins-Elliott (2024)</a> for background and the vignettes on <a href="https://cran.r-project.org/web/packages/eratosthenes/vignettes/aligning-relative-sequences.html">aligning relative sequences</a> and <a href="https://cran.r-project.org/web/packages/eratosthenes/vignettes/gibbs-sampling-for-archaeological-dates.html">gibbs sampling for archaeology dates</a>.</p>
+</section>
+<section id="biology" class="level3">
+<h3 class="anchored" data-anchor-id="biology">Biology</h3>
+<p><a href="https://cran.r-project.org/package=pcvr">pcvr</a> v1.0.0: Provides functions to analyse common types of plant phenotyping data and a simplified interface to longitudinal growth modeling and select Bayesian statistics. See <a href="https://journals.sagepub.com/doi/10.1177/2515245918771304">Kruschke (2018)</a>, <a href="https://psycnet.apa.org/doiLanding?doi=10.1037%2Fa0029146">Kruschke (2013)</a> and <a href="https://www.nature.com/articles/s41562-021-01177-7">Kruschke (2021)</a> for background on the Bayesian methods. There are four vignettes including <a href="https://cran.r-project.org/web/packages/pcvr/vignettes/bellwether.Rmd">Bellwether workflow</a> and <a href="https://cran.r-project.org/web/packages/pcvr/vignettes/longitudinal.html">Longitudinal Growth Modeling</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pcvr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Plot of water use efficiency by genotype"></p>
+</figure>
+</div>
+<p><a href="https://cran.r-project.org/package=orthGS">orthGS</a> v0.1.5: Provides tools to analyze and infer orthology and paralogy relationships between glutamine synthetase proteins in seed plants. See the vignettes <a href="https://cran.r-project.org/web/packages/orthGS/vignettes/Searching_for_Orthologous.html">Searching for Orthologous</a> and <a href="https://cran.r-project.org/web/packages/orthGS/vignettes/Unraveling_the_hiden_paralogous.html">Unraveling the Hiden Paralogous</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/orthGS.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" alt="Plot of species and protein tree"></p>
+</figure>
+</div>
+</section>
+<section id="chemistry" class="level3">
+<h3 class="anchored" data-anchor-id="chemistry">Chemistry</h3>
+<p><a href="https://cran.r-project.org/package=MethodOpt">MethodOpt</a> v1.0.0: Implements a GUI to apply an advanced method optimization algorithm to various sampling and analysis instruments. Functions include generating experimental designs, uploading and viewing data, and performing various analyses to determine the optimal method. See <a href="https://pubs.acs.org/doi/10.1021/acs.analchem.3c05763">Granger &amp; Mannion (2024)</a> for details and the <a href="https://cran.r-project.org/web/packages/MethodOpt/vignettes/MethodOpt-vignette.html">vignette</a> for examples.</p>
+<p><a href="https://cran.r-project.org/package=SCFMonitor">SCFMonitor</a> v0.3.5: Self-Consistent Field(SCF) calculation method is one of the most important steps in the calculation methods of quantum chemistry. See <a href="https://journals.aps.org/pr/abstract/10.1103/PhysRev.115.786">Ehrenreich &amp; Cohen (1959)</a> . This package enables Gaussian quantum chemistry calculation software users to easily read the Gaussian .log files and monitor the SCF convergence and geometry optimization process. Look <a href="https://github.com/AzuleneG/SCFMonitor">here</a> for examples.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/SCF.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Plots of SCF process by data type"></p>
+</figure>
+</div>
+</section>
+<section id="computational-methods" class="level3">
+<h3 class="anchored" data-anchor-id="computational-methods">Computational Methods</h3>
+<p><a href="https://cran.r-project.org/package=XDNUTS">XDNUTS</a> v1.2: Implements Hamiltonian Monte Carlo for both continuous and discontinuous posterior distributions with customisable trajectory length termination criterion. See <a href="https://academic.oup.com/biomet/article/107/2/365/5799014?login=false">Nishimura et al.&nbsp;(2020)</a> for the original Discontinuous Hamiltonian Monte Carlo; and <a href="https://arxiv.org/abs/1111.4246">Hoffman et al.&nbsp;(2014)</a> and <a href="https://arxiv.org/abs/1601.00225">Betancourt (2016)</a> possible Hamiltonian Monte Carlo termination criteria. The <a href="https://cran.r-project.org/web/packages/XDNUTS/vignettes/Intro_to_XDNUTS.html">vignette</a> offers examples.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/XDNUTS.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Plots examining marginal densities"></p>
+</figure>
+</div>
+</section>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">Data</h3>
+<p><a href="https://cran.r-project.org/package=clintrialx">clintrialx</a> v0.1.0: Provides functions to fetch clinical trial data from sources like [ClinicalTrials.gov](https://clinicaltrials.gov/} and the Clinical Trials <a href="https://aact.ctti-clinicaltrials.org/">Access to Aggregate Content</a> database that supports pagination and bulk downloads. See the <a href="https://cran.r-project.org/web/packages/clintrialx/vignettes/usecase-doc.html">vignette</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clintrialsx.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Histogram of the number of studies in each status category"></p>
+</figure>
+</div>
+<p><a href="https://cran.r-project.org/package=ColOpenData">ColOpenData</a> v0.3.0: Provides tools to download and wrangle Colombian socioeconomic, geospatial,population and climate data from <a href="https://www.dane.gov.co/">DANE</a> at the National Administrative Department of Statistics and <a href="https://ideam.gov.co">IDEAM</a> at the Institute of Hydrology, Meteorology and Environmental Studies. It solves the problem of Colombian data being issued in different web pages and sources by using functions that allow the user to select the desired database and download it without having to do the exhausting acquisition process. There are six vignettes including <a href="https://cran.r-project.org/web/packages/ColOpenData/vignettes/climate_data.html">How to download climate data</a> and <a href="https://cran.r-project.org/web/packages/ColOpenData/vignettes/population_projections.html">Population Projections</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/ColOpenData.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Map of Columbia showing Internet Coverage."></p>
+</figure>
+</div>
+<p><a href="https://cran.r-project.org/package=modgo">modgo</a> v1.0.1: Provides functions to generate synthetic data from a real dataset using the combination of rank normal inverse transformation with the calculation of correlation matrix and completely artificial data may be generated through the use of <a href="https://www.taylorfrancis.com/books/mono/10.1201/9781420038040/fitting-statistical-distributions-zaven-karian-edward-dudewicz">Generalized Lambda Distribution</a> and Generalized Poisson Distribution. See the <a href="https://cran.r-project.org/web/packages/modgo/vignettes/modgo_vignette.html">vignette</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/modgo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Correlation matrices for simulated and real data"></p>
+</figure>
+</div>
+<p><a href="https://cran.r-project.org/package=dtmapi">dtmapi</a> v0.0.2: Provides functions to allow humanitarian community, academia, media, government, and non-governmental organizations to utilize the data collected by the <a href="https://dtm.iom.int">Displacement Tracking Matrix</a>, a unit in the International Organization for Migration. See the <a href="https://cran.r-project.org/web/packages/dtmapi/vignettes/introduction.html">vignette</a> to get started.</p>
+</section>
+<section id="ecology" class="level3">
+<h3 class="anchored" data-anchor-id="ecology">Ecology</h3>
+<p><a href="https://cran.r-project.org/package=douconca">douconca</a> v1.2.1: Implements the two step double constrained correspondence analysis (dc-CA) for analyzing multi-trait multi-environment ecological data described in<a href="https://link.springer.com/article/10.1007/s10651-017-0395-x">ter Braak et al.&nbsp;(2018)</a>. This algorithm combines and extends community or sample and species-level analyses.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/douconca.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Plots showing impact of environmental variables"></p>
+</figure>
+</div>
+<p><a href="https://cran.r-project.org/web/packages/GeoThinneR/index.html#:~:text=https%3A//CRAN.R%2Dproject.org/package%3DGeoThinneR">GeoThinneR</a> v1.1.0: Provides efficient geospatial thinning algorithms to reduce the density of coordinate data while maintaining spatial relationships. Implements K-D Tree and brute-force distance-based thinning, as well as grid-based and precision-based thinning methods. See <a href="https://hdl.handle.net/10446/86202">Elseberg et al.&nbsp;(2012)</a> for background and the <a href="https://cran.r-project.org/web/packages/GeoThinneR/vignettes/GeoThinneR.html">vignette</a> for examples.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/GeoThinneR.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Simulated species data by longitude and lattitude"></p>
+</figure>
+</div>
+</section>
+<section id="genomics" class="level3">
+<h3 class="anchored" data-anchor-id="genomics">Genomics</h3>
+<p><a href="https://cran.r-project.org/package=easybio">easybio</a> v1.1.0: Provides a toolkit for single-cell annotation with the <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9825416/">CellMarker2.0</a> database and streamlines biological label assignment in single-cell RNA-seq data and facilitates transcriptomic analysis, including preparation of <a href="https://portal.gdc.cancer.gov/">TCGA</a> and <a href="https://www.ncbi.nlm.nih.gov/geo/">GEO</a> datasets, differential expression analysis and visualization of enrichment analysis results. See <a href="https://www.biorxiv.org/content/10.1101/2024.09.14.609619v1">Wei Cui (2024)</a> for details and the two vignettes <a href="https://cran.r-project.org/web/packages/easybio/vignettes/example-bulk-rna-seq-workflow.html">bulk RNAsewuence workflow</a> and <a href="https://cran.r-project.org/web/packages/easybio/vignettes/example-single-cell-annotation.html">Single Cell Annotation</a> for examples.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/easybio.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Plots showing criteria for differential expression"></p>
+</figure>
+</div>
+<p><a href="https://cran.r-project.org/package=GenoPop">GenoPop</a> v0.9.3: Implements tools for efficient processing of large, whole genome genotype data sets in variant call format including several functions to calculate commonly used population genomic metrics and a method for reference panel free genotype imputation. See <a href="https://www.authorea.com/users/825581/articles/1221193-genopop-impute-efficient-and-accurate-whole-genome-genotype-imputation-in-non-model-species-for-evolutionary-genomic-research">Gurke &amp; Mayer (2024)</a> for background and the <a href="https://cran.r-project.org/web/packages/GenoPop/GenoPop.pdf">vignette</a> to get started. <img src="images/GenoPop.png" class="img-fluid quarto-figure quarto-figure-center" alt="Plots of gene populations"></p>
+<p><a href="https://cran.r-project.org/package=SuperCell">SuperCell</a> v1.0: Provides tools to aggregate large single-cell data into metacell dataset by merging together gene expression of very similar cells See the vignettes <a href="https://cran.r-project.org/web/packages/SuperCell/vignettes/a_SuperCell.html">Example of SuperCell pipeline</a> and <a href="https://cran.r-project.org/web/packages/SuperCell/vignettes/b_Combined_vs_independent_sample_processing.html">SuperCell runs for different samples</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/SuperCell.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Plots of metacells clusters"></p>
+</figure>
+</div>
+</section>
+<section id="lingusitics" class="level3">
+<h3 class="anchored" data-anchor-id="lingusitics">Lingusitics</h3>
+<p><a href="https://cran.r-project.org/package=maxent.ot">maxent.ot</a> v1.0.0: Provides tools to fit Maximum Entropy models to phonology data. See <a href="https://sites.socsci.uci.edu/~cjmayer/papers/cmayer_et_al_maxent_ot_accepted.pdf">Mayer, Tan &amp; Zuraw</a> and the <a href="https://cran.r-project.org/web/packages/maxent.ot/vignettes/maxent-ot_vignette.html">vignette</a> for an overview.</p>
+</section>
+<section id="machine-learning" class="level3">
+<h3 class="anchored" data-anchor-id="machine-learning">Machine Learning</h3>
+<p><a href="https://cran.r-project.org/package=conversim">conversim</a> v0.1.0: Provides tools to analyze and compare conversations using various similarity measures including topic, lexical, semantic, structural, stylistic, sentiment, participant, and timing similarities. Methods are based on established research: For example see <a href="https://www.tandfonline.com/doi/abs/10.1080/01638539809545028">Landauer et al.&nbsp;(1998)</a> <a href="https://nph.onlinelibrary.wiley.com/doi/10.1111/j.1469-8137.1912.tb05611.x">Jaccard (1912)</a> and <a href="https://www.sciencedirect.com/science/article/abs/pii/0306457388900210?via%3Dihub">Salton &amp; Buckley (1988)</a>. Thee are four vignettes including analyzing similarities <a href="https://cran.r-project.org/web/packages/conversim/vignettes/Analyzing_Similarities_between_Two_Long_Speeches.html">between two long speaches</a> and analyzing similarities in conversational sequence <a href="https://cran.r-project.org/web/packages/conversim/vignettes/Analyzing_Similarities_in_Conversational_Sequence_in_One_Dyad.html">in one Dyad</a> and <a href="https://cran.r-project.org/web/packages/conversim/vignettes/Analyzing_Similarities_in_Conversational_Sequences_across_Multiple_Dyads.html">across multiple Dyads</a>.</p>
+<p><a href="https://cran.r-project.org/package=dsld">dsld</a> v0.2.2: Provides statistical and graphical tools for detecting and measuring discrimination and bias, be it racial, gender, age or other. Detection and remediation of bias in machine learning algorithms. See the <a href="https://cran.r-project.org/web/packages/dsld/vignettes/Quick_Start.html">Quick Start Guide</a>.</p>
+</section>
+<section id="medicine" class="level3">
+<h3 class="anchored" data-anchor-id="medicine">Medicine</h3>
+<p><a href="https://cran.r-project.org/package=SurvMA">SurvMA</a> v1.6.8: Implements a model averaging approach to predict personalized survival probabilities by using a weighted average of multiple candidate models to approximate the conditional survival function.Two scenarios of candidate models are allowed: the partial linear Cox model and the time-varying coefficient Cox model. See <a href="https://www.sciencedirect.com/science/article/abs/pii/S0167947323000701?via%3Dihub">Wang (2023)</a> for details and look <a href="https://github.com/Stat-WangXG/SurvMA">here</a> for an example.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/SurvMA.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Schmatic of model fitting process"></p>
+</figure>
+</div>
+<p><a href="https://cran.r-project.org/package=wintime">wintime</a> v0.2.0: Provides methods to perform an analysis of time-to-event clinical trial data using various methods that calculate and compare treatment effects on ordered composite endpoints. See <a href="https://pubmed.ncbi.nlm.nih.gov/38417455/">Troendle et al.&nbsp;(2024)</a> for the details of the methods and the <a href="https://cran.r-project.org/web/packages/wintime/vignettes/wintime_vignette.html">vignette</a> for examples.</p>
+</section>
+<section id="networks" class="level3">
+<h3 class="anchored" data-anchor-id="networks">Networks</h3>
+<p><a href="https://cran.r-project.org/package=arlclustering">arlclustering</a> v1.0.5: Implements an innovative approach to community detection in social networks using Association Rules Learning providing tools for processing graph and rules objects, generating association rules, and detecting communities based on node interactions. See <a href="https://link.springer.com/chapter/10.1007/978-3-030-66840-2_3">El-Moussaoui et al.&nbsp;(2021)</a> for details. There are eight vignettes including <a href="https://cran.r-project.org/web/packages/arlclustering/vignettes/General-Introduction.html">General Introduction</a> and <a href="https://cran.r-project.org/web/packages/arlclustering/vignettes/Word_Adjacencies-Dataset.html">Testing WordAdjacency dataset</a>.</p>
+<p><a href="https://cran.r-project.org/package=ggtangle">ggtangle</a> v0.0.2: Extends the <code>ggplot2</code> plotting system to support network visualization for network associated data. See the <a href="https://cran.r-project.org/web/packages/ggtangle/vignettes/ggtangle.html">vignette</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/ggtangle.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Various network plots"></p>
+</figure>
+</div>
+</section>
+<section id="pharma" class="level3">
+<h3 class="anchored" data-anchor-id="pharma">Pharma</h3>
+<p><a href="https://cran.r-project.org/package=sdtm.oak">sdtm.oak</a> v0.1.0: Provides a framework to develop CDISC, <a href="https://www.cdisc.org/standards/foundational/sdtmig">SDTM</a> datasets in R and potentially automate the process. There are six vignettes including on on <a href="https://cran.r-project.org/web/packages/sdtm.oak/vignettes/algorithms.html">Algorithms</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/sdtm.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Schematic of algorithms"></p>
+</figure>
+</div>
+</section>
+<section id="physics" class="level3">
+<h3 class="anchored" data-anchor-id="physics">Physics</h3>
+<p><a href="https://cran.r-project.org/package=rice">rice</a> v0.3.0: Provides functions to calibrate radiocarbon dates, different radiocarbon realms (C14 age, F14C, pMC, D14C) and to estimate the effects of contamination or local reservoir offsets. See <a href="https://www.cambridge.org/core/journals/radiocarbon/article/marine-reservoir-correction-database-and-online-interface/052F4CD7B140707538E4CFD02E7FCA73">Reimer and Reimer 2001</a> and <a href="https://www.cambridge.org/core/journals/radiocarbon/article/discussion-reporting-of-14c-data/D686D7894B8BAC3212589AFE418E147E">Stuiver and Polach (1977)</a> for background and the <a href="https://cran.r-project.org/web/packages/rice/vignettes/rice.html">vignette</a> for examples.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/rice.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Plot showing levels of contamination in 14C estimates."></p>
+</figure>
+</div>
+<p><a href="https://cran.r-project.org/package=STICr">STICr</a> v1.0: Comprises a collection of functions for processing raw data from Stream Temperature, Intermittency, and Conductivity (STIC) loggers. ‘STICr’ (pronounced “sticker”) that includes functions for tidying, calibrating, classifying, and doing quality checks on data from STIC sensors. See <a href="https://eartharxiv.org/repository/view/4909/">Wheeler/Zipper et al.&nbsp;(2023)</a> for background and the vignette for an <a href="https://cran.r-project.org/web/packages/STICr/vignettes/intro-to-STICr.html">Introduction</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/STICr.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="A specific conductivity time series."></p>
+</figure>
+</div>
+</section>
+<section id="statistics" class="level3">
+<h3 class="anchored" data-anchor-id="statistics">Statistics</h3>
+<p><a href="https://cran.r-project.org/package=dpasurv">dpasurv</a> v0.1.0: Provides functions to implement dynamic path analysis for survival data via Aalen’s additive hazards model. See <a href="https://link.springer.com/article/10.1007/s10985-006-9004-2">Fosen et al., (2006)</a> for details. There is an <a href="https://cran.r-project.org/web/packages/dpasurv/vignettes/dpa.Rmd">oveview</a> and a <a href="https://cran.r-project.org/web/packages/dpasurv/vignettes/ggplot_demo.html">vignette</a> on plotting with <code>ggplot2</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/dpasurv.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Plot showing mediator variable over time by dose response."></p>
+</figure>
+</div>
+<p><a href="https://cran.r-project.org/package=LearnVizLMM">LearnVizLLM</a> v1.0.0: Implements tools to summarize the characteristics of linear fixed models without data or a fitted model by converting code code for fitting <code>nlme::lme()</code> and <code>lme4::lmer()</code> models into tables, equations, and visuals. See the <a href="https://cran.r-project.org/web/packages/LearnVizLMM/vignettes/LearnVizLMM.html">vignette</a> for details.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/LearnVizLLM.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Schematic of mutilevel, nested model"></p>
+</figure>
+</div>
+<p><a href="https://cran.r-project.org/package=lnmixsurv">lnmixsurv</a> v3.1.6: Combines the mixture distributions of <a href="https://link.springer.com/article/10.1007/s11336-009-9121-4">Fruhwirth-Schnatter(2006)</a> and the data augmentation techniques of <a href="https://www.tandfonline.com/doi/abs/10.1080/01621459.1987.10478458">Tanner and Wong (1987)</a> to implement Bayesian Survival models that accommodate different behavior over time and consider higher censored survival times. There are five vignettes including a [Get started guide}</p>
+<p><a href="https://cran.r-project.org/package=Path.Analysis">Path.Analysis</a> v0.1: Provides functions for conducting sequential path coefficient analysis and testing direct effects and functions for estimating correlation, drawing correlograms, heatmaps, and path diagrams. See <a href="https://www.tandfonline.com/doi/abs/10.1080/15427520802043182">Arminian et al.&nbsp;(2008)</a> for background and the <a href="https://cran.r-project.org/web/packages/Path.Analysis/vignettes/Path.Analysis_manual.html">vignette</a> for examples.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Path.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Diagram of coefficient paths"></p>
+</figure>
+</div>
+</section>
+<section id="utilities" class="level3">
+<h3 class="anchored" data-anchor-id="utilities">Utilities</h3>
+<p><a href="https://cran.r-project.org/package=charcuterie">charcuterie</a> v0.0.4: Creates a new chars class which looks like a string but is actually a vector of individual characters, making strings iterable and enabling vector operations on ‘strings’ such as reverse, sort, head, and set operations. See the vignettes <a href="https://cran.r-project.org/web/packages/charcuterie/vignettes/usage.html">Example Usage</a> and <a href="https://cran.r-project.org/web/packages/charcuterie/vignettes/use_cases.html">Use Cases</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/charcuterie.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="The Spongebob case: every second letter upper case"></p>
+</figure>
+</div>
+<p><a href="https://cran.r-project.org/package=dtreg">dtreg</a> v1.0.0: Provides tools to interact with data type registries and create machine-readable data. See the <a href="https://cran.r-project.org/web/packages/dtreg/vignettes/dtreg.html">vinette</a>.</p>
+<p><a href="https://CRAN.R-project.org/package=fctutils">fctutils</a> v0.0.7: Provides a collection of utility functions for manipulating and analyzing factor vectors in R. It offers tools for filtering, splitting, combining, and reordering factor levels based on various criteria. See the <a href="https://cran.r-project.org/web/packages/fctutils/vignettes/fctutils.html">vignette</a>.</p>
+<p><a href="https://cran.r-project.org/package=interface">interface</a> v0.1.2: Provides a run time type system, allowing users to define and implement interfaces, enums, typed data.frame/data.table, as well as typed functions. This package enables stricter type checking and validation, improving code structure, robustness and reliability. There is a <a href="https://cran.r-project.org/web/packages/interface/vignettes/intro-to-interface.html">vignette</a> and a way to <a href="https://cran.r-project.org/web/packages/interface/vignettes/donate.html">support the author</a>.</p>
+<p><a href="https://cran.r-project.org/package=pikchr">pikchr</a>V0.97 : Provides an interface to <a href="https://pikchr.org">pikchr</a> q markup language for creating diagrams within technical documentation. See the <a href="https://cran.r-project.org/web/packages/pikchr/vignettes/Examples.html">vignette</a> for examples.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pitchar.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Example block diagram"></p>
+</figure>
+</div>
+<p><a href="https://cran.r-project.org/package=rix">rnix</a> v0.12.4: Provides tools to run the <a href="https://en.wikipedia.org/wiki/Nix_(package_manager)">nix package manager</a>. There are fifteen vignettes including a <a href="https://cran.r-project.org/web/packages/rix/vignettes/a-getting-started.html">Getting Started Gude</a>.</p>
+<p><a href="https://CRAN.R-project.org/package=qs2">qs2</a> v0.1.1: Provides tools to efficiently serialize <code>R</code> objects using one of two compression formats: the <code>qs2</code> format, which uses R serialization while optimizing compression and disk I/O, and the <code>qdata</code> format which uses custom serialization to achieve slightly faster performance and better compression. <code>qs2</code> format can be directly converted to the standard <code>RDS</code>. See the <a href="https://cran.r-project.org/web/packages/qs2/vignettes/vignette.rmd">vignette</a></p>
+</section>
+<section id="visualization" class="level3">
+<h3 class="anchored" data-anchor-id="visualization">Visualization</h3>
+<p><a href="https://cran.r-project.org/package=ggalign">ggalign</a> v0.0.4: Implements an extension to <code>ggplot2</code> that offers various tools for organizing and arranging plots including the ability to consistently align a specific axis across multiple <code>ggplot</code> objects. There are seven vignettes including <a href="https://cran.r-project.org/web/packages/ggalign/vignettes/complete-examples.html">Examples</a> and <a href="https://cran.r-project.org/web/packages/ggalign/vignettes/heatmap-layout.html">Heatmap Layout</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/ggalign.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Heatmap with bar chart"></p>
+</figure>
+</div>
+<p><a href="https://CRAN.R-project.org/package=sfcurve">sfcurv</a> v1.0: Implements all possible forms of 2x2 and 3x3 space-filling curves, i.e., the generalized forms of the <a href="https://en.wikipedia.org/wiki/Hilbert_curve">Hilbert curve</a>, the <a href="https://en.wikipedia.org/wiki/Peano_curve">Peano curve</a> and the Peano curve in the <a href="https://eudml.org/doc/141086">meander type</a>. Look <a href="https://jokergoo.github.io/sfcurve/">here</a> for examples.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/sfcurve.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Plot of 8 space filling curves"></p>
+</figure>
+</div>
+<p><a href="https://cran.r-project.org/package=surreal">surreal</a> v0.0.1: Implements the <em>Residual (Sur)Realism</em> algorithm described by <a href="">Stefanski (2007)</a> to generate datasets that reveal hidden images or messages in their residual plots. See <a href="https://cran.r-project.org/web/packages/surreal/readme/README.html">README</a> for examples.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/surreal.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="R logohiddenina residual plot"></p>
+</figure>
+</div>
+<p><a href="https://cran.r-project.org/package=survSAKK">survSAKK</a> v1.3.1: Provides functions to incorporate various statistics and layout customization options to enhance the efficiency and adaptability of the Kaplan-Meier plots. See the <a href="https://cran.r-project.org/web/packages/survSAKK/vignettes/surv.plot.html">vignette</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/survSAKK.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Kaplan-Meier curve with risk table"></p>
+</figure>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("rworks\.org");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/r-community-works/blob/main/posts/september-2024-top-40-new-cran-packages/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/r-community-works/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

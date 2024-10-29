@@ -1,0 +1,44 @@
+---
+title: "How to Contribute"
+about:
+  template: trestles
+---
+
+We hope R Works will attract other voices from around the R Community, including yourself! We're always looking for high-quality, original work to demonstrate the power of R. If you would like to contribute R-related topics, news, commentary, or examples, please follow this process to submit a post for consideration.
+
+### Process for Contributing
+
+* **Submit a post/idea:** Start the process by emailing us.
+* **Preliminary review:** Within two weeks, the R Works editors will review your submission and let you know the next steps.
+  * We may let you know that the post is ready almost as-in, provide feedback for revisions to post on R Works, or recommend another avenue for your post if there is a better option.
+* **Revisions:** We work together to revise the post.
+* **Finalization:** We both confirm that the post is finalized and coordinate a timeline for release.
+* **Publication:** We release the post based on the timeline and coordinate social media efforts to publicize the post.
+
+### Need ideas?
+
+Would you like to contribute but need help figuring out what about? We’re happy to give ideas!
+
+* Did you clean up some messy code, use R to answer a burning question you had, or explore a cool function? Write a blog post on it.
+* Did you write a research paper? Write a short-form blog post showcasing your analysis and results.
+* Do you have a favorite R package? Elaborate on it in a walkthrough.
+* Are you writing a book on R? Share a short version of what your book dives into.
+* Did you go to an R conference recently? Write your reflections on the event.
+
+## FAQs
+
+* Can I cross-post my blog post?
+
+Yes, you can cross-post your blog post as long as it is published at the same time as the one on R Works.
+
+* Do you edit posts from the past?
+
+Once published, we only edit posts from the past for typos or broken links.
+
+## Code of Conduct
+
+R Works is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
+
+## License
+
+Unless otherwise noted, content on R Works is licensed under the [CC-BY license](https://creativecommons.org/licenses/by/4.0/).

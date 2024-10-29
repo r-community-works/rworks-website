@@ -1,0 +1,35 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "R Works"
+  site-url: rworks.org
+  search: true
+  repo-url: https://github.com/r-community-works
+  repo-actions: [source, issue]
+  open-graph: true
+  twitter-card: true
+  navbar:
+    pinned: true
+    left:
+      - text: "About"
+        href: about.qmd
+      - text: "How to Contribute"
+        href: how-to-contribute.qmd
+    right:
+      - text: "{{< iconify simple-icons bluesky >}}"
+        href: https://bsky.app/profile/rworks.bsky.social
+        aria-label: R Works Blue Sky Account
+      - icon: rss
+        href: https://rcommunityblog.org/index.xml
+        aria-label: R Works Blog RSS
+#  back-to-top-navigation: true
+
+format:
+  html:
+    theme: [cosmo, styles.css]
+
+editor: source
+highlight-style: tango
+

@@ -1,0 +1,14 @@
+---
+title: "Welcome to R Works!"
+description: "We hope that the R Works blog informs and inspires R users everywhere."
+date: "2024-10-29"
+categories: "R Community"
+---
+
+![[Artwork by @allison_horst](https://twitter.com/allison_horst)](images/r-love.png){fig-alt="Two of Allison Horst's R monsters decorating the R programming language logo with flowers and paintings of hearts and smiley faces."}
+
+This is a heartfelt welcome to all members of the R community, from long-time readers of [R Views](https://rviews.rstudio.com/) to those just joining us. For years, R Views served as a source of resources, insights, and inspiration for R users. We are delighted to bring those ambitions to a new, Quarto-powered technical blog. Our goal is that R Works becomes a hub for news, opinions, and stories as the landscape of R continues to grow and evolve.
+
+R is more than code, it’s also the people behind it. We hope this blog reflects diverse perspectives and experiences from across the community. To that end, we invite your voices to help shape this space together. If you have unique perspectives, updates, commentary, or examples of using R that you’d love to share, we want to hear from you.
+
+Happy Reading!
