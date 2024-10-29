@@ -1,0 +1,4 @@
+- source: project
+  netlify:
+    - id: 5d8f1d2d-1658-4201-a90f-8c54049b9ad6
+      url: 'https://vermillion-parfait-780f4f.netlify.app'

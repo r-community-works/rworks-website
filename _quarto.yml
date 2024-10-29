@@ -33,3 +33,5 @@ format:
 editor: source
 highlight-style: tango
 
+execute:
+  freeze: auto
