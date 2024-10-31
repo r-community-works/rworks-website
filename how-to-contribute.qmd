@@ -8,7 +8,7 @@ We hope R Works will attract other voices from around the R Community, including
 
 ### Process for Contributing
 
-* **Submit a post/idea:** Start the process by emailing us.
+* **Submit a post/idea:** Start the process by emailing us at [rworks.editors@gmail.com](mailto:rworks.editors@gmail.com).
 * **Preliminary review:** Within two weeks, the R Works editors will review your submission and let you know the next steps.
   * We may let you know that the post is ready almost as-in, provide feedback for revisions to post on R Works, or recommend another avenue for your post if there is a better option.
 * **Revisions:** We work together to revise the post.

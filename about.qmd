@@ -11,3 +11,5 @@ R Works is the blog devoted to the R community and the R language. We imagine it
 R Works is powered by [Quarto](https://quarto.org/). We moved to this platform to provide an enhanced experience for our readers. With Quarto's advanced features, we can showcase R-related topics and deliver high-quality content.
 
 The blog is edited by Joseph Rickert and [Isabella Velásquez](https://ivelasq.rbind.io/), who curate the content and ensure its quality. We hope that R Works will continue to attract other voices from around the R community. If you have something to say on an R-related topic, news, commentary, or an example of using R that you would like to share with the R community, please review the [How to](./how-to-contribute.html) page.
+
+Syndicated on [R-Bloggers](https://www.r-bloggers.com/) and [R Weekly](https://rweekly.org/).
