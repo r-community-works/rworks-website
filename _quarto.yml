@@ -4,9 +4,9 @@ project:
 
 website:
   title: "R Works"
-  site-url: rworks.org
+  site-url: rworks.dev
   search: true
-  repo-url: https://github.com/r-community-works
+  repo-url: https://github.com/r-community-works/rworks-website
   repo-actions: [source, issue]
   open-graph: true
   twitter-card: true
@@ -22,13 +22,14 @@ website:
         href: https://bsky.app/profile/rworks.bsky.social
         aria-label: R Works Blue Sky Account
       - icon: rss
-        href: https://rcommunityblog.org/index.xml
+        href: https://rworks.dev/index.xml
         aria-label: R Works Blog RSS
 #  back-to-top-navigation: true
 
 format:
   html:
     theme: [cosmo, styles.css]
+    include-in-header: plausible.html
 
 editor: source
 highlight-style: tango
