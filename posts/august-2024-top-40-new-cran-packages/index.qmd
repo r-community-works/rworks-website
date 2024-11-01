@@ -3,10 +3,9 @@ title: "August 2024: Top 40 New CRAN Packages"
 author: "Joseph Rickert"
 description: '"Top 40" is back, broadcasting on the new R Works blog.'
 categories: "Top 40"
-date: "2024-10-30"
+date: "2024-10-30T14:00:00-05:00"
 format: html
 editor: source
-draft: true
 ---
 
 "Top 40" is back, broadcasting on the new R Works blog. I hope to continue the monthly evaluation of R packages that ran for several years on RStudio's [R Views Blog](https://rviews.rstudio.com/). The following is an idiosyncratic selection of the forty best new R packages submitted to CRAN in August 2024 organized into fourteen categories: Artificial Intelligence, Computational Methods, Data, Ecology, Environment, Genomics, Machine Learning, Medicine, Pharma, Science, Statistics, Time Series, Utilities, and Visualization.
