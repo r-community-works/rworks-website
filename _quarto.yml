@@ -4,7 +4,7 @@ project:
 
 website:
   title: "R Works"
-  site-url: rworks.dev
+  site-url: https://rworks.dev
   search: true
   repo-url: https://github.com/r-community-works/rworks-website
   repo-actions: [source, issue]
