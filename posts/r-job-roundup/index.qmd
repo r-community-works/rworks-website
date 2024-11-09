@@ -1,0 +1,47 @@
+---
+title: "R Job Roundup"
+author: "Isabella Velásquez"
+description: "Explore new job opportunities that highlight R skills."
+categories: "R Community"
+date: "2024-11-09"
+format: html
+editor: source
+image: image.jpg
+---
+
+I've been spotting new opportunities in data science, analytics, and research that highlight R programming skills and wanted to share a few interesting positions. Here are jobs open as of publishing (please check the links for the latest status). Locations are included when specified.
+
+**Remote Roles**
+
+* [Early Career Statistician, RTI](https://careers.rti.org/jobs/12582?lang=en-us)
+* [Data Scientist, Fors Marsh](https://fors-marsh-group.breezy.hr/p/a53e248d9dde-data-scientist)
+* [Data Engineer, Zelus Analytics](https://ats.rippling.com/teamworks-careers/jobs/ba9b13d9-f152-4eca-8c4d-46bc0095d4fb)
+* [Senior Researcher, The Ohio State University](https://osu.wd1.myworkdayjobs.com/en-US/OSUCareers/details/Senior-Researcher_R112910-1?q=shiny)
+* [Data Analyst, Providence St. Joseph Health](https://evac.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/322166)
+* [Senior Research Scientist, Harmony Labs](https://harmonylabs.org/page/Senior-research-scientist)
+
+**Hybrid Roles**
+
+* [Associate Data Scientist, Seyfarth](https://recruiting.seyfarth.com/viRecruitSelfApply/RecDefault.aspx?Tag=aa4603ce-3eb9-42c7-8836-31b33681b6ba) - Chicago
+* [Staff Data Scientist, Growth, Hinge Health](https://careers.hingehealth.com/jobs/1638?lang=en-us&previousLocale=en-US) - San Francisco
+* [Research Associate – Data Governance and Privacy, Urban Institute](https://urban.wd1.myworkdayjobs.com/en-US/Urban-Careers/job/Research-Associate---Data-Governance-and-Privacy--Center-on-Labor--Human-Services--and-Population-_R-801591) - Washington, D.C.
+* [Staff Data Scientist, Causal Inference, Intuit](https://jobs.intuit.com/job/san-diego/staff-data-scientist/27595/69063431328) - San Diego/Mountain View/Los Angeles
+* [Data Analyst, GTM Insights and Operations, Pluralsight](https://pluralsight.wd1.myworkdayjobs.com/en-US/Careers/job/Hybrid---India/Data-Analyst--GTM-Insights-and-Operations_R0012735) - India
+
+**Onsite**
+
+* [Analyst, City of Boston](https://city-boston.icims.com/jobs/28400/analyst/job) - Boston
+* [Senior Data Journalist, Wall Street Journal](https://wsj.jobs/new-york-ny/senior-data-journalist/3BFC94C50CB347AD888CD79E7D98CDF9/job/) - New York, New York
+* [Head of Design and Integration, Blue Ventures](https://careers.blueventures.org/jobs/5120519-head-of-design-and-integration) - Various Locations
+* [Data Visualizations Development - Manager, Bristol Myers Squibb](https://jobs.bms.com/careers/job/137461160773-data-visualization-application-development-manager-hyderabad-ts-in?domain=bms.com) - Hyderabad
+* [Data Scientist - Research and Development, Pittsburgh Pirates](https://pirates.rec.pro.ukg.net/PIT1500PITA/JobBoard/1571bce9-cb30-4961-98da-07b26506146a/OpportunityDetail?opportunityId=fd116e1b-89c5-477e-94ef-961384beadb6) - Pittsburgh
+* [Senior Research Scientist, Stanford](https://careersearch.stanford.edu/jobs/senior-research-scientist-19963)
+
+Thanks to the various community meetups and forums where these roles were highlighted:
+
+* [Data Science Hangout](https://pos.it/dsh)
+* [Data Science Learning Community Slack](https://dslc.io/)
+* [R-Ladies Slack](https://rladies.org/)
+* [#rstats on Bluesky](https://bsky.app/)
+
+I'll continue sharing open roles with R requirements periodically, so check back for new leads!
