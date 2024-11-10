@@ -1,9 +1,9 @@
 ---
-title: "R Job Roundup"
+title: "R Work Opportunities"
 author: "Isabella Velásquez"
 description: "Explore new job opportunities that highlight R skills."
 categories: "R Community"
-date: "2024-11-09"
+date: "2024-11-10"
 format: html
 editor: source
 image: image.jpg
@@ -37,7 +37,7 @@ I've been spotting new opportunities in data science, analytics, and research th
 * [Data Scientist - Research and Development, Pittsburgh Pirates](https://pirates.rec.pro.ukg.net/PIT1500PITA/JobBoard/1571bce9-cb30-4961-98da-07b26506146a/OpportunityDetail?opportunityId=fd116e1b-89c5-477e-94ef-961384beadb6) - Pittsburgh
 * [Senior Research Scientist, Stanford](https://careersearch.stanford.edu/jobs/senior-research-scientist-19963)
 
-Thanks to the various community meetups and forums where these roles were highlighted:
+Thanks to the community meetups and forums where these roles were highlighted:
 
 * [Data Science Hangout](https://pos.it/dsh)
 * [Data Science Learning Community Slack](https://dslc.io/)
