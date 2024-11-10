@@ -29,6 +29,8 @@ image: image.jpg
 
 (19 - 20) London - [Insurance Data Science Conference](https://insurancedatascience.org/)
 
+(19 - 20) [Ghana R Conference](https://ghana-rusers.org)
+
 ## August
 
 (2 - 7) Nashville, Tennessee - [JSM](https://ww2.amstat.org/meetings/jsm/2025/index.cfm)
@@ -66,3 +68,4 @@ RPySOC24 by NHS-R
 * [R-Ladies Meetups]
 * [R User Group Meetups]
 * [Workshops for Ukraine](https://sites.google.com/view/dariia-mykhailyshyna/main/r-workshops-for-ukraine)
+* [R Open Sci Community Calls]
