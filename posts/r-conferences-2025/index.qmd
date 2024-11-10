@@ -1,0 +1,68 @@
+---
+title: "Some R Conferences for 2025"
+author: "Isabella Velásquez"
+description: "We share a list of upcoming conferences that either focus on the R programming language or showcase its use in the field."
+categories: "R Community"
+date: "2024-11-10"
+format: html
+editor: source
+image: image.jpg
+---
+
+## February
+
+(6 - 7) Ghent - [Psychoco](https://www.psychoco.org/)
+
+## March
+
+(6 - 9) Minneapolis - [NICAR25](https://www.ire.org/)
+
+## April
+
+(11-12) Chicago - [R/Finance](https://www.rinfinance.com/)
+
+(29 - May 2) Salt Lake City - [Symposium on Data Science & Statistics](https://www.amstat.org/meetings/symposium-on-data-science-amp-statistics)
+
+## June
+
+(10 - 13) Virtual - [R/Medicine](https://rconsortium.github.io/RMedicine_website/)
+
+(19 - 20) London - [Insurance Data Science Conference](https://insurancedatascience.org/)
+
+## August
+
+(2 - 7) Nashville, Tennessee - [JSM](https://ww2.amstat.org/meetings/jsm/2025/index.cfm)
+
+## September
+
+(16-18) Atlanta, Georgia - [posit::conf(2025)](https://posit.co/conference/)
+
+## October
+
+\(8\) Newcastle upon Tyne - [Shiny in Production](https://www.eventbrite.co.uk/e/shiny-in-production-2025-registration-1035155587227)
+
+(14 - 16) Brighton - [EARL Conference](https://earl-conference.com/)
+
+## To be announced
+
+[ESMARConf 2025](https://esmarconf.org/)
+
+[New York R Conference](https://rstats.ai/nyr)
+
+LatinR
+
+CascadiaR
+
+useR
+
+Data Mishaps Night
+
+R in Pharma
+
+RPySOC24 by NHS-R
+
+## Ongoing events
+
+* [R-Ladies Meetups]
+* [R User Group Meetups]
+* [Workshops for Ukraine](https://sites.google.com/view/dariia-mykhailyshyna/main/r-workshops-for-ukraine)
