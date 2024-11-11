@@ -1,0 +1,329 @@
+---
+title: "Manifold Learning"
+format: html
+author: Joseph Rickert
+date: 2024-11-11
+html:
+    code-fold: true
+    code-summary: "Show the code"
+editor: source
+---
+
+Many algorithms supporting AI and machine learning depend on the notion of *embeddings*. Data sets are mapped to or embedded in high-dimensional Euclidean vector spaces. Then, various mathematical strategies are employed to reduce data size by mapping these high dimensional points to structures in lower dimensional spaces in ways that preserve some important structural properties of the high dimensional data. Classic examples are the [Word2Vec](https://en.wikipedia.org/wiki/Word2vec) algorithm which maps similar words to nearby points in vector spaces, and  [Principal Components Analysis](https://en.wikipedia.org/wiki/Principal_component_analysis) which maps multidimensional vector data to lower dimensional spaces while preserving the variance of the data points. The mathematical term for the structures sought to contain the data in the lower dimensional space is *manifold*. Manifolds are basically vector spaces with additional structure that enable notions such as connectedness and smoothness to make sense. Think of a sphere as a two-dimensional manifold in a three-dimensional space, or lines and circles as one-dimensional structures in a two-dimensional space.
+
+Over the past fifteen years or so, these kinds of geometric ideas about working with data have coalesced into the very mathematical field of *Manifold Learning*. In this post, I hope to provide a way for those of us who are not mathematicians, but willing to do some work to explore this incredibly interesting field. I'll do this by pointing to some of the accessible literature, providing a couple of simple examples, and listing some R resources for exploration.
+
+## An overview of Manifold Learning
+
+This section comprises some notes on the marvelous review paper [Manifold Learning: What, How, and Why](https://www.annualreviews.org/content/journals/10.1146/annurev-statistics-040522-115238?crawler=true#right-ref-B71) by Marina Meilă and Hanyu Zhang. The paper is a comprehensive, clearly written, historical approach at a level suitable for beginners. It is an expert guide to the vast literature on the subject. The Annual Reviews version of the paper at the link above is a pleasure to work with because almost all of the essential papers are hyperlinked.
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+### The Basic Problem
+The basic problem motivating manifold learning is data reduction. Given a data set with D features or explanatory variables, how can we transform it into a smaller data set with fewer features in a way that retains all of the essential information and provides some insight about the structure of the data? The idea is similar to PCA. Here, we assume the data exist in a D-dimensional vector space but mostly lie in or near a k-dimensional subspace. PCA provides a linear mapping from $R^D$ to $R^k$.
+
+### The Manifold Assumption
+
+The data are a sample from a probability distribution with support on, or near, a D-dimensional manifold embedded in $R^D$. 
+
+### Three Paradigms for Manifold learning:
+
+The term manifold learning was proposed by [Roweis & Saul (2000)](https://pub.uni-bielefeld.de/record/2714741) who proposed the Locally Linear *Embedding (LLE)* algorithm and [Tenenbaum et al. (2000)](https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=9c2c88edc29c02c71064db3a77e89399f9e197c1), who introduced the *Isomap* algorithm. There are three basic approaches to manifold learning: Locally linear approximations, Principal Curves and Surfaces, and Embeddings.
+
+
+### Local Linear Approximations
+
+  - Based on classical PCA
+  - PCA performed on a weighted covariance matrix, with weights decaying with distance from any reference point
+  - Approximates data locally on a curved manifold around a point
+  - Reduces dimension locally but provides no global representation
+  
+### Principal Curves and Surfaces
+
+  - Data assumed to be of the form $x_i = x^*_i + \epsilon$
+  - The Subspace Constrained Mean Shift (SCMS) algorithm of [Ozertem & Erdogmus (2011)](https://www.jmlr.org/papers/volume12/ozertem11a/ozertem11a.pdf) iteratively maps each $x_i$ to $y_i \in R^D$ lying on the principal curve
+  - Method can be extended to principal surfaces
+
+:::
+
+::: {.column width="10%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="45%"}
+
+### Embeddings
+
+Meilă and Zhang propose a provisional taxonomy of embedding algorithms, which they concede is superficial but which adequately characterizes the state of the art. All approaches begin with information about the data summarized in a weighted neighborhood graph. An embedding algorithm then produces a smooth mapping that is designed to distort the neighborhood information as little as possible. The algorithms differ in their choice of information they preserve and in the constraints on smoothness. The fundamental categories of embedding algorithms are:
+
+-  "One-shot" algorithms that derive embedding coordinates from principal eigenvectors of a matrix associated with the neighborhood graph of a data set or by solving an optimization problem. 
+
+-  Attraction-repulsion algorithms that proceed from an initial embedding, often produced by iterative improvements of a one-shot algorithm. 
+
+
+#### One-Shot Embedding Algorithms
+
+One-Shot algorithms include:
+
+- Diffusion Maps (DM):  [Coifman & Lafon (2006)](https://scholar.google.com/scholar_lookup?title=Diffusion+Maps&author=RR+Coifman&author=S.+Lafon&journal=Appl.+Comput.+Harmon.+Anal.&volume=30&issue=1&doi=10.1016%2Fj.acha.2006.04.006&pages=5-30&publication_year=2006&) which uses the eigenvectors of the Laplacian matrix to embed the data.
+- ISOMAP - [Tenenbaum et al. (2000)](https://www.annualreviews.org/content/journals/10.1146/annurev-statistics-040522-115238?crawler=true#right-ref-B92)
+  - Preserves shortest graph paths
+- Laplacian Eigenmaps - [Belkin & Niyogi (2003)](https://scholar.google.com/scholar_lookup?title=Manifold+regularization%3A+a+geometric+framework+for+learning+from+labeled+and+unlabeled+examples&author=M+Belkin&author=P+Niyogi&author=V.+Sindhwani&journal=J.+Mach.+Learn.+Res.&volume=7&issue=85&pages=2399-434&publication_year=2006&)
+- Local Transient Space Alignment (LTSA) - [Zhang & Zha (2004)](https://www.annualreviews.org/content/journals/10.1146/annurev-statistics-040522-115238?crawler=true#right-ref-B107)
+
+
+#### Attraction-Replusion Embedding Algorithms
+
+Attraction-Repulsion Algorithms include: 
+
+- Low Distortion Local Embeddings (LDLE) [Lohli, Cloninger, and Mishne (2021)](https://www.jmlr.org/papers/volume22/21-0131/21-0131.pdf)
+- Maximum Variance Unfolding (MVU) [Weinberger and Saul (2006)](https://cdn.aaai.org/AAAI/2006/AAAI06-280.pdf)
+- Stochastic Neighbor Embedding (SNE) [Hinton and Roweis (2002)](https://proceedings.neurips.cc/paper_files/paper/2002/file/6150ccc6069bea6b5716254057a194ef-Paper.pdf)
+- t-SNE [Van der Maaten and Hinton (2008)](https://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf?fbcl)
+- Uniform Manifold Approximation and Projection (UMAP) [MCinnes et al (2018)](https://arxiv.org/pdf/1802.03426)
+
+
+:::
+
+::::
+
+### SNE and t-SNE
+
+This section briefly describes the SNE algorithm and its improved variation t-SNE, which were designed to visualize high dimensional data to a two or three-dimensional space.
+
+#### SNE
+
+The intuition behind Stochastic Neighbor Embedding (SNE), described in the paper by [Hinton & Roweis (2002)](https://proceedings.neurips.cc/paper_files/paper/2002/file/6150ccc6069bea6b5716254057a194ef-Paper.pdf), is to emphasize local distances and employ a cost function that enforces both keeping the images of nearby objects nearby and keeping the images of widely separated objects relatively far apart.
+
+Most embedding methods require each high-dimensional data point to be associated with only a single location in the low-dimensional space, making it difficult to unfold “many-to-one” mappings in which a single ambiguous object really belongs in several disparate locations in the low-dimensional space. SNE tries to place high-dimensional data points in a low-dimensional space so as to optimally preserve neighborhood identity and allow multiple different low-dimensional images. For example, because of its probabilistic formulation, SNE has the ability to be extended to mixtures in which ambiguous high-dimensional objects such as the word “bank” can be associated with several widely-separated images (e.g., both "river" and "finance") in the low-dimensional space.
+
+The basic idea underlying SNE is to construct a Gaussian probability distribution $P_i$ over each point, $x_i$, in the high dimensional space that describes the conditional probability $p_{j|i}$ that i would pick j as its neighbor. $$p_{j|i} =  exp(-\| x_i - x_j\|^2/2\sigma_i^2) \sum_{k \neq i} exp(-\| x_i - x_k\|^2 / 2\sigma_i^2)$$
+
+Then, find a similar distribution, $Q_i$, over the points in the points $y_i$ in the low dimensional space to which the $x_i$ are mapped. If, for all i, $p_{i|j}=q_{i|j}$, then the similarities will be preserved. The ${y_i}$ points are found by using gradient descent to minimize the sum of all the [Kullback-Liebler](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence) divergences using the cost function: $$C = \sum_i KL(P_i \| Q_i) = \sum_i \sum_j p_{j|i}log(p_{j|i}/q_{j|i)}$$
+
+In the high dimensional space, the $\sigma_i$ values are selected by performing a binary search for the $\sigma_i$ that produces a $P_i$ with a fixed perplexity specified by the user. $Perp(P_i) = 2^{H(P_i)}$ where ${H(P_i)} = -\sum_j p_{j|i}log_2 p_{j|i}$ is the Shannon entropy measured in bits. The $\sigma_i$ for the low dimensional space are set to $1/\sqrt2$.
+
+#### t-SNE
+
+The t-SNE algorithm, described in [van der Maaten and Hinton (2008)](https://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf?fbcl), is an improvement on SNE that overcomes several technical difficulties. The main differences from SNE are that (1) t-SNE uses a symmetric version of the cost function, which has a simpler gradient, and (2) t-SNE uses a t-distribution with one degree of freedom for the points in the low dimensional space. These help overcome optimization problems and mitigate the effect of the *Crowding Problem* in which the area available in the low dimensional map to accommodate moderately distant data points will not be sufficient.
+
+Van der Maaten and Hinton point out that in both SNE and t-SNE,
+
+> "...the gradient may be interpreted as the resultant force created by a set of springs between the map points $y_i$ and $y_j$ . . .
+The spring between $y_i$ and $y_j$ repels or attracts the map points depending on whether distance between the two in the map is too small or too large to represent the similarities between the two high dimensional points." 
+
+The final result, t-SNE, is an algorithm that preserves local similarities between points while preserving enough of the global structure to recognize clusters. The art of both these algorithms comprises not only marshaling appropriate mathematics to realize intuitive geometric ideas about data relationships, but also in working through the many technical difficulties and optimization problems to provide reasonable performance. 
+
+
+## R Examples
+
+This section provides examples of using the [tsne](https://cran.r-project.org/package=tsne) package to compute two and three-dimensional embeddings on two different data sets, the [palmerpenguins](https://allisonhorst.github.io/palmerpenguins/) and the [AMES Housing Data](https://www.tmwr.org/ames). Note because it takes several minutes to fit the models on my underpowered MacBook Air, the code below shows how to run the `tsne()` command, but actually reads in the model fit from an `RDS` file.
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+
+library(palmerpenguins)
+library(tidyverse)
+library(tsne)
+library(modeldata) # for ames housing data
+library(threejs)
+```
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+### Example 1: The Penguins
+
+For our first example, let's look at the penguins data set from the [palmerpenguins](https://allisonhorst.github.io/palmerpenguins/) package. It has six variables we can use to feed the t-SNE algorithm, and we know that we would like any clusters identified to correspond with the three species of penguins.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+df_p <- palmerpenguins::penguins
+# glimpse(df_p)
+```
+
+Prepare data frames for fitting the model and then for subsequent plotting.
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: true
+#| code-summary: "Show the code"
+df_p_fit <- df_p |> 
+  mutate(island = as.integer(island), sex = as.integer(sex)) |>
+  select(c(-year, -species)) |> 
+  na.omit()
+
+df_p_plot <- df_p |> select(-year) |> na.omit() 
+```
+
+Fit the t-sne model.
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: true
+#| code-summary: "Show the code"
+
+# fit_pen <- tsne(df_p_fit, epoch_callback = NULL, perplexity=50)
+fit_pen <- readRDS("fit_pen_2D")
+```
+
+Next, we add the coordinates fit by the model to our plotting data frame and plot. As we would expect, the clusters identified by t-SNE line up very nicely with the penguin species, and island. All of the Gentoo are on Biscoe Island.
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: true
+#| code-summary: "Show the code"
+
+df_p_plot <- df_p_plot |> mutate(x = fit_pen[, 1], y = fit_pen[, 2])
+
+df_p_plot |> ggplot(aes(x, y, colour = species, shape = island)) +
+  geom_point() +
+  scale_color_manual(values = c("blue", "red", "green")) +
+  ggtitle("2D Embedding of Penguins Data")
+```
+
+Here is a projection onto a three-dimensional space.
+
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: true
+#| code-summary: "Show the code"
+
+# fit_pen_3D = tsne(df_p_fit, epoch_callback = NULL, perplexity=50, k=3)
+fit_pen_3D <- readRDS("fit_pen_3D")
+```
+
+The `threejs` visualization emphasizes the single Chinstrap observation floating in space near the Adelle clusters and the two Gentoos reaching the edge of Chinstrap Island.
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: true
+#| code-summary: "Show the code"
+x <- fit_pen_3D[,1] 
+y <- fit_pen_3D[,2]
+z <- fit_pen_3D[,3]
+
+
+df_p_plot <- df_p_plot |> mutate(
+  color = if_else(species == "Adelie", "blue", 
+                  if_else( species == "Gentoo","green", "red")))
+
+scatterplot3js(x,y,z, color=df_p_plot$color, cex.symbols = .3, 
+               labels = df_p_plot$species)
+
+```
+
+:::
+
+::: {.column width="10%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="45%"}
+
+### Examble 2: The Ames Housing Dataset
+
+With 74 variables, the [AMES Housing Data](https://www.tmwr.org/ames) provides a convincing display of of the usefulness of the `t-sne` algorithm.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+data(ames, package = "modeldata")
+#glimpse(ames)
+```
+
+Prepare `ames` for processing with `tsne` by changing all factors to numeric data and fit the model.
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: true
+#| code-summary: "Show the code"
+df_ames <- ames %>% mutate_if(is.factor, as.numeric)
+#fit_ames <- tsne(df_ames, epoch_callback = NULL, perplexity=50)
+fit_ames <- readRDS("tsne_fit_ames")
+#head(fit_ames)
+
+df_ames_plot <- ames |> mutate(x = fit_ames[,1], y = fit_ames[,2],
+                               MS_Zoning = as.character(MS_Zoning),
+                               MS_Zoning = replace(MS_Zoning, MS_Zoning == "C_all", "C or I"),
+                               MS_Zoning = replace(MS_Zoning, MS_Zoning == "I_all" , "C or I")
+                               )
+                              
+                               
+             
+            
+df_ames_plot |> ggplot(aes(x,y, shape = MS_Zoning, color = Neighborhood)) + 
+                geom_point() +
+                guides(color = FALSE, size = "none") +
+                ggtitle("2D Embedding of Ames Data Colored by Neighborhood")
+```
+
+Here is the projection onto a three-dimensional space that is also colored by Neighborhood. It shows the separation among the clusters which appear to reside in a three-dimensional ellipsoid. As was the case with the two-dimensional plot, neighborhoods appear to be fairly well mixed among the clusters.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+set.seed(1234)
+
+#fit_ames_3D <- tsne(ames, epoch_callback = NULL, perplexity=50,k=3)
+fit_ames_3D <- readRDS("tsne_fit_ames_3D")
+#head(fit_ames_3D)
+
+df_plot_ames_3D <- df_ames |> mutate(
+  x = fit_ames_3D[, 1],
+  y = fit_ames_3D[, 2],
+  z = fit_ames_3D[, 3],
+  neighborhood = ames$Neighborhood,
+  zone = ames$MS_Zoning
+)
+
+x <- fit_ames_3D[, 1]
+y <- fit_ames_3D[, 2]
+z <- fit_ames_3D[, 3]
+
+scatterplot3js(x, y, z, cex.symbols = .1, col = rainbow(length(df_plot_ames_3D$Neighborhood)))
+```
+
+:::
+
+::::
+
+
+### R Packages
+
+The following is a short list of R packages that may be helpful for Manifold Learning.
+
+[cml](https://CRAN.R-project.org/package=cml) vo.2.2: Finds a low-dimensional embedding of high-dimensional data, conditioning on available manifold information. The current version supports conditional MDS (based on either conditional SMACOF in Bui (2021) or closed-form solution in Bui (2022) and conditional ISOMAP in Bui (2021).
+
+[dyndimred](https://CRAN.R-project.org/package=dyndimred) v1.0.4: Provides a common interface for applying dimensionality reduction methods, such as Principal Component Analysis ('PCA'), Independent Component Analysis ('ICA'), diffusion maps, Locally-Linear Embedding ('LLE'), t-distributed Stochastic Neighbor Embedding ('t-SNE'), and Uniform Manifold Approximation and Projection ('UMAP'). Has built-in support for sparse matrices.
+
+[hydra](https://CRAN.R-project.org/package=hydra) v0.1.0: Calculate an optimal embedding of a set of data points into low-dimensional hyperbolic space. This uses the strain-minimizing hyperbolic embedding of Keller-Ressel and Nargang (2019).
+
+[matrixLaplacian](https://CRAN.R-project.org/package=matrixLaplacian) v1.0: Constructs the normalized Laplacian matrix of a square matrix, returns the eigenvectors (singular vectors) and visualization of normalized Laplacian map.
+
+[phateR](https://CRAN.R-project.org/package=phateR) v1.0.7: Implements a novel conceptual framework for learning and visualizing the manifold inherent to biological systems in which smooth transitions mark the progressions of cells from one state to another.
+
+[Riemann](https://CRAN.R-project.org/package=Riemann) v0.1.4: provides a variety of algorithms for manifold-valued data, including Fréchet summaries, hypothesis testing, clustering, visualization, and other learning tasks. See Bhattacharya and Bhattacharya (2012) for general exposition of statistics on manifolds. See the vignette.
+
+[Rtsne](https://CRAN.R-project.org/package=Rtsne) v:0.17: Provides a R wrapper around the fast T-distributed Stochastic Neighbor Embedding implementation by Van der Maaten.
+
+[spectralGraphTopology](https://CRAN.R-project.org/package=spectralGraphTopology) v0.2.3: Learning Graphs from Data via Spectral Constraints, It provides implementations of state-of-the-art algorithms such as Combinatorial Graph Laplacian Learning (CGL), Spectral Graph Learning (SGL), Graph Estimation based on Majorization-Minimization (GLE-MM), and Graph Estimation based on Alternating Direction Method of Multipliers (GLE-ADMM). See the vignette.
+
+[tsne](https://cran.r-project.org/package=tsne) v0.1-3.1: A "pure R" implementation of the t-SNE algorithm.
+
+[umap](https://CRAN.R-project.org/package=umap) v0.2.10.0: Implements the Uniform manifold approximation and projection algorithm for dimension reduction, which was described by McInnes and Healy (2018). See the vignette.
+
+[uwot](https://cran.r-project.org/package=uwot) v0.2.2: An implementation of the Uniform Manifold Approximation and Projection dimensionality reduction by McInnes et al. (2018). It also provides means to transform new data and to carry out supervised dimensionality reduction. An implementation of the related LargeVis method of Tang et al. (2016) is also provided. See the uwot website(https://github.com/jlmelville/uwot>) for more documentation and examples.
