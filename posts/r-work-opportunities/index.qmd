@@ -27,6 +27,8 @@ I've been spotting new opportunities in data science, analytics, and research th
 * [Research Associate – Data Governance and Privacy, Urban Institute](https://urban.wd1.myworkdayjobs.com/en-US/Urban-Careers/job/Research-Associate---Data-Governance-and-Privacy--Center-on-Labor--Human-Services--and-Population-_R-801591) - Washington, D.C.
 * [Staff Data Scientist, Causal Inference, Intuit](https://jobs.intuit.com/job/san-diego/staff-data-scientist/27595/69063431328) - San Diego/Mountain View/Los Angeles
 * [Data Analyst, GTM Insights and Operations, Pluralsight](https://pluralsight.wd1.myworkdayjobs.com/en-US/Careers/job/Hybrid---India/Data-Analyst--GTM-Insights-and-Operations_R0012735) - India
+* [IPUMS US Microdata Data Analyst 1, University of Minnesota](https://hr.myu.umn.edu/psc/hrprd/EMPLOYEE/HRMS/c/HRS_HRAM_FL.HRS_CG_SEARCH_FL.GBL?Page=HRS_APP_JBPST_FL&Action=U&SiteId=1&FOCUS=Applicant&JobOpeningId=365211&PostingSeq=1&) - Minneapolis
+* [Senior Healthcare Data Scientist, Vertex Pharmaceuticals](https://www.linkedin.com/jobs/view/senior-healthcare-data-scientist-at-vertex-pharmaceuticals-4042299383/) - Boston
 
 **Onsite**
 
@@ -35,6 +37,7 @@ I've been spotting new opportunities in data science, analytics, and research th
 * [Head of Design and Integration, Blue Ventures](https://careers.blueventures.org/jobs/5120519-head-of-design-and-integration) - Various Locations
 * [Data Visualizations Development - Manager, Bristol Myers Squibb](https://jobs.bms.com/careers/job/137461160773-data-visualization-application-development-manager-hyderabad-ts-in?domain=bms.com) - Hyderabad
 * [Data Scientist - Research and Development, Pittsburgh Pirates](https://pirates.rec.pro.ukg.net/PIT1500PITA/JobBoard/1571bce9-cb30-4961-98da-07b26506146a/OpportunityDetail?opportunityId=fd116e1b-89c5-477e-94ef-961384beadb6) - Pittsburgh
+* [Data Scientist, ACES](https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=3d881ef4-bdda-4758-9e9d-a0f907c200e3&ccId=19000101_000001&lang=en_US&source=LI&selectedMenuKey=CurrentOpenings&jobId=512455) - Various Locations
 * [Senior Research Scientist, Stanford](https://careersearch.stanford.edu/jobs/senior-research-scientist-19963)
 
 Thanks to the community meetups and forums where these roles were highlighted:
