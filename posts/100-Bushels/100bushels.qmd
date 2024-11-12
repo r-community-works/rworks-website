@@ -6,7 +6,7 @@ editor: source
 ---
 
 I was browsing the December, 1908 issue of *The Strand Magazine* (it's related to a hobby of mine), when I came across
-an article called ""The World's Best Puzzles", by [Henry Dudeney](https://en.wikipedia.org/wiki/Henry_Dudeney), who seems to have been the Martin Gardner of his day. Here's a cool puzzle from that article, which according to
+an article called "The World's Best Puzzles", by [Henry Dudeney](https://en.wikipedia.org/wiki/Henry_Dudeney), who seems to have been the Martin Gardner of his day. Here's a cool puzzle from that article, which according to
 Dudeney was first recorded by [Alcuin](https://en.wikipedia.org/wiki/Alcuin), Abbot of Canterbury (735-804). I assume it's from his manuscript [*Propositiones ad Acutendos Juvenes*](https://en.wikipedia.org/wiki/Propositiones_ad_Acuendos_Juvenes) (Problems to Sharpen Youths).
 
 
