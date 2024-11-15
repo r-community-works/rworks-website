@@ -1,0 +1,147 @@
+---
+title: "100 Bushels of Corn"
+author: "Nina Zumel"
+date: 2024-11-15
+format: html
+editor: source
+description: "100 bushes of corn are distributed to 100 people such that every man receives 3 bushels, every woman 2 bushels, and every child 1/2 a bushel. How many men, women, and children are there? (Solved with R)."
+image: georgio_de_chirico.jpg
+image-alt: "The Mathematicians, Chirico (1917) source: WikiArt"
+---
+
+I was browsing the December, 1908 issue of *The Strand Magazine* (it's related to a hobby of mine), when I came across an article called "The World's Best Puzzles", by [Henry Dudeney](https://en.wikipedia.org/wiki/Henry_Dudeney), who seems to have been the Martin Gardner of his day. Here's a cool puzzle from that article, which according to Dudeney was first recorded by [Alcuin](https://en.wikipedia.org/wiki/Alcuin), Abbot of Canterbury (735-804). I assume it's from his manuscript [*Propositiones ad Acutendos Juvenes*](https://en.wikipedia.org/wiki/Propositiones_ad_Acuendos_Juvenes) (Problems to Sharpen Youths).
+
+## The Puzzle
+
+100 bushes of corn are distributed to 100 people such that every man receives 3 bushels, every woman 2 bushels, and every child 1/2 a bushel. How many men, women, and children are there?
+
+There are seven solutions; Dudeney gives one: 20 men, 0 women, and 80 children. Can you find the other six?
+
+Let's put the puzzle into algebra, so it's easier to discuss.
+
+$$
+\begin{aligned}
+m + w + c &= 100 \\ 
+3m + 2w + 0.5c &= 100 \\
+\end{aligned}
+$$
+
+Solve for $m$, $w$, and $c$.
+
+This problem (or one very close to it), is known as a system of [Diophantine equations](https://en.wikipedia.org/wiki/Diophantine_equation).
+
+Here's a picture to look at while you try to solve it. The answer is below. Don't peek!
+
+![The Mathematicians, Chirico (1917)](the-mathematicians-1917.jpg){fig-alt="The Mathematicians, Chirico (1917) source: WikiArt"}
+
+## The Solution
+
+Here's my solution. I'll break it into steps. From the problem statement, we know $m$, $w$, and $c$ are all nonnegative integers.
+
+**1. $c$ is even.**
+
+That there is an even number of children is obvious from the fact that the total number of bushels
+is integral, and that the number of men, women, and children all have to be integral.
+
+**2. $w$ is a multiple of 5.**
+
+To prove this, we take the two original equations and eliminate $m$, by multiplying the first equation by $-3$ and
+adding the two together.
+
+$$
+\begin{aligned}
+-3m &- 3w &- 3c &= -300 \\ 
+3m &+ 2w &+ 0.5c &= 100 
+\end{aligned}
+$$
+
+this gives us:
+
+$$
+\begin{aligned}
+-w & -2.5c &= -200 \\
+ w &+ 2.5c &= 200 
+\end{aligned}
+$$
+
+Another way to write the last equation is
+
+$$
+w + (5/2) c = 200
+$$
+
+Since $c$ is even, $(5/2) c$ is divisible by 5, and 200 is divisible by 5; therefore, $w$ is divisible by 5. **QED**
+
+**3. $w \leq 30$**
+
+To prove this, let's eliminate $c$.
+
+$$
+\begin{aligned}
+-0.5m &- 0.5w &-0.5c &= -50\\ 
+   3m &+ 2w   &+ 0.5c &= 100 
+\end{aligned}   
+$$
+
+this results in:
+
+$$
+\begin{aligned}
+ 2.5m &+ 1.5w &+ 0   &= 50 \\
+   5m &+   3w &+ 0   &= 100 
+\end{aligned}
+$$
+
+which gives us
+
+$$
+m = 20 - (3/5) w
+$$
+
+Now we apply the fact that $m \geq 0$:
+
+$$
+\begin{aligned}
+20 - (3/5) w &\geq 0 \\
+(3/5) w &\leq20 \\
+3 w  &\leq100 \\
+w &\leq 100/3 = 33.333...
+\end{aligned}
+$$
+
+And since we know that $w$ must be a multiple of 5, this gives us $w \leq 30$. **QED**
+
+What are the multiples of 5 that are less than or equal to 30?
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+w = seq(from=0, to=30, by=5)
+w
+```
+
+That's `r length(w)` values---exactly what we're looking for! So we're basically done, but we can fill in all the counts just to polish it off. I'll do that in R, but you can do it in any language, of course.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+# from Step 3
+m = 20 - (3 / 5) * w
+
+# from the fact that there are 100 people total
+c = 100 - (m + w)
+
+pframe = data.frame(
+  men = m,
+  women = w,
+  children = c,
+  total_pop = m + w + c,
+  bushels = 3 * m + 2 * w + 0.5 * c
+)
+
+knitr::kable(pframe, caption = "Allocations of men, women, and children")
+```
+
+And there you have it: the seven solutions to the "100 bushels of corn" problem.
+
+*[Nina Zumel](https://ninazumel.com/) is a data scientist based in San Francisco, with 20+ years of experience in machine learning, statistics, and analytics. She is the co-founder of the data science consulting firm Win-Vector LLC, and (with John Mount) the co-author of Practical Data Science with R, now in its second edition.*
