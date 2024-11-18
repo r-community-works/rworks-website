@@ -7,7 +7,14 @@ editor: source
 description: "100 bushes of corn are distributed to 100 people such that every man receives 3 bushels, every woman 2 bushels, and every child 1/2 a bushel. How many men, women, and children are there? (Solved with R)."
 image: georgio_de_chirico.jpg
 image-alt: "The Mathematicians, Chirico (1917) source: WikiArt"
+categories: "Puzzle Corner"
 ---
+
+::: {.callout-note}
+## About the author
+
+[Nina Zumel](https://ninazumel.com/) is a data scientist based in San Francisco, with 20+ years of experience in machine learning, statistics, and analytics. She is the co-founder of the data science consulting firm Win-Vector LLC, and (with John Mount) the co-author of Practical Data Science with R, now in its second edition.
+:::
 
 I was browsing the December, 1908 issue of *The Strand Magazine* (it's related to a hobby of mine), when I came across an article called "The World's Best Puzzles", by [Henry Dudeney](https://en.wikipedia.org/wiki/Henry_Dudeney), who seems to have been the Martin Gardner of his day. Here's a cool puzzle from that article, which according to Dudeney was first recorded by [Alcuin](https://en.wikipedia.org/wiki/Alcuin), Abbot of Canterbury (735-804). I assume it's from his manuscript [*Propositiones ad Acutendos Juvenes*](https://en.wikipedia.org/wiki/Propositiones_ad_Acuendos_Juvenes) (Problems to Sharpen Youths).
 
@@ -143,5 +150,3 @@ knitr::kable(pframe, caption = "Allocations of men, women, and children")
 ```
 
 And there you have it: the seven solutions to the "100 bushels of corn" problem.
-
-*[Nina Zumel](https://ninazumel.com/) is a data scientist based in San Francisco, with 20+ years of experience in machine learning, statistics, and analytics. She is the co-founder of the data science consulting firm Win-Vector LLC, and (with John Mount) the co-author of Practical Data Science with R, now in its second edition.*
