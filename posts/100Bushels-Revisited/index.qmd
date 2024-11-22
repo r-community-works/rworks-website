@@ -1,0 +1,162 @@
+---
+title: "100 Bushels of Corn, Revisited"
+author: ["John Mount", "Nina Zumel"]
+date: 2024-11-22
+format: html
+editor: source
+description: "We find more solutions to the 100 Bushels of Corn puzzle using the numbers R package."
+image: numbers.jpg
+image-alt: "Rulers of different fonts and shapes lined up"
+categories: "Puzzle Corner"
+---
+
+::: {.callout-note}
+## About the authors
+
+John Mount is a data scientist based in San Francisco, with 20+ years of experience in machine learning, statistics, and analytics. She is the co-founder of the data science consulting firm Win-Vector LLC, and (with Nina Zumel) the co-author of Practical Data Science with R, now in its second edition.
+
+Nina Zumel is a data scientist based in San Francisco, with 20+ years of experience in machine learning, statistics, and analytics. She is the co-founder of the data science consulting firm Win-Vector LLC, and (with John Mount) the co-author of Practical Data Science with R, now in its second edition.
+:::
+
+## Introduction
+
+Nina Zumel presented the "100 Bushels of Corn" puzzle [here](https://rworks.dev/posts/100bushels/) as a fun example of using R as a calculator. What if we want R to solve the puzzle for us, instead of merely being a calculator?
+
+Let's give that a go.
+
+## Setting Up the Problem
+
+> 100 bushes of corn are distributed to 100 people such that every man receives 3 bushels, every woman 2 bushels, and every child 1/2 a bushel. How many men, women, and children are there?
+
+We can write the 100 Bushels of Corn problem as finding integer vectors `x` that satisfy `a %*% x = b` for the following `a, b`. The first row specifies the constraint on the total number of men, women and children; the second row specifies the constraint on how many bushels each person gets. Notice that we doubled the values of the second equation to keep everything integral.
+
+```{r}
+a <- matrix(c(1, 1, 1, 6, 4, 1),
+            nrow = 2,
+            ncol = 3,
+            byrow = TRUE)
+
+a
+```
+
+```{r}
+b <- as.matrix(c(100, 200))
+
+b
+```
+
+There are at least two main ways to solve this:
+
+  * Brute force. This is kind of the point of computers and programming languages.
+  * Linear algebra, in particular linear algebra over the ring of integers. This approach shows some of the richness of the R package environment curated at [CRAN](https://cran.r-project.org).
+  
+Let's take a quick look at these two solution styles.
+
+## Brute Force Solution
+
+A brute force solution is as follows. First, we get a simple upper bound on each variable. We can do this by checking one row of `a %*% x = b`.
+
+```{r}
+upper_bounds <- floor(b[2] / a[2, ])
+upper_bounds
+```
+
+Now we try all plausible solutions.
+
+```{r}
+for (x1 in 0:upper_bounds[[1]]) {
+  for (x2 in 0:upper_bounds[[2]]) {
+    # use a row of a to solve for x3
+    x3 <- (b[1] - (a[1, 1] * x1 + a[1, 2] * x2)) / a[1, 3]
+    # check constraints
+    if ((x3 >= 0) && (abs(x3 %% 1) < 1e-8)) {
+      x = as.matrix(c(x1, x2, x3))
+      if (all(a %*% x == b)) {
+        print(c(x1, x2, x3))
+      }
+    }
+  }
+}
+```
+
+And this gives us exactly the 7 solutions Nina found. This is some of the magic of having a programmable computer: one can cheaply try a lot of potential solutions without needing a lot of theory.
+
+## Ring Theory Solution
+
+It turns out there is a systematic way to find all of the integral solutions to a linear system quickly, at least for low dimensional solution spaces. To do this we will use a ring theory or linear algebra matrix factorization called the [Hermite normal form](https://en.wikipedia.org/wiki/Hermite_normal_form).  Fortunately, R has a package for this, called  [numbers](https://CRAN.R-project.org/package=numbers). We attach this package as follows.
+
+```{r}
+library(numbers)
+```
+
+This package will find for us a lower diagonal integer matrix `h` and a square unimodular matrix `u` such that `h = a %*% u`. Unimodular matrices map the space of integer vectors <code>Z<sup>n</sup></code> to the same space of integer vectors in a 1 to 1, onto, and invertible manner. This means finding integer solution vectors to `a %*% x = b` is equivalent to the problem of finding integer solutions to `h %*% y = b`, where `x = u %*% y`. This second problem is easier, as `h` is lower diagonal- so solving this system is just a matter of "back filling".
+
+Let's first find `h, u`.
+
+```{r}
+hnf <- hermiteNF(a)
+h <- hnf$H
+u <- hnf$U
+stopifnot(all(h == a %*% u))
+```
+
+```{r}
+# lower triangular transform of a
+h
+```
+
+```{r}
+# unimodular transform
+u
+```
+
+We now have `a %*% u = h`. `a %*% x = b` implies `h %*% y = b` where `x = u %*% y`. Let's solve for a specific solution `xs` by back substitution.
+
+```{r}
+# back substitute to solve h %*% y = b
+# this uses the fact that h is lower-triangular
+h_rank <- sum(diag(h) != 0)
+stopifnot(h_rank > 1)
+y <- numeric(ncol(a))
+y[1] <- b[1] / h[1, 1]
+for (i in 2:h_rank) {
+  y[i] <- (b[i] - sum(h[i, 1:(i - 1)] * y[1:(i - 1)])) / h[i, i]
+}
+stopifnot(all(b == h %*% y))
+xs <- u %*% y
+stopifnot(all(a %*% xs == b))
+xs
+```
+
+It is a standard result of linear algebra that all solutions of `a %*% x = b` are of the form `x = xs + z` where `a %*% z = 0` (that is, `z` is in the null space of `h` and `a`). In our case, the null space is spanned by the last column of `u`.
+
+Let's show this column.
+
+```{r}
+null_basis <- u[, (h_rank + 1):ncol(u), drop = FALSE]
+
+null_basis
+```
+
+So in our case: all integer solutions of `a %*% x = b` are of the form `[500, -800, 400] + k * [-3, 5, -2]` for integer `k`. 
+
+Now we just need to pick `k` to make everything non-negative (an implicit puzzle condition!). The sign changes of entries of `[500, -800, 400] + k * [-3, 5, -2]` happen for `k` where one of the coordinates is equal to zero. These are: 
+
+* `500 - 3 * k == 0`
+* `-800 + 5 * k == 0`, and 
+* `400 - 2 * k == 0`. 
+
+So the `k` of interest are in the range `ceiling(max(0, 800/5)) <= k <= floor(min(500/3, 400/2))`, or `160 <= k <= 166`. This gives us:
+
+```{r}
+for (k in 160:166) {
+  soln <- xs + k * null_basis
+  print(c(soln[1, 1], soln[2, 1], soln[3, 1]))
+}
+```
+
+And these are again exactly the solutions Nina Zumel gave [in the first 100 Bushels post](https://rworks.dev/posts/100bushels/).
+
+## Conclusion
+
+R gives the ability to exploit any combination of innate ability and knowledge, borrowed ability, or brute force in solving problems.

@@ -20,7 +20,7 @@ I was browsing the December, 1908 issue of *The Strand Magazine* (it's related t
 
 ## The Puzzle
 
-100 bushes of corn are distributed to 100 people such that every man receives 3 bushels, every woman 2 bushels, and every child 1/2 a bushel. How many men, women, and children are there?
+> 100 bushes of corn are distributed to 100 people such that every man receives 3 bushels, every woman 2 bushels, and every child 1/2 a bushel. How many men, women, and children are there?
 
 There are seven solutions; Dudeney gives one: 20 men, 0 women, and 80 children. Can you find the other six?
 
