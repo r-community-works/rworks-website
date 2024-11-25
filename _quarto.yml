@@ -33,6 +33,7 @@ format:
 
 editor: source
 highlight-style: tango
+lightbox: true
 
 execute:
   freeze: auto
