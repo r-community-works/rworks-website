@@ -19,7 +19,9 @@ image: image.jpg
 
 ## April
 
-(11-12) Chicago - [R/Finance](https://www.rinfinance.com/)
+(9 - 11) Virtual - [ShinyConf 2025](https://www.shinyconf.com/)
+
+(11 - 12) Chicago - [R/Finance](https://www.rinfinance.com/)
 
 (29 - May 2) Salt Lake City - [Symposium on Data Science & Statistics](https://www.amstat.org/meetings/symposium-on-data-science-amp-statistics)
 
