@@ -13,7 +13,7 @@ categories: "Puzzle Corner"
 ::: {.callout-note}
 ## About the authors
 
-John Mount is a data scientist based in San Francisco, with 20+ years of experience in machine learning, statistics, and analytics. She is the co-founder of the data science consulting firm Win-Vector LLC, and (with Nina Zumel) the co-author of Practical Data Science with R, now in its second edition.
+John Mount is a data scientist based in San Francisco, with 20+ years of experience in machine learning, statistics, and analytics. He is the co-founder of the data science consulting firm Win-Vector LLC, and (with Nina Zumel) the co-author of Practical Data Science with R, now in its second edition.
 
 Nina Zumel is a data scientist based in San Francisco, with 20+ years of experience in machine learning, statistics, and analytics. She is the co-founder of the data science consulting firm Win-Vector LLC, and (with John Mount) the co-author of Practical Data Science with R, now in its second edition.
 :::
