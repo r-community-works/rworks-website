@@ -351,7 +351,7 @@ for(i in seq(n_studies)) {
 
 ## Conclusion
 
-It is a challenge to communicate exactly *what* meta-analysis a given standard package actually implements. It is our assumption that many standard meta-analyses reflect the tools available to the researchers and not do not necessarily provide the ability to implement distributions that reflect the modeling assumptions they would prefer. Or, to be blunt, you don't really know what the packaged models are doing until you can match them to a known calculation.
+It is a challenge to communicate exactly *what* meta-analysis a given standard package actually implements. It is our assumption that many standard meta-analyses reflect the tools available to the researchers and do not necessarily provide the ability to implement distributions that reflect the modeling assumptions they would prefer. Or, to be blunt, you don't really know what the packaged models are doing until you can match them to a known calculation.
 
 Perhaps the greatest difference between the "standard" and Bayesian approaches is that Bayesian modeling requires the analyst to really *own* the modeling assumptions. This is why we wrote out so many of the modeling distributional assumptions as formulas instead of as named methodologies in our method descriptions.
 
