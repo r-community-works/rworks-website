@@ -10,7 +10,1148 @@
 <atom:link href="https://rworks.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.6.39</generator>
-<lastBuildDate>Mon, 25 Nov 2024 06:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 26 Nov 2024 06:00:00 GMT</lastBuildDate>
+<item>
+  <title>Examining Meta-Analysis</title>
+  <dc:creator>John Mount</dc:creator>
+  <dc:creator>Joseph Rickert</dc:creator>
+  <link>https://rworks.dev/posts/meta-analysis/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>In this post, we would like to review the idea of <em>meta-analysis</em> and compare a traditional, frequentist style, random effects meta-analysis to Bayesian methods. We will do this using the <a href="https://cran.r-project.org/package=meta">meta</a> R package and a Bayesian analysis conducted with R but actually carried out by the <a href="https://mc-stan.org/">Stan</a> programming language on the back end. We will use a small but interesting textbook data set of summary data from eight randomized controlled trials. These studies examined the effectiveness of the calcium channel blocker Amlodipine compared to a placebo in improving work capacity in patients with angina. The data set and the analysis with the <code>meta</code> package come directly from the textbook by <span class="citation" data-cites="appliedmetawithR">Chen and Peace (2013)</span>. Although there are several R packages that are capable of doing the Bayesian meta-analysis, we chose to work in <a href="https://cran.r-project.org/package=rstan">rstan</a> to demonstrate its flexibility and hint how one might go about doing a large complex study that doesn’t quite fit with pre-programmed paradigms.</p>
+<p>To follow our examples, you really don’t need to know much more about meta-analysis than the definition offered by <span class="citation" data-cites="enwiki:1251112044">Wikipedia contributors (2024)</span>: “meta-analysis is a method of synthesis of quantitative data from multiple independent studies addressing a common research question”. If you want to dig deeper, a good overview of the goals and terminology can be found in <span class="citation" data-cites="doi:10.2519/jospt.2011.3333">Israel and Richter (2011)</span>. The online textbook <a href="https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/">Doing Meta-Analysis in R: A Hands-on Guide</a> by <span class="citation" data-cites="doingmetawithR">Mathias Harrier and Ebert (2021)</span> will take you a long way in performing your own work.</p>
+<section id="example" class="level2">
+<h2 class="anchored" data-anchor-id="example">Example</h2>
+<p>Let’s begin: load the required packages and read in the data.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(meta)</span>
+<span id="cb1-2"></span>
+<span id="cb1-3">angina <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read.csv</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">file =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"AmlodipineData.csv"</span>,</span>
+<span id="cb1-4">                   <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">strip.white =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>,</span>
+<span id="cb1-5">                   <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">stringsAsFactors =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>)</span>
+<span id="cb1-6"></span>
+<span id="cb1-7">angina <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb1-8">  knitr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">kable</span>()</span></code></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Protocol</th>
+<th style="text-align: right;">nE</th>
+<th style="text-align: right;">meanE</th>
+<th style="text-align: right;">varE</th>
+<th style="text-align: right;">nC</th>
+<th style="text-align: right;">meanC</th>
+<th style="text-align: right;">varC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">154</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: right;">0.2316</td>
+<td style="text-align: right;">0.2254</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">-0.0027</td>
+<td style="text-align: right;">0.0007</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">156</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">0.2811</td>
+<td style="text-align: right;">0.1441</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">0.0270</td>
+<td style="text-align: right;">0.1139</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">157</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">0.1894</td>
+<td style="text-align: right;">0.1981</td>
+<td style="text-align: right;">72</td>
+<td style="text-align: right;">0.0443</td>
+<td style="text-align: right;">0.4972</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">162</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">0.0930</td>
+<td style="text-align: right;">0.1389</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">0.2277</td>
+<td style="text-align: right;">0.0488</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">163</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">0.1622</td>
+<td style="text-align: right;">0.0961</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">0.0056</td>
+<td style="text-align: right;">0.0955</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">166</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">0.1837</td>
+<td style="text-align: right;">0.1246</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">0.0943</td>
+<td style="text-align: right;">0.1734</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">303</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">0.6612</td>
+<td style="text-align: right;">0.7060</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">-0.0057</td>
+<td style="text-align: right;">0.9891</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">306</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: right;">0.1366</td>
+<td style="text-align: right;">0.1211</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">-0.0057</td>
+<td style="text-align: right;">0.1291</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The data set contains eight rows, each representing the measured effects of treatment and control on different groups. The column definitions are:</p>
+<ul>
+<li><code>Protocol</code> id number of the study the row is summarizing.</li>
+<li><code>nE</code> number of patients in the treatment group.</li>
+<li><code>meanE</code> mean treatment effect observed.</li>
+<li><code>varE</code> variance of treatment effect observed.</li>
+<li><code>nC</code> number of patients in the control group.</li>
+<li><code>meanC</code> mean control effect observed.</li>
+<li><code>varC</code> variance of control effect observed.</li>
+</ul>
+<section id="naive-pooling" class="level3">
+<h3 class="anchored" data-anchor-id="naive-pooling">Naive Pooling</h3>
+<p>A <a href="https://en.wikipedia.org/wiki/Efficiency_(statistics)">statistically inefficient</a>, naive technique to combine the studies would be to pool all of the data. This is usually not even possible, as most studies don’t share data — and at best share summaries. We might hope this is enough to get a good estimate of the expected difference between treatment and non-treatment. However this ignores variance and treats low-quality results on the same footing as high-quality results, yielding unreliable results. Naive pooling also lacks standard diagnostic procedures and indications.</p>
+<p>That being said, let’s form the naive pooled estimate.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(angina<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>nE <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> angina<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>meanE) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(angina<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>nE) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(angina<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>nC <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> angina<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>meanC) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(angina<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>nC)</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2012727</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="a-fixed-effects-model" class="level2">
+<h2 class="anchored" data-anchor-id="a-fixed-effects-model">A Fixed Effects Model</h2>
+<p>Perhaps the simplest reliable analysis is the fixed effects model. The underlying assumption for the fixed-effects model is that the true underlying effect or difference between treatment and control, <img src="https://latex.codecogs.com/png.latex?%5Cdelta">, is the same for all studies in the meta-analysis and that all possible risk factors are the same for all studies. Each study has its own observed effect size <img src="https://latex.codecogs.com/png.latex?%5Chat%7B%5Cdelta_i%7D">. However, each is assumed to be a noisy estimate of <img src="https://latex.codecogs.com/png.latex?%5Cdelta">.</p>
+<p>Such a study is summarized as follows.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">fixed.angina <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">metacont</span>(</span>
+<span id="cb4-2">  nE, meanE, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(varE),</span>
+<span id="cb4-3">  nC, meanC, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(varC),</span>
+<span id="cb4-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> angina,</span>
+<span id="cb4-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">study.lab =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Protocol"</span>,</span>
+<span id="cb4-6">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">random =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>)</span>
+<span id="cb4-7"></span>
+<span id="cb4-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summary</span>(fixed.angina)</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>       MD            95%-CI %W(common)
+1  0.2343 [ 0.0969; 0.3717]       21.2
+2  0.2541 [ 0.0663; 0.4419]       11.4
+3  0.1451 [-0.0464; 0.3366]       10.9
+4 -0.1347 [-0.3798; 0.1104]        6.7
+5  0.1566 [ 0.0072; 0.3060]       17.9
+6  0.0894 [-0.1028; 0.2816]       10.8
+7  0.6669 [ 0.1758; 1.1580]        1.7
+8  0.1423 [-0.0015; 0.2861]       19.4
+
+Number of studies: k = 8
+Number of observations: o = 596 (o.e = 299, o.c = 297)
+
+                        MD           95%-CI    z  p-value
+Common effect model 0.1619 [0.0986; 0.2252] 5.01 &lt; 0.0001
+
+Quantifying heterogeneity (with 95%-CIs):
+ tau^2 = 0.0001 [0.0000; 0.1667]; tau = 0.0116 [0.0000; 0.4082]
+ I^2 = 43.2% [0.0%; 74.9%]; H = 1.33 [1.00; 2.00]
+
+Test of heterogeneity:
+     Q d.f. p-value
+ 12.33    7  0.0902
+
+Details of meta-analysis methods:
+- Inverse variance method
+- Restricted maximum-likelihood estimator for tau^2
+- Q-Profile method for confidence interval of tau^2 and tau
+- Calculation of I^2 based on Q</code></pre>
+</div>
+</div>
+<p>The primary result of the summary is: the overall estimate for <img src="https://latex.codecogs.com/png.latex?%5Cdelta"> is <code>0.1619</code>, much smaller than the naive pooling estimate of <code>0.2013</code>. Also, a number of diagnostics seem “okay.” From the forest plot, it is easy to see that the Amlodipine treatment is not statistically significant for four of the protocols, but the overall effect of the difference between the treatment and the control is statistically significant. The plot also shows the test for heterogeneity, which indicates that there is no evidence against homogeneity.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">meta<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">forest</span>(fixed.angina, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">layout =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"RevMan5"</span>)</span></code></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="index_files/figure-html/unnamed-chunk-4-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://rworks.dev/posts/meta-analysis/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="3000"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Notice the fixed effects model is not the earlier naive mean; it is also not theoretically the same estimate as the random effects model, which we now discuss.</p>
+</section>
+<section id="a-random-effects-model" class="level2">
+<h2 class="anchored" data-anchor-id="a-random-effects-model">A Random Effects Model</h2>
+<p>The next level of modeling is a random effects model. In this style model, we admit that the studies may be, in fact, studying different populations and different effects. A perhaps cleaner way to think about this is not as a type of effect (fixed or random), but as a model structured as a hierarchy (<span class="citation" data-cites="Gelman_Hill_2006">Gelman and Hill (2006)</span>). The idea is that the analyst claims the populations are related, and the different effects are drawn from a common distribution, and observations are then drawn from these <em>unobserved</em> per-population effects. Inference is possible as the observed outcomes distributionally constrain the unobserved parameters.</p>
+<p>The underlying assumption for the random-effects model is that each study has its own true underlying treatment effect, <img src="https://latex.codecogs.com/png.latex?%5Cdelta_i">, with variance <img src="https://latex.codecogs.com/png.latex?%7B%5Csigma_i%7D%5E2"> that is estimated by <img src="https://latex.codecogs.com/png.latex?%5Chat%7B%5Cdelta_i%7D"> Furthermore, all of the <img src="https://latex.codecogs.com/png.latex?%5Cdelta_i"> follow a <img src="https://latex.codecogs.com/png.latex?N(%5Cdelta,%5Ctau%5E2)"> distribution. Hence,</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Balign%7D%0A%5Chat%7B%5Cdelta_i%7D%20&amp;%5Csim%20N(%5Cdelta,%5Csigma_i%5E2)%20%5C%5C%0A%5Cdelta_i%20&amp;%5Csim%20N(%5Cdelta,%5Ctau%5E2)%0A%5Cend%7Balign%7D%0A"></p>
+<section id="fit-the-random-effects-model" class="level3">
+<h3 class="anchored" data-anchor-id="fit-the-random-effects-model">Fit the Random-Effects Model</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">random.angina <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">metacont</span>(</span>
+<span id="cb7-2">  nE, meanE, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(varE),</span>
+<span id="cb7-3">  nC, meanC, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sqrt</span>(varC),</span>
+<span id="cb7-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> angina,</span>
+<span id="cb7-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">study.lab =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Protocol"</span>,</span>
+<span id="cb7-6">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">random =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span>
+<span id="cb7-7"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summary</span>(random.angina)</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>       MD            95%-CI %W(common) %W(random)
+1  0.2343 [ 0.0969; 0.3717]       21.2       21.1
+2  0.2541 [ 0.0663; 0.4419]       11.4       11.4
+3  0.1451 [-0.0464; 0.3366]       10.9       11.0
+4 -0.1347 [-0.3798; 0.1104]        6.7        6.7
+5  0.1566 [ 0.0072; 0.3060]       17.9       17.9
+6  0.0894 [-0.1028; 0.2816]       10.8       10.9
+7  0.6669 [ 0.1758; 1.1580]        1.7        1.7
+8  0.1423 [-0.0015; 0.2861]       19.4       19.3
+
+Number of studies: k = 8
+Number of observations: o = 596 (o.e = 299, o.c = 297)
+
+                         MD           95%-CI    z  p-value
+Common effect model  0.1619 [0.0986; 0.2252] 5.01 &lt; 0.0001
+Random effects model 0.1617 [0.0978; 0.2257] 4.96 &lt; 0.0001
+
+Quantifying heterogeneity (with 95%-CIs):
+ tau^2 = 0.0001 [0.0000; 0.1667]; tau = 0.0116 [0.0000; 0.4082]
+ I^2 = 43.2% [0.0%; 74.9%]; H = 1.33 [1.00; 2.00]
+
+Test of heterogeneity:
+     Q d.f. p-value
+ 12.33    7  0.0902
+
+Details of meta-analysis methods:
+- Inverse variance method
+- Restricted maximum-likelihood estimator for tau^2
+- Q-Profile method for confidence interval of tau^2 and tau
+- Calculation of I^2 based on Q</code></pre>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">meta<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">forest</span>(random.angina, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">layout =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"RevMan5"</span>)</span></code></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="index_files/figure-html/unnamed-chunk-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="https://rworks.dev/posts/meta-analysis/index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="3900"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The random effects result is a <img src="https://latex.codecogs.com/png.latex?%5Cdelta"> estimate of about <code>0.1617</code>. In this case, not much different than the fixed effects estimate.</p>
+</section>
+</section>
+<section id="issues" class="level2">
+<h2 class="anchored" data-anchor-id="issues">Issues</h2>
+<p>Some issues associated with the above analyses include:</p>
+<ol type="1">
+<li>Limited control of the distributional assumptions. What if we wanted to assume specific distributions on the un-observed individual outcomes? What if we want to change assumptions for a sensitivity analysis?</li>
+<li>The results are limited to point estimates of the distribution parameters.</li>
+<li>The results may depend on the underlying assumption of Normal distributions of published summaries.</li>
+<li>The reported significance is not necessarily the probability of positive effect for a new subject.</li>
+</ol>
+<section id="bayesian-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="bayesian-analysis">Bayesian analysis</h3>
+<p>To try and get direct control of the model, graphs, and the model explanation, we will perform a direct hierarchical analysis using Stan through the <code>rstan</code> package.</p>
+<p>We want to estimate the unobserved true value of treatment effect by a meta-analysis of different studies. The challenges of meta-analysis include:</p>
+<ul>
+<li>The studies may be of somewhat different populations, implying different mean and variance of treatment and control response.</li>
+<li>We are working from summary data from the studies and not data on individual patients.</li>
+</ul>
+<p>We are going to make things simple for the analyst and ask only for approximate distributional assumptions on the individual respondents in terms of unknown, to-be-inferred parameters. Then we will use Stan to sample individual patient outcomes (and unobserved parameters) that are biased to be consistent with the known summaries. This saves having to know or assume distributions of the summary statistics. And, in fact, we could try individual distributions different from the “Normal” we plug in here.</p>
+<p>The advantage of working this way is that the modeling assumptions are explicitly visible and controllable. The matching downside is that we have to own our modeling assumptions; we lose the anonymity of the implicit justification of invoking tradition and recognized authorities.</p>
+<p>To get this to work, we use two Stan tricks or patterns:</p>
+<ul>
+<li>Instantiate many intermediate variables (such as individual effects).</li>
+<li>Simulate equality enforcement by saying a specified difference tends to be small.</li>
+</ul>
+<p>First, load the required packages.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># attach packages</span></span>
+<span id="cb10-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggplot2)</span>
+<span id="cb10-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(rstan)</span>
+<span id="cb10-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(digest)</span>
+<span id="cb10-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">source</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"define_Stan_model.R"</span>)</span></code></pre></div>
+</details>
+</div>
+<p>And then prepare the study names for display.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">n_studies <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">nrow</span>(angina)</span>
+<span id="cb11-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># make strings for later use</span></span>
+<span id="cb11-3">descriptions <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">vapply</span>(</span>
+<span id="cb11-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq</span>(n_studies),</span>
+<span id="cb11-5">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(i) { <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(</span>
+<span id="cb11-6">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Protocol '</span>, angina[i, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Protocol'</span>], <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">' ('</span>,</span>
+<span id="cb11-7">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'nE='</span>, angina[i, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'nE'</span>], <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">', meanE='</span>, angina[i, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'meanE'</span>],</span>
+<span id="cb11-8">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">', nC='</span>, angina[i, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'nC'</span>], <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">', meanC='</span>, angina[i, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'meanC'</span>],</span>
+<span id="cb11-9">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">')'</span>) },</span>
+<span id="cb11-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">character</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>))</span></code></pre></div>
+</details>
+</div>
+<p>The modeling principles are as follows:</p>
+<ul>
+<li>There are unobserved true treatment and control effects we want to estimate. Call these <img src="https://latex.codecogs.com/png.latex?%5Cmu%5E%7Btreatment%7D"> and <img src="https://latex.codecogs.com/png.latex?%5Cmu%5E%7Bcontrol%7D">. We assume a shared standard deviation <img src="https://latex.codecogs.com/png.latex?%5Csigma">. We can easily model without a shared standard deviation by introducing more parameters to the model specification.</li>
+<li>For each protocol or study, we have ideal unobserved mean treatment effects and mean control effects. Call these <img src="https://latex.codecogs.com/png.latex?%5Cmu_%7Bi%7D%5E%7Btreatment%7D"> and <img src="https://latex.codecogs.com/png.latex?%5Cmu_%7Bi%7D%5E%7Bcontrol%7D"> for <img src="https://latex.codecogs.com/png.latex?i%20=%201%20%5Ccdots%208">.</li>
+</ul>
+<p>The equations bringing each study <img src="https://latex.codecogs.com/png.latex?i"> into our Bayesian model are as follows.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Balign%7D%0A%5Cmu%5E%7Btreatment%7D_i%20&amp;%5Csim%20N(%5Cmu%5E%7Btreatment%7D,%20%5Csigma%5E2)%20&amp;%5C#%20%5C;%20%5Cmu%5E%7Btreatment%7D%20%5C;%20%5Ctext%7Bis%20what%20we%20are%20trying%20to%20infer%7D%20%5C%5C%0A%5Cmu%5E%7Bcontrol%7D_i%20&amp;%5Csim%20N(%5Cmu%5E%7Bcontrol%7D,%20%5Csigma%5E2)%20&amp;%5C#%20%5C;%20%5Cmu%5E%7Bcontrol%7D%20%5C;%5Ctext%7Bis%20what%20we%20are%20trying%20to%20infer%7D%20%5C%5C%0A%0Asubject%5E%7Btreatment%7D_%7Bi,j%7D%20&amp;%5Csim%20N(%5Cmu%5E%7Btreatment%7D_i,%20%5Csigma_i%5E2)%20&amp;%5C#%20%5C;%20%5Ctext%7Bunobserved%7D%20%5C%5C%0Asubject%5E%7Bcontrol%7D_%7Bi,j%7D%20&amp;%5Csim%20N(%5Cmu%5E%7Bcontrol%7D_i,%20%5Csigma_i%5E2)%20&amp;%5C#%20%5C;%20%5Ctext%7Bunobserved%7D%20%5C%5C%0A%0Amean_j(subject%5E%7Btreatment%7D_%7Bi,j%7D)%20-%20observed%5C_mean%5E%7Btreatment%7D_%7Bi%7D%20&amp;%5Csim%20N(0,%200.01)%20&amp;%5C#%20%5C;%20%5Ctext%7Bforce%20inferred%20to%20be%20near%20observed%7D%20%5C%5C%0Amean_j(subject%5E%7Bcontrol%7D_%7Bi,j%7D)%20-%20observed%5C_mean%5E%7Bcontrol%7D_%7Bi%7D%20&amp;%5Csim%20N(0,%200.01)%20&amp;%5C#%20%5C;%20%5Ctext%7Bforce%20inferred%20near%20to%20be%20observed%7D%20%5C%5C%0Avar_j(subject%5E%7Btreatment%7D_%7Bi,j%7D)%20-%20observed%5C_var%5E%7Btreatment%7D_%7Bi%7D%20&amp;%5Csim%20N(0,%200.01)%20&amp;%5C#%20%5C;%20%5Ctext%7Bforce%20inferred%20to%20be%20near%20observed%7D%20%5C%5C%0Avar_j(subject%5E%7Bcontrol%7D_%7Bi,j%7D)%20-%20observed%5C_var%5E%7Bcontrol%7D_%7Bi%7D%20&amp;%5Csim%20N(0,%200.01)%20&amp;%5C#%20%5C;%20%5Ctext%7Bforce%20inferred%20near%20to%20be%20observed%7D%0A%5Cend%7Balign%7D"></p>
+<p>The above equations are designed to be argued over. They need to be believed to relate the unobserved true treatment and control effects to the recorded study summaries. If they are not believed, is there a correction that would fix that? If the equations are good enough, then we can sample the implied posterior distribution of the unknown true treatment and control effects, which would finish the meta-analysis. The driving idea is that it may be easier to discuss how unobserved individual measurements may relate to observed and unobserved summaries and parameters than to work out how to relate statistical summaries to statistical summaries.</p>
+<p>It is mechanical to translate the above relations into a Stan source model to make the desired inferences. The lines marked “force inferred to be near observed” are not distributional beliefs- but just a tool for enforcing that the inferred individual data should match the claimed summary statistics.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># the Stan data</span></span>
+<span id="cb12-2">stan_data <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(</span>
+<span id="cb12-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">n_studies =</span> n_studies,</span>
+<span id="cb12-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">nE =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">array</span>(angina<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>nE, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">dim =</span> n_studies),  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># deal with length 1 arrays confused with scalars in JSON path</span></span>
+<span id="cb12-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">meanE =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">array</span>(angina<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>meanE, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">dim =</span> n_studies),</span>
+<span id="cb12-6">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">varE =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">array</span>(angina<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>varE, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">dim =</span> n_studies), </span>
+<span id="cb12-7">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">nC =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">array</span>(angina<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>nC, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">dim =</span> n_studies), </span>
+<span id="cb12-8">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">meanC =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">array</span>(angina<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>meanC, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">dim =</span> n_studies), </span>
+<span id="cb12-9">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">varC =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">array</span>(angina<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>varC, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">dim =</span> n_studies))</span></code></pre></div>
+</details>
+</div>
+<p>Here we define the Stan Model.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1">analysis_src_joint <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">define_Stan_model</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">n_studies =</span> n_studies, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">c_replacement =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">''</span>)</span></code></pre></div>
+</details>
+</div>
+<p>This code runs the procedure. The function <code>run_cache()</code> runs the standard <code>stan()</code> function, saving the result to a file cache for quick and deterministic re-re-renderings of the notebook. The caching is not required, but the runs took about five minutes on an old-Intel based Mac.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># run the sampling procedure</span></span>
+<span id="cb14-2">fit_joint <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">run_cached</span>(</span>
+<span id="cb14-3">  stan,</span>
+<span id="cb14-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(</span>
+<span id="cb14-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">model_code =</span> analysis_src_joint,  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Stan program</span></span>
+<span id="cb14-6">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> stan_data,                 <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># named list of data</span></span>
+<span id="cb14-7">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">chains =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>,                       <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># number of Markov chains</span></span>
+<span id="cb14-8">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">warmup =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2000</span>,                    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># number of warm up iterations per chain</span></span>
+<span id="cb14-9">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">iter =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4000</span>,                      <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># total number of iterations per chain</span></span>
+<span id="cb14-10">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cores =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>,                        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># number of cores (could use one per chain)</span></span>
+<span id="cb14-11">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">refresh =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,                      <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># no progress shown</span></span>
+<span id="cb14-12">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pars =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lp__"</span>,                  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># parameters to bring back</span></span>
+<span id="cb14-13">           <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"inferred_grand_treatment_mean"</span>, </span>
+<span id="cb14-14">           <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"inferred_grand_control_mean"</span>, </span>
+<span id="cb14-15">           <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"inferred_between_group_stddev"</span>,</span>
+<span id="cb14-16">           <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"inferred_group_treatment_mean"</span>, </span>
+<span id="cb14-17">           <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"inferred_group_control_mean"</span>,</span>
+<span id="cb14-18">           <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"inferred_in_group_stddev"</span>, </span>
+<span id="cb14-19">           <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"sampled_meanE"</span>, </span>
+<span id="cb14-20">           <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"sampled_varE"</span>,</span>
+<span id="cb14-21">           <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"sampled_meanC"</span>, </span>
+<span id="cb14-22">           <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"sampled_varC"</span>)</span>
+<span id="cb14-23">  ),</span>
+<span id="cb14-24">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">prefix =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Amlodipine_joint"</span></span>
+<span id="cb14-25">)</span></code></pre></div>
+</details>
+</div>
+<p>And then, we extract the results.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># show primary inference</span></span>
+<span id="cb15-2">inference <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> fit_joint <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb15-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.data.frame</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb15-4">  (<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">[</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span>)(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"inferred_grand_treatment_mean"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"inferred_grand_control_mean"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"inferred_between_group_stddev"</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb15-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">colMeans</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb15-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.list</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb15-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>() </span>
+<span id="cb15-8">inference[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'delta'</span>] <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> inference[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'inferred_grand_treatment_mean'</span>] <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> inference[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'inferred_grand_control_mean'</span>]</span>
+<span id="cb15-9"></span>
+<span id="cb15-10">inference <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb15-11">  knitr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">kable</span>()</span></code></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 28%">
+<col style="width: 30%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">inferred_grand_treatment_mean</th>
+<th style="text-align: right;">inferred_grand_control_mean</th>
+<th style="text-align: right;">inferred_between_group_stddev</th>
+<th style="text-align: right;">delta</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.2002917</td>
+<td style="text-align: right;">0.0391202</td>
+<td style="text-align: right;">0.0650105</td>
+<td style="text-align: right;">0.1611715</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>And our new estimate is: 0.1611715 which is very similar to the previous results. We can graph the inferred posterior distribution of effect size as follows.</p>
+<p>First, we plot the estimated posterior distribution of both the treatment and control effects. This is the final result of the analysis, using all of the data, simulated from the eight trials. In this result, high-variance studies have a diminished influence on the overall estimated effect sizes. Running all of the simulated data together without maintaining the trial structure would produce an inflated <code>0.2</code> again.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># plot the grand group inferences </span></span>
+<span id="cb16-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">dual_density_plot</span>(</span>
+<span id="cb16-3">  fit_joint, </span>
+<span id="cb16-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">c1 =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'inferred_grand_treatment_mean'</span>, </span>
+<span id="cb16-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">c2 =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'inferred_grand_control_mean'</span>,</span>
+<span id="cb16-6">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'grand estimate'</span>)</span></code></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="index_files/figure-html/unnamed-chunk-13-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="https://rworks.dev/posts/meta-analysis/index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="2100"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="watching-the-pooling" class="level3">
+<h3 class="anchored" data-anchor-id="watching-the-pooling">Watching the Pooling</h3>
+<p>We can examine how the hierarchical model changes the estimates as follows. In each case we are plotting the posterior distribution of the unknown treatment and control effect estimates, this time per original study, with and without pooling analysis.</p>
+<p>To do this, we define an additional “the studies are unrelated model”.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1">analysis_src_independent <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">define_Stan_model</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">n_studies =</span> n_studies, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">c_replacement =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'//'</span>)</span></code></pre></div>
+</details>
+</div>
+<p>We then fit the model or use previously cached results.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># run the sampling procedure</span></span>
+<span id="cb18-2">fit_independent <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">run_cached</span>(</span>
+<span id="cb18-3">  stan,</span>
+<span id="cb18-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(</span>
+<span id="cb18-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">model_code =</span> analysis_src_independent,  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Stan program</span></span>
+<span id="cb18-6">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> stan_data,                       <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># named list of data</span></span>
+<span id="cb18-7">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">chains =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>,                             <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># number of Markov chains</span></span>
+<span id="cb18-8">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">warmup =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2000</span>,                          <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># number of warm up iterations per chain</span></span>
+<span id="cb18-9">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">iter =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4000</span>,                            <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># total number of iterations per chain</span></span>
+<span id="cb18-10">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cores =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>,                              <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># number of cores (could use one per chain)</span></span>
+<span id="cb18-11">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">refresh =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,                            <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># no progress shown</span></span>
+<span id="cb18-12">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pars =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lp__"</span>,                        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># parameters to bring back</span></span>
+<span id="cb18-13">           <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"inferred_group_treatment_mean"</span>, </span>
+<span id="cb18-14">           <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"inferred_group_control_mean"</span>,</span>
+<span id="cb18-15">           <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"inferred_in_group_stddev"</span>, </span>
+<span id="cb18-16">           <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"sampled_meanE"</span>, </span>
+<span id="cb18-17">           <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"sampled_varE"</span>,</span>
+<span id="cb18-18">           <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"sampled_meanC"</span>,</span>
+<span id="cb18-19">           <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"sampled_varC"</span>)</span>
+<span id="cb18-20">  ),</span>
+<span id="cb18-21">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">prefix =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Amlodipine_independent"</span></span>
+<span id="cb18-22">)</span></code></pre></div>
+</details>
+</div>
+<p>Then, we can plot the compared inferences of the hierarchical and independent models.</p>
+<p>The top plot shows the Bayesian inference that would result using only data from a single study. The bottom plot shows the estimate made for the given study, given the data from the other studies. Notice that in this first pair of plots, the bottom plot sharpens the distributions and tends to pull the means together. The first two plots have the means pulled in, the third pushed out, and behavior varies by group from then on. Notice in Protocol 162, the inferred means are reversed. These graphs are the Bayesian analogs of the forest plots above.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># plot comparison inferences</span></span>
+<span id="cb19-2"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span>(i <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq</span>(n_studies)) {</span>
+<span id="cb19-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">print</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">double_dual_density_plot</span>(</span>
+<span id="cb19-4">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fitA =</span> fit_independent,</span>
+<span id="cb19-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fitB =</span> fit_joint,</span>
+<span id="cb19-6">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">c1 =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gsub</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'{i}'</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.character</span>(i), <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'inferred_group_treatment_mean[{i}]'</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fixed =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>), </span>
+<span id="cb19-7">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">c2 =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gsub</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'{i}'</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.character</span>(i), <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'inferred_group_control_mean[{i}]'</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fixed =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>), </span>
+<span id="cb19-8">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gsub</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'{p}'</span>, descriptions[[i]], <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'{p}</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">estimates'</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fixed =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>),</span>
+<span id="cb19-9">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">vlines=</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(angina[i, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'meanE'</span>], angina[i, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'meanC'</span>])))</span>
+<span id="cb19-10">}</span></code></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="index_files/figure-html/unnamed-chunk-16-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="https://rworks.dev/posts/meta-analysis/index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="2100"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="index_files/figure-html/unnamed-chunk-16-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="https://rworks.dev/posts/meta-analysis/index_files/figure-html/unnamed-chunk-16-2.png" class="img-fluid figure-img" width="2100"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="index_files/figure-html/unnamed-chunk-16-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="https://rworks.dev/posts/meta-analysis/index_files/figure-html/unnamed-chunk-16-3.png" class="img-fluid figure-img" width="2100"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="index_files/figure-html/unnamed-chunk-16-4.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="https://rworks.dev/posts/meta-analysis/index_files/figure-html/unnamed-chunk-16-4.png" class="img-fluid figure-img" width="2100"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="index_files/figure-html/unnamed-chunk-16-5.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="https://rworks.dev/posts/meta-analysis/index_files/figure-html/unnamed-chunk-16-5.png" class="img-fluid figure-img" width="2100"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="index_files/figure-html/unnamed-chunk-16-6.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="https://rworks.dev/posts/meta-analysis/index_files/figure-html/unnamed-chunk-16-6.png" class="img-fluid figure-img" width="2100"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="index_files/figure-html/unnamed-chunk-16-7.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="https://rworks.dev/posts/meta-analysis/index_files/figure-html/unnamed-chunk-16-7.png" class="img-fluid figure-img" width="2100"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="index_files/figure-html/unnamed-chunk-16-8.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="https://rworks.dev/posts/meta-analysis/index_files/figure-html/unnamed-chunk-16-8.png" class="img-fluid figure-img" width="2100"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>It is a challenge to communicate exactly <em>what</em> meta-analysis a given standard package actually implements. It is our assumption that many standard meta-analyses reflect the tools available to the researchers and do not necessarily provide the ability to implement distributions that reflect the modeling assumptions they would prefer. Or, to be blunt, you don’t really know what the packaged models are doing until you can match them to a known calculation.</p>
+<p>Perhaps the greatest difference between the “standard” and Bayesian approaches is that Bayesian modeling requires the analyst to really <em>own</em> the modeling assumptions. This is why we wrote out so many of the modeling distributional assumptions as formulas instead of as named methodologies in our method descriptions.</p>
+<p>We feel that there is a gap in the available practical literature. There is room for more teaching materials making meta-analysis more approachable by relating them to explicit model structures.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<div id="ref-appliedmetawithR" class="csl-entry">
+Chen, Ding-Geng, and Karl E. Peace. 2013. <em>Applied Meta-Analysis with <span>R</span></em>. CRC Press.
+</div>
+<div id="ref-Gelman_Hill_2006" class="csl-entry">
+Gelman, Andrew, and Jennifer Hill. 2006. <em>Data Analysis Using Regression and Multilevel/Hierarchical Models</em>. Analytical Methods for Social Research. Cambridge University Press.
+</div>
+<div id="ref-doi:10.2519/jospt.2011.3333" class="csl-entry">
+Israel, Heidi, and Randy R. Richter. 2011. <span>“A Guide to Understanding Meta-Analysis.”</span> <em>Journal of Orthopaedic &amp; Sports Physical Therapy</em> 41 (7): 496–504. <a href="https://doi.org/10.2519/jospt.2011.3333">https://doi.org/10.2519/jospt.2011.3333</a>.
+</div>
+<div id="ref-doingmetawithR" class="csl-entry">
+Mathias Harrier, Toshi A. Furukawa, Pim Cuijpers, and David D. Ebert. 2021. <em>Doing Meta-Analysis with <span>R</span>: A Hands-on Guide</em>. CRC Press.
+</div>
+<div id="ref-enwiki:1251112044" class="csl-entry">
+Wikipedia contributors. 2024. <span>“Meta-Analysis — <span>Wikipedia</span><span>,</span> the Free Encyclopedia.”</span> <a href="https://en.wikipedia.org/w/index.php?title=Meta-analysis&amp;oldid=1251112044">https://en.wikipedia.org/w/index.php?title=Meta-analysis&amp;oldid=1251112044</a>.
+</div>
+</div>
+</section>
+<section id="appendix-reproducing-the-result" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-reproducing-the-result">Appendix: Reproducing the Result</h2>
+<p>The files required to reproduce the result are:</p>
+<ol type="1">
+<li><strong><a href="ExaminingMetaAnalysis.qmd">ExaminingMetaAnalysis.qmd</a></strong>: this notebook.</li>
+<li><strong><a href="AmlodipineData.csv">AmlodipineData.csv</a></strong>: the original data.</li>
+<li><strong><a href="define_Stan_model.R">define_Stan_model.R</a></strong>: helper functions.</li>
+<li>(optional) <strong><a href="cache_Amlodipine_independent_b818d8db720377f42b728cbc88a94e58.RDS">cache_Amlodipine_independent_b818d8db720377f42b728cbc88a94e58.RDS</a></strong>: the cached result.</li>
+<li>(optional) <strong><a href="cache_Amlodipine_joint_f0ae8de9e99d9396a5f2a21f5638030f.RDS">cache_Amlodipine_joint_f0ae8de9e99d9396a5f2a21f5638030f.RDS</a></strong>: the cached result.</li>
+</ol>
+
+
+</section>
+
+ ]]></description>
+  <guid>https://rworks.dev/posts/meta-analysis/</guid>
+  <pubDate>Tue, 26 Nov 2024 06:00:00 GMT</pubDate>
+  <media:content url="https://rworks.dev/posts/meta-analysis/plot.png" medium="image" type="image/png" height="103" width="144"/>
+</item>
 <item>
   <title>October 2024: Top 40 New CRAN Packages</title>
   <dc:creator>Joseph Rickert</dc:creator>

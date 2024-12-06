@@ -2,46 +2,50 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://rworks.dev/how-to-contribute.html</loc>
-    <lastmod>2024-11-12T14:55:17.230Z</lastmod>
+    <lastmod>2024-12-06T04:39:19.064Z</lastmod>
   </url>
   <url>
     <loc>https://rworks.dev/index.html</loc>
-    <lastmod>2024-10-28T00:34:37.580Z</lastmod>
+    <lastmod>2024-12-06T04:39:19.065Z</lastmod>
   </url>
   <url>
     <loc>https://rworks.dev/posts/manifold-learning/index.html</loc>
-    <lastmod>2024-11-15T17:33:48.382Z</lastmod>
+    <lastmod>2024-12-06T04:39:19.125Z</lastmod>
   </url>
   <url>
     <loc>https://rworks.dev/posts/august-2024-top-40-new-cran-packages/index.html</loc>
-    <lastmod>2024-11-01T14:32:00.870Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rworks.dev/posts/r-work-opportunities/index.html</loc>
-    <lastmod>2024-11-12T14:53:51.436Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rworks.dev/posts/welcome-to-rworks/index.html</loc>
-    <lastmod>2024-11-01T13:19:49.459Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rworks.dev/posts/100bushels/index.html</loc>
-    <lastmod>2024-11-25T23:46:24.172Z</lastmod>
+    <lastmod>2024-12-06T04:39:19.113Z</lastmod>
   </url>
   <url>
     <loc>https://rworks.dev/posts/september-2024-top-40-new-cran-packages/index.html</loc>
-    <lastmod>2024-11-01T13:18:49.205Z</lastmod>
+    <lastmod>2024-12-06T04:39:19.669Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rworks.dev/posts/100bushels/index.html</loc>
+    <lastmod>2024-12-06T04:39:19.073Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rworks.dev/posts/welcome-to-rworks/index.html</loc>
+    <lastmod>2024-12-06T04:39:19.690Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rworks.dev/posts/r-work-opportunities/index.html</loc>
+    <lastmod>2024-12-06T04:39:19.603Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rworks.dev/posts/meta-analysis/index.html</loc>
+    <lastmod>2024-12-06T04:39:19.530Z</lastmod>
   </url>
   <url>
     <loc>https://rworks.dev/posts/october-2024-top-40-new-cran-packages/index.html</loc>
-    <lastmod>2024-11-25T23:54:59.919Z</lastmod>
+    <lastmod>2024-12-06T04:39:19.563Z</lastmod>
   </url>
   <url>
     <loc>https://rworks.dev/posts/100Bushels-Revisited/index.html</loc>
-    <lastmod>2024-11-25T23:46:24.166Z</lastmod>
+    <lastmod>2024-12-06T04:39:19.068Z</lastmod>
   </url>
   <url>
     <loc>https://rworks.dev/about.html</loc>
-    <lastmod>2024-10-30T16:00:16.019Z</lastmod>
+    <lastmod>2024-12-06T04:39:18.541Z</lastmod>
   </url>
 </urlset>
