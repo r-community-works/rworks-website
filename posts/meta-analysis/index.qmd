@@ -367,7 +367,7 @@ We feel that there is a gap in the available practical literature. There is room
 
 The files required to reproduce the result are:
 
-  1) **[ExaminingMetaAnalysis.qmd](ExaminingMetaAnalysis.qmd)**: this notebook.
+  1) **[ExaminingMetaAnalysis.qmd](https://github.com/r-community-works/rworks-website/blob/main/posts/meta-analysis/index.qmd)**: this notebook.
   2) **[AmlodipineData.csv](AmlodipineData.csv)**: the original data.
   3) **[define_Stan_model.R](define_Stan_model.R)**: helper functions.
   4) (optional) **[cache_Amlodipine_independent_b818d8db720377f42b728cbc88a94e58.RDS](cache_Amlodipine_independent_b818d8db720377f42b728cbc88a94e58.RDS)**: the cached result.
