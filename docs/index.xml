@@ -10,7 +10,672 @@
 <atom:link href="https://rworks.dev/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.6.39</generator>
-<lastBuildDate>Tue, 26 Nov 2024 06:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 06 Dec 2024 06:00:00 GMT</lastBuildDate>
+<item>
+  <title>Bachet’s Four Weights Problem</title>
+  <dc:creator>Nina Zumel</dc:creator>
+  <link>https://rworks.dev/posts/four-weights/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Here’s another puzzle from Henry Dudeney’s article “The World’s Best Puzzles,” <em>The Strand Magazine</em>, December 1908. According to Dudeney, this puzzle is originally from <em>Problèmes plaisans et délectables qui se font par les nombres</em> (Pleasant and delectable number problems), by French mathematician <a href="https://en.wikipedia.org/wiki/Claude_Gaspar_Bachet_de_M%C3%A9ziriac">Claude Gaspar Bachet de Méziriac</a> (1851-1636).<sup>1</sup></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="four-weights.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="A balance scale and four weights."><img src="https://rworks.dev/posts/four-weights/four-weights.jpg" class="img-fluid figure-img" alt="A balance scale and four weights. Source: Internet Archive"></a></p>
+<figcaption>A balance scale and four weights.</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p>You have four (integral) weights <img src="https://latex.codecogs.com/png.latex?w_1,%20w_2,%20w_3,%20w_4"> and a balance scale such that you can weigh any (integral) number of pounds from 1 lb to 40 lbs. The weights may go on either side of the scale (e.g., with the object or in the opposite pan). What are the <img src="https://latex.codecogs.com/png.latex?w_i">?</p>
+</blockquote>
+<p>This seems like a variation on the <a href="https://en.wikipedia.org/wiki/Coin_problem">Frobenius coin problem</a>, which, in general, is NP-hard. Fortunately, this specific instance is not.</p>
+<p>As before, here’s Chirico’s <em>The Mathematicians</em> for you to look at while you try to solve this. Solution below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="the-mathematicians-1917.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="The Mathematicians, Chirico (1917)"><img src="https://rworks.dev/posts/four-weights/the-mathematicians-1917.jpg" class="img-fluid figure-img" alt="The Mathematicians, Chirico (1917) source: WikiArt"></a></p>
+<figcaption>The Mathematicians, Chirico (1917)</figcaption>
+</figure>
+</div>
+<section id="the-solution" class="level2">
+<h2 class="anchored" data-anchor-id="the-solution">The Solution</h2>
+<p>The four weights are (1, 3, 9, 27). Before we confirm this computationally, let’s compute the solution using induction.</p>
+<p>Let’s rephrase the problem as</p>
+<blockquote class="blockquote">
+<p>You have <img src="https://latex.codecogs.com/png.latex?n"> weights… such that you can weigh any number of pounds in the range <code>1:m</code>….”</p>
+</blockquote>
+<p>where <img src="https://latex.codecogs.com/png.latex?m"> depends on how many weights you have. We can also observe that the sum of all the weights must equal the weight of the heaviest object you can measure, and that object must weigh <img src="https://latex.codecogs.com/png.latex?m"> pounds.</p>
+<p>Then, for the case <img src="https://latex.codecogs.com/png.latex?n%20=%201">, you have a single weight <img src="https://latex.codecogs.com/png.latex?w_1%20=%201">, and you can weigh any object that weighs one pound (the interval 1:1). Now let’s look at the case <img src="https://latex.codecogs.com/png.latex?n=2">.</p>
+<section id="the-weights-w_1-1-w_2-3-can-weigh-any-object-from-1-to-4-pounds." class="level3">
+<h3 class="anchored" data-anchor-id="the-weights-w_1-1-w_2-3-can-weigh-any-object-from-1-to-4-pounds.">1. The weights <img src="https://latex.codecogs.com/png.latex?(w_1%20=%201,%20w_2%20=%203)"> can weigh any object from 1 to 4 pounds.</h3>
+<p>I’ll use <img src="https://latex.codecogs.com/png.latex?x"> to denote the object to be weighed, and the notation <img src="https://latex.codecogs.com/png.latex?%5B%5C%7Bset_1%5C%7D%20%7C%20%5C%7Bset_2%5C%7D%5D"> to denote what’s on the left and the right side of the scale. I’ll always put <img src="https://latex.codecogs.com/png.latex?x"> in the right-hand pan.</p>
+<p><strong><img src="https://latex.codecogs.com/png.latex?x%20=%201"></strong> is weighed as <img src="https://latex.codecogs.com/png.latex?%5B%5C%7B1%5C%7D%20%7C%20%5C%7Bx%5C%7D%5D">. This can be written as <img src="https://latex.codecogs.com/png.latex?1%20=%20x">.</p>
+<p><strong><img src="https://latex.codecogs.com/png.latex?x%20=%202"></strong> is weighed as <img src="https://latex.codecogs.com/png.latex?%5B%5C%7B3%5C%7D%20%7C%20%5C%7Bx,%201%5C%7D%5D">. This can be written as <img src="https://latex.codecogs.com/png.latex?3%20=%20x%20+%201">, or <img src="https://latex.codecogs.com/png.latex?3%20-%201%20=%20x">.</p>
+<p><strong><img src="https://latex.codecogs.com/png.latex?x%20=%203"></strong> is weighed as <img src="https://latex.codecogs.com/png.latex?%5B%5C%7B3%5C%7D%20%7C%20%5C%7Bx%5C%7D%5D">. This can be written as <img src="https://latex.codecogs.com/png.latex?3%20=%20x">.</p>
+<p><strong><img src="https://latex.codecogs.com/png.latex?x%20=%204"></strong> is weighed as <img src="https://latex.codecogs.com/png.latex?%5B%5C%7B1,%203%5C%7D%20%7C%20%5C%7Bx%5C%7D%5D">. This can be written as <img src="https://latex.codecogs.com/png.latex?1%20+%203%20=%20x">.</p>
+<p>You can see from the above that the general form of the solution is</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0As_1%20w_1%20+%20s_2%20w_2%20=%20x%0A"></p>
+<p>where <img src="https://latex.codecogs.com/png.latex?(w_1,%20w_2)%20=%20(1,%203)"> and <img src="https://latex.codecogs.com/png.latex?s_1%20%5Cin%20%5C%7B-1,%200,%201%5C%7D">. A positive coefficient means the weight is in the left pan, a negative one means it’s in the right pan, and zero means the weight isn’t used. This is essentially a “signed trinary” representation of <img src="https://latex.codecogs.com/png.latex?x">. For two digits, signed trinary can represent <img src="https://latex.codecogs.com/png.latex?3%5E2%20=%209"> values.</p>
+<p>Let’s just see what that looks like in R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(poorman)</span>
+<span id="cb1-2"></span>
+<span id="cb1-3">signs <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb1-4"></span>
+<span id="cb1-5">S <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">expand.grid</span> (<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">s1 =</span> signs, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">s2 =</span> signs)</span>
+<span id="cb1-6"></span>
+<span id="cb1-7">knitr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">kable</span>(S)</span></code></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">s1</th>
+<th style="text-align: right;">s2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Let’s take the linear combination of <code>s1</code> and <code>s2</code>, using the weights (1, 3).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">S <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> S <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb2-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> s1 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> s2)</span>
+<span id="cb2-3"></span>
+<span id="cb2-4">knitr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">kable</span>(S)</span></code></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">s1</th>
+<th style="text-align: right;">s2</th>
+<th style="text-align: right;">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-4</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>You can confirm for yourself that using another pair of weights won’t necessarily give you 9 unique values.</p>
+<p>We are only interested in the positive values for our problem. We can calculate that the number of positive values is</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A(3%5E2%20-%201)/2%20=%20(9%20-%201)/2%20=%204.%0A"></p>
+<p>In other words, the weights (1, 3) can weigh the values <code>1:4</code>.</p>
+</section>
+<section id="the-case-of-three-weights" class="level3">
+<h3 class="anchored" data-anchor-id="the-case-of-three-weights">2. The case of three weights</h3>
+<p>How many values can we weigh with three weights, and what are they? It’s clear that <img src="https://latex.codecogs.com/png.latex?w_1"> and <img src="https://latex.codecogs.com/png.latex?w_2"> must be the same as above, since any value in the range <code>1:4</code> can be represented as <img src="https://latex.codecogs.com/png.latex?s_1%20*%201%20+%20s_2%20*%203%20+%200%20*%20w_3">. Now to find <img src="https://latex.codecogs.com/png.latex?w_3">.</p>
+<p>We know that <img src="https://latex.codecogs.com/png.latex?3%5E3%20=%2027">, which means that we can represent <img src="https://latex.codecogs.com/png.latex?(27%20-%201)/2%20=%2013"> positive values, with 13 being the maximum. So the three weights must sum to 13, which gives us <img src="https://latex.codecogs.com/png.latex?w_3%20=%2013%20-%20(1%20+%203)%20=%209">. The set of weights is (1, 3, 9).</p>
+</section>
+<section id="finally-the-case-of-four-weights" class="level3">
+<h3 class="anchored" data-anchor-id="finally-the-case-of-four-weights">3. Finally, the case of four weights</h3>
+<p>We can calculate that <img src="https://latex.codecogs.com/png.latex?3%5E4%20=%2081">, which corresponds to <img src="https://latex.codecogs.com/png.latex?(81%20-%201)/2%20=%2040"> positive values (surprise!). Therefore, we have that <img src="https://latex.codecogs.com/png.latex?w_4%20=%2040%20-%20(1%20+%203%20+%209)%20=%2027">. And so the set of weights we want is (1, 3, 9, 27), as stated above.</p>
+<p>Now, let’s confirm it.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">S <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">expand.grid</span> (<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">s1 =</span> signs,</span>
+<span id="cb3-2">                 <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">s2 =</span> signs,</span>
+<span id="cb3-3">                 <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">s3 =</span> signs,</span>
+<span id="cb3-4">                 <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">s4 =</span> signs) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> s1 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> s2 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">9</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> s3 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">27</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> s4) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb3-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(x <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb3-7"></span>
+<span id="cb3-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># confirm we have the values 1:40</span></span>
+<span id="cb3-9"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">stopifnot</span>(S<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>x <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">40</span>)</span>
+<span id="cb3-10"></span>
+<span id="cb3-11">knitr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">kable</span>(S)</span></code></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">s1</th>
+<th style="text-align: right;">s2</th>
+<th style="text-align: right;">s3</th>
+<th style="text-align: right;">s4</th>
+<th style="text-align: right;">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">42</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">43</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">44</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">45</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">46</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">47</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">48</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">49</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">50</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">51</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">52</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">53</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">54</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">55</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">56</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">57</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">58</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">17</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">59</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">18</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">60</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">19</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">61</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">62</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">21</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">63</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">22</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">64</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">23</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">65</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">66</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">67</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">26</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">68</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">27</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">69</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">28</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">70</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">29</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">71</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">72</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">31</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">73</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">32</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">74</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">33</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">75</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">34</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">76</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">35</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">77</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">36</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">78</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">37</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">79</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">38</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">80</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">39</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">81</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">40</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>And we are done. At this point, I’ll note that we’ve just re-invented a signed base-3 number system: digit <img src="https://latex.codecogs.com/png.latex?i"> (counting from zero) represents the value <img src="https://latex.codecogs.com/png.latex?3%5Ei">. I just happened to be writing it backward.</p>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Among Bachet’s accomplishments is a method of constructing magic squares, a way of solving indeterminate equations with continued fractions, the proof of <a href="https://en.wikipedia.org/wiki/Claude_Gaspar_Bachet_de_M%C3%A9ziriac">Bézout’s Identity</a>, and a Latin translation of <em>Arithmetica</em> by Diophantus (he of the Diophantine equations). Famously, Fermat’s last theorem was a scribbled margin note on his copy of this very translation.↩︎</p></li>
+</ol>
+</section></div> ]]></description>
+  <category>Puzzle Corner</category>
+  <guid>https://rworks.dev/posts/four-weights/</guid>
+  <pubDate>Fri, 06 Dec 2024 06:00:00 GMT</pubDate>
+  <media:content url="https://rworks.dev/posts/four-weights/four-weights.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>Examining Meta-Analysis</title>
   <dc:creator>John Mount</dc:creator>
@@ -1137,7 +1802,7 @@ Wikipedia contributors. 2024. <span>“Meta-Analysis — <span>Wikipedia</span><
 <h2 class="anchored" data-anchor-id="appendix-reproducing-the-result">Appendix: Reproducing the Result</h2>
 <p>The files required to reproduce the result are:</p>
 <ol type="1">
-<li><strong><a href="ExaminingMetaAnalysis.qmd">ExaminingMetaAnalysis.qmd</a></strong>: this notebook.</li>
+<li><strong><a href="https://github.com/r-community-works/rworks-website/blob/main/posts/meta-analysis/index.qmd">ExaminingMetaAnalysis.qmd</a></strong>: this notebook.</li>
 <li><strong><a href="AmlodipineData.csv">AmlodipineData.csv</a></strong>: the original data.</li>
 <li><strong><a href="define_Stan_model.R">define_Stan_model.R</a></strong>: helper functions.</li>
 <li>(optional) <strong><a href="cache_Amlodipine_independent_b818d8db720377f42b728cbc88a94e58.RDS">cache_Amlodipine_independent_b818d8db720377f42b728cbc88a94e58.RDS</a></strong>: the cached result.</li>
