@@ -150,3 +150,9 @@ knitr::kable(pframe, caption = "Allocations of men, women, and children")
 ```
 
 And there you have it: the seven solutions to the "100 bushels of corn" problem.
+
+---
+
+## Comments {.unlisted}
+
+{{< bluesky-comments https://bsky.app/profile/rworks.bsky.social/post/3lba47sa3ec2y >}}

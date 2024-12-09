@@ -225,3 +225,9 @@ One hundred eighty-one new packages made CRAN's final cut in October. Here are m
 
 
 ::::
+
+---
+
+## Comments {.unlisted}
+
+{{< bluesky-comments https://bsky.app/profile/rworks.bsky.social/post/3lbwuyobgx22e >}}
