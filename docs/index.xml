@@ -658,10 +658,15 @@ font-style: inherit;">kable</span>(S)</span></code></pre></div>
 </table>
 </div>
 </div>
-<p>And we are done. At this point, I’ll note that we’ve just re-invented a signed base-3 number system: digit <img src="https://latex.codecogs.com/png.latex?i"> (counting from zero) represents the value <img src="https://latex.codecogs.com/png.latex?3%5Ei">. I just happened to be writing it backward.</p>
-
-
+<p>And we are done. At this point, I’ll note that we’ve just re-invented a signed base-3 number system: digit <img src="https://latex.codecogs.com/png.latex?i"> (counting from zero) repr</p>
+<hr>
 </section>
+</section>
+<section id="comments" class="level2 unlisted">
+<h2 class="unlisted anchored" data-anchor-id="comments">Comments</h2>
+<bluesky-comments-section post="https://bsky.app/profile/rworks.bsky.social/post/3lcuz75367227"></bluesky-comments-section>
+
+
 </section>
 
 
