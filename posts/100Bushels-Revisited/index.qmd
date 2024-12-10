@@ -160,3 +160,9 @@ And these are again exactly the solutions Nina Zumel gave [in the first 100 Bush
 ## Conclusion
 
 R gives the ability to exploit any combination of innate ability and knowledge, borrowed ability, or brute force in solving problems.
+
+---
+
+## Comments {.unlisted}
+
+{{< bluesky-comments https://bsky.app/profile/rworks.bsky.social/post/3lbsytiq3ik2f >}}

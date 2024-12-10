@@ -162,3 +162,9 @@ image: images/promptr.png
 [ggreveal](https://cran.r-project.org/package=ggreveal) v0.1.3: Provides functions that make it easy to reveal `ggplot2` graphs incrementally. The functions take a plot produced with `ggplot2` and return a list of plots showing data incrementally by panels, layers, groups, the values in an axis, or any arbitrary aesthetic. See the [GitHub repo](https://github.com/weverthonmachado/ggreveal) for examples.
 
 ![](./images/ggreveal.gif){fig-align="center" fig-alt="Revealed layers of ggplot"  width=80%}
+
+---
+
+## Comments {.unlisted}
+
+{{< bluesky-comments https://bsky.app/profile/rworks.bsky.social/post/3l7vd5grqrj2i >}}
