@@ -119,10 +119,4 @@ stopifnot(S$x == 1:40)
 knitr::kable(S)
 ```
 
-And we are done. At this point, I'll note that we've just re-invented a signed base-3 number system: digit $i$ (counting from zero) repr
-
----
-
-## Comments {.unlisted}
-
-{{< bluesky-comments https://bsky.app/profile/rworks.bsky.social/post/3lcuz75367227 >}}
+And we are done. At this point, I'll note that we've just re-invented a signed base-3 number system: digit $i$ (counting from zero) represents the value $3^i$. I just happened to be writing it backwards.

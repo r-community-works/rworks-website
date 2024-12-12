@@ -372,9 +372,3 @@ The files required to reproduce the result are:
   3) **[define_Stan_model.R](define_Stan_model.R)**: helper functions.
   4) (optional) **[cache_Amlodipine_independent_b818d8db720377f42b728cbc88a94e58.RDS](cache_Amlodipine_independent_b818d8db720377f42b728cbc88a94e58.RDS)**: the cached result.
   5) (optional) **[cache_Amlodipine_joint_f0ae8de9e99d9396a5f2a21f5638030f.RDS](cache_Amlodipine_joint_f0ae8de9e99d9396a5f2a21f5638030f.RDS)**: the cached result.
-  
----
-
-## Comments {.unlisted}
-
-{{< bluesky-comments https://bsky.app/profile/rworks.bsky.social/post/3lckxpwwzss2u >}}
