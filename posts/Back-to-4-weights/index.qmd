@@ -236,3 +236,5 @@ scale_notation(signs)
 ```
 
 So now we can weigh objects we know the weight of. Hurrah? But I still think it's cute.
+
+*Nina Zumel is a data scientist based in San Francisco, with 20+ years of experience in machine learning, statistics, and analytics. She is the co-founder of the data science consulting firm Win-Vector LLC, and (with John Mount) the co-author of Practical Data Science with R, now in its second edition.*
