@@ -48,9 +48,3 @@ Thanks to the community meetups and forums where these roles were highlighted:
 * [#rstats on Bluesky](https://bsky.app/)
 
 I'll continue sharing open roles with R requirements periodically, so check back for new leads!
-
----
-
-## Comments {.unlisted}
-
-{{< bluesky-comments https://bsky.app/profile/rworks.bsky.social/post/3laomr6bekk22 >}}

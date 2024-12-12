@@ -329,9 +329,3 @@ The following is a short list of R packages that may be helpful for Manifold Lea
 [umap](https://CRAN.R-project.org/package=umap) v0.2.10.0: Implements the Uniform manifold approximation and projection algorithm for dimension reduction, which was described by McInnes and Healy (2018). See the vignette.
 
 [uwot](https://cran.r-project.org/package=uwot) v0.2.2: An implementation of the Uniform Manifold Approximation and Projection dimensionality reduction by McInnes et al. (2018). It also provides means to transform new data and to carry out supervised dimensionality reduction. An implementation of the related LargeVis method of Tang et al. (2016) is also provided. See the uwot website(https://github.com/jlmelville/uwot>) for more documentation and examples.
-
----
-
-## Comments {.unlisted}
-
-{{< bluesky-comments https://bsky.app/profile/rworks.bsky.social/post/3latnon67xk2d >}}
