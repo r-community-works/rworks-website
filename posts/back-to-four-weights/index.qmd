@@ -1,6 +1,11 @@
 ---
 title: "Writing Signed Trinary: or, Back To the Four Weights Problem"
-format: html
+author: "Nina Zumel"
+date: 2024-12-13
+description: "Let's run some modular arithmetic using R."
+image: four-weights.jpg
+image-alt: "A balance scale and four weights. Source: Internet Archive"
+categories: "Puzzle Corner"
 ---
 
 Recently on Puzzle Corner, we looked at the [Four Weights problem](https://rworks.dev/posts/four-weights/): what are the four weights that can weigh any object $x$ in the (integer) range 1 to 40 on a balance scale?
@@ -55,19 +60,19 @@ So 18 = 0200 in base-3, or `(0*27) + (2*9) + (0*3) + (0*1)`.
 We can write a general function to convert a decimal number `x` to base-n representation.
 
 ```{r}
-
 # convert x to its unsigned base-n representation
 # n: the base
 # ndigits: the maximum number of digits
 base_n = function(x, n, ndigits) {
   r = numeric(ndigits)
-  if(x >= n^ndigits) stop("x is out of range")
+  if (x >= n ^ ndigits)
+    stop("x is out of range")
   i = 1
-  while(x > 0) {
-    d = floor(x/n)
+  while (x > 0) {
+    d = floor(x / n)
     r[i] = x %% n
     x = d
-    i = i+1
+    i = i + 1
   }
   
   rev(r)
@@ -76,30 +81,27 @@ base_n = function(x, n, ndigits) {
 # convert from unsigned base-n back to decimal
 to_decimal = function(r, n) {
   r = rev(r) # put the lowest digit to the leftmost
-  ndigits = length(r) 
+  ndigits = length(r)
   x = 0
-  for(i in 1:ndigits)
-    x = x + r[i] * n^(i-1)
-    
+  for (i in 1:ndigits)
+    x = x + r[i] * n ^ (i - 1)
+  
   x
 }
-
-
 ```
 
 ```{r}
 # convert 13 to binary
 r = base_n(13, 2, 4)
 # confirm this is 13
-stopifnot(to_decimal(r, 2)==13)
+stopifnot(to_decimal(r, 2) == 13)
 r
 
 # convert 18 to trinary
 r = base_n(18, 3, 4)
 # confirm this is 18
-stopifnot(to_decimal(r, 3)==18)
+stopifnot(to_decimal(r, 3) == 18)
 r
-
 ```
 
 ## Converting $x$ to signed trinary
@@ -154,6 +156,7 @@ Let's convert 18 to signed trinary.
 2/3 = 0 rem 2 = 1 rem -1
 1/3 = 0 rem 1
 ```
+
 So 18 codes to [0 0 -1 1] = `(0*1) + (0*3) + (-1*9) + (1*27)`.
 In the scale notation that we used while solving the puzzle, we would write this
 as $[\{27\} | \{x, 9\}]$, meaning the 27-weight is in the left pan, and the 9-weight is in the
@@ -164,18 +167,19 @@ Here's the code.
 ```{r}
 # convert nonnegative x to signed trinary
 weigh = function(x) {
-  if(x > 40) stop("x out of range")
+  if (x > 40)
+    stop("x out of range")
   r = numeric(4)
   i = 1
-  while(x > 0) {
-    d = floor(x/3)
+  while (x > 0) {
+    d = floor(x / 3)
     r[i] = x %% 3
-    if(r[i]==2) {
-      d = d+1
+    if (r[i] == 2) {
+      d = d + 1
       r[i] = -1
     }
     x = d
-    i = i+1
+    i = i + 1
   }
   r
 }
@@ -186,9 +190,9 @@ scale_notation = function(signs) {
   lefti = which(signs > 0)
   righti = which(signs < 0)
   
-  leftset = paste(w[lefti], collapse=", ")
-  if(length(righti) > 0)
-    rightset = paste("x,", paste(w[righti], collapse=", "))
+  leftset = paste(w[lefti], collapse = ", ")
+  if (length(righti) > 0)
+    rightset = paste("x,", paste(w[righti], collapse = ", "))
   else
     rightset = "x"
   
@@ -198,8 +202,8 @@ scale_notation = function(signs) {
 
 # convert signed trinary back to decimal
 to_x = function(signs) {
-   w = c(1, 3, 9, 27)
-   x = sum(w*signs) # dot product of w and signs
+  w = c(1, 3, 9, 27)
+  x = sum(w * signs) # dot product of w and signs
 }
 ```
 
@@ -232,7 +236,6 @@ x = 4
 signs = weigh(x)
 stopifnot(x == to_x(signs))
 scale_notation(signs)
-
 ```
 
 So now we can weigh objects we know the weight of. Hurrah? But I still think it's cute.
