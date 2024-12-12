@@ -1,4 +1,4 @@
 - source: project
   netlify:
     - id: 82c77a0d-ce3e-452e-90c8-283d81953fd9
-      url: "https://rworks.dev/"
+      url: https://verdant-cobbler-0f3b1c.netlify.app
