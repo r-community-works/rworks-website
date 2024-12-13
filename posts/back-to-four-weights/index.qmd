@@ -1,0 +1,243 @@
+---
+title: "Writing Signed Trinary: or, Back To the Four Weights Problem"
+author: "Nina Zumel"
+date: 2024-12-13
+description: "Let's run some modular arithmetic using R."
+image: four-weights.jpg
+image-alt: "A balance scale and four weights. Source: Internet Archive"
+categories: "Puzzle Corner"
+---
+
+Recently on Puzzle Corner, we looked at the [Four Weights problem](https://rworks.dev/posts/four-weights/): what are the four weights that can weigh any object $x$ in the (integer) range 1 to 40 on a balance scale?
+
+![A balance scale and four weights](four-weights.jpg){fig-alt="A balance scale and four weights. source: Internet Archive"}
+
+The puzzle just asks you to find the values of the weights, which are $(1, 3, 9, 27)$. But *how* do you weigh $x$---that is, with (a known) $x$ in the right-hand pan of the scale, how do you determine the distribution of weights so that the scale balances?
+
+This isn't a practical question, since if I know $x$, then I don't have to weigh the object. But thinking about the solution brings up a cute little observation about modular arithmetic, and so it felt worth a short writeup. The solution is based on a standard procedure for converting decimal values to a base-$n$ representation. If you are familiar with that procedure, you can skim the next section and/or skip to [this section](/#converting-x-to-signed-trinary). Otherwise, read on.
+
+## Converting $x$ to a base-n representation
+
+Assume you want to represent a nonnegative integer with up to $m$ digits in binary.
+Recall that $m$ binary digits can represent any number in the range $0 : (2^m - 1)$.
+This is the pseudo-code.
+
+```
+i = 1        # initialize the index
+r = zeros(m) # all-zeros vector of length m
+if x >= 2^m then throw("x is out of range")
+
+while x > 0
+  d = floor(x/2)
+  r[i] = x mod 2
+  x = d
+  i = i+1
+  
+return reverse(r)  # so lowest value digit is rightmost
+```
+
+Let's do it by hand for $x = 13$, using 4 digits (which can represent up to the value $2^4 - 1 =  15$).
+
+```
+13/2 = 6 rem 1 (d = 6, r[1] = 1)
+6/2 = 3 rem 0
+3/2 = 1 rem 1
+1/2 = 0 rem 1
+```
+
+So we have 13 = 1101 in base-2, or `(1*8) + (1*4) + (0*2) + (1*1)`.
+
+For an unsigned trinary representation, the idea is the same, only you divide by 3 instead of 2. Let's try it with 18, using 4 digits (which can represent up to the value $3^4 - 1$, which is 80).
+
+```
+18/3 = 6 rem 0
+6/3 = 2 rem 0
+2/3 = 0 rem 2
+```
+
+So 18 = 0200 in base-3, or `(0*27) + (2*9) + (0*3) + (0*1)`.
+
+We can write a general function to convert a decimal number `x` to base-n representation.
+
+```{r}
+# convert x to its unsigned base-n representation
+# n: the base
+# ndigits: the maximum number of digits
+base_n = function(x, n, ndigits) {
+  r = numeric(ndigits)
+  if (x >= n ^ ndigits)
+    stop("x is out of range")
+  i = 1
+  while (x > 0) {
+    d = floor(x / n)
+    r[i] = x %% n
+    x = d
+    i = i + 1
+  }
+  
+  rev(r)
+}
+
+# convert from unsigned base-n back to decimal
+to_decimal = function(r, n) {
+  r = rev(r) # put the lowest digit to the leftmost
+  ndigits = length(r)
+  x = 0
+  for (i in 1:ndigits)
+    x = x + r[i] * n ^ (i - 1)
+  
+  x
+}
+```
+
+```{r}
+# convert 13 to binary
+r = base_n(13, 2, 4)
+# confirm this is 13
+stopifnot(to_decimal(r, 2) == 13)
+r
+
+# convert 18 to trinary
+r = base_n(18, 3, 4)
+# confirm this is 18
+stopifnot(to_decimal(r, 3) == 18)
+r
+```
+
+## Converting $x$ to signed trinary
+
+Recall that when solving the Four Weights problem, we established that any nonnegative integer value $x$ in the range 1:40 could be represented as
+
+$$
+s_1 w_1 + s_2 w_2 + s_3 w_3 + s_4 w_4 = x.
+$$
+
+where the weights $w_i$ are `(1, 3, 9, 27)`---we write it smallest-first, consistently with the previous post on this problem---and $s_i \in \{-1, 0, 1\}$, rather than the $\{0, 1, 2\}$ of unsigned trinary. A positive coefficient means the weight goes in the left pan, a negative coefficient means the weight goes in the right pan with $x$, and 0 means the weight isn't used.
+
+The four digits still represent $3^4 = 81$ unique values, but some of them are now negative. For the Four Weights problem, we are only concerned with nonnegative $x$, of which we can represent zero, plus $(3^4 - 1)/2 = 40$ values---the numbers 1:40. So we'll concentrate on just expressing these nonnegative integers.
+
+To modify the unsigned trinary conversion to a signed one, we use the observation that
+
+* The equation `x/3 = d rem 2` is equivalent to `x/3 = (d+1) rem -1`. 
+
+This is a bit of an abuse of the notation; but here's an example of what we are trying to say. We know that 
+
+* `8/3 = 2 rem 2`, which is the same as saying  `8 = 2*3 + 2`. 
+
+Another way of writing this is 
+
+* `8 = (2+1)*3 - 1 = 3*3 - 1` which we'll write as:  `8/3 = 3 rem -1`
+
+So (when considering only nonnegative $x$) the pseudo-code for the algorithm becomes:
+
+```
+i = 1
+r = zeros(m)
+maxval = (3^m - 1)/2
+if x > maxval then throw("x is out of range")
+
+while x > 0
+  d = floor(x/3)
+  r[i] = x mod 3
+  if r[i]==2
+    d = d+1
+    r[i] = -1
+  x = d
+  i = i+1
+  
+return r  # we won't reverse it, to be consistent with our puzzle solution
+
+```
+Let's convert 18 to signed trinary.
+
+```
+18/3 = 6 rem 0
+6/3 = 2 rem 0
+2/3 = 0 rem 2 = 1 rem -1
+1/3 = 0 rem 1
+```
+
+So 18 codes to [0 0 -1 1] = `(0*1) + (0*3) + (-1*9) + (1*27)`.
+In the scale notation that we used while solving the puzzle, we would write this
+as $[\{27\} | \{x, 9\}]$, meaning the 27-weight is in the left pan, and the 9-weight is in the
+right pan with $x$.
+
+Here's the code.
+
+```{r}
+# convert nonnegative x to signed trinary
+weigh = function(x) {
+  if (x > 40)
+    stop("x out of range")
+  r = numeric(4)
+  i = 1
+  while (x > 0) {
+    d = floor(x / 3)
+    r[i] = x %% 3
+    if (r[i] == 2) {
+      d = d + 1
+      r[i] = -1
+    }
+    x = d
+    i = i + 1
+  }
+  r
+}
+
+# write the signed trinary representation in our scale notation
+scale_notation = function(signs) {
+  w = c(1, 3, 9, 27)
+  lefti = which(signs > 0)
+  righti = which(signs < 0)
+  
+  leftset = paste(w[lefti], collapse = ", ")
+  if (length(righti) > 0)
+    rightset = paste("x,", paste(w[righti], collapse = ", "))
+  else
+    rightset = "x"
+  
+  notation = paste("[ {", leftset, "} | {", rightset, "} ]")
+  notation
+}
+
+# convert signed trinary back to decimal
+to_x = function(signs) {
+  w = c(1, 3, 9, 27)
+  x = sum(w * signs) # dot product of w and signs
+}
+```
+
+Let's try a few.
+
+```{r}
+x = 18
+signs = weigh(x)
+# convert back and check it's the same number
+stopifnot(x == to_x(signs))
+scale_notation(signs)
+
+
+x = 35
+signs = weigh(x)
+stopifnot(x == to_x(signs))
+scale_notation(signs)
+
+x = 15
+signs = weigh(x)
+stopifnot(x == to_x(signs))
+scale_notation(signs)
+
+x = 30
+signs = weigh(x)
+stopifnot(x == to_x(signs))
+scale_notation(signs)
+
+x = 4
+signs = weigh(x)
+stopifnot(x == to_x(signs))
+scale_notation(signs)
+```
+
+So now we can weigh objects we know the weight of. Hurrah? But I still think it's cute.
+
+*Nina Zumel is a data scientist based in San Francisco, with 20+ years of experience in machine learning, statistics, and analytics. She is the co-founder of the data science consulting firm Win-Vector LLC, and (with John Mount) the co-author of Practical Data Science with R, now in its second edition.*
