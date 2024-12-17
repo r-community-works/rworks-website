@@ -1,0 +1,231 @@
+
+---
+title: "November 2024 Top 40 New CRAN Packages"
+author: "Joseph Rickert"
+date: 2024-12-13
+description: "An attempt to capture the depth and breadth of what's new on CRAN."
+image: ""
+image-alt: "ca.gif"
+categories: "Top 40"
+editor: source
+---
+
+
+One hundred tinny-four new packages made CRAN's final cut in November. Here are my Top 40 picks in nineteen categories: Botany, Climate Analysis, Computational Methods, Data, Ecology, Education, Environment, Epidemiology, Genomics, Health Technology Assessment, Machine Learning, Mathematics, Medicine, Networks, Pharma, Statistics, Time Series, Utilities, and Visualization.
+
+
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+
+### Botany 
+
+[MultiTraits](https://cran.r-project.org/package=MultiTraits) v0.1.0: Implements analytical methods for multidimensional plant traits, including Competitors-Stress tolerators-Ruderals strategy analysis using leaf traits, Leaf-Height-Seed strategy analysis, Niche Periodicity Table analysis, and Trait Network analysis. See [Grime (1974)](https://www.nature.com/articles/250026a0), [Pierce et al. (2017)](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/1365-2435.12882) and other references provided for methods and the [vignette](https://cran.r-project.org/web/packages/MultiTraits/vignettes/MultiTraits_tutorial.html) for a tutorial.
+
+![](MultiTraits.png){fig-alt="Diagram of LHS Strategy"}
+
+### Climate Analysis
+
+[chooseGCM](https://cran.r-project.org/package=chooseGCM) v1.0.1: Implements methods to help selecting General [Circulation Models (GCMs)](https://en.wikipedia.org/wiki/General_circulation_model) for projecting models to future scenarios. Functions include clustering algorithms, distance and correlation metrics, and a tailor-made algorithm to detect the optimum subset of GCMs that recreate the environment of all GCMs. Look [here]() for examples.
+
+![](chooseGCM.png){fig-alt="Various clustering plots"}
+
+### Computational Methods
+
+[spconf](https://cran.r-project.org/package=spconf) v1.0.1: Provides functions to compute the effective range of a smoothing matrix, which is a measure of the distance to which smoothing occurs. See  [Rainey and Keller (2024)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0311440) and [Keller and Szpiro (2020)](https://academic.oup.com/jrsssa/article/183/3/1121/7056457?login=false) for algorithmic details and [README](https://cran.r-project.org/web/packages/spconf/readme/README.html) for examples.
+
+### Data
+
+
+[PurpleAirAPI](https://cran.r-project.org/package=PurpleAirAPI) v0.1.0: Provides tools for retrieving and analyzing air quality data from [PurpleAir](https://api.purpleair.com/) sensors through an API. Functions enable downloading historical measurements, accessing sensor metadata, and managing API request limitations through chunked data retrieval. 
+
+[sivirep](https://cran.r-project.org/package=sivirep) v1.0.1: Provides tools for data wrangling, pre-processing, and generating automated reports from Colombia's epidemiological surveillance system, [SIVIGILA](https://portalsivigila.ins.gov.co/), including a customizable R Markdown template for analysis and automatic generation of epidemiological reports. See the [vignette](https://cran.r-project.org/web/packages/sivirep/vignettes/sivirep.html).
+
+
+[STATcubeR](https://cran.r-project.org/package=STATcubeR) v1.0.0: Implements an R client to import data from the STATcube REST API or via the open government data portal [Statistik Austria](https://data.statistik.gv.at). Look [here](https://statistikat.github.io/STATcubeR/) and [here](https://github.com/statistikat/STATcubeR) for more information. See the [vignette](https://cran.r-project.org/web/packages/PurpleAirAPI/vignettes/getting-started-with-purpleairapi.html) to get started.
+
+[wbids](https://cran.r-project.org/package=wbids) v0.1.0:  Provides access to the World Bank’s [International Debt Statistics (IDS)](https://datacatalog.worldbank.org/search/dataset/0038015) which contains creditor-debtor relationships between countries, regions, and institutions.
+
+![](wbids.png){fig-alt="Schematic of data model"}
+
+### Ecology
+
+[ecostate](https://cran.r-project.org/package=ecostate) v0.2.0: Fits a state-space mass-balance model for marine ecosystems, which implements dynamics derived from [Ecopath with Ecosim](https://ecopath.org/) while fitting to time series of fishery catch, biomass indices, age-composition samples, and weight-at-age data.
+
+[tidywater](https://cran.r-project.org/package=tidywater) v0,6.2: Provides multiple water chemistry-based models and published empirical models in one standard format. Functions can be chained together to model a complete treatment process. See [Benjamin (2002)](https://www.amazon.com/Water-Chemistry-Second-Mark-Benjamin/dp/147862308X), [Crittenden et al. (2012)](https://onlinelibrary.wiley.com/doi/book/10.1002/9781118131473) and [US EPA Manual, (2001)](https://www.epa.gov/sites/default/files/2017-03/documents/wtp_model_v._2.0_manual_508.pdf) for background. There is an [Introduction](https://cran.r-project.org/web/packages/tidywater/vignettes/intro.html) and two additional vignettes.
+
+![](tidywater.png){fig-alt="Plot of ion concentrations"}
+
+
+### Education
+
+[evolved](https://cran.r-project.org/package=evolved) 1.0.0: Provides multiple tools to help educators (especially at the graduate level or in advanced undergraduate level courses) in general evolution classes. Tools include functions to simulate evolutionary processes (e.g., genetic drift, natural selection) and concepts (e.g. Hardy-Weinberg equilibrium, phylogenetic distribution of traits). There are eleven vignettes including [birthdeath_deeptime](https://cran.r-project.org/web/packages/evolved/vignettes/birthdeath_deeptime.html) and [popgen_intro](https://cran.r-project.org/web/packages/evolved/vignettes/popgen_intro.html).
+
+![](evolved.png){fig-alt="Photo of Bears"}
+
+[exams2forms](https://CRAN.R-project.org/package=exams2forms) v0.1-0: Implements automatic generation of quizzes or individual questions as (interactive) forms within `rmarkdown` or `quarto` documents based on `R/exams` exercises. See the [vignette](https://cran.r-project.org/web/packages/exams2forms/vignettes/exams2forms.html).
+
+![](exams.png){fig-alt="Sample exercise"}
+
+### Environment
+
+[OpeNoise](https://cran.r-project.org/package=OpeNoise) v0.2-18: Provides functions to analyse, interpret and understand noise pollution data typically regular time series measured with sound meter. See [Grasso, Masera and Scordino (2023)](https://dael.euracoustics.org/confs/landing_pages/fa2023/000063.html) for background and look [here](https://github.com/Arpapiemonte/openoise-analysis/) for examples.
+
+![](OpeNoise.png){fig-alt="Noise spectrogram"}
+
+### Epidemiology
+
+
+[sivirep](https://cran.r-project.org/package=sivirep) v1.0.1: Provides tools for data wrangling, pre-processing, and generating automated reports from Colombia's epidemiological surveillance system, [SIVIGILA](https://portalsivigila.ins.gov.co/) including a customizable R Markdown template for analysis and automatic generation of epidemiological reports. See the [vignette](https://cran.r-project.org/web/packages/sivirep/vignettes/sivirep.html).
+
+
+[vaccineff](https://cran.r-project.org/package=vaccineff) v1.0.0: Provides tools for estimating vaccine effectiveness and related metrics and includes functions for managing key features and organizing cohort data, as well as estimating vaccine effectiveness. There are three vignettes including [Introduction to cohort design](https://cran.r-project.org/web/packages/vaccineff/vignettes/cohort_design.html) and [vaccineff](https://cran.r-project.org/web/packages/vaccineff/vignettes/vaccineff.html).
+
+![](vaccineff.png){fig-alt="Plot of vaccinestatus"}
+
+### Genomics
+
+[divent](https://cran.r-project.org/package=divent) v0.4-4: Implements a method to measure and partition diversity, including phylogenetic and functional diversity, with functions to estimate alpha, beta and gamma diversity of communities, See [Marcon and Herault (2015)](https://www.jstatsoft.org/article/view/v067i08) for background and the [vignette](https://cran.r-project.org/web/packages/divent/vignettes/divent.html) for an introduction.
+
+![](divent.png){fig-alt="Plot f phylogenetic diversity by sample size"}
+[GRIN2](https://cran.r-project.org/package=GRIN2) v1.0: Implements the GRIN algorithm as described in [Pounds et al. (2013)](https://academic.oup.com/bioinformatics/article/29/17/2088/244947?login=false) for analyzing genomic lesion data and expands its analysis capabilities to answer additional scientific questions including a rigorous evaluation of the association of genomic lesions with RNA expression. See the [vignette](https://cran.r-project.org/web/packages/GRIN2/vignettes/GRIN2.html).
+
+![](GRIN2.png){fig-alt="Annotated OncoPrint"}
+
+
+[scregclust](https://cran.r-project.org/package=scregclust) v0.2.0: Implements the scregclust algorithm described in [Larsson, Held, et al. (2024)](https://www.nature.com/articles/s41467-024-53954-3) which reconstructs regulatory programs of target genes in scRNA-seq data. See the [vignette](https://cran.r-project.org/web/packages/scregclust/vignettes/pbmc.html). 
+
+![](scregclust.png){fig-alt="Plot of regulator network"}
+
+### Health Technology Assessment 
+
+[AIscreenR](https://cran.r-project.org/package=AIscreenR) v0.1.1: Provides functions to conduct title and abstract screening in systematic reviews using large language models, such as the Generative Pre-trained Transformer (GPT) models from [OpenAI](https://platform.openai.com/) and also tools for quality assessment of title and abstract screenings, as described in [Vembye et al. (2024)](https://osf.io/preprints/osf/yrhzm). See the [vignette](https://cran.r-project.org/web/packages/AIscreenR/vignettes/Using-GPT-API-Models-For-Screening.html)
+
+[maicplus](https://www.valueinhealthjournal.com/article/S1098-3015(12)01610-5/fulltext?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS1098301512016105%3Fshowall%3Dtrue) v0.1.1: Implements the method described in [Signorovitch et al (2012)]() to facilitate matching adjusted indirect comparison (MAIC) analysis where the endpoint of interest is either time-to-event (e.g. overall survival) or binary (e.g. objective tumor response). There are seven vignettes including an [Introduction](https://cran.r-project.org/web/packages/maicplus/vignettes/introduction.html) and [Anchored Survival Analysis](https://cran.r-project.org/web/packages/maicplus/vignettes/anchored_survival.html).
+
+![](maicplus.png){fig-alt="Multiple Kaplan-Meier Plots"}
+
+### Machine Learning
+
+[metasnf](https://cran.r-project.org/src/contrib/Archive/metasnf) v1.1.2: Provides a framework for transforming multi-modal data into a wide range of similarity networks using the similarity network fusion (SNF) algorithm introduced by [Wang et al. (2014)](https://www.nature.com/articles/nmeth.2810) and the meta clustering approach of [Caruana et al. (2006)](https://ieeexplore.ieee.org/document/4053039). Core functionality includes easy customization of distance metrics, clustering algorithms, and SNF hyperparameters. There are twenty-two vignettes including [The Settings Matrix](https://cran.r-project.org/web/packages/metasnf/vignettes/settings_matrix.html) and [A Complete Example](https://cran.r-project.org/web/packages/metasnf/vignettes/a_complete_example.html).
+
+![](metasnf.png){fig-alt="Plot of variable/solution associations"}
+
+[ReSurv](https://cran.r-project.org/package=ReSurv) V1.0.0: Implements Machine Learning models for predicting claim accounts using neural nets, extreme gradient boosting, and Cox model with splines to optimize the partial log-likelihood of proportional hazard models. There are five vignettes including an [Introduction](https://cran.r-project.org/web/packages/ReSurv/vignettes/Manuscript_replication_material.html) and [Claim Counts Prediction Using Individual Data](https://cran.r-project.org/web/packages/ReSurv/vignettes/cas_call.html).
+
+
+[SVEMnet](https://cran.r-project.org/package=SVEMnet) 1.2.1: Implements Self-Validated Ensemble Models (SVEM) [Lemkus et al. (2021)](https://www.sciencedirect.com/science/article/abs/pii/S0169743921002070?via%3Dihub) using Elastic Net regression via `glmnet`, and also implements the the randomized permutation whole model test for SVEM [Karl (2024)](https://www.sciencedirect.com/science/article/abs/pii/S0169743924000625?via%3Dihub). See the [vignette](https://cran.r-project.org/web/packages/SVEMnet/vignettes/SVEMnet_vignette.html).
+
+![](SVEMnet.png){fig-alt="Boxplots showing model test results"}
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+
+
+
+
+### Mathematics
+
+[cellularautomata](https://cran.r-project.org/package=cellularautomata) v0.1.0: Provides functions to create cellular automata from `Wolfram` with plots and animations rules. The output of a cellular automaton is given as a matrix, making it easy to try to explore the possibility of predicting its time evolution using various statistical tools available in R. See Wolfram S. (2002, ISBN:1579550088) *A New Kind of Science* for background and the [vignette](https://cran.r-project.org/web/packages/cellularautomata/vignettes/basic-usage.html) for examples.
+
+![](ca.gif){fig-alt="Animation of Wolfram rule 193"}
+
+[redcas](https://CRAN.R-project.org/package=redcas) v0.1.1: Implements an interface to the `Lisp` based computer algebra system [REDUCE](http://www.reduce-algebra.com) for interactively executing arbitrary `REDUCE` code interactively from `R`, returning output as character vectors. `R` code and `REDUCE` code can be interspersed. See [README](https://cran.r-project.org/web/packages/redcas/readme/README.html) to get started.
+
+
+### Medicine
+
+[ClinTrialPredict](https://cran.r-project.org/package=ClinTrialPredict) v0.0.4: Implements a method to predict the course of clinical trial with a time-to-event endpoint for both two-arm and single-arm designs. Simulation datasets can be generated based on the design settings. See the [vignette](https://cran.r-project.org/web/packages/ClinTrialPredict/vignettes/ClinTrialPredict.pdf).
+
+[Virusparies](https://cran.r-project.org/package=Virusparies) v1.0.0: Implements a visualization tool for the [VirusHunterGather](https://github.com/lauberlab/VirusHunterGatherer) computational pipeline for data-driven virus discovery from sequencing data from the NIH's [Sequence Read Archive](https://www.ncbi.nlm.nih.gov/sra) or the user's own data. [README](https://cran.r-project.org/web/packages/Virusparies/readme/README.html) points to eleven vignettes including [VhgBoxplot](https://github.com/SergejRuff/Virusparies?tab=readme-ov-file#virushuntergatherer-plot---vhgboxplot) and [VhgScatterPlot](https://github.com/SergejRuff/Virusparies?tab=readme-ov-file#virushuntergatherer-plot---vhgidentityscatterplot).
+
+![](Virusparies.png){fig-alt="Violinplot of Viral group by Contig Length"}
+
+### Networks
+
+[ig.degree.betweenness](https://cran.r-project.org/package=ig.degree.betweenness) v0.1.0: Implements the "Smith-Pittman" community detection algorithm for network analysis using `igraph` objects. This algorithm combines node degree and betweenness centrality measures to identify communities within networks, with a gradient evident in social partitioning. See [Smith, Pittman and Xu (2024)](https://arxiv.org/abs/2411.01394) for background and look [here](https://github.com/benyamindsmith/ig.degree.betweenness) for examples.
+
+![](ig.png){fig-alt="Network diagram depicing clustering for UK faculty"}
+
+### Pharma
+
+[autoslider.core](https://cran.r-project.org/package=autoslider.core) v0.1.0: Provides functions to automatically create sides from `flextable` objects and create standard table templates often used in Study Results Endorsement Plan. It aims to save time, reduce errors and avoid the duplicated effort between statisticians and programmers. Look [here](https://github.com/insightsengineering/autoslider.core) to see the code.
+
+
+### Statistics
+
+[BayesGP](https://cran.r-project.org/package=BayesGP) v0.1.3: Implements Bayesian hierarchical models with flexible Gaussian process priors, focusing on extended latent Gaussian models and incorporating various Gaussian process priors for Bayesian smoothing. See [Zhang et al. (2023)](https://journals.sagepub.com/doi/10.1177/09622802221134172). [Zhang et al. (2024)](https://www.tandfonline.com/doi/full/10.1080/10618600.2023.2289532), and [Stringer, Brown, and Stafford (2021)](https://academic.oup.com/biometrics/article/77/3/785/7445030?login=false) for the methods used. There are three vignettes including [Partial Likelihood](https://cran.r-project.org/web/packages/BayesGP/vignettes/BayesGP-Partial_Likelihood.html) and [Fitting sGP](https://cran.r-project.org/web/packages/BayesGP/vignettes/BayesGP-sGP.html).
+
+![](BayesGP.png){fig-alt="Plot of inferred function"}
+
+[distfreereg](https://cran.r-project.org/package=distfreereg) v1.0.1: Implements distribution-free goodness-of-fit regression testing for the mean structure of parametric models introduced in [Khmaladze (2021)](https://link.springer.com/article/10.1007/s10463-021-00786-3). There is an [Introduction](https://cran.r-project.org/web/packages/distfreereg/vignettes/v1_introduction.html) and four additional vignettes including [Comparing Distributions](https://cran.r-project.org/web/packages/distfreereg/vignettes/v2_compare.html).
+
+![](distfree.png){fig-alt="Estimated density plot"}
+
+[GeoTox](https://cran.r-project.org/package=GeoTox) v0.2.0: Implements a method to connect spatiotemporal exposure to individual and population-level risk via source-to-outcome continuum modeling. See [Messier, Reif, and Marvel (2024)](https://www.medrxiv.org/content/10.1101/2024.09.23.24314096v2) and [Eccles et al. (2023)](https://www.sciencedirect.com/science/article/pii/S0048969722060041?via%3Dihub) for the theory. There is an [Introduction](https://cran.r-project.org/web/packages/GeoTox/vignettes/introduction.html) and a vignette on [Package Data](https://cran.r-project.org/web/packages/GeoTox/vignettes/package_data.html).
+
+![](GeoTox.png){fig-alt="Spatial contraction maps"}
+
+[OPSR](https://cran.r-project.org/package=OPSR) v0.1.2: Implements ordinal probit switching regression models (a Heckman type selection model with an ordinal selection and continuous outcomes). See [Wang & Mokhtarian (2024)](ordinal probit switching regression models - a Heckman type selection model with an ordinal selection and continuous outcomes. Different model specifications are allowed for each treatment/regime. For more details on the method, see Wang & Mokhtarian (2024) <doi:10.1016/j.tra.2024.104072> or Chiburis & Lokshin (2007) <doi:10.1177/1536867X0700700202>.) and [Chiburis & Lokshin (2007)](https://journals.sagepub.com/doi/10.1177/1536867X0700700202) for details and [README](https://cran.r-project.org/web/packages/OPSR/readme/README.html) for an example.
+
+
+
+### Time Series
+
+[tsmarch](https://cran.r-project.org/package=tsmarch) v1.0.0: Implements feasible multivariate generalized autoregressive conditional heteroscedasticity (GARCH) models including dynamic conditional correlation (DCC), copula GARCH and generalized orthogonal GARCH with generalized hyperbolic distribution. See [Boudt et al.(2019)](https://www.sciencedirect.com/science/article/abs/pii/S016971611930001X?via%3Dihub) for background and the vignettes [Feasible Multivariate Garch Models](https://cran.r-project.org/web/packages/tsmarch/vignettes/feasible_multivariate_garch.pdf) and [demo](https://cran.r-project.org/web/packages/tsmarch/vignettes/tsmarch_demo.html).
+
+![](tsmarch.png){fig-alt="Plot of Kurtosis with prediction"}
+
+
+
+
+### Utilities
+
+[deident](https://cran.r-project.org/package=deident) v1.0.0: Implements a framework for the replicable removal of personally identifiable data (PID) in data sets and provides methods to suit different data types based on the suggestions of [Garfinkel (2015)](https://nvlpubs.nist.gov/nistpubs/ir/2015/NIST.IR.8053.pdf) and the [ICO "Guidelines on Anonymization" (2012)](https://ico.org.uk/media/1061/anonymisation-code.pdf). There are nine vignettes including [Rational for De-identification](https://cran.r-project.org/web/packages/deident/vignettes/rationale.html) and [Worked Example](https://cran.r-project.org/web/packages/deident/vignettes/worked_example.html).
+
+[lofifonts](https://cran.r-project.org/package=lofifonts) v0.1.3: Provides tools for alternate font rendering with bitmap and vector fonts that allow for custom layout and rendering using pixel coordinates and line drawing. There are five vignettes including [Using bitmap fonts](https://cran.r-project.org/web/packages/lofifonts/vignettes/bitmap-fonts.html) and [Unicode Support](https://cran.r-project.org/web/packages/lofifonts/vignettes/unicode-support.html).
+
+![](lofifonts.png){fig-alt="Sample bitmap font"}
+[surveydown](https://cran.r-project.org/package=surveydown) v0.5.1: Provides functions to generate surveys using markdown and R code chunks. Features include controls for conditional skip logic (skip to a page based on an answer to a question), conditional display logic (display a question based on an answer to a question), a customizable progress bar, and a wide variety of question types, including multiple choice (single choice and multiple choices), select, text, numeric, multiple choice buttons. Designers can also leverage the reactive capabilities of `shiny` to create dynamic and interactive surveys. See the [vignette](https://cran.r-project.org/web/packages/surveydown/vignettes/surveydown.html).
+
+### Visualization
+
+[effectplots](https://cran.r-project.org/package=effectplots) v0.2.0: Implementation various effect plots useful for regression and probabilistic classification tasks including partial dependence plots [Friedman (2021)](https://projecteuclid.org/journals/annals-of-statistics/volume-29/issue-5/Greedy-function-approximation-A-gradient-boosting-machine/10.1214/aos/1013203451.full), accumulated local effect plots and M-plots from [Apley and Zhu (2016)](https://academic.oup.com/jrsssb/article/82/4/1059/7056085?login=false), and plots that describe the statistical associations between model response and features. Look [here](https://github.com/mayer79/effectplots) for examples.
+
+![](effectplots.svg){fig-alt="Plots of traininv vs test data"}
+[plotFTIR](https://cran.r-project.org/package=PlotFTIR) v1.0.0: Implements journal-quality Fourier Transform Infra-Red (FTIR) spectral plots using `ggplot2`. See the [vignette](https://cran.r-project.org/web/packages/PlotFTIR/vignettes/plotting_ftir_spectra.html).
+
+![](plotFTIR.png){fig-alt="FTIR Spectra plot"}
+
+[plotthis](https://cran.r-project.org/package=plotthis) v0.4.0: Extends `ggplot2` to provide a high-level API with wide range of options to create publication-quality plots effortlessly. It is particularly useful for creating complex plots with multiple layers, facets, and annotations. Look [here](https://pwwang.github.io/plotthis/) for examples.
+
+![](plotthis.png){fig-alt="Correlation pairs plots"}
+
+[RegrCoeffsExplorer](https://cran.r-project.org/package=RegrCoeffsExplorer) v1.1.0: Implements a visualization tool that offers a nuanced understanding of regression dynamics, going beyond traditional per-unit interpretation of continuous and categorical variables th highlight the impact of unit changes as well as larger shifts such as interquartile changes. See the vignettes [BetaVisualizer](https://cran.r-project.org/web/packages/RegrCoeffsExplorer/vignettes/BetaVisualizer.html) and [OddsRatioVisualizer](https://cran.r-project.org/web/packages/RegrCoeffsExplorer/vignettes/OddsRatioVisualizer.html).
+
+![](RegCoef.png){fig-alt="Boxblor and OR plot sshing effect sizes"}
+[scatterbar](https://cran.r-project.org/package=scatterbar) v0.1.0: Implements a new tool for visualizing proportional data across spatially resolved contexts by combining concepts of scatter plots and stacked bar charts. `scatterbar` plots allow users to create scattered bar chart plots, which effectively display the proportions of different categories at each (x, y) location. See [Velazquez et al. (2024)](https://www.biorxiv.org/content/10.1101/2024.08.14.606810v2) for details. There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/scatterbar/vignettes/getting-started-with-scatterbars.html) and [Customizing scatterbar](https://cran.r-project.org/web/packages/scatterbar/vignettes/customizing_scatterbar.html).
+
+![](scatterbar.png){fig-alt="Example of scatterbarchart"}
+[talkr](https://cran.r-project.org/package=talkr) v0.1.3: Provides visualization, analysis and quality control tools for gaining insights into the nature of conversational data. See [Dingemanse et al., (2022)](https://aclanthology.org/2022.acl-long.385/)  for details and the [vignette](https://cran.r-project.org/web/packages/talkr/vignettes/workflows.html) for examples.
+
+![](talkr.png){fig-alt="Conversation patterns"}
+
+
+
+
+:::
+
+
+
+
+
+::::
