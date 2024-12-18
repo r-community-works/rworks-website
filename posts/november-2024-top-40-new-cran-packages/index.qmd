@@ -1,15 +1,13 @@
-
 ---
 title: "November 2024 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
 date: 2024-12-18
 description: "An attempt to capture the depth and breadth of what's new on CRAN."
-image: ""
-image-alt: "ca.gif"
+image: "ca.gif"
+image-alt: "Animation of Wolfram rule 193"
 categories: "Top 40"
 editor: source
 ---
-
 
 One hundred ninety-four new packages made CRAN's final cut in November. Here are my Top 40 picks in nineteen categories: Botany, Climate Analysis, Computational Methods, Data, Ecology, Education, Environment, Epidemiology, Genomics, Health Technology Assessment, Machine Learning, Mathematics, Medicine, Networks, Pharma, Statistics, Time Series, Utilities, and Visualization.
 
