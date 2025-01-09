@@ -137,7 +137,7 @@ saveRDS(fit_brms, file = "fit_brms.rds")
 
 The model fit function shows the great advantage `brms` achieves by combining `lme4`s concise formula notation with the exact solutions provided by `stan`. Working directly in `stan` does provide great freedom, but freedom comes at the cost of easily specifying models that might not make sense. The `brms`notation helps to guide users into specifying meaningful models.
 
-Note that in most cases, it is not necessary to specify Normal or t-distribution priors. The software will get it right. We included the prior statement to show how it works. Also note that in order to save processing tie when running on the blog site, we reading in the model fit object from the RDS file which we wrote above.
+Note that in most cases, it is not necessary to specify Normal or t-distribution priors. The software will get it right. We included the prior statement to show how it works. Also note that in order to save processing time when running on the blog site, we reading in the model fit object from the RDS file which we wrote above.
 
 Here are the results of the model fit.
 
@@ -242,9 +242,9 @@ There are two "take aways" from this post that we would like to emphasize.
 
 1.  `brms` makes it easy to specify Bayesian models that produce probability distribution that fully characterize estimated quantities. There is really no reason to settle for the frequentist point estimates that were the best that could be done before the availability of MCMC engines like `stan`.
 
-2.  In Bayesian analysis, we use the fact assumption that unidentified population parameters generate individual outcomes that are used to create summaries of these individuals. This means knowing the individuals (or in our case sufficient statistics about the individuals) greatly influences our posterior estimates of plausible population parameters. With `brms` we are able to quickly infer the difference between treatment and control in a disciplined and documented fashion.
+2.  In Bayesian analysis, we use the structural assumption that unidentified population parameters generate individual outcomes that are used to create summaries of these individuals. This means knowing the individuals (or in our case sufficient statistics about the individuals) greatly influences our posterior estimates of plausible population parameters. With `brms` we are able to quickly infer the difference between treatment and control in a disciplined and documented fashion.
 
-We would also like to point out that our simple example which is a typical meta-analysis project is a multi-level model build without having patient-level data. If we had the patient level data from the Amplodipine study then we might have considered a three level nested model: subjects within treatment arms within studies. We avoided the first level by not having the data and the second level by directly modeling the difference between treatment arms.
+We would also like to point out that our simple example which is a typical meta-analysis project is a multi-level model built without having patient-level data. If we had the patient level data from the Amplodipine study then we might have considered a three level nested model: subjects within treatment arms within studies. We avoided the first level by not having the data and the second level by directly modeling the difference between treatment arms.
 
 
 
