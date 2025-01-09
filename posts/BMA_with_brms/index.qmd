@@ -6,19 +6,19 @@ format: html
 code-fold: true
 code-summary: "Show the code"
 bibliography: references.bib
-description: "In our previous post, *Examining Meta Analysis* we contrasted a frequentist version of a meta analysis conducted with R's `meta` package with a Bayesian meta analysis done mostly in `stan]` using `R's` `rstan` package as a front end. In this post, we repeat the analysis using the `brms` which also depends on `stan` but allows the user to formulate complex Bayesian models without writing any 'stan` code"
+description: "In our previous post, *Examining Meta Analysis* we contrasted a frequentist version of a meta analysis conducted with R's `meta` package with a Bayesian meta analysis done mostly in `stan` using the`rstan` package as a front end. In this post, we repeat the analysis using the `brms` package which also depends on `stan` but allows the user to formulate complex Bayesian models without writing any `stan` code"
 fig-dpi: 300
 fig-align: "center"
-image: plot.png
+image: fit.png
 ---
 
-In our previous post, [Examining Meta Analysis](https://rworks.dev/posts/meta-analysis/) we contrasted a frequentist version of a meta analysis conducted with R's [meta](https://cran.r-project.org/package=meta) package with a Bayesian meta analysis done mostly in [stan](https://mc-stan.org/) using `R's` [rstan](https://cran.r-project.org/package=rstan) package as a front end. We did this to hint at the difference between working within the restricted confines of a traditional frequentist framework and the amazing freedom to set up and solve complex probabilistic models using a modern Bayesian engine like `stan`. However, we fully acknowledge the cognitive burden of learning a completely new language and at the same time also learning Bayesian methods.
+In our previous post, [Examining Meta Analysis](https://rworks.dev/posts/meta-analysis/) we contrasted a frequentist version of a meta analysis conducted with R's [meta](https://cran.r-project.org/package=meta) package with a Bayesian meta analysis done mostly in [stan](https://mc-stan.org/) using the [rstan](https://cran.r-project.org/package=rstan) package as a front end. We did this to hint at the difference between working within the restricted confines of a traditional frequentist framework and the amazing freedom to set up and solve complex probabilistic models using a modern Bayesian engine like `stan`. However, we fully acknowledge the cognitive burden of learning a completely new language and at the same time also learning Bayesian methods.
 
 In this post, we will ease your anxiety by pointing to a middle way, by using the well established and powerful package `brms`^1 to formulate `stan` models.
 
 ## Set Up
 
-First we set up our environment and read in the data on the effect of Amlodipine on angina patients which can be found in the `meta' package.
+First, we set up our environment and read in the data on the effect of Amlodipine on angina patients which can be found in the `meta' package.
 ```{r}
 #| warning: false
 #| message: false
@@ -32,7 +32,7 @@ library(ggdist)
 ```
 
 
-nE is the number of subjects in the treatment arm for each Protocol, meanE is sample treatment mean that was calculated for each protocol, varE is the observed sample variance for each protocol and nC, meanC, and varC are the statistics for the control arm. (Note we will refer to Protocol as study from now on.)
+*nE* is the number of subjects in the treatment arm for each Protocol, *meanE* is sample treatment mean for each protocol, *varE* is the observed sample variance for each protocol, and *nC*, *meanC*, and *varC* are the corresponding statistics for the control arm. 
 
 ```{r}
 #| code-fold: true
@@ -46,9 +46,14 @@ angina
 
 As in the previous post, we will measure the effect of the amlodipine treatment by looking at the difference in the observed means from the two arms of the study. Our model can be expressed as :
 
-$$\delta_i = \theta + \nu_i + \epsilon$$ where for each study, i, $\delta_i$, the observed treatment effect, is the mean of the control arm subtracted from the mean of the treatment arm.
+$$\delta_i = \theta + \nu_i + \epsilon$$ 
 
-$$\theta_i = \theta_{Ei} - \theta_{Ci}$$ $$ \theta_i \sim N(\theta, \tau)$$
+where for each study, i, $\delta_i$, the observed treatment effect, is the mean of the control arm subtracted from the mean of the treatment arm.
+
+$$\theta_i = \theta_{Ei} - \theta_{Ci}$$ 
+We assume the distribution:
+
+$$ \theta_i \sim N(\theta, \tau)$$
 
 $\nu_i$ is the group effect from each study
 
@@ -66,11 +71,11 @@ $$ \delta_i \sim N\left(\theta +\theta_i \;,\; \sqrt{\frac{\sigma_E^2}{n_E} + \f
 
 ## brms Syntax
 
-Although it is much simpler than using `stan` directly, `brms` is not without its own cognitive load. Any complex 'R' package, or for that matter, any sophisticated function written in an language you like requires taking time to understand how it works in order to use it confidently and correctly. At a minimum, it is necessary to fully comprehend the function signature and all of the options implicitly coded therein.
+Although it is much simpler than using `stan` directly, `brms` is not without its own cognitive load. Using any complex package correctly and with confidence requires time and effort to understand how thing work. At a minimum, it is necessary to fully comprehend the function signature and all of the options implicitly coded therein.
 
 A good bit of the cognitive load associated with `brms` is associated with the formula interface which it adopts form the [`lme4`](https://CRAN.R-project.org/package=lme4) package for formulating and solving frequentist mixed-effects models. `brms` builds on this syntax to allow formulating expressions to set up complex, multilevel models.
 
-The general formula argument^2 is structured as *response* | *aterms* ~ *pterms* + (*gterms* | *group*). Everything on the right side of ∼ specifies predictors. `+` is used to separate different effects from each other. Note: the formula syntax is a very compressed notation, so even though it itself is concise explanations of it tend to be long. We have to leave this to the package documentation.
+The general formula argument^2 is structured as *response* | *aterms* ~ *pterms* + (*gterms* | *group*). Everything on the right side of ∼ specifies predictors. `+` is used to separate different effects from each other. Note: the formula syntax is a very compressed notation, so even though it is in itself concise, explanations of it tend to be long. We very much recommend reading the package documentation.
 
 ### aterms
 
@@ -88,7 +93,7 @@ The *aterms* are optional terms that provide special information about the respo
 
 ## Set up the model using the brms package
 
-First we read in the data using `dplyr` , add `delta_i` the difference in means and its standard error, `se_di`, rename Protocol to study for convenience, and drop the variables we no longer need.
+First we read in the data using `dplyr` , add `delta_i` the difference in means and its standard error, `se_di`, rename Protocol to study for convenience, and drop the variables we no longer need. Note: we will refer to Protocol as study from now on.
 
 ```{r}
 #| code-fold: true
@@ -102,7 +107,7 @@ head(df)
 
 ## Fit the model
 
-Note that we are using the *aterm* `se` to inform the `brm()` function about varE and varC. The `sigma` = TRUE flag indicates that the residual standard deviation parameter sigma should be included in addition to the known measurement error. See the epsilon term in the model equations above. `prior` is an alias for the `set_prior()` function\^2.
+Note that we are using the *aterm* `se` to inform the `brm()` function about *varE* and *varC*. The `sigma` = TRUE flag indicates that the residual standard deviation parameter sigma should be included in addition to the known measurement error. See the epsilon term in the model equations above. `prior` is an alias for the `set_prior()` function\^2.
 
 The last two lines in the call to `brm()` specify that the model is to be fitted using 4 chains, each with 2000 iterations of which the first 1000 are warm up to calibrate the sampler. This provides a total of 4000 posterior samples.
 
@@ -125,41 +130,33 @@ fit_brms <- brm(
            prior(normal(0, 1), class = sd, group = study)),
            iter = 2000, warmup = 1000, cores = 4, chains = 4, seed = 14,
            control = list(adapt_delta = 0.95))
-```
 
-The model fit function shows the great advantage `brms` achieves by combining `lme4`s concise formula notation with the exact solutions provided by `stan`. Working directly in `stan` does provide great freedom, but freedom comes at the cost of easily specifying models that might not make sense. The `brms`notation helps to guide users into specifying meaningful models.
-
-Also note that in most cases, it is not necessary it is not necessary to specify Normal or t-distribution priors. The software will get it right. We included the prior statement to show how it works.
-
-```{r}
-#| eval: false
-#| code-fold: true
-#| code-summary: "Show the code"
 # Save an object to a file
 saveRDS(fit_brms, file = "fit_brms.rds")
 ```
 
-```{r}
-#| code-fold: true
-#| code-summary: "Show the code"
-# Restore the object
-fit_brms <- readRDS(file = "fit_brms.rds")
+The model fit function shows the great advantage `brms` achieves by combining `lme4`s concise formula notation with the exact solutions provided by `stan`. Working directly in `stan` does provide great freedom, but freedom comes at the cost of easily specifying models that might not make sense. The `brms`notation helps to guide users into specifying meaningful models.
 
-```
+Note that in most cases, it is not necessary to specify Normal or t-distribution priors. The software will get it right. We included the prior statement to show how it works. Also note that in order to save processing tie when running on the blog site, we reading in the model fit object from the RDS file which we wrote above.
 
 Here are the results of the model fit.
 
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
+# Restore the object
+fit_brms <- readRDS(file = "fit_brms.rds")
 summary(fit_brms)
 ```
 
+
+
+
 The first section of the summary gives some basic information about the model specification. Following this are the statistics for each of the estimated parameters. We see that they are in substantial agreement with the results obtained in our previous post, even though some of the details of the model specification are slightly different than the previous model fits. The payoff is the Intercept whose value is 0.16.
 
-For each estimated parameter *Estimate* and *Est.Error* provide the mean and the standard deviation of the posterior distribution. *l-95% CI* and *u-95% CI* provide the lower and upper bounds on the 95% credible intervals. *Rhat* = 1 for each parameter, indicating that the Markov chains have converged. An *Rhat* considerably greater than 1 (i.e., \> 1.1) would mean that the chains have not yet converged, and it would be necessary to run more iterations or perhaps set stronger priors. (See Gelman and Rubin) *Bulk_ESS* and *Tail_ESS* are diagnostics for the sampling efficiency in the bulk and tail of the posterior distribution respectively. See the [stan documentation](https://mc-stan.org/posterior/reference/ess_bulk.html) for details and interpretation.
+For each estimated parameter *Estimate* and *Est.Error* provide the mean and the standard deviation of the posterior distribution. *l-95% CI* and *u-95% CI* provide the lower and upper bounds on the 95% credible intervals. *Rhat* = 1 for each parameter, indicates that the Markov chains have converged. An *Rhat* considerably greater than 1 (i.e., \> 1.1) would mean that the chains have not yet converged, and it would be necessary to run more iterations or perhaps set stronger priors. (See Gelman and Rubin) *Bulk_ESS* and *Tail_ESS* are diagnostics for the sampling efficiency in the bulk and tail of the posterior distribution respectively. See the [stan documentation](https://mc-stan.org/posterior/reference/ess_bulk.html) for details and interpretation.
 
-The `brms` package also provides a plot method that plots posterity density and trace plots of the MCMC draws for the estimated statistics. Note that *b_Intercept* is the internal `stan` name for the population intercept.
+The `brms` package also provides a plot method that provides posterior density plots and trace plots of the MCMC draws for the estimated statistics. Note that *b_Intercept* is the internal `stan` name for the population intercept.
 
 ```{r}
 #| code-fold: true
@@ -194,7 +191,7 @@ out_all_sum <- group_by(out_all, study) %>%  mean_qi(Intercept)
 
 ```
 
-This code stacks and plots the graphs of the labels.
+This code stacks and plots the graphs.
 
 ```{r}
 #| code-fold: true
@@ -243,11 +240,11 @@ stancode(fit_brms)
 
 There are two "take aways" from this post that we would like to emphasize.
 
-1.  `brms` makes it easy to specify Bayesian models that produce probability distribution that fully characterize estimated quantities. There is really no reason to settle for the frequentist point estimates that the norm before the availability of MCMC engines like `stan`.
+1.  `brms` makes it easy to specify Bayesian models that produce probability distribution that fully characterize estimated quantities. There is really no reason to settle for the frequentist point estimates that were the best that could be done before the availability of MCMC engines like `stan`.
 
-2.  In Bayesian analysis we use the fact assumption that unidentified population parameters generate individual outcomes and in turn summaries of these individuals. This means knowing the individuals (or in our case sufficient statistics about the individuals) greatly influences our posterior estimates of plausible population parameters. With `brms` we are able to quickly infer the difference between treatment and control in a disciplined and documented fashion.
+2.  In Bayesian analysis, we use the fact assumption that unidentified population parameters generate individual outcomes that are used to create summaries of these individuals. This means knowing the individuals (or in our case sufficient statistics about the individuals) greatly influences our posterior estimates of plausible population parameters. With `brms` we are able to quickly infer the difference between treatment and control in a disciplined and documented fashion.
 
-We would also like to point out that our simple example which is a typical meta-analysis project is a multi-level model that looks quite different from the kind of multi-level model one might encounter. If we had the patient level data from the amplodipine study then we might have considered a three level nested model: subjects within treatment arms within studies. We avoided the first level by not having the data and the second level by directly modeling the difference between treatment arms.
+We would also like to point out that our simple example which is a typical meta-analysis project is a multi-level model build without having patient-level data. If we had the patient level data from the Amplodipine study then we might have considered a three level nested model: subjects within treatment arms within studies. We avoided the first level by not having the data and the second level by directly modeling the difference between treatment arms.
 
 
 
