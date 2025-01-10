@@ -1,16 +1,13 @@
-
 ---
 title: "Dyson's Algorithm for the Twelve Coins Problem"
 author: "Nina Zumel"
-date: 2024-12-20
+date: 2025-01-10
 description: "The Twelve Coins Problem, a notoriously hard problem that comes in many flavors, was popular on both sides of the Atlantic during World War II; it was even suggested that it should be dropped over Germany in an attempt to sabotage their war effort."
 image: "golden-scale.jpeg"
 image-alt: "Old-School Golden scale in balance with a hand putting a coin on it"
 categories: "Puzzle Corner"
 bibliography: references.bib
 ---
-
-
 
 ![Photo by Marco Verch, CC-2.0. <a href="https://foto.wuestenigel.com/old-school-golden-scale-in-balance-with-a-hand-putting-a-coin-on-it/">Source</a>](golden-scale.jpeg){fig-alt="Old-School Golden scale in balance with a hand putting a coin on it"}
 
@@ -20,7 +17,7 @@ The Twelve Coins Problem is a notoriously hard problem that comes in many flavor
 
 Here's the version I set out to solve:
 
-> You have twelve coins, to appearance exactly identical; but possibly one is counterfeit (we'll call it a "dud"). You do not know if a dud is present, nor whether it is heavier or lighter than the good coins. Can you determine in three weighings on a balance scale: (1) whether there is a dud, (2) if so, which coin, and (3) its relative weight (lighter or heavier than the good coins)?
+> You have twelve coins, exactly identical in appearance; but possibly one is counterfeit (we'll call it a "dud"). You do not know if a dud is present, nor whether it is heavier or lighter than the good coins. Can you determine in three weighings on a balance scale: (1) whether there is a dud, (2) if so, which coin, and (3) its relative weight (lighter or heavier than the good coins)?
 
 An additional detail:
 
