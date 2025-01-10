@@ -23,7 +23,7 @@ Exciting times ahead for R Conferences in 2025! Explore the list below to find y
 
 (9 - 11) Virtual - [ShinyConf 2025](https://www.shinyconf.com/)
 
-(11 - 12) Chicago, Illinois, USA - [R/Finance](https://www.rinfinance.com/)
+(11 - 12) Chicago, Illinois, USA - [Open Source Quantitative Finance (osQF) (R/Finance)](https://www.rinfinance.com/)
 
 (29 - May 2) Salt Lake City, Utah, USA - [Symposium on Data Science & Statistics](https://www.amstat.org/meetings/symposium-on-data-science-amp-statistics)
 
