@@ -19,9 +19,9 @@ From Henry Dudeney's "Perplexities" article in the March 1925 issue of *The Stra
 
 This is similar in spirit to [Bachet's Four Weights Problem](https://rworks.dev/posts/four-weights/), so if you've solved that one, you should certainly be able to solve this one.
 
-The solution is below Chirico's *The Mathematicians*. 
+The solution is below de Chirico's *The Mathematicians*. 
 
-![The Mathematicians, Chirico (1917)](the-mathematicians-1917.jpg){fig-alt="The Mathematicians, Chirico (1917) source: WikiArt"}
+![The Mathematicians, de Chirico (1917)](the-mathematicians-1917.jpg){fig-alt="The Mathematicians, de Chirico (1917) source: WikiArt"}
 
 ## The Solution
 

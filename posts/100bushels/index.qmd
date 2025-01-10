@@ -6,7 +6,7 @@ format: html
 editor: source
 description: "100 bushes of corn are distributed to 100 people such that every man receives 3 bushels, every woman 2 bushels, and every child 1/2 a bushel. How many men, women, and children are there? (Solved with R)."
 image: georgio_de_chirico.jpg
-image-alt: "The Mathematicians, Chirico (1917) source: WikiArt"
+image-alt: "The Mathematicians, de Chirico (1917) source: WikiArt"
 categories: "Puzzle Corner"
 ---
 
@@ -39,7 +39,7 @@ This problem (or one very close to it), is known as a system of [Diophantine equ
 
 Here's a picture to look at while you try to solve it. The answer is below. Don't peek!
 
-![The Mathematicians, Chirico (1917)](the-mathematicians-1917.jpg){fig-alt="The Mathematicians, Chirico (1917) source: WikiArt"}
+![The Mathematicians, de Chirico (1917)](the-mathematicians-1917.jpg){fig-alt="The Mathematicians, de Chirico (1917) source: WikiArt"}
 
 ## The Solution
 
