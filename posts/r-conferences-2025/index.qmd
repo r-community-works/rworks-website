@@ -9,65 +9,68 @@ editor: source
 image: image.jpg
 ---
 
+[Jumping Rivers](https://jumpingrivers.com) maintains a [running list of events](https://jumpingrivers.github.io/meetingsR/).
+
 ## February
 
-(6 - 7) Ghent - [Psychoco](https://www.psychoco.org/)
+(6 - 7) Ghent, Belgium - [Psychoco](https://www.psychoco.org/)
 
 ## March
 
-(6 - 9) Minneapolis - [NICAR25](https://www.ire.org/)
+(6 - 9) Minneapolis, Minnesota, USA - [NICAR25](https://www.ire.org/)
 
 ## April
 
 (9 - 11) Virtual - [ShinyConf 2025](https://www.shinyconf.com/)
 
-(11 - 12) Chicago - [R/Finance](https://www.rinfinance.com/)
+(11 - 12) Chicago, Illinois, USA - [R/Finance](https://www.rinfinance.com/)
 
-(29 - May 2) Salt Lake City - [Symposium on Data Science & Statistics](https://www.amstat.org/meetings/symposium-on-data-science-amp-statistics)
+(29 - May 2) Salt Lake City, Utah, USA - [Symposium on Data Science & Statistics](https://www.amstat.org/meetings/symposium-on-data-science-amp-statistics)
 
 ## June
 
 (10 - 13) Virtual - [R/Medicine](https://rconsortium.github.io/RMedicine_website/)
 
-(19 - 20) London - [Insurance Data Science Conference](https://insurancedatascience.org/)
+(19 - 20) London, UK - [Insurance Data Science Conference](https://insurancedatascience.org/)
 
-(19 - 20) [Ghana R Conference](https://ghana-rusers.org)
+(19 - 20) Tamale, Ghana - [Ghana R Conference](https://ghana-rusers.org)
+
+(20 - 21) Portland, Oregon, USA - [Cascadia R Conf](https://cascadiarconf.com/)
 
 ## August
 
-(2 - 7) Nashville, Tennessee - [JSM](https://ww2.amstat.org/meetings/jsm/2025/index.cfm)
+(2 - 7) Nashville, Tennessee, USA - [JSM](https://ww2.amstat.org/meetings/jsm/2025/index.cfm)
+
+(8 - 10) Durham, North Carolina, USA - [useR!](https://www.r-project.org/conferences/#user-international-r-user-conference)
 
 ## September
 
-(16-18) Atlanta, Georgia - [posit::conf(2025)](https://posit.co/conference/)
+(16-18) Atlanta, Georgia, USA - [posit::conf(2025)](https://posit.co/conference/)
 
 ## October
 
-\(8\) Newcastle upon Tyne - [Shiny in Production](https://www.eventbrite.co.uk/e/shiny-in-production-2025-registration-1035155587227)
+\(8\) Newcastle upon Tyne, UK - [Shiny in Production](https://www.eventbrite.co.uk/e/shiny-in-production-2025-registration-1035155587227)
 
-(14 - 16) Brighton - [EARL Conference](https://earl-conference.com/)
+(14 - 16) Brighton, UK - [EARL Conference](https://earl-conference.com/)
 
 ## To be announced
 
-[ESMARConf 2025](https://esmarconf.org/)
+- [ESMARConf 2025](https://esmarconf.org/)
 
-[New York R Conference](https://rstats.ai/nyr)
+- [Data Mishaps Night](https://datamishapsnight.com/)
 
-LatinR
+- [LatinR](https://latinr.org/)
 
-CascadiaR
+- [New York R Conference](https://rstats.ai/nyr)
 
-useR
+- [R in Pharma](https://rinpharma.com/)
 
-Data Mishaps Night
-
-R in Pharma
-
-RPySOC24 by NHS-R
+- [RPySOC by NHS-R](https://nhsrcommunity.com/)
 
 ## Ongoing events
 
-* [R-Ladies Meetups]
-* [R User Group Meetups]
+* [R-Ladies Meetups](https://www.meetup.com/pro/rladies/)
+* [R User Group Meetups](https://www.meetup.com/pro/r-user-groups/)
 * [Workshops for Ukraine](https://sites.google.com/view/dariia-mykhailyshyna/main/r-workshops-for-ukraine)
-* [R Open Sci Community Calls]
+* [ROpenSci Community Calls](https://ropensci.org/commcalls/)
+* [R Dev Days](https://contributor.r-project.org/events/r-dev-days/)
