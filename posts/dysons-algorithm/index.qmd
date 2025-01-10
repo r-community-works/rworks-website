@@ -1,0 +1,210 @@
+---
+title: "Dyson's Algorithm for the Twelve Coins Problem"
+author: "Nina Zumel"
+date: 2025-01-10
+description: "The Twelve Coins Problem, a notoriously hard problem that comes in many flavors, was popular on both sides of the Atlantic during World War II; it was even suggested that it should be dropped over Germany in an attempt to sabotage their war effort."
+image: "golden-scale.jpeg"
+image-alt: "Old-School Golden scale in balance with a hand putting a coin on it"
+categories: "Puzzle Corner"
+bibliography: references.bib
+---
+
+![Photo by Marco Verch, CC-2.0. <a href="https://foto.wuestenigel.com/old-school-golden-scale-in-balance-with-a-hand-putting-a-coin-on-it/">Source</a>](golden-scale.jpeg){fig-alt="Old-School Golden scale in balance with a hand putting a coin on it"}
+
+The Twelve Coins Problem is a notoriously hard problem that comes in many flavors. I don't know where it comes from originally, but it garnered quite a bit of attention from mathematicians in the mid-twentieth century. Apparently some versions of it may have even distracted scientists away from their defense research during WWII !
+
+> The problem was popular on both sides of the Atlantic during World War II; it was even suggested that it should be dropped over Germany in an attempt to sabotage their war effort...[@amm]
+
+Here's the version I set out to solve:
+
+> You have twelve coins, exactly identical in appearance; but possibly one is counterfeit (we'll call it a "dud"). You do not know if a dud is present, nor whether it is heavier or lighter than the good coins. Can you determine in three weighings on a balance scale: (1) whether there is a dud, (2) if so, which coin, and (3) its relative weight (lighter or heavier than the good coins)?
+
+An additional detail:
+
+* You can assume that the coins are individually labelled (say, as 1 to 12)[^1]. The labels mean that you can track which coins were in the left or right pans of the scale, or on the table, for each individual weighing.
+
+[^1]: This doesn't contradict the "exactly identical" condition in the problem statement; there is nothing about the appearance of the coins to clue you into which one is the dud, so you can only assign the labels to the coins arbitrarily.
+
+When puzzle-mavens try to solve this problem, they generally come up with what I'll call a "decision-tree" solution: once you've done a weighing, the next weighing depends on the outcome of the previous one. One such decision-tree solution is [here](https://ninazumel.com/blog/2024-10-17-twelve-coins/). But in 1946, Freeman J. Dyson came up with an elegant, "oblivious" solution [@dyson]. By "oblivious" I mean that Dyson's solution predefines a sequence of weighings, which at the end is guaranteed to identify the dud (if there is one) and its relative weight, or report that there is no dud.
+
+Dyson also shows that twelve coins is the most that you can resolve in three weighings, under the conditions I gave in the problem statement. I suspect (though I don't see a proof for it, and I'm too lazy to prove it myself) that if we relax the problem to assume that there *is* a dud, and try to identify it, but not necessarily its weight, we can resolve up to thirteen coins in three weighings. Dyson does show that if you have one extra coin that is known to be good, you can resolve 13 unknown coins in three weighings, and determine the relative weight of the dud.
+
+## Dyson's Algorithm
+
+Dyson's algorithm actually solves a more general version of the coins problem:
+
+> You have $M$ coins, to appearance exactly identical; but possibly one is counterfeit (we'll call it a "dud"). You do not know if a dud is present, nor whether it is heavier or lighter than the good coins. Can you determine in $n$ weighings on a balance scale: (1) whether there is a dud, (2) if so, which coin, and (3) its relative weight (lighter or heavier than the good coins)?
+
+Dyson shows that the largest number of coins $M$ that can be resolved in $n$ weighings is $M = (3^n - 3)/2$. That's 3 coins in 2 weighings, 12 coins in 3 weighings, 39 coins in 4 weighings, and so on. The algorithm I'll show in this post solves the case where you have exactly $M = (3^n - 3)/2$ coins. I'll discuss the general case where $M \leq (3^n - 3)/2$ in a subsequent article.
+
+The basic idea of Dyson's algorithm it to label each coin by its trinary representation, and then to schedule the weighings in such a way that, with the appropriate representation of the measurement outcomes, the weighings "spell out" the label of the dud coin, if it exists. There is a known label for the case when there is no dud.
+
+Dyson's original algorithm used standard base-3 representations, where the digits are (0, 1, 2). I decided to implement my version using signed trinary, where the digits are (-1, 0, 1). This is the representation that I used for
+the [Four Weights Puzzle](https://rworks.dev/posts/four-weights/), and I just find it more natural for balance scale problems. As a bonus, it also makes Dyson's algorithm easier to describe.
+
+## The Algorithm
+
+I'll describe the procedure with the example $M = 3, n=2$ (3 coins, 2 weighings), since that's easy to work out by hand. Then I'll point you to some code for larger cases.
+
+**1: Label the coins with the numbers 1 through $M$**, and convert them to signed trinary using $n$ digits. I've described the conversion procedure to signed trinary before, [here](https://rworks.dev/posts/back-to-four-weights/).
+For $M=3, n=2$, that looks like this:
+
+```
+1 = [0 1]
+2 = [1 -1]
+3 = [1 0]
+```
+
+**2: Set the trinary representations to rotate "forward."** 
+
+We say that a number in base-3 rotates "forward" (Dyson called it "clockwise") if the first change of digits increases by 1, modulo 3. So the forward sequence is $-1 \rightarrow 0 \rightarrow 1 \rightarrow -1 ...$ 
+(Note that $(-1) - 1 = -2$, and $-2 \mod 3 = 1$). In R, that looks something like this, assuming you've implemented the base-3 number as a vector:
+
+```r
+is_forward = function (ptrinary) {
+  delta = diff(ptrinary)
+  # get only the nonzero diffs
+  delta = delta[!(delta==0)]
+
+  if(length(delta)==0)
+    stop("constant vector")
+
+  # check if we are rotating forward, and return
+  delta[1] %% 3 == 1
+}
+```
+If a signed trinary number $x$ rotates forward, then its negation $-x$ rotates backward, and vice-versa. So replace any of the coin labels that rotate backwards with its negation:
+
+```
+1 = [0 1] : rotates forward
+2 = [1 -1]: rotates forward
+3 = [1 0]: rotates backward, so replace with [-1 0] (-3)
+```
+
+Representing all the coins with forward rotating numbers removes the ambiguity that arises from not knowing whether the dud coin is heavier or lighter than the good coins: if the balance scale tilts the left pan down, that could be because a heavy dud is in the left pan, or because a lighter dud is in the right pan. As we will see, setting all the coin labels to rotate forward means that a heavy dud will produce a pattern of behaviors that "spell out" the location of the dud, while a light dud will spell out the negation of the label.
+
+**3: Plan the weighing schedule.**
+
+Now let's label the possible positions on (or off) the scale. $-1$ means the left pan, $1$ means the right pan, and $0$ means the table. The weighing schedule is such that for the $i$th weighing, a given coin is in the location described by its label's $i$th digit (counting from the left, so the ones digit is last). For our example, this gives the schedule:
+
+```
+1 = [0 1]: table, then right pan
+2 = [1 -1]: right pan, then left pan
+3 = [-1 0]: left pan, then table
+```
+
+Using the scale notation we've been using for balance scale problems, that looks like this:
+
+```
+First weighing:
+
+[coin 3 | coin 2]
+------------------
+coin 1
+
+Second weighing:
+
+[coin 2 | coin 1]
+-----------------
+coin 3
+```
+
+Note that the weighing schedule can be calculated in advance if you know $M$ (and $n$), before you even see a specific set of coins. It can also be used over and over, for any set of $M$ coins. This is what we mean when we call this algorithm "oblivious."
+
+**4: Weigh the coins according to the schedule**
+
+We'll record the outcome of each weighing, $a_i$, as which pan was heavier (if any):
+$-1$ means the left pan is heavier, $1$ means the right pan is heavier, $0$ means the scale is balanced.
+This means that if the $k$th coin is a heavy dud, it will spell out its own label in signed trinary, 
+as $[a_1 a_2 ... a_n]$. A light dud will spell out the negation of the label. You can recover the decimal representation of the final outcome, as 
+
+$$
+A = \sum_{i=1}^n {3^{n-i} a_i}
+$$
+
+Then the location of the dud is $|A|$, and the dud is heavy if $[a_1 a_2 ... a_n]$ rotates forward, and it is light if 
+$[a_1 a_2 ... a_n]$ rotates backward. If there is no dud, then $A = 0$.
+
+Note that the sign of $A$ is NOT whether the dud is heavy or light; it's whether the original trinary representation of $|A|$ rotated forward or backward.
+
+And that's it! Let's walk through a few examples.
+
+* No dud
+  * Scale: (balanced, balanced), so $a =[0, 0] \rightarrow A = 0$:  no dud
+* The dud is coin 1, and it is light
+  * Scale: (balanced, left), so $a = [0, -1] \rightarrow  A = -1$ and $a$ rotates backward: coin 1, light.
+* The dud is coin 2, and it is heavy
+  * Scale: (right, left), so $a = [1, -1] \rightarrow  A = 2$ and $a$ rotates forward: coin 2, heavy.
+* The dud is coin 3, and it is heavy
+  * Scale: (left, balanced), so $a = [-1, 0] \rightarrow  A = -3$ and $a$ rotates forward: coin 3, heavy.
+
+
+## Back to the 12 coins
+
+So now we can do the problem that we actually care about. One could do it by hand, but code is easier.
+I have R code for the special case [here](dyson_signed_specialcase.R). 
+
+Let's show the forward representations of the coins.
+
+```{r}
+source("dyson_signed_specialcase.R")
+
+nrounds = 3
+ncoins = (3^nrounds - 3)/2  # 12
+
+# Show the forward representations of the coins
+get_forward_representation(nrounds)
+```
+
+In my implementation, I precompile the weighing schedule ahead of time, so I can just weigh coins over and over again.
+The `precompile` function calls `get_forward_representation` internally, and returns a list. Each element of the list is the weighing schedule for that weighing, as a data frame, with columns `(left, table, right)`. Each column of the data frame holds the coins that go into that position for that weighing.
+
+```{r}
+Cset = precompile(ncoins, nrounds)
+
+# show the schedule 
+knitr::kable(Cset[[1]], caption = "Weighing 1")
+
+knitr::kable(Cset[[2]], caption = "Weighing 2")
+
+knitr::kable(Cset[[3]], caption = "Weighing 3")
+```
+
+Now we can find duds. It doesn't matter how much the coins weigh, as long as all good coins weigh the same amount.
+My function `find_dud` returns a value `D` such that `abs(D)` gives the index of the dud, and `sign(D)` gives the dud's relative weight; negative means the dud is light, and positive means the dud is heavy. In other words, $D \neq A$!! But the notation is concise, and easy to write checks for.
+
+```{r}
+# a good coin weighs 1 unit
+coins = numeric(ncoins) + 1
+epsilon = 0.5
+
+# check the no dud case
+find_dud(coins, Cset)
+
+# check a specific case
+idud = 7
+relative_wt = -1 # make it lighter
+coins[idud] = 1 + epsilon*relative_wt
+find_dud(coins, Cset)
+
+# verify this works in all possible cases
+for(idud in 1:ncoins) {
+  for(relative_wt in c(-1, 1)) {
+    actual = idud*relative_wt # location and direction
+    coins = numeric(ncoins) + 1
+    coins[idud] = 1 + epsilon*relative_wt
+    A = find_dud(coins, Cset)
+    stopifnot(actual==A)
+  }
+}
+```
+
+And that's the solution of the $M$ coins in $n$ weighings problem, for the special case when $M = (3^n-3)/2$.
+In the next post, I'll describe the general case, when $3 \leq M \leq (1/2)(3^n-3)$. 
+
+*Nina Zumel is a data scientist based in San Francisco, with 20+ years of experience in machine learning, statistics, and analytics. She is the co-founder of the data science consulting firm Win-Vector LLC, and (with John Mount) the co-author of Practical Data Science with R, now in its second edition.*
+
+## References
+
+::: {#refs}
+:::
