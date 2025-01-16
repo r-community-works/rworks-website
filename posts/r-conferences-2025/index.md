@@ -3,7 +3,7 @@ title: "Some R Conferences for 2025"
 author: "Isabella Velásquez"
 description: "We share a list of upcoming conferences that either focus on the R programming language or showcase its use in the field."
 categories: "R Community"
-date: "2024-11-10"
+date: "2025-01-16"
 format: html
 editor: source
 image: image.jpg
