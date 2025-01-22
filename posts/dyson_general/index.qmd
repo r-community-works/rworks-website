@@ -1,12 +1,21 @@
+
+
 ---
-title: "Dyson's Algorithm: The General Case"
-format: html
+title: "Dyson's Algorithm: The General Case"       
+author: "Nina Zumel"
+date: 2025-01-24
+html:
+    code-fold: true
+    code-summary: "Show the code"
+editor: source
+description: "In a previous post, I described The Twelve Coins Problem, a notoriously hard problem that comes in many flavors which was popular on both sides of the Atlantic during World War II. In this post, I show how to build on Freeman Dyson's solution to solve a generalization of the problem."
+image: "golden-scale.jpeg"
+image-alt: "Old-School Golden scale in balance with a hand putting a coin on it"
+categories: "Puzzle Corner"
 bibliography: references.bib
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+
 ![Photo by Marco Verch, CC-2.0. <a href="https://foto.wuestenigel.com/old-school-golden-scale-in-balance-with-a-hand-putting-a-coin-on-it/">Source</a>](golden-scale.jpeg){fig-alt="Old-School Golden scale in balance with a hand putting a coin on it"}
 
 In a [previous post](https://rworks.dev/posts/dysons-algorithm/), we looked at Dyson's algorithm [@dyson] for solving the $M$ Coins in $n$ Weighings problem : 
@@ -46,7 +55,11 @@ To make this concrete, we'll use the example of $n = 3$ weighings, but now we wa
 
 Let's look again at the forward representations for 12 coins. 
 
-```{r message=FALSE}
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: true
+#| code-summary: "Show the code"
 source("dyson_signed_general.R")
 library(poorman) # dplyr will work here, too
 
@@ -76,6 +89,10 @@ Now get the next unassigned label (`[0 1 -1] = 2`), and make another triplet, an
 Here are all the possible coin labels, their groups, and the digits of the forward representations.
 
 ```{r}
+#| message: false
+#| warning: false
+#| code-fold: true
+#| code-summary: "Show the code"
 gps = create_cyclic_groups(nrounds)
 
 M_max = (3^nrounds - 3)/2
@@ -119,6 +136,10 @@ Each coin is placed on the scale according to the digits of its label.
 Here's the weighing schedule for the first weighing:
 
 ```{r}
+#| message: false
+#| warning: false
+#| code-fold: true
+#| code-summary: "Show the code"
 Cset = compileC(Fmat)
 knitr::kable(Cset[[1]])
 ```
@@ -145,6 +166,10 @@ This time, in addition to keeping track of the weighing outcome $a_i$, we also n
 Let's suppose the scale tilts right (`a[1] = 1`). Then we know that `coin1` is good. Now, to the second weighing:
 
 ```{r}
+#| message: false
+#| warning: false
+#| code-fold: true
+#| code-summary: "Show the code"
 knitr::kable(Cset[[2]])
 ```
 
@@ -175,6 +200,10 @@ On to weighing three.
 
 
 ```{r}
+#| message: false
+#| warning: false
+#| code-fold: true
+#| code-summary: "Show the code"
 knitr::kable(Cset[[3]])
 ```
 
@@ -202,6 +231,10 @@ The label 11 corresponds to `coin2` and `a` rotates forward, so the dud is `coin
 Let's confirm that with code. As before, the function `find_dud` returns a value `D` such that `abs(D)` gives the index of the dud, and `sign(D)` gives the dud's relative weight: negative means the dud is light, and positive means the dud is heavy.
 
 ```{r}
+#| message: false
+#| warning: false
+#| code-fold: true
+#| code-summary: "Show the code"
 nrounds = 3
 ncoins = 5
 coins = numeric(ncoins) + 1 # good coins weigh 1 unit
@@ -219,6 +252,10 @@ find_dud(coins, precompiled)
 We'll try 10 coins.
 
 ```{r}
+#| message: false
+#| warning: false
+#| code-fold: true
+#| code-summary: "Show the code"
 ncoins = 10
 coins = numeric(ncoins) + 1
 
@@ -243,6 +280,7 @@ for(icoin in 1:ncoins) {
 
 This generalizes Dyson's algorithm. It's not as pretty as the special case version, but it works. 
 
+*Nina Zumel is a data scientist based in San Francisco, with 20+ years of experience in machine learning, statistics, and analytics. She is the co-founder of the data science consulting firm Win-Vector LLC, and (with John Mount) the co-author of Practical Data Science with R, now in its second edition.*
 ## References
 
 ::: {#refs}
