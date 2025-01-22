@@ -1,0 +1,250 @@
+---
+title: "Dyson's Algorithm: The General Case"
+format: html
+bibliography: references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+![Photo by Marco Verch, CC-2.0. <a href="https://foto.wuestenigel.com/old-school-golden-scale-in-balance-with-a-hand-putting-a-coin-on-it/">Source</a>](golden-scale.jpeg){fig-alt="Old-School Golden scale in balance with a hand putting a coin on it"}
+
+In a [previous post](https://rworks.dev/posts/dysons-algorithm/), we looked at Dyson's algorithm [@dyson] for solving the $M$ Coins in $n$ Weighings problem : 
+
+> You have $M$ coins, to appearance exactly identical; but possibly one is counterfeit (we’ll call it a “dud”). You do not know if a dud is present, nor whether it is heavier or lighter than the good coins. Can you determine in $n$ weighings on a balance scale: (1) whether there is a dud, (2) if so, which coin, and (3) its relative weight (lighter or heavier than the good coins)?
+
+The most famous version of this problem is to resolve 12 coins in 3 weighings; this is an instance of the special case where $M = (3^n - 3)/2$, which is the maximum number of coins that can be resolved in $n$ weighings. The version of the algorithm we showed in the previous post solved exactly this case. In this post, we will adjust that algorithm to the more general case where $3 \leq M \leq (1/2)(3^n-3) = M_{max}$. 
+
+## Sketch of the Special Case Algorithm
+
+You probably want to review the previous post before moving on to this one, but I'll quickly sketch the special-case algorithm here. 
+
+* First, number the coins from `1:M`. Then assign each coin a label that corresponds to either the signed trinary representation of its number, or the negation of that number, depending on which representation rotates "forward" (defined to mean that the first change of digits increases by 1, modulo 3). 
+* Next, determine a "weighing schedule": which coin goes where for each weighing. The position of each coin on the $i$th weighing is determined by its $i$th digit (starting from the left): $-1$ means the left pan, $1$ means the right pan, and $0$ means the table. \
+* Similarly, we record the outcome of each weighing by which pan is heavier (if any): $-1$ means the left pan is heavier, $1$ means the right pan is heavier, $0$ means the scale is balanced.
+
+As we showed in the last post, if the $k$th coin is a heavy dud, it will spell out its own label in signed trinary, 
+as $[a_1 a_2 ... a_n]$. A light dud will spell out the negation of the label. 
+
+You can recover the decimal representation of the final outcome, as 
+
+$$
+A = \sum_{i=1}^n {3^{n-i} a_i}
+$$
+
+Then the location of the dud is $|A|$, and the dud is heavy if $[a_1 a_2 ... a_n]$ rotates forward, and it is light if 
+$[a_1 a_2 ... a_n]$ rotates backward. If there is no dud, then $A = 0$.
+
+
+## The General Case 
+
+The general case algorithm works basically the same way, but now the coin labels do not correspond directly to the coin numbers (which are still `1:M`). Instead, they are assigned from groups of "weighing triplets," or cyclic groups, in a way that keeps the scale counts equal on the first round.
+
+We can then use the same weighing schedule as in the $M = M_{max}$ case, with a little extra bookkeeping to keep the scale counts equal on every round. As before, the scale will spell out the label of the dud coin if the dud is heavy, or the label's negation, if the dud is light.
+
+To make this concrete, we'll use the example of $n = 3$ weighings, but now we want to resolve fewer than 12 coins. You can find the code I'm calling in this example [here](). (**todo: update this link**)
+
+Let's look again at the forward representations for 12 coins. 
+
+```{r message=FALSE}
+source("dyson_signed_general.R")
+library(poorman) # dplyr will work here, too
+
+nrounds = 3
+Fmat = get_forward_representation(nrounds)
+Fmat
+```
+
+In the above, the row numbers of the matrix are the coin numbers. When we are resolving 12 coins, the forward representations of the coin numbers give the labels for each coin.
+
+**1. Create "weighing triplets".**
+
+When we want to resolve fewer than 12 coins, the coin number and the forward representations no longer directly correspond. We have to assign the labels as follows.
+
+We'll start with the label `[0 0 1]`, and increase each digit by 1 modulo 3, to get a new forward label, `[1 1 -1]`. We'll call this a *cyclic shift*. Then we'll take the new label, and shift it again to make a triplet.
+
+```
+coin 1: label [0 0 1] (1)
+coin 2: label [1 1 -1] (11)
+coin 3: label [-1 -1 0] (12) # -12, actually, but this is the forward representation
+```
+
+This is the first group (or triplet).
+
+Now get the next unassigned label (`[0 1 -1] = 2`), and make another triplet, and so on, until all the labels are assigned to a group. This results in $M_{max}/3$ groups. For this example, that's 4 groups. You can think of each group as a "weighing triplet," because every weighing of those three coins together has one coin on the left, one on the right, and one on the table, every round.
+
+Here are all the possible coin labels, their groups, and the digits of the forward representations.
+
+```{r}
+gps = create_cyclic_groups(nrounds)
+
+M_max = (3^nrounds - 3)/2
+gpmap = data.frame(group = gps, coin_label = 1:M_max)
+gpmap = cbind(gpmap, data.frame(Fmat)) 
+arrange(gpmap, group, coin_label) |> knitr::kable()
+```
+
+Note that the groups can be precompiled, if you know $n$.
+
+**2. Assign labels to the coins**
+
+Now, if you have $M$ coins, $M < M_{max}$, instead of assigning them sequential labels, you assign them labels from each group, in order. The first 3 coins get labels from the first group, the next 3 from the second group, and so on. You will
+have $rem = M \mod 3$ coins left over. If $rem=2$, assign the last two coins to the members of the next group that start with the digits `-1` and `1`; if $rem=1$, then assign the last coin to the member of the next group that starts with `0`.
+
+Let's try some examples. The first group has the labels `(1, 11, 12)`, and the second group has the labels `(2, 6, 8)`.
+Suppose we have 5 coins. Then we'd assign the first three coins the labels 1, 11, 12, and the last two coins
+the labels 6 (`[1 -1 0]`) and 8 (`[-1 0 1]`). 
+
+```
+coin 1: label [0 0 1] (1)
+coin 2: label [1 1 -1] (11)
+coin 3: label [-1 -1 0] (12) 
+coin 4: label [1 -1 0] (6)
+coin 5: label [-1 0 1] (8)
+```
+
+If we have 4 coins, we'd assign the first three coins the labels 1, 11, 12, and the last coin the label 2 (`[0 1 -1]`).
+
+```
+coin 1: label [0 0 1] (1)
+coin 2: label [1 1 -1] (11)
+coin 3: label [-1 -1 0] (12) 
+coin 4: label [0 1 -1] (2)
+```
+
+**3. Weigh the coins according to the weighing schedule.**
+
+The weighing schedule is the same as it was before, but now we're only using some of the labels.
+Each coin is placed on the scale according to the digits of its label.
+Here's the weighing schedule for the first weighing:
+
+```{r}
+Cset = compileC(Fmat)
+knitr::kable(Cset[[1]])
+```
+
+So the first weighing of five coins is as follows:
+
+```
+coin1 (1): table
+coin2 (11): right
+coin3 (12): left
+coin4 (6): right
+coin5 (8): left
+
+[ {coin3, coin5} | {coin2, coin4} ]
+------------------------------------
+coin1
+```
+
+This time, in addition to keeping track of the weighing outcome $a_i$, we also need to keep track of which coins we know to be good, based on the outcome of the weighing. We know that 
+
+* if the scale is balanced, then all the coins on the scale are good (the dud is on the table), and 
+* if the scale is not balanced, then all the coins on the table are good (the dud is on the scale).
+
+Let's suppose the scale tilts right (`a[1] = 1`). Then we know that `coin1` is good. Now, to the second weighing:
+
+```{r}
+knitr::kable(Cset[[2]])
+```
+
+```
+coin1 (1, good): table
+coin2 (11): right
+coin3 (12): left
+coin4 (6): left
+coin5 (8): table
+
+[{coin3, coin 4} | {coin2} ]
+------------------------------
+coin1, coin5
+```
+
+Oops! Now the scale counts aren't equal But we know that `coin1` is good, so we can put it in the right pan to equalize the coin counts, without affecting the outcome.
+
+```
+[{coin3, coin 4} | {coin2, coin1} ]
+------------------------------
+coin5
+```
+
+Sometimes the scale count isn't equal, but none of the coins on the table have been marked good. In that case, find a good coin in the pan with more coins, and put it on the table.
+
+To continue the example, let's say that the scale again tilts right (`a[2] = 1`). Now we know that `coin5` is good.
+On to weighing three.
+
+
+```{r}
+knitr::kable(Cset[[3]])
+```
+
+```
+coin1 (1, good): right
+coin2 (11): left
+coin3 (12): table
+coin4 (6): table
+coin5 (8, good): right
+
+[{coin2} | {coin1, coin5}]
+---------------------------
+coin3, coin4
+
+Move either of coin1 or coin5 to the table.
+
+[ {coin2} | {coin1} ]
+-----------------------
+coin3, coin4, coin5
+```
+
+Now this time the scale tilts left (`a[3] = -1`). We have `a = [1 1 -1]`, which means $A = 9 + 3 - 1 = 11$. 
+The label 11 corresponds to `coin2` and `a` rotates forward, so the dud is `coin2`, and is heavy.
+
+Let's confirm that with code. As before, the function `find_dud` returns a value `D` such that `abs(D)` gives the index of the dud, and `sign(D)` gives the dud's relative weight: negative means the dud is light, and positive means the dud is heavy.
+
+```{r}
+nrounds = 3
+ncoins = 5
+coins = numeric(ncoins) + 1 # good coins weigh 1 unit
+
+# precompilation computes both 
+# the weighing schedule and the label groups
+precompiled = precompile(nrounds)
+
+# make coin 2 a heavy dud
+coins[2] = 1.5
+find_dud(coins, precompiled)
+
+```
+
+We'll try 10 coins.
+
+```{r}
+ncoins = 10
+coins = numeric(ncoins) + 1
+
+# no dud case
+find_dud(coins, precompiled)
+
+# 7, light
+coins[7] = 0.5
+find_dud(coins, precompiled)
+
+# confirm all possible cases work
+for(icoin in 1:ncoins) {
+  for(direction in c(-1, 1)) {
+    coins = numeric(ncoins) + 1
+    coins[icoin] = 1 + 0.5*direction
+    actual = icoin*direction
+    result = find_dud(coins, precompiled)
+    stopifnot(actual==result)
+  }
+}
+```
+
+This generalizes Dyson's algorithm. It's not as pretty as the special case version, but it works. 
+
+## References
+
+::: {#refs}
+:::
+
