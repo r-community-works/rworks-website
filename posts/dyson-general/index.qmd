@@ -49,7 +49,7 @@ The general case algorithm works basically the same way, but now the coin labels
 
 We can then use the same weighing schedule as in the $M = M_{max}$ case, with a little extra bookkeeping to keep the scale counts equal on every round. As before, the scale will spell out the label of the dud coin if the dud is heavy, or the label's negation, if the dud is light.
 
-To make this concrete, we'll use the example of $n = 3$ weighings, but now we want to resolve fewer than 12 coins. You can find the code I'm calling in this example [here](~/dyson_signed_general.R). (**todo: update this link**)
+To make this concrete, we'll use the example of $n = 3$ weighings, but now we want to resolve fewer than 12 coins. You can find the code I'm calling in this example [here](dyson_signed_general.R).
 
 Let's look again at the forward representations for 12 coins. 
 
