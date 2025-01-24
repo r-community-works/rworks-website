@@ -4,7 +4,7 @@ title: "The Perplexed Banker"
 author: "Nina Zumel"
 date: 2024-12-20
 description: "A man went into a bank with 1,000 silver dollars and 10 bags. He said, 'Place this money, please, in the bags in such a way that if I call and ask for a certain number of dollars you can hand me over one or more bags, giving me the exact amount called for without opening any of the bags.'"
-image: "the-mathematicians-1917.jpg"
+image: "georgio_de_chirico.jpg"
 image-alt: "The Perplexed Banker Problem"
 categories: "Puzzle Corner"
 ---
