@@ -69,8 +69,10 @@ Exciting times ahead for R Conferences in 2025! Explore the list below to find y
 ## Ongoing events
 
 * [Data Science Hangout](https://posit.co/data-science-hangout/)
+* [Data Science Learning Community Book Clubs](https://dslc.io/)
 * [R Dev Days](https://contributor.r-project.org/events/r-dev-days/) 
 * [R-Ladies Meetups](https://www.meetup.com/pro/rladies/)
 * [ROpenSci Community Calls](https://ropensci.org/commcalls/)
 * [R User Group Meetups](https://www.meetup.com/pro/r-user-groups/)
+* [Tidy Tuesday Weekly Social Data Project](https://tidytues.day)
 * [Workshops for Ukraine](https://sites.google.com/view/dariia-mykhailyshyna/main/r-workshops-for-ukraine)
