@@ -294,6 +294,6 @@ The model also correctly identifies that subjects of population type B have a (s
 
 ## Conclusion
 
-Simpson's paradox is a case where model inference seems to contradict domain knowledge. Usually it is merely a symptom of some combination of omitted variable bias, unbalanced studies, or wrong causal specification (or perhaps no such specification). If you take care to look for the this effect, it can in fact give clues towards a better analysis.
+Simpson's paradox occurs when model inference seems to contradict domain knowledge. Usually it is merely a symptom of some combination of omitted variable bias, unbalanced studies, or wrong causal specification (or perhaps no such specification). If you take care to look for the this effect, it can in fact give clues towards a better analysis.
 
 *Nina Zumel is a data scientist based in San Francisco, with 20+ years of experience in machine learning, statistics, and analytics. She is the co-founder of the data science consulting firm Win-Vector LLC, and (with John Mount) the co-author of Practical Data Science with R, now in its second edition.*
