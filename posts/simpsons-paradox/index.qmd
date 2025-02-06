@@ -1,68 +1,53 @@
 ---
 title: "Simpson's Paradox in a Logistic Regression"
 author: "Nina Zumel"
-date: 2025-02-08
+date: 2025-02-07
 html:
     code-fold: true
     code-summary: "Show the code"
 editor: source
-description: ""
-image: ""
-image-alt: ""
-categories: "Puzzle Corner"
+description: "In this post, I show an example of Simpson's paradox in a logistic regression model of synthetic clinical trial data."
+image: "sp.png"
+image-alt: "Plot showing unbalanced treatment group sizes"
+categories: ""
 ---
 
-[Simpson's paradox](https://en.wikipedia.org/wiki/Simpson's_paradox) is when a
-trend that is present in various groups of data seems to disappear or even reverse
-when those groups are combined. One sees examples of this often in things like 
-medical trials, and the phenomenon is generally due to one or more unmodelled
-confounding variables, or perhaps differing causal assumptions.
+[Simpson's paradox](https://en.wikipedia.org/wiki/Simpson's_paradox) is when a trend that is present in various groups of data seems to disappear or even reverse when those groups are combined. One sees examples of this often in things like  medical trials, and the phenomenon is generally due to one or more unmodelled confounding variables, or perhaps differing causal assumptions.
 
-In the course of something else that I was working on, I was trying to come
-up with an example of a logistic regression analysis, where one of the coefficients
-had a clearly incorrect sign. This is because I wanted an example beyond a simple linear regression.
-There are several reasons why unexpected signs might happen: separation or quasiseparation of the data being the obvious ones. But Simpson's paradox is another possible cause.
-
-The original project ended up not needing the example, but since I had it, I thought I'd write it up, 
+As part of a project I was working on, I wanted an example beyond a simple linear regression where one of the model coefficients had a clearly incorrect sign. There are several reasons why unexpected signs might happen: separation or quasi separation of the data being the obvious ones. But Simpson's paradox is another possible cause. The original project ended up not needing the example, but since I had it, I thought I'd write it up, 
 since I've never seen Simpson's paradox presented in quite this way before.
 
 ## Synthetic Example: Weight Loss Trial
 
-This is a problem statement where we would expect the coefficients of
-a logistic regression to be non-negative (except the intercept).
+This is a problem statement where we would expect the coefficients of a logistic regression to be non-negative (except the intercept).
 
-Consider a trial that tests the efficacy of a specific eating regimen 
-(let's say 16/8 intermittent fasting, which we'll call `ifasting`) 
-and a specific exercise regimen (a brisk 30 minute walk every day, which we'll 
-just call `exercise`). The goal ("success") is to lose at least five pounds by the end of 
-the trial period. We've set up three treatment groups, as follows:
+Consider a trial that tests the efficacy of a specific eating regimen (let's say 16/8 intermittent fasting, which we'll call `ifasting`) and a specific exercise regimen (a brisk 30 minute walk every day, which we'll 
+just call `exercise`). The goal ("success") is to lose at least five pounds by the end of the trial period. We've set up three treatment groups, as follows:
 
 * 200 subjects try exercise alone
 * 300 subjects try ifasting alone
 * 300 subjects try ifasting plus exercise
 
-Prior to the trial, all the subjects led fairly sedentary lifestyles, 
-and weren't dieting in any formal way.
+Prior to the trial, all the subjects led fairly sedentary lifestyles, and weren't dieting in any formal way.
 
-For these subjects, one might reasonably expect that neither exercise nor ifasting 
-would be *less* successful for losing weight than doing nothing. One would also reasonably
-expect that ifasting plus exercise should do no worse than doing either one alone.
-Therefore, modeling the results of such an experiment as a logistic regression
-should lead to a model where the coefficients $\beta_{ifasting}$ and
-$\beta_{exercise}$ are both non-negative, as any treatment should increase (or at least, not decrease) the
-odds that the subject loses weight. 
+For these subjects, one might reasonably expect that neither exercise nor ifasting would be *less* successful for losing weight than doing nothing. One would also reasonably expect that ifasting plus exercise should do no worse than doing either one alone. Therefore, modeling the results of such an experiment as a logistic regression
+should lead to a model where the coefficients $\beta_{ifasting}$ and $\beta_{exercise}$ are both non-negative, as any treatment should increase (or at least, not decrease) the odds that the subject loses weight. 
 
-Let's show an example where our expectations aren't met. The easiest way to do that is to
-generate a dataset that has Simpson's paradox hidden within it.
+Let's show an example where our expectations aren't met. The easiest way to do that is to generate a dataset that has Simpson's paradox hidden within it.
 
-Here's a function that will generate a specific subset of datums, as needed.
+First, let's load the packages we need.
 
 ```{r message=FALSE, warnings=FALSE}
+#| code-fold: true
+#| code-summary: "Show the code"
 library(poorman) # or dplyr
 library(ggplot2)
 library(kableExtra)
 library(WVPlots)
 ```
+
+Here's a function that will generate a specific subset of data, as needed.
+
 
 ```{r}
 # ifasting: 1 if this group fasted, else 0
@@ -83,25 +68,23 @@ generate_samples = function(ifasting, exercise, total, successes, label) {
 
 ## Hidden, Unmodelled Population Effects
 
-Now suppose that, unbeknownst to the researchers, there are two subpopulations
-amongst the subjects. These two populations respond differently to the exercise and
-intermittent fasting regimes. So we will generate our synthetic data by population.
+Now suppose that, unbeknownst to the researchers, there are two sub populations among the subjects. These two sub populations respond differently to the exercise and intermittent fasting regimes. So we will generate our synthetic data by population.
 
 ### Population A
 
-The first population, Population A, responds quite well to intermittent fasting. Let's create just this population.
-
-
+The first population, Population A, responds quite well to intermittent fasting. Let's create just this population. This next block of code generates population A, prepares the data for plotting, and plots it.
 ```{r}
-# population A
+#| code-fold: true
+#| code-summary: "Show the code"
+
 popA = data.table::rbindlist(list(
   generate_samples(ifasting=0, exercise=1, total=100, successes=2, "Population A"),
   generate_samples(ifasting=1, exercise=0, total=200, successes=160, "Population A"),
   generate_samples(ifasting=1, exercise=1, total=100, successes=90, "Population A")
 ))
-```
 
-```{r echo=FALSE}
+#| code-fold: true
+#| code-summary: "Show the code"
 popA$treatment = with(popA, ifelse(ifasting, ifelse(exercise, 'both', 'ifast alone'),
                                    ifelse(exercise, 'exercise alone', 'none')))
 popA$treatment = factor(popA$treatment,
@@ -120,10 +103,11 @@ ggplot(popA, aes(x=treatment, color=outcome, fill=outcome)) +
   
 ```
 
-If we look at the success rates, we will see that (as expected) subjects who both exercise and practice intermittent fasting 
-lose weight more successfully than subjects who do one or the other alone.
+If we look at the success rates, we will see that (as expected) subjects who both exercise and practice intermittent fasting lose weight more successfully than subjects who do one or the other alone.
 
-```{r echo=FALSE}
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
 df1 = popA |>
   group_by(treatment) |>
   summarize(success_rate=mean(success)) |>
@@ -144,16 +128,17 @@ There is also another population, Population B, that has what you might call a "
 For them, intermittent fasting is not quite as effective.
 
 ```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
 popB = data.table::rbindlist(list(
   generate_samples(ifasting=0, exercise=1, total=100, successes=1, "Population B"),
   generate_samples(ifasting=1, exercise=0, total=100, successes=40, "Population B"),
   generate_samples(ifasting=1, exercise=1, total=200, successes=100, "Population B")
 ))
 
-```
 
-
-```{r echo=FALSE}
+#| code-fold: true
+#| code-summary: "Show the code"
 popB$treatment = with(popB, ifelse(ifasting, ifelse(exercise, 'both', 'ifast alone'),
                                    ifelse(exercise, 'exercise alone', 'none')))
 popB$treatment = factor(popB$treatment,
@@ -174,10 +159,11 @@ ggplot(popB, aes(x=treatment, color=outcome, fill=outcome)) +
   
 ```
 
-Again, subjects who both exercise and practice intermittent fasting are the most successful, but overall, success rates
-in population B are not as good as in population A.
+Again, subjects who both exercise and practice intermittent fasting are the most successful, but overall, success rates in population B are not as good as in population A.
 
-```{r echo=FALSE}
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
 df1 = popB |>
   group_by(treatment) |>
   summarize(success_rate=mean(success)) |>
@@ -196,7 +182,9 @@ One of the things to notice about this experimental design is that, even before 
 
 This imbalance will be even more pronounced when we account for the hidden population types, as well.
 
-```{r echo=FALSE}
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
 bothpops = rbind(popA, popB)
 palette = c('Population A' = '#1b9e77', 'Population B' = '#d95f02')
 ggplot(bothpops, aes(x=treatment, color=label, fill=label)) + 
@@ -213,7 +201,9 @@ This population imbalance is part of what can cause Simpson's paradox.
 
 Now let's fit a logistic regression model to try to infer the effects of the various treatments on weight loss. We'll do it on the whole population first, since that was the original task.
 
-```{r echo=FALSE}
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
 
 tab_coeff = function(model, caption) {
   coeff = summary(model)$coefficients[, c(1, 4)] |>
@@ -235,24 +225,19 @@ tab_coeff = function(model, caption) {
 
 }
 
-```
-
-```{r}
 bothpops = rbind(popA, popB)
 mAll = glm(success ~ ifasting + exercise, data=bothpops, family=binomial)
-```
 
-```{r echo=FALSE}
 tab_coeff(mAll, "Model coefficients, whole population")
 ```
 
-Intermittent fasting has a positive coefficient, meaning intermittent fasting is positively correlated with weight loss success. But
-exercise has a *negative* coefficient, implying the exercise is negatively correlated with weight loss, and that doing both together
-will be *less* successful than intermittent fasting alone!
+Intermittent fasting has a positive coefficient, meaning intermittent fasting is positively correlated with weight loss success. But exercise has a *negative* coefficient, implying the exercise is negatively correlated with weight loss, and that doing both together will be *less* successful than intermittent fasting alone!
 
 And indeed, if we look at the raw summaries, we'll see that the data bears these inferences out.
 
-```{r echo=FALSE}
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
 df1 = bothpops |>
   group_by(treatment) |>
   summarize(success_rate=mean(success)) |>
@@ -266,27 +251,23 @@ rbind(df1, df2) |>
   knitr::kable(digits=3, caption = "Success rates, entire population")
 ```
 
-This is an example of how Simpson’s paradox might manifest itself in a logistic regression model, and it’s due to the unmodelled confounding variable, population type. This, plus some bad luck in the relative sizes of the treatment groups with respect to population type, lead to the above, counterintuitive, results. 
+This is an example of how Simpson’s paradox might manifest itself in a logistic regression model, and it’s due to the unmodelled confounding variable, population type. This, plus some bad luck in the relative sizes of the treatment groups with respect to population type, lead to the above, counter intuitive, results. 
 
-Note that we have reported p-values, and in this case the coefficient for exercise is insignificant (to $p = 0.05$), implying that exercise may not have any notable effect on weight loss. However, we may still see coefficients with counterintuitive signs in arbitrarily large populations, which may then appear significant.
+Note that we have reported p-values, and in this case the coefficient for exercise is insignificant (to $p = 0.05$), implying that exercise may not have any notable effect on weight loss. However, we may still see coefficients with counter intuitive signs in arbitrarily large populations, which may then appear significant.
 
 ### Taking the Hidden Confounder into Account
 
 As you might expect, if we are able to identify the confounding variable and account for it, then we can eliminate the paradoxical negative coefficients. To see this, let's first model the populations separately and look at the model coefficients.
 
 ```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
 mA = glm(success ~ ifasting + exercise, data=popA, family=binomial)
-```
 
-```{r echo=FALSE}
 tab_coeff(mA, "Model coefficients, Population A")
-```
 
-```{r}
 mB = glm(success ~ ifasting + exercise, data=popB, family=binomial)
-```
 
-```{r echo=FALSE}
 tab_coeff(mB, "Model coefficients, Population B")
 ```
 
@@ -296,10 +277,12 @@ We can also model the entire population, including the population label as a var
 
 
 ```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
 mAllplus = glm(success ~ ifasting + exercise + label, data=bothpops, family=binomial)
-```
 
-```{r echo=FALSE}
+#| code-fold: true
+#| code-summary: "Show the code"
 tab_coeff(mAllplus, "Model coefficients, whole population with population labels")
              
 ```
