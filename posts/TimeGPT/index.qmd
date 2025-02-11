@@ -2,13 +2,16 @@
 ---
 title: "A First Look at TimeGPT using nixtlar"
 author: "Joseph Rickert"
-date: 2024-12-13
+date: 2025-02-12
+code-fold: true
+code-summary: "Show the code"
 description: ""
 image: ""
 image-alt: ""
 categories: ""
 editor: source
 ---
+
 
 This post is a first look at [Nixtla's](https://docs.nixtla.io/) `TimeGPT` generative, pre-trained transformer for time series forecasting using the `nixtlar` R package.
 
@@ -26,6 +29,8 @@ Nixtla's website provides a considerable amount of explanatory material, documen
 ```{r}
 #| message: FALSE
 #| warning: FALSE
+#| code-fold: true
+#| code-summary: "Show the code"
 library(tidyverse)
 library(forecast)
 library(xts)
@@ -40,6 +45,8 @@ library(nixtlar)
 The electricity dataset included in the `nixtlar` package contains hourly observations of  electricity consumption generated sourced from the [PJM Interconnection LLC](https://www.pjm.com/), a regional transmission organization that is part of the Eastern Interconnection grid in the United States. There are five different time series with data taken from 2012 to 2018. A look at the data frame shows that the various series do not cover the same time periods.
 
 ```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
 df <- nixtlar::electricity
 df_wide <- df |> 
   pivot_wider(names_from = unique_id, values_from = y) 
@@ -48,6 +55,8 @@ head(df_wide)
 
 Plots indicate that all of the series show periods of considerable volatility. The BE, DE, and FR series appear to be stationary. NP trends upward to the right and the PJM series appears to be nonlinear.
 ```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
 df2 <- df |> mutate( time = as.POSIXct(ds, format = "%Y-%m-%d %H:%M:%S")) |> 
                      group_by(unique_id)
 p <- df2 |> ggplot(aes(x = time, y = y, color = unique_id)) +
@@ -73,6 +82,8 @@ Here is the built-in `nixtlar` plot function
 This plot uses`ggplot2`to focus in on the forecasts.
 
 ```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
 # nixtla_client_fcst <- nixtla_client_forecast(df, h = 8, level = c(80,95))
 # saveRDS(nixtla_client_fcst, "nixtla_client_fcst.rds")
 nixtla_client_fcst <- readRDS("nixtla_client_fcst.rds")
@@ -90,6 +101,8 @@ pf
 For the rest of this post I'll work only with the BE data and do some simple back testing. I will split the data into training set and a test set containing 24 hours worth of observations. Then I'll fit established time series forecasting models and compare how well they do vis-a-vis the actual data and with each other. Note, I will not attempt any tuning of these models. This will make it a fair, "out-of-the-box" comparison.
 
 ```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
 NF <- 24
 BE_df_wide <- df |> pivot_wider(names_from = unique_id, values_from = y) |>
                     select(ds,BE) |> drop_na()
@@ -103,6 +116,8 @@ BE_test_df <- BE_test_df |> rename(y = BE)
 The `nixtla_client_forecast()` function is the main `nixtlar` forecasting function. (I have already run this function and saved the results RDS file in order not to make an API call every time the code is run during the blog building process.) 
 
 ```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
 #| message: FALSE
 #| warning: FALSE
 # nixtla_fcst <- nixtla_client_forecast(BE_train_df, h = NF, level = 95)
@@ -114,6 +129,8 @@ names(nixtla_fcst) <- c("unique_id", "ds", "TimeGPT", "lo95", "up95")
 
 Here, I create a data frame to hold the actual and forecast values
 ```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
 #| message: FALSE
 #| warning: FALSE
 fcst_df <- tail(nixtla_fcst,NF) |> select(ds,TimeGPT) |> 
@@ -129,6 +146,8 @@ head(fcst_df)
 
 The `auto.arima()` function form the `forecast` package fits an ARIMA(2,1,1) model. This means two autoregressive terms, one difference and one moving average term.
 ```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
 arima_train <- BE_train_df |> select(-unique_id) |>
                mutate( time = as.POSIXct(ds, format = "%Y-%m-%d %H:%M:%S"))
 arima_train <- arima_train |> select(-ds)
@@ -147,6 +166,8 @@ arima_fcst <- elec_ts |>
 
 Because I have provided no guidance, the `ets()` function from the `forecast` package fits an ETS(A,A,N) model with an additive error, an additive trend and no seasonality. All parameters are estimated from the data.
 ```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
 ets_fcst <- elec_ts |> 
   ets() |>
   # number of periods to forecast
@@ -158,6 +179,8 @@ ets_fcst <- elec_ts |>
 
 I also ask the `prophet()` function from the `prophet` package for an automatic fit using the default parameters. Among other things this means a linear growth curve additive seasonality and automatic estimates for daily seasonality. As above, the model is fit to the data in the `BE_train_df` data frame, but here the `make_future_dataframe()` function creates a data frame with the same structure as `BE_train_df` but with the `ds` column extended by `NF` periods.
 ```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
 #| message: FALSE
 #| warning: FALSE
 prophet_fit <- prophet(BE_train_df)
@@ -170,6 +193,8 @@ prophet_fcst <- predict(prophet_fit, future)
 
 Before plotting, Let's have a look at the wide data frame that holds the forecasts.
 ```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
 fcst_df2 <- fcst_df |>
              mutate(arima_fcst = as.vector(arima_fcst$mean),
                     ets_fcst = as.vector(ets_fcst$mean),
@@ -179,6 +204,8 @@ head(fcst_df2)
 
 Then, shape the data into long format and plot.
 ```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
 fcst_dft2_long <- fcst_df2 %>%
   pivot_longer(!time, names_to = "method", values_to = "mean")
 
@@ -189,18 +216,32 @@ q <- fcst_dft2_long |> ggplot(aes(x = time, y = mean, group = method, color = me
 q
 ```
 
-I don't think that there are any big surprises here. Because the Nixtla folks chose the electricity data set to show off their transformer, I was expecting a pretty good fit. However, it is curious that except for one point the TimeGPT forecast is lower than the actual data. It is also interesting that the forecasts that are farther out are a better match to the actual data.
+It is obvious that the TimeGPT forecast looks quite good. I don't think this is a big surprise given that the Nixtla folks chose the electricity data set to show off their transformer. However, it is curious that except for one point the TimeGPT forecast is lower than the actual data. It is also interesting that some of the forecasts that are farther out are a better match to the actual data than the forecasts for the initial forecast points.
 
-The "no thought" prophet model does a pretty good job, but it does seem to have overacted to the downward trends at the beginning and end of the forecast period. My guess is that with a little thought prophet could do better. 
+The "no thought" prophet model does a pretty good job, but it does seem to have overacted to the downward trends at the beginning and end of the forecast period. My guess is that with a little tuning prophet could do much better. 
 
-The ARIMA model is a bit of a disappointment. I would have expected it to follow some of the twists and turns. It is as if the exponential smoothing and ARIMA models flipped a coin at the beginning of the forecast to decide who takes the high road and who gets the low road, but then tracked each other all the way through. The exponential smoothing forecast, on the other hand, is astonishing. It tracks the actual data closely for six forecast points! Are the gods of randomness trolling me again or did time series forecasting really [peak in 1956](https://www.industrydocuments.ucsf.edu/tobacco/docs/#id=jzlc0130)?
+The ARIMA model is a bit of a disappointment. I would have expected it to follow some of the twists and turns. At first glance the exponential smoothing forecast appears to be exceptional! It tracks the actual data quite closely for the first six forecast points. Could it be that time series forecasting peaked [in 1956](https://www.industrydocuments.ucsf.edu/tobacco/docs/#id=jzlc0130)? If you play with the data a little I think you will find that, in this case, the close fit of the exponential smoothing model is a combination of randomness and the phenomenon of a stopped clock being right twice a day.
+
+It also appears as if the exponential smoothing and ARIMA models flipped a coin at the beginning of the forecast to decide who takes the high road and who gets the low road, but then tracked each other all the way through. However, if you ask the models to forecast only the last eight data points you will see that ARIMA model is on the high road.
+
+It is also worth noting that choosing a best forecast also depends on the objectives of the modeling effort. For example, one could be more interested in a forecast that shows seasonal patterns rather than overall accuracy over some number of forecast periods. The following table shows root mean square error (rms) for the four different models computed over 8, 16 and 24 forecast periods along with the their overall means.
+ 
+We see that TimeGPT does best at both accuracy and tracking the data, but that both ARIMA and ETS show better accuracy than prophet.
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+rms <- read.csv("rms.csv")
+rms
+```
+
+
 
 
 ## Some Final Thoughts
 
-It is clear that TimeGPT model has upped the game for black-box time series forecasting. It is sure to become a powerful tool for doing exploratory work with large time series and comparing and contrasting multiple time series, and may become the goto baseline forecasting tool for a wide range of time series. Moreover, I expect that time series experts who can fine tune prophet and more traditional time series models will be able to develop some intuition about what TimeGPT is doing by assessing its behavior in relation to these models. 
+It is clear that TimeGPT model has upped the game for black-box time series forecasting. It is sure to become a powerful tool for doing exploratory work with large time series and comparing and contrasting multiple time series, and may become the "go-to" baseline forecasting tool for a wide range of time series. Moreover, I expect that time series experts who can fine tune prophet and more traditional time series models will be able to develop some intuition about what TimeGPT is doing by assessing its behavior in relation to these models. 
 
-I am aware that this little post may have raised more questions than it answered. If so, please try your hand at elaborating some of the issues raised. We would be very happy to consider your time series posts for publication on R Works.
+I am aware that this little post may have raised more questions than it answered. If so, please try your hand at elaborating on some of the issues raised. We would be very happy to consider your time series posts for publication on R Works.
 
 Finally, for a more sophisticated analysis of these series that deals with their multiseasonality aspects see the [Electricity Load Forecast Tutorial](https://nixtlaverse.nixtla.io/statsforecast/docs/tutorials/electricityloadforecasting.html). And, for some ideas about how to harness "ordinary" LLMs for time series forecasting have a look at the second half of the talk that Bryan Lewis gave to [nyhackr](https://bit.ly/4aWxF6P) in April 2024. 
 
