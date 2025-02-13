@@ -4,7 +4,7 @@ author: "Joseph Rickert"
 date: 2025-02-12
 code-fold: true
 code-summary: "Show the code"
-description: ""
+description: "TimeGPT is a pre-trained, multi-layer, encoder/decoder transformer model with self-attention mechansims designed specifically for time series forecasting. This post is a first look at forecsting with TimeGPT using the nixtlar R package."
 categories: ""
 editor: source
 ---
