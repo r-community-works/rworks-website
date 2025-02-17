@@ -4,7 +4,7 @@ author: "Joseph Rickert"
 date: 2025-02-17
 code-fold: true
 code-summary: "Show the code"
-description: "TimeGPT is a pre-trained, multi-layer, encoder/decoder transformer model with self-attention mechansims designed specifically for time series forecasting. This post is a first look at forecsting with TimeGPT using the nixtlar R package. It corrects an error in the first version of the post which was published on 2025-02-12 and accordingly revises some of the conclusions."
+description: "TimeGPT is a pre-trained, multi-layer, encoder/decoder transformer model with self-attention mechansims designed specifically for time series forecasting. This post, a revision of the of the post first published on 2025-02-12, corrects an error that deleteriously affected the ARIMA and exponential smoothing forecasts which are contrasted with the TimeGPT forecast."
 categories: ""
 editor: source
 ---
@@ -113,7 +113,7 @@ pf
 ```
 
 
-For the rest of this post, I'll work only with the BE data and do some simple back testing. I will split the data into a training set and a test set containing 24 hours worth of observations. Then, I'll fit established time series forecasting models and compare how well they do vis-a-vis the actual data and with each other. Note, I will not attempt any tuning of these models. This will make it a fair, "out-of-the-box" comparison.
+For the rest of this post, I'll work only with the BE data and do some simple back testing. I will split the data into a training set and a test set containing 24 hours worth of observations. Then, I'll fit established time series forecasting models and compare how well they do vis-a-vis the actual data and with each other. Note, I will not attempt any tuning of these models in an attempt to make it a fair, "out-of-the-box" comparison.
 
 ```{r}
 #| code-fold: true
@@ -159,7 +159,7 @@ head(fcst_df)
 
 ## Some Comparative Forecasts
 
-This next section of code reformat the training data into a format that is suitable for the `auto.arima()` and `auto.ets()` functions. Both of these functions require that the data be expressed as a `ts()` object. The original version of this post expressed the time series data as an `xts()` object: an error that substantially impacted the ARIMA and exponential smoothing forecasts. 
+This next section of code reformat the training data into a format that is suitable for the `auto.arima()` and `auto.ets()` functions. Both of these functions require that the data be expressed as a `ts()` object. The original version of this post formatted the data as an `xts()` object: an error that substantially impacted the ARIMA and exponential smoothing forecasts. 
 
 ```{r}
 #| code-fold: true
@@ -265,11 +265,11 @@ The TimeGPT forecast looks quite good. I don't think this is a big surprise, giv
 
 The ARIMA forecast is quite good. It tracks the first few points very closely,  undershoots the peaks of the actual data, but recovers after both peaks and tracks the data well towards the end of the forecast period. 
 
-The exponential smoothing forecast mostly stays well below the actual data.
+The exponential smoothing forecast mostly stays well below the actual data, but also dose pretty well overall. 
 
-The "no thought" prophet model does a pretty good job, but it does seem to have overacted to the downward trends at the beginning and end of the forecast period. My guess is that with a little tuning prophet could do much better. 
+The "no thought" prophet model overacts to the downward trends at the beginning and end of the forecast period. My guess is that with a little tuning prophet could do much better. 
 
-It is also worth noting that choosing the *best* forecast also depends on your objectives. For example, in some circumstances, one might prefer  a forecast that reproduces seasonal patterns or representative volatility rather than overall accuracy. For this exercise, we see that TimeGPT mimics the volatility of the actual data but that the ARIMA forecast has the lowest rood mean squared error. Also note that the ARIMA and exponential smoothing forecasts are not quite *black-box* forecasts. Converting the data into `ts()` time series objects entails explicitly providing seasonality information. TimeGPT apparently inferred this information from character data.
+It is also worth noting that choosing the *best* forecast also depends on your objectives. For example, in some circumstances, one might prefer  a forecast that reproduces seasonal patterns or rather than overall accuracy. For this exercise, we see that TimeGPT mimics the volatility of the actual data but that the ARIMA forecast has the lowest rood mean squared error. Also note that the ARIMA and exponential smoothing forecasts are not quite *black-box* forecasts. Converting the data into `ts()` time series objects entails explicitly providing seasonality information. TimeGPT apparently inferred this information from character data.
  
 
 ```{r}
@@ -295,7 +295,8 @@ It is clear that the TimeGPT model has upped the game for black-box time series 
 
 I am aware that this little post may have raised more questions than it answered. If so, please try your hand at elaborating on some of the issues raised. We would be very happy to consider your time series posts for publication on R Works.
 
-Finally, for a more sophisticated analysis of these series that deals with their multiseasonality aspects, see the [Electricity Load Forecast Tutorial](https://nixtlaverse.nixtla.io/statsforecast/docs/tutorials/electricityloadforecasting.html). And, for some ideas about how to harness "ordinary" LLMs for time series forecasting have a look at the second half of the talk that Bryan Lewis gave to [nyhackr](https://www.youtube.com/watch?v=3NM-nJxm-qY) in April 2024.
+Finally, for a more sophisticated analysis of these series that deals with their multiseasonality aspects, see the [Electricity Load Forecast Tutorial](https://nixtlaverse.nixtla.io/mlforecast/docs/tutorials/electricity_load_forecasting.html). And, for some ideas about how to harness "ordinary" LLMs for time series forecasting have a look at the second half of the talk that Bryan Lewis gave to [nyhackr](https://www.youtube.com/watch?v=3NM-nJxm-qY) in April 2024.
+
 
 ## Acknowledgment
-Many thanks to Professor Rob Hyndman for flagging the error of incorrectly forming the time series object for the ARIMA and exponential smoothing forecasts. Any errors still remaining in this post are all mine.
+Many thanks to Professor Rob Hyndman for flagging the ARIMA time series object error described above. Any errors still remaining in this post are all mine.
