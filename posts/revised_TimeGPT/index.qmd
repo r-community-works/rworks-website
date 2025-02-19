@@ -1,7 +1,7 @@
 ---
 title: "A First Look at TimeGPT using nixtlar"
 author: "Joseph Rickert"
-date: 2025-02-17
+date: 2025-02-19
 code-fold: true
 code-summary: "Show the code"
 description: "TimeGPT is a pre-trained, multi-layer, encoder/decoder transformer model with self-attention mechansims designed specifically for time series forecasting. This post, a revision of the of the post first published on 2025-02-12, corrects an error that deleteriously affected the ARIMA and exponential smoothing forecasts which are contrasted with the TimeGPT forecast."
