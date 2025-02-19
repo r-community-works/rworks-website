@@ -158,7 +158,7 @@ head(fcst_df)
 
 ## Some Comparative Forecasts
 
-This next section of code reformat the training data into a format that is suitable for the `forecast::auto.arima()` and `forecast::auto.ets()` functions. Both of these functions require that the data be expressed as a `ts()` object. The original version of this post formatted the data as an `xts()` object: an error that substantially impacted the ARIMA and exponential smoothing forecasts. The code below creating the `ts()` object treats time as an index of days with a period of 24. The electricity data has multiseasonal aspects and this treatment of time just throws away most of the information associated with years and months. However, `ts()` was not designed to deal with multiseasonal data and my intention here is to compare `TimeGPT` with a couple of standard automated forecasts, not expertly tuned models.
+This next section of code puts the training data into a time series format that is suitable for the `forecast::auto.arima()` and `forecast::auto.ets()` functions. Both of these functions require that the data be expressed as a `ts()` object. The original version of this post formatted the data as an `xts()` object: an error that substantially impacted the ARIMA and exponential smoothing forecasts. There is a problem though with using `ts()`: the electricity data has multiseasonal aspects which `ts()` was not designed to accommodate. The code below that creates the `ts()` object treats time as an index of days with a period of 24 and ignores all the rest of the seasonality information in the data set. This is clearly not a perfect solution, but it provides a workaround that is good enough for my purpose of comparing `TimeGPT` with a couple of very simple automatic forecasts. You will see below that ARIMA forecast is quite good.
 
 ```{r}
 #| code-fold: true
@@ -166,7 +166,7 @@ This next section of code reformat the training data into a format that is suita
 
 auto_train <- BE_train_df |> select(-unique_id) |>
 mutate(time = 1:length(ds))|> select(-ds)
-elec_ts <- ts(auto_train$y, start = 2016+295/365 , frequency = 24)
+elec_ts <- ts(auto_train$y, frequency = 24)
 
 ```
 
@@ -181,9 +181,9 @@ The `auto.arima()` function from the `forecast` package fits a fairly sophistica
 #| message: FALSE
 #| warning: FALSE
 #Run the following three lines to actually generate the forecast on your own.
-#arima_fcst <- elec_ts |>
+# arima_fcst <- elec_ts |>
 # auto.arima() |>
-#forecast(h = NF , level = 95)
+# forecast(h = NF , level = 95)
 #saveRDS(arima_fcst, "arima_fcst_24.rds")
 arima_fcst <- readRDS("arima_fcst_24.rds")
 ```
@@ -300,5 +300,5 @@ Finally, for a more sophisticated analysis of these series that deals with their
 
 
 ## Acknowledgment
-Many thanks to Professor Rob Hyndman for flagging the ARIMA time series object error described above and for generously providing information on alternative models which I hope to use in future posts. Any errors still remaining in this post are all mine.
+Many thanks to Professor Rob Hyndman for flagging the ARIMA time series object error described above and for generously suggesting alternatives that led to the workaround described above. Any errors still remaining in this post are all mine.
 
