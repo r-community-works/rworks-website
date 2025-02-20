@@ -1,0 +1,70 @@
+---
+title: "January 2025 Top 40 New CRAN Packages"
+author: "Joseph Rickert"
+date: 2025-01-27
+description: "An attempt to capture the depth and breadth of what's new on CRAN."
+image: "pacu.png"
+image-alt: "pacu.png"
+categories: "Top 40"
+editor: source
+---
+
+In January, --------- new packages made it to CRAN. Here are my Top 40 picks in eighteen categories: Agriculture, Biology, Computational Methods, Data, Ecology, Epidemiology, Genomics, Healthcare, Health Technology Assessment, Machine Learning, Medicine, Networks, Statistics, Time Series, Utilities, and Visualization.
+
+![](.png){fig-alt=""}
+
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+
+## Artificial Intelligence
+
+[ellmer](https://cran.r-project.org/package=ellmer) v0.1.1: Integrates chat with large language models from a range of providers including [Claude](https://claude.ai>), [OpenAI](https://chatgpt.com), and more. Supports streaming, asynchronous calls, tool calling, and structured data extraction. There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/ellmer/vignettes/ellmer.html) and [Prompt design](https://cran.r-project.org/web/packages/ellmer/vignettes/prompt-design.html).
+
+
+## Genomics
+
+[AntibodyForests](https://cran.r-project.org/package=AntibodyForests) v1.0.0: Provides tools to investigate and quantify inter- and intra-antibody repertoire evolution and explore wealth of immune repertoire sequencing data. See the [vignette](https://cran.r-project.org/web/packages/AntibodyForests/vignettes/AntibodyForests_vignette.html).
+
+![](AF.png){fig-alt="Lineage Plot"}
+
+[geneviewer](https://cran.r-project.org/package=geneviewer) v0.1.10: Provides tools for plotting gene clusters and transcripts by importing data from GenBank, FASTA, and GFF files. It performs BLASTP and MUMmer alignments. See.[Altschul et al. (1990)](https://www.sciencedirect.com/science/article/abs/pii/S0022283605803602?via%3Dihub) and [Delcher et al. (1999)](https://academic.oup.com/nar/article/27/11/2369/1258501?login=false) for background and look [here](https://github.com/nvelden/geneviewer) to get started.
+
+![](geneviewer.png){fig-alt="erythromycin BlastP"}
+
+## Health Technology Assessment
+
+[twig](https://cran.r-project.org/package=twig) v1.0.0.0: Provides tools for building decision and cost-effectiveness analysis models enabling users to write these models concisely, simulate outcomes—including probabilistic analyses—efficiently using optimized vectorized processes and parallel computing, and produce results. The package employs a Grammar of Modeling approach, inspired by the Grammar of Graphics, to streamline model construction. For an interactive graphical user interface, see [DecisionTwig](https://www.dashlab.ca/projects/decision_twig/). There are two vignettes: [Decision Tree Herpes Virus Encephalopathy](https://cran.r-project.org/web/packages/twig/vignettes/decision_tree.htm)) and [Tutorial for Time Dependent Markov Model](https://cran.r-project.org/web/packages/twig/vignettes/markov_time_dep.html).
+
+![](twig.png){fig-alt="Plot of decision tree"}
+
+
+## Middle
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+## Scecon Column
+
+
+
+
+
+
+
+:::
+
+
+
+
+
+::::
+
+
