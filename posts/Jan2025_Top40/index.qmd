@@ -24,6 +24,12 @@ In January, --------- new packages made it to CRAN. Here are my Top 40 picks in 
 [ellmer](https://cran.r-project.org/package=ellmer) v0.1.1: Integrates chat with large language models from a range of providers including [Claude](https://claude.ai>), [OpenAI](https://chatgpt.com), and more. Supports streaming, asynchronous calls, tool calling, and structured data extraction. There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/ellmer/vignettes/ellmer.html) and [Prompt design](https://cran.r-project.org/web/packages/ellmer/vignettes/prompt-design.html).
 
 
+## Computational Methods
+
+[zigg](https://cran.r-project.org/package=zigg) v0.0.2: Provides a lightweight interface to the `Ziggurat` pseudo-random number generator introduced by [Marsaglia and Tsang (2000)](https://www.jstatsoft.org/article/view/v005i08), and further improved by [Leong et al. (2005)](https://www.jstatsoft.org/article/view/v012i07) which can be used from R as well as from 'C/C++' code.  It is very fast for the normal, exponential, and uniform distributions. See [README](https://cran.r-project.org/web/packages/zigg/readme/README.html) to get started.
+
+![](zigg.png){fig-alt="Plot of timing comparisons"}
+
 ## Genomics
 
 [AntibodyForests](https://cran.r-project.org/package=AntibodyForests) v1.0.0: Provides tools to investigate and quantify inter- and intra-antibody repertoire evolution and explore wealth of immune repertoire sequencing data. See the [vignette](https://cran.r-project.org/web/packages/AntibodyForests/vignettes/AntibodyForests_vignette.html).
@@ -40,6 +46,16 @@ In January, --------- new packages made it to CRAN. Here are my Top 40 picks in 
 
 ![](twig.png){fig-alt="Plot of decision tree"}
 
+## Machine Learning
+
+[bnns](https://CRAN.R-project.org/package=bnns) v0.1.2: Implements a formula-based interface for building and training Bayesian Neural Networks powered by `Stan`. Features include user chosen priors,  predictions, and support for regression, binary, and multi-class classification. See [Neal(1996)](https://link.springer.com/book/10.1007/978-1-4612-0745-0) for background and [README](https://cran.r-project.org/web/packages/bnns/readme/README.html) to get started. 
+
+
+## Medicine
+
+[shinybody](https://cran.r-project.org/package=shinybody) v0.1.3: Provides an `htmlwidget` of the human body that allows displaying 79 different body parts. It works in Quarto documents, R Markdown documents, or any other HTML medium and also functions as an input/output widget in a `shiny` app. Look [here](https://github.com/robert-norberg/shinybody) to get started.
+
+![](shinybody.png){fig-alt="Schematic of bodd with selected organs highlighted"}
 
 ## Middle
 
@@ -53,16 +69,36 @@ In January, --------- new packages made it to CRAN. Here are my Top 40 picks in 
 
 ## Scecon Column
 
+## Statistics
+
+[flexFitR](https://cran.r-project.org/package=flexFitR) v1.1.0: Provides tools for flexible non-linear least squares model fitting using general-purpose optimization techniques. It supports a variety of optimization algorithms, including those provided by the `optimx` package and also supports parallel processing  via the `future` and `foreach` packages. Se [Nash and Varadhan (2011)](https://www.jstatsoft.org/article/view/v043i09) the details of the method supported. There are five vignettes including [How to start](https://cran.r-project.org/web/packages/flexFitR/vignettes/how_to_start.html) and [Modeling](https://cran.r-project.org/web/packages/flexFitR/vignettes/canopy-model.html).
+
+![](flexFitR.png){fig-alt="Canopy Plot"}
+
+[gsaot](https://cran.r-project.org/package=gsaot) v0.1.0: Provides functions to compute global sensitivity indices from given data using Optimal Transport, as defined in [Borgonovo et al (2024)](https://pubsonline.informs.org/doi/10.1287/mnsc.2023.01796). You provide an input sample, an output sample, decide the algorithm, and compute the indices. See the [vignette](https://cran.r-project.org/web/packages/gsaot/vignettes/gaussian-model-sensitivity.html).
+
+![](gsaot.png){fig-alt="Scatter plot of output distribution"}
 
 
+## Utilities
 
+[forgts](https://CRAN.R-project.org/package=forgts) v0.0.1: Provides functions to convert formatted spreadsheets to presentation-ready display `gt` tables. It supports the most commonly-used cell and text styles including colors, fills, font weights and decorations, and borders. See the [vignette](https://cran.r-project.org/web/packages/forgts/vignettes/getting-started.html).
 
+![input table](forgts.png){fig-alt="Sample of table to be read"}
+Spreadsheet table input
 
+![output table](forgts2.png){fig-alt="output table"}
+`gt` table output.
+
+[shinyscholar](https://cran.r-project.org/package=shinyscholar) v0.2.5: Implements a template for creating reproducible `shiny` applications. Features include modular code with automatic linking, flexible logging, and options that enable asynchronous operations, viewing of source code, interactive maps and data tables. See [README](https://cran.r-project.org/web/packages/shinyscholar/readme/README.html) to get started.
+
+## Visualization
+
+[ggstackplot](https://cran.r-project.org/package=ggstackplot) v0.4.1: Provides functions to easily create overlapping grammar of graphics plots for scientific data visualization, a style of plotting common in climatology and oceanography research. See the [fignette](https://cran.r-project.org/web/packages/ggstackplot/vignettes/ggstackplot.html).
+
+![](ggstack.png){fig-alt="Example of a stack plot"}
 
 :::
-
-
-
 
 
 ::::
