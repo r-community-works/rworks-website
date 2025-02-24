@@ -4,9 +4,11 @@ author: "Joseph Rickert"
 date: 2025-02-19
 code-fold: true
 code-summary: "Show the code"
-description: "TimeGPT is a pre-trained, multi-layer, encoder/decoder transformer model with self-attention mechansims designed specifically for time series forecasting. This post, a revision of the of the post first published on 2025-02-12, corrects an error that deleteriously affected the ARIMA and exponential smoothing forecasts which are contrasted with the TimeGPT forecast."
+description: "TimeGPT is a pre-trained, multi-layer, encoder/decoder transformer model with self-attention mechanisms designed specifically for time series forecasting. This post, a revision of the of the post first published on 2025-02-12, corrects an error that deleteriously affected the ARIMA and exponential smoothing forecasts which are contrasted with the TimeGPT forecast."
 categories: ""
 editor: source
+aliases:
+  - TimeGPT
 ---
 
 This post is a first look at [Nixtla's](https://docs.nixtla.io/) `TimeGPT` generative, pre-trained transformer for time series forecasting using the `nixtlar` R package.
@@ -158,7 +160,7 @@ head(fcst_df)
 
 ## Some Comparative Forecasts
 
-This next section of code puts the training data into a time series format that is suitable for the `forecast::auto.arima()` and `forecast::auto.ets()` functions. Both of these functions require that the data be expressed as a `ts()` object. The original version of this post formatted the data as an `xts()` object: an error that substantially impacted the ARIMA and exponential smoothing forecasts. There is a problem though with using `ts()`: the electricity data has multiseasonal aspects which `ts()` was not designed to accommodate. The code below that creates the `ts()` object treats time as an index of days with a period of 24 and ignores all the rest of the seasonality information in the data set. This is clearly not a perfect solution, but it provides a workaround that is good enough for my purpose of comparing `TimeGPT` with a couple of very simple automatic forecasts. You will see below that ARIMA forecast is quite good.
+This next section of code puts the training data into a time series format that is suitable for the `forecast::auto.arima()` and `forecast::auto.ets()` functions. Both of these functions require that the data be expressed as a `ts()` object. The original version of this post formatted the data as an `xts()` object: an error that substantially impacted the ARIMA and exponential smoothing forecasts. There is a problem, though, with using `ts()`: the electricity data has multiseasonal aspects which `ts()` was not designed to accommodate. The code below that creates the `ts()` object treats time as an index of days with a period of 24 and ignores all the rest of the seasonality information in the data set. This is clearly not a perfect solution, but it provides a workaround that is good enough for my purpose of comparing `TimeGPT` with a couple of very simple automatic forecasts. You will see below that ARIMA forecast is quite good.
 
 ```{r}
 #| code-fold: true
@@ -173,7 +175,7 @@ elec_ts <- ts(auto_train$y, frequency = 24)
 
 ### ARIMA Forecast with `auto.arima()`
 
-The `auto.arima()` function from the `forecast` package fits a fairly sophisticated ARIMA(2,1,1)(1.0.1)[24] model. The parameters in parentheses means two autoregressive terms, one difference, one moving average term, one seasonal autoregressive term, no seasonal differencing, and one seasonal moving average term. [24] indicates that the seasonal pattern repeats every 24 observations. (Note that because the ARIMA forecast takes several seconds to run, I am reading form a an rds file to expedite the blog process.)
+The `auto.arima()` function from the `forecast` package fits a fairly sophisticated ARIMA(2,1,1)(1.0.1)[24] model. The parameters in parentheses means two autoregressive terms, one difference, one moving average term, one seasonal autoregressive term, no seasonal differencing, and one seasonal moving average term. [24] indicates that the seasonal pattern repeats every 24 observations. (Note that because the ARIMA forecast takes several seconds to run, I am reading from an .Rds file to expedite the blog process.)
 
 ```{r}
 #| code-fold: TRUE
@@ -262,15 +264,15 @@ q <- fcst_dft2_long |>
 q
 ```
 
-The TimeGPT forecast looks quite good. I don't think this is a big surprise, given that the Nixtla folks chose the electricity data set to show off their transformer. However, it is curious, that except for one point, the TimeGPT forecast is lower than the actual data. It is also interesting that some of the forecasted points that are farther out are a better match to the actual data than the initial forecast points.
+The TimeGPT forecast looks quite good. I don't think this is a big surprise, given that the Nixtla folks chose the electricity data set to show off their transformer. However, it is curious that except for one point, the TimeGPT forecast is lower than the actual data. It is also interesting that some of the forecasted points that are farther out are a better match to the actual data than the initial forecast points.
 
 The ARIMA forecast is very good. It tracks the first few points very closely, undershoots the peaks of the actual data, but recovers after both peaks and tracks the data well towards the end of the forecast period. 
 
-The exponential smoothing forecast mostly stays well below the actual data, but also dose pretty well overall. 
+The exponential smoothing forecast mostly stays well below the actual data, but also does pretty well overall. 
 
 The black box prophet model overacts to the downward trends at the beginning and end of the forecast period. My guess is that with a little tuning prophet could do much better. 
 
-It is also worth noting that choosing the *best* forecast also depends on your objectives. For example, in some circumstances, one might prefer  a forecast that reproduces seasonal patterns or possible volatility rather than overall accuracy. For this exercise, we see that TimeGPT mimics the volatility of the actual data but that the ARIMA forecast has the lowest root mean squared error. Also note that the ARIMA and exponential smoothing forecasts are not quite *black-box* forecasts. In converting the data into `ts()` a time series object explicitly provided seasonality information. TimeGPT apparently inferred this information from character data.
+It is also worth noting that choosing the *best* forecast also depends on your objectives. For example, in some circumstances, one might prefer  a forecast that reproduces seasonal patterns or possible volatility rather than overall accuracy. For this exercise, we see that TimeGPT mimics the volatility of the actual data but that the ARIMA forecast has the lowest root mean squared error. Also, note that the ARIMA and exponential smoothing forecasts are not quite *black-box* forecasts. In converting the data into `ts()` a time series object explicitly provided seasonality information. TimeGPT apparently inferred this information from character data.
  
 
 ```{r}
