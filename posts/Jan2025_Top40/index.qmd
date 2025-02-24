@@ -24,6 +24,29 @@ In January, --------- new packages made it to CRAN. Here are my Top 40 picks in 
 [ellmer](https://cran.r-project.org/package=ellmer) v0.1.1: Integrates chat with large language models from a range of providers including [Claude](https://claude.ai>), [OpenAI](https://chatgpt.com), and more. Supports streaming, asynchronous calls, tool calling, and structured data extraction. There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/ellmer/vignettes/ellmer.html) and [Prompt design](https://cran.r-project.org/web/packages/ellmer/vignettes/prompt-design.html).
 
 
+[tidyprompt](https://cran.r-project.org/package=tidyprompt) v0.0.1: Provides functions to construct prompts and associated logic for interacting with large language models (LLMs), and introduces the concept of prompt wraps, building blocks to turn a simple prompt into a complex one. In addition to modifying prompt text, prompt wraps also add extraction and validation functions that will be applied to the response of the LLM. There are three vignettes including [Getting started](https://cran.r-project.org/web/packages/tidyprompt/vignettes/getting_started.html) and [Creating prompt wraps](https://cran.r-project.org/web/packages/tidyprompt/vignettes/creating_prompt_wraps.html).
+
+```
+# From prompt to ggplot
+plot <- paste0(
+  "Create a scatter plot of miles per gallon (mpg) versus",
+  " horsepower (hp) for the cars in the mtcars dataset.",
+  " Use different colors to represent the number of cylinders (cyl).",
+  " Make the plot nice and readable,",
+  " but also be creative, a little crazy, and have humour!"
+) |>
+  answer_using_r(
+    pkgs_to_use = c("ggplot2"),
+    evaluate_code = TRUE,
+    return_mode = "object"
+  ) |>
+  send_prompt(openai)
+plot
+```
+
+![](tidyprompt.png){fig-alt="Example of respones to prompt"}
+
+
 ## Computational Methods
 
 [zigg](https://cran.r-project.org/package=zigg) v0.0.2: Provides a lightweight interface to the `Ziggurat` pseudo-random number generator introduced by [Marsaglia and Tsang (2000)](https://www.jstatsoft.org/article/view/v005i08), and further improved by [Leong et al. (2005)](https://www.jstatsoft.org/article/view/v012i07) which can be used from R as well as from 'C/C++' code.  It is very fast for the normal, exponential, and uniform distributions. See [README](https://cran.r-project.org/web/packages/zigg/readme/README.html) to get started.
@@ -94,10 +117,25 @@ Spreadsheet table input
 
 ## Visualization
 
+[adplots](https://cran.r-project.org/package=adplots) v0.1.0:  Provides two new plots for visualizing distributional properties and normality. The `adplot()`can identify symmetry, skewness, and outliers of the data distribution, including anomalies. The `udplot()` is exceptional in assessing normality, outperforming normal QQ-plot, normal PP-plot, and their derivations. See [Wijesuriya (2025)](https://www.tandfonline.com/doi/full/10.1080/03610926.2024.2440583) for the theory and the [vignette](https://cran.r-project.org/web/packages/adplots/vignettes/Ad-Plot_and_Ud-Plot.html) to get started.
+
+![](adplot.png){fig-alt="Example of an adplot"}
+
 [ggstackplot](https://cran.r-project.org/package=ggstackplot) v0.4.1: Provides functions to easily create overlapping grammar of graphics plots for scientific data visualization, a style of plotting common in climatology and oceanography research. See the [fignette](https://cran.r-project.org/web/packages/ggstackplot/vignettes/ggstackplot.html).
 
 ![](ggstack.png){fig-alt="Example of a stack plot"}
 
+![](hhmR.png){fig-alt="Heatmap with group and category labels"}
+
+[hhmR](https://cran.r-project.org/package=hhmR) v0.0.1: Provides functions to create high-quality heatmaps from labelled, hierarchical data that allows labelling of the data at both the category and group level. For data with a two-level hierarchical structure, it will produce a heatmap where each row and column represents a category at the lower level. See the [vignette](https://cran.r-project.org/web/packages/hhmR/vignettes/hhmR_overview.html).
+
+
+
+
+
+[parttree](https://cran.r-project.org/package=parttree) v0.1.0: Provides functions to visualize the partitions of simple decision trees, involving one or two predictors, on the scale of the original data that offers an intuitive alternative to traditional tree diagrams, by visualizing how a decision tree divides the predictor space in a simple 2D plot alongside the original data. See the [Introduction](https://cran.r-project.org/web/packages/parttree/vignettes/parttree-intro.html) to get started and the vignette [Abstract art with parttree and friends](https://cran.r-project.org/web/packages/parttree/vignettes/parttree-art.html) for a creative method of producing abstract art.
+
+![](parttree.png){fig-alt="rosalba"}
 :::
 
 
