@@ -49,9 +49,43 @@ plot
 
 ## Computational Methods
 
+[QAEnsemble](https://cran.r-project.org/package=QAEnsemble) v1/0/0: Implements the Ensemble Quadratic and Affine Invariant Markov chain Monte Carlo algorithms provide an efficient way to perform Bayesian inference in difficult parameter space geometries. See [Militzer (2023)](https://iopscience.iop.org/article/10.3847/1538-4357/ace1f1) and  [Goodman and Weare (2010)](https://msp.org/camcos/2010/5-1/p04.xhtml) respectively for background on these algorithms. There are three vignettes including [Fitting a disease Makov model](https://cran.r-project.org/web/packages/QAEnsemble/vignettes/Quad_Ensemble_Ex_Disease_Markov_Model.html) and [Fitting a Weibull distribution](https://cran.r-project.org/web/packages/QAEnsemble/vignettes/Quad_Ensemble_Ex_Weibull.html).
+
+![](QAE.png){fig-alt="Plot showing accuracy of posteriorpredictive mean"}
+
 [zigg](https://cran.r-project.org/package=zigg) v0.0.2: Provides a lightweight interface to the `Ziggurat` pseudo-random number generator introduced by [Marsaglia and Tsang (2000)](https://www.jstatsoft.org/article/view/v005i08), and further improved by [Leong et al. (2005)](https://www.jstatsoft.org/article/view/v012i07) which can be used from R as well as from 'C/C++' code.  It is very fast for the normal, exponential, and uniform distributions. See [README](https://cran.r-project.org/web/packages/zigg/readme/README.html) to get started.
 
 ![](zigg.png){fig-alt="Plot of timing comparisons"}
+
+## Data
+
+## Epidemiology
+
+[ggsurveillance](https://cran.r-project.org/package=ggsurveillance) v0.1.2: Provides functions to creat [epicurves](https://www.cdc.gov/training/quicklearns/epimode/index.html) andepigantt charts and prepare data for visualisation or other reporting for infectious disease surveillance and outbreak investigation, including functions to functions to solve date based transformations such as seasonal date alignment for respiratory disease surveillance and date-based case binning based on specified time intervals. There are three vignettes: [Epicurves](https://cran.r-project.org/web/packages/ggsurveillance/vignettes/Epicurves_with_ggsurveillance.html), [Epigantt](https://cran.r-project.org/web/packages/ggsurveillance/vignettes/Epigantt_with_ggsurveillance.html), and [Seasonal Plots](https://cran.r-project.org/web/packages/ggsurveillance/vignettes/align_dates_seasonal.html).
+
+![](ggsurvei.png){fig-alt="Example of Epi Gantt chart"}
+
+
+[superspreading](https://cran.r-project.org/package=superspreading) v0.3.0: Provides tools to study individual-level variation in infectious disease transmission, including compound Poisson discrete distribution functions ([Kremer et al. (2021)](https://www.nature.com/articles/s41598-021-93578-x))and functions to calculate infectious disease outbreak statistics given epidemiological parameters on individual-level transmission such as the probability of an outbreak becoming an epidemic ([Kucharski et al.' (2020)](https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30144-4/fulltext)). There are six vignetttes including [Getting started](https://cran.r-project.org/web/packages/superspreading/vignettes/superspreading.html) and [Epidemic Risk](https://cran.r-project.org/web/packages/superspreading/vignettes/epidemic_risk.html).
+
+![](ss.png){fig-alt="Chart showing expected transmission proportions"}
+
+[AMISforInfectiousDiseases](https://cran.r-project.org/package=AMISforInfectiousDiseases) v0.1.0: Implements the Adaptive Multiple Importance Sampling (AMIS) algorithm, as described by [Retkute et al. (2021)](https://projecteuclid.org/journals/annals-of-applied-statistics/volume-15/issue-4/Integrating-geostatistical-maps-and-infectious-disease-transmission-models-using-adaptive/10.1214/21-AOAS1486.full), to estimate key epidemiological parameters by combining outputs from a geostatistical model of infectious diseases with a disease transmission model. See the vignettes [Fittina Ascariasis data](https://cran.r-project.org/web/packages/AMISforInfectiousDiseases/vignettes/ascariasis.html) and [Simulation study](https://cran.r-project.org/web/packages/AMISforInfectiousDiseases/vignettes/simulation_study.html).
+
+![](AMIS.png){fig-alt="Distribution plots of posterior median"}
+
+
+
+## Finance
+
+[pacta.multi.loanbook](https://cran.r-project.org/package=pacta.multi.loanbook) v0.1.0: Provides tools to runParis Agreement Capital Transition Assessment ([PACTA](https://pacta.rmi.org/)) analyses on multiple loan books in a structured way and access to PACTA metrics and additional. There are ten vignettes including an [Overview](https://cran.r-project.org/web/packages/pacta.multi.loanbook/vignettes/cookbook_overview.html) and [Interpretationof Results](https://cran.r-project.org/web/packages/pacta.multi.loanbook/vignettes/cookbook_interpretation.html).
+
+![](PACTA.png){fig-alt="Volume trajectory plot"}
+
+[qmj](https://cran.r-project.org/package=qmj) vo.2.1: Provides functionsto produces quality scores for each of the US companies from the Russell 3000, following the approach described in [Asness, Frazzini, & Pedersen (2013)](http://www.aqr.com/library/working-papers/quality-minus-junk) including functions to automatically gather relevant financials and stock price information. See the [vignette](https://cran.r-project.org/web/packages/qmj/vignettes/qmj.pdf).
+
+[ritalic](https://cran.r-project.org/package=ritalic) v0.10.1: A programmatic interface to the [Web Service methods](https://italic.units.it/?procedure=api) provided by [ITALIC](https://italic.units.it) database of lichen data in Italy and bordering European countries, including functions for retrieving information about lichen scientific names, geographic distribution, ecological data, morpho-functional traits and identification Look [here](https://italic.units.it/?procedure=base&t=59&c=60) for more information about the data and see [README](https://cran.r-project.org/web/packages/ritalic/readme/README.html) to get started.
+
 
 ## Genomics
 
@@ -62,6 +96,14 @@ plot
 [geneviewer](https://cran.r-project.org/package=geneviewer) v0.1.10: Provides tools for plotting gene clusters and transcripts by importing data from GenBank, FASTA, and GFF files. It performs BLASTP and MUMmer alignments. See.[Altschul et al. (1990)](https://www.sciencedirect.com/science/article/abs/pii/S0022283605803602?via%3Dihub) and [Delcher et al. (1999)](https://academic.oup.com/nar/article/27/11/2369/1258501?login=false) for background and look [here](https://github.com/nvelden/geneviewer) to get started.
 
 ![](geneviewer.png){fig-alt="erythromycin BlastP"}
+
+
+
+
+
+
+
+
 
 ## Health Technology Assessment
 
@@ -79,6 +121,15 @@ plot
 [shinybody](https://cran.r-project.org/package=shinybody) v0.1.3: Provides an `htmlwidget` of the human body that allows displaying 79 different body parts. It works in Quarto documents, R Markdown documents, or any other HTML medium and also functions as an input/output widget in a `shiny` app. Look [here](https://github.com/robert-norberg/shinybody) to get started.
 
 ![](shinybody.png){fig-alt="Schematic of bodd with selected organs highlighted"}
+
+## Music
+
+[sequenceR](https://cran.r-project.org/package=sequenceR) v1.0.1: Implements a rudimentary sequencer to define, manipulate and mix sound samples. The underlying motivation is to sonify data. Look [here](https://globxblog.github.io/) for a demonstration. See [Renard & Le Bescond (2022)](https://hal.science/hal-03710340v1), and the poster by [Renard et al. (2023)](https://hal.inrae.fr/hal-04388845v1) for background and the [vignette](https://cran.r-project.org/web/packages/sequenceR/vignettes/GettingStarted.html) to get started.
+
+![](sequenceR.png){fig-alt="BBC ding-dong plot"}
+
+
+
 
 ## Middle
 
@@ -102,6 +153,9 @@ plot
 
 ![](gsaot.png){fig-alt="Scatter plot of output distribution"}
 
+[MonotonicityTest](https://cran.r-project.org/package=MonotonicityTest) v1.0: Implements nonparametric bootstrap tests for detecting monotonicity in regression functions from [Hall & Heckman (2000)](https://projecteuclid.org/journals/annals-of-statistics/volume-28/issue-1/Testing-for-monotonicity-of-a-regression-mean-by-calibrating-for/10.1214/aos/1016120363.full). Includes tools for visualizing results using Nadaraya-Watson kernel regression and supports efficient computation with 'C++'. Look [here](https://htmlpreview.github.io/?https://github.com/baolong281/MonotonicityTest/blob/837170dd630712ba3b4379aaed335e7b7cdb484e/tutorial.htmlM) for examples.
+
+![](Mono.png){fig-alt="kernel plot"}
 
 ## Utilities
 
