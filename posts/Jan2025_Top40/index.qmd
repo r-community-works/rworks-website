@@ -1,7 +1,7 @@
 ---
 title: "January 2025 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
-date: 2025-01-27
+date: 2025-02-26
 description: "An attempt to capture the depth and breadth of what's new on CRAN."
 image: "partree.png"
 image-alt: "parttree.png"
