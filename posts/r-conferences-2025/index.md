@@ -35,6 +35,8 @@ Exciting times ahead for R Conferences in 2025! Explore the list below to find y
 
 (10 - 13) Virtual - [R/Medicine](https://rconsortium.github.io/RMedicine_website/)
 
+(11 - 13) Virtual - [ESMARConf 2025](https://esmarconf.org/)
+
 (19 - 20) London, UK - [Insurance Data Science Conference](https://insurancedatascience.org/)
 
 (19 - 20) Tamale, Ghana - [Ghana R Conference](https://ghana-rusers.org)
@@ -59,7 +61,6 @@ Exciting times ahead for R Conferences in 2025! Explore the list below to find y
 
 ## To be announced
 
-- [ESMARConf 2025](https://esmarconf.org/)
 - [Data Mishaps Night](https://datamishapsnight.com/)
 - [LatinR](https://latinr.org/)
 - [New York R Conference](https://rstats.ai/nyr)
