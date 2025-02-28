@@ -9,6 +9,7 @@ categories: ""
 code-fold: true
 code-summary: "Show the code"
 editor: source
+draft: true
 ---
 
 In January, one hundred eighty-six new packages made it to CRAN. Here are my Top 40 picks in sixteen categories: Archaeology, Artificial Intelligence, Computational Methods, Ecology, Epidemiology, Finance, Genomics, Health Technology Assessment, Machine Learning, Medicine, Music, Pharma, Statistics, Time Series, Utilities, and Visualization.
