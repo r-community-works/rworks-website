@@ -1,7 +1,7 @@
 ---
 title: "January 2025 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
-date: 2025-02-26
+date: 2025-02-28
 description: "An attempt to capture the depth and breadth of what's new on CRAN."
 image: "parttree.png"
 image-alt: ""
@@ -9,7 +9,6 @@ categories: ""
 code-fold: true
 code-summary: "Show the code"
 editor: source
-draft: true
 ---
 
 In January, one hundred eighty-six new packages made it to CRAN. Here are my Top 40 picks in sixteen categories: Archaeology, Artificial Intelligence, Computational Methods, Ecology, Epidemiology, Finance, Genomics, Health Technology Assessment, Machine Learning, Medicine, Music, Pharma, Statistics, Time Series, Utilities, and Visualization.
@@ -32,7 +31,7 @@ In January, one hundred eighty-six new packages made it to CRAN. Here are my Top
 [ellmer](https://cran.r-project.org/package=ellmer) v0.1.1: Integrates large language model chat from a range of providers including [Claude](https://claude.ai>), [OpenAI](https://chatgpt.com), and more. Supports streaming, asynchronous calls, tool calling, and structured data extraction. There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/ellmer/vignettes/ellmer.html) and [Prompt design](https://cran.r-project.org/web/packages/ellmer/vignettes/prompt-design.html).
 
 
-[tidyprompt](https://cran.r-project.org/package=tidyprompt) v0.0.1: Provides functions to construct prompts and associated logic for interacting with large language models (LLMs), and introduces the concept of prompt wraps, building blocks to turn a simple prompt into a complex one. In addition to modifying prompt text, prompt wraps also adds extraction and validation functions that will be applied to the response of the LLM. There are three vignettes, including [Getting started](https://cran.r-project.org/web/packages/tidyprompt/vignettes/getting_started.html) and [Creating prompt wraps](https://cran.r-project.org/web/packages/tidyprompt/vignettes/creating_prompt_wraps.html).
+[tidyprompt](https://cran.r-project.org/package=tidyprompt) v0.0.1: Provides functions to construct prompts and associated logic for interacting with large language models (LLMs), and introduces the concept of prompt wraps, building blocks to turn a simple prompt into a complex one. In addition to modifying prompt text, prompt wraps also add extraction and validation functions that will be applied to the response of the LLM. There are three vignettes, including [Getting started](https://cran.r-project.org/web/packages/tidyprompt/vignettes/getting_started.html) and [Creating prompt wraps](https://cran.r-project.org/web/packages/tidyprompt/vignettes/creating_prompt_wraps.html).
 
 ```{r}
 #| eval: FALSE
@@ -60,18 +59,21 @@ plot
 
 ## Computational Methods
 
-[QAEnsemble](https://cran.r-project.org/package=QAEnsemble) v1.0.0: Implements the Ensemble Quadratic and Affine Invariant Markov chain Monte Carlo algorithms that provide an efficient way to perform Bayesian inference in difficult parameter space geometries. See [Militzer (2023)](https://iopscience.iop.org/article/10.3847/1538-4357/ace1f1) and  [Goodman and Weare (2010)](https://msp.org/camcos/2010/5-1/p04.xhtml) respectively for background on these algorithms. There are three vignettes, including [Fitting a disease Makov model](https://cran.r-project.org/web/packages/QAEnsemble/vignettes/Quad_Ensemble_Ex_Disease_Markov_Model.html) and [Fitting a Weibull distribution](https://cran.r-project.org/web/packages/QAEnsemble/vignettes/Quad_Ensemble_Ex_Weibull.html).
+[QAEnsemble](https://cran.r-project.org/package=QAEnsemble) v1.0.0: Implements the Ensemble Quadratic and Affine Invariant Markov chain Monte Carlo algorithms, which provides an efficient way to perform Bayesian inference in difficult parameter space geometries. See [Militzer (2023)](https://iopscience.iop.org/article/10.3847/1538-4357/ace1f1) and  [Goodman and Weare (2010)](https://msp.org/camcos/2010/5-1/p04.xhtml), respectively, for background on these algorithms. There are three vignettes, including [Fitting a disease Makov model](https://cran.r-project.org/web/packages/QAEnsemble/vignettes/Quad_Ensemble_Ex_Disease_Markov_Model.html) and [Fitting a Weibull distribution](https://cran.r-project.org/web/packages/QAEnsemble/vignettes/Quad_Ensemble_Ex_Weibull.html).
 
 ![](QAE.png){fig-alt="Plot showing accuracy of posteriorpredictive mean"}
 
-[zigg](https://cran.r-project.org/package=zigg) v0.0.2: Provides a lightweight interface to the `Ziggurat` pseudo-random number generator introduced by [Marsaglia and Tsang (2000)](https://www.jstatsoft.org/article/view/v005i08), and further improved by [Leong et al. (2005)](https://www.jstatsoft.org/article/view/v012i07), which can be used from R as well as from 'C/C++' code.  It is very fast for the normal, exponential, and uniform distributions. See [README](https://cran.r-project.org/web/packages/zigg/readme/README.html) to get started.
+[zigg](https://cran.r-project.org/package=zigg) v0.0.2: Provides a lightweight interface to the `Ziggurat` pseudo-random number generator introduced by [Marsaglia and Tsang (2000)](https://www.jstatsoft.org/article/view/v005i08) and further improved by [Leong et al. (2005)](https://www.jstatsoft.org/article/view/v012i07), which can be used from R as well as from 'C/C++' code.  It is very fast for the normal, exponential, and uniform distributions. See [README](https://cran.r-project.org/web/packages/zigg/readme/README.html) to get started.
 
 ![](zigg.png){fig-alt="Plot of timing comparisons"}
 
 
 ## Ecology
 
-[BerkeleyForestsAnalytics](https://cran.r-project.org/package=BerkeleyForestsAnalytics) v2.0.4: Offers a suite of functions designed to produce standard metrics for forest management and ecology from forest inventory data that will minimize potential inconsistencies introduced by the algorithms used to compute the metrics. Look [here](https://github.com/kearutherford/BerkeleyForestsAnalytics) to learn more about the purpose of the package and see the [vignette](https://cran.r-project.org/web/packages/BerkeleyForestsAnalytics/vignettes/BerkeleyForestsAnalytics.html) for an example.
+[BerkeleyForestsAnalytics](https://cran.r-project.org/package=BerkeleyForestsAnalytics) v2.0.4: Offers a suite of functions designed to produce standard metrics for forest management and ecology from forest inventory data. It is designed to minimize potential inconsistencies introduced by the algorithms that compute metrics. Look [here](https://github.com/kearutherford/BerkeleyForestsAnalytics) to learn more about the purpose of the package and see the [vignette](https://cran.r-project.org/web/packages/BerkeleyForestsAnalytics/vignettes/BerkeleyForestsAnalytics.html) for an example.
+
+[ritalic](https://cran.r-project.org/package=ritalic) v0.10.1: A programmatic interface to the [Web Service methods](https://italic.units.it/?procedure=api) provided by the [ITALIC](https://italic.units.it) database of lichen data in Italy and bordering European countries, including functions for retrieving information about lichen scientific names, geographic distribution, ecological data, morpho-functional traits, and identification. Look [here](https://italic.units.it/?procedure=base&t=59&c=60) for more information about the data and see [README](https://cran.r-project.org/web/packages/ritalic/readme/README.html) to get started.
+
 
 ## Epidemiology
 
@@ -80,7 +82,7 @@ plot
 ![](ggsurvei.png){fig-alt="Example of Epi Gantt chart"}
 
 
-[superspreading](https://cran.r-project.org/package=superspreading) v0.3.0: Provides tools to study individual-level variation in infectious disease transmission, including compound Poisson discrete distribution functions ([Kremer et al. (2021)](https://www.nature.com/articles/s41598-021-93578-x)) and functions to calculate infectious disease outbreak statistics given epidemiological parameters on individual-level transmission, such as the probability of an outbreak becoming an epidemic ([Kucharski et al.' (2020)](https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30144-4/fulltext)). There are six vignettes, including [Getting started](https://cran.r-project.org/web/packages/superspreading/vignettes/superspreading.html) and [Epidemic Risk](https://cran.r-project.org/web/packages/superspreading/vignettes/epidemic_risk.html).
+[superspreading](https://cran.r-project.org/package=superspreading) v0.3.0: Provides tools to study individual-level variation in infectious disease transmission, including a discrete compound Poisson distribution ([Kremer et al. (2021)](https://www.nature.com/articles/s41598-021-93578-x)) and functions to calculate infectious disease outbreak statistics given epidemiological parameters on individual-level transmission such as the probability of an outbreak becoming an epidemic ([Kucharski et al.' (2020)](https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30144-4/fulltext)). There are six vignettes, including [Getting started](https://cran.r-project.org/web/packages/superspreading/vignettes/superspreading.html) and [Epidemic Risk](https://cran.r-project.org/web/packages/superspreading/vignettes/epidemic_risk.html).
 
 ![](ss.png){fig-alt="Chart showing expected transmission proportions"}
 
@@ -92,13 +94,13 @@ plot
 
 ## Finance
 
-[pacta.multi.loanbook](https://cran.r-project.org/package=pacta.multi.loanbook) v0.1.0: Provides tools to run Paris Agreement Capital Transition Assessment ([PACTA](https://pacta.rmi.org/)) analyses on multiple loan books in a structured way and access to PACTA metrics and additional. There are ten vignettes, including an [Overview](https://cran.r-project.org/web/packages/pacta.multi.loanbook/vignettes/cookbook_overview.html) and [Interpretation of Results](https://cran.r-project.org/web/packages/pacta.multi.loanbook/vignettes/cookbook_interpretation.html).
+[pacta.multi.loanbook](https://cran.r-project.org/package=pacta.multi.loanbook) v0.1.0: Provides tools to run Paris Agreement Capital Transition Assessment ([PACTA](https://pacta.rmi.org/)) analyses on multiple loan books in a structured way and access to PACTA metrics. There are ten vignettes, including an [Overview](https://cran.r-project.org/web/packages/pacta.multi.loanbook/vignettes/cookbook_overview.html) and [Interpretation of Results](https://cran.r-project.org/web/packages/pacta.multi.loanbook/vignettes/cookbook_interpretation.html).
 
 ![](PACTA.png){fig-alt="Volume trajectory plot"}
 
-[qmj](https://cran.r-project.org/package=qmj) v0.2.1: Provides functions to produce quality scores for each of the US companies from the Russell 3000, following the approach described in [Asness, Frazzini, & Pedersen (2013)](http://www.aqr.com/library/working-papers/quality-minus-junk), including functions to automatically gather relevant financials and stock price information. See the [vignette](https://cran.r-project.org/web/packages/qmj/vignettes/qmj.pdf).
+[qmj](https://cran.r-project.org/package=qmj) v0.2.1: Provides functions to produce quality scores for each of the US companies from the Russell 3000 following the approach described in [Asness, Frazzini, & Pedersen (2013)](http://www.aqr.com/library/working-papers/quality-minus-junk). It includes functions to automatically gather relevant financials and stock price information. See the [vignette](https://cran.r-project.org/web/packages/qmj/vignettes/qmj.pdf).
 
-[ritalic](https://cran.r-project.org/package=ritalic) v0.10.1: A programmatic interface to the [Web Service methods](https://italic.units.it/?procedure=api) provided by [ITALIC](https://italic.units.it) database of lichen data in Italy and bordering European countries, including functions for retrieving information about lichen scientific names, geographic distribution, ecological data, morpho-functional traits, and identification. Look [here](https://italic.units.it/?procedure=base&t=59&c=60) for more information about the data and see [README](https://cran.r-project.org/web/packages/ritalic/readme/README.html) to get started.
+
 
 
 ## Genomics
@@ -117,13 +119,9 @@ plot
 
 
 
-
-
-
-
 ## Health Technology Assessment
 
-[twig](https://cran.r-project.org/package=twig) v1.0.0.0: Provides tools for building decision and cost-effectiveness analysis models, enabling users to write these models concisely, simulate outcomes—including probabilistic analyses—efficiently using optimized vectorized processes and parallel computing, and produce results. The package employs a Grammar of Modeling approach, inspired by the Grammar of Graphics, to streamline model construction. For an interactive graphical user interface, see [DecisionTwig](https://www.dashlab.ca/projects/decision_twig/). There are two vignettes: [Decision Tree Herpes Virus Encephalopathy](https://cran.r-project.org/web/packages/twig/vignettes/decision_tree.htm)) and [Tutorial for Time Dependent Markov Model](https://cran.r-project.org/web/packages/twig/vignettes/markov_time_dep.html).
+[twig](https://cran.r-project.org/package=twig) v1.0.0.0: Provides tools for building concise decision and cost-effectiveness analysis models, simulate outcomes—including probabilistic analyses—efficiently using optimized vectorized processes and parallel computing. The package employs a Grammar of Modeling approach to streamline model construction. For an interactive graphical user interface, see [DecisionTwig](https://www.dashlab.ca/projects/decision_twig/). There are two vignettes: [Decision Tree Herpes Virus Encephalopathy](https://cran.r-project.org/web/packages/twig/vignettes/decision_tree.htm)) and [Tutorial for Time Dependent Markov Model](https://cran.r-project.org/web/packages/twig/vignettes/markov_time_dep.html).
 
 ![](twig.png){fig-alt="Plot of decision tree"}
 
@@ -169,7 +167,7 @@ plot
 
 ## Music
 
-[sequenceR](https://cran.r-project.org/package=sequenceR) v1.0.1: Implements a rudimentary sequencer to define, manipulate, and mix sound samples. The underlying motivation is to sonify data. Look [here](https://globxblog.github.io/) for a demonstration. See [Renard & Le Bescond (2022)](https://hal.science/hal-03710340v1), the poster by [Renard et al. (2023)](https://hal.inrae.fr/hal-04388845v1) for background, and the [vignette](https://cran.r-project.org/web/packages/sequenceR/vignettes/GettingStarted.html) to get started.
+[sequenceR](https://cran.r-project.org/package=sequenceR) v1.0.1: Implements a rudimentary sequencer to define, manipulate, and mix sound samples. The underlying motivation is to sonify data. Look [here](https://globxblog.github.io/) for a demonstration. See [Renard & Le Bescond (2022)](https://hal.science/hal-03710340v1) and the poster by [Renard et al. (2023)](https://hal.inrae.fr/hal-04388845v1) for background and the [vignette](https://cran.r-project.org/web/packages/sequenceR/vignettes/GettingStarted.html) to get started.
 
 ![](sequenceR.png){fig-alt="BBC ding-dong plot"}
 
@@ -190,11 +188,11 @@ plot
 
 ## Statistics
 
-[flexFitR](https://cran.r-project.org/package=flexFitR) v1.1.0: Provides tools for flexible non-linear least squares model fitting using general-purpose optimization techniques. It supports a variety of optimization algorithms, including those provided by the `optimx` package and also supports parallel processing  via the `future` and `foreach` packages. Se [Nash and Varadhan (2011)](https://www.jstatsoft.org/article/view/v043i09) the details of the method supported. There are five vignettes, including [How to start](https://cran.r-project.org/web/packages/flexFitR/vignettes/how_to_start.html) and [Modeling](https://cran.r-project.org/web/packages/flexFitR/vignettes/canopy-model.html).
+[flexFitR](https://cran.r-project.org/package=flexFitR) v1.1.0: Provides tools for flexible non-linear least squares model fitting using general-purpose optimization techniques. It supports a variety of optimization algorithms, including those provided by the `optimx` package, and also supports parallel processing  via the `future` and `foreach` packages. See [Nash and Varadhan (2011)](https://www.jstatsoft.org/article/view/v043i09) for the details of the method supported. There are five vignettes, including [How to start](https://cran.r-project.org/web/packages/flexFitR/vignettes/how_to_start.html) and [Modeling](https://cran.r-project.org/web/packages/flexFitR/vignettes/canopy-model.html).
 
 ![](flexFitR.png){fig-alt="Canopy Plot"}
 
-[gsaot](https://cran.r-project.org/package=gsaot) v0.1.0: Provides functions to compute global sensitivity indices from given data using Optimal Transport, as defined in [Borgonovo et al (2024)](https://pubsonline.informs.org/doi/10.1287/mnsc.2023.01796). You provide an input sample, an output sample, decide the algorithm, and compute the indices. See the [vignette](https://cran.r-project.org/web/packages/gsaot/vignettes/gaussian-model-sensitivity.html).
+[gsaot](https://cran.r-project.org/package=gsaot) v0.1.0: Provides functions to compute global sensitivity indices from given data using Optimal Transport, as defined in [Borgonovo et al. (2024)](https://pubsonline.informs.org/doi/10.1287/mnsc.2023.01796). You provide an input sample and an output sample, decide the algorithm, and compute the indices. See the [vignette](https://cran.r-project.org/web/packages/gsaot/vignettes/gaussian-model-sensitivity.html).
 
 ![](gsaot.png){fig-alt="Scatter plot of output distribution"}
 
@@ -255,7 +253,7 @@ Spreadsheet table input
 
 
 
-[parttree](https://cran.r-project.org/package=parttree) v0.1.0: Provides functions to visualize the partitions of simple decision trees involving one or two predictors on the scale of the original data that offers an intuitive alternative to traditional tree diagrams, by visualizing how a decision tree divides the predictor space in a simple 2D plot alongside the original data. See the [Introduction](https://cran.r-project.org/web/packages/parttree/vignettes/parttree-intro.html) to get started and the vignette [Abstract art with parttree and friends](https://cran.r-project.org/web/packages/parttree/vignettes/parttree-art.html) for a creative method of producing abstract art.
+[parttree](https://cran.r-project.org/package=parttree) v0.1.0: Provides functions to visualize the partitions of simple decision trees, involving one or two predictors, on the scale of the original data that offers an intuitive alternative to traditional tree diagrams, by visualizing how a decision tree divides the predictor space in a simple 2D plot alongside the original data. See the [Introduction](https://cran.r-project.org/web/packages/parttree/vignettes/parttree-intro.html) to get started and the vignette [Abstract art with parttree and friends](https://cran.r-project.org/web/packages/parttree/vignettes/parttree-art.html) for a creative method of producing abstract art.
 
 ![](parttree.png){fig-alt="rosalba"}
 :::
