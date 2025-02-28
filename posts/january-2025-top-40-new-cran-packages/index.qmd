@@ -1,7 +1,7 @@
 ---
 title: "January 2025 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
-date: 2025-02-26
+date: 2025-02-27
 description: "An attempt to capture the depth and breadth of what's new on CRAN."
 image: "parttree.png"
 image-alt: ""
@@ -9,7 +9,6 @@ categories: ""
 code-fold: true
 code-summary: "Show the code"
 editor: source
-draft: true
 ---
 
 In January, one hundred eighty-six new packages made it to CRAN. Here are my Top 40 picks in sixteen categories: Archaeology, Artificial Intelligence, Computational Methods, Ecology, Epidemiology, Finance, Genomics, Health Technology Assessment, Machine Learning, Medicine, Music, Pharma, Statistics, Time Series, Utilities, and Visualization.
@@ -23,7 +22,7 @@ In January, one hundred eighty-six new packages made it to CRAN. Here are my Top
 
 ## Archaeology
 
-[archeofrag.gui](https://cran.r-project.org/package=archeofrag.gui) v0.1.0: Implements a `shiny` application to access the functions and datasets of the `archeofrag` package that brings spatial analysis to archaeology. Features include: a focus on connection relationships (i.e., physical refits), built-in workflows, plot generation, R code generation to re-execute the simulations in R and ensure reproducibility, and support for parallel computing. Look  [here](https://analytics.huma-num.fr/Sebastien.Plutniak/archeofrag/) for a demonstration version of the app, and look [here](https://github.com/sebastien-plutniak/archeofrag.gui) for basic information.
+[archeofrag.gui](https://cran.r-project.org/package=archeofrag.gui) v0.1.0: Implements a `shiny` application to access the functions and datasets of the `archeofrag` package that brings spatial analysis to archaeology. Features include: a focus on connection relationships (i.e. physical refits), built-in workflows, plot generation, R code generation to re-execute the simulations in R and ensure reproducibility, and support for parallel computing. Look  [here](https://analytics.huma-num.fr/Sebastien.Plutniak/archeofrag/) for a demonstration version of the app, and look [here](https://github.com/sebastien-plutniak/archeofrag.gui) for basic information.
 
 ![](arche.png){fig-alt="Fragmentation graph from a simulation"}
 
@@ -32,7 +31,7 @@ In January, one hundred eighty-six new packages made it to CRAN. Here are my Top
 [ellmer](https://cran.r-project.org/package=ellmer) v0.1.1: Integrates large language model chat from a range of providers including [Claude](https://claude.ai>), [OpenAI](https://chatgpt.com), and more. Supports streaming, asynchronous calls, tool calling, and structured data extraction. There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/ellmer/vignettes/ellmer.html) and [Prompt design](https://cran.r-project.org/web/packages/ellmer/vignettes/prompt-design.html).
 
 
-[tidyprompt](https://cran.r-project.org/package=tidyprompt) v0.0.1: Provides functions to construct prompts and associated logic for interacting with large language models (LLMs), and introduces the concept of prompt wraps, building blocks to turn a simple prompt into a complex one. In addition to modifying prompt text, prompt wraps also adds extraction and validation functions that will be applied to the response of the LLM. There are three vignettes, including [Getting started](https://cran.r-project.org/web/packages/tidyprompt/vignettes/getting_started.html) and [Creating prompt wraps](https://cran.r-project.org/web/packages/tidyprompt/vignettes/creating_prompt_wraps.html).
+[tidyprompt](https://cran.r-project.org/package=tidyprompt) v0.0.1: Provides functions to construct prompts and associated logic for interacting with large language models (LLMs), and introduces the concept of prompt wraps, building blocks to turn a simple prompt into a complex one. In addition to modifying prompt text, prompt wraps also adds extraction and validation functions that will be applied to the response of the LLM. There are three vignettes including [Getting started](https://cran.r-project.org/web/packages/tidyprompt/vignettes/getting_started.html) and [Creating prompt wraps](https://cran.r-project.org/web/packages/tidyprompt/vignettes/creating_prompt_wraps.html).
 
 ```{r}
 #| eval: FALSE
@@ -60,27 +59,30 @@ plot
 
 ## Computational Methods
 
-[QAEnsemble](https://cran.r-project.org/package=QAEnsemble) v1.0.0: Implements the Ensemble Quadratic and Affine Invariant Markov chain Monte Carlo algorithms that provide an efficient way to perform Bayesian inference in difficult parameter space geometries. See [Militzer (2023)](https://iopscience.iop.org/article/10.3847/1538-4357/ace1f1) and  [Goodman and Weare (2010)](https://msp.org/camcos/2010/5-1/p04.xhtml) respectively for background on these algorithms. There are three vignettes, including [Fitting a disease Makov model](https://cran.r-project.org/web/packages/QAEnsemble/vignettes/Quad_Ensemble_Ex_Disease_Markov_Model.html) and [Fitting a Weibull distribution](https://cran.r-project.org/web/packages/QAEnsemble/vignettes/Quad_Ensemble_Ex_Weibull.html).
+[QAEnsemble](https://cran.r-project.org/package=QAEnsemble) v1.0.0: Implements the Ensemble Quadratic and Affine Invariant Markov chain Monte Carlo algorithms which provides an efficient way to perform Bayesian inference in difficult parameter space geometries. See [Militzer (2023)](https://iopscience.iop.org/article/10.3847/1538-4357/ace1f1) and  [Goodman and Weare (2010)](https://msp.org/camcos/2010/5-1/p04.xhtml) respectively for background on these algorithms. There are three vignettes including [Fitting a disease Makov model](https://cran.r-project.org/web/packages/QAEnsemble/vignettes/Quad_Ensemble_Ex_Disease_Markov_Model.html) and [Fitting a Weibull distribution](https://cran.r-project.org/web/packages/QAEnsemble/vignettes/Quad_Ensemble_Ex_Weibull.html).
 
 ![](QAE.png){fig-alt="Plot showing accuracy of posteriorpredictive mean"}
 
-[zigg](https://cran.r-project.org/package=zigg) v0.0.2: Provides a lightweight interface to the `Ziggurat` pseudo-random number generator introduced by [Marsaglia and Tsang (2000)](https://www.jstatsoft.org/article/view/v005i08), and further improved by [Leong et al. (2005)](https://www.jstatsoft.org/article/view/v012i07), which can be used from R as well as from 'C/C++' code.  It is very fast for the normal, exponential, and uniform distributions. See [README](https://cran.r-project.org/web/packages/zigg/readme/README.html) to get started.
+[zigg](https://cran.r-project.org/package=zigg) v0.0.2: Provides a lightweight interface to the `Ziggurat` pseudo-random number generator introduced by [Marsaglia and Tsang (2000)](https://www.jstatsoft.org/article/view/v005i08), and further improved by [Leong et al. (2005)](https://www.jstatsoft.org/article/view/v012i07) which can be used from R as well as from 'C/C++' code.  It is very fast for the normal, exponential, and uniform distributions. See [README](https://cran.r-project.org/web/packages/zigg/readme/README.html) to get started.
 
 ![](zigg.png){fig-alt="Plot of timing comparisons"}
 
 
 ## Ecology
 
-[BerkeleyForestsAnalytics](https://cran.r-project.org/package=BerkeleyForestsAnalytics) v2.0.4: Offers a suite of functions designed to produce standard metrics for forest management and ecology from forest inventory data that will minimize potential inconsistencies introduced by the algorithms used to compute the metrics. Look [here](https://github.com/kearutherford/BerkeleyForestsAnalytics) to learn more about the purpose of the package and see the [vignette](https://cran.r-project.org/web/packages/BerkeleyForestsAnalytics/vignettes/BerkeleyForestsAnalytics.html) for an example.
+[BerkeleyForestsAnalytics](https://cran.r-project.org/package=BerkeleyForestsAnalytics) v2.0.4: Offers a suite of functions designed to produce standard metrics for forest management and ecology from forest inventory data. It is designed to minimize potential inconsistencies introduced by the algorithms that compute metrics. Look [here](https://github.com/kearutherford/BerkeleyForestsAnalytics) to learn more about the purpose of the package and see the [vignette](https://cran.r-project.org/web/packages/BerkeleyForestsAnalytics/vignettes/BerkeleyForestsAnalytics.html) for an example.
+
+[ritalic](https://cran.r-project.org/package=ritalic) v0.10.1: A programmatic interface to the [Web Service methods](https://italic.units.it/?procedure=api) provided by the [ITALIC](https://italic.units.it) database of lichen data in Italy and bordering European countries, including functions for retrieving information about lichen scientific names, geographic distribution, ecological data, morpho-functional traits and identification Look [here](https://italic.units.it/?procedure=base&t=59&c=60) for more information about the data and see [README](https://cran.r-project.org/web/packages/ritalic/readme/README.html) to get started.
+
 
 ## Epidemiology
 
-[ggsurveillance](https://cran.r-project.org/package=ggsurveillance) v0.1.2: Provides functions to create [epicurves](https://www.cdc.gov/training/quicklearns/epimode/index.html) and epigantt charts and prepare data for visualization or other reporting for infectious disease surveillance and outbreak investigation, including functions to functions to solve date-based transformations such as seasonal date alignment for respiratory disease surveillance and date-based case binning based on specified time intervals. There are three vignettes: [Epicurves](https://cran.r-project.org/web/packages/ggsurveillance/vignettes/Epicurves_with_ggsurveillance.html), [Epigantt](https://cran.r-project.org/web/packages/ggsurveillance/vignettes/Epigantt_with_ggsurveillance.html), and [Seasonal Plots](https://cran.r-project.org/web/packages/ggsurveillance/vignettes/align_dates_seasonal.html).
+[ggsurveillance](https://cran.r-project.org/package=ggsurveillance) v0.1.2: Provides functions to create [epicurves](https://www.cdc.gov/training/quicklearns/epimode/index.html) and epigantt charts and prepare data for visualization or other reporting for infectious disease surveillance and outbreak investigation, including functions to functions to solve date based transformations such as seasonal date alignment for respiratory disease surveillance and date-based case binning based on specified time intervals. There are three vignettes: [Epicurves](https://cran.r-project.org/web/packages/ggsurveillance/vignettes/Epicurves_with_ggsurveillance.html), [Epigantt](https://cran.r-project.org/web/packages/ggsurveillance/vignettes/Epigantt_with_ggsurveillance.html), and [Seasonal Plots](https://cran.r-project.org/web/packages/ggsurveillance/vignettes/align_dates_seasonal.html).
 
 ![](ggsurvei.png){fig-alt="Example of Epi Gantt chart"}
 
 
-[superspreading](https://cran.r-project.org/package=superspreading) v0.3.0: Provides tools to study individual-level variation in infectious disease transmission, including compound Poisson discrete distribution functions ([Kremer et al. (2021)](https://www.nature.com/articles/s41598-021-93578-x)) and functions to calculate infectious disease outbreak statistics given epidemiological parameters on individual-level transmission, such as the probability of an outbreak becoming an epidemic ([Kucharski et al.' (2020)](https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30144-4/fulltext)). There are six vignettes, including [Getting started](https://cran.r-project.org/web/packages/superspreading/vignettes/superspreading.html) and [Epidemic Risk](https://cran.r-project.org/web/packages/superspreading/vignettes/epidemic_risk.html).
+[superspreading](https://cran.r-project.org/package=superspreading) v0.3.0: Provides tools to study individual-level variation in infectious disease transmission, including a discrete compound Poisson distribution ([Kremer et al. (2021)](https://www.nature.com/articles/s41598-021-93578-x)) and functions to calculate infectious disease outbreak statistics given epidemiological parameters on individual-level transmission such as the probability of an outbreak becoming an epidemic ([Kucharski et al.' (2020)](https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30144-4/fulltext)). There are six vignettes including [Getting started](https://cran.r-project.org/web/packages/superspreading/vignettes/superspreading.html) and [Epidemic Risk](https://cran.r-project.org/web/packages/superspreading/vignettes/epidemic_risk.html).
 
 ![](ss.png){fig-alt="Chart showing expected transmission proportions"}
 
@@ -92,44 +94,40 @@ plot
 
 ## Finance
 
-[pacta.multi.loanbook](https://cran.r-project.org/package=pacta.multi.loanbook) v0.1.0: Provides tools to run Paris Agreement Capital Transition Assessment ([PACTA](https://pacta.rmi.org/)) analyses on multiple loan books in a structured way and access to PACTA metrics and additional. There are ten vignettes, including an [Overview](https://cran.r-project.org/web/packages/pacta.multi.loanbook/vignettes/cookbook_overview.html) and [Interpretation of Results](https://cran.r-project.org/web/packages/pacta.multi.loanbook/vignettes/cookbook_interpretation.html).
+[pacta.multi.loanbook](https://cran.r-project.org/package=pacta.multi.loanbook) v0.1.0: Provides tools to run Paris Agreement Capital Transition Assessment ([PACTA](https://pacta.rmi.org/)) analyses on multiple loan books in a structured way and access to PACTA metrics. There are ten vignettes including an [Overview](https://cran.r-project.org/web/packages/pacta.multi.loanbook/vignettes/cookbook_overview.html) and [Interpretationof Results](https://cran.r-project.org/web/packages/pacta.multi.loanbook/vignettes/cookbook_interpretation.html).
 
 ![](PACTA.png){fig-alt="Volume trajectory plot"}
 
-[qmj](https://cran.r-project.org/package=qmj) v0.2.1: Provides functions to produce quality scores for each of the US companies from the Russell 3000, following the approach described in [Asness, Frazzini, & Pedersen (2013)](http://www.aqr.com/library/working-papers/quality-minus-junk), including functions to automatically gather relevant financials and stock price information. See the [vignette](https://cran.r-project.org/web/packages/qmj/vignettes/qmj.pdf).
+[qmj](https://cran.r-project.org/package=qmj) v0.2.1: Provides functions to produces quality scores for each of the US companies from the Russell 3000 following the approach described in [Asness, Frazzini, & Pedersen (2013)](http://www.aqr.com/library/working-papers/quality-minus-junk). It includes functions to automatically gather relevant financials and stock price information. See the [vignette](https://cran.r-project.org/web/packages/qmj/vignettes/qmj.pdf).
 
-[ritalic](https://cran.r-project.org/package=ritalic) v0.10.1: A programmatic interface to the [Web Service methods](https://italic.units.it/?procedure=api) provided by [ITALIC](https://italic.units.it) database of lichen data in Italy and bordering European countries, including functions for retrieving information about lichen scientific names, geographic distribution, ecological data, morpho-functional traits, and identification. Look [here](https://italic.units.it/?procedure=base&t=59&c=60) for more information about the data and see [README](https://cran.r-project.org/web/packages/ritalic/readme/README.html) to get started.
+
 
 
 ## Genomics
 
-[AntibodyForests](https://cran.r-project.org/package=AntibodyForests) v1.0.0: Provides tools to investigate and quantify inter- and intra-antibody repertoire evolution and explore a wealth of immune repertoire sequencing data. See the [vignette](https://cran.r-project.org/web/packages/AntibodyForests/vignettes/AntibodyForests_vignette.html).
+[AntibodyForests](https://cran.r-project.org/package=AntibodyForests) v1.0.0: Provides tools to investigate and quantify inter- and intra-antibody repertoire evolution and explore wealth of immune repertoire sequencing data. See the [vignette](https://cran.r-project.org/web/packages/AntibodyForests/vignettes/AntibodyForests_vignette.html).
 
 ![](AF.png){fig-alt="Lineage Plot"}
 
-[geneviewer](https://cran.r-project.org/package=geneviewer) v0.1.10: Provides tools for plotting gene clusters and transcripts by importing data from GenBank, FASTA, and GFF files. It performs BLASTP and MUMmer alignments. See [Altschul et al. (1990)](https://www.sciencedirect.com/science/article/abs/pii/S0022283605803602?via%3Dihub) and [Delcher et al. (1999)](https://academic.oup.com/nar/article/27/11/2369/1258501?login=false) for background and look [here](https://github.com/nvelden/geneviewer) to get started.
+[geneviewer](https://cran.r-project.org/package=geneviewer) v0.1.10: Provides tools for plotting gene clusters and transcripts by importing data from GenBank, FASTA, and GFF files. It performs BLASTP and MUMmer alignments. See.[Altschul et al. (1990)](https://www.sciencedirect.com/science/article/abs/pii/S0022283605803602?via%3Dihub) and [Delcher et al. (1999)](https://academic.oup.com/nar/article/27/11/2369/1258501?login=false) for background and look [here](https://github.com/nvelden/geneviewer) to get started.
 
 ![](geneviewer.png){fig-alt="erythromycin BlastP"}
 
-[smer](https://cran.r-project.org/package=smer) v0.0.1: Implements Sparse Marginal Epistasis Test is a computationally efficient genetics method that detects statistical epistasis in complex traits. See [Stamp et al. (2025)](https://www.biorxiv.org/content/10.1101/2025.01.11.632557v1) for details. There are six vignettes, including [How To Use the Sparse Marginal Epistasis Test](https://cran.r-project.org/web/packages/smer/vignettes/smer.html) and [Conditioning Epistasis Search on Open Chromatin](https://cran.r-project.org/web/packages/smer/vignettes/study-erythroid-differentiation-data.html),
+[smer](https://cran.r-project.org/package=smer) v0.0.1: Implements Sparse Marginal Epistasis Test is a computationally efficient genetics method which detects statistical epistasis in complex traits. See [Stamp et al. (2025)](https://www.biorxiv.org/content/10.1101/2025.01.11.632557v1) for details. There are six vignettes including [How To Use the Sparse Marginal Epistasis Test](https://cran.r-project.org/web/packages/smer/vignettes/smer.html) and [Conditioning Epistasis Search on Open Chromatin](https://cran.r-project.org/web/packages/smer/vignettes/study-erythroid-differentiation-data.html),
 
 ![](smer.png){fig-alt="Plot of Erythroid Differentiation DHS Mask"}
 
 
 
-
-
-
-
 ## Health Technology Assessment
 
-[twig](https://cran.r-project.org/package=twig) v1.0.0.0: Provides tools for building decision and cost-effectiveness analysis models, enabling users to write these models concisely, simulate outcomes—including probabilistic analyses—efficiently using optimized vectorized processes and parallel computing, and produce results. The package employs a Grammar of Modeling approach, inspired by the Grammar of Graphics, to streamline model construction. For an interactive graphical user interface, see [DecisionTwig](https://www.dashlab.ca/projects/decision_twig/). There are two vignettes: [Decision Tree Herpes Virus Encephalopathy](https://cran.r-project.org/web/packages/twig/vignettes/decision_tree.htm)) and [Tutorial for Time Dependent Markov Model](https://cran.r-project.org/web/packages/twig/vignettes/markov_time_dep.html).
+[twig](https://cran.r-project.org/package=twig) v1.0.0.0: Provides tools for building concise decision and cost-effectiveness analysis models, simulate outcomes—including probabilistic analyses—efficiently using optimized vectorized processes and parallel computing. The package employs a Grammar of Modeling approach to streamline model construction. For an interactive graphical user interface, see [DecisionTwig](https://www.dashlab.ca/projects/decision_twig/). There are two vignettes: [Decision Tree Herpes Virus Encephalopathy](https://cran.r-project.org/web/packages/twig/vignettes/decision_tree.htm)) and [Tutorial for Time Dependent Markov Model](https://cran.r-project.org/web/packages/twig/vignettes/markov_time_dep.html).
 
 ![](twig.png){fig-alt="Plot of decision tree"}
 
 ## Machine Learning
 
-[bnns](https://CRAN.R-project.org/package=bnns) v0.1.2: Implements a formula-based interface for building and training Bayesian Neural Networks powered by `Stan`. Features include user-chosen priors,  predictions, and support for regression, binary, and multi-class classification. See [Neal(1996)](https://link.springer.com/book/10.1007/978-1-4612-0745-0) for background and [README](https://cran.r-project.org/web/packages/bnns/readme/README.html) to get started. 
+[bnns](https://CRAN.R-project.org/package=bnns) v0.1.2: Implements a formula-based interface for building and training Bayesian Neural Networks powered by `Stan`. Features include user chosen priors,  predictions, and support for regression, binary, and multi-class classification. See [Neal(1996)](https://link.springer.com/book/10.1007/978-1-4612-0745-0) for background and [README](https://cran.r-project.org/web/packages/bnns/readme/README.html) to get started. 
 
 [ComBatFamQC](https://cran.r-project.org/package=ComBatFamQC) v1.0.4: Provides a comprehensive framework for batch effect diagnostics, harmonization, and post-harmonization downstream analysis. Features include interactive visualization tools, robust statistical tests, and a range of harmonization techniques.  Methods for harmonization are based on approaches described in [Johnson et al., (2007)](https://academic.oup.com/biostatistics/article-abstract/8/1/118/252073?redirectedFrom=fulltext&login=false)  [Beer et al., (2020)](https://www.sciencedirect.com/science/article/pii/S1053811920306157?via%3Dihub), [Pomponio et al., (2020)](https://www.sciencedirect.com/science/article/pii/S1053811919310419?via%3Dihub), and [Chen et al., (2021)](https://onlinelibrary.wiley.com/doi/10.1002/hbm.25688). See [README](https://cran.r-project.org/web/packages/ComBatFamQC/readme/README.html) to get started.
 
@@ -161,7 +159,7 @@ plot
 
 
 
-[SparseICA](https://cran.r-project.org/package=SparseICA) v0.1.4: Provides an implementation of the Sparse ICA method in [Wang et al. (2024)](https://www.tandfonline.com/doi/full/10.1080/01621459.2024.2370593) for estimating sparse independent source components of cortical surface functional MRI data by addressing a non-smooth, non-convex optimization problem through the relax-and-split framework. Look [here](https://github.com/thebrisklab/SparseICA) for examples.
+[SparseICA](https://cran.r-project.org/package=SparseICA) v0.1.4: Provides an implementation of the Sparse ICA method in [Wang et al. (2024)](https://www.tandfonline.com/doi/full/10.1080/01621459.2024.2370593) for estimating sparse independent source components of cortical surface functional MRI data, by addressing a non-smooth, non-convex optimization problem through the relax-and-split framework. Look [here](https://github.com/thebrisklab/SparseICA) for examples.
 
 ![](xmat.png){fig-alt="Heat maps of simulated data"}
  
@@ -169,7 +167,7 @@ plot
 
 ## Music
 
-[sequenceR](https://cran.r-project.org/package=sequenceR) v1.0.1: Implements a rudimentary sequencer to define, manipulate, and mix sound samples. The underlying motivation is to sonify data. Look [here](https://globxblog.github.io/) for a demonstration. See [Renard & Le Bescond (2022)](https://hal.science/hal-03710340v1), the poster by [Renard et al. (2023)](https://hal.inrae.fr/hal-04388845v1) for background, and the [vignette](https://cran.r-project.org/web/packages/sequenceR/vignettes/GettingStarted.html) to get started.
+[sequenceR](https://cran.r-project.org/package=sequenceR) v1.0.1: Implements a rudimentary sequencer to define, manipulate and mix sound samples. The underlying motivation is to sonify data. Look [here](https://globxblog.github.io/) for a demonstration. See [Renard & Le Bescond (2022)](https://hal.science/hal-03710340v1), and the poster by [Renard et al. (2023)](https://hal.inrae.fr/hal-04388845v1) for background and the [vignette](https://cran.r-project.org/web/packages/sequenceR/vignettes/GettingStarted.html) to get started.
 
 ![](sequenceR.png){fig-alt="BBC ding-dong plot"}
 
@@ -182,7 +180,7 @@ plot
 
 ## Pharma
 
-[admiralmetabolic](https://cran.r-project.org/package=admiralmetabolic) v0.1.0: An extension of `admiral` that provides a toolbox for programming Clinical Data Standards Interchange Consortium (CDISC) compliant Analysis Data Model ([ADaM](https://www.cdisc.org/standards/foundational/adam)) datasets. There are three vignettes, including [Get Started](https://cran.r-project.org/web/packages/admiralmetabolic/vignettes/admiralmetabolic.html) and [Creating a Metabolic ADVS ADaM ](https://cran.r-project.org/web/packages/admiralmetabolic/vignettes/advs.html).
+[admiralmetabolic](https://cran.r-project.org/package=admiralmetabolic) v0.1.0: An extension of `admiral` that provides a toolbox for programming Clinical Data Standards Interchange Consortium (CDISC) compliant Analysis Data Model ([ADaM](https://www.cdisc.org/standards/foundational/adam)) datasets. There are three vignettes including [Get Started](https://cran.r-project.org/web/packages/admiralmetabolic/vignettes/admiralmetabolic.html) and [Creating a Metabolic ADVS ADaM ](https://cran.r-project.org/web/packages/admiralmetabolic/vignettes/advs.html).
 
 [invivoPKfit](https://cran.r-project.org/package=invivoPKfit) v2.0.0: Provide functions that take in vivo toxicokinetic concentration-time data and fits parameters of 1-compartment and 2-compartment models for each chemical. There are four vignettes including [User Guide](https://cran.r-project.org/web/packages/invivoPKfit/vignettes/main_vignette.html) and [Informatics for toxicokinetics](https://cran.r-project.org/web/packages/invivoPKfit/vignettes/manuscript2024_final.html).
 
@@ -190,7 +188,7 @@ plot
 
 ## Statistics
 
-[flexFitR](https://cran.r-project.org/package=flexFitR) v1.1.0: Provides tools for flexible non-linear least squares model fitting using general-purpose optimization techniques. It supports a variety of optimization algorithms, including those provided by the `optimx` package and also supports parallel processing  via the `future` and `foreach` packages. Se [Nash and Varadhan (2011)](https://www.jstatsoft.org/article/view/v043i09) the details of the method supported. There are five vignettes, including [How to start](https://cran.r-project.org/web/packages/flexFitR/vignettes/how_to_start.html) and [Modeling](https://cran.r-project.org/web/packages/flexFitR/vignettes/canopy-model.html).
+[flexFitR](https://cran.r-project.org/package=flexFitR) v1.1.0: Provides tools for flexible non-linear least squares model fitting using general-purpose optimization techniques. It supports a variety of optimization algorithms, including those provided by the `optimx` package and also supports parallel processing  via the `future` and `foreach` packages. Se [Nash and Varadhan (2011)](https://www.jstatsoft.org/article/view/v043i09) the details of the method supported. There are five vignettes including [How to start](https://cran.r-project.org/web/packages/flexFitR/vignettes/how_to_start.html) and [Modeling](https://cran.r-project.org/web/packages/flexFitR/vignettes/canopy-model.html).
 
 ![](flexFitR.png){fig-alt="Canopy Plot"}
 
@@ -198,7 +196,7 @@ plot
 
 ![](gsaot.png){fig-alt="Scatter plot of output distribution"}
 
-[MADMMplasso](https://cran.r-project.org/package=MADMMplasso) v1.0.0: Implements a method to model a multi-variate, multi-response problem with interaction effects by combining the usual squared error loss  with penalty terms to encourage responses that correlate to form groups. The implementation is based on [Asenso  & Zucknick (2023)](https://arxiv.org/abs/2303.11155) and uses the Alternating Direction Method of Multipliers (ADMM) algorithm for optimization. See [README](https://cran.r-project.org/web/packages/MADMMplasso/readme/README.html) for an example.
+[MADMMplasso](https://cran.r-project.org/package=MADMMplasso) v1.0.0: Implements a method to model a multi-variate, multi-response problem with interaction effects by combining the usual squared error loss  with penalty terms to encourage responses that correlate to form groups.The implementation is based on [Asenso  & Zucknick (2023)](https://arxiv.org/abs/2303.11155) and uses the Alternating Direction Method of Multipliers (ADMM) algorithm for optimization. See [README](https://cran.r-project.org/web/packages/MADMMplasso/readme/README.html) for an example.
 
 ![](MADMM.png){fig-alt="MADMMplasso plot"}
 
@@ -208,7 +206,7 @@ plot
 
 ## Time Series
 
-[fftab](https://cran.r-project.org/package=fftab) v0.1.0: Provides functions for the *Tidy* manipulation of Fourier coefficients in various ways, including converting between complex, rectangular (re, im), and polar (mod, arg) representations, as well as for extracting components as vectors or matrices. See [README](https://cran.r-project.org/web/packages/fftab/readme/README.html) for an example.
+[fftab](https://cran.r-project.org/package=fftab) v0.1.0: Provides functions for the *Tidy* manipulation of Fourier coefficients in various ways including converting between complex, rectangular (re, im), and polar (mod, arg) representations, as well as for extracting components as vectors or matrices. See [README](https://cran.r-project.org/web/packages/fftab/readme/README.html) for an example.
 
 ![](fftab.png){fig-alt="Time series plots"}
 
@@ -218,7 +216,7 @@ plot
 
 ## Utilities
 
-[forgts](https://CRAN.R-project.org/package=forgts) v0.0.1: Provides functions to convert formatted spreadsheets to presentation-ready display `gt` tables. It supports the most commonly-used cell and text styles, including colors, fills, font weights and decorations, and borders. See the [vignette](https://cran.r-project.org/web/packages/forgts/vignettes/getting-started.html).
+[forgts](https://CRAN.R-project.org/package=forgts) v0.0.1: Provides functions to convert formatted spreadsheets to presentation-ready display `gt` tables. It supports the most commonly-used cell and text styles including colors, fills, font weights and decorations, and borders. See the [vignette](https://cran.r-project.org/web/packages/forgts/vignettes/getting-started.html).
 
 ![input table](forgts.png){fig-alt="Sample of table to be read"}
 Spreadsheet table input
@@ -227,7 +225,7 @@ Spreadsheet table input
 `gt` table output.
 
 
-[psHarmonize](https://cran.r-project.org/package=psHarmonize) v0.3.5: Provides functions to facilitate the harmonization of data from multiple different datasets, including taking data sources with differing values and creating coding instructions to create a harmonized set of values. Users create a *harmonization sheet* that guides the process. See [Fortier et al. (2017)](https://academic.oup.com/ije/article/46/1/103/2617181?login=false) for harmonization guidelines and [Stephen et al. (2024)](https://www.cell.com/patterns/fulltext/S2666-3899(24)00128-4?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS2666389924001284%3Fshowall%3Dtrue) for details about the package. There is an [Introduction](https://cran.r-project.org/web/packages/psHarmonize/vignettes/psHarmonize.html) and a vignette on [Harmonization sheet instructions](https://cran.r-project.org/web/packages/psHarmonize/vignettes/Harmonization_sheet.html).
+[psHarmonize](https://cran.r-project.org/package=psHarmonize) v0.3.5: Provides functions to facilitate the harmonization of data from multiple different datasets including taking data sources with differing values and creating coding instructions to create a harmonized set of values. Users create a *harmonization sheet* that guides the process. See [Fortier et al. (2017)](https://academic.oup.com/ije/article/46/1/103/2617181?login=false) for harmonization guidelines and [Stephen et al. (2024)](https://www.cell.com/patterns/fulltext/S2666-3899(24)00128-4?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS2666389924001284%3Fshowall%3Dtrue) for details about the package. There is an [Introduction](https://cran.r-project.org/web/packages/psHarmonize/vignettes/psHarmonize.html) and a vignette on [Harmonization sheet instructions](https://cran.r-project.org/web/packages/psHarmonize/vignettes/Harmonization_sheet.html).
 
  
 
@@ -243,7 +241,7 @@ Spreadsheet table input
 
 ![](adplot.png){fig-alt="Example of an adplot"}
 
-[ggstackplot](https://cran.r-project.org/package=ggstackplot) v0.4.1: Provides functions to easily create overlapping grammar of graphics plots for scientific data visualization, a style of plotting common in climatology and oceanography research. See the [vignette](https://cran.r-project.org/web/packages/ggstackplot/vignettes/ggstackplot.html).
+[ggstackplot](https://cran.r-project.org/package=ggstackplot) v0.4.1: Provides functions to easily create overlapping grammar of graphics plots for scientific data visualization, a style of plotting common in climatology and oceanography research. See the [fignette](https://cran.r-project.org/web/packages/ggstackplot/vignettes/ggstackplot.html).
 
 ![](ggstack.png){fig-alt="Example of a stack plot"}
 
@@ -255,7 +253,7 @@ Spreadsheet table input
 
 
 
-[parttree](https://cran.r-project.org/package=parttree) v0.1.0: Provides functions to visualize the partitions of simple decision trees involving one or two predictors on the scale of the original data that offers an intuitive alternative to traditional tree diagrams, by visualizing how a decision tree divides the predictor space in a simple 2D plot alongside the original data. See the [Introduction](https://cran.r-project.org/web/packages/parttree/vignettes/parttree-intro.html) to get started and the vignette [Abstract art with parttree and friends](https://cran.r-project.org/web/packages/parttree/vignettes/parttree-art.html) for a creative method of producing abstract art.
+[parttree](https://cran.r-project.org/package=parttree) v0.1.0: Provides functions to visualize the partitions of simple decision trees, involving one or two predictors, on the scale of the original data that offers an intuitive alternative to traditional tree diagrams, by visualizing how a decision tree divides the predictor space in a simple 2D plot alongside the original data. See the [Introduction](https://cran.r-project.org/web/packages/parttree/vignettes/parttree-intro.html) to get started and the vignette [Abstract art with parttree and friends](https://cran.r-project.org/web/packages/parttree/vignettes/parttree-art.html) for a creative method of producing abstract art.
 
 ![](parttree.png){fig-alt="rosalba"}
 :::
