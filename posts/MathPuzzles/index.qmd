@@ -1,0 +1,151 @@
+---
+title: "How many ways to color this grid: Combinatorics in R"
+format: html
+editor: visual
+---
+
+I love solving puzzles of every kind, but being a statistician, I am partial to combinatorics. The other day, I solved one in R, using `dplyr`.
+
+## The Problem
+
+This is a very simple version of the classic coloring-a-grid problem, and can also be seen as a graph theory puzzle.
+
+> You have a 2x2 grid of squares, and you need to paint each square one of four colors: red, blue, green, or yellow. The restriction is that no two adjacent squares (sharing a side) can have the same color. How many valid ways you can color the grid?
+
+## The Solution
+
+There are many ways to solve this. In each solution, we count the number of combinations that are "correct" or valid, i.e. adhere to the rules given above in the problem. For the solution in R, we will calculate all possible combinations of coloring this grid with no restrictions, and using that, directly count cases which *follow the adjacency rules* specified in the problem.
+
+I will use `dplyr` to illustrate how easy and straightforward it will be to get to the solution.
+
+The simplest way of calculating ways coloring this grid with no restrictions is to consider that for each of the 4 squares ($n$), there are 4 possible options ($r$, see square above), so that the total number of options we have is essentially —
+
+$$
+n^r = 4^4 = 256
+$$
+
+We now use R to compute these $256$ options.
+
+```{r}
+#| label: Chunk1
+library(gtools)
+x <- c('r', 'b', 'g', 'y')
+P <- permutations(n=4,r=4,v=x,repeats.allowed=T) 
+colnames(P) <- c("A","B","C","D")
+P <- data.frame(P)
+nrow(P)
+head(P)
+```
+
+How do we now determine which cases do not follow the adjacency rules? To do this, we'll need to use a pattern-searching logic to flag them. One way to do this computationally is to calculate, for all 256 cases, 4 different columns, corresponding to the 4 adjacency restrictions (e.g. red-red, blue-blue, green-green and yellow-yellow). We would then use these 4 columns to compute a single new column flagging cases where adjacency restrictions are followed, i.e. flag *valid* cases, and sum them up.
+
+However, in R, using `dplyr`, we combine this in a single command using `case when`, which will flag each case whenever it meets the invalidity condition even once, e.g. for the coloring scheme "blue-blue-blue-red", it will flag it "invalid" since just the existence of "blue-blue" is sufficient to deem this scheme invalid.
+
+```{r}
+#| label: Chunk2
+#| warning: false
+library(dplyr)
+library(magrittr)
+case_split <- P %>% 
+  mutate(concat=paste(P$A, P$B, P$C, P$D, P$A, sep="")) %>%
+  mutate(flag = case_when(grepl("rr", concat) ~ "invalid", 
+                          grepl("bb", concat) ~ "invalid", 
+                          grepl("gg", concat) ~ "invalid", 
+                          grepl("yy", concat) ~ "invalid", .default = "valid")) %>%
+  group_by(flag) %>% summarise(count=n())
+knitr::kable(case_split, align=rep('c', 2))
+```
+
+There are $84$ valid cases, which can of course be computed arithmetically using combinatorics formulas, or simply going case by case and calculating how many valid cases emerge, which will also give us $84$ valid cases of the total $256$.
+
+Of these remaining $172$ invalid cases, I then thought about how many are so due to not heeding the adjacency rules just once, how many twice or more? For example, "bbbg" does not heed it twice, "bbrg" just once. To do this, for each of the 256 cases, instead of just the existence of invalidity, we flag each occurence of adjacency or invalidity, and then sum them up.
+
+```{r}
+#| label: Chunk3
+flag_invalid_adj <- function(df) {
+  df %>%
+    rowwise() %>%
+    mutate(
+      # Check each adjacency pair for invalidity
+      ab_invalid = A == B,
+      bc_invalid = B == C,
+      cd_invalid = C == D,
+      ad_invalid = A == D,
+      # Count the number of invalid pairs
+      invalid = sum(ab_invalid, bc_invalid, cd_invalid, ad_invalid),
+    ) %>%
+    ungroup() 
+}
+cols <- P[,1:4]
+invalid_data <- flag_invalid_adj(cols) %>% select(A, B, C, D, invalid)
+finalCounts <- invalid_data %>% group_by(invalid) %>% summarise(count=n())
+knitr::kable(finalCounts, align=rep('c', 2))
+```
+
+Finally, because we can, and we love `ggplot2`, let's generate 1 sample grid from each category of invalidity, so that we can visually inspect what we've been saying. The "4x invalid" has 4 pairs of blue, or 4 adjacencies, while the "0x invalid" plot is an example of how we can indeed color a graph, map or a grid with 4 colors with no squares having the same color.
+
+```{r}
+#| label: Chunk4
+#| warning: false
+#| code-fold: true
+#| code-summary: "Show the code"
+
+# Select first row of all groups
+s <- invalid_data %>% group_by(invalid) %>% filter(row_number()==1)
+
+# Load necessary libraries
+library(ggplot2)
+library(gridExtra)  # or library(patchwork)
+library(dplyr)      # For tibble and data manipulation
+
+# Step 1: Create my color tibble (4x4)
+sq <- s %>% 
+  mutate_all(~ case_when(
+    . == "b" ~ "blue",
+    . == "g" ~ "green",
+    . == "y" ~ "yellow",
+    . == "r" ~ "red",
+    TRUE ~ .  # Keep original value if it doesn't match
+  ))
+
+# Step 2: Convert tibble to a matrix
+color_matrix <- sq[,-5] %>% select(A,B,D,C) %>% as.matrix() # to match the coloring order of ggplot2
+
+# Check the dimensions of the matrix
+#print(dim(color_matrix))  # Should be 4x4
+
+# Step 3: Function to create a plot based on a color vector and a title
+create_plot <- function(colors, title) {
+  df <- expand.grid(x = 0:1, y = 0:1)
+  df$color <- colors
+  
+  ggplot(df, aes(x = x, y = y, fill = color)) +
+    geom_tile(color = "white") +  # Change border color to white
+    scale_fill_identity() +        # Use the colors as they are
+    theme_minimal() +              # Use a minimal theme
+    coord_fixed() +                # Keep aspect ratio
+    labs(title = title) +          # Add the title
+    theme(
+      legend.position = "none",    # Remove legend
+      axis.title = element_blank(), # Suppress axis titles
+      axis.text = element_blank(),  # Suppress axis text
+      axis.ticks = element_blank(), # Suppress axis ticks
+      panel.grid = element_blank()   # Suppress grid lines
+    )
+}
+
+# Step 4: Create a vector of titles for each plot
+titles <- c("4x invalid", 
+            "2x invalid", 
+            "1x invalid", 
+            "0x invalid")
+
+# Step 5: Create a list of plots using the color matrix and titles
+plots <- lapply(1:nrow(color_matrix), function(i) {
+  create_plot(color_matrix[i, ], titles[i])
+})
+
+# Step 6: Arrange the plots on one page
+grid.arrange(grobs = plots, ncol = 2)  # 2 columns
+
+```
