@@ -11,7 +11,7 @@ code-summary: "Show the code"
 editor: source
 ---
 
-This post is based on the text book: [*Evidence Synthesis for Decision Making in Healthcare*](https://onlinelibrary.wiley.com/doi/book/10.1002/9781119942986) (ESDMH) by Nickey J. Welton, Alexander J. Sutton, Nicola J. Cooper, Keith R, Abrams, and A.E. Ades. We believe that this textbook is an exemplary presentation of health care decision analysis and Bayesian modeling. The only impediment to its aging well and enjoying a long shelf life that we perceive is that all of code was done in [`WinBugs`](https://en.wikipedia.org/wiki/WinBUGS), pioneering but now obsolete software for evaluating Bayesian MCMC models. Below, we present a `JAGS` version of the `WinBugs` model in Example 2.1 on page 26 of the text. We hope that this post will be useful to readers who would like to work through the examples in the text using tools that are easily accessible.
+This post is based on the text book: [*Evidence Synthesis for Decision Making in Healthcare*](https://onlinelibrary.wiley.com/doi/book/10.1002/9781119942986) (ESDMH) by Nicky J. Welton, Alexander J. Sutton, Nicola J. Cooper, Keith R, Abrams, and A.E. Ades. This textbook is an exemplary presentation of health care decision analysis and Bayesian modeling. The only impediment to its aging well and enjoying a long shelf life that we perceive is that all of code was done in [`WinBugs`](https://en.wikipedia.org/wiki/WinBUGS), pioneering but now obsolete software for evaluating Bayesian MCMC models. Below, we present a `JAGS` version of the `WinBugs` model in Example 2.1 on page 26 of the text. We hope that this post will be useful to readers who would like to work through the examples in the text using tools that are easily accessible.
 
 ## The JAGS Workflow
 
@@ -48,7 +48,7 @@ The data comprises empirical log odds ratios, $Y_j$: $$ Y_j = \log\left(\dfrac{\
 
 along with their associated sample variances, $V_j$ for twenty-two randomized clinical trials where patients who suffered a myocardial infarction were treated either with beta-blockers or a placebo. The Excel file containing the data along with the original `WinBUGS` code is available [here](https://bcs.wiley.com/he-bcs/Books?action=resource&bcsId=7268&itemId=047006109X&resourceId=28154).
 
-Here we read the data from a local Excel file. Note that the Blocker Excel file is among the supporting materials that can be downloaded forom the [Wiley site](https://bcs.wiley.com/he-bcs/Books?action=resource&bcsId=7268&itemId=047006109X&resourceId=28154).
+Here we read the data from a local Excel file. Note that the Blocker Excel file is among the supporting materials that can be downloaded from the [Wiley site](https://bcs.wiley.com/he-bcs/Books?action=resource&bcsId=7268&itemId=047006109X&resourceId=28154).
 
 ```{r}
 
@@ -103,7 +103,7 @@ This code initializes the parameter values. Note that we use a function to speci
 #| Warning: FALSE
 #| Message: FALSE
 
-# Note thaat the WinBugs code in the book initializes the MCMC algorithm with a single chain as follows.
+# Note that the WinBugs code in the book initializes the MCMC algorithm with a single chain as follows.
 #initial_values <- list(list(
 # delta=c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),d=0,tau=1))
 
@@ -209,7 +209,7 @@ caterplot(out_initial$samples[, colnames])
 
 ### MCMC Diagnostics
 
-A key MCMC dianostic reported by the `jags() function` of the jagsUI package is sufficient.adapt, a logical value indicating whether the number of iterations for adaptation was sufficient. For this model:
+A key MCMC diagnostic reported by the `jags() function` of the jagsUI package is sufficient.adapt, a logical value indicating whether the number of iterations for adaptation was sufficient. For this model:
 
 ```{r}
 cat("Sufficient Adaptation =", out_initial$mcmc.info$sufficient.adapt, "\n")
