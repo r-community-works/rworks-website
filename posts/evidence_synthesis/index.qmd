@@ -1,17 +1,17 @@
 ---
 title: "Evidence Synthesysis for Decision Making in Healthcare"
 author: "Joseph Rickert and Robert Horton"
-date: 2025-03-10
-description: ""
+date: 2025-03-12
+description: "This post presents a JAGS version of a WinBUGS model presented in the classic textbook *Evidence Synthesis for Decision Making in Healthcare* by Nicky J. Welton, Alexander J. Sutton, Nicola J. Cooper, Keith R, Abrams, and A.E. Ades."
 fig-dpi: 300
 fig-align: "center"
-image: fit.png
+image: esdsh.jpg
 code-fold: TRUE
 code-summary: "Show the code"
 editor: source
 ---
 
-This post is based on the text book: [*Evidence Synthesis for Decision Making in Healthcare*](https://onlinelibrary.wiley.com/doi/book/10.1002/9781119942986) (ESDMH) by Nicky J. Welton, Alexander J. Sutton, Nicola J. Cooper, Keith R, Abrams, and A.E. Ades. This textbook is an exemplary presentation of health care decision analysis and Bayesian modeling. The only impediment to its aging well and enjoying a long shelf life that we perceive is that all of code was done in [`WinBugs`](https://en.wikipedia.org/wiki/WinBUGS), pioneering but now obsolete software for evaluating Bayesian MCMC models. Below, we present a `JAGS` version of the `WinBugs` model in Example 2.1 on page 26 of the text. We hope that this post will be useful to readers who would like to work through the examples in the text using tools that are easily accessible.
+This post is based on the textbook: [*Evidence Synthesis for Decision Making in Healthcare*](https://onlinelibrary.wiley.com/doi/book/10.1002/9781119942986) (ESDMH) by Nicky J. Welton, Alexander J. Sutton, Nicola J. Cooper, Keith R, Abrams, and A.E. Ades. This textbook is an exemplary presentation of health care decision analysis and Bayesian modeling. The only impediment to its aging well and enjoying a long shelf life that we perceive is that all of code was done in [`WinBugs`](https://en.wikipedia.org/wiki/WinBUGS), pioneering but now obsolete software for evaluating Bayesian MCMC models. Below, we present a `JAGS` version of the `WinBugs` model in Example 2.1 on page 26 of the text. We hope that this post will be useful to readers who would like to work through the examples in the text using tools that are easily accessible.
 
 ## The JAGS Workflow
 
@@ -230,3 +230,7 @@ jagsUI::traceplot(out_initial, parameters = c("d","tau", "deviance", "delta[1]")
 ## Some Closing Remarks
 
 We think that the point of view taken in ESDMH that Bayesian models which integrate statistical estimations of clinical outcomes with economic considerations is an elegant and powerful approach to decision making in healthcare. This post is just a first step towards showing how ESDMH develops this process. In posts to come we hope to present more examples from the text.
+
+
+*Bob Horton started his career as a molecular biologist, studying genes involved in immune responses (MHC evolution and TCR repertoire), and developing genetic engineering techniques. Analyzing and simulating biological data led him into data science and his current interests which include semantic searching of text data and decision modeling.*
+
