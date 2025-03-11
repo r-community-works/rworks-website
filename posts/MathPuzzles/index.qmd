@@ -1,30 +1,34 @@
 ---
-title: "How many ways to color this grid: Combinatorics in R"
+title: "How many ways to color this grid: teaching Combinatorics using R"
+author: "Vidisha Vachharajani"
+date: 2025-03-21
 format: html
-editor: visual
+editor: source
+description: "A simplified version of the four color theorem: suppose you have a 2x2 grid of squares, and you need to paint each square one of four colors: red, blue, green, or yellow. The restriction is that no two adjacent squares (sharing a side) can have the same color. How many valid ways you can color the grid"
+image: ""
+image-alt: ""
+categories: "Puzzle Corner"
 ---
-
-I love solving puzzles of every kind, but being a statistician, I am partial to combinatorics. The other day, I solved one in R, using `dplyr`.
 
 ## The Problem
 
-This is a very simple version of the classic coloring-a-grid problem, and can also be seen as a graph theory puzzle.
-
 > You have a 2x2 grid of squares, and you need to paint each square one of four colors: red, blue, green, or yellow. The restriction is that no two adjacent squares (sharing a side) can have the same color. How many valid ways you can color the grid?
+
+This problem is a simplified illustration of the four-color [theorem](https://en.wikipedia.org/wiki/Four_color_theorem), which says that four colors are sufficient to color any planar map such that no two adjacent regions share the same color. Additionally, it can be viewed as a specific case of a more generalized problem: coloring a $K$ x $K$ grid with $N$ colors while adhering to adjacency restrictions. From a graph theory perspective, we can represent this grid as a graph where each square corresponds to a vertex, and edges connect vertices that are adjacent. The challenge of coloring the grid without violating the adjacency rule translates to finding a proper vertex coloring of this graph.
 
 ## The Solution
 
-There are many ways to solve this. In each solution, we count the number of combinations that are "correct" or valid, i.e. adhere to the rules given above in the problem. For the solution in R, we will calculate all possible combinations of coloring this grid with no restrictions, and using that, directly count cases which *follow the adjacency rules* specified in the problem.
+There are many ways to solve this. In each solution, we count the number of combinations that are "correct" or valid, i.e. adhere to the rules given above in the problem. For the solution in R, we will generate all possible combinations of coloring this grid with no restrictions, and using that, directly count cases which *follow the adjacency rules* specified in the problem.
 
 I will use `dplyr` to illustrate how easy and straightforward it will be to get to the solution.
 
-The simplest way of calculating ways coloring this grid with no restrictions is to consider that for each of the 4 squares ($n$), there are 4 possible options ($r$, see square above), so that the total number of options we have is essentially —
+The simplest way to calculate ways to color this grid with no restrictions is to consider that for each of the $4$ squares ($n$), there are $4$ possible options ($r$, see square above), so that the total number of options we have is essentially —
 
 $$
 n^r = 4^4 = 256
 $$
 
-We now use R to compute these $256$ options.
+We now use R to generate these $256$ cases or options.
 
 ```{r}
 #| label: Chunk1
@@ -37,7 +41,7 @@ nrow(P)
 head(P)
 ```
 
-How do we now determine which cases do not follow the adjacency rules? To do this, we'll need to use a pattern-searching logic to flag them. One way to do this computationally is to calculate, for all 256 cases, 4 different columns, corresponding to the 4 adjacency restrictions (e.g. red-red, blue-blue, green-green and yellow-yellow). We would then use these 4 columns to compute a single new column flagging cases where adjacency restrictions are followed, i.e. flag *valid* cases, and sum them up.
+How do we now determine which cases do not follow the adjacency rules? To do this, we'll need to use a pattern-searching logic to flag them. One way is to calculate, for all $256$ cases, $4$ different columns, corresponding to the $4$ adjacency restrictions (e.g. red-red, blue-blue, green-green and yellow-yellow). We would then use these $4$ columns to compute a single new column flagging cases where adjacency restrictions are followed, i.e. flag *valid* cases, and sum them up.
 
 However, in R, using `dplyr`, we combine this in a single command using `case when`, which will flag each case whenever it meets the invalidity condition even once, e.g. for the coloring scheme "blue-blue-blue-red", it will flag it "invalid" since just the existence of "blue-blue" is sufficient to deem this scheme invalid.
 
@@ -58,7 +62,7 @@ knitr::kable(case_split, align=rep('c', 2))
 
 There are $84$ valid cases, which can of course be computed arithmetically using combinatorics formulas, or simply going case by case and calculating how many valid cases emerge, which will also give us $84$ valid cases of the total $256$.
 
-Of these remaining $172$ invalid cases, I then thought about how many are so due to not heeding the adjacency rules just once, how many twice or more? For example, "bbbg" does not heed it twice, "bbrg" just once. To do this, for each of the 256 cases, instead of just the existence of invalidity, we flag each occurence of adjacency or invalidity, and then sum them up.
+Of these remaining $172$ invalid cases, I then thought about how many are so due to not heeding the adjacency rules just once, how many twice or more? For example, "bbbg" does not heed it twice, "bbrg" just once. To do this, for each of the $256$ cases, instead of just the existence of invalidity, we flag each occurence of adjacency or invalidity, and then sum them up.
 
 ```{r}
 #| label: Chunk3
@@ -82,7 +86,7 @@ finalCounts <- invalid_data %>% group_by(invalid) %>% summarise(count=n())
 knitr::kable(finalCounts, align=rep('c', 2))
 ```
 
-Finally, because we can, and we love `ggplot2`, let's generate 1 sample grid from each category of invalidity, so that we can visually inspect what we've been saying. The "4x invalid" has 4 pairs of blue, or 4 adjacencies, while the "0x invalid" plot is an example of how we can indeed color a graph, map or a grid with 4 colors with no squares having the same color.
+The first row confirms the count of $84$ valid cases, i.e. have no adjacency problem. Finally, because we can, and we love `ggplot2`, let's generate 1 sample grid from each category of invalidity, so that we can visually inspect what we've been saying. The "4 invalid cases" has 4 pairs of blue, or 4 adjacencies, while the "No invalid cases!" plot is an example of how we can indeed color a graph, map or a grid with 4 colors with no adjacent squares or "regions", having the same color. Some notes on the code used – we plot the 4 examples using `gridExtra`. We'll also use `textGrob` to attribute an overall title for the family of plots, using an elegant font from the Google library ("rouge script"). Click "Show the code" to see the details.
 
 ```{r}
 #| label: Chunk4
@@ -93,12 +97,17 @@ Finally, because we can, and we love `ggplot2`, let's generate 1 sample grid fro
 # Select first row of all groups
 s <- invalid_data %>% group_by(invalid) %>% filter(row_number()==1)
 
-# Load necessary libraries
+# Load necessary libraries for elegant visualizations
 library(ggplot2)
-library(gridExtra)  # or library(patchwork)
-library(dplyr)      # For tibble and data manipulation
+library(grid)       # to ensure "textGrob" works
+library(gridExtra)  
+library(showtext)   # For using custom fonts
 
-# Step 1: Create my color tibble (4x4)
+# Load a font using showtext
+font_add_google("Rouge Script", "rouge script")  # Example: Adding the "Lobster" font
+showtext_auto()  # Automatically use showtext for all plots
+
+# Create my color tibble (4x4)
 sq <- s %>% 
   mutate_all(~ case_when(
     . == "b" ~ "blue",
@@ -108,13 +117,13 @@ sq <- s %>%
     TRUE ~ .  # Keep original value if it doesn't match
   ))
 
-# Step 2: Convert tibble to a matrix
+# Convert tibble to a matrix
 color_matrix <- sq[,-5] %>% select(A,B,D,C) %>% as.matrix() # to match the coloring order of ggplot2
 
 # Check the dimensions of the matrix
 #print(dim(color_matrix))  # Should be 4x4
 
-# Step 3: Function to create a plot based on a color vector and a title
+# Function to create a plot based on a color vector and a title
 create_plot <- function(colors, title) {
   df <- expand.grid(x = 0:1, y = 0:1)
   df$color <- colors
@@ -130,22 +139,36 @@ create_plot <- function(colors, title) {
       axis.title = element_blank(), # Suppress axis titles
       axis.text = element_blank(),  # Suppress axis text
       axis.ticks = element_blank(), # Suppress axis ticks
-      panel.grid = element_blank()   # Suppress grid lines
+      panel.grid = element_blank(),   # Suppress grid lines
+      plot.title = element_text(family = "rouge script", size = 16, hjust = 0.5)  # Use the custom font for the title
     )
 }
 
-# Step 4: Create a vector of titles for each plot
-titles <- c("4x invalid", 
-            "2x invalid", 
-            "1x invalid", 
-            "0x invalid")
+# Create a vector of titles for each plot
+titles <- c("4 invalid cases", 
+            "2 invalid cases", 
+            "1 invalid case", 
+            "No invalid cases!")
 
-# Step 5: Create a list of plots using the color matrix and titles
+# Create a list of plots using the color matrix and titles
 plots <- lapply(1:nrow(color_matrix), function(i) {
   create_plot(color_matrix[i, ], titles[i])
 })
 
-# Step 6: Arrange the plots on one page
-grid.arrange(grobs = plots, ncol = 2)  # 2 columns
+# Create the overall title using textGrob 
+overall_title <- textGrob("Using R to elegantly illustrate the solution to a Combinatorics puzzle", gp = gpar(fontsize = 20, fontfamily = "rouge script"))
 
+# Create a spacer with appropriate height
+spacer <- rectGrob(gp = gpar(fill = NA, col = NA), width = unit(1, "npc"), height = unit(0.5, "lines"))
+
+# Arrange the overall title and plots
+grid.arrange(overall_title, spacer, 
+             arrangeGrob(grobs=plots, ncol = 2), 
+             ncol = 1, heights = c(1, 0.1, 4))
 ```
+
+## About the Author
+
+
+
+*Vidisha writes: "As a statistician and a data geek, I love solving puzzles of all kinds, with a particular fondness for combinatorial challenges. Recently, I tackled one in R using the dplyr package, which prompted me to think about the broader applications of R, not just as a powerful tool for solving puzzles for enthusiasts, but also as an empowering way to teach high school mathematics. Moreover, R's capabilities in data visualization can help learners grasp complex problems more intuitively, ultimately leading to a deeper understanding of their solutions."*
