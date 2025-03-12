@@ -1,5 +1,5 @@
 ---
-title: "Evidence Synthesis for Decision-Making in Healthcare"
+title: "Evidence Synthesis for Decision Making in Healthcare"
 author: "Joseph Rickert and Robert Horton"
 date: 2025-03-12
 description: "This post presents a JAGS version of a WinBUGS model presented in the classic textbook *Evidence Synthesis for Decision Making in Healthcare* by Nicky J. Welton, Alexander J. Sutton, Nicola J. Cooper, Keith R. Abrams, and A.E. Ades."
