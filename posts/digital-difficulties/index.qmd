@@ -31,15 +31,14 @@ Let's look at a super brute force solution first, and then a more elegant, but s
 ### The Brute Force Solution
 
 ```{r echo=FALSE}
-
 bigint = factorial(10)
-bigstr = format(bigint, big.mark=",", scientific=FALSE)
+bigstr = format(bigint, big.mark = ",", scientific = FALSE)
 
 medint = factorial(8)
-medstr = format(medint, big.mark=",", scientific=FALSE)
+medstr = format(medint, big.mark = ",", scientific = FALSE)
 
-nperms = medint*4
-npermstring = format(nperms, big.mark=",", scientific=FALSE)
+nperms = medint * 4
+npermstring = format(nperms, big.mark = ",", scientific = FALSE)
 ```
 
 With a modern computer, one could simply generate all $10! =$ `r bigstr` possible permutations of the ten digits. 
@@ -67,7 +66,7 @@ Let's code this solution up, in R.
 We'll start by multiplying all the primes in our range:
 
 ```{r}
-m = 2*3*5*7*11*13*17
+m = 2 * 3 * 5 * 7 * 11 * 13 * 17
 m
 ```
 
@@ -83,7 +82,6 @@ not_divisible_by = function(m) {
 }
 
 not_divisible_by(m)
-
 ```
 
 If we further multiply $m$ by another 3, it will then be divisible by 9 and 18. If we then also multiply $m$ by 4, it will
@@ -91,13 +89,12 @@ be divisible by 4, 8, and 12. This leaves 16, which means we need another 2.
 
 ```{r}
 # 3 and 4, first
-m = m*3*4
+m = m * 3 * 4
 not_divisible_by(m)
 
 # now an extra 2
-m = m*2
+m = m * 2
 not_divisible_by(m)
-
 ```
 
 That gives us m = `r as.integer(m)`, which should be the smallest number divisible by all integers from 2 to 18. 
@@ -120,9 +117,8 @@ minC = 1234567890
 maxC = 9876543210
 
 # the range of multipliers to consider
-crange = round(c(minC, maxC)/m)
+crange = round(c(minC, maxC) / m)
 crange
-
 ```
 
 This leaves `r as.integer(crange[2] - crange[1] + 1)` candidates to check, which is far fewer than `r npermstring`.
@@ -133,10 +129,11 @@ So let's write the filter and do the calculation:
 ```{r}
 ten_unique_digits = function(nint) {
   nstring = as.character(nint)
-  if(nchar(nstring) != 10) return(FALSE)
+  if (nchar(nstring) != 10)
+    return(FALSE)
   
   # create a vector of digits
-  digits = unlist(strsplit(nstring, split=""))
+  digits = unlist(strsplit(nstring, split = ""))
   
   length(unique(digits)) == length(digits)
 }
@@ -147,7 +144,6 @@ cfilter = vapply(candidates, ten_unique_digits, logical(1))
 
 solns = candidates[cfilter]
 solns
-
 ```
 
 There are `r length(solns)` solutions! Let's check manually that all solutions are valid.
@@ -155,15 +151,14 @@ There are `r length(solns)` solutions! Let's check manually that all solutions a
 ```{r}
 for(s in solns) {
   print(paste("Checking solution", s))
-  for(i in 2:18) {
+  for (i in 2:18) {
     stopifnot(s %% i == 0)
   }
   print("--- Checks out")
 }
 
 # let's also find the multipliers
-solns/m
-
+solns / m
 ```
 
 And we are done! ✅
@@ -171,7 +166,7 @@ And we are done! ✅
 ## But How Would Dudeney Solve This?
 
 ```{r echo=FALSE}
-multipliers = solns/m
+multipliers = solns / m
 lowestm = multipliers[1]
 first_to_check = crange[1]
 ncheck = lowestm - first_to_check
@@ -192,7 +187,7 @@ One of the descendants of the Arithmometer is the [Curta calculator](https://en.
 at Win Vector just happen to have one! Solving this problem with a Curta would be much like solving it with an Arithmometer. 
 Here's a video of John Mount "finding" the smallest solution to the puzzle:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/KHiS7niRdQI?si=e9sLc6W5nvOz_wzj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<center><iframe width="560" height="315" src="https://www.youtube.com/embed/KHiS7niRdQI?si=e9sLc6W5nvOz_wzj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></center>
 
 The discovered solution is in the black area, and the associated multiple of $m$ is in the white area. Keep in mind that John already knew how many cranks he had to do before a solution came up, and after about the first two or three cranks, he stopped checking for duplicate digits. So this is probably a little faster than it would take someone who really didn't know what the answer was.
 
