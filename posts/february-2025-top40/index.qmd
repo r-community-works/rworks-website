@@ -1,0 +1,69 @@
+---
+title: "February 2025 Top 40 New CRAN Packages"
+author: "Joseph Rickert"
+date: 2025-02-28
+description: "An attempt to capture the depth and breadth of what's new on CRAN."
+image: ""
+image-alt: ""
+categories: ""
+code-fold: true
+code-summary: "Show the code"
+editor: source
+---
+
+In Fegruary,zzzzzz new packages made it to CRAN. Here are my Top 40 picks in sixteen categories: Archaeology, Artificial Intelligence, Computational Methods, Ecology, Epidemiology, Finance, Genomics, Health Technology Assessment, Machine Learning, Medicine, Music, Pharma, Statistics, Time Series, Utilities, and Visualization.
+
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+![](.png){fig-alt=""}
+[gander](https://CRAN.R-project.org/package=gander) v0.1.0: Provides a *Copilot* completion experience that knows how to talk to the objects in your R environment. `ellmer` chats are integrated directly into your 'RStudio' and 'Positron' sessions, automatically incorporating relevant context from surrounding lines of code and your global environment. See the [vignette](https://cran.r-project.org/web/packages/gander/vignettes/gander.html) to get started.
+
+![](gander.gif){fig-alt="Gifof gander use"}
+
+[GitAI](https://cran.r-project.org/package=GitAI) v0.1.0: Provides functions to scan multiple `Git` repositories, pull specified files content and process it with large language models. You can summarize the content, extract information and data, or find answers to your questions about the repositories. The output can be stored in vector database and used for semantic search or as a part of a RAG (Retrieval Augmented Generation) prompt. See the [vignette](https://cran.r-project.org/web/packages/GitAI/vignettes/building-shiny-app-chatbot.html.)
+
+
+![](GitAI.gif){fig-alt="Exaple GIF"}
+ ## Computational Methods
+ 
+ [pnd](https://cran.r-project.org/package=pnd) v0.0.9: Provides functions to compute numerical derivatives including gradients, Jacobians, and Hessians through finite-difference approximations with parallel capabilities and optimal step-size selection to improve accuracy. Advanced features include computing derivatives of arbitrary order, improving the accuracy of Hessian approximations by avoiding repeated differencing, and parallelising slow functions on Windows, Mac, and Linux. There are three vignettes on the topics: [Compatibality with numDeriv](https://cran.r-project.org/web/packages/pnd/vignettes/compatibility-with-numDeriv.html), [Parallel numerical derivatives](https://cran.r-project.org/web/packages/pnd/vignettes/fast-and-accurate.html), and [Step-size selection](https://cran.r-project.org/web/packages/pnd/vignettes/step-size-selection.html.
+
+[rmcmc](https://cran.r-project.org/package=rmcmc) v0.1.1: Provides functions to simulate Markov chains using the Barker proposal (See [Livingstone and Zanella (2022)](https://academic.oup.com/jrsssb/article/84/2/496/7056132?login=false) ) to compute Markov chain Monte Carlo (MCMC) estimates of expectations with respect to a target distribution on a real-valued vector space. The package also provides implementations of alternative proposal distributions, such as (Gaussian) random walk and Langevin proposals. Optionally, if [BridgeStan's R interface](https://roualdBridgeStan) `BridgeStan` can be used to specify the target distribution to sample from. There is an [Introduction](https://cran.r-project.org/web/packages/rmcmc/vignettes/barker-proposal.html) to the Barker proposal and a vignette on [Adjusting the noise distribution](https://cran.r-project.org/web/packages/rmcmc/vignettes/adjusting-noise-distribution.html).
+
+![](rmcmc.png){fig-alt="Plot of mcmc chain adapting to Langevin proposal"}
+
+## Genomics
+
+[gimap](https://cran.r-project.org/package=gimap) v1.0.3: Helps to calculate genetic interactions in *CRISPR* targets by taking data from paired CRISPR screens that has been pre-processed to counts table of paired gRNA reads. Output are genetic interaction scores, the distance between the observed CRISPR score and the expected CRISPR score. See [Berger et al. (2021)]()01035-4?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS2211124721010354%3Fshowall%3Dtrue) for background and the vignettes [Quick Start](https://cran.r-project.org/web/packages/gimap/vignettes/quick-start.html), [Timepoint Experiment](https://cran.r-project.org/web/packages/gimap/vignettes/timepoint-example.html), and [Treatment Experiment](https://cran.r-project.org/web/packages/gimap/vignettes/treatment_example.html).
+
+
+## Mathematics
+
+[flint](https://cran.r-project.org/package=flint) v0.0.3: Provides an interface to [`FLINT`](https://flintlib.org/), a C library for number theory which extends GNU [MPFR](https://www.mpfr.org/) and GNU [MP](https://gmplib.org/) with support for arithmetic in standard rings (the integers, the integers modulo n, the rational, p-adic, real, and complex numbers) as well as vectors, matrices, polynomials, and power series over rings and implements midpoint-radius interval arithmetic, in the real and complex numbers See [Johansson (2017)](https://ieeexplore.ieee.org/document/7891956) for information on computation in arbitrary precision with rigorous propagation of errors see the [NIST Digital Library of Mathematical Functions](https://dlmf.nist.gov/) for information on additional capabilities. Look [here](https://github.com/jaganmn/flint) to get started.
+
+
+
+:::
+
+# BEGIN MIDDLE
+![](.png){fig-alt=""}
+
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+# END MIDDLE
+
+
+
+![](.png){fig-alt=""}
+:::
+
+
+::::
