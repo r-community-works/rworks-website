@@ -67,7 +67,8 @@ case_split <- P %>%
       .default = "valid"
     )
   ) %>%
-  group_by(flag) %>% summarise(count = n())
+  group_by(flag) %>% 
+  summarise(count = n())
 
 knitr::kable(case_split, align = rep('c', 2))
 ```
@@ -94,9 +95,13 @@ flag_invalid_adj <- function(df) {
 }
 
 cols <- P[, 1:4]
-invalid_data <- flag_invalid_adj(cols) %>% select(A, B, C, D, invalid)
-finalCounts <- invalid_data %>% group_by(invalid) %>% summarise(count =
-                                                                  n())
+invalid_data <- flag_invalid_adj(cols) %>% 
+  select(A, B, C, D, invalid)
+
+finalCounts <- invalid_data %>% 
+  group_by(invalid) %>%
+  summarise(count = n())
+
 knitr::kable(finalCounts, align = rep('c', 2))
 ```
 
