@@ -95,6 +95,15 @@ In Fegruary,zzzzzz new packages made it to CRAN. Here are my Top 40 picks in six
 
 
 
+## Time Series
+
+[BayesChange](https://cran.r-project.org/package=BayesChange) v2/0/0: Provides functions for change point detection on univariate and multivariate time series according to the methods presented by [Martinez & Mena (2014)](https://projecteuclid.org/journals/bayesian-analysis/volume-9/issue-4/On-a-Nonparametric-Change-Point-Detection-Model-in-Markovian-Regimes/10.1214/14-BA878.full) and [Corradin et al. (2022)](https://www.sciencedirect.com/science/article/abs/pii/S0888613X21002231?via%3Dihub) along with methods for clustering time dependent data with common change points. See [Corradin et. al. (2024)](https://arxiv.org/abs/2410.09552). There is a [tutorial](https://cran.r-project.org/web/packages/BayesChange/vignettes/tutorial.html).
+
+![](BC.png){fig-alt="Time series clusters"}
+[echos](https://cran.r-project.org/package=echos) v1.0.3: Provides a lightweight implementation of functions and methods for fast and fully automatic time series modeling and forecasting using Echo State Networks. See he vignettes [Base functions](https://cran.r-project.org/web/packages/echos/vignettes/vignette_01_baseR.html) and [Tidy functions](https://cran.r-project.org/web/packages/echos/vignettes/vignette_02_tidyR.html).
+
+![](echos.png){fig-alt="Example of time series forecast"}
+
 ![](.png){fig-alt=""}
 :::
 
