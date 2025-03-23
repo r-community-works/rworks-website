@@ -332,7 +332,7 @@ rms_fcst
 
 ## Question
 
-All of this leads to a an interesting question: *Given a time series with sufficient observations to hold out some data for predictions, an ARIMA model that provides a reasonable fit to the data based on the RMSE of the predictions, and an epsilon: is there a procedure to reliably find an additional ARIMA model that fits the data with an RMSE that is within epsilon of known solution?*
+All of this leads to a an interesting question: *Given a time series with sufficient observations to hold out some data for predictions, an ARIMA model that provides a reasonable fit to the data based on the RMSE of the predictions, and an epsilon: is there a procedure, other than trial and error, based on the underlying theory of stochastic difference equations to reliably find an additional ARIMA model that fits the data with an RMSE that is within epsilon of known solution?*
 
 
 
