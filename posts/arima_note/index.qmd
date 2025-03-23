@@ -10,7 +10,7 @@ categories: ""
 editor: source
 ---
 
-In my previous post [A First Look at TimeGPT using nixtlar](https://rworks.dev/posts/revised_TimeGPT/), I used the `auto.arima()` function from the `forecast` package to fit an ARIMA model to a time series of electricity usage data in order to compare and ARIMA forecast with the `TimeGPT` forecast. While working out the bugs in that post, I also fit an automatic ARIMA model using the newer and improved `fable` package and was very surprised, maybe even astonished, by the results. In this post I will show what surprised me, repeating some of the code from the earlier post for convenience.
+In my previous post [A First Look at TimeGPT using nixtlar](https://rworks.dev/posts/revised_TimeGPT/), I used the `auto.arima()` function from the `forecast` package to fit an ARIMA model to a time series of electricity usage data in order to compare and ARIMA forecast with the `TimeGPT` forecast. While working out the bugs in that post, I also fit an automatic ARIMA model using the newer and improved `fable` package and was very surprised by the results. In this post I will show what surprised me, work through my investigation and and with an interesting question.
 
 Here are the necessary libraries and the data that we will be working with.
 
@@ -96,7 +96,7 @@ Here, I extract the forecast and set up a data frame to hold the comparative for
 arima_fcst_df <- BE_test_df |> 
   mutate(time = ds,
     BE_actual = y,
-    arima = as.vector(arima_fore$mean)) |> 
+    arima = as.vector(arima$mean)) |> 
   select(-ds,-y)
 head(arima_fcst_df,3)
 
@@ -108,9 +108,11 @@ head(arima_fcst_df,3)
 
 ### fable
 
-
+Now, I go throughthe same process but using the functions from the `fable` package.
 
 ```{r}
+#| message: false
+#| warning: FALSE
 auto_train <- BE_train_df |> select(-unique_id) |>
 mutate(time = as.POSIXct(ds, format = "%Y-%m-%d %H:%M:%S")) |> select(-ds)
   
@@ -120,7 +122,7 @@ elec_ts_2 <- auto_train |> as_tsibble(index = time) |> fill_gaps(time, .full = s
 
 
 
-Here is the automatic ARIMA model fit using the `fable` package and the big surprise. `fable` fit an ARIMA(0,1,4)(0,0,2)[24] to the data which is quite different from the ARIMA(2,1,1)(1,0,1)[24] model that the `forecast` package fit.
+Here is the automatic ARIMA model fit using the `fable` package and the big surprise. `fable` fit an ARIMA(0,1,4)(0,0,2)[24] to the data which looks quite different from the ARIMA(2,1,1)(1,0,1)[24] model that the `forecast` package fit.
 ```{r}
 fit <- elec_ts_2 %>%
   model(
@@ -129,7 +131,10 @@ fit <- elec_ts_2 %>%
 fable_ARIMA_fcst <- fit |> forecast(h = 24)
 fit
 ```
-Let's work out the short hand notation for the two models and see what the math looks like.
+
+## A Digression about Notation
+
+So, why do I assert that the two model look to be quite different? Well, let's work out the short hand notation for the two models and see what the math looks like.
 
 ## ARIMA(2,1,1)(1,0,1)[24] from forecast package
 
@@ -149,9 +154,10 @@ $$(1 - B)y_t = (1 - \theta_1B - \theta_2 B^2 - \theta_3 B^3 - \theta_4 B^4)(1 - 
 which expands into:
 
 $$y_t−y_{t−1}=\varepsilon_t−\theta_1\varepsilon_{t−1}−\theta_2\varepsilon_{t−2}−\theta_3\varepsilon_{t−3}−\theta_4\varepsilon_{t−4}−\Theta_1\varepsilon_{t−24}+\theta_1\Theta_1\varepsilon_{t−25}+\theta_2\Theta_1\varepsilon_{t−26}+\theta_3\Theta_1\varepsilon_{t−27}+\theta_4\Theta_1\varepsilon_{t−28}−\Theta_2\varepsilon_{t−48}+ \theta_1\Theta_2\varepsilon_{t−49} +\theta_2\Theta_2\varepsilon_{t−50}+\theta_3\Theta_2\varepsilon_{t−51}+\theta_4\Theta_2\varepsilon_{t−52}$$
-These mathematical models don't look anyting alik and I have no intuition why they should so let's see how the forecasts compare
+These mathematical models don't look anything alike and I have no intuition why they should both be reasonable models for the data. But, let's see how the forecasts compare
 
 Put the `fable` forecast upper case ARIMA into the data frame.
+
 ```{r}
 
 
@@ -163,6 +169,7 @@ head(arima_fcst_df,3)
 ```
 
 Plot and compare.
+
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -189,7 +196,7 @@ q
 compare_fore(arima_fcst_df)
 ```
 
-The two forecasts are almost on top of each other and the RMSE values are very close.
+The two forecasts are almost on top of each other and running this code shows that the RMSE values from the actual data are also very close.
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -206,10 +213,9 @@ rms_fcst[2] <- RMSE(arima_fcst_df$ARIMA, arima_fcst_df$BE_actual)
 rms_fcst
 ```
 
+## An Investigation
 
-##  ARIMA(2,1,1)(1,0,1)[24] from fable package
-
-As a check on the stability of the apparent equivalence of the two models, I will use the `fable` package to fit the ARIMA(0,1,4)(0,0,2)[24] model discovered by the `forecast` package to the data.
+First let's check that `fable` agrees with `forecast` with respect to the ARIMA(2,1,1)(1,0,1)[24] model. I use the `fable` package to fit the ARIMA(0,1,4)(0,0,2)[24] model discovered by the `forecast` package to the data.
 
 ```{r}
 fit_2 <- elec_ts_2  %>%
@@ -219,6 +225,7 @@ report()
 ```
  
 Make the forecast and add it to the plotting data frame.
+
 ```{r}
 fable_ARIMA_fcst_2 <- fit_2 |> forecast(h = 24)
 
@@ -226,13 +233,27 @@ arima_fcst_df <- arima_fcst_df |> mutate(ARIMA_2 =  as.vector(fable_ARIMA_fcst_2
 head(arima_fcst_df,3)
 ```
 
-And plot all three forecasts.
+Plotting the forecasts shows that the forecasts from , *arima* , the original ARIMA(2,1,1)(1,0,1)[24] model from the `forecast` package, *ARIMA*, the ARIMA(0,1,4)(0,0,2)[24] model from `fable` and *ARIMA_2*, the ARIMA(2,1,1)(1,0,1)[24] model from `fable` are all more or less on top of each other.
 
 ```{r}
 compare_fore(arima_fcst_df)
 ```
 
 
+```{r}
+#| warning: FALSE
+#| message: FALSE
+fit_2_aug<- fit_2 %>% augment()            # Get fitted values and residuals
+fit_aug <- fit %>% augment() 
+ARIMA <- fit_aug$.resid
+ARIMA_2 <- fit_2_aug$.resid
+r_df <- data_frame(ARIMA, ARIMA_2)
+r_df |> ggplot(aes(ARIMA,ARIMA_2)) + geom_point(color = "darkblue") +
+        ggtitle("residuals ARIMA(2,1,1)(1,0,1)[24] vs ARIMA(0,1,4)(0,0,2)[24]")
+```
+
+
+And, we see that the *arima* and *ARIMA_2* RMSE errors are very close.
 ```{r}
 #| code-fold: true
 
@@ -248,22 +269,50 @@ rms_fcst[3] <- RMSE(arima_fcst_df$ARIMA_2, arima_fcst_df$BE_actual)
 rms_fcst
 ```
 
+## Is this Really a Surprise?
+
+Should I have been surprised by seeing two different auto fit models for the same time series that produce forecasts that are really close to each other? Anyone who has every tried to find a suitable ARIMA model by followint the theory in the textbooks: looking at the ACF and PACF functions etc., knows how fragile the process is. Indeed, the experts will tell you that the *identifiability* of ARIMA models is a well-known problem. Consider this note on page 305 from [Brockwell and Davis (1987)](https://link.springer.com/book/10.1007/978-1-4899-0004-3):
+
+*Of course in the modelling of real data there is rarely such a thing as the "true order". For the process $X_t =  \sum_{j=0}^{\infty} \psi_jZ_{t-j}$  there may be many polynomials $\theta(z)$, $\phi(z)$ such that the coefficients of $z^j$ in $\theta(z)/\phi(z)$ closely approximate $\psi_j$ for moderately small values of j. Correspondingly there may be many ARMA processes with properties similar to {X,}. This problem of identifiability becomes much more serious for multivariate processes.*
+
+Because the two nearly identical solutions to the problem of finding a model that adequately fits the data are essentially linear equations, I imagine that they live somewhere close to each other in a multidimensinal vector space. Are there other solutions nearby? Are there better solutions? Given that I have two solutions, it seemed reasonable that naive fiddling with the parameters might work. And although most combinations of the p,d,q,P,D,Q parameters predictably resulted in numerical errors of one sort or another, I did find did find another solution. 
+
+# COMBINATION of TWO MODELS
+
+```{r}
+fit_aA <- elec_ts_2  %>%
+as_tsibble() %>%
+model(aA = ARIMA(y ~ 0 + pdq(0, 1, 3) + PDQ(0, 0, 2))) %>% 
+report()
+```
+```{r}
+fable_ARIMA_aA <- fit_aA |> forecast(h = 24)
+
+arima_fcst_df <- arima_fcst_df |> mutate(ARIMA_aA =  as.vector(fable_ARIMA_aA$.mean) )
+
+compare_fore(arima_fcst_df)
+```
 
 
+If you care about the third decimal place in the RMSE calculation, you might consider it to be the best solution so far.
+```{r}
+#| code-fold: true
 
+RMSE <-  function(m, o){sqrt(mean((m - o)^2))}
+rms_names <- c("arima", "ARIMA", "ARIMA_2","ARIMA_aA")
+rms_fcst <- array(NA_real_,
+                          dim = 4,
+                          dimnames = list(rms_names))
+rms_fcst[1] <- RMSE(arima_fcst_df$arima, arima_fcst_df$BE_actual)
+rms_fcst[2] <- RMSE(arima_fcst_df$ARIMA, arima_fcst_df$BE_actual)
+rms_fcst[3] <- RMSE(arima_fcst_df$ARIMA_2, arima_fcst_df$BE_actual)
+rms_fcst[4] <- RMSE(arima_fcst_df$ARIMA_aA, arima_fcst_df$BE_actual)
+rms_fcst
+```
 
+## Question
 
-Note from page 305 from Brockwell and Davis
+All of this leads to a an interesting question: *Given a time series with enough observations to hold out some data on its tail for predictions, a model fit by the auto ARIMA function, and an epsilon: is there a systematic way based on some theory to search for an additional ARIMA model that fits the data with a least squares error from the actual hold out values, that is with epsilon of the auto-ARIMA model?*
 
->Of course in the modelling of real data there is rarely such a thing as the "true order". For the process X, = L� o l/JjZr -j there may be many polynomials 8(z), ¢(z) such that the coefficients of zj in 8(z)j¢(z) closely approximate l/Jj for moderately small values of j. Correspondingly there may be many ARMA processes with properties similar to {X,}. This problem of identifiability becomes much more serious for multivariate processes.
+We at R Works would be very happy to publish a post that might illuminate this question.
 
-
-
-# Fit
-
-
-
-
-## References
-
-Brockwell, Peter J. and Richard A. Davis, Time Series: Theory and Methods, 2nd ed, Springer (2002)
