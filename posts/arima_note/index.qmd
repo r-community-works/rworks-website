@@ -289,7 +289,7 @@ Should I have been surprised by seeing two different auto fit models for the sam
 
 ## Variations on a Theme
 
-Because the two nearly identical solutions to the problem of finding a model that adequately fits the data are essentially linear equations, I imagine that they live somewhere close to each other in a multidimensinal vector space. Are there other solutions nearby? Are there better solutions? Given that I have two solutions, it seemed reasonable that naive fiddling with the parameters of either or both of these might produce something useful. As it turns out most of the uniformed perturbations of the p,d,q,P,D,Q parameters resulted in numerical errors of one sort or another or inferior solutions. This is also not surprising. However, I did find a third solution that is at least as good as the others.
+Because the two nearly identical solutions to the problem of finding a model that adequately fits the data are essentially linear equations, I imagine that they live somewhere close to each other in a multidimensinal vector space. Are there other solutions nearby? Are there better solutions? Given that I have two solutions, it seems reasonable to assume that minor perturbations of the p,d,q,P,D,Q parameters may turn up additional models with similiar RMSE profiles. As it turned out, most of the parameter fiddling that I tried resulted in numerical errors of one sort or another or inferior solutions. This is  not surprising. However, I did find a third solution that is at least as good as the others.
 
 
 ```{r}
@@ -330,9 +330,11 @@ rms_fcst[4] <- RMSE(arima_fcst_df$ARIMA_aA, arima_fcst_df$BE_actual)
 rms_fcst
 ```
 
-## Question
+## Summary
 
-All of this leads to a an interesting question: *Given a time series with sufficient observations to hold out some data for predictions, an ARIMA model that provides a reasonable fit to the data based on the RMSE of the predictions, and an epsilon: is there a procedure, other than trial and error, based on the underlying theory of stochastic difference equations to reliably find an additional ARIMA model that fits the data with an RMSE that is within epsilon of known solution?*
+I have three different models for the BE Electricity Usage time series. Each provides a reasonably good fit based on comparing the RMSE of its respective forecasts with the actual data of the hold-out test data. Because of they way they were constructed it seems reasonable to assume that these solutions are somehow "close" to each other in the vector space containing the stochastic difference equations that constitute the models. A resonable question is: are there better models that live somewhere else in the vector space? Answering this means going back to fundamentals and searching for structure that may still be in the residuals. I will leave that for another time.
+
+
 
 
 
