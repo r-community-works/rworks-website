@@ -104,6 +104,12 @@ In Fegruary,zzzzzz new packages made it to CRAN. Here are my Top 40 picks in six
 
 ![](echos.png){fig-alt="Example of time series forecast"}
 
+## Visualization
+
+[jellyfisher](https://cran.r-project.org/package=jellyfisher) v1.0.4: Generates interactive Jellyfish plots to visualize spatiotemporal tumor evolution by integrating sample and phylogenetic trees into a unified plot. This approach provides an intuitive way to analyze tumor heterogeneity and evolution over time and across anatomical locations. The Jellyfish plot visualization design was first introduced by [Lahtinen et al. (2023)](https://www.cell.com/cancer-cell/fulltext/S1535-6108(23)00143-5?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS1535610823001435%3Fshowall%3Dtrue). See the [vignette](https://hautaniemilab.github.io/jellyfisher/).
+
+![](jelly.svg){fig-alt="Example Jellyfisher Plot"}
+
 ![](.png){fig-alt=""}
 :::
 
