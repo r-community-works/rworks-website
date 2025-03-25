@@ -19,6 +19,12 @@ In Fegruary,zzzzzz new packages made it to CRAN. Here are my Top 40 picks in six
 ::: {.column width="45%"}
 
 ![](.png){fig-alt=""}
+## AI
+
+[chores](https://cran.r-project.org/package=chores) v0.1.0: Provides a collection of ergonomic large language model assistants designed to help you complete repetitive, hard-to-automate tasks quickly. After selecting some code, press the keyboard shortcut you've chosen to trigger the package app, select an assistant, and watch your chore be carried out. Users can create custom helpers just by writing some instructions in a markdown file. There are three vignettes: [Getting started](https://cran.r-project.org/web/packages/chores/vignettes/chores.html), [Custom helpers](https://cran.r-project.org/web/packages/chores/vignettes/custom.html), and [Gallery](https://cran.r-project.org/web/packages/chores/vignettes/gallery.html).
+
+![](chores.gif){fig-alt="Working with chores gif"}
+
 [gander](https://CRAN.R-project.org/package=gander) v0.1.0: Provides a *Copilot* completion experience that knows how to talk to the objects in your R environment. `ellmer` chats are integrated directly into your 'RStudio' and 'Positron' sessions, automatically incorporating relevant context from surrounding lines of code and your global environment. See the [vignette](https://cran.r-project.org/web/packages/gander/vignettes/gander.html) to get started.
 
 ![](gander.gif){fig-alt="Gifof gander use"}
@@ -29,16 +35,56 @@ In Fegruary,zzzzzz new packages made it to CRAN. Here are my Top 40 picks in six
 ![](GitAI.gif){fig-alt="Exaple GIF"}
  ## Computational Methods
  
- [pnd](https://cran.r-project.org/package=pnd) v0.0.9: Provides functions to compute numerical derivatives including gradients, Jacobians, and Hessians through finite-difference approximations with parallel capabilities and optimal step-size selection to improve accuracy. Advanced features include computing derivatives of arbitrary order, improving the accuracy of Hessian approximations by avoiding repeated differencing, and parallelising slow functions on Windows, Mac, and Linux. There are three vignettes on the topics: [Compatibality with numDeriv](https://cran.r-project.org/web/packages/pnd/vignettes/compatibility-with-numDeriv.html), [Parallel numerical derivatives](https://cran.r-project.org/web/packages/pnd/vignettes/fast-and-accurate.html), and [Step-size selection](https://cran.r-project.org/web/packages/pnd/vignettes/step-size-selection.html.
+[nlpembeds](https://cran.r-project.org/package=nlpembeds) v1.0.0: Provides efficient methods to compute co-occurrence matrices, pointwise mutual information (PMI) and singular value decomposition (SVD) especially useful when working with huge databases in biomedical and clinical settings. Functions can be called on `SQL` databases, enabling the computation of co-occurrence matrices of tens of gigabytes of data, representing millions of patients over tens of years. See [Hong (2021)](https://www.nature.com/articles/s41746-021-00519-z) for background and the [vignette](https://cran.r-project.org/web/packages/nlpembeds/vignettes/cooc_pmi_svd.html) for examples.
+ 
+[NLPwavelet](https://cran.r-project.org/package=NLPwavelet) v1.0: Provides functions for Bayesian wavelet analysis using individual non-local priors as described in [Sanyal & Ferreira (2017)](https://link.springer.com/article/10.1007/s13571-016-0129-3) and non-local prior mixtures as described in [Sanyal (2025)](https://arxiv.org/abs/2501.18134). See [README](https://cran.r-project.org/web/packages/NLPwavelet/readme/README.html) to get started.
+
+![](NLPwavelet.png){fig-alt="Wavelet plot of posterior "}
+ 
+[pnd](https://cran.r-project.org/package=pnd) v0.0.9: Provides functions to compute numerical derivatives including gradients, Jacobians, and Hessians through finite-difference approximations with parallel capabilities and optimal step-size selection to improve accuracy. Advanced features include computing derivatives of arbitrary order, improving the accuracy of Hessian approximations by avoiding repeated differencing, and parallelising slow functions on Windows, Mac, and Linux. There are three vignettes on the topics: [Compatibality with numDeriv](https://cran.r-project.org/web/packages/pnd/vignettes/compatibility-with-numDeriv.html), [Parallel numerical derivatives](https://cran.r-project.org/web/packages/pnd/vignettes/fast-and-accurate.html), and [Step-size selection](https://cran.r-project.org/web/packages/pnd/vignettes/step-size-selection.html.
 
 [rmcmc](https://cran.r-project.org/package=rmcmc) v0.1.1: Provides functions to simulate Markov chains using the Barker proposal (See [Livingstone and Zanella (2022)](https://academic.oup.com/jrsssb/article/84/2/496/7056132?login=false) ) to compute Markov chain Monte Carlo (MCMC) estimates of expectations with respect to a target distribution on a real-valued vector space. The package also provides implementations of alternative proposal distributions, such as (Gaussian) random walk and Langevin proposals. Optionally, if [BridgeStan's R interface](https://roualdBridgeStan) `BridgeStan` can be used to specify the target distribution to sample from. There is an [Introduction](https://cran.r-project.org/web/packages/rmcmc/vignettes/barker-proposal.html) to the Barker proposal and a vignette on [Adjusting the noise distribution](https://cran.r-project.org/web/packages/rmcmc/vignettes/adjusting-noise-distribution.html).
 
 ![](rmcmc.png){fig-alt="Plot of mcmc chain adapting to Langevin proposal"}
 
+[sgdGMF](https://cran.r-project.org/package=sgdGMF) v1.0: Implements a framework to estimate high-dimensional, generalized matrix factorization models using penalized maximum likelihood under a dispersion exponential family specification including the stochastic gradient descent algorithm with a block-wise mini-batch strategy, and an efficient adaptive learning rate schedule to stabilize convergence. All the theoretical details can be found in [Castiglione et al. (2024)](https://arxiv.org/abs/2412.20509), Also included are the alternated iterative re-weighted least squares and the quasi-Newton method with diagonal approximation of the Fisher information matrix discussed in [Kidzinski et al. (2022)](http://jmlr.org/papers/v23/20-1104.html>). There are four vignettes including [introduction](https://cran.r-project.org/web/packages/sgdGMF/vignettes/introduction.html) and [residuals](https://cran.r-project.org/web/packages/sgdGMF/vignettes/residuals.html).
+
+![](sgdGMF.png){fig-alt="Plots of Deviance and Pearson residuals"}
+
+
+## Data
+
+[OhdsiReportGenerator](https://cran.r-project.org/package=OhdsiReportGenerator) v1.0.1: Extracts results from the[ ]Observational Health Data Sciences and Informatics result database](https://ohdsi.github.io/Strategus/results-schema/index.html) and generates `Quarto` reports and presentations. See the [package guide](https://cran.r-project.org/web/packages/OhdsiReportGenerator/vignettes/ExampleCode.html).
+
+[wbwdi](https://cran.r-project.org/package=wbwdi) v1.0.0: Provides functions to access and analyze the World Bank’s World Development Indicators (WDI) using [the corresponding API](https://datahelpdesk.worldbank.org/knowledgebase/articles/889392-about-the-indicators-api-documentation). WDI provides more than 24,000 country or region-level indicators for various contexts. See the [vignette](https://cran.r-project.org/web/packages/wbwdi/vignettes/data-model.html).
+
+![](wbwdi.png){fig-alt="wbwdi data model"}
+
+## Ecology
+
+[rangr](https://cran.r-project.org/package=rangr) v1.0.6: Implements a mechanistic virtual species simulator that integrates population dynamics and dispersal to study the effects of environmental change on population growth and range shifts. Look [here](https://docs.ropensci.org/rangr/) for background and see the [vignette](https://cran.r-project.org/web/packages/rangr/vignettes/rangr.html) to get started.
+
+![](rangr.png){fig-alt="Abundance plotsl"}
+
+## Economics
+
+[godley](https://cran.r-project.org/package=godley) v0.2.2: Provides tools to define, simulate, and validate stock-flow consistent (SFC) macroeconomic models by specifying governing systems of equations. Users can analyze how  macroeconomic structures affect key variables, perform sensitivity analyses, introduce policy shocks, and visualize resulting economic scenarios. See [Godley and Lavoie (2007)](https://link.springer.com/book/10.1007/978-1-137-08599-3), [Kinsella and O'Shea (2010)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1729205) for background and the [vignette](https://cran.r-project.org/web/packages/godley/vignettes/package_outline.html) to get started.
+
+![](godley.png){fig-alt="Example model structure"}
+
 ## Genomics
 
 [gimap](https://cran.r-project.org/package=gimap) v1.0.3: Helps to calculate genetic interactions in *CRISPR* targets by taking data from paired CRISPR screens that has been pre-processed to counts table of paired gRNA reads. Output are genetic interaction scores, the distance between the observed CRISPR score and the expected CRISPR score. See [Berger et al. (2021)]()01035-4?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS2211124721010354%3Fshowall%3Dtrue) for background and the vignettes [Quick Start](https://cran.r-project.org/web/packages/gimap/vignettes/quick-start.html), [Timepoint Experiment](https://cran.r-project.org/web/packages/gimap/vignettes/timepoint-example.html), and [Treatment Experiment](https://cran.r-project.org/web/packages/gimap/vignettes/treatment_example.html).
 
+
+[MIC](https://cran.r-project.org/package=MIC) v1.0.2: Provides functions to analyse, plot, and tabulate antimicrobial [minimum inhibitory concentration](https://www.idexx.com/files/microbiology-guide-interpreting-mic.pdf) (MIC) data and predict MIC values from whole genome sequence data stored in the [Pathosystems Resource Integration Center (2013)](https://academic.oup.com/nar/article/42/D1/D581/1049866?login=false) <doi:10.1093/nar/gkt1099> database or locally. See [README](https://cran.r-project.org/web/packages/MIC/readme/README.html) for examples
+
+![](MIC.png){fig-alt="Results of MIC test'}
+
+## Health Sciences
+
+[matriz](https://cran.r-project.org/package=matriz) v1.0.1: Implements a workflow that provides tools to create, update and fill literature matrices commonly used in research, specifically epidemiology and health sciences research. See [README]
+(https://cran.r-project.org/web/packages/matriz/readme/README.html) togetstarted.
 
 ## Mathematics
 
@@ -47,9 +93,11 @@ In Fegruary,zzzzzz new packages made it to CRAN. Here are my Top 40 picks in six
 
 ## Machine Learning
 
+
+
 [tall](https://cran.r-project.org/package=tall) v0.1.1: Implements a general-purpose tool for analyzing textual data as a `shiny` application with features that inccude comprehensive workflow, data cleaning, preprocessing, statistical analysis, and visualization. See the [vignette](https://www.k-synth.com/tall/).
 
-![](tall.png){fig-alt="Automatic Lemmatization and PoS-Tagging through LLM
+![](tall.png){fig-alt="Automatic Lemmatization and PoS-Tagging through LLM"}
 "}
 
 
@@ -65,6 +113,10 @@ In Fegruary,zzzzzz new packages made it to CRAN. Here are my Top 40 picks in six
 
 ![](PLPM.png){fig-alt="Scematic of the Prediction problem"}
 
+[SimTOST](https://cran.r-project.org/package=SimTOST) v1.0.2: Implements a Monte Carlo simulation approach to estimating sample sizes, power, and type I errorrates for bio-equivalence trials that is based on the Two One-Sided Tests (TOST) procedure. Users can model complex trial scenarios, including parallel and crossover designs, intra-subject variability, and different equivalence margins. See [Schuirmann (1987)](https://link.springer.com/article/10.1007/BF01068419), [Mielke et al. (2018)](https://www.tandfonline.com/doi/full/10.1080/19466315.2017.1371071), and  [Shieh (2022)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0269128) for background. There are seven vignettes including [Introduction]
+(https://cran.r-project.org/web/packages/SimTOST/vignettes/intropkg.html) and [Bioequivalence Tests for Parallel Trial Designs: 2 Arms, 1 Endpoint](https://cran.r-project.org/web/packages/SimTOST/vignettes/sampleSize_parallel_2A1E.html).
+
+![](SimTost.png){fig-alt="Power estimation plots"}
 
 
 :::
@@ -81,8 +133,17 @@ In Fegruary,zzzzzz new packages made it to CRAN. Here are my Top 40 picks in six
 
 # END MIDDLE
 
+## Music
+
+[musicXML](https://cran.r-project.org/package=musicXML) v1.0.1: Implements tools to facilitate data sonification and create files to share music notation in the [musicXML](https://usermanuals.musicxml.com/MusicXML/Content/XS-MusicXML.htm) format. Several classes are defined for basic musical objects such as note pitch, note duration, note, measure and score. Sonification functions map data into musical attributes such as pitch, loudness or duration. See [the blog](https://globxblog.github.io/) and  [Renard and Le Bescond (2022)](https://hal.science/hal-03710340v1) for examples, and the [vignette(https://cran.r-project.org/web/packages/musicXML/vignettes/GettingStarted.html) to get started.
+
+![](musicXML.png){fig-alt="WaggaWagga time series is mapped to pitch."}
+
 ## Pharma
 
+[emcAdr](https://cran.r-project.org/package=emcAdr) v1.2: Provides computational methods for detecting adverse high-order drug interactions from individual case safety reports using statistical techniques, allowing the exploration of higher-order interactions among drug cocktails. See the [vignette](https://cran.r-project.org/web/packages/emcAdr/vignettes/base.html).
+
+![](emcAdr.png){fig-alt="Plots of estimated andtrue distributions"}
 
 [SynergyLMM](https://cran.r-project.org/package=SynergyLMM) v1.0.1: Implements a framework for evaluating drug combination effects in preclinical in vivo studies which provides functions to analyze longitudinal tumor growth experiments using linear mixed-effects models, perform time-dependent analyses of synergy and antagonism, evaluate model diagnostics and performance, and assess both post-hoc and a priori statistical power. See [Demidenko & Miller (2019]() for the  calculation of drug combination synergy and [Pinheiro and Bates (2000)]() and [Gałecki & Burzykowski (2013)]() for information on linear mixed-effects models. The [vignette](https://cran.r-project.org/web/packages/SynergyLMM/vignettes/SynergyLMM.html) offers a tutorial.
 
@@ -92,8 +153,14 @@ In Fegruary,zzzzzz new packages made it to CRAN. Here are my Top 40 picks in six
 [vigicaen](https://cran.r-project.org/package=vigicaen) v0.15.6: Implements a toolbox to perform the analysis of the World Health Organization (WHO) Pharmacovigilance database, [VigiBase](https://who-umc.org), with functions to load data, perform data management, disproportionality analysis, and descriptive statistics. Intended for pharmacovigilance routine use or studies. There are eight vignettes including [basic workflow](https://cran.r-project.org/web/packages/vigicaen/vignettes/basic_workflow.html) and [routine pharmacoviligance](https://cran.r-project.org/web/packages/vigicaen/vignettes/routine_pharmacovigilance.html).
 
 ![](vigicaen.png){fig-alt="Example of vigibase analysis"}
+## Statistics
 
+[DiscreteDLM](https://cran.r-project.org/package=DiscreteDLM) v1.0.0: Provides tools for fitting Bayesian distributed lag models (DLMs) to count or binary, longitudinal response data. Count data are fit using negative binomial regression, binary are fit using quantile regression. Lag contribution is fit via b-splines. See [Dempsey and Wyse (2025)](https://arxiv.org/abs/2403.03646) for background, and [README](https://cran.r-project.org/web/packages/DiscreteDLM/readme/README.htm) for examples.
 
+![](DiscreteDLM.png){fig-alt="A regression slopes ridge plot"}
+[oneinfl](https://cran.r-project.org/package=oneinfl) v1.0.1: Provides functions to estimate Estimates one-inflated positive Poisson, one-inflated zero-truncated negative binomial regression models, positive Poisson models, and zero-truncated negative binomial models along with marginal effects and their standard errors. The models and applications are described in [Godwin (2024)](https://arxiv.org/abs/2402.02272). See [README](https://cran.r-project.org/web/packages/oneinfl/readme/README.html) for and example.
+
+![](oneinfl.png){fig-alt="Plot of distributions vs actual data"}
 
 ## Time Series
 
@@ -109,6 +176,13 @@ In Fegruary,zzzzzz new packages made it to CRAN. Here are my Top 40 picks in six
 [jellyfisher](https://cran.r-project.org/package=jellyfisher) v1.0.4: Generates interactive Jellyfish plots to visualize spatiotemporal tumor evolution by integrating sample and phylogenetic trees into a unified plot. This approach provides an intuitive way to analyze tumor heterogeneity and evolution over time and across anatomical locations. The Jellyfish plot visualization design was first introduced by [Lahtinen et al. (2023)](https://www.cell.com/cancer-cell/fulltext/S1535-6108(23)00143-5?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS1535610823001435%3Fshowall%3Dtrue). See the [vignette](https://hautaniemilab.github.io/jellyfisher/).
 
 ![](jelly.svg){fig-alt="Example Jellyfisher Plot"}
+
+
+[xdvir](https://cran.r-project.org/web/packages/xdvir/index.html#:~:text=https%3A//CRAN.R%2Dproject.org/package%3Dxdvir) v0.1-2: Provides high-level functions to render `LaTeX` fragments as labels and data symbols in `ggplot2` plots, plus low-level functions to author, produce, and typeset `LaTeX` documents, and to to produce, read, and render `DVI`files. See the [vignette](https://cran.r-project.org/web/packages/xdvir/vignettes/xdvir-intro.html).
+
+![](xdvir.png){fig-alt="Plot of normal distribution with defining equation"}
+
+
 
 ![](.png){fig-alt=""}
 :::
