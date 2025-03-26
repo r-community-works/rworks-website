@@ -1,17 +1,15 @@
 ---
 title: "February 2025 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
-date: 2025-02-28
+date: 2025-03-28
 description: "An attempt to capture the depth and breadth of what's new on CRAN."
-image: ""
-image-alt: ""
-categories: ""
-code-fold: true
-code-summary: "Show the code"
+image: "gander.fif"
+image-alt: "Gif of gander session"
+categories: "Top 40"
 editor: source
 ---
 
-In Fegruary,zzzzzz new packages made it to CRAN. Here are my Top 40 picks in sixteen categories: Archaeology, Artificial Intelligence, Computational Methods, Ecology, Epidemiology, Finance, Genomics, Health Technology Assessment, Machine Learning, Medicine, Music, Pharma, Statistics, Time Series, Utilities, and Visualization.
+In February,one hundred fifty-nine new packages made it to CRAN. Here are my Top 40 picks in fifteen categories: Artificial Intelligence, Computational Methods, Ecology, Genomics, Health Sciences, Mathematics, Machine Learning, Medicine, Music, Pharma, Statistics, Time Series, Utilities, Visualization, and Weather.
 
 
 :::: {.columns}
@@ -20,7 +18,7 @@ In Fegruary,zzzzzz new packages made it to CRAN. Here are my Top 40 picks in six
 
 
 
-## AI
+## Artificial Intelligence
 
 [chores](https://cran.r-project.org/package=chores) v0.1.0: Provides a collection of ergonomic large language model assistants designed to help you complete repetitive, hard-to-automate tasks quickly. After selecting some code, press the keyboard shortcut you've chosen to trigger the package app, select an assistant, and watch your chore be carried out. Users can create custom helpers just by writing some instructions in a markdown file. There are three vignettes: [Getting started](https://cran.r-project.org/web/packages/chores/vignettes/chores.html), [Custom helpers](https://cran.r-project.org/web/packages/chores/vignettes/custom.html), and [Gallery](https://cran.r-project.org/web/packages/chores/vignettes/gallery.html).
 
@@ -34,9 +32,10 @@ In Fegruary,zzzzzz new packages made it to CRAN. Here are my Top 40 picks in six
 
 
 ![](GitAI.gif){fig-alt="Exaple GIF"}
+ 
  ## Computational Methods
  
-[nlpembeds](https://cran.r-project.org/package=nlpembeds) v1.0.0: Provides efficient methods to compute co-occurrence matrices, pointwise mutual information (PMI) and singular value decomposition (SVD) especially useful when working with huge databases in biomedical and clinical settings. Functions can be called on `SQL` databases, enabling the computation of co-occurrence matrices of tens of gigabytes of data, representing millions of patients over tens of years. See [Hong (2021)](https://www.nature.com/articles/s41746-021-00519-z) for background and the [vignette](https://cran.r-project.org/web/packages/nlpembeds/vignettes/cooc_pmi_svd.html) for examples.
+[nlpembeds](https://cran.r-project.org/package=nlpembeds) v1.0.0: Provides efficient methods to compute co-occurrence matrices, point wise mutual information (PMI) and singular value decomposition (SVD) especially useful when working with huge databases in biomedical and clinical settings. Functions can be called on `SQL` databases, enabling the computation of co-occurrence matrices of tens of gigabytes of data, representing millions of patients over tens of years. See [Hong (2021)](https://www.nature.com/articles/s41746-021-00519-z) for background and the [vignette](https://cran.r-project.org/web/packages/nlpembeds/vignettes/cooc_pmi_svd.html) for examples.
  
 [NLPwavelet](https://cran.r-project.org/package=NLPwavelet) v1.0: Provides functions for Bayesian wavelet analysis using individual non-local priors as described in [Sanyal & Ferreira (2017)](https://link.springer.com/article/10.1007/s13571-016-0129-3) and non-local prior mixtures as described in [Sanyal (2025)](https://arxiv.org/abs/2501.18134). See [README](https://cran.r-project.org/web/packages/NLPwavelet/readme/README.html) to get started.
 
@@ -80,6 +79,8 @@ In Fegruary,zzzzzz new packages made it to CRAN. Here are my Top 40 picks in six
 
 ![](godley.png){fig-alt="Example model structure"}
 
+
+
 ## Genomics
 
 [gimap](https://cran.r-project.org/package=gimap) v1.0.3: Helps to calculate genetic interactions in *CRISPR* targets by taking data from paired CRISPR screens that has been pre-processed to counts table of paired gRNA reads. Output are genetic interaction scores, the distance between the observed CRISPR score and the expected CRISPR score. See [Berger et al. (2021)](01035-4?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS2211124721010354%3Fshowall%3Dtrue) for background and the vignettes [Quick Start](https://cran.r-project.org/web/packages/gimap/vignettes/quick-start.html), [Timepoint Experiment](https://cran.r-project.org/web/packages/gimap/vignettes/timepoint-example.html), and [Treatment Experiment](https://cran.r-project.org/web/packages/gimap/vignettes/treatment_example.html).
@@ -91,8 +92,7 @@ In Fegruary,zzzzzz new packages made it to CRAN. Here are my Top 40 picks in six
 
 ## Health Sciences
 
-[matriz](https://cran.r-project.org/package=matriz) v1.0.1: Implements a workflow that provides tools to create, update and fill literature matrices commonly used in research, specifically epidemiology and health sciences research. See [README]
-(https://cran.r-project.org/web/packages/matriz/readme/README.html) togetstarted.
+[matriz](https://cran.r-project.org/package=matriz) v1.0.1: Implements a workflow that provides tools to create, update and fill literature matrices commonly used in research, specifically epidemiology and health sciences research. See [README](https://cran.r-project.org/web/packages/matriz/readme/README.html) to get started.
 
 ## Mathematics
 
@@ -103,29 +103,19 @@ In Fegruary,zzzzzz new packages made it to CRAN. Here are my Top 40 picks in six
 
 
 
-[tall](https://cran.r-project.org/package=tall) v0.1.1: Implements a general-purpose tool for analyzing textual data as a `shiny` application with features that inccude comprehensive workflow, data cleaning, preprocessing, statistical analysis, and visualization. See the [vignette](https://www.k-synth.com/tall/).
+[tall](https://cran.r-project.org/package=tall) v0.1.1: Implements a general-purpose tool for analyzing textual data as a `shiny` application with features that include comprehensive workflow, data cleaning, preprocessing, statistical analysis, and visualization. See the [vignette](https://www.k-synth.com/tall/).
 
 ![](tall.png){fig-alt="Automatic Lemmatization and PoS-Tagging through LLM"}
 "}
 
 
 
+
 ## Medicine
 
-[BayesERtools](https://cran.r-project.org/package=BayesERtools) v0.2.1: Provides auite of tools that facilitate exposure-response analysis using Bayesian methods. These include a streamlined workflow for fitting types of models that are commonly used in exposure-response analysis - linear and Emax for continuous endpoints, logistic linear and logistic Emax for binary endpoints, as well as performing simulation and visualization. Look [here](https://genentech.github.io/BayesERbook/) to learn more about the workflow and see the [vignette](https://cran.r-project.org/web/packages/BayesERtools/vignettes/overview_of_the_package.html) for an overview.
+[BayesERtools](https://cran.r-project.org/package=BayesERtools) v0.2.1: Provides suite of tools that facilitate exposure-response analysis using Bayesian methods. These include a streamlined workflow for fitting types of models that are commonly used in exposure-response analysis - linear and Emax for continuous endpoints, logistic linear and logistic Emax for binary endpoints, as well as performing simulation and visualization. Look [here](https://genentech.github.io/BayesERbook/) to learn more about the workflow and see the [vignette](https://cran.r-project.org/web/packages/BayesERtools/vignettes/overview_of_the_package.html) for an overview.
 
 ![](BayesER.png){fig-alt="Chart of supported model types"}
-
-
-[PatientLevelPrediction](https://cran.r-project.org/package=PatientLevelPrediction) v6.4.0: Implements a framework to create patient level prediction models using the [Observational Medical Outcomes Partnership Common Data Model](https://www.ohdsi.org/data-standardization/). Given a cohort of interest and an outcome of interest, the package can use data in the Common Data Model to build a large set of features which can then be used to fit a predictive model with a number of machine learning algorithms. This is further described in [Reps et al. (2017)](https://academic.oup.com/jamia/article/25/8/969/4989437?login=false). There are fourteen vignettes including [Building Patient Level Prediction Models](https://cran.r-project.org/web/packages/PatientLevelPrediction/vignettes/BuildingPredictiveModels.html) and [Best Practices]().
-
-![](PLPM.png){fig-alt="Scematic of the Prediction problem"}
-
-[SimTOST](https://cran.r-project.org/package=SimTOST) v1.0.2: Implements a Monte Carlo simulation approach to estimating sample sizes, power, and type I errorrates for bio-equivalence trials that is based on the Two One-Sided Tests (TOST) procedure. Users can model complex trial scenarios, including parallel and crossover designs, intra-subject variability, and different equivalence margins. See [Schuirmann (1987)](https://link.springer.com/article/10.1007/BF01068419), [Mielke et al. (2018)](https://www.tandfonline.com/doi/full/10.1080/19466315.2017.1371071), and  [Shieh (2022)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0269128) for background. There are seven vignettes including [Introduction]
-(https://cran.r-project.org/web/packages/SimTOST/vignettes/intropkg.html) and [Bioequivalence Tests for Parallel Trial Designs: 2 Arms, 1 Endpoint](https://cran.r-project.org/web/packages/SimTOST/vignettes/sampleSize_parallel_2A1E.html).
-
-![](SimTost.png){fig-alt="Power estimation plots"}
-
 
 :::
 
@@ -136,10 +126,22 @@ In Fegruary,zzzzzz new packages made it to CRAN. Here are my Top 40 picks in six
 
 ::: {.column width="45%"}
 
+## Medicine Continued
+
+[PatientLevelPrediction](https://cran.r-project.org/package=PatientLevelPrediction) v6.4.0: Implements a framework to create patient level prediction models using the [Observational Medical Outcomes Partnership Common Data Model](https://www.ohdsi.org/data-standardization/). Given a cohort of interest and an outcome of interest, the package can use data in the Common Data Model to build a large set of features which can then be used to fit a predictive model with a number of machine learning algorithms. This is further described in [Reps et al. (2017)](https://academic.oup.com/jamia/article/25/8/969/4989437?login=false). There are fourteen vignettes including [Building Patient Level Prediction Models](https://cran.r-project.org/web/packages/PatientLevelPrediction/vignettes/BuildingPredictiveModels.html) and [Best Practices]().
+
+![](PLPM.png){fig-alt="Scematic of the Prediction problem"}
+
+[SimTOST](https://cran.r-project.org/package=SimTOST) v1.0.2: Implements a Monte Carlo simulation approach to estimating sample sizes, power, and type I error rates for bio-equivalence trials that is based on the Two One-Sided Tests (TOST) procedure. Users can model complex trial scenarios, including parallel and crossover designs, intra-subject variability, and different equivalence margins. See [Schuirmann (1987)](https://link.springer.com/article/10.1007/BF01068419), [Mielke et al. (2018)](https://www.tandfonline.com/doi/full/10.1080/19466315.2017.1371071), and  [Shieh (2022)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0269128) for background. There are seven vignettes including [Introduction](https://cran.r-project.org/web/packages/SimTOST/vignettes/intropkg.html) and [Bioequivalence Tests for Parallel Trial Designs: 2 Arms, 1 Endpoint](https://cran.r-project.org/web/packages/SimTOST/vignettes/sampleSize_parallel_2A1E.html).
+
+![](SimTost.png){fig-alt="Power estimation plots"}
+
+
+
 
 ## Music
 
-[musicXML](https://cran.r-project.org/package=musicXML) v1.0.1: Implements tools to facilitate data sonification and create files to share music notation in the [musicXML](https://usermanuals.musicxml.com/MusicXML/Content/XS-MusicXML.htm) format. Several classes are defined for basic musical objects such as note pitch, note duration, note, measure and score. Sonification functions map data into musical attributes such as pitch, loudness or duration. See [the blog](https://globxblog.github.io/) and  [Renard and Le Bescond (2022)](https://hal.science/hal-03710340v1) for examples, and the [vignette(https://cran.r-project.org/web/packages/musicXML/vignettes/GettingStarted.html) to get started.
+[musicXML](https://cran.r-project.org/package=musicXML) v1.0.1: Implements tools to facilitate data sonification and create files to share music notation in the [musicXML](https://usermanuals.musicxml.com/MusicXML/Content/XS-MusicXML.htm) format. Several classes are defined for basic musical objects such as note pitch, note duration, note, measure and score. Sonification functions map data into musical attributes such as pitch, loudness or duration. See [the blog](https://globxblog.github.io/) and  [Renard and Le Bescond (2022)](https://hal.science/hal-03710340v1) for examples, and the [vignette](https://cran.r-project.org/web/packages/musicXML/vignettes/GettingStarted.html) to get started.
 
 ![](musicXML.png){fig-alt="WaggaWagga time series is mapped to pitch."}
 
@@ -149,7 +151,7 @@ In Fegruary,zzzzzz new packages made it to CRAN. Here are my Top 40 picks in six
 
 ![](emcAdr.png){fig-alt="Plots of estimated andtrue distributions"}
 
-[SynergyLMM](https://cran.r-project.org/package=SynergyLMM) v1.0.1: Implements a framework for evaluating drug combination effects in preclinical in vivo studies which provides functions to analyze longitudinal tumor growth experiments using linear mixed-effects models, perform time-dependent analyses of synergy and antagonism, evaluate model diagnostics and performance, and assess both post-hoc and a priori statistical power. See [Demidenko & Miller (2019]() for the  calculation of drug combination synergy and [Pinheiro and Bates (2000)]() and [Gałecki & Burzykowski (2013)]() for information on linear mixed-effects models. The [vignette](https://cran.r-project.org/web/packages/SynergyLMM/vignettes/SynergyLMM.html) offers a tutorial.
+[SynergyLMM](https://cran.r-project.org/package=SynergyLMM) v1.0.1: Implements a framework for evaluating drug combination effects in preclinical in vivo studies which provides functions to analyze longitudinal tumor growth experiments using linear mixed-effects models, perform time-dependent analyses of synergy and antagonism, evaluate model diagnostics and performance, and assess both post-hoc and a priori statistical power. See [Demidenko & Miller (2019](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0224137) for the  calculation of drug combination synergy and [Pinheiro and Bates (2000)](https://link.springer.com/book/10.1007/b98882) and [Gałecki & Burzykowski (2013)](https://link.springer.com/book/10.1007/978-1-4614-3900-4) for information on linear mixed-effects models. The [vignette](https://cran.r-project.org/web/packages/SynergyLMM/vignettes/SynergyLMM.html) offers a tutorial.
 
 ![](SynergyLLM.png){fig-alt="the SynergyLLM workflow"}
 
@@ -157,6 +159,13 @@ In Fegruary,zzzzzz new packages made it to CRAN. Here are my Top 40 picks in six
 [vigicaen](https://cran.r-project.org/package=vigicaen) v0.15.6: Implements a toolbox to perform the analysis of the World Health Organization (WHO) Pharmacovigilance database, [VigiBase](https://who-umc.org), with functions to load data, perform data management, disproportionality analysis, and descriptive statistics. Intended for pharmacovigilance routine use or studies. There are eight vignettes including [basic workflow](https://cran.r-project.org/web/packages/vigicaen/vignettes/basic_workflow.html) and [routine pharmacoviligance](https://cran.r-project.org/web/packages/vigicaen/vignettes/routine_pharmacovigilance.html).
 
 ![](vigicaen.png){fig-alt="Example of vigibase analysis"}
+
+## Psychology
+
+[cogirt](https://cran.r-project.org/package=cogirt) v1.0.0: Provides tools to psychometrically analyze latent individual differences related to tasks, interventions, or maturational/aging effects in the context of experimental or longitudinal cognitive research using methods first described by [Thomas et al. (2020)](https://journals.sagepub.com/doi/10.1177/0013164420919898). See the [vignette](https://cran.r-project.org/web/packages/cogirt/vignettes/cogirt.html).
+
+![](cogirt.png){fig-alt="Plot showing subjects timescore data"}
+
 ## Statistics
 
 [DiscreteDLM](https://cran.r-project.org/package=DiscreteDLM) v1.0.0: Provides tools for fitting Bayesian distributed lag models (DLMs) to count or binary, longitudinal response data. Count data are fit using negative binomial regression, binary are fit using quantile regression. Lag contribution is fit via b-splines. See [Dempsey and Wyse (2025)](https://arxiv.org/abs/2403.03646) for background, and [README](https://cran.r-project.org/web/packages/DiscreteDLM/readme/README.htm) for examples.
@@ -171,6 +180,7 @@ In Fegruary,zzzzzz new packages made it to CRAN. Here are my Top 40 picks in six
 [BayesChange](https://cran.r-project.org/package=BayesChange) v2/0/0: Provides functions for change point detection on univariate and multivariate time series according to the methods presented by [Martinez & Mena (2014)](https://projecteuclid.org/journals/bayesian-analysis/volume-9/issue-4/On-a-Nonparametric-Change-Point-Detection-Model-in-Markovian-Regimes/10.1214/14-BA878.full) and [Corradin et al. (2022)](https://www.sciencedirect.com/science/article/abs/pii/S0888613X21002231?via%3Dihub) along with methods for clustering time dependent data with common change points. See [Corradin et. al. (2024)](https://arxiv.org/abs/2410.09552). There is a [tutorial](https://cran.r-project.org/web/packages/BayesChange/vignettes/tutorial.html).
 
 ![](BC.png){fig-alt="Time series clusters"}
+
 [echos](https://cran.r-project.org/package=echos) v1.0.3: Provides a lightweight implementation of functions and methods for fast and fully automatic time series modeling and forecasting using Echo State Networks. See he vignettes [Base functions](https://cran.r-project.org/web/packages/echos/vignettes/vignette_01_baseR.html) and [Tidy functions](https://cran.r-project.org/web/packages/echos/vignettes/vignette_02_tidyR.html).
 
 ![](echos.png){fig-alt="Example of time series forecast"}
@@ -182,7 +192,7 @@ In Fegruary,zzzzzz new packages made it to CRAN. Here are my Top 40 picks in six
 
 [aftables](https://cran.r-project.org/package=aftables) v1.0.2: Provides tools to generate spreadsheet publications that follow best practice guidance from the [UK government's Analysis Function](https://analysisfunction.civilservice.gov.uk/policy-store/releasing-statistics-in-spreadsheets/). There are four vignettes including an [Introduction](https://cran.r-project.org/web/packages/aftables/vignettes/aftables.html) [Accessibility](https://cran.r-project.org/web/packages/aftables/vignettes/checklist.html).
 
-[watcher](https://cran.r-project.org/package=watcher) v0.1.2: Implements an `R` binding for `[libfswatch`](https://emcrisostomo.github.io/fswatch/doc/1.9.3/libfswatch.html/), a file system monitoring library, that enables users to files or directories recursively for changes in the background. Log activity, or run an `R` function every time a change event occurs. See [README](https://cran.r-project.org/web/packages/watcher/readme/README.html)for an example.
+[watcher](https://cran.r-project.org/package=watcher) v0.1.2: Implements an `R` binding for [`libfswatch`](https://emcrisostomo.github.io/fswatch/doc/1.9.3/libfswatch.html/), a file system monitoring library, that enables users to files or directories recursively for changes in the background. Log activity, or run an `R` function every time a change event occurs. See [README](https://cran.r-project.org/web/packages/watcher/readme/README.html)for an example.
 
 ## Visualization
 
@@ -199,7 +209,7 @@ In Fegruary,zzzzzz new packages made it to CRAN. Here are my Top 40 picks in six
 
 [RFplus](https://cran.r-project.org/package=RFplus) v1/4-0: Implements a machine learning algorithm that merges satellite and ground precipitation data using Random Forest for spatial prediction, residual modeling for bias correction, and quantile mapping for adjustment, ensuring accurate estimates across temporal scales and regions. See the [vignette](https://cran.r-project.org/web/packages/RFplus/vignettes/RFplus.html).
 
-[SPIChanges](https://cran.r-project.org/package=SPIChanges) v0.1.0: Provides methods to improve the interpretation of the Standardized Precipitation Index under changing climate conditions. It implments the nonstationary approach of [Blain et al. (2022)](https://rmets.onlinelibrary.wiley.com/doi/10.1002/joc.7550) to detect trends in rainfall quantities and to quantify the effect of such trends on the probability of a drought event occurring. There is an [Introduction](https://cran.r-project.org/web/packages/SPIChanges/vignettes/SPIChanges.html) and the vignetteon  [Monte Carlo Experiments and Case Studies](https://cran.r-project.org/web/packages/SPIChanges/vignettes/CaseStudies.html).
+[SPIChanges](https://cran.r-project.org/package=SPIChanges) v0.1.0: Provides methods to improve the interpretation of the Standardized Precipitation Index under changing climate conditions. It implements the nonstationary approach of [Blain et al. (2022)](https://rmets.onlinelibrary.wiley.com/doi/10.1002/joc.7550) to detect trends in rainfall quantities and to quantify the effect of such trends on the probability of a drought event occurring. There is an [Introduction](https://cran.r-project.org/web/packages/SPIChanges/vignettes/SPIChanges.html) and the vignette  [Monte Carlo Experiments and Case Studies](https://cran.r-project.org/web/packages/SPIChanges/vignettes/CaseStudies.html).
 
 ![](SPI.png){fig-alt="Year-to-year changes in drought frequency"}
 
