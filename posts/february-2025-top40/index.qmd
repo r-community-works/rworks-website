@@ -2,8 +2,8 @@
 title: "February 2025 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
 date: 2025-03-28
-description: "An attempt to capture the depth and breadth of what's new on CRAN."
-image: "gander.fif"
+description: "An attempt to capture the depth and breadth of what's new on CRAN: Here are my Top 40 picks in fifteen categories: Artificial Intelligence, Computational Methods, Ecology, Genomics, Health Sciences, Mathematics, Machine Learning, Medicine, Music, Pharma, Statistics, Time Series, Utilities, Visualization, and Weather ."
+image: "gander.gif"
 image-alt: "Gif of gander session"
 categories: "Top 40"
 editor: source
@@ -24,11 +24,11 @@ In February,one hundred fifty-nine new packages made it to CRAN. Here are my Top
 
 ![](chores.gif){fig-alt="Working with chores gif"}
 
-[gander](https://CRAN.R-project.org/package=gander) v0.1.0: Provides a *Copilot* completion experience that knows how to talk to the objects in your R environment. `ellmer` chats are integrated directly into your 'RStudio' and 'Positron' sessions, automatically incorporating relevant context from surrounding lines of code and your global environment. See the [vignette](https://cran.r-project.org/web/packages/gander/vignettes/gander.html) to get started.
+[gander](https://CRAN.R-project.org/package=gander) v0.1.0: Provides a *Copilot* completion experience that knows how to talk to the objects in your R environment. `ellmer` chats are integrated directly into your `RStudio` and `Positron` sessions, automatically incorporating relevant context from surrounding lines of code and your global environment. See the [vignette](https://cran.r-project.org/web/packages/gander/vignettes/gander.html) to get started.
 
 ![](gander.gif){fig-alt="Gifof gander use"}
 
-[GitAI](https://cran.r-project.org/package=GitAI) v0.1.0: Provides functions to scan multiple `Git` repositories, pull specified files content and process it with large language models. You can summarize the content, extract information and data, or find answers to your questions about the repositories. The output can be stored in vector database and used for semantic search or as a part of a RAG (Retrieval Augmented Generation) prompt. See the [vignette](https://cran.r-project.org/web/packages/GitAI/vignettes/building-shiny-app-chatbot.html.)
+[GitAI](https://cran.r-project.org/package=GitAI) v0.1.0: Provides functions to scan multiple `Git` repositories, pull content from specified files and process it with LLMs. You can summarize the content, extract information and data, or find answers to your questions about the repositories. The output can be stored in a vector database and used for semantic search or as a part of a RAG (Retrieval Augmented Generation) prompt. See the [vignette](https://cran.r-project.org/web/packages/GitAI/vignettes/building-shiny-app-chatbot.html.)
 
 
 ![](GitAI.gif){fig-alt="Exaple GIF"}
@@ -41,9 +41,9 @@ In February,one hundred fifty-nine new packages made it to CRAN. Here are my Top
 
 ![](NLPwavelet.png){fig-alt="Wavelet plot of posterior "}
  
-[pnd](https://cran.r-project.org/package=pnd) v0.0.9: Provides functions to compute numerical derivatives including gradients, Jacobians, and Hessians through finite-difference approximations with parallel capabilities and optimal step-size selection to improve accuracy. Advanced features include computing derivatives of arbitrary order, improving the accuracy of Hessian approximations by avoiding repeated differencing, and parallelising slow functions on Windows, Mac, and Linux. There are three vignettes on the topics: [Compatibality with numDeriv](https://cran.r-project.org/web/packages/pnd/vignettes/compatibility-with-numDeriv.html), [Parallel numerical derivatives](https://cran.r-project.org/web/packages/pnd/vignettes/fast-and-accurate.html), and [Step-size selection](https://cran.r-project.org/web/packages/pnd/vignettes/step-size-selection.html.
+[pnd](https://cran.r-project.org/package=pnd) v0.0.9: Provides functions to compute numerical derivatives including gradients, Jacobians, and Hessians through finite-difference approximations with parallel capabilities and optimal step-size selection to improve accuracy. Advanced features include computing derivatives of arbitrary order. There are three vignettes on the topics: [Compatibality with numDeriv](https://cran.r-project.org/web/packages/pnd/vignettes/compatibility-with-numDeriv.html), [Parallel numerical derivatives](https://cran.r-project.org/web/packages/pnd/vignettes/fast-and-accurate.html), and [Step-size selection](https://cran.r-project.org/web/packages/pnd/vignettes/step-size-selection.html).
 
-[rmcmc](https://cran.r-project.org/package=rmcmc) v0.1.1: Provides functions to simulate Markov chains using the Barker proposal (See [Livingstone and Zanella (2022)](https://academic.oup.com/jrsssb/article/84/2/496/7056132?login=false) ) to compute Markov chain Monte Carlo (MCMC) estimates of expectations with respect to a target distribution on a real-valued vector space. The package also provides implementations of alternative proposal distributions, such as (Gaussian) random walk and Langevin proposals. Optionally, if [BridgeStan's R interface](https://roualdBridgeStan) `BridgeStan` can be used to specify the target distribution to sample from. There is an [Introduction](https://cran.r-project.org/web/packages/rmcmc/vignettes/barker-proposal.html) to the Barker proposal and a vignette on [Adjusting the noise distribution](https://cran.r-project.org/web/packages/rmcmc/vignettes/adjusting-noise-distribution.html).
+[rmcmc](https://cran.r-project.org/package=rmcmc) v0.1.1: Provides functions to simulate Markov chains using the peoposal frm [Livingstone and Zanella (2022)](https://academic.oup.com/jrsssb/article/84/2/496/7056132?login=false) to compute MCMC estimates of expectations with respect to a target distribution on a real-valued vector space. The package also provides implementations of alternative proposal distributions, such as (Gaussian) random walk and Langevin proposals. Optionally, [BridgeStan's R interface](https://roualdBridgeStan) `BridgeStan` can be used to specify the target distribution. There is an [Introduction](https://cran.r-project.org/web/packages/rmcmc/vignettes/barker-proposal.html) to the Barker proposal and a vignette on [Adjusting the noise distribution](https://cran.r-project.org/web/packages/rmcmc/vignettes/adjusting-noise-distribution.html).
 
 ![](rmcmc.png){fig-alt="Plot of mcmc chain adapting to Langevin proposal"}
 
@@ -54,14 +54,14 @@ In February,one hundred fifty-nine new packages made it to CRAN. Here are my Top
 
 ## Data
 
-[acledR](https://cran.r-project.org/package=acledR) v0.1.0: Provides tools working with data from ACLED (Armed Conflict Location and Event Data). Functions include simplified access to [ACLED's API](https://apidocs.acleddata.com/), methods for keeping local versions of ACLED data up-to-date, and functions for common ACLED data transformations. See the [vignette](https://cran.r-project.org/web/packages/acledR/vignettes/get_started.html) to get started.
+[acledR](https://cran.r-project.org/package=acledR) v0.1.0: Provides tools for working with data from ACLED (Armed Conflict Location and Event Data). Functions include simplified access to [ACLED's API](https://apidocs.acleddata.com/), methods for keeping local versions of ACLED data up-to-date, and functions for common ACLED data transformations. See the [vignette](https://cran.r-project.org/web/packages/acledR/vignettes/get_started.html) to get started.
 
-[Horsekicks](https://cran.r-project.org/package=Horsekicks) v1/0/2: Provides extensions to the classical dataset *Death by the kick of a horse in the Prussian Army* first used by Ladislaus von Bortkeiwicz in his treatise on the Poisson distribution [*Das Gesetz der kleinen Zahlen*](https://archive.org/details/dasgesetzderklei00bortrich/mode/1up).and deaths by falling from a horse and by drowning. See the [vignette](https://cran.r-project.org/web/packages/Horsekicks/vignettes/hkdeaths.html).
+[Horsekicks](https://cran.r-project.org/package=Horsekicks) v1/0/2: Provides extensions to the classical dataset *Death by the kick of a horse in the Prussian Army* first used by Ladislaus von Bortkeiwicz in his treatise on the Poisson distribution [*Das Gesetz der kleinen Zahlen*](https://archive.org/details/dasgesetzderklei00bortrich/mode/1up). Also included are deaths by falling from a horse and by drowning. See the [vignette](https://cran.r-project.org/web/packages/Horsekicks/vignettes/hkdeaths.html).
 
 ![](horse.png){fig-alt="Dangers to the Prussian Cavalry"}
 
 
-[OhdsiReportGenerator](https://cran.r-project.org/package=OhdsiReportGenerator) v1.0.1: Extracts results from the[ ]Observational Health Data Sciences and Informatics result database](https://ohdsi.github.io/Strategus/results-schema/index.html) and generates `Quarto` reports and presentations. See the [package guide](https://cran.r-project.org/web/packages/OhdsiReportGenerator/vignettes/ExampleCode.html).
+[OhdsiReportGenerator](https://cran.r-project.org/package=OhdsiReportGenerator) v1.0.1: Extracts results from the[Observational Health Data Sciences and Informatics result database](https://ohdsi.github.io/Strategus/results-schema/index.html) and generates `Quarto` reports and presentations. See the [package guide](https://cran.r-project.org/web/packages/OhdsiReportGenerator/vignettes/ExampleCode.html).
 
 [wbwdi](https://cran.r-project.org/package=wbwdi) v1.0.0: Provides functions to access and analyze the World Bank’s World Development Indicators (WDI) using [the corresponding API](https://datahelpdesk.worldbank.org/knowledgebase/articles/889392-about-the-indicators-api-documentation). WDI provides more than 24,000 country or region-level indicators for various contexts. See the [vignette](https://cran.r-project.org/web/packages/wbwdi/vignettes/data-model.html).
 
@@ -86,9 +86,10 @@ In February,one hundred fifty-nine new packages made it to CRAN. Here are my Top
 [gimap](https://cran.r-project.org/package=gimap) v1.0.3: Helps to calculate genetic interactions in *CRISPR* targets by taking data from paired CRISPR screens that has been pre-processed to counts table of paired gRNA reads. Output are genetic interaction scores, the distance between the observed CRISPR score and the expected CRISPR score. See [Berger et al. (2021)](01035-4?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS2211124721010354%3Fshowall%3Dtrue) for background and the vignettes [Quick Start](https://cran.r-project.org/web/packages/gimap/vignettes/quick-start.html), [Timepoint Experiment](https://cran.r-project.org/web/packages/gimap/vignettes/timepoint-example.html), and [Treatment Experiment](https://cran.r-project.org/web/packages/gimap/vignettes/treatment_example.html).
 
 
-[MIC](https://cran.r-project.org/package=MIC) v1.0.2: Provides functions to analyse, plot, and tabulate antimicrobial [minimum inhibitory concentration](https://www.idexx.com/files/microbiology-guide-interpreting-mic.pdf) (MIC) data and predict MIC values from whole genome sequence data stored in the [Pathosystems Resource Integration Center (2013)](https://academic.oup.com/nar/article/42/D1/D581/1049866?login=false) <doi:10.1093/nar/gkt1099> database or locally. See [README](https://cran.r-project.org/web/packages/MIC/readme/README.html) for examples
+[MIC](https://cran.r-project.org/package=MIC) v1.0.2: Provides functions to analyze, plot, and tabulate antimicrobial [minimum inhibitory concentration](https://www.idexx.com/files/microbiology-guide-interpreting-mic.pdf) (MIC) data and predict MIC values from whole genome sequence data stored in the [Pathosystems Resource Integration Center (2013)](https://academic.oup.com/nar/article/42/D1/D581/1049866?login=false) database or locally. See [README](https://cran.r-project.org/web/packages/MIC/readme/README.html) for examples.
 
-![](MIC.png){fig-alt="Results of MIC test'}
+![](MIC.png){fig-alt="Results of MIC test"}
+
 
 ## Health Sciences
 
@@ -96,14 +97,14 @@ In February,one hundred fifty-nine new packages made it to CRAN. Here are my Top
 
 ## Mathematics
 
-[flint](https://cran.r-project.org/package=flint) v0.0.3: Provides an interface to [`FLINT`](https://flintlib.org/), a C library for number theory which extends GNU [MPFR](https://www.mpfr.org/) and GNU [MP](https://gmplib.org/) with support for arithmetic in standard rings (the integers, the integers modulo n, the rational, p-adic, real, and complex numbers) as well as vectors, matrices, polynomials, and power series over rings and implements midpoint-radius interval arithmetic, in the real and complex numbers See [Johansson (2017)](https://ieeexplore.ieee.org/document/7891956) for information on computation in arbitrary precision with rigorous propagation of errors see the [NIST Digital Library of Mathematical Functions](https://dlmf.nist.gov/) for information on additional capabilities. Look [here](https://github.com/jaganmn/flint) to get started.
+[flint](https://cran.r-project.org/package=flint) v0.0.3: Provides an interface to [`FLINT`](https://flintlib.org/), a C library for number theory which extends GNU [MPFR](https://www.mpfr.org/) and GNU [MP](https://gmplib.org/) with support for arithmetic in standard rings (the integers, the integers modulo n, the rational, p-adic, real, and complex numbers) as well as vectors, matrices, polynomials, and power series over rings and implements midpoint-radius interval arithmetic, in the real and complex numbers See [Johansson (2017)](https://ieeexplore.ieee.org/document/7891956) for information on computation in arbitrary precision with rigorous propagation of errors and see the [NIST Digital Library of Mathematical Functions](https://dlmf.nist.gov/) for information on additional capabilities. Look [here](https://github.com/jaganmn/flint) to get started.
 
 
 ## Machine Learning
 
 
 
-[tall](https://cran.r-project.org/package=tall) v0.1.1: Implements a general-purpose tool for analyzing textual data as a `shiny` application with features that include comprehensive workflow, data cleaning, preprocessing, statistical analysis, and visualization. See the [vignette](https://www.k-synth.com/tall/).
+[tall](https://cran.r-project.org/package=tall) v0.1.1: Implements a general-purpose tool for analyzing textual data as a `shiny` application with features that include a comprehensive workflow, data cleaning, preprocessing, statistical analysis, and visualization. See the [vignette](https://www.k-synth.com/tall/).
 
 ![](tall.png){fig-alt="Automatic Lemmatization and PoS-Tagging through LLM"}
 "}
@@ -113,7 +114,7 @@ In February,one hundred fifty-nine new packages made it to CRAN. Here are my Top
 
 ## Medicine
 
-[BayesERtools](https://cran.r-project.org/package=BayesERtools) v0.2.1: Provides suite of tools that facilitate exposure-response analysis using Bayesian methods. These include a streamlined workflow for fitting types of models that are commonly used in exposure-response analysis - linear and Emax for continuous endpoints, logistic linear and logistic Emax for binary endpoints, as well as performing simulation and visualization. Look [here](https://genentech.github.io/BayesERbook/) to learn more about the workflow and see the [vignette](https://cran.r-project.org/web/packages/BayesERtools/vignettes/overview_of_the_package.html) for an overview.
+[BayesERtools](https://cran.r-project.org/package=BayesERtools) v0.2.1: Provides tools that facilitate exposure-response analysis using Bayesian methods. These include a streamlined workflow for fitting types of models that are commonly used in exposure-response analysis - linear and Emax for continuous endpoints, logistic linear and logistic Emax for binary endpoints, as well as performing simulation and visualization. Look [here](https://genentech.github.io/BayesERbook/) to learn more about the workflow and see the [vignette](https://cran.r-project.org/web/packages/BayesERtools/vignettes/overview_of_the_package.html) for an overview.
 
 ![](BayesER.png){fig-alt="Chart of supported model types"}
 
@@ -184,19 +185,19 @@ In February,one hundred fifty-nine new packages made it to CRAN. Here are my Top
 [echos](https://cran.r-project.org/package=echos) v1.0.3: Provides a lightweight implementation of functions and methods for fast and fully automatic time series modeling and forecasting using Echo State Networks. See he vignettes [Base functions](https://cran.r-project.org/web/packages/echos/vignettes/vignette_01_baseR.html) and [Tidy functions](https://cran.r-project.org/web/packages/echos/vignettes/vignette_02_tidyR.html).
 
 ![](echos.png){fig-alt="Example of time series forecast"}
-[quadVAR](https://cran.r-project.org/package=quadVAR) v0.1.2: Provides functions to estimate quadratic vector autoregression models with the strong hierarchy using the Regularization Algorithm under Marginality Principle of [Hao et al. (2018)]https://www.tandfonline.com/doi/full/10.1080/01621459.2016.1264956) to compare the performance with linear models, and construct networks with partial derivatives. See [README](https://cran.r-project.org/web/packages/quadVAR/readme/README.html) for examples.
+[quadVAR](https://cran.r-project.org/package=quadVAR) v0.1.2: Provides functions to estimate quadratic vector autoregression models with the strong hierarchy using the Regularization Algorithm under Marginality Principle of [Hao et al. (2018)](https://www.tandfonline.com/doi/full/10.1080/01621459.2016.1264956) to compare the performance with linear models, and construct networks with partial derivatives. See [README](https://cran.r-project.org/web/packages/quadVAR/readme/README.html) for examples.
 
 ![](quadVAR.png){fig-alt="Example model plot"}
 
 ## Utilities
 
-[aftables](https://cran.r-project.org/package=aftables) v1.0.2: Provides tools to generate spreadsheet publications that follow best practice guidance from the [UK government's Analysis Function](https://analysisfunction.civilservice.gov.uk/policy-store/releasing-statistics-in-spreadsheets/). There are four vignettes including an [Introduction](https://cran.r-project.org/web/packages/aftables/vignettes/aftables.html) [Accessibility](https://cran.r-project.org/web/packages/aftables/vignettes/checklist.html).
+[aftables](https://cran.r-project.org/package=aftables) v1.0.2: Provides tools to generate spreadsheet publications that follow best practice guidance from the [UK government's Analysis Function](https://analysisfunction.civilservice.gov.uk/policy-store/releasing-statistics-in-spreadsheets/). There are four vignettes including an [Introduction](https://cran.r-project.org/web/packages/aftables/vignettes/aftables.html) and [Accessibility](https://cran.r-project.org/web/packages/aftables/vignettes/checklist.html).
 
 [watcher](https://cran.r-project.org/package=watcher) v0.1.2: Implements an `R` binding for [`libfswatch`](https://emcrisostomo.github.io/fswatch/doc/1.9.3/libfswatch.html/), a file system monitoring library, that enables users to files or directories recursively for changes in the background. Log activity, or run an `R` function every time a change event occurs. See [README](https://cran.r-project.org/web/packages/watcher/readme/README.html)for an example.
 
 ## Visualization
 
-[jellyfisher](https://cran.r-project.org/package=jellyfisher) v1.0.4: Generates interactive Jellyfish plots to visualize spatiotemporal tumor evolution by integrating sample and phylogenetic trees into a unified plot. This approach provides an intuitive way to analyze tumor heterogeneity and evolution over time and across anatomical locations. The Jellyfish plot visualization design was first introduced by [Lahtinen et al. (2023)](https://www.cell.com/cancer-cell/fulltext/S1535-6108(23)00143-5?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS1535610823001435%3Fshowall%3Dtrue). See the [vignette](https://hautaniemilab.github.io/jellyfisher/).
+[jellyfisher](https://cran.r-project.org/package=jellyfisher) v1.0.4: Generates interactive *Jellyfish* plots to visualize spatiotemporal tumor evolution by integrating sample and phylogenetic trees into a unified plot. This approach provides an intuitive way to analyze tumor heterogeneity and evolution over time and across anatomical locations. The Jellyfish plot visualization design was first introduced by [Lahtinen et al. (2023)](https://www.cell.com/cancer-cell/fulltext/S1535-6108(23)00143-5?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS1535610823001435%3Fshowall%3Dtrue). See the [vignette](https://hautaniemilab.github.io/jellyfisher/).
 
 ![](jelly.svg){fig-alt="Example Jellyfisher Plot"}
 
