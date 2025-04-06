@@ -5,7 +5,7 @@ date: 2025-02-28
 description: "An attempt to capture the depth and breadth of what's new on CRAN."
 image: "parttree.png"
 image-alt: ""
-categories: ""
+categories: "Top 40"
 code-fold: true
 code-summary: "Show the code"
 editor: source
