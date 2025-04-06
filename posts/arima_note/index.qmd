@@ -232,9 +232,6 @@ report()
 fit_2 |> gg_tsresiduals()
 ```
 
-```{r}
-fit_2 |> features(.innov, ljung_box, lag = 10)
-```
 
  
  
@@ -459,11 +456,31 @@ r_df |> ggplot(aes(ARIMA,search)) + geom_point(color = "darkblue") +
 ```
 
 
+Finally, note that I have compared the models according to their RMSE, but that the `ARIMA()` function selects models based on the AICc criterion. Comparing both of these metrics for the models computed by `fable` shows that these metrics would not select the same model.
+
+
+
+```{r}
+#Fetch AICc values for all models fit with fable
+AICc_df <- data.frame(ARIMA_AICc <- glance(fit)["AICc"],
+ARIMA_2_AICc <- glance(fit_2)["AICc"],
+ARIMA_aA_AICc <- glance(fit_aA)["AICc"],
+ARIMA_search_AICc <- glance(fit_search)["AICc"])
+names(AICc_df) <- c("ARIMA", "ARIMA_2", "ARIMA_aA", "search")
+AICc_df_longer <- AICc_df |> pivot_longer(cols = everything(), names_to = "model", values_to = "AICc")
+
+#select faple RMSE values
+rms_df <- data.frame(rms_fcst[2:5])
+
+# Put in data frame to compare
+compare_df <- cbind(AICc_df_longer, rms_df)
+row.names(compare_df) <- NULL
+names(compare_df) <- c( "Model", "AICc", "RMSE")
+compare_df |> arrange(AICc)
+
+
+```
+
 ## Summary
 
 I have three different models for the BE Electricity Usage time series. Each provides a reasonably good fit based on comparing the RMSE of its respective forecasts with the actual data of the hold-out test data. Because of they way they were constructed it seems reasonable to assume that these solutions are somehow "close" to each other in the vector space containing the stochastic difference equations that constitute the models. A resonable question is: are there better models that live somewhere else in the vector space? Answering this means going back to fundamentals and searching for structure that may still be in the residuals. I will leave that for another time.
-
-
-
-
-
