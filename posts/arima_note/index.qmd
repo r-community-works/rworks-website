@@ -25,6 +25,7 @@ library(fable)
 library(tsibble)
 library(nixtlar) # for the electricity data
 library(feasts)
+library(Metrics)
 ```
 
 As in the `TimeGPT` post, I will use the BE electricity usage data set from the `nixtlar` package for fitting models and making forecasts. A plot of the data shows that the dime series seems to have some cyclic behavior punctuated by periods of extreme volatility. 
@@ -71,20 +72,20 @@ mutate(time = 1:length(ds))|> select(-ds)
 elec_ts <- ts(train$y, frequency = 24)
 ```
 
-And now, the first AIRMA forecast using the `forecast` package.  Notice that the plot title reports that the `forecast::arime()` function fitted an ARIMA(2,1,1)(1,0,1)[24] model to the data. It appears to be a reasonable fit and forecast with some differencing to achieve stationarity and a seasonal component to account for the daily cycle in the data.
-
+And now, the first AIRMA forecast using the `forecast` package.  Notice that the plot title reports that the `forecast::arima()` function fitted an ARIMA(2,1,1)(1,0,1)[24] model to the data. It appears to be a reasonable fit and forecast with some differencing to achieve stationarity and a seasonal component to account for the daily cycle in the data.
+a
 ```{r}
 #| code-fold: TRUE
 #| code-summary: "Show the code"
 #| message: FALSE
 #| warning: FALSE
-#arima <- elec_ts |>
-#  forecast::auto.arima() |>
-#  forecast(h = NF , level = 95)
-#saveRDS(arima, "arima_forecast.rds")
-arima<- readRDS("arima_forecast.rds")
+#forecast_fit <- elec_ts |>
+#forecast::auto.arima() |>
+#forecast(h = NF , level = 95)
+#saveRDS(forecast_fit, "arima_forecast.rds")
+forecast_fit<- readRDS("arima_forecast.rds")
 
-plot(arima, col="darkblue")
+plot(forecast_fit, col="darkblue")
 ```
 
 
@@ -97,13 +98,11 @@ Here, I extract the forecast and set up a data frame to hold the comparative for
 arima_fcst_df <- BE_test_df |> 
   mutate(time = ds,
     BE_actual = y,
-    arima = as.vector(arima$mean)) |> 
+    f_211101 = as.vector(forecast_fit$mean)) |> 
   select(-ds,-y)
 head(arima_fcst_df,3)
 
 ```
-
-
 
 
 
@@ -123,14 +122,13 @@ elec_ts_2 <- auto_train |> as_tsibble(index = time) |> fill_gaps(time, .full = s
 
 
 
-Here is the automatic ARIMA model fit using the `fable` package and the big surprise. `fable` fit an ARIMA(0,1,4)(0,0,2)[24] to the data which looks quite different from the ARIMA(2,1,1)(1,0,1)[24] model that the `forecast` package fit.
+Here is the automatic ARIMA model fit using the `fable` package and the big surprise. `fable` fits an ARIMA(0,1,4)(0,0,2)[24] to the data which looks quite different from the ARIMA(2,1,1)(1,0,1)[24] model that the `forecast` package fit.
 ```{r}
-fit <- elec_ts_2 %>%
-  model(
-    arima_fable = ARIMA(y)
-  ) 
-fable_ARIMA_fcst <- fit |> forecast(h = 24)
-fit
+fable_fit_1 <- elec_ts_2 |> model(
+    arima_fable = ARIMA(y)) |> report()
+
+
+
 ```
 
 ## A Digression about Notation
@@ -161,11 +159,10 @@ Put the `fable` forecast upper case ARIMA into the data frame.
 
 ```{r}
 
-
 #| code-fold: true
 #| code-summary: "Show the code"
-
-arima_fcst_df <- arima_fcst_df |> mutate(ARIMA =  as.vector(fable_ARIMA_fcst$.mean) )
+fable_ARIMA_fcst_1 <- fable_fit_1 |> forecast(h = 24) 
+arima_fcst_df <- arima_fcst_df |> mutate(F_014002 =  as.vector(fable_ARIMA_fcst_1$.mean) )
 head(arima_fcst_df,3)
 ```
 
@@ -197,22 +194,7 @@ q
 compare_fore(arima_fcst_df)
 ```
 
-The two forecasts are almost on top of each other!! Moreover, the RMSE values of the forecasts from the actual data are also very close.
-```{r}
-#| code-fold: true
-#| code-summary: "Show the code"
-#| warning: false
-RMSE <-  function(m, o){sqrt(mean((m - o)^2))}
-rms_names <- c("arima", "ARIMA")
-rms_fcst <- array(NA_real_,
-                          dim = 2,
-                          dimnames = list(rms_names))
-rms_fcst[1] <- RMSE(arima_fcst_df$arima, arima_fcst_df$BE_actual)
-rms_fcst[2] <- RMSE(arima_fcst_df$ARIMA, arima_fcst_df$BE_actual)
 
-
-rms_fcst
-```
 
 ## An Investigation
 
@@ -221,28 +203,19 @@ To be on the safe side, I thought it was worthwhile checking to see that `fable`
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
-fit_2 <- elec_ts_2  %>%
+fable_fit_2 <- elec_ts_2  %>%
 as_tsibble() %>%
-model(ARIMA_2 = ARIMA(y ~ 0 + pdq(2, 1, 1) + PDQ(1, 0, 1))) %>%
+model(fable_ARIMA_fcst_2 = ARIMA(y ~ 0 + pdq(2, 1, 1) + PDQ(1, 0, 1))) %>%
 report()
 ```
-
-
-```{r}
-fit_2 |> gg_tsresiduals()
-```
-
-
- 
- 
 And then, make the forecast and add it to the plotting data frame.
 
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
-fable_ARIMA_fcst_2 <- fit_2 |> forecast(h = 24)
+fable_ARIMA_fcst_2 <- fable_fit_2 |> forecast(h = 24)
 
-arima_fcst_df <- arima_fcst_df |> mutate(ARIMA_2 =  as.vector(fable_ARIMA_fcst_2$.mean) )
+arima_fcst_df <- arima_fcst_df |> mutate(F_211101 =  as.vector(fable_ARIMA_fcst_2$.mean) )
 head(arima_fcst_df,3)
 ```
 
@@ -254,50 +227,41 @@ Plotting the forecasts shows that the forecasts from , *arima* , the original AR
 compare_fore(arima_fcst_df)
 ```
 
-Checking the residuals is always a good idea. The following plot shows that the residuals of the two `fable` ARIMA forecasts are very highly correlated.
+## Checking the residuals
+
+The following plot shows that the residuals of the two `fable` ARIMA forecasts are very highly correlated.
 
 ```{r}
 #| warning: FALSE
 #| message: FALSE
 #| code-fold: true
 #| code-summary: "Show the code"
-fit_2_aug<- fit_2 %>% augment()            # Get fitted values and residuals
-fit_aug <- fit %>% augment() 
-ARIMA <- fit_aug$.innov
-ARIMA_2 <- fit_2_aug$.innov
-r_df <- data_frame(ARIMA, ARIMA_2)
-r_df |> ggplot(aes(ARIMA,ARIMA_2)) + geom_point(color = "darkblue") +
-        xlab("ARIMA(2,1,1)(1,0,1)[24]") +
-        ylab("ARIMA(0,1,4)(0,0,2)[24]") +
+fable_fit_2_aug<- fable_fit_2 %>% augment()            # Get fitted values and residuals
+fable_fit_1_aug <- fable_fit_1 %>% augment() 
+resid_fit_1 <- fable_fit_1_aug$.innov
+resid_fit_2 <- fable_fit_2_aug$.innov
+r_df <- data_frame(resid_fit_1, resid_fit_2)
+r_df |> ggplot(aes(resid_fit_1,resid_fit_2)) + geom_point(color = "darkblue") +
+        ylab("ARIMA(2,1,1)(1,0,1)[24]") +
+        xlab("ARIMA(0,1,4)(0,0,2)[24]") +
         ggtitle(".innov tesiduals from two `fable` ARIMA models")
 ```
 
-Let's look at the residuals for the ARIMA(2,1,1)(1,0,1)[24] model. The residuals look like white noise, but the ACF plot shows a large spike at lag 23 and distribution of the residuals has too sharp of a peak to be normal.and the Ljung-Box test for autocorrelation of the residuals also looks good.
+Let's look at the residuals for the ARIMA(2,1,1)(1,0,1)[24] model. The residuals look like white noise, but the ACF plot shows a large spike at lag 23 and distribution of the residuals has too sharp of a peak to be normal.
 
 ```{r}
 #| warning: FALSE
 #| message: FALSE
-fit_2 |> gg_tsresiduals()
+fable_fit_2 |> gg_tsresiduals()
 ```
 
+Nevertheless, the Ljung-Box test for autocorrelation of the residuals also looks good. Under the hypothesis that the residuals came from a white noise process he probability of observing what we did observe would be aroud 0.3 - too high to rejuct the hypothesis.
 
-
-And, we see that the *arima* and *ARIMA_2* RMSE errors are very close.
 ```{r}
-#| code-fold: true
-#| code-summary: "Show the code"
+fable_fit_2_aug |> features(.innov, ljung_box, lag = 48)
 
-RMSE <-  function(m, o){sqrt(mean((m - o)^2))}
-rms_names <- c("arima", "ARIMA", "ARIMA_2")
-rms_fcst <- array(NA_real_,
-                          dim = 3,
-                          dimnames = list(rms_names))
-rms_fcst[1] <- RMSE(arima_fcst_df$arima, arima_fcst_df$BE_actual)
-rms_fcst[2] <- RMSE(arima_fcst_df$ARIMA, arima_fcst_df$BE_actual)
-rms_fcst[3] <- RMSE(arima_fcst_df$ARIMA_2, arima_fcst_df$BE_actual)
-
-rms_fcst
 ```
+
 
 ## Is this Really Surprising?
 
@@ -309,15 +273,15 @@ Should I have been surprised by seeing two different auto fit models for the sam
 
 ## Variations on a Theme
 
-Because the two nearly identical solutions to the problem of finding a model that adequately fits the data are essentially linear equations, I imagine that they live somewhere close to each other in a multidimensinal vector space. Are there other solutions nearby? Are there better solutions? Given that I have two solutions, it seems reasonable to assume that minor perturbations of the p,d,q,P,D,Q parameters may turn up additional models with similiar RMSE profiles. As it turned out, most of the parameter fiddling that I tried resulted in numerical errors of one sort or another or inferior solutions. This is  not surprising. However, I did find a third solution that is at least as good as the others.
+Because the two nearly identical solutions to the problem of finding a model that adequately fits the data are essentially linear equations, I imagine that they live somewhere close to each other in a multidimensinal vector space. Are there other solutions nearby? Are there better solutions? Given that I have two solutions, it seems reasonable to assume that minor perturbations of the p,d,q,P,D,Q parameters may turn up additional models with similar AICc and RMSE profiles. Fiddling with the parameters it turned out mostly resulted in numerical errors of one sort or another or inferior solutions. But, I did find a third solution that is at least as good as the others.
 
 
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
-fit_aA <- elec_ts_2  %>%
-as_tsibble() %>%
-model(aA = ARIMA(y ~ 0 + pdq(0, 1, 3) + PDQ(0, 0, 2))) %>% 
+fable_fit_3 <- elec_ts_2  |>
+as_tsibble() |>
+model(F_013002 = ARIMA(y ~ 0 + pdq(0, 1, 3) + PDQ(0, 0, 2))) |>
 report()
 ```
 
@@ -326,62 +290,28 @@ Once again, we see that all of the ARIMA forecasts sit on top of each other.
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
-fable_ARIMA_aA <- fit_aA |> forecast(h = 24)
-arima_fcst_df <- arima_fcst_df |> mutate(ARIMA_aA =  as.vector(fable_ARIMA_aA$.mean) )
+fable_ARIMA_fcst_3 <- fable_fit_3 |> forecast(h = 24)
+arima_fcst_df <- arima_fcst_df |> mutate(F_013002 =  as.vector(fable_ARIMA_fcst_3$.mean) )
 compare_fore(arima_fcst_df)
-```
-
-
-If you care about the third decimal place in the RMSE calculation, you might consider it to be the best solution so far.
-
-```{r}
-#| code-fold: true
-#| code-summary: "Show the code"
-
-RMSE <-  function(m, o){sqrt(mean((m - o)^2))}
-rms_names <- c("arima", "ARIMA", "ARIMA_2","ARIMA_aA")
-rms_fcst <- array(NA_real_,
-                          dim = 4,
-                          dimnames = list(rms_names))
-rms_fcst[1] <- RMSE(arima_fcst_df$arima, arima_fcst_df$BE_actual)
-rms_fcst[2] <- RMSE(arima_fcst_df$ARIMA, arima_fcst_df$BE_actual)
-rms_fcst[3] <- RMSE(arima_fcst_df$ARIMA_2, arima_fcst_df$BE_actual)
-rms_fcst[4] <- RMSE(arima_fcst_df$ARIMA_aA, arima_fcst_df$BE_actual)
-rms_fcst
 ```
 
 ## Are there better solutions?
 
-```{r}
-fit_aA |> gg_tsresiduals()
-```
+For a final try to find a better forecast I used the search feature of the fable::ARIMA function to systematically search through the model space constrained by p + q + P + Q <= 6 p + q + P + Q <= 6 & (constant + d + D <= 2)
 
 ```{r}
-fit_2_aug |> features(.innov, box_pierce, lag = 48)
-```
-```{r}
-fit_2_aug |> features(.innov, ljung_box, lag = 10)
-```
-
-## Last shot at finding a better model
-
-For a final try to find a better forecast I used the search feature of the fable::ARIMA function to search through the model space constrained by p + q + P + Q <= 6 p + q + P + Q <= 6 & (constant + d + D <= 2)
-
-```{r}
-fit_search <- elec_ts_2 %>%
+fable_fit_4 <- elec_ts_2 |>
   model(
     arima_fable = ARIMA(y, stepwise=FALSE)
-  ) 
-search_fcst <- fit_search |> forecast(h = 24)
-fit_search |> report()
+  ) |> report()
 ```
 
 ```{r}
 
 #| code-fold: true
 #| code-summary: "Show the code"
-
-arima_fcst_df <- arima_fcst_df |> mutate(search =  as.vector(search_fcst$.mean) )
+fable_fit_4_fcst <- fable_fit_4 |> forecast(h = 24)
+arima_fcst_df <- arima_fcst_df |> mutate(F_211002 =  as.vector(fable_fit_4_fcst$.mean) )
 head(arima_fcst_df,3)
 ```
 
@@ -391,95 +321,42 @@ Plot and compare.
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
-#| classes: preview-image
-compare_fore <- function(file){
-  arima_fcst_long_df <- file %>%
-  pivot_longer(!time, names_to = "method", values_to = "mean")
-
-q <- arima_fcst_long_df |>
-  ggplot(aes(
-    x = time,
-    y = mean,
-    group = method,
-    color = method
-  )) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
-  geom_line() +
-  geom_point() +
-  ggtitle("Multiple ARIMA Forecasts")
-
-q
-}
 
 compare_fore(arima_fcst_df)
 ```
 
 
-
-
+Visually, the forecasts for all of the models look very similar. Lets confirm this by checking the AICc and RMSE values one last time. The are indeed very close according to both metrics. And, as it turns out, the model discovered by the forecast package has the smallest AICc value and the smallest RMSE. 
 
 
 
 
 ```{r}
-#| code-fold: true
-#| code-summary: "Show the code"
+c_df <- data.frame(c("f_211101", "F_013002", "F_014002", "F_211002", "F_211101"))
+names(c_df) <- c("Model")
 
-RMSE <-  function(m, o){sqrt(mean((m - o)^2))}
-rms_names <- c("arima", "ARIMA", "ARIMA_2","ARIMA_aA", "search" )
-rms_fcst <- array(NA_real_,
-                          dim = 5,
-                          dimnames = list(rms_names))
-rms_fcst[1] <- RMSE(arima_fcst_df$arima, arima_fcst_df$BE_actual)
-rms_fcst[2] <- RMSE(arima_fcst_df$ARIMA, arima_fcst_df$BE_actual)
-rms_fcst[3] <- RMSE(arima_fcst_df$ARIMA_2, arima_fcst_df$BE_actual)
-rms_fcst[4] <- RMSE(arima_fcst_df$ARIMA_aA, arima_fcst_df$BE_actual)
-rms_fcst[5] <- RMSE(arima_fcst_df$search, arima_fcst_df$BE_actual)
-rms_fcst
-```
+rmse <- c(rmse(arima_fcst_df$BE_actual,arima_fcst_df$f_211101),
+  rmse(arima_fcst_df$BE_actual,arima_fcst_df$F_013002),
+  rmse(arima_fcst_df$BE_actual,arima_fcst_df$F_014002),
+  rmse(arima_fcst_df$BE_actual,arima_fcst_df$F_211002),
+  rmse(arima_fcst_df$BE_actual,arima_fcst_df$F_211101))
 
-```{r}
-
-#| warning: FALSE
-#| message: FALSE
-#| code-fold: true
-#| code-summary: "Show the code"
-fit_2_aug<- fit_2 %>% augment()            # Get fitted values and residuals
-fit_aug <- fit %>% augment() 
-ARIMA <- fit_aug$.innov
-search <- fit_2_aug$.innov
-r_df <- data_frame(ARIMA, search)
-r_df |> ggplot(aes(ARIMA,search)) + geom_point(color = "darkblue") +
-        xlab("ARIMA(2,1,1)(1,0,1)[24]") +
-        ylab("ARIMA(2,1,1)(0,0,2)[24]") +
-        ggtitle(".innov tesiduals from two `fable` ARIMA models")
-```
-
-
-Finally, note that I have compared the models according to their RMSE, but that the `ARIMA()` function selects models based on the AICc criterion. Comparing both of these metrics for the models computed by `fable` shows that these metrics would not select the same model.
-
-
-
-```{r}
-#Fetch AICc values for all models fit with fable
-AICc_df <- data.frame(ARIMA_AICc <- glance(fit)["AICc"],
-ARIMA_2_AICc <- glance(fit_2)["AICc"],
-ARIMA_aA_AICc <- glance(fit_aA)["AICc"],
-ARIMA_search_AICc <- glance(fit_search)["AICc"])
-names(AICc_df) <- c("ARIMA", "ARIMA_2", "ARIMA_aA", "search")
-AICc_df_longer <- AICc_df |> pivot_longer(cols = everything(), names_to = "model", values_to = "AICc")
-
-#select faple RMSE values
-rms_df <- data.frame(rms_fcst[2:5])
-
-# Put in data frame to compare
-compare_df <- cbind(AICc_df_longer, rms_df)
-row.names(compare_df) <- NULL
-names(compare_df) <- c( "Model", "AICc", "RMSE")
-compare_df |> arrange(AICc)
-
+AICc <- c(forecast_fit$model$aicc,
+                        as.numeric(glance(fable_fit_1)["AICc"]), 
+                        as.numeric(glance(fable_fit_2)["AICc"]), 
+                        as.numeric(glance(fable_fit_3)["AICc"]), 
+                        as.numeric(glance(fable_fit_4)["AICc"]))
+c_df <- cbind(c_df, rmse, AICc)
+c_df |> arrange(AICc)
 
 ```
+
+
+
+
+
+
+
 
 ## Summary
 
