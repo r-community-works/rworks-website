@@ -1,6 +1,6 @@
 
 ---
-title: "Down the Rabbit Hole with ARIMA Models"
+title: "Down a Rabbit Hole with ARIMA Models"
 author: "Joseph Rickert"
 date: 2025-04-11
 code-fold: true
