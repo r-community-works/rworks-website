@@ -1,12 +1,13 @@
 
 ---
-title: "ARIMA NOTE"
+title: "Down the Rabbit Hole with ARIMA Models"
 author: "Joseph Rickert"
-date: 2025-03-25
+date: 2025-04-11
 code-fold: true
 code-summary: "Show the code"
-description: "."
+description: "This post describes a chance encounter with a time series data set for which the `forecast` and `fable` packages found different ARIMA models that don't look much alike, but produced surprisingly close forecasts. It is a reminder of the inherent identifiability problem of ARIMA models and a record of a couple of afternoons spent down this rabbit hole."
 categories: ""
+image: plot1.png
 editor: source
 ---
 
@@ -72,7 +73,7 @@ mutate(time = 1:length(ds))|> select(-ds)
 elec_ts <- ts(train$y, frequency = 24)
 ```
 
-The function`forecast::arima()` fit ann ARIMA(2,1,1)(1,0,1)[24]. It differenced the data to achieve stationarity, recognized the seasonal component to account for the daily cycle in the data and included both auto regressive and moving average components. Just how reasonable the model and forecast are will become apparent later in the post.
+The function`forecast::arima()` fit an ARIMA(2,1,1)(1,0,1)[24]. It differenced the data to achieve stationarity, recognized the seasonal component to account for the daily cycle in the data and included both auto regressive and moving average components. Just how reasonable the model and forecast are will become apparent later in the post.
 
 ```{r}
 #| code-fold: TRUE
@@ -133,27 +134,23 @@ fable_fit_1 <- elec_ts_2 |> model(
 
 ## A Digression about Notation
 
-So, why do say that the two models look to be quite different? Well, let's work out the short hand notation for the two models and see what the math looks like.
+So, why do say that the two models look to be quite different? Well, let's translate the short hand notation for the two models and see what the respective polynomials look like remembering how the backshift operator works: $B^k Y_t = Y_{t-k}$.
 
-## ARIMA(2,1,1)(1,0,1)[24] from forecast package
+#### ARIMA(2,1,1)(1,0,1)[24] from forecast package
 
 This notation translates into: 
-$$(1−\phi_1B−\phi_2B^2)(1−\Phi_1B^24)(1−B)y_t=(1−\theta_1B)(1−\Theta_1B^24)\varepsilon_t$$
-
-which fully expands to:
+$$(1−\phi_1B−\phi_2B^2)(1−\Phi_1B^{24})(1−B)Y_t=(1+\theta_1B)(1+\Theta_1B^{24})\varepsilon_t$$
 
 
-$$ y_t−y_{t−1}−\phi_1y_{t−1}+\phi_1y_{t−2}−\phi_2y_{t−2}+\phi_2y_{t−3}−\Phi_1y_{t−24}+\Phi_1y_{t−25}+\phi_1\Phi_1y_{t−25}−\phi_1\Phi_1y_{t−26}+\phi_2\Phi_1y_{t−26}−\phi_2\Phi_1y_{t−27}=\varepsilon_t−\theta_1ε_{t−1}−\Theta_1\varepsilon_{t−24}+\theta_1\Theta_1\varepsilon_{t−25}$$
 
-## ARIMA(0,1,4)(0,0,2)[24] from fable package
+#### ARIMA(0,1,4)(0,0,2)[24] from fable package
 
 This notation translates into:
 
-$$(1 - B)y_t = (1 - \theta_1B - \theta_2 B^2 - \theta_3 B^3 - \theta_4 B^4)(1 - \Theta_1 B^{24} - \Theta_2 B^{48})\varepsilon_t$$
-which expands into:
+$$(1 - B)Y_t = (1 + \theta_1B + \theta_2 B^2 + \theta_3 B^3 + \theta_4 B^4)(1 + \Theta_1 B^{24} + \Theta_2 B^{48})\varepsilon_t$$
 
-$$y_t−y_{t−1}=\varepsilon_t−\theta_1\varepsilon_{t−1}−\theta_2\varepsilon_{t−2}−\theta_3\varepsilon_{t−3}−\theta_4\varepsilon_{t−4}−\Theta_1\varepsilon_{t−24}+\theta_1\Theta_1\varepsilon_{t−25}+\theta_2\Theta_1\varepsilon_{t−26}+\theta_3\Theta_1\varepsilon_{t−27}+\theta_4\Theta_1\varepsilon_{t−28}−\Theta_2\varepsilon_{t−48}+ \theta_1\Theta_2\varepsilon_{t−49} +\theta_2\Theta_2\varepsilon_{t−50}+\theta_3\Theta_2\varepsilon_{t−51}+\theta_4\Theta_2\varepsilon_{t−52}$$
-These difference equations don't look similar to me, and I have no intuition why they should both be reasonable models for the data. But, let's see how the forecasts compare.
+
+These difference equations don't look similar to me, and I have no intuition as to why they should both be reasonable models for the data. But, let's see how the forecasts compare.
 
 Put the `fable` forecast upper case ARIMA into the data frame.
 
@@ -255,7 +252,7 @@ Let's look at the residuals for the ARIMA(2,1,1)(1,0,1)[24] model in some detail
 fable_fit_2 |> gg_tsresiduals()
 ```
 
-Nevertheless, the Ljung-Box test for autocorrelation of the residuals looks pretty good. Under the hypothesis that the residuals come from a white noise process the probability of observing what we did observe would be aroud 0.3 - too high high to automatically reject the null hypothesis. I conclude that the model and forecast are pretty good, but there is some structure left in the residuals that leaves the door open for finding a better forecast.
+Nevertheless, the Ljung-Box test for autocorrelation of the residuals looks pretty good. Under the hypothesis that the residuals come from a white noise process the probability of observing what we did observe would be around 0.3 - too high high to automatically reject the null hypothesis. I conclude that the model and forecast are pretty good, but there is some structure left in the residuals that leaves the door open for finding a better forecast.
 
 ```{r}
 fable_fit_2_aug |> features(.innov, ljung_box, lag = 48)
@@ -300,7 +297,7 @@ compare_fore(arima_fcst_df)
 
 ## Are there better solutions?
 
-For a final try to find a better forecast I used the search feature of the fable::ARIMA function to systematically search through the model space constrained by p + q + P + Q <= 6 p + q + P + Q <= 6 & (constant + d + D <= 2). This algorithm ran fairly quickly and turnd up yet another solution that is very close to the others.
+For a final try to find a better forecast I used the search feature of the fable::ARIMA function to systematically search through the model space constrained by p + q + P + Q <= 6 p + q + P + Q <= 6 & (constant + d + D <= 2). This algorithm ran fairly quickly and turned up yet another solution that is very close to the others.
 
 ```{r}
 fable_fit_4 <- elec_ts_2 |>
@@ -358,4 +355,4 @@ c_df |> arrange(AICc)
 
 ## Summary
 
-I have five different models for the BE Electricity Usage time series. Each provides a reasonably good fit based on comparing the RMSE of its respective forecasts with the actual data of the hold-out test data. Because of they way they were constructed it seems reasonable to assume that these solutions are somehow "close" to each other in the vector space inhabited by the stochastic difference equations that specify the models. A reasonable question is: are there better models that live somewhere else in the vector space? Answering this means figuring out a way to exploit the structure that may still be in the residuals, a quest I will leave for another time.
+I have five different models for the BE Electricity Usage time series. Each provides a reasonably good fit based on comparing the RMSE of its forecast with the actual values of the hold-out test data. Because of the way that the automated ARIMA algorithms in the  `forecast` and `fable` time series packages search for solutions it seems reasonable to assume that these solutions are somehow "close" to each other in the solution space inhabited by the stochastic difference equations that specify the models. A reasonable question is: are there better models that live somewhere else in the solution space? Answering this means figuring out a way to exploit the structure that may still be in the residuals, a quest I may pursue another day.
