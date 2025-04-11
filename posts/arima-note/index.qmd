@@ -208,7 +208,7 @@ arima_fcst_df <- arima_fcst_df |> mutate(F_211101 =  as.vector(fable_ARIMA_fcst_
 head(arima_fcst_df,3)
 ```
 
-Plotting the forecasts shows that the forecasts from , *arima* , the original ARIMA(2,1,1)(1,0,1)[24] model from the `forecast` package, *ARIMA*, the ARIMA(0,1,4)(0,0,2)[24] model from `fable` and *ARIMA_2*, the ARIMA(2,1,1)(1,0,1)[24] model from `fable` are all more or less on top of each other. Hence, both `fable` and `forecast` agree that the ARIMA(2,1,1)(1,0,1)[24] model is a reasonable fit to the data.
+The following plot shows that f_211101, the original ARIMA(2,1,1)(1,0,1)[24] model from the `forecast` package, F_014002, the ARIMA(0,1,4)(0,0,2)[24] model from `fable,` and F_211101, the ARIMA(2,1,1)(1,0,1)[24] model from `fable` are all more or less on top of each other. Hence, both `fable` and `forecast` agree that the ARIMA(2,1,1)(1,0,1)[24] model is a reasonable fit to the data.
 
 ```{r}
 #| code-fold: true
