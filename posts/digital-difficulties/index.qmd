@@ -1,0 +1,215 @@
+---
+title: "Digital Difficulties"
+author: "Nina Zumel"
+date: 2025-03-14
+description: ""
+image: "Original-Odhner-Arithmos-Typ-5.png"
+image-alt: "Original-Odhner-Arithmos-Typ-5 calculator, circa 1912-1928. Source: Wikipedia"
+categories: "Puzzle Corner"
+---
+
+Here's another puzzle, from Henry Dudeney's [*Perplexities* column](https://babel.hathitrust.org/cgi/pt?id=mdp.39015055410677&seq=115) in *Strand Magazine*, January 1924.
+
+> Arrange the ten digits, 1 2 3 4 5 6 7 8 9 0, in such order that they shall form a number 
+that may be divided by every number from 2 to 18 without in any case a remainder. As an example, 
+if I arrange them thus: 1 2 7 4 9 5 3 6 8 0, this number can be divided by 2,3,4,5, and so on up to 16,
+without any remainder, but it breaks down at 17.
+
+One of the additional challenges in taking puzzles from these older sources is to try to solve them
+the way a puzzle-solver would have, back in 1924. In this case, I wasn't successful at finding a pure paper-and-pencil solution,
+but I did find an elegant modern solution that would have been possible with the computational machines of the era.
+
+But before I show you my solution, try it yourself, first! My solution after *The Mathematicians*.
+
+![The Mathematicians, Chirico (1917)](the-mathematicians-1917.jpg){fig-alt="The Mathematicians, Chirico (1917) source: WikiArt"}
+
+
+## Solution
+
+Let's look at a super brute force solution first, and then a more elegant, but still not quite paper-and-pencil one.
+
+### The Brute Force Solution
+
+```{r echo=FALSE}
+bigint = factorial(10)
+bigstr = format(bigint, big.mark = ",", scientific = FALSE)
+
+medint = factorial(8)
+medstr = format(medint, big.mark = ",", scientific = FALSE)
+
+nperms = medint * 4
+npermstring = format(nperms, big.mark = ",", scientific = FALSE)
+```
+
+With a modern computer, one could simply generate all $10! =$ `r bigstr` possible permutations of the ten digits. 
+Then, for each permutation, check whether it is divisible by all the integers from 2 to 18. This is brutal, but it works.
+
+We can also reduce the number of permutations by taking advantage of some facts about divisibility.
+
+A number is:
+
+* divisible by 10 (and 5) if the last digit is 0
+* divisible by 4 (and 2) if the last two digits are a number divisible by 4 (See the appendix for a quick explanation of why).
+
+Combining these facts, we can deduce that the last two digits of our target number must be 20, 40, 60, or 80.
+This leaves (for each case), $8! =$ `r medstr` permutations, giving us a total of $4 *$ `r as.integer(medint)` = `r npermstring` candidates to examine. That's a much smaller number!
+
+### An Elegant Modern Solution
+
+Here's a solution that reduces the number of candidates even more. This time, we'll start by finding the smallest number, $m$, that is divisible by all the integers from 2 to 18. We know that our target number must be a multiple of $m$. Next, we find all the multiples
+of $m$ in the appropriate range, and check which one(s) have ten unique digits. These will be the solutions. 
+
+Let's code this solution up, in R.
+
+#### Find the Least Common Multiple (LCM) of the integers from 2 to 18
+
+We'll start by multiplying all the primes in our range:
+
+```{r}
+m = 2 * 3 * 5 * 7 * 11 * 13 * 17
+m
+```
+
+Note that this number is also divisible by `6=2*3, 10=2*5, 14=2*7`, and `15=3*5`. What factors are left?
+To save the trouble of tracking this by hand, we'll write a function to return which integers in the range 2:18 a number `m` is *not* divisible by.
+
+```{r}
+not_divisible_by = function(m) {
+  candidates = 2:18
+  
+  remainders = m %% candidates
+  candidates[remainders != 0]
+}
+
+not_divisible_by(m)
+```
+
+If we further multiply $m$ by another 3, it will then be divisible by 9 and 18. If we then also multiply $m$ by 4, it will
+be divisible by 4, 8, and 12. This leaves 16, which means we need another 2.
+
+```{r}
+# 3 and 4, first
+m = m * 3 * 4
+not_divisible_by(m)
+
+# now an extra 2
+m = m * 2
+not_divisible_by(m)
+```
+
+That gives us m = `r as.integer(m)`, which should be the smallest number divisible by all integers from 2 to 18. 
+The number we want must therefore be a multiple of `m`.
+
+#### Filter all the multiples of $m$
+
+Now we need to
+
+* find all the multiples of $m$ in the appropriate range
+* find all the resulting numbers that have ten unique digits
+
+First, we'll find the range of candidates.
+
+```{r}
+# the smallest possible candidate
+minC = 1234567890
+
+# the largest possible candidate
+maxC = 9876543210
+
+# the range of multipliers to consider
+crange = round(c(minC, maxC) / m)
+crange
+```
+
+This leaves `r as.integer(crange[2] - crange[1] + 1)` candidates to check, which is far fewer than `r npermstring`.
+We already know all these candidates are divisible by all the integers from 2 to 18; we just need to check which ones are a number comprised of ten unique digits.
+
+So let's write the filter and do the calculation:
+
+```{r}
+ten_unique_digits = function(nint) {
+  nstring = as.character(nint)
+  if (nchar(nstring) != 10)
+    return(FALSE)
+  
+  # create a vector of digits
+  digits = unlist(strsplit(nstring, split = ""))
+  
+  length(unique(digits)) == length(digits)
+}
+
+
+candidates = m * crange[1]:crange[2]
+cfilter = vapply(candidates, ten_unique_digits, logical(1))
+
+solns = candidates[cfilter]
+solns
+```
+
+There are `r length(solns)` solutions! Let's check manually that all solutions are valid.
+
+```{r}
+for(s in solns) {
+  print(paste("Checking solution", s))
+  for (i in 2:18) {
+    stopifnot(s %% i == 0)
+  }
+  print("--- Checks out")
+}
+
+# let's also find the multipliers
+solns / m
+```
+
+And we are done! ✅
+
+## But How Would Dudeney Solve This?
+
+```{r echo=FALSE}
+multipliers = solns / m
+lowestm = multipliers[1]
+first_to_check = crange[1]
+ncheck = lowestm - first_to_check
+```
+
+It's easy to find $m$, the LCM of the integers from 2 to 18, with pencil and paper. But I have a hard time imagining that a puzzle-solver in 1924 would be willing to calculate candidate multiples of $m$ by hand to find one with ten unique digits. Even if they started at `r first_to_check``m` and worked their way up, they would have to check `r lowestm` - `r first_to_check` + 1 = `r ncheck + 1` candidates before they find a solution. That doesn't sound fun anymore.
+
+Fortunately, even in 1924, a sophisticated puzzle-solver (like Dudeney) might not need to do the calculation purely
+by pencil and paper. They could have used a mechanical calculator of the era, like the [Arithmometer](https://en.wikipedia.org/wiki/Arithmometer) below:
+
+![The Odhner Arithmos, Type 5, circa 1912-1928. Source: [Wikipedia](https://en.wikipedia.org/wiki/File:Original-Odhner-Arithmos-Typ-5.jpg)](Original-Odhner-Arithmos-Typ-5.png)
+
+With such a device, a puzzle-solver could literally crank out multiples of $m$, scanning each one as they go, rejecting values with repeated digits, until they discover a solution to the puzzle. I imagine it could be done in under ten minutes---which would not be considered a long time for someone accustomed to more manual calculations.
+
+You can read more about older calculation technologies in John Mount's article, [*Calculating at Pencil and Paper Scale*](https://win-vector.com/2024/11/06/calculating-at-pencil-and-paper-scale/).
+
+One of the descendants of the Arithmometer is the [Curta calculator](https://en.wikipedia.org/wiki/Curta), and we 
+at Win Vector just happen to have one! Solving this problem with a Curta would be much like solving it with an Arithmometer. 
+Here's a video of John Mount "finding" the smallest solution to the puzzle:
+
+<center><iframe width="560" height="315" src="https://www.youtube.com/embed/KHiS7niRdQI?si=e9sLc6W5nvOz_wzj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></center>
+
+The discovered solution is in the black area, and the associated multiple of $m$ is in the white area. Keep in mind that John already knew how many cranks he had to do before a solution came up, and after about the first two or three cranks, he stopped checking for duplicate digits. So this is probably a little faster than it would take someone who really didn't know what the answer was.
+
+Now that I know about the Arithmometer and related devices, I'm not too worried about whether Dudeney could have executed my solution. 
+But I do feel sorry for any poor *Strand Magazine* readers who didn't have the latest calculating technology. And I still wonder if I'm missing an even more clever trick, which would have made this solvable with just pencil and paper. If I ever find such a  solution,  I'll post it here at Puzzle Corner. And if you ever find one, please do write in and let us know!
+
+---
+
+## Appendix: Divisibility by 4
+
+**A number is divisible by 4 if its last two digits are divisible by 4.**
+
+Let $N$ be the original number, and $n$ be the number formed by the last two digits.
+Then $N - n$ is a number that is divisible by 100. Since 100 is divisible by 4,
+so is $N-n$. Therefore, $N$ is divisible by 4 if $n$ is.
+
+**Example**:
+
+```
+N = 724
+n = 24
+M = N - n = 700
+```
+
+700 is divisible by 100, therefore divisible by 4. 24 is divisible by 4. Therefore 724 is divisible by 4.
