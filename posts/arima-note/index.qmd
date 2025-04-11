@@ -1,0 +1,334 @@
+---
+title: "Down a Rabbit Hole with ARIMA Models"
+author: "Joseph Rickert"
+date: 2025-04-11
+code-fold: true
+code-summary: "Show the code"
+description: "This post describes a chance encounter with a time series data set for which the `forecast` and `fable` packages found different ARIMA models that don't look much alike, but produce surprisingly close forecasts. It is a reminder of the inherent identifiability problem of ARIMA models and a record of a couple of afternoons spent down this rabbit hole."
+categories: ""
+image: plot1.png
+editor: source
+---
+
+In my previous post [A First Look at TimeGPT using nixtlar](https://rworks.dev/posts/revised_TimeGPT/), I used the `auto.arima()` function from the `forecast` package to fit an ARIMA model to a time series of electricity usage data in order to compare and ARIMA forecast with the `TimeGPT` forecast. While working out the bugs in that post, I also fit an automatic ARIMA model using the newer and improved `fable` package and was very surprised by the results. In this post, I will show what surprised me, work through my investigation, and present some practical consequences of the problem of ARIMA identifiability.
+
+Here are the necessary libraries and the data that we will be working with.
+
+```{r}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: true
+#| code-summary: "Show the code"
+library(tidyverse)
+library(forecast)
+library(fable)
+library(tsibble)
+library(nixtlar) # for the electricity data
+library(feasts)
+library(Metrics)
+```
+
+As in the `TimeGPT` post, I will use the BE electricity usage data set from the `nixtlar` package for fitting models and making forecasts. A plot of the data shows that the dime series seems to have some cyclic behavior punctuated by periods of extreme volatility.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+df <- nixtlar::electricity
+#glimpse(df)
+
+df2 <- df |> mutate(time = as.POSIXct(ds, format = "%Y-%m-%d %H:%M:%S")) |> 
+             filter(unique_id == "BE") |> select(-unique_id, -ds)
+
+p <- df2 |> ggplot(aes(x = time, y = y)) +
+  geom_line(color='darkblue') +
+  ggtitle(" BE Electricity Usage Data")
+
+p
+```
+
+This next block of code splits the data into training and test data, with the last 24 observations from the BE data set being held out for forecasting.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+NF <- 24
+
+BE_df_wide <- df |> pivot_wider(names_from = unique_id, values_from = y) |>
+  select(ds, BE) |> drop_na()
+
+BE_train_df <- BE_df_wide %>% filter(row_number() <= n() - NF)
+BE_test_df <- tail(BE_df_wide, NF)
+BE_train_df <- BE_train_df |> rename(y = BE) |> mutate(unique_id = "BE")
+BE_test_df <- BE_test_df |> rename(y = BE)
+```
+
+Next, I format the data to make it for the `auto.arima()` function, which requires that the data be expressed as a `ts()` object. 
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+
+train <- BE_train_df |> select(-unique_id) |>
+mutate(time = 1:length(ds))|> select(-ds)
+elec_ts <- ts(train$y, frequency = 24)
+```
+
+The function`forecast::arima()` fit an ARIMA(2,1,1)(1,0,1)[24]. It differenced the data to achieve stationarity, recognized the seasonal component to account for the daily cycle in the data, and included both auto regressive and moving average components. Just how reasonable the model and forecast are will become apparent later in the post.
+
+```{r}
+#| code-fold: TRUE
+#| code-summary: "Show the code"
+#| message: FALSE
+#| warning: FALSE
+#forecast_fit <- elec_ts |>
+#forecast::auto.arima() |>
+#forecast(h = NF , level = 95)
+#saveRDS(forecast_fit, "arima_forecast.rds")
+forecast_fit <- readRDS("arima_forecast.rds")
+
+ff_sum <- summary(forecast_fit)
+
+ff_sum$model
+```
+
+Here, I extract the forecast and set up a data frame to hold the comparative forecasts.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+#| message: FALSE
+#| warning: FALSE
+arima_fcst_df <- BE_test_df |> 
+  mutate(time = ds,
+    BE_actual = y,
+    f_211101 = as.vector(forecast_fit$mean)) |> 
+  select(-ds, -y)
+
+head(arima_fcst_df,3)
+```
+
+### fable
+
+Now, I go through the same process but using the functions from the `fable` package, which in many ways is a sophisticated upgrade to the `forecast` package with many helper functions that that encourage an efficient reproducible workflow. I learned quite a bit from the `forecast` package, but I regret that I took so long to discover `fable`.
+
+```{r}
+#| message: false
+#| warning: FALSE
+auto_train <- BE_train_df |> select(-unique_id) |>
+mutate(time = as.POSIXct(ds, format = "%Y-%m-%d %H:%M:%S")) |> select(-ds)
+  
+elec_ts_2 <- auto_train |> as_tsibble(index = time) |> fill_gaps(time, .full = start())
+```
+
+
+Here is the automatic ARIMA model fit using the `fable` package and the big surprise. `fable` fits an ARIMA(0,1,4)(0,0,2)[24] to the data,which looks quite different from the ARIMA(2,1,1)(1,0,1)[24] model that the `forecast` package fit.
+
+```{r}
+fable_fit_1 <- elec_ts_2 |> model(
+    arima_fable = ARIMA(y)) |> report()
+```
+
+## A digression about notation
+
+So, why do I say that the two models look to be quite different? Well, let's translate the shorthand notation for the two models and see what the respective polynomials look like remembering how the backshift operator works: $B^k Y_t = Y_{t-k}$.
+
+#### ARIMA(2,1,1)(1,0,1)[24] from forecast package
+
+This notation translates into:
+
+$$(1−\phi_1B−\phi_2B^2)(1−\Phi_1B^{24})(1−B)Y_t=(1+\theta_1B)(1+\Theta_1B^{24})\varepsilon_t$$
+
+#### ARIMA(0,1,4)(0,0,2)[24] from fable package
+
+This notation translates into:
+
+$$(1 - B)Y_t = (1 + \theta_1B + \theta_2 B^2 + \theta_3 B^3 + \theta_4 B^4)(1 + \Theta_1 B^{24} + \Theta_2 B^{48})\varepsilon_t$$
+
+These different equations don't look similar to me, and I have no intuition as to why they should both be reasonable models for the data. But let's see how the forecasts compare.
+
+Put the `fable` forecast upper case ARIMA into the data frame.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+fable_ARIMA_fcst_1 <- fable_fit_1 |> forecast(h = 24) 
+arima_fcst_df <- arima_fcst_df |> mutate(F_014002 =  as.vector(fable_ARIMA_fcst_1$.mean) )
+head(arima_fcst_df,3)
+```
+
+Plotting the two forecasts, we see that they appear to be virtually identical.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+#| classes: preview-image
+compare_fore <- function(file){
+  arima_fcst_long_df <- file %>%
+  pivot_longer(!time, names_to = "method", values_to = "mean")
+
+q <- arima_fcst_long_df |>
+  ggplot(aes(
+    x = time,
+    y = mean,
+    group = method,
+    color = method
+  )) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  geom_line() +
+  geom_point() +
+  ggtitle("Multiple ARIMA Forecasts")
+
+q
+}
+
+compare_fore(arima_fcst_df)
+```
+
+## An investigation
+
+To be on the safe side, I thought it was worthwhile checking to see that `fable` also agrees with the `forecast` package that an ARIMA(2,1,1)(1,0,1)[24] model is also a reasonable fit to the data. I use the `fable` package to fit the ARIMA(0,1,4)(0,0,2)[24] model discovered by the `forecast` package to the data. First, fit the ARIMA(2,1,1)(1,0,1)[24] model to the data.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+fable_fit_2 <- elec_ts_2  %>%
+as_tsibble() %>%
+model(fable_ARIMA_fcst_2 = ARIMA(y ~ 0 + pdq(2, 1, 1) + PDQ(1, 0, 1))) %>%
+report()
+```
+
+And then, make the forecast and add it to the plotting data frame.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+fable_ARIMA_fcst_2 <- fable_fit_2 |> forecast(h = 24)
+
+arima_fcst_df <- arima_fcst_df |> mutate(F_211101 =  as.vector(fable_ARIMA_fcst_2$.mean) )
+head(arima_fcst_df,3)
+```
+
+The following plot shows that f_211101, the original ARIMA(2,1,1)(1,0,1)[24] model from the `forecast` package, F_014002, the ARIMA(0,1,4)(0,0,2)[24] model from `fable,` and F_211101, the ARIMA(2,1,1)(1,0,1)[24] model from `fable` are all more or less on top of each other. Hence, both `fable` and `forecast` agree that the ARIMA(2,1,1)(1,0,1)[24] model is a reasonable fit to the data.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+compare_fore(arima_fcst_df)
+```
+
+## Checking the residuals
+
+Next, to get an idea of how good these forecasts are relative to each other I check the residuals. The following plot shows that the residuals of the two `fable` ARIMA forecasts are very highly correlated.
+
+```{r}
+#| warning: FALSE
+#| message: FALSE
+#| code-fold: true
+#| code-summary: "Show the code"
+fable_fit_2_aug<- fable_fit_2 %>% augment()            # Get fitted values and residuals
+fable_fit_1_aug <- fable_fit_1 %>% augment() 
+resid_fit_1 <- fable_fit_1_aug$.innov
+resid_fit_2 <- fable_fit_2_aug$.innov
+r_df <- data_frame(resid_fit_1, resid_fit_2)
+r_df |> ggplot(aes(resid_fit_1,resid_fit_2)) + geom_point(color = "darkblue") +
+        ylab("ARIMA(2,1,1)(1,0,1)[24]") +
+        xlab("ARIMA(0,1,4)(0,0,2)[24]") +
+        ggtitle(".innov tesiduals from two `fable` ARIMA models")
+```
+
+Let's look at the residuals for the ARIMA(2,1,1)(1,0,1)[24] model in some detail. The plot of the innovative residuals looks like white noise, but the ACF plot shows a large spike at lag 23 and the distribution of the residuals has too sharp of a peak to be normal.
+
+```{r}
+#| warning: FALSE
+#| message: FALSE
+fable_fit_2 |> gg_tsresiduals()
+```
+
+Nevertheless, the Ljung-Box test for autocorrelation of the residuals looks pretty good. Under the hypothesis that the residuals come from a white noise process, the probability of observing what we did observe would be around 0.3 - too high to automatically reject the null hypothesis. I conclude that the model and forecast are pretty good, but there is some structure left in the residuals that leaves the door open for finding a better forecast.
+
+```{r}
+fable_fit_2_aug |> features(.innov, ljung_box, lag = 48)
+```
+
+## Is this really surprising?
+
+Should I have been surprised to see two different auto fit models for the same time series that produce forecasts that are really close to each other? Anyone who has ever tried to find a suitable ARIMA model by following the theory in the textbooks: looking at the ACF and PACF functions, etc., knows how fragile the process is. Indeed, the experts will tell you that the *identifiability* of ARIMA models is a well-known problem. Consider this note on page 305 from [Brockwell and Davis (1987)](https://link.springer.com/book/10.1007/978-1-4899-0004-3):
+
+*Of course, in the modelling of real data, there is rarely such a thing as the "true order". For the process $X_t =  \sum_{j=0}^{\infty} \psi_jZ_{t-j}$  there may be many polynomials $\theta(z)$, $\phi(z)$ such that the coefficients of $z^j$ in $\theta(z)/\phi(z)$ closely approximate $\psi_j$ for moderately small values of j. Correspondingly, there may be many ARMA processes with properties similar to {X,}. This problem of identifiability becomes much more serious for multivariate processes.*
+
+## Variations on a theme
+
+Because the two nearly identical solutions to the problem of finding a model that adequately fits the data are essentially linear equations, I imagine that they live somewhere close to each other in some multidimensinal vector space. Are there other solutions nearby? Are there better solutions? Given that I have two solutions, it seems reasonable to assume that minor perturbations of the p,d,q,P,D,Q parameters may turn up additional models with similar AICc and RMSE profiles. These questions seem worthy of some further investigation.
+
+Fiddling with the parameters mostly resulted in numerical errors of one sort or another or inferior solutions. But, I did find a third solution that is at least as good as the others. Notice that the AICc compares favorably with the other two models.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+fable_fit_3 <- elec_ts_2  |>
+as_tsibble() |>
+model(F_013002 = ARIMA(y ~ 0 + pdq(0, 1, 3) + PDQ(0, 0, 2))) |>
+report()
+```
+
+And once again, we see that all of the ARIMA forecasts sit on top of each other.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+fable_ARIMA_fcst_3 <- fable_fit_3 |> forecast(h = 24)
+arima_fcst_df <- arima_fcst_df |> mutate(F_013002 =  as.vector(fable_ARIMA_fcst_3$.mean) )
+compare_fore(arima_fcst_df)
+```
+
+## Are there better solutions?
+
+For a final try to find a better forecast, I used the search feature of the fable::ARIMA function to systematically search through the model space constrained by p + q + P + Q <= 6 p + q + P + Q <= 6 & (constant + d + D <= 2). This algorithm ran fairly quickly and turned up yet another solution that is very close to the others.
+
+```{r}
+fable_fit_4 <- elec_ts_2 |>
+  model(arima_fable = ARIMA(y, stepwise = FALSE)) |> 
+  report()
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+fable_fit_4_fcst <- fable_fit_4 |> forecast(h = 24)
+arima_fcst_df <- arima_fcst_df |> mutate(F_211002 =  as.vector(fable_fit_4_fcst$.mean) )
+head(arima_fcst_df,3)
+```
+
+Plot and compare.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+
+compare_fore(arima_fcst_df)
+```
+
+Visually, the forecasts for all of the models look very similar. Let's confirm this by checking the AICc and RMSE values one last time. They are indeed very close according to both metrics. And, as it turns out, the model discovered by the forecast package has the smallest AICc value and the smallest RMSE. 
+
+```{r}
+c_df <- data.frame(c("f_211101", "F_013002", "F_014002", "F_211002", "F_211101"))
+names(c_df) <- c("Model")
+
+rmse <- c(rmse(arima_fcst_df$BE_actual,arima_fcst_df$f_211101),
+  rmse(arima_fcst_df$BE_actual,arima_fcst_df$F_013002),
+  rmse(arima_fcst_df$BE_actual,arima_fcst_df$F_014002),
+  rmse(arima_fcst_df$BE_actual,arima_fcst_df$F_211002),
+  rmse(arima_fcst_df$BE_actual,arima_fcst_df$F_211101))
+
+AICc <- c(forecast_fit$model$aicc,
+                        as.numeric(glance(fable_fit_1)["AICc"]), 
+                        as.numeric(glance(fable_fit_2)["AICc"]), 
+                        as.numeric(glance(fable_fit_3)["AICc"]), 
+                        as.numeric(glance(fable_fit_4)["AICc"]))
+c_df <- cbind(c_df, rmse, AICc)
+c_df |> arrange(AICc)
+```
+
+## Summary
+
+I have five different models for the BE Electricity Usage time series. Each provides a reasonably good fit based on comparing the RMSE of its forecast with the actual values of the hold-out test data. Because of the way that the automated ARIMA algorithms in the  `forecast` and `fable` time series packages search for solutions, it seems reasonable to assume that these solutions are somehow "close" to each other in the solution space inhabited by the stochastic difference equations that specify the models. A reasonable question is: are there better models that live somewhere else in the solution space? Answering this means figuring out a way to exploit the structure that may still be in the residuals, a quest I may pursue another day.
