@@ -1,0 +1,713 @@
+---
+title: "Cost-Effectiveness Analysis"
+author: "Robert Horton Joseph Rickert"
+date: 2025-04-07
+description: ""
+image: ""
+image-alt: ""
+categories: ""
+code-fold: true
+code-summary: "Show the code"
+editor: source
+format:
+  html:
+    toc: true # Enables the table of contents
+    toc-depth: 3 # (Optional) Sets the depth of headers to include (e.g., h1, h2, h3)
+    toc-location: left # (Optional) Places the table of contents on the left
+---
+
+In a previous post,we presented an `rjags` version of a Bayesain model from Chapter 2 of the textbook: *Evidence Synthesis for Decision making in Healthcare* by [Welton et al. (2012)](https://bcs.wiley.com/he-bcs/Books?action=index&bcsId=7268&itemId=047006109X). In this post, we will continue our project to present `rjags` versions of the `WinBugs` models in the text by presenting the economic decision models from Chapter 3. note that to run the code below you must first install the `JAGS` program which is available from <http://mcmc-jags.sourceforge.net/>, and the `rjags` package is available from <https://cran.r-project.org/web/packages/rjags/index.html>.
+
+
+
+Chapter 3 of the text explors the health economics decision as to whether it is of benefit to the healthcare system to adopt the practice of prophylactically administering an antibiotic to women who are about to give birth by means of Cesarean sections. Two versions of a decision model are presented: a deterministic model and a stochastic model. The deterministic model lays out the decision framework and calculates the expected costs of the two options: administering the antibiotic or not. The stochastic model adds uncertainty to the decision framework by assigning probability distributions to the parameters in the deterministic model. The stochastic model is then used to conduct a cost-effectiveness analysis of the two options.
+
+Not that cost effectiveness decison frameworks in healthcare are  typically presented as a Cost-Utility analysis, conducted from a systems perspective that measures utility of medical effects in Quality Adjusted Life Years using ICERs *(Incremental Cost Effectiveness Ratio) = (Additional Costs) / (Additional Benefits)*.
+
+The final decision often comes down to examining the equation: Net Benefit = Uλ - C where:
+
+-   U = Lifetime utility of intervention (usually measured in QALYS)
+-   λ = money value attributed to a unit of health gain: i.e. the exchange rate
+-   C = lifetime cost
+
+
+The following figure depicts a simplified version ot the decision tree.
+
+![](decision_tree.png){fig-alt="The decision tree."}
+
+
+## Setup R Libraries
+
+```{r}
+#| warning: FALSE
+#| message: FALSE
+#| echo: TRUE
+# libraries
+library(coda, verbose=FALSE)
+library(rjags, verbose = FALSE)      # coda.samples
+library(jagsUI, verbose=FALSE)     # wrapper for rjags
+library(mcmcplots)  # caterplot
+library(tidyverse, verbose=FALSE)
+library(gridExtra)
+
+# A couple of helper functions
+#| message: FALSE
+#| warning: FALSE
+#| echo: FALSE
+# functions
+coda_sample_2_df <- function(my_coda_sample){
+  # Extract data from a coda sample into a dataframe
+  seq_along(my_coda_sample) %>% lapply(function(chain){
+    df <- my_coda_sample[[chain]] %>% as.matrix %>% as.data.frame
+    df['chain'] <- chain
+    df
+  }) %>% 
+    bind_rows %>% 
+    mutate(chain=factor(chain))
+}
+
+plot_densities_from_coda_df <- function(vars, coda_df){
+  # Make comparative density plots for the given variables
+  coda_df %>% 
+    select(all_of(vars)) %>%
+    pivot_longer(cols=vars) %>% 
+    ggplot(aes(x=value, col=name, fill=name)) + geom_density(alpha=0.6)
+}
+```
+
+# Deterministic Decision Analysis
+
+In this section we will present a deterministic model of the problem that can be described by means of the following directed graph.
+
+![](deterministic.png){fig-alt="Deterministic DAG."}
+
+$$ Relative Risk = \frac{a/(a+b)}{c/(c+d)}$$
+
+The deterministic model presented in this section may be found on page 56 in section 3.4 of the text.
+
+## The Clinical Data
+
+The data for our first model comes from a study by [Bibi et al., 1994](https://pubmed.ncbi.nlm.nih.gov/8051377/) to test the effectiveness of prophylacticly using antibiotics to reduce infection in women delivering by cesarean section/
+
+```{r}
+#| message: FALSE
+#| warning: FALSE
+effectiveness_df <- data.frame( 
+Description = c("Prophylactic antibiotics", "Placebo"),
+  Infection = c(4, 28),
+  No_infection = c(129, 108),
+  row.names = c("Treatment", "Control")
+) %>% mutate(Total = Infection + No_infection)
+
+effectiveness_df
+```
+
+## Resource Use and Cost Data
+
+The resource use and cost data comes from able 3.3, p55. Data is from [Mugford et al., 1989](https://pubmed.ncbi.nlm.nih.gov/2511938/), except for the cost of administering antibiotic which was estimated by Welton et al.
+
+```{r}
+cost_df <- data.frame(
+  Parameter = c( "Length of stay: infection",
+                 "Length of stay: no infection",
+                 "Cost per day: infection",
+                 "Cost per day: no infection",
+                 "Cost per dose: cephaslosporin",
+                 "Cost per administering antibiotic",
+                 "Doses administered",
+                 "Total number of Caesarians",
+                 "Number infections: no antibiotics"
+              ),
+  Estimate = c(8.80, 6.70, 163.03, 107.26, 5.67, 7.00, 3, 486, 41),
+  Units=c("days", "days", "£", "£", "£", "£", "count", "count", "count"),
+  Variable_name=c("loswd", "losnwd", "cstwd", "cstnwd", "cstPx", "cstadmin", "dose", "nc1", "rc1")
+)
+
+cost_df
+```
+
+The following code builds a model in the `BUGS` language for specifying probability distributions that will be evaluated by the `rjags` interface to the `JAGS` MCMC engine.
+
+```{r}
+#| warning: FALSE
+#| message: FALSE
+model_code <- "
+model {
+  cost_nwdpx <- losnwd * cstnwd + dose * (cstPx + cstadmin) # Cost (No infection/Px)
+  cost_wdpx <- loswd * cstwd + dose * (cstPx + cstadmin)    # Cost (Infection/Px)
+  cost_nwd <- losnwd * cstnwd                               # Cost (No infection/no Px)
+  cost_wd <- loswd * cstwd                                  # Cost (Infection/no Px)
+  
+  RR <- (a/(a+b))/(c/(c+d))                                 # Relative risk using 
+                                                            # data from table 3.2
+                                                            
+  p1 <- rc1/nc1
+  p2 <- RR * p1
+  
+  costtrt <- ((1-p2) * cost_nwdpx) + p2 * cost_wdpx         # Total cost (payoff) Px
+  costctl <- ((1-p1) * cost_nwd) + p1 * cost_wd             # Total cost (payoff) No Px
+
+}"
+
+cost_data <- with(cost_df, setNames(as.list(Estimate), nm=Variable_name))
+effectiveness_data <-  list(
+  a=effectiveness_df['Treatment', 'Infection'],
+  b=effectiveness_df['Treatment', 'No_infection'],
+  c=effectiveness_df['Control', 'Infection'],
+  d=effectiveness_df['Control', 'No_infection']
+)
+deterministic_data <- append(cost_data, effectiveness_data)
+
+# deterministic_data <- list(
+#   losnwd=6.7,
+#   loswd=8.8,
+#   cstnwd=107.26,
+#   cstwd=163.03,
+#   cstPx=5.67,  # !!! `cstdrug` should be `cstPx`
+#   cstadmin=7,
+#   dose=3,
+#   rc1=41,
+#   nc1=486, 
+#   a=4,
+#   b=129,
+#   c=28,
+#   d=108
+# )
+```
+
+This code executes the model and displays the results. Notice that the expected costs of the treatment and control branches match those in the text on p56.
+
+```{r}
+#| message: FALSE
+#| warning: FALSE
+results <- jags(
+  data = deterministic_data,
+  parameters.to.save = c("p1", "p2", "costtrt", "costctl"),
+  model.file = model_code %>% textConnection,
+  n.chains = 1,
+  n.iter=1,
+  verbose = FALSE
+)
+```
+
+```{r}
+#| message: FALSE
+#| warning: FALSE
+results 
+```
+
+# Stochastic Decision Analysis
+
+Having established a deterministic baseline model, we now aim to account for the uncertainty in our modeling assumptions by developing a Bayesian stochastic model.
+
+![](stochastic.png){fig-alt="Stochastic Model DAG."}
+
+# Model with Distributions
+
+The next step towards working our way up to a full Bayesian model is to assign probability distributions to the clinical variables for which there is uncertainty. These are:
+
+## Distribution of ln(Relative Risk):
+
+$$ ln(RR)\sim N(\theta, prec)$$ $$ \theta = log\left(\frac{a/(a+b)}{c/(c+d)}\right) $$ $$ prec = \frac{1}{(1/a) - 1 / (a + b)  + (1/c) - 1(/(c + d)} \\$$
+
+where:
+
+-   a is the number of women who received antibiotics and subsequently developed infections
+-   b is the number of women who received antibiotics who did not develop infections
+-   c is the number of women who received the placebo and subsequently became infected
+-   d is the number of women who received the placebo who did not become infected
+
+## Distribution of Prob\[infection \| no antibiotic\]
+
+$$ p_1 \sim Beta( \alpha, \beta)$$
+
+where:
+
+-   $\alpha = rc1$
+-   $\beta = nc1 - rc1$
+-   rc1 = Number infections: no antibiotics
+-   nc1 = Total number of Carnelians
+
+$p_2 = e^{lnRR} p_1$
+
+is the distribution for the probability of an infection with the antibiotic.
+
+$loswd \sim N(mnloswd, precwd)$
+
+is the distribution of the length of a hospital stay with infection where:
+
+$precwd = \frac{1}{(sdloswd/\sqrt{numwd})^2}$
+
+$losnwd \sim N(mnlosnwd, precnwd)$
+
+is the distribution for length of hospital stay without infection, where:
+
+$precnwd = \frac{1}{(sdlosnwd/\sqrt{numwd})^2}$
+
+$cstadmin \sim U(4, 10)$ is the distribution of the antibiotic dose administered.
+
+$cst.trt = (1-p_2)((cstPx + cstadmin)3 + (losnwd)(cstnwd)) + p_2((cstPx + cstadmin)3 + (loswd)(cstwd))$
+
+is the total cost for the "payoff" of the antibiotic arm of the decision tree.
+
+$cst.ctl = (1-p_1)(losnwd)(cstnwd) + p_1(loswd)(cstwd)$
+
+is the total cost for the payoff of the no antibiotic arm of the decision tree.
+
+$diff.cost = cst.trt - cst.ctl$ is the differential cost.
+
+## Code for the Stochastic Model
+
+This next block of `BUGS` code implements the stochastic model described above. The code is similar to the deterministic model, but with the addition of the distributions for the parameters that are uncertain. The code is not run here, but is used in the next section to run the model.
+
+```{r}
+#| warning: FALSE
+#| message: FALSE
+stochastic_model_code <- "
+model{
+  lnRR ~ dnorm(theta, prec)   # Distribution for ln(Relative Risk)
+  theta <- log( (a/(a+b)) / (c/(c+d)) )
+  prec <- 1/( (1/a) - (1/(a+b)) + (1/c) - (1/(c+d)) )
+  
+  p1 ~ dbeta(alpha, beta) # Distribution for Prob(Infection/NoPx)
+  alpha <- rc1
+  beta <- nc1 - rc1
+  
+  p2 <- exp(lnRR) * p1  # Distribution for Prob(Infection/Px)
+  
+  loswd ~ dnorm(mnloswd, precwd)  # Distribution for length of stay with infection
+  precwd <- 1/pow(sdloswd/sqrt(numwd), 2)
+  
+  losnwd ~ dnorm(mnlosnwd, precnwd)  # Distribution for length of stay w/o infection
+  precnwd <- 1/pow(sdlosnwd/sqrt(numnwd), 2)
+  
+  cstadmin ~ dunif(4, 10) # Px administration
+  
+  cst.trt <- (1-p2)*((cstPx + cstadmin)*3 + (losnwd*cstnwd)) + p2*((cstPx + cstadmin)*3 + (loswd*cstwd)) # Total cost (payoff) Px
+  
+  cst.ctl <- (1-p1)*(losnwd*cstnwd) + p1*(loswd*cstwd) # Total cost (payoff) No Rx
+  
+  diff.cost <- cst.trt - cst.ctl  # Difference in cost
+}" %>% textConnection()
+
+```
+
+## Data for the Stochastic Model
+
+This block of R code provides parameter values for the stochastic model. The values are taken from the text, but some of them have been changed to reflect the fact that we are now using a stochastic model. The changes are indicated in the comments.
+
+```{r}
+stochastic_data <- list(
+  rc1=41, nc1=486, cstwd=163.03, cstnwd=107.26,
+  mnloswd=8.8, sdloswd=3.5,
+  mnlosnwd=6.7, sdlosnwd=7.1,
+  numwd=41, numnwd=445, # !!! numwd == rc1; numnwd == (nc1 - rc1)
+  cstPx=5.67,
+  # rt=4, nt=133, rc=28, nc=136,  # !!! Unused variables
+  a=4, b=129, c=28, d=108
+)
+
+# Here I code the changes from the data for the deterministic model to the 
+# data for the stochastic one, in case that makes the differences easier to see.
+
+    # Add these:
+    # setdiff(names(stochastic_data), names(deterministic_data))
+    # "mnloswd"  "sdloswd"  "mnlosnwd" "sdlosnwd"
+    # "numwd" ==  rc1;
+    # "numnwd" == (nc1 - rc1)
+    # 
+    # Remove or rename these:
+    # setdiff(names(deterministic_data), names(stochastic_data))
+    #  "loswd" -> "mnloswd"
+    #  "losnwd" -> "mnlosnwd"
+    #  "cstadmin" hard-coded uniform distribution
+    #  "dose": hard-coded !!!
+
+# uncertainty <- c(sdloswd=3.5, sdlosnwd=7.1) # standard deviations from Table 3.4
+# rename_me <- c("loswd"="mnloswd", "losnwd"="mnlosnwd")
+# 
+# stochastic_data <- append(deterministic_data, uncertainty)
+# for (old_name in names(rename_me)){
+#   new_name <- rename_me[[old_name]]
+#   names(stochastic_data)[names(stochastic_data) == old_name] <- new_name
+# }
+# stochastic_data["cstadmin"] <- NULL # now coded as uniform random
+# stochastic_data["dose"] <- NULL # the 3 is hard coded now
+# 
+# stochastic_data["numwd"] <- stochastic_data["rc1"]; 
+# stochastic_data["numnwd"] <-  with(stochastic_data, (nc1 - rc1))
+
+
+parameters_to_save <- c("cst.trt", "cst.ctl", "diff.cost")
+```
+
+## Code to Run the Stochastic Model
+
+This code runs the stochastic model. The code is similar to the deterministic model, but with the addition of the distributions for the parameters that are uncertain.
+
+```{r}
+#| warning: FALSE
+#| message: FALSE
+stochastic_results <- jags( data = stochastic_data,
+                            parameters.to.save = parameters_to_save,
+                            model.file = stochastic_model_code,
+                            n.chains = 4,
+                            n.adapt = 100,
+                            n.iter = 50000,
+                            n.burnin = 20000,
+                            verbose = FALSE)
+```
+
+## Model Results
+
+The following table shows model results. These include the mean, standard deviations, and quantiles for the posterior distributions of the cost of treatment and control, the differential cost and the relative risk, alonng with information on some diagnostic statistics. The results are similar to those in the text on p 66.
+
+```{r}
+stochastic_results_summary <- summary(stochastic_results) |> as.data.frame() |> select(!c(3,4))
+
+round(stochastic_results_summary,3)
+```
+
+The diagnostic statistics are interpreted as follows:
+
+-   Rhat, the Gelman-Rubin Statistic, is a diagnostic that compares the variance within chains to the variance between chains. Values close to 1 (typically less than 1.1) indicate that the chains have converged.
+-   n.eff: provides an estimate of how many independent samples the samples in the chain are equivalent to. A higher number suggests more reliable estimates.
+-   overlap0 = 0 indicates that the 95% credible interval does not include 0, suggesting a statistically significant effect.
+-   f is the proportion of the posterior with the same sign as the mean.
+
+## Diagnostic Plots
+
+In this section we will plot the results of the MCMC sampling. The first plot shows the trace plots for the three parameters of interest. The second plot shows the density plots for the same three parameters. Multiple colors on each of the trace plots indicates that the four independent MCMC chains are on top of each other and mixing well. We can see that the chains have converged to a common distribution.
+
+```{r}
+plot(stochastic_results)
+```
+
+## Prior Distributions
+
+In this section we plot the Prior distribution that were described above.
+
+```{r}
+## Prior Distribution for log Relative Risk
+a <- stochastic_data$a
+b <- stochastic_data$b
+c <- stochastic_data$c
+d <- stochastic_data$d
+theta <- log( (a/(a+b)) / (c/(c+d)) )
+#theta
+prec <- 1/( (1/a) - (1/(a+b)) + (1/c) - (1/(c+d)) )
+#prec
+var = 1/prec
+#var
+# Generate a sequence of x values
+x <- seq(-15, 15, length.out = 100)
+
+# Compute the corresponding beta density values
+lnRR <- dnorm(x, theta, prec)
+
+# Create a data frame for ggplot2
+norm_data <- data.frame(x = x, y = lnRR)
+
+# Plot the beta distribution
+q1 <- ggplot(norm_data, aes(x = x, y = lnRR)) +
+  geom_line(color = "brown", linewidth = 1) + 
+  geom_area( fill = "brown", alpha = 0.2) + 
+  labs(title = "Prior: Log Relative Risk",
+       x = "Lpg(RR)",
+       y = "Density")
+
+
+### Prior Distribution for p1
+# Define the beta distribution parameters
+alpha <- stochastic_data$rc1
+beta <- stochastic_data$nc1 - stochastic_data$rc1
+
+# Generate a sequence of x values
+x <- seq(0, .2, length.out = 100)
+
+# Compute the corresponding beta density values
+y <- dbeta(x, alpha, beta)
+
+# Create a data frame for ggplot2
+beta_data <- data.frame(x = x, y = y)
+
+# Plot the beta distribution
+q2 <- ggplot(beta_data, aes(x = x, y = y)) +
+  geom_line(color = "blue", linewidth = 1) +
+  geom_area( fill = "blue", alpha = 0.2) + 
+  labs(title = "Prior: Infection | no antibiotic",
+       x = "p1",
+       y = "Density")
+
+
+### Prior distribution for length of stay, wound infection
+# Define the normal distribution parameters
+mean <- stochastic_data$mnloswd
+sd <- stochastic_data$sdlosnwd/sqrt(stochastic_data$numwd)
+
+# Generate a sequence of x values
+x <- seq(5, 15, length.out = 100)
+
+# Compute the corresponding beta density values
+y <- dnorm(x, mean, sd)
+
+# Create a data frame for ggplot2
+norm_data <- data.frame(x = x, y = y)
+
+# Plot the beta distribution
+q3 <- ggplot(norm_data, aes(x = x, y = y)) +
+  geom_line(color = "red", linewidth = 1) +
+   geom_area( fill = "red", alpha = 0.2) +
+   xlim(5,13) +
+  labs(title = "Prior: length of stay | infection",
+       x = "Length of Stay (days) ",
+       y = "Density")
+
+
+## Prior distribution for length of stay, no wound infection
+# Define the normal distribution parameters
+mean <- stochastic_data$mnlosnwd
+sd <- stochastic_data$sdlosnwd/sqrt(stochastic_data$numnwd)
+
+# Generate a sequence of x values
+x <- seq(5, 10, length.out = 100)
+
+# Compute the corresponding beta density values
+y <- dnorm(x, mean, sd)
+
+# Create a data frame for ggplot2
+norm_data <- data.frame(x = x, y = y)
+
+# Plot the beta distribution
+q4 <- ggplot(norm_data, aes(x = x, y = y)) +
+  geom_line(color = "darkgreen", linewidth = 1) +
+   geom_area( fill = "green", alpha = 0.2) +
+   xlim(5, 13) + 
+  labs(title = "Prior: length of stay | no infection",
+       x = "Length of Stay (days)",
+       y = "Density")
+
+grid.arrange(q1, q3, q2, q4) 
+```
+
+## Posterior Distributions
+
+Here we re-sample an existing model and plot densities of several variables using the R functions defined at the beginning of this document.
+
+```{r}
+#| warning: FALSE
+#| message: FALSE
+
+my_vars <- c('p1', 'p2', 'cst.trt', 'cst.ctl', 'diff.cost')
+coda_df <- coda.samples(stochastic_results$model, variable.names = my_vars, 
+    n.iter = 10000) %>% 
+  coda_sample_2_df %>% 
+  sample_frac(1L) # randomly scramble chain order
+```
+
+Plot the posterior densities for the cost of treatment
+
+```{r}
+#| warning: FALSE
+#| message: FALSE
+w1 <- plot_densities_from_coda_df(c('cst.trt', 'cst.ctl'), coda_df) + ggtitle("Posterior Densities for Cost of Treatment")
+w1
+```
+
+Plot the posterior density for Differential Cost
+
+```{r}
+w2 <- coda_df %>% ggplot(aes(x=diff.cost)) + geom_density(fill = "blue", alpha = 0.5) + ggtitle("Posterior Density for Differential Cost")
+w2
+```
+
+Plot the densities for P1 and P2
+
+```{r}
+w3 <- plot_densities_from_coda_df(c('p1', 'p2'), coda_df) + ggtitle("Posterior Densities for P1 and P2")
+w3
+
+```
+
+# The Economic Evaluation of the Stochastic Model
+
+Here we add the code from p65 to the model above.
+
+```{r}
+#| warning: FALSE
+#| message: FALSE
+economic_model_code <- "
+model{
+  lnRR ~ dnorm(theta, prec) # Distribution for ln(Relative Risk)
+  theta <- log( (a/(a+b)) / (c/(c+d)) )
+  prec <- 1/( (1/a) - (1/(a+b)) + (1/c) - (1/(c+d)) )
+  
+  p1 ~ dbeta(alpha, beta)  # Distribution for Prob(Infection/NoPx)
+  alpha <- rc1
+  beta <- nc1 - rc1
+  
+  p2 <- exp(lnRR) * p1   # Distribution for Prob(Infection/Px)
+  
+  loswd ~ dnorm(mnloswd, precwd)   # Distribution for length of stay with infection
+  precwd <- 1/pow(sdloswd/sqrt(numwd), 2)
+  
+  losnwd ~ dnorm(mnlosnwd, precnwd) # Distribution for length of stay w/o infection
+  precnwd <- 1/pow(sdlosnwd/sqrt(numnwd), 2)
+  
+  cstadmin ~ dunif(4, 10)   # Px administration
+  
+  cst.trt <- (1-p2)*((cstPx + cstadmin)*3 + (losnwd*cstnwd)) + p2*((cstPx + cstadmin)*3 + (loswd*cstwd)) # Total cost (payoff) Px
+  
+  cst.ctl <- (1-p1)*(losnwd*cstnwd) + p1*(loswd*cstwd) # Total cost (payoff) No Rx
+  
+  diff.cost <- cst.trt - cst.ctl   # Difference in cost
+
+  
+  # Economic evaluation code from pp 65-66
+  
+  totQALYs.wd <- ((QALYwd/365)*loswd) + ((Fullhealth/365)*(fllwupdays-loswd)) # QALYs (infection)
+  totQALYs.nwd <- ((QALYnwd/365)*losnwd) + ((Fullhealth/365)*(fllwupdays-losnwd)) # QALYs (No infection)
+
+  QALYs.trt <- (1-p2) * totQALYs.nwd + p2 * totQALYs.wd  # QALYs (Px)
+  QALYs.ctl <- (1-p1) * totQALYs.nwd + p1 * totQALYs.wd  # QALYs (no px)
+  diff.QALYs <- (QALYs.trt - QALYs.ctl)                  # Difference in QALYs
+  
+  for (k in 1:M)
+  {
+  	lambda[k] <- (k-1) * 2000
+  	INB[k] <- lambda[k] * diff.QALYs - diff.cost  # !!! not `delta.Qalys` or `delta.cost`
+  	ProbCE[k] <- step(INB[k])
+  }
+}
+" %>% textConnection()
+
+# economic_data <- list(
+#   rc1=41, nc1=486, cstwd=163.03, cstnwd=107.26,
+#   mnloswd=8.8, sdloswd=3.5,
+#   mnlosnwd=6.7, sdlosnwd=7.1,
+#   numwd=41, numnwd=445,
+#   cstPx=5.67,
+#   a=4, b=129, c=28, d=108,
+#   # additional data for economic evaluation
+#   M=21, QALYwd=0.68, QALYnwd=0.88, Fullhealth=1, fllwupdays=20
+# )
+
+economic_data <- append(stochastic_data,
+  # additional data for economic evaluation
+  list(M=21, QALYwd=0.68, QALYnwd=0.88, Fullhealth=1, fllwupdays=20)
+)
+
+parameters_to_save <- c(#"ProbCE", 
+  "cst.trt", "cst.ctl", "diff.cost", "p1", "p2")
+
+```
+
+## Run the Economic Model
+
+```{r}
+#| warning: FALSE
+#| message: FALSE
+economic_results <- jags(data = economic_data,
+            parameters.to.save = parameters_to_save,
+            model.file = economic_model_code,
+            n.chains = 1,
+            n.adapt = 100,
+            n.iter = 50000,
+            n.burnin = 20000,
+            verbose=FALSE)
+
+```
+
+And now, the economic results
+
+```{r}
+economic_results_summary <- summary(economic_results) %>% as.data.frame()
+
+round(economic_results_summary,3) |> select(!c(3,4))
+
+```
+
+## The Economic Decision
+
+### Cost-Effectiveness
+
+The following figure which plots the results of many simulations of the economic model on the cost-effectiveness plane is the major tool for faciliting the decision as to whether to adopt the practice of prophylactically administering antibiotics. The x-axis represents the incremental QALYs and the y-axis represents the incremental costs. The dashed lines represent different values for $\lambda$ the cut-off cost. The solid line represents the line of no difference in cost or QALYs.
+
+```{r}
+#| warning: FALSE
+#| message: FALSE
+#Figure 3.4: Cost-effectiveness plane (10000 simulations) for Caesarean section example.
+ce_vars <- c("diff.QALYs", "diff.cost")
+ce_df <- coda.samples(economic_results$model, variable.names = ce_vars, 
+    n.iter = 10000) %>% coda_sample_2_df
+  
+XLIM = c(0, 7e-4)     # use same limits as chapter 3
+YLIM = c(-75, 50)
+LAMBDAS = 10000*(1:3)
+CE_1 <-ce_df %>%
+  ggplot(aes(x=diff.QALYs, y=diff.cost, col=chain)) + 
+  geom_point(size=0.5, alpha=0.1) +
+  geom_abline(slope=0, intercept=0, linetype='solid') +
+  geom_abline(slope=LAMBDAS, intercept=0, linetype='dotted') +
+  theme(legend.position="none") +
+  labs(x = "Incremental QALYs", y = "Incremental costs", title="Cost-effectiveness plane for Caesarian section example") + 
+  coord_cartesian(xlim=XLIM, ylim=YLIM) + 
+  annotate("text", x = XLIM[2], y = LAMBDAS * XLIM[2], 
+           size=3, hjust=0.8, vjust=-0.25,
+           label = paste("lambda ==", LAMBDAS), parse=TRUE)
+CE_1
+```
+
+This next figure shows the expected incremental net benefit and 95% credible interval for a range of lambda values. The x-axis represents the value of lambda and the y-axis represents the expected incremental net benefit. The dashed lines represent the 2.5% and 97.5% quantiles of the posterior distribution of the incremental net benefit.
+
+```{r}
+#| warning: FALSE
+#| message: FALSE
+
+inb_vars <- c("INB", "ProbCE")
+inb_df <- coda.samples(economic_results$model, variable.names = inb_vars, 
+    n.iter = 10000) %>% 
+  coda_sample_2_df %>%
+  group_by(chain) %>%
+  mutate(iteration=row_number()) %>%
+  ungroup() %>%
+  as.data.frame
+
+inb_df_long <- inb_df %>% 
+  pivot_longer(
+    cols=1:42,
+    names_to=c("metric", "k"),
+    names_pattern="(INB|ProbCE)\\[(\\d+)\\]",
+    values_to="value"
+  ) %>%
+  mutate(k=as.integer(k), lambda=2000*(k-1))
+
+
+inb_df_long %>%
+  group_by(metric, lambda) %>%
+  filter(metric=="INB") %>%
+  summarize(
+    mean_INB=mean(value),
+    lo_end=quantile(value, probs=0.025),
+    hi_end=quantile(value, probs=0.975)) %>% 
+  ggplot(aes(x=lambda, group=metric)) + 
+    geom_line(aes(y=mean_INB)) + 
+    geom_line(aes(y=lo_end), linetype="dashed") + 
+    geom_line(aes(y=hi_end), linetype="dashed")
+
+```
+
+
+# Closing Remarks
+
+We have presented a classic decision analysis problem informed by a Bayesian statistical analysis and a decision structure that includes economic analysis and utility measured QALYs. The decision is from the point of view of a public health system that concerned with providing the best outcome for a population given their budgetary constraints. However, the framework and the methodology can easily be reframed for decisions to be made by other organizations and individuals.
+
+Bayesian analysis is the best choice for this kind of decision for a number of reasons, but two advantages stand out:
+
+-   Well crafted, informative priors enable information to be included from many sources. Not only does the meta-analysis we showed incorporate the results from multiple clinical trials, but priors allow for the integration of expert opinion and other, non numeric information.
+-   The Bayesian method of modeling parameters with probability distributions and the integration of the clinical effectiveness and economic considerations allow the uncertainty due to assumptions and modeling decisions to propagate throughout the model. This is clearly superior to the traditional static method of producing point estimates for effectiveness data and then altering these after the fact to attempt to produce a convincing sensitivity analysis.
+
+We have also introduced the basics of Markov Chain Monte Carlo techniques which allow the numerical approximation complex probability distributions that would otherwise be intractable.
+
+
+
