@@ -16,22 +16,21 @@ format:
     toc-location: left # (Optional) Places the table of contents on the left
 ---
 
-In a previous post,we presented an `rjags` version of a Bayesain model from Chapter 2 of the textbook: *Evidence Synthesis for Decision making in Healthcare* by [Welton et al. (2012)](https://bcs.wiley.com/he-bcs/Books?action=index&bcsId=7268&itemId=047006109X). In this post, we will continue our project to present `rjags` versions of the `WinBugs` models in the text by presenting the economic decision models from Chapter 3. note that to run the code below you must first install the `JAGS` program which is available from <http://mcmc-jags.sourceforge.net/>, and the `rjags` package is available from <https://cran.r-project.org/web/packages/rjags/index.html>.
+In a previous post, we presented an `rjags` version of a Bayesian model from Chapter 2 of the textbook: *Evidence Synthesis for Decision making in Healthcare* by [Welton et al. (2012)](https://bcs.wiley.com/he-bcs/Books?action=index&bcsId=7268&itemId=047006109X). In this post, we continue our project to present `rjags` versions of the `WinBugs` models in the text by presenting the economic decision models from Chapter 3. note that to run the code below you must first install the `JAGS` program which is available from <http://mcmc-jags.sourceforge.net/>, and the `rjags` package is available from <https://cran.r-project.org/web/packages/rjags/index.html>.
 
 
+Chapter 3 of the text explores the health economics decision of whether or not a healthcare system should adopt the practice of prophylactically administering an antibiotic to women who are about to give birth by Cesarean section. Two versions of a decision model are presented: a deterministic model and a stochastic model. The deterministic model lays out the decision framework and calculates the expected costs of the two options: administering the antibiotic or not. The stochastic model adds uncertainty to the decision framework by assigning probability distributions to the parameters in the deterministic model. The stochastic model is then used to conduct a cost-effectiveness analysis of the two options.
 
-Chapter 3 of the text explors the health economics decision as to whether it is of benefit to the healthcare system to adopt the practice of prophylactically administering an antibiotic to women who are about to give birth by means of Cesarean sections. Two versions of a decision model are presented: a deterministic model and a stochastic model. The deterministic model lays out the decision framework and calculates the expected costs of the two options: administering the antibiotic or not. The stochastic model adds uncertainty to the decision framework by assigning probability distributions to the parameters in the deterministic model. The stochastic model is then used to conduct a cost-effectiveness analysis of the two options.
-
-Not that cost effectiveness decison frameworks in healthcare are  typically presented as a Cost-Utility analysis, conducted from a systems perspective that measures utility of medical effects in Quality Adjusted Life Years using ICERs *(Incremental Cost Effectiveness Ratio) = (Additional Costs) / (Additional Benefits)*.
+Not that cost effectiveness decision frameworks in healthcare are  typically presented as a Cost-Utility analysis, conducted from a systems perspective that measures utility of medical effects in Quality Adjusted Life Years using ICERs *(Incremental Cost Effectiveness Ratio) = (Additional Costs) / (Additional Benefits)*.
 
 The final decision often comes down to examining the equation: Net Benefit = Uλ - C where:
 
--   U = Lifetime utility of intervention (usually measured in QALYS)
+-   U = Lifetime utility of intervention (usually measured in [QALYS](https://en.wikipedia.org/wiki/Quality-adjusted_life_year))
 -   λ = money value attributed to a unit of health gain: i.e. the exchange rate
 -   C = lifetime cost
 
 
-The following figure depicts a simplified version ot the decision tree.
+The following figure depicts the decision as a tree. The square node shows the decision (whether or not to administer the antibiotic) and the round nodes show the subsequent chance event of wound infection. The two branches represent the treatment group (trt) who receive the antibiotic and the control group (ctl), who do not. The probability that a patient in the control group gets a wound infection is p1. In the treated group we expect the probability of infection (p2) to be different from the control group. The four leaves of this tree show the costs associated with the four outcome categories. The leaf labels ('cost_wdpx', etc) will be variables in our models, where 'wd' means the surgical wound is infected, 'nwd' means it is not, and 'px' means the patient was prescribed the prophylactic antibiotic. The costs of the leaves will be weighted by the probabilities to compute the expected payoff of each alternative for the decision. To keep things simple for now we only consider monitary costs; later we will generalize for utility (QALYs)
 
 ![](decision_tree.png){fig-alt="The decision tree."}
 
@@ -77,17 +76,34 @@ plot_densities_from_coda_df <- function(vars, coda_df){
 
 # Deterministic Decision Analysis
 
-In this section we will present a deterministic model of the problem that can be described by means of the following directed graph.
+In this section we will present a deterministic model of the problem that can be described by means of the following directed graph. Variables in blue on the right side if the diagram represent cost data (see the table in the section "Resource Use and Cost Data" below). The costs of the four leaves of our decision tree are computed from these values. A patient with an infected wound will have a different cost per day of care that a patient without a woud infection, and presumably a diferent length of stay in the hospital. In addition, the treatment group has costs associated with buying and administering multiple doses of the prophylactic antibiotic.
+
+The variables `nc1` and `rc1` are the total number of Caesarean sections and wound infections in the health system making the decision. Since they do not yet use prophylactic antibiotics for thie operation, these values let us estimate the prevalence of wound infections in the untreated group (`p1`).
+
+The green variables in the upper left (a through d) represent data from a clinical trial (see the table in the "Clinical Data" section below). Since the prevalence of wound infection in the hospitals where the study was done is different from that in the target health system, we need to compute the relative risk for treated vs. control patients in the study. This is just the proportion of patients getting an infection in the treatment group, divided by the proportion in the control group:
+
 
 ![](deterministic.png){fig-alt="Deterministic DAG."}
 
 $$ Relative Risk = \frac{a/(a+b)}{c/(c+d)}$$
+where:
+
+-   a is the number of women who received antibiotics and subsequently developed infections
+-   b is the number of women who received antibiotics who did not develop infections
+-   c is the number of women who received the placebo and subsequently became infected
+-   d is the number of women who received the placebo who did not become infected
+
 
 The deterministic model presented in this section may be found on page 56 in section 3.4 of the text.
 
 ## The Clinical Data
 
-The data for our first model comes from a study by [Bibi et al., 1994](https://pubmed.ncbi.nlm.nih.gov/8051377/) to test the effectiveness of prophylacticly using antibiotics to reduce infection in women delivering by cesarean section/
+The data for the effectiveness of prophylactic antibiotics to reduce infection in women delivering by cesarean section comes from a study by [Bibi et al., (1994)](https://pubmed.ncbi.nlm.nih.gov/8051377/). 
+
+This code executes the model by simply computing the products and sums, and displays the results. There is nothing Bayesian or stochastic here yet; this model just does some simple math in JAGS to lay the foundation for subsequent refinements.
+
+
+
 
 ```{r}
 #| message: FALSE
@@ -188,9 +204,7 @@ results <- jags(
   n.iter=1,
   verbose = FALSE
 )
-```
 
-```{r}
 #| message: FALSE
 #| warning: FALSE
 results 
@@ -198,7 +212,10 @@ results
 
 # Stochastic Decision Analysis
 
-Having established a deterministic baseline model, we now aim to account for the uncertainty in our modeling assumptions by developing a Bayesian stochastic model.
+Having established a deterministic baseline model, the next step is to account for the uncertainty in the modeling assumptions by developing a Bayesian stochastic model that uses probability distributions rather than point estimates to represent uncertain parameters. These are shown in red in the diagram below.
+
+
+The cost of administering the drug is now randomly taken from a range, the length of stay estimates are described as Normal distributions with a given mean and precision, the prevalence of infection in the target health system is represented with a beta distribution parameterized using the same numbers as before, and the relative risk is modeled by a Normal distribution on the log scale. Variables computed from these stochastic variables are stochastic as well, so 'p2', 'cst.trt', and 'cst.ctl' are also red, and the outcome of all this 'diff.cost' is in turn estimated stochastically.
 
 ![](stochastic.png){fig-alt="Stochastic Model DAG."}
 
@@ -210,7 +227,7 @@ The next step towards working our way up to a full Bayesian model is to assign p
 
 $$ ln(RR)\sim N(\theta, prec)$$ $$ \theta = log\left(\frac{a/(a+b)}{c/(c+d)}\right) $$ $$ prec = \frac{1}{(1/a) - 1 / (a + b)  + (1/c) - 1(/(c + d)} \\$$
 
-where:
+where as above:
 
 -   a is the number of women who received antibiotics and subsequently developed infections
 -   b is the number of women who received antibiotics who did not develop infections
@@ -258,7 +275,7 @@ $diff.cost = cst.trt - cst.ctl$ is the differential cost.
 
 ## Code for the Stochastic Model
 
-This next block of `BUGS` code implements the stochastic model described above. The code is similar to the deterministic model, but with the addition of the distributions for the parameters that are uncertain. The code is not run here, but is used in the next section to run the model.
+This next block of `BUGS` code implements the stochastic model described above. The code is similar to the deterministic model, but with the addition of the distributions for the parameters that are uncertain. 
 
 ```{r}
 #| warning: FALSE
@@ -360,7 +377,7 @@ stochastic_results <- jags( data = stochastic_data,
 
 ## Model Results
 
-The following table shows model results. These include the mean, standard deviations, and quantiles for the posterior distributions of the cost of treatment and control, the differential cost and the relative risk, alonng with information on some diagnostic statistics. The results are similar to those in the text on p 66.
+The following table shows a summary of the model results. These include the mean, standard deviations, and quantiles for the posterior distributions of the cost of treatment and control, the differential cost and the relative risk, along with information on some diagnostic statistics. The results are similar to those in the text on p 66.
 
 ```{r}
 stochastic_results_summary <- summary(stochastic_results) |> as.data.frame() |> select(!c(3,4))
@@ -604,6 +621,13 @@ parameters_to_save <- c(#"ProbCE",
 
 ## Run the Economic Model
 
+
+**<< BOB TO DO: Paragraph about why (and how) to use utility (QALYs) instead of just monetary cost.>>**
+
+**<< BOB TO DO: Paragraph on computing INB at M different lambda values. Describe 'step' function. >>**
+
+
+
 ```{r}
 #| warning: FALSE
 #| message: FALSE
@@ -631,7 +655,7 @@ round(economic_results_summary,3) |> select(!c(3,4))
 
 ### Cost-Effectiveness
 
-The following figure which plots the results of many simulations of the economic model on the cost-effectiveness plane is the major tool for faciliting the decision as to whether to adopt the practice of prophylactically administering antibiotics. The x-axis represents the incremental QALYs and the y-axis represents the incremental costs. The dashed lines represent different values for $\lambda$ the cut-off cost. The solid line represents the line of no difference in cost or QALYs.
+The following figure which plots the results of many simulations of the economic model on the cost-effectiveness plane is the major tool for facilitating the decision as to whether to adopt the practice of prophylactically administering antibiotics. The x-axis represents the incremental QALYs and the y-axis represents the incremental costs. The dashed lines represent different values for $\lambda$ the cut-off cost. The solid line represents the line of no difference in cost or QALYs.
 
 ```{r}
 #| warning: FALSE
@@ -700,14 +724,8 @@ inb_df_long %>%
 
 # Closing Remarks
 
-We have presented a classic decision analysis problem informed by a Bayesian statistical analysis and a decision structure that includes economic analysis and utility measured QALYs. The decision is from the point of view of a public health system that concerned with providing the best outcome for a population given their budgetary constraints. However, the framework and the methodology can easily be reframed for decisions to be made by other organizations and individuals.
+Chapter 3 from Welton et al. presents an analysis of a classic healthcare technology assessment decision informed by a Bayesian statistical analysis and a decision structure that includes economic analysis and utility measured in QALYs. The decision is from the point of view of a public health system concerned with providing the best outcome for a population given their budgetary constraints. However, the framework and the methodology can easily be reframed for decisions to be made by other organizations and individuals.
 
-Bayesian analysis is the best choice for this kind of decision for a number of reasons, but two advantages stand out:
-
--   Well crafted, informative priors enable information to be included from many sources. Not only does the meta-analysis we showed incorporate the results from multiple clinical trials, but priors allow for the integration of expert opinion and other, non numeric information.
--   The Bayesian method of modeling parameters with probability distributions and the integration of the clinical effectiveness and economic considerations allow the uncertainty due to assumptions and modeling decisions to propagate throughout the model. This is clearly superior to the traditional static method of producing point estimates for effectiveness data and then altering these after the fact to attempt to produce a convincing sensitivity analysis.
-
-We have also introduced the basics of Markov Chain Monte Carlo techniques which allow the numerical approximation complex probability distributions that would otherwise be intractable.
-
+A truly elegant feature of this model is that the uncertainties in the model parameters supporting the clinical calculations are expressed as probability distributions which propagate through the decision tree to compute the expected costs and benefits of each alternative. This integrated treatment of uncertainty that is superior to models that are limited to using point estimates to drive the economic decisions.
 
 
