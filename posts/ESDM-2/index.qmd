@@ -405,6 +405,8 @@ plot(stochastic_results)
 In this section we plot the Prior distribution that were described above.
 
 ```{r}
+#| warning: FALSE
+#| message: FALSE
 ## Prior Distribution for log Relative Risk
 a <- stochastic_data$a
 b <- stochastic_data$b
