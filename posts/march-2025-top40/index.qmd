@@ -1,0 +1,74 @@
+---
+title: "February 2025 Top 40 New CRAN Packages"
+author: "Joseph Rickert"
+date: 2025-04-28
+description: "An attempt to capture the depth and breadth of what's new on CRAN: Here are my Top 40 picks in XX categories: Artificial Intelligence, Computational Methods, Ecology, Genomics, Health Sciences, Mathematics, Machine Learning, Medicine, Music, Pharma, Statistics, Time Series, Utilities, Visualization, and Weather."
+image: ""
+image-alt: ""
+categories: "Top 40"
+editor: source
+---
+
+In March, one hundred XXXXXX new packages made it to CRAN. Here are my Top 40 picks in XXXX categories: Artificial Intelligence, Computational Methods, Ecology, Genomics, Health Sciences, Mathematics, Machine Learning, Medicine, Music, Pharma, Statistics, Time Series, Utilities, Visualization, and Weather.
+
+![](.png){fig-alt=""}
+
+## Archaeology
+
+[clayringsmiletus](https://cran.r-project.org/package=clayringsmiletus) v1.0.1: Provides tools for analyzing the clay rings of the ancient city of Miletus, Turkey, including functions for data visualization and statistical analysis of archaeological data. See [Steinmann (2020)](https://publications.dainst.org/journals/index.php/aa/article/view/2619) for background and the [vignette]() for examples.
+
+![](clay.png){fig-alt="Distributions for Milesian City ring variables"}
+
+## Biology
+
+[MicrobialGrowth](https://cran.r-project.org/web/packages/MicrobialGrowth/index.html) v1.0.0: Provides a framework for modeling microbial growth curves. See [Zwietering et al. (1990)](https://journals.asm.org/doi/10.1128/aem.56.6.1875-1881.1990),[Rosso et al. (1993)](https://www.sciencedirect.com/science/article/abs/pii/S0022519383710994?via%3Dihub), [Baranyi and Roberts (1994)](https://www.sciencedirect.com/science/article/abs/pii/0168160594901570?via%3Dihub) and [Dantigny (2005)](https://www.sciencedirect.com/science/article/abs/pii/S0168160504004726?via%3Dihub) for background and the  [vignette](https://cran.r-project.org/web/packages/MicrobialGrowth/vignettes/MicrobialGrowth.pdf) for examples.
+
+![](Microb.png){fig-alt="Sample growth curve"}
+## Computational Methods
+
+[globpso](https://cran.r-project.org/package=globpso) v1.3.0: Implements a general purpose particle swarm optimization and differential evolution algorithm for solving optimization problems with nonlinear, non-differentiable, and multi-modal objective functions. See [Kennedy and Eberhart (1995)](https://ieeexplore.ieee.org/document/494215), [Sun et al. (2004)](https://ieeexplore.ieee.org/document/1330875, and [Storn & Price (1997)](https://link.springer.com/article/10.1023/A:1008202821328) for the theory and [README](https://cran.r-project.org/web/packages/globpso/readme/README.html) to get started. 
+
+## Data
+
+[autodb](https://cran.r-project.org/package=autodb) v2.3.1: Provides tools to automatically normalize a data frame to [third normal form](clayringsmiletus) to facilitate data cleaning. Includes functions to discover approximate dependencies and plot the resulting "database" via [Graphviz](https://graphviz.org/). See [README](https://cran.r-project.org/web/packages/autodb/vignettes/autodb.html) for documentation.
+
+![](autodb.png){fig-alt="Table schema"}
+
+[maths.genealogy](https://cran.r-project.org/package=maths.genealogy) v0.1.2: Provides functions to query, extract, and plot genealogical data from [The Mathematics Genealogy Project](https://mathgenealogy.org/). Data is gathered from the WebSocket server run by the [geneagrapher-core](ttps://github.com/davidalber/geneagrapher-core) project. See the [vignette](https://cran.r-project.org/web/packages/maths.genealogy/vignettes/getting-started.html) to get started.
+
+![](math.png){fig-alt="Genealogy from Fejėr to Georgiou and Aslett"}
+
+
+
+
+[uisapi](https://cran.r-project.org/package=uisapi) v0.1.0: Implements a wrapper for the UNESCO Institute for Statistics [API](https://api.uis.unesco.org/api/public/documentation/) providing public access to more than 4,000 indicators focusing on education, science and technology, culture, and communication . See [README](https://cran.r-project.org/web/packages/uisapi/readme/README.html) for documentation.
+
+
+
+
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+
+::: {.column width="10%"}
+
+# MIDDLE
+
+:::
+
+::: {.column width="45%"}
+
+
+
+:::
+
+## Time Series
+
+
+
+
+::::
+
+
