@@ -13,6 +13,12 @@ In March, one hundred XXXXXX new packages made it to CRAN. Here are my Top 40 pi
 
 ![](.png){fig-alt=""}
 
+
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
 ## Archaeology
 
 [clayringsmiletus](https://cran.r-project.org/package=clayringsmiletus) v1.0.1: Provides tools for analyzing the clay rings of the ancient city of Miletus, Turkey, including functions for data visualization and statistical analysis of archaeological data. See [Steinmann (2020)](https://publications.dainst.org/journals/index.php/aa/article/view/2619) for background and the [vignette]() for examples.
@@ -43,30 +49,20 @@ In March, one hundred XXXXXX new packages made it to CRAN. Here are my Top 40 pi
 
 [uisapi](https://cran.r-project.org/package=uisapi) v0.1.0: Implements a wrapper for the UNESCO Institute for Statistics [API](https://api.uis.unesco.org/api/public/documentation/) providing public access to more than 4,000 indicators focusing on education, science and technology, culture, and communication . See [README](https://cran.r-project.org/web/packages/uisapi/readme/README.html) for documentation.
 
-
-
-
-
-:::: {.columns}
-
-::: {.column width="45%"}
-
+:::
 
 ::: {.column width="10%"}
 
-# MIDDLE
 
 :::
 
 ::: {.column width="45%"}
-
-
-
-:::
 
 ## Time Series
 
 
+
+:::
 
 
 ::::
