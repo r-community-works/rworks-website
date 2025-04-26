@@ -34,6 +34,14 @@ In March, one hundred XXXXXX new packages made it to CRAN. Here are my Top 40 pi
 
 [globpso](https://cran.r-project.org/package=globpso) v1.3.0: Implements a general purpose particle swarm optimization and differential evolution algorithm for solving optimization problems with nonlinear, non-differentiable, and multi-modal objective functions. See [Kennedy and Eberhart (1995)](https://ieeexplore.ieee.org/document/494215), [Sun et al. (2004)](https://ieeexplore.ieee.org/document/1330875, and [Storn & Price (1997)](https://link.springer.com/article/10.1023/A:1008202821328) for the theory and [README](https://cran.r-project.org/web/packages/globpso/readme/README.html) to get started. 
 
+[MetabolSSMF](https://cran.r-project.org/package=MetabolSSMF) v0.1.0: Provides a framework for performing soft clustering using simplex-structured matrix factorisation (SSMF), and includes functions for determining the optimal number of prototypes, the optimal algorithmic parameters, the estimation confidence intervals and the diversity of clusters. See Abdolali & Nicolas (2020)](https://epubs.siam.org/doi/10.1137/20M1354982) for the theory and the [vignette](https://cran.r-project.org/web/packages/MetabolSSMF/vignettes/MetabolSSMF.html) for examples.
+
+![](SSMF.png){fig-alt="Visulation of clusters of metabolites"}
+
+[RcppPlanc](https://cran.r-project.org/package=RcppPlanc) v2.0.5: Provides `Rcpp` bindings for `PLANC`, a highly parallel and extensible Non-negative Matrix/Tensor Factorization library described in [Kannan et. al (2018)](https://ieeexplore.ieee.org/document/8089433) and [Eswar et. al (2021)](https://dl.acm.org/doi/10.1145/3432185). See the [vignette](https://cran.r-project.org/web/packages/RcppPlanc/vignettes/RcppPlanc.html).
+
+
+
 ## Data
 
 [autodb](https://cran.r-project.org/package=autodb) v2.3.1: Provides tools to automatically normalize a data frame to [third normal form](clayringsmiletus) to facilitate data cleaning. Includes functions to discover approximate dependencies and plot the resulting "database" via [Graphviz](https://graphviz.org/). See [README](https://cran.r-project.org/web/packages/autodb/vignettes/autodb.html) for documentation.
@@ -49,6 +57,36 @@ In March, one hundred XXXXXX new packages made it to CRAN. Here are my Top 40 pi
 
 [uisapi](https://cran.r-project.org/package=uisapi) v0.1.0: Implements a wrapper for the UNESCO Institute for Statistics [API](https://api.uis.unesco.org/api/public/documentation/) providing public access to more than 4,000 indicators focusing on education, science and technology, culture, and communication . See [README](https://cran.r-project.org/web/packages/uisapi/readme/README.html) for documentation.
 
+## Epidemiology
+
+[facilityepimath](https://cran.r-project.org/package=facilityepimath) v0.1.0: Profides functions to calculate useful quantities for a user-defined differential equation model of infectious disease transmission among individuals in a healthcare facility including functions to calculate the model equilibrium and the basic facility reproduction number, as described in [Toth et al. (2025)](https://www.medrxiv.org/content/10.1101/2025.02.21.25322698v1). See the vignette [Equilibrium and R0](https://cran.r-project.org/web/packages/facilityepimath/vignettes/equilibrium-and-R0.html).
+
+[pcpr](https://cran.r-project.org/package=pcpr) v1.0.0: Implements the pattern recognition technique Principal Component Pursuit tailored to environmental health data, as described in [Gibson et al (2022)](https://ehp.niehs.nih.gov/doi/10.1289/EHP10479). There is a [Quickstart](https://cran.r-project.org/web/packages/pcpr/vignettes/pcp-quickstart.html) guide, a [Theory crash course](https://cran.r-project.org/web/packages/pcpr/vignettes/theory-crash-course.html), and a vignette on [AEr pollution](https://cran.r-project.org/web/packages/pcpr/vignettes/pcp-applied.html).
+
+![](pcpr.jpeg){fig-alt="𝐷 = sum of ground-truth matrices:"}
+
+## Genomics
+
+[ROKET](https://cran.r-project.org/package=ROKET) v1.0.0: Provides functions to perform optimal transport on somatic point mutations and kernel regression hypothesis testing by integrating pathway level similarities at the gene level. See [Little et al. (2023)](https://academic.oup.com/biometrics/article/79/3/2705/7513797?login=false) for background and the [vignette](https://cran.r-project.org/web/packages/ROKET/vignettes/intro.html) for examples.
+
+![](ROKET.png){fig-alt="Plot showing mutated genes by sample"}
+
+## Machine Learning
+
+[SLmetrics](https://cran.r-project.org/package=SLmetrics) v0.1.0: Provides a collection of metrics for evaluating the performance of machine learning models, including classification, regression, and clustering metrics. There are three vignettes: [ROC-PRC](https://cran.r-project.org/web/packages/SLmetrics/vignettes/vignette_ROC-PRC.html), [Classification Metrics](https://cran.r-project.org/web/packages/SLmetrics/vignettes/vignette_classification.html), and [Regression Metrics](https://cran.r-project.org/web/packages/SLmetrics/vignettes/vignette_regression.html).
+
+![](SLmetrics.png){fig-alt="ROC curve and PR curve for a classification model"}
+
+
+
+## Medicine
+
+
+
+
+
+
+
 :::
 
 ::: {.column width="10%"}
@@ -58,9 +96,75 @@ In March, one hundred XXXXXX new packages made it to CRAN. Here are my Top 40 pi
 
 ::: {.column width="45%"}
 
+## Statistics
+
+[deltatest](https://cran.r-project.org/package=deltatest) v0.1.0: Implements the Delta method the Delta method as proposed by[ ]Deng et al. (2018)](https://dl.acm.org/doi/10.1145/3219819.3219919) for hypothesis testing. This method replaces the standard variance estimation formula in the Z-test with an approximate formula which can account for within-user correlation. See [README](https://cran.r-project.org/web/packages/deltatest/readme/README.html) for examples.
+
+![](deltatest.png){fig-alt="P-values from delta method"}
+
+[gmwmx2]() v0.0.2: Implements the Generalized Method of Wavelet Moments with Exogenous Inputs estimator (GMWMX) presented in [Voirol et al. (2024)](https://arxiv.org/abs/2409.05160) for estimating functional and stochastic parameters of linear models with correlated residuals in presence of missing data. There are four vignettes including [Estimate a model](https://cran.r-project.org/web/packages/gmwmx2/vignettes/fit_model.html) and ]Plot a large network of GNSS data](https://cran.r-project.org/web/packages/gmwmx2/vignettes/plot_large_network.html).
+
+![](gmwmx2.png){fig-alt="Plot of North/East velocities over US."}
+
+
+
+[stors](https://cran.r-project.org/package=stors) v1.0.1: Implements a rejection sampling approach for sampling from general univariate probability density functions. Many standard densities are mplemented in `C` for high performance. There are three vignettes including an [introduction](https://cran.r-project.org/web/packages/stors/vignettes/stors_package.html) and [Sampling from User-Defined Distributions](https://cran.r-project.org/web/packages/stors/vignettes/Sampling_user_distributions.html).
+
+
+[tinyVAST](https://cran.r-project.org/package=tinyVAST) v1.0.1: Fits a wide variety of multivariate spatio-temporal models with simultaneous and lagged interactions among variables including vector autoregressive spatio-temporal dynamics for areal, continuous, or network spatial domains. See Thorson et al. (2024) <doi:10.48550/arXiv.2401.10193> for more details. There are five vignettes including [Model Description](https://cran.r-project.org/web/packages/tinyVAST/vignettes/model-description.html) and [Spatial odeling](https://cran.r-project.org/web/packages/tinyVAST/vignettes/spatial.html).
+
+![](tinyVAST.png){fig-alt="Response surface"}
+
+[vecmatch](https://cran.r-project.org/package=vecmatch) v1.0.0: Implements the Vector Matching algorithm to match multiple treatment groups based on previously estimated generalized propensity scores. See [Lopez and Gutman (2017)](https://projecteuclid.org/journals/statistical-science/volume-32/issue-3/Estimation-of-Causal-Effects-with-Multiple-Treatments--A-Review/10.1214/17-STS612.full) for details and the [vignette](https://cran.r-project.org/web/packages/vecmatch/vignettes/vecmatch.html) for examples.
+
+![](vecmatch.png){fig-alt="Conditional distribution of age across groups"}
+
 ## Time Series
 
+[actfts](https://cran.r-project.org/package=actfts) v0.3.0: Provides tools for performing autocorrelation analysis of time series data including functions to compute and visualize the autocorrelation function (ACF) and the partial autocorrelation function (PACF), Dickey-Fuller, KPSS, and Phillips-Perron unit root tests. See the [vignette](https://cran.r-project.org/web/packages/actfts/vignettes/actfts.html).
 
+![](actfts.png){fig-alt="Autocorrelation plot"}
+
+[cpam](https://cran.r-project.org/package=cpam) v0.1.3:Provides a framework for time series omics analysis, integrating changepoint detection, smooth and shape-constrained trends, and uncertainty quantification and includes an interactive `shiny` interface. The methods are described in [Yates et al. (2024)](https://www.biorxiv.org/content/10.1101/2024.12.22.630003v1). See the [vignette](https://cran.r-project.org/web/packages/cpam/vignettes/cpam.html) for examples.
+
+![](cpam.png){fig-alt="Changepoint at first time point: the gene responds immediately"}
+
+
+[jumps](https://cran.r-project.org/package=jumps) v1.0: Provides a set of functions to compute the Hodrick-Prescott (HP) filter with automatically selected jumps. The original HP filter extracts a smooth trend from a time series, and our version allows for a small number of automatically identified jumps. See [Maranzano and Pelagatti (2024)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4896170)for details. There is a package [Introduction]() and a vignette on [Formulae](https://cran.r-project.org/web/packages/jumps/vignettes/formulae.html).
+
+![](jumps.png){fig-alt="Time serieswith jump"}
+
+[tsaux](https://cran.r-project.org/package=tsaux) v1.0.0: Provides a suite of auxiliary functions that enhance time series estimation and forecasting, including a robust anomaly detection routine based on [Chen and Liu (1993)](https://www.tandfonline.com/doi/abs/10.1080/01621459.1993.10594321), utilities for managing calendar and time conversions, performance metrics to assess both point forecasts and distributional predictions, and advanced simulation by allowing the generation of time series components. See the [vignette](https://cran.r-project.org/web/packages/tsaux/vignettes/Introduction.html).
+
+![](tsaux.png){fig-alt="Plot decomposing a time series"}
+
+
+## Utilities
+
+[DataSimilarity](https://cran.r-project.org/package=DataSimilarity) v0.1.1: A collection of methods for quantifying the similarity of two or more datasets, many of which can be used for two- or k-sample testing. See the [vignette](https://cran.r-project.org/web/packages/DataSimilarity/vignettes/vignette.pdf)
+
+
+
+## Visualization
+
+[ggvfields](https://CRAN.R-project.org/package=ggvfields) v1.0.0: Extends `ggplot2` enabling visualizing vector fields in two-dimensional space by creating vector and stream field layers, visualizing gradients and potential fields, and smoothing vector and scalar data to estimate underlying patterns. Look [here](https://github.com/dusty-turner/ggvfields) for examples.
+
+![](ggvfields.png){fig-alt="Plot of 2D vector field with streamlines and arrows"}
+
+[kitesquare](https://cran.r-project.org/package=kitesquare) v0.0.2: Implements kite-square plot for contingency tables using `ggplot2` to disp;ay marginal, conditional, expected, observed, chi-squared values in a single frame. The plot resembles a flying kite inside a square if the variables are independent, and deviates from this the more dependence exists. See the [vignette]() and the package [GitHub page](https://github.com/HUGLeipzig/kitesquare) for documentation and examples.
+
+![](kitesquare.png){fig-alt="kitesquare plot"}
+
+
+[mooplot](https://cran.r-project.org/package=mooplot) v0.1.0: Provides functions to visualize of multi-dimensional data arising in multi-objective optimization, including plots of the empirical attainment function (EAF), ([López-Ibáñez et al. (2010)](https://link.springer.com/chapter/10.1007/978-3-642-02538-9_9)) and symmetric Vorob'ev expectation and deviation, ([Binois et al. (2015)](https://www.sciencedirect.com/science/article/abs/pii/S0377221714005980?via%3Dihub).moo
+
+![](mooplot.png){fig-alt="Empirical attainment function (EAF) plot"}
+
+
+
+[quadkeyr](https://cran.r-project.org/package=quadkeyr) v0.1.0: Provides a toolkit for generating raster images from Quadkey-Identified data within [Microsoft’s Bing Maps Tile System](https://learn.microsoft.com/en-us/bingmaps/articles/bing-maps-tile-system) in order to integrate Quadkey-Identified data into R workflows. Functions facilitate the creation of QuadKey grids and raster images and process [Meta Mobility data](https://dataforgood.facebook.com/), See [D’Andrea et al. (2024)](https://joss.theoj.org/papers/10.21105/joss.06500) for details [here](https://docs.ropensci.org/quadkeyr/) for package documentation documentation.
+
+![](quadkeyr.png){fig-alt="Hierarchical coding of spatial position"}
 
 :::
 
