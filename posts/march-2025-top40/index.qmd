@@ -19,6 +19,13 @@ In March, one hundred XXXXXX new packages made it to CRAN. Here are my Top 40 pi
 
 ::: {.column width="45%"}
 
+
+## Agriculture
+
+[STCCGEV](https://cran.r-project.org/package=STCCGEV) v1.0.0: Provides functions to model and forecast crop yields using a spatial temporal conditional copula approach. The package incorporates extreme weather covariates and Bayesian Structural Time Series models to analyze crop yield dependencies across multiple regions. Includes tools for fitting, simulating, and visualizing results. See the [vignette](https://cran.r-project.org/package=STCCGEV).
+
+![](STCCGEV.png){fig-alt="Copula Forecast for Wellington"}
+
 ## Archaeology
 
 [clayringsmiletus](https://cran.r-project.org/package=clayringsmiletus) v1.0.1: Provides tools for analyzing the clay rings of the ancient city of Miletus, Turkey, including functions for data visualization and statistical analysis of archaeological data. See [Steinmann (2020)](https://publications.dainst.org/journals/index.php/aa/article/view/2619) for background and the [vignette]() for examples.
@@ -52,7 +59,7 @@ In March, one hundred XXXXXX new packages made it to CRAN. Here are my Top 40 pi
 
 ![](math.png){fig-alt="Genealogy from Fejėr to Georgiou and Aslett"}
 
-
+[RcensusPkg](https://cran.r-project.org/package=RcensusPkg) v0.1.5: Provides a structured way to access US Census Bureau survey and geographic data and return a data frame, and also includes functions to access and layer  displayable geometries states, counties, blocks/tracts, roads, landmarks, places, and bodies of water. See [README](https://cran.r-project.org/web/packages/RcensusPkg/readme/README.html) for an example.
 
 
 [uisapi](https://cran.r-project.org/package=uisapi) v0.1.0: Implements a wrapper for the UNESCO Institute for Statistics [API](https://api.uis.unesco.org/api/public/documentation/) providing public access to more than 4,000 indicators focusing on education, science and technology, culture, and communication . See [README](https://cran.r-project.org/web/packages/uisapi/readme/README.html) for documentation.
@@ -81,9 +88,11 @@ In March, one hundred XXXXXX new packages made it to CRAN. Here are my Top 40 pi
 
 ## Medicine
 
+[clinify](https://cran.r-project.org/package=clinify) v 0.1.2: Builds on `flextable` and `officer` to simplify the formatting of clinical tables for reguatory use. See the [vignette](https://cran.r-project.org/web/packages/clinify/vignettes/clinify.html).
 
+[MariNET](https://cran.r-project.org/package=MariNET) v1.0.0: Provides tools for analyzing longitudinal clinical data from Electronic Health Records (EHRs) using linear mixed models (LMM) and visualizing the results as networks. It includes functions for fitting LMM, normalizing adjacency matrices, and comparing networks. See the [vignette](https://cran.r-project.org/web/packages/MariNET/vignettes/my-vignette.html).
 
-
+![](MariNET.png){fig-alt="Network of symptoms"}
 
 
 
