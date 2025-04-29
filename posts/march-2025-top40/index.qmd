@@ -2,14 +2,14 @@
 title: "February 2025 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
 date: 2025-04-28
-description: "An attempt to capture the depth and breadth of what's new on CRAN: Here are my Top 40 picks in XX categories: Artificial Intelligence, Computational Methods, Ecology, Genomics, Health Sciences, Mathematics, Machine Learning, Medicine, Music, Pharma, Statistics, Time Series, Utilities, Visualization, and Weather."
-image: ""
-image-alt: ""
+description: "An attempt to capture the depth and breadth of what's new on CRAN: here are my Top 40 picks in sixteen categories: Agriculture, Archaeology, Biology, Climate Modeling, Computational Methods, Data, Ecology, Epidemiology, Genomics, Machine Learning, Medicine, Risk Forecasting, Statistics, Time Series, Utilities, and Visualization."
+image: "vecmatch.png"
+image-alt: "Conditional distribution of age across groups"
 categories: "Top 40"
 editor: source
 ---
 
-In March, one hundred XXXXXX new packages made it to CRAN. Here are my Top 40 picks in XXXX categories: Artificial Intelligence, Computational Methods, Ecology, Genomics, Health Sciences, Mathematics, Machine Learning, Medicine, Music, Pharma, Statistics, Time Series, Utilities, Visualization, and Weather.
+In March, one hundred eighty-two new packages made it to CRAN. Here are my Top 40 picks in sixteen categories: Agriculture, Archaeology, Biology, Climate Modeling, Computational Methods, Data, Ecology, Epidemiology, Genomics, Machine Learning, Medicine, Risk Forecasting, Statistics, Time Series, Utilities, and Visualization.
 
 ![](.png){fig-alt=""}
 
@@ -37,6 +37,13 @@ In March, one hundred XXXXXX new packages made it to CRAN. Here are my Top 40 pi
 [MicrobialGrowth](https://cran.r-project.org/web/packages/MicrobialGrowth/index.html) v1.0.0: Provides a framework for modeling microbial growth curves. See [Zwietering et al. (1990)](https://journals.asm.org/doi/10.1128/aem.56.6.1875-1881.1990),[Rosso et al. (1993)](https://www.sciencedirect.com/science/article/abs/pii/S0022519383710994?via%3Dihub), [Baranyi and Roberts (1994)](https://www.sciencedirect.com/science/article/abs/pii/0168160594901570?via%3Dihub) and [Dantigny (2005)](https://www.sciencedirect.com/science/article/abs/pii/S0168160504004726?via%3Dihub) for background and the  [vignette](https://cran.r-project.org/web/packages/MicrobialGrowth/vignettes/MicrobialGrowth.pdf) for examples.
 
 ![](Microb.png){fig-alt="Sample growth curve"}
+
+## Climate Modeling
+
+[CMIP6VisR](https://cran.r-project.org/package=CMIP6VisR) v1.0.0: Provides tools to manipulate Coupled Model Intercomparison Project, Phase-6 (CMIP6) hydroclimatic data which are archived in the Federated Research Data Repository ([FRDR](https://www.frdr-dfdr.ca/repo/dataset/7a02a1e0-3402-4183-af41-dfa483ef06b1)). See [Abdelmoaty et al. (2025)](https://www.nature.com/articles/s41597-025-04396-z) for a description of the data set and the [vignette](https://cran.r-project.org/web/packages/CMIP6VisR/vignettes/vignette_CMIP6VisR.html) for examples.
+
+[rIACI](https://cran.r-project.org/package=rIACI) v1.0.0: Provides functions to calculate the Iberian Actuarial Climate Index and its components—including temperature, precipitation, wind power, and sea level data—to support climate change analysis and risk assessment. See ["Zhou et al." (2023)](https://revistas.actuarios.org/index.php/aiae/article/view/55) for further detail and the [vignette](https://cran.r-project.org/web/packages/rIACI/vignettes/introduction.html) to get started.
+
 ## Computational Methods
 
 [globpso](https://cran.r-project.org/package=globpso) v1.3.0: Implements a general purpose particle swarm optimization and differential evolution algorithm for solving optimization problems with nonlinear, non-differentiable, and multi-modal objective functions. See [Kennedy and Eberhart (1995)](https://ieeexplore.ieee.org/document/494215), [Sun et al. (2004)](https://ieeexplore.ieee.org/document/1330875, and [Storn & Price (1997)](https://link.springer.com/article/10.1023/A:1008202821328) for the theory and [README](https://cran.r-project.org/web/packages/globpso/readme/README.html) to get started. 
@@ -64,6 +71,17 @@ In March, one hundred XXXXXX new packages made it to CRAN. Here are my Top 40 pi
 
 [uisapi](https://cran.r-project.org/package=uisapi) v0.1.0: Implements a wrapper for the UNESCO Institute for Statistics [API](https://api.uis.unesco.org/api/public/documentation/) providing public access to more than 4,000 indicators focusing on education, science and technology, culture, and communication . See [README](https://cran.r-project.org/web/packages/uisapi/readme/README.html) for documentation.
 
+## Ecology
+
+[ecotrends](https://cran.r-project.org/package=ecotrends) v1.0: Provides tools to compute a time series of ecological niche models, using species occurrence data and environmental variables, and then map the existence and direction of linear temporal trends in environmental suitability. See [Arenas-Castro & Sillero (2021)](https://www.sciencedirect.com/science/article/abs/pii/S0048969721022439?via%3Dihub) for background and look [here](https://doi.org/10.1016/j.scitotenv.2021.147172) for an example. This package is part of the [MontObEO project](https://montobeo.wordpress.com/).
+
+![](ecotrends.svg){fig-alt="Package workflow"}
+
+[hatchR](https://cran.r-project.org/package=hatchR) v0.3.2: Provides access to established phenological models to predict hatch and emergence timing for a wide range of wild fishes using the effective value framework of [Sparks et al. (2019)](https://cran.r-project.org/package=hatchR). There are seven vignettes including an [Introduction](https://cran.r-project.org/web/packages/hatchR/vignettes/Introduction.html) and [Parameterize Models](https://cran.r-project.org/web/packages/hatchR/vignettes/Parameterize_models.html).
+
+![](hatchR.png){fig-alt="Plot annotated with emergence and hatch times"}
+
+
 ## Epidemiology
 
 [facilityepimath](https://cran.r-project.org/package=facilityepimath) v0.1.0: Profides functions to calculate useful quantities for a user-defined differential equation model of infectious disease transmission among individuals in a healthcare facility including functions to calculate the model equilibrium and the basic facility reproduction number, as described in [Toth et al. (2025)](https://www.medrxiv.org/content/10.1101/2025.02.21.25322698v1). See the vignette [Equilibrium and R0](https://cran.r-project.org/web/packages/facilityepimath/vignettes/equilibrium-and-R0.html).
@@ -74,9 +92,19 @@ In March, one hundred XXXXXX new packages made it to CRAN. Here are my Top 40 pi
 
 ## Genomics
 
+[CSeQTL](https://cran.r-project.org/package=CSeQTL) v1.0.0: Implements a novel method for bulk and cell type-specific expression quantitative trail loci mapping. See [Little et al. (2023)](https://www.nature.com/articles/s41467-023-38795-w) for details and the [vignette](https://cran.r-project.org/web/packages/CSeQTL/vignettes/intro.html) for examples.
+
+![](CSeQTL.png){fig-alt="Simulated SNP data"}
+
+
+
 [ROKET](https://cran.r-project.org/package=ROKET) v1.0.0: Provides functions to perform optimal transport on somatic point mutations and kernel regression hypothesis testing by integrating pathway level similarities at the gene level. See [Little et al. (2023)](https://academic.oup.com/biometrics/article/79/3/2705/7513797?login=false) for background and the [vignette](https://cran.r-project.org/web/packages/ROKET/vignettes/intro.html) for examples.
 
 ![](ROKET.png){fig-alt="Plot showing mutated genes by sample"}
+
+[SerolyzeR](https://cran.r-project.org/package=SerolyzeR) v1.1.0: designed for inexperienced R uers the package facilitates the process of loading raw data from MBA (Multiplex Bead Assay) examinations, performs quality control checks, and automatically normalises the data, preparing it for more advanced, downstream tasks. See the [vignette](https://cran.r-project.org/web/packages/SerolyzeR/vignettes/example_script.html).
+
+![](Sero.png){fig-alt="Violin plot of test sample coverage"}
 
 ## Machine Learning
 
@@ -86,13 +114,7 @@ In March, one hundred XXXXXX new packages made it to CRAN. Here are my Top 40 pi
 
 
 
-## Medicine
 
-[clinify](https://cran.r-project.org/package=clinify) v 0.1.2: Builds on `flextable` and `officer` to simplify the formatting of clinical tables for reguatory use. See the [vignette](https://cran.r-project.org/web/packages/clinify/vignettes/clinify.html).
-
-[MariNET](https://cran.r-project.org/package=MariNET) v1.0.0: Provides tools for analyzing longitudinal clinical data from Electronic Health Records (EHRs) using linear mixed models (LMM) and visualizing the results as networks. It includes functions for fitting LMM, normalizing adjacency matrices, and comparing networks. See the [vignette](https://cran.r-project.org/web/packages/MariNET/vignettes/my-vignette.html).
-
-![](MariNET.png){fig-alt="Network of symptoms"}
 
 
 
@@ -104,6 +126,19 @@ In March, one hundred XXXXXX new packages made it to CRAN. Here are my Top 40 pi
 :::
 
 ::: {.column width="45%"}
+
+## Medicine
+
+[clinify](https://cran.r-project.org/package=clinify) v 0.1.2: Builds on `flextable` and `officer` to simplify the formatting of clinical tables for reguatory use. See the [vignette](https://cran.r-project.org/web/packages/clinify/vignettes/clinify.html).
+
+[MariNET](https://cran.r-project.org/package=MariNET) v1.0.0: Provides tools for analyzing longitudinal clinical data from Electronic Health Records (EHRs) using linear mixed models (LMM) and visualizing the results as networks. It includes functions for fitting LMM, normalizing adjacency matrices, and comparing networks. See the [vignette](https://cran.r-project.org/web/packages/MariNET/vignettes/my-vignette.html).
+
+![](MariNET.png){fig-alt="Network of symptoms"}
+
+
+## Risk Forecasting
+
+[EQRN](https://cran.r-project.org/package=EQRN) v0.1.0: Provides a framework for forecasting and extrapolating measures of conditional risk (e.g. of extreme or unprecedented events), including quantiles and exceedance probabilities, using extreme value statistics and flexible neural network architectures. See [Pasche and Engelke (2024)]() and [Pasche and Engelke (2022)]() for the theory and the [README](https://cran.r-project.org/web/packages/EQRN/readme/README.html) for an example. 
 
 ## Statistics
 
@@ -152,7 +187,11 @@ In March, one hundred XXXXXX new packages made it to CRAN. Here are my Top 40 pi
 
 [DataSimilarity](https://cran.r-project.org/package=DataSimilarity) v0.1.1: A collection of methods for quantifying the similarity of two or more datasets, many of which can be used for two- or k-sample testing. See the [vignette](https://cran.r-project.org/web/packages/DataSimilarity/vignettes/vignette.pdf)
 
+[sixtyfour](https://cran.r-project.org/package=sixtyfour) v0.2.0: Implements an opinionated interface to [Amazon Web Services](https://aws.amazon.com), with functions for interacting with *IAM* (Identity and Access Management), *S3* (Simple Storage Service), *RDS* (Relational Data Service), Redshift, and Billing. There are eight vignettes including a [Getting Started](https://cran.r-project.org/web/packages/sixtyfour/vignettes/sixtyfour.html) guide and [S3](https://cran.r-project.org/web/packages/sixtyfour/vignettes/s3.html).
 
+[tsbtibble](https://cran.r-project.org/package=tabtibble) v0.0.1: Provides functions to simplify reporting many tables by creating tibbles of tables, create a tibble of tables with captions and automaticly print. See the [vignette](https://cran.r-project.org/web/packages/tabtibble/vignettes/example-usage.html) for an example.
+
+[xlr](https://cran.r-project.org/package=xlr) v1.0.3: Implements a high-level interface for creating and exporting summary tables to `Excel`that provides tools for generating one-way to n-way tables, and summarizing multiple response questions and question blocks. Tables are exported with native `Excel` formatting, including titles, footnotes, and basic styling options. See the [vignette](https://cran.r-project.org/web/packages/xlr/vignettes/xlr.html).
 
 ## Visualization
 
