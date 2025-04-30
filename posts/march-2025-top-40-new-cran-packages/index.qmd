@@ -11,10 +11,6 @@ editor: source
 
 In March, one hundred eighty-two new packages made it to CRAN. Here are my Top 40 picks in sixteen categories: Agriculture, Archaeology, Biology, Climate Modeling, Computational Methods, Data, Ecology, Epidemiology, Genomics, Machine Learning, Medicine, Risk Forecasting, Statistics, Time Series, Utilities, and Visualization.
 
-![](.png){fig-alt=""}
-
-
-
 :::: {.columns}
 
 ::: {.column width="45%"}
@@ -22,13 +18,13 @@ In March, one hundred eighty-two new packages made it to CRAN. Here are my Top 4
 
 ## Agriculture
 
-[STCCGEV](https://cran.r-project.org/package=STCCGEV) v1.0.0: Provides functions to model and forecast crop yields using a spatial temporal conditional copula approach. The package incorporates extreme weather covariates and Bayesian Structural Time Series models to analyze crop yield dependencies across multiple regions. Includes tools for fitting, simulating, and visualizing results. See the [vignette](https://cran.r-project.org/package=STCCGEV).
+[STCCGEV](https://cran.r-project.org/package=STCCGEV) v1.0.0: Provides functions to model and forecast crop yields using a spatial temporal conditional copula approach. The package incorporates extreme weather covariates and Bayesian Structural Time Series models to analyze crop yield dependencies across multiple regions. Includes tools for fitting, simulating, and visualizing results. See the [vignette](https://cran.r-project.org/web/packages/STCCGEV/vignettes/Predicting-Crop-Yields-Using-STCCGEV-Method.html).
 
 ![](STCCGEV.png){fig-alt="Copula Forecast for Wellington"}
 
 ## Archaeology
 
-[clayringsmiletus](https://cran.r-project.org/package=clayringsmiletus) v1.0.1: Provides tools for analyzing the clay rings of the ancient city of Miletus, Turkey, including functions for data visualization and statistical analysis of archaeological data. See [Steinmann (2020)](https://publications.dainst.org/journals/index.php/aa/article/view/2619) for background and the [vignette]() for examples.
+[clayringsmiletus](https://cran.r-project.org/package=clayringsmiletus) v1.0.1: Provides tools for analyzing the clay rings of the ancient city of Miletus, Turkey, including functions for data visualization and statistical analysis of archaeological data. See [Steinmann (2020)](https://publications.dainst.org/journals/index.php/aa/article/view/2619) for background and the [vignette](https://cran.r-project.org/web/packages/clayringsmiletus/vignettes/supplement.html) for examples.
 
 ![](clay.png){fig-alt="Distributions for Milesian City ring variables"}
 
@@ -48,7 +44,7 @@ In March, one hundred eighty-two new packages made it to CRAN. Here are my Top 4
 
 [globpso](https://cran.r-project.org/package=globpso) v1.3.0: Implements a general purpose particle swarm optimization and differential evolution algorithm for solving optimization problems with nonlinear, non-differentiable, and multi-modal objective functions. See [Kennedy and Eberhart (1995)](https://ieeexplore.ieee.org/document/494215), [Sun et al. (2004)](https://ieeexplore.ieee.org/document/1330875), and [Storn & Price (1997)](https://link.springer.com/article/10.1023/A:1008202821328) for the theory and [README](https://cran.r-project.org/web/packages/globpso/readme/README.html) to get started. 
 
-[MetabolSSMF](https://cran.r-project.org/package=MetabolSSMF) v0.1.0: Provides a framework for performing soft clustering using simplex-structured matrix factorization (SSMF), and includes functions for determining the optimal number of prototypes, the optimal algorithmic parameters, the estimation confidence intervals and the diversity of clusters. See [Abdolali & Nicolas (2020)](https://epubs.siam.org/doi/10.1137/20M1354982) for the theory and the [vignette](https://cran.r-project.org/web/packages/MetabolSSMF/vignettes/MetabolSSMF.html) for examples.
+[MetabolSSMF](https://cran.r-project.org/package=MetabolSSMF) v0.1.0: Provides a framework for performing soft clustering using simplex-structured matrix factorization (SSMF), and includes functions for determining the optimal number of prototypes, the optimal algorithmic parameters, the estimation confidence intervals and the diversity of clusters. See [Abdolali & Nicolas (2020)](https://epubs.siam.org/doi/10.1137/20M1354982) for the theory and the [vignette](https://cran.r-project.org/web/packages/MetabolSSMF/vignettes/MetabolSSMF.pdf) for examples.
 
 ![](SSMF.png){fig-alt="Visulation of clusters of metabolites"}
 
@@ -58,7 +54,7 @@ In March, one hundred eighty-two new packages made it to CRAN. Here are my Top 4
 
 ## Data
 
-[autodb](https://cran.r-project.org/package=autodb) v2.3.1: Provides tools to automatically normalize a data frame to [third normal form](clayringsmiletus) in order to facilitate data cleaning. Includes functions to discover approximate dependencies and plot the resulting "database" via [Graphviz](https://graphviz.org/). See [README](https://cran.r-project.org/web/packages/autodb/vignettes/autodb.html) for documentation.
+[autodb](https://cran.r-project.org/package=autodb) v2.3.1: Provides tools to automatically normalize a data frame to [third normal form](https://en.wikipedia.org/wiki/Third_normal_form) in order to facilitate data cleaning. Includes functions to discover approximate dependencies and plot the resulting "database" via [Graphviz](https://graphviz.org/). See [README](https://cran.r-project.org/web/packages/autodb/vignettes/autodb.html) for documentation.
 
 ![](autodb.png){fig-alt="Table schema"}
 
@@ -77,7 +73,7 @@ In March, one hundred eighty-two new packages made it to CRAN. Here are my Top 4
 
 ![](ecotrends.svg){fig-alt="Package workflow"}
 
-[hatchR](https://cran.r-project.org/package=hatchR) v0.3.2: Provides access to established phenological models to predict hatch and emergence timing for a wide range of wild fishes using the effective value framework of [Sparks et al. (2019)](https://cran.r-project.org/package=hatchR). There are seven vignettes, including an [Introduction](https://cran.r-project.org/web/packages/hatchR/vignettes/Introduction.html) and [Parameterize Models](https://cran.r-project.org/web/packages/hatchR/vignettes/Parameterize_models.html).
+[hatchR](https://cran.r-project.org/package=hatchR) v0.3.2: Provides access to established phenological models to predict hatch and emergence timing for a wide range of wild fishes using the effective value framework of [Sparks et al. (2019)](https://cdnsciencepub.com/doi/10.1139/cjfas-2017-0468). There are seven vignettes, including an [Introduction](https://cran.r-project.org/web/packages/hatchR/vignettes/Introduction.html) and [Parameterize Models](https://cran.r-project.org/web/packages/hatchR/vignettes/Parameterize_models.html).
 
 ![](hatchR.png){fig-alt="Plot annotated with emergence and hatch times"}
 
@@ -138,15 +134,15 @@ In March, one hundred eighty-two new packages made it to CRAN. Here are my Top 4
 
 ## Risk Forecasting
 
-[EQRN](https://cran.r-project.org/package=EQRN) v0.1.0: Provides a framework for forecasting and extrapolating measures of conditional risk (e.g., of extreme or unprecedented events), including quantiles and exceedance probabilities, using extreme value statistics and flexible neural network architectures. See [Pasche and Engelke (2024)]() and [Pasche and Engelke (2022)]() for the theory and the [README](https://cran.r-project.org/web/packages/EQRN/readme/README.html) for an example. 
+[EQRN](https://cran.r-project.org/package=EQRN) v0.1.0: Provides a framework for forecasting and extrapolating measures of conditional risk (e.g., of extreme or unprecedented events), including quantiles and exceedance probabilities, using extreme value statistics and flexible neural network architectures. See [Pasche and Engelke (2024)](https://projecteuclid.org/journals/annals-of-applied-statistics/volume-18/issue-4/Neural-networks-for-extreme-quantile-regression-with-an-application-to/10.1214/24-AOAS1907.short) and [Pasche and Engelke (2022)](https://arxiv.org/abs/2208.07590) for the theory and the [README](https://cran.r-project.org/web/packages/EQRN/readme/README.html) for an example. 
 
 ## Statistics
 
-[deltatest](https://cran.r-project.org/package=deltatest) v0.1.0: Implements the Delta method as proposed by[Deng et al. (2018)](https://dl.acm.org/doi/10.1145/3219819.3219919) for hypothesis testing. This method replaces the standard variance estimation formula in the Z-test with an approximate formula which can account for within-user correlation. See [README](https://cran.r-project.org/web/packages/deltatest/readme/README.html) for examples.
+[deltatest](https://cran.r-project.org/package=deltatest) v0.1.0: Implements the Delta method as proposed by [Deng et al. (2018)](https://dl.acm.org/doi/10.1145/3219819.3219919) for hypothesis testing. This method replaces the standard variance estimation formula in the Z-test with an approximate formula which can account for within-user correlation. See [README](https://cran.r-project.org/web/packages/deltatest/readme/README.html) for examples.
 
 ![](deltatest.png){fig-alt="P-values from delta method"}
 
-[gmwmx2]() v0.0.2: Implements the Generalized Method of Wavelet Moments with Exogenous Inputs estimator (GMWMX) presented in [Voirol et al. (2024)](https://arxiv.org/abs/2409.05160) for estimating functional and stochastic parameters of linear models with correlated residuals in the presence of missing data. There are four vignettes including [Estimate a model](https://cran.r-project.org/web/packages/gmwmx2/vignettes/fit_model.html) and [Plot a large network of GNSS data](https://cran.r-project.org/web/packages/gmwmx2/vignettes/plot_large_network.html).
+[gmwmx2](https://cran.r-project.org/web/packages/gmwmx2/index.html) v0.0.2: Implements the Generalized Method of Wavelet Moments with Exogenous Inputs estimator (GMWMX) presented in [Voirol et al. (2024)](https://arxiv.org/abs/2409.05160) for estimating functional and stochastic parameters of linear models with correlated residuals in the presence of missing data. There are four vignettes including [Estimate a model](https://cran.r-project.org/web/packages/gmwmx2/vignettes/fit_model.html) and [Plot a large network of GNSS data](https://cran.r-project.org/web/packages/gmwmx2/vignettes/plot_large_network.html).
 
 ![](gmwmx2.png){fig-alt="Plot of North/East velocities over US."}
 
@@ -174,7 +170,7 @@ In March, one hundred eighty-two new packages made it to CRAN. Here are my Top 4
 ![](cpam.png){fig-alt="Changepoint at first time point: the gene responds immediately"}
 
 
-[jumps](https://cran.r-project.org/package=jumps) v1.0: Provides a set of functions to compute the Hodrick-Prescott (HP) filter with automatically selected jumps. The original HP filter extracts a smooth trend from a time series, and our version allows for a small number of automatically identified jumps. See [Maranzano and Pelagatti (2024)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4896170)for details. There is a package [Introduction]() and a vignette on [Formulae](https://cran.r-project.org/web/packages/jumps/vignettes/formulae.html).
+[jumps](https://cran.r-project.org/package=jumps) v1.0: Provides a set of functions to compute the Hodrick-Prescott (HP) filter with automatically selected jumps. The original HP filter extracts a smooth trend from a time series, and our version allows for a small number of automatically identified jumps. See [Maranzano and Pelagatti (2024)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4896170) for details. There is a package [Introduction](https://cran.r-project.org/web/packages/jumps/vignettes/introduction.html) and a vignette on [Formulae](https://cran.r-project.org/web/packages/jumps/vignettes/formulae.html).
 
 ![](jumps.png){fig-alt="Time serieswith jump"}
 
@@ -185,7 +181,7 @@ In March, one hundred eighty-two new packages made it to CRAN. Here are my Top 4
 
 ## Utilities
 
-[DataSimilarity](https://cran.r-project.org/package=DataSimilarity) v0.1.1: A collection of methods for quantifying the similarity of two or more datasets, many of which can be used for two- or k-sample testing. See the [vignette](https://cran.r-project.org/web/packages/DataSimilarity/vignettes/vignette.pdf)
+[DataSimilarity](https://cran.r-project.org/package=DataSimilarity) v0.1.1: A collection of methods for quantifying the similarity of two or more datasets, many of which can be used for two- or k-sample testing. See the [vignette](https://cran.r-project.org/web/packages/DataSimilarity/vignettes/vignette.pdf).
 
 [sixtyfour](https://cran.r-project.org/package=sixtyfour) v0.2.0: Implements an opinionated interface to [Amazon Web Services](https://aws.amazon.com), with functions for interacting with *IAM* (Identity and Access Management), *S3* (Simple Storage Service), *RDS* (Relational Data Service), Redshift, and Billing. There are eight vignettes including a [Getting Started](https://cran.r-project.org/web/packages/sixtyfour/vignettes/sixtyfour.html) guide and [S3](https://cran.r-project.org/web/packages/sixtyfour/vignettes/s3.html).
 
