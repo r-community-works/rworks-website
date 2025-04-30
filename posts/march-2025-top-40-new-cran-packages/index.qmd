@@ -1,7 +1,7 @@
 ---
-title: "February 2025 Top 40 New CRAN Packages"
+title: "March 2025 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
-date: 2025-04-28
+date: 2025-04-30
 description: "An attempt to capture the depth and breadth of what's new on CRAN: here are my Top 40 picks in sixteen categories: Agriculture, Archaeology, Biology, Climate Modeling, Computational Methods, Data, Ecology, Epidemiology, Genomics, Machine Learning, Medicine, Risk Forecasting, Statistics, Time Series, Utilities, and Visualization."
 image: "vecmatch.png"
 image-alt: "Conditional distribution of age across groups"
@@ -40,9 +40,9 @@ In March, one hundred eighty-two new packages made it to CRAN. Here are my Top 4
 
 ## Climate Modeling
 
-[CMIP6VisR](https://cran.r-project.org/package=CMIP6VisR) v1.0.0: Provides tools to manipulate Coupled Model Intercomparison Project, Phase-6 (CMIP6) hydroclimatic data which are archived in the Federated Research Data Repository ([FRDR](https://www.frdr-dfdr.ca/repo/dataset/7a02a1e0-3402-4183-af41-dfa483ef06b1)). See [Abdelmoaty et al. (2025)](https://www.nature.com/articles/s41597-025-04396-z) for a description of the data set and the [vignette](https://cran.r-project.org/web/packages/CMIP6VisR/vignettes/vignette_CMIP6VisR.html) for examples.
+[CMIP6VisR](https://cran.r-project.org/package=CMIP6VisR) v1.0.0: Provides tools to manipulate Coupled Model Intercomparison Project, Phase-6 (CMIP6) hydroclimatic data, which are archived in the Federated Research Data Repository ([FRDR](https://www.frdr-dfdr.ca/repo/dataset/7a02a1e0-3402-4183-af41-dfa483ef06b1)). See [Abdelmoaty et al. (2025)](https://www.nature.com/articles/s41597-025-04396-z) for a description of the data set and the [vignette](https://cran.r-project.org/web/packages/CMIP6VisR/vignettes/vignette_CMIP6VisR.html) for examples.
 
-[rIACI](https://cran.r-project.org/package=rIACI) v1.0.0: Provides functions to calculate the Iberian Actuarial Climate Index and its components to support climate change analysis and risk assessment. Calculations include temperature, precipitation, wind power, and sea level data—. See ["Zhou et al." (2023)](https://revistas.actuarios.org/index.php/aiae/article/view/55) for further detail and the [vignette](https://cran.r-project.org/web/packages/rIACI/vignettes/introduction.html) to get started.
+[rIACI](https://cran.r-project.org/package=rIACI) v1.0.0: Provides functions to calculate the Iberian Actuarial Climate Index and its components to support climate change analysis and risk assessment. Calculations include temperature, precipitation, wind power, and sea level data—. See ["Zhou et al." (2023)](https://revistas.actuarios.org/index.php/aiae/article/view/55) for further details and the [vignette](https://cran.r-project.org/web/packages/rIACI/vignettes/introduction.html) to get started.
 
 ## Computational Methods
 
@@ -52,7 +52,7 @@ In March, one hundred eighty-two new packages made it to CRAN. Here are my Top 4
 
 ![](SSMF.png){fig-alt="Visulation of clusters of metabolites"}
 
-[RcppPlanc](https://cran.r-project.org/package=RcppPlanc) v2.0.5: Provides `Rcpp` bindings for `PLANC`, a highly parallel and extensible Non-negative Matrix/Tensor Factorization library described in [Kannan et. al (2018)](https://ieeexplore.ieee.org/document/8089433) and [Eswar et. al (2021)](https://dl.acm.org/doi/10.1145/3432185). See the [vignette](https://cran.r-project.org/web/packages/RcppPlanc/vignettes/RcppPlanc.html).
+[RcppPlanc](https://cran.r-project.org/package=RcppPlanc) v2.0.5: Provides `Rcpp` bindings for `PLANC`, a highly parallel and extensible Non-negative Matrix/Tensor Factorization library described in [Kannan et al. (2018)](https://ieeexplore.ieee.org/document/8089433) and [Eswar et al. (2021)](https://dl.acm.org/doi/10.1145/3432185). See the [vignette](https://cran.r-project.org/web/packages/RcppPlanc/vignettes/RcppPlanc.html).
 
 
 
@@ -66,7 +66,7 @@ In March, one hundred eighty-two new packages made it to CRAN. Here are my Top 4
 
 ![](math.png){fig-alt="Genealogy from Fejėr to Georgiou and Aslett"}
 
-[RcensusPkg](https://cran.r-project.org/package=RcensusPkg) v0.1.5: Provides a structured way to access US Census Bureau survey and geographic data. Functions access and layer  displayable geometries states, counties, blocks, tracts, roads, landmarks, places, bodies of water, and return a data frame. See [README](https://cran.r-project.org/web/packages/RcensusPkg/readme/README.html) for an example.
+[RcensusPkg](https://cran.r-project.org/package=RcensusPkg) v0.1.5: Provides a structured way to access US Census Bureau survey and geographic data. Functions access and layer  displayable geometries (states, counties, blocks, tracts, roads, landmarks, places, bodies of water) and return a data frame. See [README](https://cran.r-project.org/web/packages/RcensusPkg/readme/README.html) for an example.
 
 
 [uisapi](https://cran.r-project.org/package=uisapi) v0.1.0: Implements a wrapper for the UNESCO Institute for Statistics [API](https://api.uis.unesco.org/api/public/documentation/) providing public access to more than 4,000 indicators focusing on education, science and technology, culture, and communication . See [README](https://cran.r-project.org/web/packages/uisapi/readme/README.html) for documentation.
@@ -77,16 +77,16 @@ In March, one hundred eighty-two new packages made it to CRAN. Here are my Top 4
 
 ![](ecotrends.svg){fig-alt="Package workflow"}
 
-[hatchR](https://cran.r-project.org/package=hatchR) v0.3.2: Provides access to established phenological models to predict hatch and emergence timing for a wide range of wild fishes using the effective value framework of [Sparks et al. (2019)](https://cran.r-project.org/package=hatchR). There are seven vignettes including an [Introduction](https://cran.r-project.org/web/packages/hatchR/vignettes/Introduction.html) and [Parameterize Models](https://cran.r-project.org/web/packages/hatchR/vignettes/Parameterize_models.html).
+[hatchR](https://cran.r-project.org/package=hatchR) v0.3.2: Provides access to established phenological models to predict hatch and emergence timing for a wide range of wild fishes using the effective value framework of [Sparks et al. (2019)](https://cran.r-project.org/package=hatchR). There are seven vignettes, including an [Introduction](https://cran.r-project.org/web/packages/hatchR/vignettes/Introduction.html) and [Parameterize Models](https://cran.r-project.org/web/packages/hatchR/vignettes/Parameterize_models.html).
 
 ![](hatchR.png){fig-alt="Plot annotated with emergence and hatch times"}
 
 
 ## Epidemiology
 
-[facilityepimath](https://cran.r-project.org/package=facilityepimath) v0.1.0: Provides functions to calculate useful quantities for a user-defined differential equation model of infectious disease transmission among individuals in a healthcare facility including functions to calculate the model equilibrium and the basic facility reproduction number, as described in [Toth et al. (2025)](https://www.medrxiv.org/content/10.1101/2025.02.21.25322698v1). See the vignette [Equilibrium and R0](https://cran.r-project.org/web/packages/facilityepimath/vignettes/equilibrium-and-R0.html).
+[facilityepimath](https://cran.r-project.org/package=facilityepimath) v0.1.0: Provides functions to calculate useful quantities for a user-defined differential equation model of infectious disease transmission among individuals in a healthcare facility, including functions to calculate the model equilibrium and the basic facility reproduction number, as described in [Toth et al. (2025)](https://www.medrxiv.org/content/10.1101/2025.02.21.25322698v1). See the vignette [Equilibrium and R0](https://cran.r-project.org/web/packages/facilityepimath/vignettes/equilibrium-and-R0.html).
 
-[pcpr](https://cran.r-project.org/package=pcpr) v1.0.0: Implements the pattern recognition technique Principal Component Pursuit tailored to environmental health data, as described in [Gibson et al (2022)](https://ehp.niehs.nih.gov/doi/10.1289/EHP10479). There is a [Quickstart](https://cran.r-project.org/web/packages/pcpr/vignettes/pcp-quickstart.html) guide, a [Theory crash course](https://cran.r-project.org/web/packages/pcpr/vignettes/theory-crash-course.html), and a vignette on [AEr pollution](https://cran.r-project.org/web/packages/pcpr/vignettes/pcp-applied.html).
+[pcpr](https://cran.r-project.org/package=pcpr) v1.0.0: Implements the pattern recognition technique Principal Component Pursuit tailored to environmental health data, as described in [Gibson et al. (2022)](https://ehp.niehs.nih.gov/doi/10.1289/EHP10479). There is a [Quickstart](https://cran.r-project.org/web/packages/pcpr/vignettes/pcp-quickstart.html) guide, a [Theory crash course](https://cran.r-project.org/web/packages/pcpr/vignettes/theory-crash-course.html), and a vignette on [AEr pollution](https://cran.r-project.org/web/packages/pcpr/vignettes/pcp-applied.html).
 
 ![](pcpr.jpeg){fig-alt="𝐷 = sum of ground-truth matrices:"}
 
@@ -138,7 +138,7 @@ In March, one hundred eighty-two new packages made it to CRAN. Here are my Top 4
 
 ## Risk Forecasting
 
-[EQRN](https://cran.r-project.org/package=EQRN) v0.1.0: Provides a framework for forecasting and extrapolating measures of conditional risk (e.g. of extreme or unprecedented events), including quantiles and exceedance probabilities, using extreme value statistics and flexible neural network architectures. See [Pasche and Engelke (2024)]() and [Pasche and Engelke (2022)]() for the theory and the [README](https://cran.r-project.org/web/packages/EQRN/readme/README.html) for an example. 
+[EQRN](https://cran.r-project.org/package=EQRN) v0.1.0: Provides a framework for forecasting and extrapolating measures of conditional risk (e.g., of extreme or unprecedented events), including quantiles and exceedance probabilities, using extreme value statistics and flexible neural network architectures. See [Pasche and Engelke (2024)]() and [Pasche and Engelke (2022)]() for the theory and the [README](https://cran.r-project.org/web/packages/EQRN/readme/README.html) for an example. 
 
 ## Statistics
 
@@ -146,16 +146,16 @@ In March, one hundred eighty-two new packages made it to CRAN. Here are my Top 4
 
 ![](deltatest.png){fig-alt="P-values from delta method"}
 
-[gmwmx2]() v0.0.2: Implements the Generalized Method of Wavelet Moments with Exogenous Inputs estimator (GMWMX) presented in [Voirol et al. (2024)](https://arxiv.org/abs/2409.05160) for estimating functional and stochastic parameters of linear models with correlated residuals in presence of missing data. There are four vignettes including [Estimate a model](https://cran.r-project.org/web/packages/gmwmx2/vignettes/fit_model.html) and [Plot a large network of GNSS data](https://cran.r-project.org/web/packages/gmwmx2/vignettes/plot_large_network.html).
+[gmwmx2]() v0.0.2: Implements the Generalized Method of Wavelet Moments with Exogenous Inputs estimator (GMWMX) presented in [Voirol et al. (2024)](https://arxiv.org/abs/2409.05160) for estimating functional and stochastic parameters of linear models with correlated residuals in the presence of missing data. There are four vignettes including [Estimate a model](https://cran.r-project.org/web/packages/gmwmx2/vignettes/fit_model.html) and [Plot a large network of GNSS data](https://cran.r-project.org/web/packages/gmwmx2/vignettes/plot_large_network.html).
 
 ![](gmwmx2.png){fig-alt="Plot of North/East velocities over US."}
 
 
 
-[stors](https://cran.r-project.org/package=stors) v1.0.1: Implements a rejection sampling approach for sampling from general univariate probability density functions. Many standard densities are implemented in `C` for high performance. There are three vignettes including an [Introduction](https://cran.r-project.org/web/packages/stors/vignettes/stors_package.html) and [Sampling from User-Defined Distributions](https://cran.r-project.org/web/packages/stors/vignettes/Sampling_user_distributions.html).
+[stors](https://cran.r-project.org/package=stors) v1.0.1: Implements a rejection sampling approach for sampling from general univariate probability density functions. Many standard densities are implemented in `C` for high performance. There are three vignettes, including an [Introduction](https://cran.r-project.org/web/packages/stors/vignettes/stors_package.html) and [Sampling from User-Defined Distributions](https://cran.r-project.org/web/packages/stors/vignettes/Sampling_user_distributions.html).
 
 
-[tinyVAST](https://cran.r-project.org/package=tinyVAST) v1.0.1: Fits a wide variety of multivariate spatio-temporal models with simultaneous and lagged interactions among variables including vector autoregressive spatio-temporal dynamics for areal, continuous, or network spatial domains. See [Thorson et al. (2024)](https://arxiv.org/abs/2401.10193) for more details. There are five vignettes including [Model Description](https://cran.r-project.org/web/packages/tinyVAST/vignettes/model-description.html) and [Spatial odeling](https://cran.r-project.org/web/packages/tinyVAST/vignettes/spatial.html).
+[tinyVAST](https://cran.r-project.org/package=tinyVAST) v1.0.1: Fits a wide variety of multivariate spatio-temporal models with simultaneous and lagged interactions among variables, including vector autoregressive spatio-temporal dynamics for areal, continuous, or network spatial domains. See [Thorson et al. (2024)](https://arxiv.org/abs/2401.10193) for more details. There are five vignettes, including [Model Description](https://cran.r-project.org/web/packages/tinyVAST/vignettes/model-description.html) and [Spatial Modeling](https://cran.r-project.org/web/packages/tinyVAST/vignettes/spatial.html).
 
 ![](tinyVAST.png){fig-alt="Response surface"}
 
@@ -165,7 +165,7 @@ In March, one hundred eighty-two new packages made it to CRAN. Here are my Top 4
 
 ## Time Series
 
-[actfts](https://cran.r-project.org/package=actfts) v0.3.0: Provides tools for performing autocorrelation analysis of time series data including functions to compute and visualize the autocorrelation function (ACF) and the partial autocorrelation function (PACF), Dickey-Fuller, KPSS, and Phillips-Perron unit root tests. See the [vignette](https://cran.r-project.org/web/packages/actfts/vignettes/actfts.html).
+[actfts](https://cran.r-project.org/package=actfts) v0.3.0: Provides tools for performing autocorrelation analysis of time series data, including functions to compute and visualize the autocorrelation function (ACF) and the partial autocorrelation function (PACF), Dickey-Fuller, KPSS, and Phillips-Perron unit root tests. See the [vignette](https://cran.r-project.org/web/packages/actfts/vignettes/actfts.html).
 
 ![](actfts.png){fig-alt="Autocorrelation plot"}
 
@@ -195,22 +195,22 @@ In March, one hundred eighty-two new packages made it to CRAN. Here are my Top 4
 
 ## Visualization
 
-[ggvfields](https://CRAN.R-project.org/package=ggvfields) v1.0.0: Extends `ggplot2` enabling visualizing vector fields in two-dimensional space by creating vector and stream field layers, visualizing gradients and potential fields, and smoothing vector and scalar data to estimate underlying patterns. Look [here](https://github.com/dusty-turner/ggvfields) for examples.
+[ggvfields](https://CRAN.R-project.org/package=ggvfields) v1.0.0: Extends `ggplot2`, enabling visualizing vector fields in two-dimensional space by creating vector and stream field layers, visualizing gradients and potential fields, and smoothing vector and scalar data to estimate underlying patterns. Look [here](https://github.com/dusty-turner/ggvfields) for examples.
 
 ![](ggvfields.png){fig-alt="Plot of 2D vector field with streamlines and arrows"}
 
-[kitesquare](https://cran.r-project.org/package=kitesquare) v0.0.2: Implements kite-square plots for contingency tables using `ggplot2` to display marginal, conditional, expected, observed, chi-squared values in a single frame. The plot resembles a flying kite inside a square if the variables are independent, and deviates from this the more dependence exists. See the [vignette](https://cran.r-project.org/web/packages/kitesquare/vignettes/kitesquare.pdf) and the package [GitHub page](https://github.com/HUGLeipzig/kitesquare) for documentation and examples.
+[kitesquare](https://cran.r-project.org/package=kitesquare) v0.0.2: Implements kite-square plots for contingency tables using `ggplot2` to display marginal, conditional, expected, observed, chi-squared values in a single frame. The plot resembles a flying kite inside a square if the variables are independent and deviates from this the more dependence exists. See the [vignette](https://cran.r-project.org/web/packages/kitesquare/vignettes/kitesquare.pdf) and the package [GitHub page](https://github.com/HUGLeipzig/kitesquare) for documentation and examples.
 
 ![](kitesquare.png){fig-alt="kitesquare plot"}
 
 
-[mooplot](https://cran.r-project.org/package=mooplot) v0.1.0: Provides functions to visualize of multi-dimensional data arising in multi-objective optimization, including plots of the empirical attainment function (EAF) ([López-Ibáñez et al. (2010)](https://link.springer.com/chapter/10.1007/978-3-642-02538-9_9)) and symmetric Vorob'ev expectation and deviation ([Binois et al. (2015)](https://www.sciencedirect.com/science/article/abs/pii/S0377221714005980?via%3Dihub).
+[mooplot](https://cran.r-project.org/package=mooplot) v0.1.0: Provides functions to visualize multi-dimensional data arising in multi-objective optimization, including plots of the empirical attainment function (EAF) ([López-Ibáñez et al. (2010)](https://link.springer.com/chapter/10.1007/978-3-642-02538-9_9)) and symmetric Vorob'ev expectation and deviation ([Binois et al. (2015)](https://www.sciencedirect.com/science/article/abs/pii/S0377221714005980?via%3Dihub).
 
 ![](mooplot.png){fig-alt="Empirical attainment function (EAF) plot"}
 
 
 
-[quadkeyr](https://cran.r-project.org/package=quadkeyr) v0.1.0: Provides a toolkit for generating raster images from Quadkey-Identified data within [Microsoft’s Bing Maps Tile System](https://learn.microsoft.com/en-us/bingmaps/articles/bing-maps-tile-system) in order to integrate Quadkey-Identified data into `R` workflows. Functions facilitate the creation of QuadKey grids and raster images and process [Meta Mobility data](https://dataforgood.facebook.com/), See [D’Andrea et al. (2024)](https://joss.theoj.org/papers/10.21105/joss.06500) for details and look [here](https://docs.ropensci.org/quadkeyr/) for package documentation documentation.
+[quadkeyr](https://cran.r-project.org/package=quadkeyr) v0.1.0: Provides a toolkit for generating raster images from Quadkey-Identified data within [Microsoft’s Bing Maps Tile System](https://learn.microsoft.com/en-us/bingmaps/articles/bing-maps-tile-system) in order to integrate Quadkey-Identified data into `R` workflows. Functions facilitate the creation of QuadKey grids and raster images and process [Meta Mobility data](https://dataforgood.facebook.com/). See [D’Andrea et al. (2024)](https://joss.theoj.org/papers/10.21105/joss.06500) for details and look [here](https://docs.ropensci.org/quadkeyr/) for package documentation.
 
 ![](quadkeyr.png){fig-alt="Hierarchical coding of spatial position"}
 
