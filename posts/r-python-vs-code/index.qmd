@@ -1,0 +1,208 @@
+---
+title: "A Data Scientist's view of running `R` in Visual Studio Code"
+author: "John Mark Agosta"
+date: "May 2025"
+format: html
+---
+
+# A new, universal development environment
+
+**VS Code** is an open-source software development environment by Microsoft that can be customized for any language. It is arguably the general purpose GUI programming tool of choice when working across multiple computer languages. As a data scientist, its `R - python` integration deserves careful consideration. Its ecosystem is rich with *Extensions* to add language specific features, including features for machine learning specific notebook and visualization tools. For `R` language development, the *RStudio* development environment by [Posit](https://posit.co/download/rstudio-desktop/) (the creator of *RStudio*) still sets the standard. VS Code has appropriated most features available from *RStudio*, including the *Quarto* coding and publishing system. While *RStudio* is more "Quarto native" – with all its document publishing ability – *VS Code* makes possible debugging and Cloud integrations for more extensive programming projects. In this article we will be taking advantage of its file management and editing, its ability for symbolic debugging, and the chameleonic *VS Code* Extensions by which it can be adapted to many languages. If you're not familiar with it, you should give it a try.
+
+> **VS Code combines `R` and `python` development, borrowing features from dedicated environments from both languages. This article reveals several ways to mix languages in a project.**
+
+### Running *VS Code*
+
+*VS Code* has a visual coding and development GUI that runs locally. It works at the level of a folder where your project code and other file artifacts live, similar to the way you'd organize a project with `git`. In fact it integrates smoothly with `git`. As a Microsoft product it is positioned for Azure Cloud inter-operability, making it possible to build Cloud systems at scale --- an entirely different topic covered in my article [Simply Python](https://medium.com/data-science/simply-just-python-in-the-cloud-78274389ab00).
+
+So download [*VS Code*](https://code.visualstudio.com/download) for your Windows, Mac or Linux machine if you don’t have it already. This is its default layout:
+
+![](./vscode_screenshot.png){width="688"}
+
+The interface is partitioned into *panes* and *bars*. The main *editor pane* also shows previews, and can be split horizontally and vertically ad infinitum. Below it is shown the *terminal*, that also can show other scrolling output. The icons on the far left compose the *activity bar* that determine what is displayed in the pane immediately to its right, which here shows the *File Explorer and Outline.* For a tour of the interface and its basic features, see the [Getting Started](https://code.visualstudio.com/docs/getstarted/getting-started) page on the *VS Code* website.
+
+## How to run `R` with `python` in *VS Code*
+
+There is more than one way to do this. These are the various ways covered in this article:
+
+1.  Use *VS Code*'s `R` *Extension* and Debugger to run `.R` files.
+2.  Run `R` code in Jupyter Notebooks, in *VS Code*.
+3.  Run `R` code using `rpy2` in python Jupyter Notebooks.
+4.  Run `qmd` Quarto markdown documents.
+
+## 1. Running `.R` files
+
+### First check your current `R` executable.
+
+First you need to set up your current `R` executable environment. Assume you have a current working `R` version that runs in the terminal. Check when you run
+
+`> .libPaths()`
+
+that it returns a valid path. On my mac this is what appears:
+
+`[1] "/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library"`
+
+On the Mac, *VS Code* finds the `R` executable and library paths automatically. You can check this by opening a shell (e.g. zsh, or bash) in *VS Code* and invoking `R`.
+
+### Integration requires these installs:
+
+-   First, in `R` add the [languageserver](https://github.com/microsoft/vscode-languageserver-node) package
+
+`> install.packages("languageserver")`
+
+This `R` package exposes an API for common text editors, not specific to *VS Code*.
+
+#### *VS Code* Extensions
+
+-   Then install the *R Extension for Visual Studio Code* Extension. Find the Extension by selecting the ![](./extension_icon.png){width="30"} icon from the VS-Code *Activity Bar*, found in a column on far left. (Don't confuse this Extension with "R Tools" or other of the several `R` related extensions that are available). It needs to be enabled:
+
+![](./RextensionforVSCode.png){width="450"}
+
+Configuring the Extension is done by the drop-down menu from its "gear" icon. Find *Settings* under the Extension header in a drop-down menu attached to the gear icon. However the default settings typically work fine.
+
+![](./settings.png){width="280"}
+
+The `R` Extension recommends installing also the [R Debugger Extension](https://github.com/ManuelHentschel/VSCode-R-Debugger/releases) to enable source code debugging.
+
+Now when you do a `New File...` from the *VS Code* menu you'll have choice of both an `.R` file and `.rmd` file option. `R` files include "intellisense" popup suggestions for command completion in addition to other smart editor features. For now try the `.R` file feature; `.rmd` Rmarkdown files need additional extensions enabled. The `R` Extension also adds an "R terminal" to the list of choices in the lower right terminal dropdown:
+
+![](terminal_dropdown.png)
+
+*You could just copy-paste your code into the terminal to run `R`. But you don't need to create an active R terminal to execute `R` code*, as shown here:
+
+### How to execute `.R` files
+
+-   The R Extension enables the keyboard shortcut `cmd-return` (Mac) to send the current line or file selection to the R process running in the current terminal window. Or it creates a process to run it if none exists. *I'm not sure if this always finds the right R process. To assure that the R Extension has an attached R process. I suggest you start an R terminal before executing any `R` code to get attached features to work.*
+
+-   Of course you can interact directly with the R process at the prompt in the terminal. (This does not require you to load the aformentioned languageserver library in the R process.)
+
+-   An alternate command is the `Run code` (keyboard shortcut: `cmd-option-n`) in the "arrow" drop-down in the file title bar or in the file's right-click context menu, to run the current file via `Rscript.` Be sure to save the file first.
+
+Since there can be several active R processes, the current process PID is shown on the right in the Status bar, under the Terminal pane. Either method to run code will pop up a graphics pane if necessary, which can be saved as a `.png` file.
+
+Other actions are analogous to those familiar in *RStudio*, but the interface is adapted to *VS Code*.
+
+### Executing `.R` code in the source debugger
+
+Yet another way to run `.R` code is to use the *VS Code* debugger from the Run menu (keyboard shortcut: `F5`). This gives you the familiar breakpoint, variable inspection, and debug console features of *VS Code*. *Apparently "Run without Debugging" calls the debugger just the same.*
+
+Additionally for any "attached" process, in the far left side pane, the ![R icon](./r_icon.png) icon brings up the "Workspace" with a browsable list of global R objects similar to the *RStudio* Environment feature – a more full-featured inspector than the *VS Code* variable inspector, but not available with the *VS Code* debugger.
+
+> *Honestly with the several execution methods provided, possibly attached to different R processes, it can get complicated to understand which process is running one's code, and what the current process state is.*
+
+#### Help Pages
+
+Below the workspace inspector in the side pane is the help page tool menu. Similarly a file's right-click context menu "Open help for selection" will bring up the documentation file for an R object.
+
+## 2. Running Jupyter `R` notebooks
+
+The second engine for running `R` uses the Jupyter notebook integration with *VS Code*. Conventional Jupyter notebooks can run `R` if they have an R kernel installed that connects them with the R executable that runs on your machine. To set this up, at the `R` prompt install the [IRkernel](https://irkernel.github.io/installation/) package:
+
+```         
+    > install.packages('IRkernel')
+    > IRkernel::installspec()     # to register the kernel, making it 
+                                  # visible to Jupyter.
+```
+
+Now restart *VS Code* and create a Jupyter notebook from the `New File...` menu item. To switch to the R kernel, click on the "Select Kernel" button above the notebook to the right. Then in the menu-bar popup, select the R executable, and the "MagicPython" dropdown menu on the notebook cell will change to `R`. If no R kernel is shown, Choose "Select Another Kernel..." to search the file system for one. Once you've found one it will appear next time in the kernel selection menu.
+
+![](select_kernel.png){width="500"}
+
+As with Python, you have a choice with new cells to create them as either `R` or Markdown cells. In a notebook, a cell's graphic output will appear below the cell rather than in a separate pane.
+
+## 3. Notebooks for `R` \<-\> `python` interoperability
+
+Alas, your R notebook is for R code only; there is no option to mix notebook cells of different languages. This section discusses how it is possible to create notebooks that can switch back and forth between cells running different languages in the same notebook.
+
+#### Polyglot notebooks
+
+You may notice that cells in *VS Code* python notebooks do give you a choice of languages. This is Microsoft's [polyglot notebooks Extension](https://code.visualstudio.com/docs/languages/polyglot#:~:text=and%20signature%20help.-,Variable%20Sharing%20and%20Variable%20Explorer,visit%20the%20Variable%20Sharing%20documentation.) built on top of .NET. When running a *VS Code* python notebook here's the drop-down for cell types. Sadly `R` is not a choice.
+
+![](magic_notebook_languages.png){width="170"}
+
+### Solution: The `rpy2` python module.
+
+As I've promised in this article, there is a way where you can work freely between `R` and `python`. There's no need to choose one over the other.
+
+Polyglot *VS Code* python notebooks running a python kernel do allow mixtures of cells of different languages but unfortunately this feature does not include `R`. You either chose an `R` kernel or a python one. The solution is to load this special python module that mediates between `R` and `python`.
+
+In Jupyter notebooks running the python kernel, one can use "R magics" exposed by the `rpy2` module to execute native R code. This is a feature built on the [python `rpy2` package](https://rpy2.github.io/). This is a way to insert R code in a native python notebook. [Several cloud services use the package](https://rpy2.github.io/doc/v3.5.x/html/generated_rst/notebooks.html) by having built-in`rpy2` "magics" to transfer variables between the two languages. Think of these "magics" as commands that read a variable from one process and write it into the other. If you subsequently change a transferred variable's value in a cell in one language it needs to be re-imported to the other language to gain access to the changes.
+
+#### To use `rpy2` in *VS Code* notebooks.
+
+Since "rpy2 magics" are not built in to *VS Code* kernels, you need to load `rpy2` into the python kernel. Of course your python environment needs the package installed:
+
+`$ pip install rpy2`
+
+First, configure your python notebook by loading `rpy2` with this cell magic in one of the notebook (preferably the first) cells:
+
+`%load_ext rpy2.ipython`
+
+Then in a cell where you want to run `R` and import an existing python variable into the cell, say `my_df`, preface the cell with this magic command:
+
+`%%R -i my_df`
+
+Similarly to export an R variable from an R cell so it's visible in `python` preface it with:
+
+`%%R -o my_df`
+
+The analogous single "%" R magic `%R -i my_df` imports from `R` into a python cell. To see documentation on the set of magic commands run `%magic` in a python cell. The authors of the `rpy2` python package continue to support it for sharing dataframes between notebook cells in the two languages. [This blog](https://blog.revolutionanalytics.com/2016/01/pipelining-r-python.html) explains how.
+
+## 4. Quarto: An alternative to multi-lingual notebooks
+
+Quarto is designed to build beautiful documents interspersed with embedded, functioning code. In contrast Jupyter notebooks are intended as a programming environment, with a sequence of code cells alternated with text. The line between them gets blurred as more features are added to both. `Quarto` evolved from R-markdown, as a multi-purpose document generation tool, combining the best of existing tools with the ability to run code. In fact `.Rmd` "R-markdown" files, an extension of standard Markdown, find a natural extension with Quarto `.qmd` files. Quarto can be run from the command line as a batch task that knits `.qmd` files into html, pdf, or other formats. However it is fully integrated with *RStudio* and *VS Code* so that one never needs resort to the command line.
+
+### `Reticulate`: Integrating `python` and `R` with Quarto
+
+An alternative to running `R` with `python` in Jupyter notebooks is the competitive feature of running code in Quarto's `.qmd` files by using the `reticulate` R library. It supports code blocks in multiple languages that are embedded in an extended, full-featured version of markdown. This is a preferred solution for sharing `R` and `python`dataframes in a document. See [this article](https://www.r-bloggers.com/2023/01/combining-r-and-python-with-reticulate-and-quarto/) about *reticulate*.
+
+### Python in `.qmd` markdown files
+
+Analogous to how `rpy2` makes it possible to share dataframes between `R` and `python` in Jupyter notebooks, [`reticulate`](https://rstudio.github.io/reticulate/articles/r_markdown.html) makes the same possible in Quarto. The syntax is different. To retrieve a dataframe in an R cell from a previous python cell use:
+
+````{r}
+library(reticulate)
+r_df<- py$python_df
+````
+
+The opposite conversion from `r` to `python` in a python cell is
+
+````{python}
+python_df = r.r_df
+````
+
+I find sometimes that loading `library(reticulate)` is necessary, although Quarto tries to figure this out for you, assuming it is already installed in your R environment.
+
+Once a python object is created from an R object it is available in all subsequently executed cells. The same holds true for R objects created from `python`.
+
+#### Code display options
+
+There is both a source mode and a visual editing mode for Quarto files. Cells in source mode (unlike in visual mode) have a live link along their upper edge to execute them. Unlike with Jupyter notebooks, where the output of cell computations is included in-line following the cells, when running cells in `.qmd` files, the output is shown in a separate pane. Running an individual `R` cell injects the cell's code into a terminal running `R`. In Quarto python cell output can display in various ways, sometimes in a separate pane, called "Interactive", or in a pop-up window.
+
+When rendering a document, Quarto gives one freedom whether the code or its output is shown, or both. By default both the code and output are included in the document. To not include the output create a cell like this:
+
+![](./output_false.png)
+
+
+Similarly the comment to not show the code in the document is `#| echo: false`. This works in both R and python cells. To enforce this globally, these comments can also be included as `yaml`comments in the `.qmd` file header as shown here. For instance here's another comment to make the code visible in a drop down labeled "The code":
+
+```         
+---
+title: "Folded code example"
+format: html
+code-fold: true
+code-summary: "The code"
+---
+```
+
+See the Quarto documentation on [Code Cells:Jupyter](https://quarto.org/docs/reference/cells/cells-jupyter.html) for all cell comment options.
+
+## Bottom Line - which environment to use for which purpose?
+
+This article is a brief survey of the existing `R - python` integrations available for the *VS Code* development environment. Here are my thoughts about when they come in useful.
+
+1.  Running `R` code in *VS Code* is a work-alike to running *RStudio*. *RStudio* is a dedicated R development environment with some recent additions to accommodate `python`. Conversely *VS Code* competes as a multi-language project development environment, with extensions for notebook, python, and R programming. I find *RStudio* more intuitive and R-ish, and having to suffer multiple ways to accomplish similar tasks in *VS Code* adds needless complication to the interface. But if you are familiar with *VS Code* and don't want to learn another tool, *VS Code* runs R code just fine.
+
+2.  When I need some R code capabilities not available in `python` (yes `R` still has better statistics and graphics libraries), I use `rpy2` to extend my Jupyter notebooks. This way I can still use the extensive features of *VS Code* such as evolving my (pure) notebooks into python modules. On the other hand just running R notebooks in *VS Code* has no advantages over running Quarto documents.
+
+3.  I'm just learning Quarto not only for its "polyglot" language features but also for it's extensive and varied document creation possibilities. This blog is actually created as a `.qmd` document! It remains to be seen if *VS Code* will equal the ease of Quarto development in *RStudio* as I get more facile with it.
