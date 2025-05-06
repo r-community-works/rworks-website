@@ -160,16 +160,16 @@ An alternative to running `R` with `python` in Jupyter notebooks is the competit
 
 Analogous to how `rpy2` makes it possible to share dataframes between `R` and `python` in Jupyter notebooks, [`reticulate`](https://rstudio.github.io/reticulate/articles/r_markdown.html) makes the same possible in Quarto. The syntax is different. To retrieve a dataframe in an R cell from a previous python cell use:
 
-````{r}
+```{{r}}
 library(reticulate)
 r_df<- py$python_df
-````
+```
 
 The opposite conversion from `r` to `python` in a python cell is
 
-````{python}
+```{{python}}
 python_df = r.r_df
-````
+```
 
 I find sometimes that loading `library(reticulate)` is necessary, although Quarto tries to figure this out for you, assuming it is already installed in your R environment.
 
