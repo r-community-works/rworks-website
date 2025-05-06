@@ -1,7 +1,12 @@
 ---
 title: "A Data Scientist's view of running `R` in Visual Studio Code"
 author: "John Mark Agosta"
-date: "May 2025"
+date: 2025-05-07
+description: ""
+image: ""
+image-alt: ""
+categories: ""
+editor: source
 format: html
 ---
 
