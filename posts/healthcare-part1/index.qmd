@@ -2,11 +2,11 @@
 title: "Tidyverse with Copilot for healthcare analytics -- part 1"
 subtitle: "Unless Copilot specified explicitly, all code is originally authored"
 author: "Vidisha Vachharajani"
-date: "2025-05-07"
-descriotion: ""
+date: "2025-05-12"
+descriotion: "In this first post in a series of two focused on healthcare applications, I will introduce a complex healthcare data set and outline the problems I propose to solve using tidyverse and Copilot to facilitate nuanced argument tuning of tidyverse functions and accelerate the data analysis process."
 fig-dpi: 300
 fig-align: "center"
-image: fit.png
+image: "infographic.png"
 format: html
 editor: source
 ---
@@ -21,7 +21,8 @@ EMH data aims to improve the accuracy of diagnoses and treatment plans while enh
 
 ## Using R with Copilot in healthcare
 
-In this first post in a series of two, I will introduce a complex healthcare data set and outline the problems I propose to solve using `tidyverse` and Copilot, which will facilitate nuanced argument tuning in `tidyverse` functions and accelerate our data analysis process.
+In this first post in a series of two focused on healthcare applications, I will introduce a complex healthcare data set and outline the problems I propose to solve using tidyverse and Copilot to facilitate nuanced argument tuning of tidyverse functions and accelerate the data analysis process
+
 
 > This series is designed to help you refine and improve your data analysis skills, understand the role of AI in healthcare analytics, while demonstrating the practical application of R and Copilot in real-world scenarios.
 
@@ -249,5 +250,5 @@ Here, the *A1c test* is defined as a binary indicator of whether this vital asse
 
 ## About the Author
 
-*Vidisha writes: “As a statistician and a data geek, I love solving puzzles of all kinds, with a particular fondness for combinatorial challenges. Recently, I tackled one in R using the dplyr package, which prompted me to think about the broader applications of R, not just as a powerful tool for solving puzzles for enthusiasts but also as an empowering way to teach high school mathematics. Moreover, R’s capabilities in data visualization can help learners grasp complex problems more intuitively, ultimately leading to a deeper understanding of their solutions.”*
+*Vidisha writes: "I am a statistician and data science professional. For practioners like me 'tidyverse' is a household word. I’ve used it for complex data wrangling, visualization and advanced analytics work, especially where I needed clarity on how to leverage my data so that it allows for story-telling that informs business decisions, recasting my work into actionable insights. I recently began exploring GPT-4o mini and GitHub Copilot to help me speed up my workflows, especially within Healthcare Analytics. I am excited to share this post series to help readers understand the role of RStudio and AI in Healthcare Analytics!"*
 
