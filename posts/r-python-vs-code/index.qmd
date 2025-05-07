@@ -2,9 +2,9 @@
 title: "A Data Scientist's view of running `R` in Visual Studio Code"
 author: "John Mark Agosta"
 date: 2025-05-07
-description: ""
-image: ""
-image-alt: ""
+description: "VS Code is Microsoft's open-source software development environment that can be customized for any language. It is arguably the general purpose GUI programming tool of choice when working across multiple computer languages. As a data scientist, its R - python integration deserves careful consideration. Its ecosystem is rich with Extensions to add language specific features, including features for machine learning specific notebook and visualization tools. bility – *VS Code* makes possible debugging and Cloud integrations for more extensive programming projects. In this post we will be taking advantage of its file management and editing, its ability for symbolic debugging, and the chameleonic VS Code Extensions by which it can be adapted to many languages."
+image: "vscode_screenshot.png"
+image-alt: "VS code screen caoture"
 categories: ""
 editor: source
 format: html
@@ -12,7 +12,7 @@ format: html
 
 # A new, universal development environment
 
-**VS Code** is an open-source software development environment by Microsoft that can be customized for any language. It is arguably the general purpose GUI programming tool of choice when working across multiple computer languages. As a data scientist, its `R - python` integration deserves careful consideration. Its ecosystem is rich with *Extensions* to add language specific features, including features for machine learning specific notebook and visualization tools. For `R` language development, the *RStudio* development environment by [Posit](https://posit.co/download/rstudio-desktop/) (the creator of *RStudio*) still sets the standard. VS Code has appropriated most features available from *RStudio*, including the *Quarto* coding and publishing system. While *RStudio* is more "Quarto native" – with all its document publishing ability – *VS Code* makes possible debugging and Cloud integrations for more extensive programming projects. In this article we will be taking advantage of its file management and editing, its ability for symbolic debugging, and the chameleonic *VS Code* Extensions by which it can be adapted to many languages. If you're not familiar with it, you should give it a try.
+**VS Code** is Microsoft's open-source software development environment that can be customized for any language. It is arguably the general purpose GUI programming tool of choice when working across multiple computer languages. As a data scientist, its `R - python` integration deserves careful consideration. Its ecosystem is rich with *Extensions* to add language specific features, including features for machine learning specific notebook and visualization tools. For `R` language development, the *RStudio* development environment by [Posit](https://posit.co/download/rstudio-desktop/) (the creator of *RStudio*) still sets the standard. VS Code has appropriated most features available from *RStudio*, including the *Quarto* coding and publishing system. While *RStudio* is more "Quarto native" – with all its document publishing ability – *VS Code* makes possible debugging and Cloud integrations for more extensive programming projects. In this post we will be taking advantage of its file management and editing, its ability for symbolic debugging, and the chameleonic *VS Code* Extensions by which it can be adapted to many languages. If you're not familiar with it, you should give it a try.
 
 > **VS Code combines `R` and `python` development, borrowing features from dedicated environments from both languages. This article reveals several ways to mix languages in a project.**
 
@@ -127,7 +127,7 @@ You may notice that cells in *VS Code* python notebooks do give you a choice of 
 
 ### Solution: The `rpy2` python module.
 
-As I've promised in this article, there is a way where you can work freely between `R` and `python`. There's no need to choose one over the other.
+As I've promised in this post, there is a way where you can work freely between `R` and `python`. There's no need to choose one over the other.
 
 Polyglot *VS Code* python notebooks running a python kernel do allow mixtures of cells of different languages but unfortunately this feature does not include `R`. You either chose an `R` kernel or a python one. The solution is to load this special python module that mediates between `R` and `python`.
 
@@ -151,7 +151,7 @@ Similarly to export an R variable from an R cell so it's visible in `python` pre
 
 `%%R -o my_df`
 
-The analogous single "%" R magic `%R -i my_df` imports from `R` into a python cell. To see documentation on the set of magic commands run `%magic` in a python cell. The authors of the `rpy2` python package continue to support it for sharing dataframes between notebook cells in the two languages. [This blog](https://blog.revolutionanalytics.com/2016/01/pipelining-r-python.html) explains how.
+The analogous single "%" R magic `%R -i my_df` imports from `R` into a python cell. To see documentation on the set of magic commands run `%magic` in a python cell. The authors of the `rpy2` python package continue to support it for sharing data frames between notebook cells in the two languages. [This blog](https://blog.revolutionanalytics.com/2016/01/pipelining-r-python.html) explains how.
 
 ## 4. Quarto: An alternative to multi-lingual notebooks
 
@@ -159,11 +159,11 @@ Quarto is designed to build beautiful documents interspersed with embedded, func
 
 ### `Reticulate`: Integrating `python` and `R` with Quarto
 
-An alternative to running `R` with `python` in Jupyter notebooks is the competitive feature of running code in Quarto's `.qmd` files by using the `reticulate` R library. It supports code blocks in multiple languages that are embedded in an extended, full-featured version of markdown. This is a preferred solution for sharing `R` and `python`dataframes in a document. See [this article](https://www.r-bloggers.com/2023/01/combining-r-and-python-with-reticulate-and-quarto/) about *reticulate*.
+An alternative to running `R` with `python` in Jupyter notebooks is the competitive feature of running code in Quarto's `.qmd` files by using the `reticulate` R library. It supports code blocks in multiple languages that are embedded in an extended, full-featured version of markdown. This is a preferred solution for sharing `R` and `python`data frames in a document. See [this article](https://www.r-bloggers.com/2023/01/combining-r-and-python-with-reticulate-and-quarto/) about *reticulate*.
 
 ### Python in `.qmd` markdown files
 
-Analogous to how `rpy2` makes it possible to share dataframes between `R` and `python` in Jupyter notebooks, [`reticulate`](https://rstudio.github.io/reticulate/articles/r_markdown.html) makes the same possible in Quarto. The syntax is different. To retrieve a dataframe in an R cell from a previous python cell use:
+Analogous to how `rpy2` makes it possible to share data frames between `R` and `python` in Jupyter notebooks, [`reticulate`](https://rstudio.github.io/reticulate/articles/r_markdown.html) makes the same possible in Quarto. The syntax is different. To retrieve a data frame in an R cell from a previous python cell use:
 
 ```{{r}}
 library(reticulate)
@@ -186,7 +186,7 @@ There is both a source mode and a visual editing mode for Quarto files. Cells in
 
 When rendering a document, Quarto gives one freedom whether the code or its output is shown, or both. By default both the code and output are included in the document. To not include the output create a cell like this:
 
-![](./output_false.png)
+![](output_false.png)
 
 
 Similarly the comment to not show the code in the document is `#| echo: false`. This works in both R and python cells. To enforce this globally, these comments can also be included as `yaml`comments in the `.qmd` file header as shown here. For instance here's another comment to make the code visible in a drop down labeled "The code":
@@ -204,10 +204,16 @@ See the Quarto documentation on [Code Cells:Jupyter](https://quarto.org/docs/ref
 
 ## Bottom Line - which environment to use for which purpose?
 
-This article is a brief survey of the existing `R - python` integrations available for the *VS Code* development environment. Here are my thoughts about when they come in useful.
+This post is a brief survey of the existing `R - python` integrations available for the *VS Code* development environment. Here are my thoughts about when they come in useful.
 
 1.  Running `R` code in *VS Code* is a work-alike to running *RStudio*. *RStudio* is a dedicated R development environment with some recent additions to accommodate `python`. Conversely *VS Code* competes as a multi-language project development environment, with extensions for notebook, python, and R programming. I find *RStudio* more intuitive and R-ish, and having to suffer multiple ways to accomplish similar tasks in *VS Code* adds needless complication to the interface. But if you are familiar with *VS Code* and don't want to learn another tool, *VS Code* runs R code just fine.
 
 2.  When I need some R code capabilities not available in `python` (yes `R` still has better statistics and graphics libraries), I use `rpy2` to extend my Jupyter notebooks. This way I can still use the extensive features of *VS Code* such as evolving my (pure) notebooks into python modules. On the other hand just running R notebooks in *VS Code* has no advantages over running Quarto documents.
 
 3.  I'm just learning Quarto not only for its "polyglot" language features but also for it's extensive and varied document creation possibilities. This blog is actually created as a `.qmd` document! It remains to be seen if *VS Code* will equal the ease of Quarto development in *RStudio* as I get more facile with it.
+
+## About the Author
+
+*Recently, after departing his Data Scientist position at Microsoft, John Mark Agosta began teaching the "Math Foundations" course for the SJSU online Masters program, and founded "Fondata, LLC" to pursue his interest in probabilistic graphical models and related Bayesian modelling methods.*
+
+
