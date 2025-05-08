@@ -2,7 +2,7 @@
 title: "A Data Scientist's View of Running R in Visual Studio Code"
 author: "John Mark Agosta"
 date: "2025-05-08"
-description: "VS Code is a popular, customizable coding environment excellent for working with multiple languages. As a data scientist, its R <-> Python integration deserves careful consideration."
+description: "VS Code is Microsoft's open-source software development environment that can be customized for any language. It is arguably the general purpose GUI programming tool of choice when working across multiple computer languages. As a data scientist, its R - Python integration deserves careful consideration."
 image: "vscode_screenshot.png"
 image-alt: "VS code screen caoture"
 categories: ""
