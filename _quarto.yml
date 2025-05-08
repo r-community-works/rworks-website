@@ -34,7 +34,7 @@ format:
     include-in-header: plausible.html
 
 editor: source
-highlight-style: tango
+highlight-style: arrow
 lightbox: true
 
 execute:
