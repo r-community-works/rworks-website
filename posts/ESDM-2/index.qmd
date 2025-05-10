@@ -30,12 +30,51 @@ The final decision often comes down to examining the equation: Net Benefit = Uλ
 -   C = lifetime cost
 
 
-The following figure depicts the decision as a tree. The square node shows the decision (whether or not to administer the antibiotic) and the round nodes show the subsequent chance event of wound infection. The two branches represent the treatment group (trt) who receive the antibiotic and the control group (ctl), who do not. The probability that a patient in the control group gets a wound infection is p1. In the treated group we expect the probability of infection (p2) to be different from the control group. The four leaves of this tree show the costs associated with the four outcome categories. The leaf labels ('cost_wdpx', etc) will be variables in our models, where 'wd' means the surgical wound is infected, 'nwd' means it is not, and 'px' means the patient was prescribed the prophylactic antibiotic. The costs of the leaves will be weighted by the probabilities to compute the expected payoff of each alternative for the decision. To keep things simple for now we only consider monitary costs; later we will generalize for utility (QALYs)
+The following figure depicts the decision as a tree. The decision of whether or not to prescribe prophylactic antibiotics is represented by the square node labelled 'Px". The two branches from this node represent the treatment and control groups. These groups are represented as circles because they are "chance nodes"; people in those groups may or may not go on to get a wound infection. The probability of infection is different for each group (p1 and p2). The four leaves of the tree are the four possible outcomes: getting a wound infection or not in either the treatment or the control. We can compute a cost for each outcome. For example, the most expensive outcome is for patients who received the antibiotic and got an infection anyway, because they have both the costs of providing the prophylaxis and the costs of treating the wound. Though not shown on the diagram, we can also compute a utility (in QALYs) for each outcome (e.g., time a patient spends in the hospital is not as valuable as time spent otherwise). The expected cost and utility of each main branch are a probability-weighted average of the costs and utilities of the leaves of that branch.
 
 ![](decision_tree.png){fig-alt="The decision tree."}
 
 
-## Setup R Libraries
+
+
+# Deterministic Decision Analysis
+
+In this section we will present a deterministic model of the problem that can be described by means of the following directed graph. Variables in blue on the right side if the diagram represent cost data (see the table in the section "Resource Use and Cost Data" below). The costs of the four leaves of our decision tree are computed from these values. A patient with an infected wound will have a different cost per day of care that a patient without a woud infection, and presumably a diferent length of stay in the hospital. In addition, the treatment group has costs associated with buying and administering multiple doses of the prophylactic antibiotic.
+
+The variables `nc1` and `rc1` are the total number of Caesarean sections and wound infections in the health system making the decision. Since they do not yet use prophylactic antibiotics for thie operation, these values let us estimate the prevalence of wound infections in the untreated group (`p1`).
+
+The green variables in the upper left (a through d) represent data from a clinical trial (see the table in the "Clinical Data" section below). Since the prevalence of wound infection in the hospitals where the study was done is different from that in the target health system, we need to compute the relative risk for treated vs. control patients in the study. This is just the proportion of patients getting an infection in the treatment group, divided by the proportion in the control group:
+
+
+
+# THIS NEW PARAGRAPH IS REDUNDANT
+
+This diagram is a Directed Acyclic Graph (DAG) that shows how the variables in the program depend on one another. Variables in green (a, b, c, and d) come from the clinical effectiveness study [the table in the section titled "The Clinical DATA"]; these are the numbers of infected and non-infected surgical wounds in the treated and untreated cohorts, respectively. These numbers are used to estimate the relative risk for a treated vs. untreated patient. We need to use relative risk because the absolute risk may be very different at different institutions (in this caseV the efficacy study was conducted in Africa, while the target institution is in the UK). Variables in blue are from the economic study done at the target institution; they include costs of administering the antibiotic, estimates of length of stay for women with and without an infected wound, and the expected prevalence of these wound infections in the target institution. The overall costs for the treatment branch and the control branch are computed as the probability-weighted average of the costs of the outcomes, as described by the decision tree.
+
+
+
+![](deterministic.png){fig-alt="Deterministic DAG."}
+
+$$ Relative Risk = \frac{a/(a+b)}{c/(c+d)}$$
+where:
+
+-   a is the number of women who received antibiotics and subsequently developed infections
+-   b is the number of women who received antibiotics who did not develop infections
+-   c is the number of women who received the placebo and subsequently became infected
+-   d is the number of women who received the placebo who did not become infected
+
+
+The deterministic model presented in this section may be found on page 56 in section 3.4 of the text.
+
+## The Clinical Data
+
+The data for the effectiveness of prophylactic antibiotics to reduce infection in women delivering by cesarean section comes from a study by [Bibi et al., (1994)](https://pubmed.ncbi.nlm.nih.gov/8051377/). 
+
+This code executes the model by simply computing the products and sums, and displays the results. There is nothing Bayesian or stochastic here yet; this model just does some simple math in JAGS to lay the foundation for subsequent refinements.
+
+## Preparations for running the model.
+
+This section of code loads the necessary libraries and contains a couple of helper functions that are used later in the code. The first function, `coda_sample_2_df`, extracts data from a coda sample into a dataframe. The second function, `plot_densities_from_coda_df`, makes comparative density plots for the given variables.
 
 ```{r}
 #| warning: FALSE
@@ -73,36 +112,6 @@ plot_densities_from_coda_df <- function(vars, coda_df){
     ggplot(aes(x=value, col=name, fill=name)) + geom_density(alpha=0.6)
 }
 ```
-
-# Deterministic Decision Analysis
-
-In this section we will present a deterministic model of the problem that can be described by means of the following directed graph. Variables in blue on the right side if the diagram represent cost data (see the table in the section "Resource Use and Cost Data" below). The costs of the four leaves of our decision tree are computed from these values. A patient with an infected wound will have a different cost per day of care that a patient without a woud infection, and presumably a diferent length of stay in the hospital. In addition, the treatment group has costs associated with buying and administering multiple doses of the prophylactic antibiotic.
-
-The variables `nc1` and `rc1` are the total number of Caesarean sections and wound infections in the health system making the decision. Since they do not yet use prophylactic antibiotics for thie operation, these values let us estimate the prevalence of wound infections in the untreated group (`p1`).
-
-The green variables in the upper left (a through d) represent data from a clinical trial (see the table in the "Clinical Data" section below). Since the prevalence of wound infection in the hospitals where the study was done is different from that in the target health system, we need to compute the relative risk for treated vs. control patients in the study. This is just the proportion of patients getting an infection in the treatment group, divided by the proportion in the control group:
-
-
-![](deterministic.png){fig-alt="Deterministic DAG."}
-
-$$ Relative Risk = \frac{a/(a+b)}{c/(c+d)}$$
-where:
-
--   a is the number of women who received antibiotics and subsequently developed infections
--   b is the number of women who received antibiotics who did not develop infections
--   c is the number of women who received the placebo and subsequently became infected
--   d is the number of women who received the placebo who did not become infected
-
-
-The deterministic model presented in this section may be found on page 56 in section 3.4 of the text.
-
-## The Clinical Data
-
-The data for the effectiveness of prophylactic antibiotics to reduce infection in women delivering by cesarean section comes from a study by [Bibi et al., (1994)](https://pubmed.ncbi.nlm.nih.gov/8051377/). 
-
-This code executes the model by simply computing the products and sums, and displays the results. There is nothing Bayesian or stochastic here yet; this model just does some simple math in JAGS to lay the foundation for subsequent refinements.
-
-
 
 
 ```{r}
@@ -212,7 +221,9 @@ results
 
 # Stochastic Decision Analysis
 
-Having established a deterministic baseline model, the next step is to account for the uncertainty in the modeling assumptions by developing a Bayesian stochastic model that uses probability distributions rather than point estimates to represent uncertain parameters. These are shown in red in the diagram below.
+Having established a deterministic baseline model, the next step is to account for the uncertainty in the modeling assumptions by developing a Bayesian stochastic model that uses probability distributions rather than point estimates to represent uncertain parameters. 
+
+This diagram shows the relationships between variables in the stochastic model. The red nodes are stochastic variables, as is the orange outcome node (differential cost). These depend on parameterized random distributions. For example, the relative risk (RR) and prevalence of infection in the target hospital (p1) are no longer simple point estimates as they were in the deterministic model; instead they are modeled by statistical distributions parameterized by the observed data (see equations below). The probabilty of infection in the treatment group (p2) is also stochastic, since it is computed by adjusting p1 for the relative risk.
 
 
 The cost of administering the drug is now randomly taken from a range, the length of stay estimates are described as Normal distributions with a given mean and precision, the prevalence of infection in the target health system is represented with a beta distribution parameterized using the same numbers as before, and the relative risk is modeled by a Normal distribution on the log scale. Variables computed from these stochastic variables are stochastic as well, so 'p2', 'cst.trt', and 'cst.ctl' are also red, and the outcome of all this 'diff.cost' is in turn estimated stochastically.
@@ -548,9 +559,9 @@ w3
 
 ```
 
-# The Economic Evaluation of the Stochastic Model
+# The Stochastic Economic Model
 
-Here we add the code from p65 to the model above.
+This next section of code integrates the computations forcost-effectiveness into the model model presented above. You can find this code on page 65 of the text.
 
 ```{r}
 #| warning: FALSE
@@ -624,12 +635,6 @@ parameters_to_save <- c(#"ProbCE",
 ## Run the Economic Model
 
 
-**<< BOB TO DO: Paragraph about why (and how) to use utility (QALYs) instead of just monetary cost.>>**
-
-**<< BOB TO DO: Paragraph on computing INB at M different lambda values. Describe 'step' function. >>**
-
-
-
 ```{r}
 #| warning: FALSE
 #| message: FALSE
@@ -657,6 +662,8 @@ round(economic_results_summary,3) |> select(!c(3,4))
 
 ### Cost-Effectiveness
 
+The effectiveness of a healthcare intervention is often expressed *QALYS*, Quality-Adjusted Life Year which combine mortality and morbidity from treatment outcomes into a single value. By putting diverse medical outcomes on the same scale, it makes it possible to allocate funds among very different programs (cancer care, prenatal care, vaccine programs, etc.). 
+
 The following figure which plots the results of many simulations of the economic model on the cost-effectiveness plane is the major tool for facilitating the decision as to whether to adopt the practice of prophylactically administering antibiotics. The x-axis represents the incremental QALYs and the y-axis represents the incremental costs. The dashed lines represent different values for $\lambda$ the cut-off cost. The solid line represents the line of no difference in cost or QALYs.
 
 ```{r}
@@ -683,6 +690,9 @@ CE_1 <-ce_df %>%
            label = paste("lambda ==", LAMBDAS), parse=TRUE)
 CE_1
 ```
+
+ Life Year (QALY) combines mortality and morbidity from treatment outcomes into a single value. By putting diverse medical outcomes on the same scale, it makes it possible to allocate funds among very different programs (cancer care, prenatal care, vaccine programs, etc.). Note that, although this metric is widely used for budgeting decisions regarding healthcare technologies, it is not generally suitable for all applications. For example, QALYs are not always helpful for making decisions faced by individual patients [Ioannidis 2011].
+
 
 This next figure shows the expected incremental net benefit and 95% credible interval for a range of lambda values. The x-axis represents the value of lambda and the y-axis represents the expected incremental net benefit. The dashed lines represent the 2.5% and 97.5% quantiles of the posterior distribution of the incremental net benefit.
 
