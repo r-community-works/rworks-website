@@ -21,7 +21,7 @@ EMH data aims to improve the accuracy of diagnoses and treatment plans while enh
 
 ## Using R with Copilot in healthcare
 
-In this first post in a series of two focused on healthcare applications, I will introduce a complex healthcare data set and outline the problems I propose to solve using tidyverse and Copilot to facilitate nuanced argument tuning of tidyverse functions and accelerate the data analysis process
+In this first post in a series of two focused on healthcare applications, I will introduce a complex healthcare data set and outline the problems I propose to solve using tidyverse and Copilot to facilitate nuanced argument tuning of tidyverse functions and accelerate the data analysis process.
 
 
 > This series is designed to help you refine and improve your data analysis skills, understand the role of AI in healthcare analytics, while demonstrating the practical application of R and Copilot in real-world scenarios.
@@ -250,5 +250,5 @@ Here, the *A1c test* is defined as a binary indicator of whether this vital asse
 
 ## About the Author
 
-*Vidisha writes: "I am a statistician and data science professional. For practioners like me 'tidyverse' is a household word. I’ve used it for complex data wrangling, visualization and advanced analytics work, especially where I needed clarity on how to leverage my data so that it allows for story-telling that informs business decisions, recasting my work into actionable insights. I recently began exploring GPT-4o mini and GitHub Copilot to help me speed up my workflows, especially within Healthcare Analytics. I am excited to share this post series to help readers understand the role of RStudio and AI in Healthcare Analytics!"*
+*Vidisha writes: "I am a statistician and data science professional. For practitioners like me 'tidyverse' is a household word. I’ve used it for complex data wrangling, visualization and advanced analytics work, especially where I needed clarity on how to leverage my data so that it allows for story-telling that informs business decisions, recasting my work into actionable insights. I recently began exploring GPT-4o mini and GitHub Copilot to help me speed up my workflows, especially within Healthcare Analytics. I am excited to share this post series to help readers understand the role of RStudio and AI in Healthcare Analytics!"*
 
