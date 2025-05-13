@@ -6,7 +6,7 @@ date: "2025-05-13"
 descriotion: "In this post, first in a series of two focused on healthcare applications, I will introduce a complex healthcare data set and outline the problems I propose to solve using tidyverse and Copilot to facilitate nuanced argument tuning of tidyverse functions and accelerate the data analysis process."
 fig-dpi: 300
 fig-align: "center"
-image: infographic.png
+image: plot1.png
 format: html
 editor: source
 ---
