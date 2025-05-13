@@ -1,23 +1,23 @@
 ---
-title: "Tidyverse with Copilot for healthcare analytics -- part 1"
+title: "Tidyverse with Copilot for Healthcare Analytics -- Part 1"
 subtitle: "Unless Copilot specified explicitly, all code is originally authored"
 author: "Vidisha Vachharajani"
 date: "2025-05-13"
 description: "In this post, first in a series of two focused on healthcare applications, I will introduce a complex healthcare data set and outline the problems I propose to solve using tidyverse and Copilot to facilitate nuanced argument tuning of tidyverse functions and accelerate the data analysis process."
-image: "infographic.png"
+image: "Infographic.png"
 image-alt: "Healthcare Infographic"
 editor: source
 ---
 
-## The role of healthcare analytics
+## The Role of Healthcare Analytics
 
 The primary objective of healthcare analytics is to seek benefits for health administrators, organizations, and patients, most importantly by enhancing patient experiences and improving health outcomes. The healthcare industry generates vast amounts of data, primarily from **electronic medical records (EMH)** and **administrative** data.
 
-![](infographic.png)
+![](Infographic.png)
 
 EMH data aims to improve the accuracy of diagnoses and treatment plans while enhancing overall care quality by making patients' health histories readily accessible to authorized providers. In contrast, administrative data encompasses patient interaction details, such as diagnoses and hospital readmissions, which can be analyzed to evaluate healthcare delivery, advantages, disadvantages, and cost-effectiveness.
 
-## Using R with Copilot in healthcare
+## Using R with Copilot in Healthcare
 
 In this post, first in a series of two focused on healthcare applications, I will introduce a complex healthcare data set and outline the problems I propose to solve using tidyverse and Copilot to facilitate nuanced argument tuning of tidyverse functions and accelerate the data analysis process.
 
@@ -26,9 +26,9 @@ In this post, first in a series of two focused on healthcare applications, I wil
 
 Before we proceed, a few words of caution regarding Copilot: we will use it on a task-by-task basis rather than for the entire workflow of data exploration and hypothesis investigation. This approach allows us to leverage Copilot for challenging data wrangling and cleaning tasks, saving time and enabling deeper analytical thinking. However, it is crucial to verify the code output from any AI pair programmer—always run the code to ensure it produces the desired results and manually triangulate to confirm accuracy.
 
-## Diabetes data from UCI
+## Diabetes Data from UCI
 
-### Understanding the data
+### Understanding the Data
 
 I first encountered the diabetes data a few years ago, when I was exploring the types of healthcare data sets freely available for users. The UCI machine learning repository offers a rich set of options – the diabetes data captivated me due to its size and the volume of information it gathered, where each row is an inpatient hospital diabetic encounter, i.e. diabetes was entered as a diagnosis, where lab tests were performed and medications were administered. The original paper that used this data can be found [here](https://onlinelibrary.wiley.com/doi/10.1155/2014/781670).
 
@@ -67,7 +67,7 @@ knitr::kable(
 
 Look at the richness of the encounter data. This row is a $70+$ year old who was admitted as an elective patient, transferred from another hospital, spent $9$ days in the hospital, had $25$ lab procedures and was given $16$ medications; there was a primary diagnosis of a circulatory disease (specifically, heart failure), and an additional secondary diabetes diagnosis; the patient was given diabetes medications (one of which was insulin), which were adjusted/changed, no *A1c test* was administered*;* they were discharged to another inpatient care institution, and were readmitted in $<30$ days. **The 3 primary response variables that we will examine later are colored in GRAY.**
 
-### Data transformation with some help from Copilot
+### Data Transformation with Some Help from Copilot
 
 There are $100,000+$ rows of such encounters! To be able to use this data, we need to get to the bottom of its $50+$ fields and identify which ones will tell us the story that will have implications for patient management and improved health outcomes. Let's consider some examples.
 
@@ -149,7 +149,7 @@ knitr::kable(
 
 We see that the ICD9 values for a respiratory diagnosis checks out in the output. Also note there is no code $460$ (a common cold diagnosis).
 
-### Missing values
+### Missing Values
 
 Before proceeding to part $2$, we must concede that the complexity of this data is compounded by missing values, which can further confound us by how certain fields are defined. For example:
 
@@ -213,7 +213,7 @@ Here are a few notes on these plots (click on "Show the code .." above each plot
 
 > ***Notes on Copilot:** For the missing value analysis of the diagnosis fields in plot* $2$*, I appreciate the utility of `pivot_longer` and `across(everything())`, two tidy functions I have not previously utilized, here recommended by Copilot. The synergy between our analytical vision and Copilot's assistance significantly enhances our productivity. Note that I did modify the Copilot recommendation quite a bit for the visualization, adding `labels = function(n) scales::comma(abs(n))` to neatly format numbers; its a function I have used repeatedly for many years for an easier review of graphics that display numbers.*
 
-## Conclusion and a glimpse into part 2
+## Conclusion and a Glimpse into Part 2
 
 Healthcare data holds immense potential to enhance patient outcomes, making the ability to navigate complex datasets an invaluable skill for the future. In this post, we introduced a diabetes patient encounter data set, demonstrating how to preprocess it for analysis and highlighting key response variables and covariates that will be explored in part $2$. While we occasionally leveraged Copilot for assistance, precise prompts were essential for effective results.
 
