@@ -1,0 +1,14 @@
+{
+  "hash": "9ad9f2ea1c7a3f537d9afcdf70348f8b",
+  "result": {
+    "markdown": "---\ntitle: \"VS Code\"\nauthor: \"John-Mark Agosta\"\ndate: 2025-05-04\ndescription: \"\"\nimage: \"\"\nimage-alt: \"\"\ncategories: \"\"\ncode-fold: true\ncode-summary: \"Show the code\"\neditor: source\nformat: html\n   \n---\n\n\nzzzzz\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\n```\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
