@@ -2,8 +2,8 @@
 title: "Tidyverse with Copilot for healthcare analytics -- part 1"
 subtitle: "Unless Copilot specified explicitly, all code is originally authored"
 author: "Vidisha Vachharajani"
-date: "2025-05-12"
-descriotion: "In this first post in a series of two focused on healthcare applications, I will introduce a complex healthcare data set and outline the problems I propose to solve using tidyverse and Copilot to facilitate nuanced argument tuning of tidyverse functions and accelerate the data analysis process."
+date: "2025-05-13"
+descriotion: "In this post, first in a series of two focused on healthcare applications, I will introduce a complex healthcare data set and outline the problems I propose to solve using tidyverse and Copilot to facilitate nuanced argument tuning of tidyverse functions and accelerate the data analysis process."
 fig-dpi: 300
 fig-align: "center"
 image: "infographic.png"
@@ -21,7 +21,7 @@ EMH data aims to improve the accuracy of diagnoses and treatment plans while enh
 
 ## Using R with Copilot in healthcare
 
-In this first post in a series of two focused on healthcare applications, I will introduce a complex healthcare data set and outline the problems I propose to solve using tidyverse and Copilot to facilitate nuanced argument tuning of tidyverse functions and accelerate the data analysis process.
+In this post, first in a series of two focused on healthcare applications, I will introduce a complex healthcare data set and outline the problems I propose to solve using tidyverse and Copilot to facilitate nuanced argument tuning of tidyverse functions and accelerate the data analysis process.
 
 
 > This series is designed to help you refine and improve your data analysis skills, understand the role of AI in healthcare analytics, while demonstrating the practical application of R and Copilot in real-world scenarios.
