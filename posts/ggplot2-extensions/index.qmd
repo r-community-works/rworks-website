@@ -1,0 +1,58 @@
+---
+title: "100 Bushels of Corn"
+author: "Nina Zumel"
+date: 2024-11-15
+editor: source
+description: "100 bushes of corn are distributed to 100 people such that every man receives 3 bushels, every woman 2 bushels, and every child 1/2 a bushel. How many men, women, and children are there? (Solved with R)."
+image: georgio_de_chirico.jpg
+image-alt: "The Mathematicians, de Chirico (1917) source: WikiArt"
+categories: "Puzzle Corner"
+page-layout: article
+format:
+  closeread-html:
+    cr-style:
+      narrative-background-color-overlay: transparent
+      narrative-background-color-sidebar: transparent
+      section-background-color: transparent
+      narrative-text-color-overlay: black
+---
+
+We'll show an example that demonstrates the use of the `dplyr` R package for data wrangling.
+
+```{mermaid}
+flowchart LR
+  A[Step 0. Get the job done with 'base' ggplot2.] --> B(Step 1. Use base build experience to help define compute and test.)
+  B --> C{Step 2. Use compute definition to define a new Stat and test.}
+  C --> D[Step 3. Use your new Stat to define a user-facing geom_*() function and test.]
+```
+
+:::{.cr-section}
+
+Here is a `dplyr` pipeline that processes a data frame containing information on Antarctic penguins. @cr-dplyr
+
+In the first two lines we load the `dplyr` package and the `palmerpenguins` package, which contains the data frame. [@cr-dplyr]{highlight="1,2"}
+
+The main block of code is referred as a pipeline or chain. Each line starts with a function and ends with a pipe, `|>`. [@cr-dplyr]{highlight="4-8"}
+
+:::{#cr-dplyr .scale-to-fill}
+```{r}
+#| echo: true
+#| message: false
+
+library(dplyr)
+library(palmerpenguins)
+
+penguins |>
+  filter(year == 2008) |>
+  group_by(species) |>
+  summarize(avg_bill_length = mean(bill_length_mm)) |>
+  arrange(avg_bill_length)
+```
+:::
+
+:::
+
+## Resources
+
+* [ggplot2 extension cookbook](https://evamaerey.github.io/ggplot2-extension-cookbook/)
+* [Extending your ability to extend ggplot2](https://www.youtube.com/watch?v=uj7A3i2fi54)
