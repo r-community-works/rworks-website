@@ -570,7 +570,7 @@ w3
 
 # The Economic Model
 
-This next section of code integrates the computations for cost-effectiveness into the model model presented above. You can find this code on page 65 of the text.
+This next section of code integrates the computations for cost-effectiveness into the model presented above. You can find this code on page 65 of the text.
 
 ```{r}
 #| warning: FALSE
