@@ -51,12 +51,37 @@ and future development will include additional clock architectures and other gen
 
 ![](puff.png){fig-alt="Censor Plots"}
 
+## Ecology
+
+[RRgeo](https://cran.r-project.org/package=RRgeo) v0.0.3: Provides tools to perform accurate species distribution modeling for rare species. See [Mondanaro et al. (2023)](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.14478) and [Mondanaro et al. (2025)](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.14066) for background on finding the area of origin of species and past inter-species contact while considering climatic variability, There are four vignettes including [ENphylo](https://cran.r-project.org/web/packages/RRgeo/vignettes/ENphylo.html) and [Preparing Data](https://cran.r-project.org/web/packages/RRgeo/vignettes/Preparing-Data.html).
+
+![](RRgeo.png){fig-alt="Map showing suitability for Ursus Maritimus"}
+
+
+## Epidemiology
+
+
+[branchingprocess](https://cran.r-project.org/package=branchingprocess) v0.1.0: Provides tools to quantify outbreak risk posed by individual importers of a transmissible pathogen and calculate probabilities of final outbreak size and generations of transmission. See [Toth et al. (2015)](https://wwwnc.cdc.gov/eid/article/21/8/15-0170_article) and and [Toth et al. (2016)](https://www.sciencedirect.com/science/article/pii/S1755436516300123?via%3Dihub) for the theory and the [vignette](https://cran.r-project.org/web/packages/branchingprocess/vignettes/H5N1Example.html) for an example. 
+
+
+
+[simBKMRdata](https://cran.r-project.org/package=simBKMRdata) v0.3.1: Provides functions to support Bayesian Kernel Machine Regression analyses in environmental health research. It enables the simulation of realistic multivariate exposure data, estimation of distributional parameters by subgroup, and application of adaptive, data-driven thresholds for feature selection via Posterior Inclusion Probabilities. See [Hasan et al. (2025)](https://www.medrxiv.org/content/10.1101/2025.04.14.25325822v1). There are three vignettes including [Calculate PIP Threshold from Response Vector](https://cran.r-project.org/web/packages/simBKMRdata/vignettes/bkmr_threshold.html) and [Simulation and Estimation](https://cran.r-project.org/web/packages/simBKMRdata/vignettes/estimation_and_simulation.html).
+
+![](simBK.png){fig-alt="Density Plots for Metals"}
+
 
 ## Genomics
 
 [HTGM2D](https://cran.r-project.org/package=HTGM2D) v1.1: Provides a two-dimensional heat map to be used with [GoMiner](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2003-4-4-r28) for the ontological analysis of microarray and proteomics studies that leverage the the Gene Ontology Consortium [GO](https://geneontology.org/) resource. The heat map reflects the Jaccard metric p-value for the number of genes in common for each corresponding pair. See the [vignette](https://cran.r-project.org/web/packages/HTGM2D/vignettes/HTGM2D.html).
 
 ![](HTGM2D.jpeg){fig-alt="Heat Map of Gene Ontology"}
+
+![](tabs.gif){fig-alt="Coastline reconstruction"}
+
+
+## Geoscience
+
+[tabs](https://cran.r-project.org/package=tabs) v0.1.1: Implements a standardized workflow to reconstruct spatial configurations of altitude-bounded biogeographic systems over time; for example, model how island archipelagos expand or contract with changing sea levels or how alpine biomes shift in response to tree line movements. For details, see [De Groeve et al. (2025)](https://preprints.arphahub.com/article/151900/) and look [here](https://uva_ibed_piac.gitlab.io/tabs/) to get started.
 
 
 ## Mathematics
