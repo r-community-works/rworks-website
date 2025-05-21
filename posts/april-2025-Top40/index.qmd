@@ -76,13 +76,25 @@ and future development will include additional clock architectures and other gen
 
 ![](HTGM2D.jpeg){fig-alt="Heat Map of Gene Ontology"}
 
-![](tabs.gif){fig-alt="Coastline reconstruction"}
+
 
 
 ## Geoscience
 
+[geoprofiler](https://cran.r-project.org/package=geoprofiler) v0.0.2: Implements a toolset to create perpendicular profile graphs and swath profiles. Method are based on coordinate rotation algorithm by [Schaeben et al. (2024)](https://onlinelibrary.wiley.com/doi/10.1002/mma.9823). There are two vignettes: [Distances Along Oriented Profiles](https://cran.r-project.org/web/packages/geoprofiler/vignettes/A_Distances.html) and [Swath Profiles](https://cran.r-project.org/web/packages/geoprofiler/vignettes/B_Swath.html).
+
+![](geoprofiler.png){fig-alt="Profile Plot"}
+
 [tabs](https://cran.r-project.org/package=tabs) v0.1.1: Implements a standardized workflow to reconstruct spatial configurations of altitude-bounded biogeographic systems over time; for example, model how island archipelagos expand or contract with changing sea levels or how alpine biomes shift in response to tree line movements. For details, see [De Groeve et al. (2025)](https://preprints.arphahub.com/article/151900/) and look [here](https://uva_ibed_piac.gitlab.io/tabs/) to get started.
 
+![](tabs.gif){fig-alt="Coastline reconstruction"}
+
+
+## Linguistics
+
+[tlda](https://cran.r-project.org/package=tlda) v0.1.0: Provides support functions and datasets to facilitate the analysis of linguistic data with a focus on the calculation of corpus-linguistic dispersion measures as described in [Gries (2021)](https://link.springer.com/chapter/10.1007/978-3-030-46216-1_5) and [Soenning (2025)](https://www.euppublishing.com/doi/10.3366/cor.2025.0326). See the vignettes [Dispersion Analysis](https://cran.r-project.org/web/packages/tlda/vignettes/dispersion-analysis.html) and [Frequency adjusted dispersion scores](https://cran.r-project.org/web/packages/tlda/vignettes/frequency-adjustment.html).
+
+![](tlda.png ){fig-alt="Plot of minimally even dispersion"}
 
 ## Mathematics
 
