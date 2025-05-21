@@ -15,15 +15,41 @@ editor: source
 
 ![](){fig-alt=""}
 
+## Archaeology
+
+[ananke](https://cran.r-project.org/package=ananke) v0.1.0: Implements tools for radiocarbon calibration and chronological analysis that the calibration of radiocarbon ages and modern carbon fraction values using multiple calibration curves. Functions calculate the highest density region intervals and credible intervals, and visualize results. Look [here](https://packages.tesselle.org/ananke/) for examples.
+
+![](ananke.png){fig-alt="Calibration plot"}
+
 ## Artificial Intelligence
 
+[emend](https://cran.r-project.org/package=emend) v0.1.0: Provides functions to clean and standardize messy data, including textual categories and free-text addresses, using Large Language Models. Functions correct typos, expands abbreviations, and maps inconsistent entries to standardized values. Ideal for Bioinformatics, business, and general data cleaning tasks. See [README](https://cran.r-project.org/web/packages/emend/readme/README.html) for examples.
+
 [pangoling](https://cran.r-project.org/package=pangoling) v1.0.3: Provides access to word predictability estimates using large language models (LLMs) based on *transformer* architectures via integration with the [Hugging Face](https://huggingface.co) ecosystem. The package interfaces with pre-trained neural networks and supports both causal/auto-regressive LLMs (e.g., 'GPT-2') and masked/bidirectional LLMs (e.g., 'BERT') to compute the probability of words, phrases, or tokens given their linguistic context. For details on GPT-2 and causal models, see [Radford et al. (2019)](https://storage.prod.researchhub.com/uploads/papers/2020/06/01/language-models.pdf). For details on [BERT and masked models], see [Devlin et al. (2019)](https://arxiv.org/abs/1810.04805). There are four vignettes including [Using BERT](https://cran.r-project.org/web/packages/pangoling/vignettes/intro-bert.html) and [Using GPT2](https://cran.r-project.org/web/packages/pangoling/vignettes/intro-gpt2.html).
+
+
+## Biology
+
+[clockSim](https://cran.r-project.org/package=clockSim) v0.1.2: Provides tools to open up system-level exploration of the circadian clock to wet-lab experimentalists. Current models are based on [Leloup and Goldbeter (1998)](https://journals.sagepub.com/doi/10.1177/074873098128999934). There are three vignettes including [Simulation of the circadian clock]https://cran.r-project.org/web/packages/clockSim/vignettes/clock-models.html) and [noisy LG model](https://cran.r-project.org/web/packages/clockSim/vignettes/noisy-LG-model.html)
+
+![](clockSim.png){fig-alt="Noise plot"}
+
+
+
+and future development will include additional clock architectures and other gene circuit models. Currently implemented models are based on Leloup and Goldbeter (1998) <doi:10.1177/074873098128999934>.
 
 ## Chemistry
 
 [PhotoGEA](https://cran.r-project.org/package=PhotoGEA) v1.3.2: Provides functions to read, process, fit, and analyze photosynthetic gas exchange measurements. See Lochocki, Salesse-Smith, & McGrath (2025)](https://onlinelibrary.wiley.com/doi/10.1111/pce.15501) for background and the [vignette](https://cran.r-project.org/web/packages/PhotoGEA/vignettes/PhotoGEA.html) to get started..
 
 ![](PhotoGEA.png){fig-alt="Plot of noe CO2 assimilation"}
+
+
+## Climate
+
+[puff](https://cran.r-project.org/package=puff) v0.1.0: Provides functions to simulate the Gaussian puff forward atmospheric model in sensor (specific sensor coordinates) or grid (across the grid of a full oil and gas operations site) modes, following [Jia et al. (2024)](https://chemrxiv.org/engage/chemrxiv/article-details/672a296b7be152b1d00fcc60)m and offers numerous visualization options, including static and animated, 2D and 3D, and a site map generator. See the [vignette](https://cran.r-project.org/web/packages/puff/vignettes/getting-started.html) to get started.
+
+![](puff.png){fig-alt="Censor Plots"}
 
 
 ## Genomics
