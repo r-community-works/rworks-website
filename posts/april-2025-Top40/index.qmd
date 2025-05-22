@@ -96,7 +96,16 @@ and future development will include additional clock architectures and other gen
 
 ![](tlda.png ){fig-alt="Plot of minimally even dispersion"}
 
+## Machine Learning
+
+[e2tree](https://cran.r-project.org/package=e2tree) v0.1.2: Implements the explainable ensemble trees 'approach proposed by [Aria et al. (2024)](https://link.springer.com/article/10.1007/s00180-022-01312-6) which aims to explain and interpret decision tree ensemble models using a single tree-like structure. See [README](https://cran.r-project.org/web/packages/e2tree/readme/README.html) for examples.
+
+![](e2tree.png){fig-alt="Ensemble Tree"}
+
+
 ## Mathematics
+
+[lsoda](https://cran.r-project.org/package=lsoda) v1.2: Provides an implementation of the `lsoda` function from the `ODEPACK` libraryefor solving initial value problems for first order ordinary differential equations [Hindmarsh (1982)](https://coemputing.llnl.gov/sites/default/files/ODEPACK_pub1_u88007.pdf) which can be called inline using `Rcpp`, and an `R` function,`ode`. Look [here](https://github.com/mclements/lsoda) for examples.
 
 [MCSimMod](https://cran.r-project.org/package=MCSimMod) v0.0.1: Provides tools to facilitate ordinary differential equation (ODE) modeling by performing simulations for ODE models that are encoded in the GNU `MCSim` model specification language ([Bois  (2009)](https://academic.oup.com/bioinformatics/article/25/11/1453/330661?login=false)) using ODE solvers from `deSolve` ([Soetaert et al. (2010)](https://www.jstatsoft.org/article/view/v033i09)). There are seven vignettes including an [Introduction](https://cran.r-project.org/web/packages/MCSimMod/vignettes/quickstart.html) and [A Model of Newton's Law of Cooling](https://cran.r-project.org/web/packages/MCSimMod/vignettes/newt_cool_demo.html).
 
@@ -107,6 +116,13 @@ and future development will include additional clock architectures and other gen
 
 
 ## Medicine
+
+[neuroim2](https://cran.r-project.org/package=neuroim2) v0.8.1: Provides data structures and methods for handling volumetric brain imaging data, with a focus on functional magnetic resonance imaging (fMRI), and efficient representations for three-dimensional and four-dimensional neuroimaging data. Implements methods for image resampling, spatial filtering, region of interest analysis, and connected component labeling. See [Poldrack et al. (2024)](https://www.cambridge.org/core/books/handbook-of-functional-mri-data-analysis/8EDF966C65811FCCC306F7C916228529). There are four vignettes including [Working with Image Volumes](https://cran.r-project.org/web/packages/neuroim2/vignettes/ImageVolumes.html) and [Regions of Interest](https://cran.r-project.org/web/packages/neuroim2/vignettes/regionOfInterest.html).
+
+
+
+
+
 
 [NHSRwaitinglist](https://cran.r-project.org/package=NHSRwaitinglist) v0.1.1: Provides queueing theory functions to assist with waiting list management based on the approach described in [Fong et al. (2022)](https://www.medrxiv.org/content/10.1101/2022.08.23.22279117v1). There are three vignettes including [Three example waiting lists](https://cran.r-project.org/web/packages/NHSRwaitinglist/vignettes/three_example_waiting_lists.html) and [Exploring with Simulation](https://cran.r-project.org/web/packages/NHSRwaitinglist/vignettes/waiting_list_sim.html). 
 
