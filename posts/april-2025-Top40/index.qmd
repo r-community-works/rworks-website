@@ -51,6 +51,12 @@ and future development will include additional clock architectures and other gen
 
 ![](puff.png){fig-alt="Censor Plots"}
 
+## Data
+
+[connector](https://cran.r-project.org/package=connector) v0.1.1: Facilitates cliniclresearch by providing a consistent interface for connecting to various data sources including file systems and databases including *ADAM* and *SDTM*. See the vignettes [connector](https://cran.r-project.org/web/packages/connector/vignettes/connector.html) and [How to extend connector](https://cran.r-project.org/web/packages/connector/vignettes/customize.html).
+
+[verdata](https://cran.r-project.org/package=verdata) v1.0.0: Facilitates use and analysis of data about the armed conflict in Colombia resulting from the joint project between La Jurisdicción Especial para la Paz (JEP), La Comisión para el Esclarecimiento de la Verdad, la Convivencia y la No repetición (CEV), and the Human Rights Data Analysis Group (HRDAG). The data are 100 replicates from a multiple imputation through chained equations as described in [Van Buuren and Groothuis-Oudshoorn (2011)](https://www.jstatsoft.org/article/view/v045i03). See [README](https://cran.r-project.org/web/packages/verdata/readme/README.html) tp get started.
+
 ## Ecology
 
 [RRgeo](https://cran.r-project.org/package=RRgeo) v0.0.3: Provides tools to perform accurate species distribution modeling for rare species. See [Mondanaro et al. (2023)](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.14478) and [Mondanaro et al. (2025)](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.14066) for background on finding the area of origin of species and past inter-species contact while considering climatic variability, There are four vignettes including [ENphylo](https://cran.r-project.org/web/packages/RRgeo/vignettes/ENphylo.html) and [Preparing Data](https://cran.r-project.org/web/packages/RRgeo/vignettes/Preparing-Data.html).
@@ -88,6 +94,13 @@ and future development will include additional clock architectures and other gen
 [tabs](https://cran.r-project.org/package=tabs) v0.1.1: Implements a standardized workflow to reconstruct spatial configurations of altitude-bounded biogeographic systems over time; for example, model how island archipelagos expand or contract with changing sea levels or how alpine biomes shift in response to tree line movements. For details, see [De Groeve et al. (2025)](https://preprints.arphahub.com/article/151900/) and look [here](https://uva_ibed_piac.gitlab.io/tabs/) to get started.
 
 ![](tabs.gif){fig-alt="Coastline reconstruction"}
+
+## Health Technology Assessment
+
+[assertHE](https://cran.r-project.org/package=assertHE) v1.0.0: Provides tools tohelp health economic modellers when building and reviewing models. The visualisation functions allow users to more easily review the network of functions in a project, and get lay summaries of them. The asserts included are intended to check for common errors. See [Smith et al. (2024)](https://wellcomeopenresearch.org/articles/9-701/v1) for details and [README](https://cran.r-project.org/web/packages/assertHE/readme/README.html) for examples.
+
+![](assertHE.png){fig-alt="Plot of function network"}
+
 
 
 ## Linguistics
@@ -135,7 +148,9 @@ and future development will include additional clock architectures and other gen
 
 ::: {.column width="45%"}
 
-## Medicine Continued
+## Networks
+
+[ernm](https://cran.r-project.org/package=ernm) v1.0.0: Provides functions to estimate  fully and partially observed Exponential-Family Random Network Models (ERNM). Exponential-family Random Graph Models (ERGM) and Gibbs Fields are special cases of ERNMs and can also be estimated with the package. See [Fellows and Handcock (2012)](https://arxiv.org/abs/1208.0121)
 
 
 ## Statistics
@@ -152,15 +167,27 @@ and future development will include additional clock architectures and other gen
 
 ## Time Series
 
+[butterfly](https://cran.r-project.org/package=butterfly) v1.1.2: Provides functions to verify continually updating time series data where new values are expected, but previous data should remain unchanged. See the [vignette](https://cran.r-project.org/web/packages/butterfly/vignettes/butterfly.html).
+
+![](butterfly.png){fig-alt="Illustration of continually updating timeseries"}
+
 [tsissm](https://cran.r-project.org/package=tsissm) v1.0.1: Implements an unobserved components time series model using the linear innovations state space representation with a choice of error distributions and an option for dynamic variance. Features include automatic differentiation, automatic model selection and ensembling, prediction, filtering, simulation and backtesting. See [Hyndman et al. (2012)](https://www.tandfonline.com/doi/abs/10.1198/jasa.2011.tm09771) for background. There are five vignettes including [The Innovations State Space Model](https://cran.r-project.org/web/packages/tsissm/vignettes/demo_filtering.html) and [Filtering and Prediction](https://cran.r-project.org/web/packages/tsissm/vignettes/demo_filtering.html).
 
-![](tsissm.png){fig-alt="Plot of actual data and forecasts    "}
+![](tsissm.png){fig-alt="Plot of actual data and forecasts"}
 
 
 
 ## Utilities
 
+[cheetahR](https://cran.r-project.org/package=cheetahR) v0.2.0: Provides an interface to [Cheetah Grid](https://github.com/future-architect/cheetah-grid), a high-performance JavaScript table widget. See [Get Started](https://cran.r-project.org/web/packages/cheetahR/vignettes/cheetahR.html).
+
+
+[whirl](https://cran.r-project.org/package=whirl) v0.2.0: Eenables execution of scripts in batch, while simultaneously creating logs for the execution of each script, and providing an overview summary log of the entire batch execution. The package is suitable for clinical trials using `Quarto` to create nice human readable logs. See the [vignette](https://cran.r-project.org/web/packages/whirl/vignettes/whirl.html) to get started.
+
+
+
 ## Visualization
+
 
 [vayr](https://cran.r-project.org/package=vayr) v1.0.0: Implements position adjustment "visualize as you randomize" principles for `ggplot2` which can be especially useful when plotting experimental data. See [README](https://cran.r-project.org/web/packages/vayr/readme/README.html) for examples.
 
