@@ -25,18 +25,18 @@ editor: source
 
 [emend](https://cran.r-project.org/package=emend) v0.1.0: Provides functions to clean and standardize messy data, including textual categories and free-text addresses, using Large Language Models. Functions correct typos, expands abbreviations, and maps inconsistent entries to standardized values. Ideal for Bioinformatics, business, and general data cleaning tasks. See [README](https://cran.r-project.org/web/packages/emend/readme/README.html) for examples.
 
+[PacketLLM](https://cran.r-project.org/package=PacketLLM) v0.1.0: Implements interactive *RStudio* gadget interface for communicating with [*OpenAI*](https://platform.openai.com/docs/api-reference/introduction) LLMs e.g., `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `o1`, and `o3-mini`enabling users to conduct multiple chat conversations simultaneously in separate tabs. See the [vignette](https://cran.r-project.org/web/packages/PacketLLM/vignettes/PacketLLM-introduction.html).
+
+
 [pangoling](https://cran.r-project.org/package=pangoling) v1.0.3: Provides access to word predictability estimates using large language models (LLMs) based on *transformer* architectures via integration with the [Hugging Face](https://huggingface.co) ecosystem. The package interfaces with pre-trained neural networks and supports both causal/auto-regressive LLMs (e.g., 'GPT-2') and masked/bidirectional LLMs (e.g., 'BERT') to compute the probability of words, phrases, or tokens given their linguistic context. For details on GPT-2 and causal models, see [Radford et al. (2019)](https://storage.prod.researchhub.com/uploads/papers/2020/06/01/language-models.pdf). For details on [BERT and masked models], see [Devlin et al. (2019)](https://arxiv.org/abs/1810.04805). There are four vignettes including [Using BERT](https://cran.r-project.org/web/packages/pangoling/vignettes/intro-bert.html) and [Using GPT2](https://cran.r-project.org/web/packages/pangoling/vignettes/intro-gpt2.html).
 
 
 ## Biology
 
-[clockSim](https://cran.r-project.org/package=clockSim) v0.1.2: Provides tools to open up system-level exploration of the circadian clock to wet-lab experimentalists. Current models are based on [Leloup and Goldbeter (1998)](https://journals.sagepub.com/doi/10.1177/074873098128999934). There are three vignettes including [Simulation of the circadian clock]https://cran.r-project.org/web/packages/clockSim/vignettes/clock-models.html) and [noisy LG model](https://cran.r-project.org/web/packages/clockSim/vignettes/noisy-LG-model.html)
+[clockSim](https://cran.r-project.org/package=clockSim) v0.1.2: Provides tools to open up system-level exploration of the circadian clock to wet-lab experimentalists. Current models are based on [Leloup and Goldbeter (1998)](https://journals.sagepub.com/doi/10.1177/074873098128999934). There are three vignettes including [Simulation of the circadian clock]{https://cran.r-project.org/web/packages/clockSim/vignettes/clock-models.html) and [noisy LG model](https://cran.r-project.org/web/packages/clockSim/vignettes/noisy-LG-model.html)
 
 ![](clockSim.png){fig-alt="Noise plot"}
 
-
-
-and future development will include additional clock architectures and other gene circuit models. Currently implemented models are based on Leloup and Goldbeter (1998) <doi:10.1177/074873098128999934>.
 
 ## Chemistry
 
@@ -63,6 +63,10 @@ and future development will include additional clock architectures and other gen
 
 ![](RRgeo.png){fig-alt="Map showing suitability for Ursus Maritimus"}
 
+[spotr](https://cran.r-project.org/package=spotr) v0.1.0: Provides funcions to compute relative or absolute population trends across space and time using predictions from models fitted to ecological population abundance data, as described in [Knape (2025)](https://www.sciencedirect.com/science/article/pii/S1470160X25003656?via%3Dihub). See the [vignette](https://cran.r-project.org/web/packages/spotr/vignettes/spotr-intro.html).
+
+
+![](spotr.png){fig-alt="Plots of indices of abundance"}
 
 ## Epidemiology
 
@@ -77,6 +81,10 @@ and future development will include additional clock architectures and other gen
 
 
 ## Genomics
+
+[DeSciDe](https://cran.r-project.org/package=DeSciDe) v1.0.0: Facilitates genomic and proteomic data analysis by providing tools for unbiased PubMed searching, protein interaction network visualization, and comprehensive data summarization. See [Szklarczyk et al. (2023)](https://academic.oup.com/nar/article/51/D1/D638/6825349?login=false) and [Winter (2017)](https://journal.r-project.org/archive/2017/RJ-2017-066/index.html) for background and the [vignette](https://cran.r-project.org/web/packages/DeSciDe/vignettes/DeSciDe-vignette.html) dor examples.
+
+![](DeSciDe.png){fig-alt="PubMed Search Results"}
 
 [HTGM2D](https://cran.r-project.org/package=HTGM2D) v1.1: Provides a two-dimensional heat map to be used with [GoMiner](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2003-4-4-r28) for the ontological analysis of microarray and proteomics studies that leverage the the Gene Ontology Consortium [GO](https://geneontology.org/) resource. The heat map reflects the Jaccard metric p-value for the number of genes in common for each corresponding pair. See the [vignette](https://cran.r-project.org/web/packages/HTGM2D/vignettes/HTGM2D.html).
 
@@ -107,9 +115,16 @@ and future development will include additional clock architectures and other gen
 
 [tlda](https://cran.r-project.org/package=tlda) v0.1.0: Provides support functions and datasets to facilitate the analysis of linguistic data with a focus on the calculation of corpus-linguistic dispersion measures as described in [Gries (2021)](https://link.springer.com/chapter/10.1007/978-3-030-46216-1_5) and [Soenning (2025)](https://www.euppublishing.com/doi/10.3366/cor.2025.0326). See the vignettes [Dispersion Analysis](https://cran.r-project.org/web/packages/tlda/vignettes/dispersion-analysis.html) and [Frequency adjusted dispersion scores](https://cran.r-project.org/web/packages/tlda/vignettes/frequency-adjustment.html).
 
-![](tlda.png ){fig-alt="Plot of minimally even dispersion"}
+![](tlda.png){fig-alt="Plot of minimally even dispersion"}
 
 ## Machine Learning
+
+[ClassificationEnsembles](https://cran.r-project.org/package=ClassificationEnsembles) v0.5.0: Automatically builds 12 individual classification models, including error (RMSE) and predictions. These results are used to create an ensemble which is then modeled using 8 methods. See the [vignette](https://cran.r-project.org/web/packages/ClassificationEnsembles/vignettes/ClassificationEnsembles-vignette.html) and the two sister packages by the same author: [LogisticEnsembles](https://cran.r-project.org/package=LogisticEnsembles) and [NumericEnsembles](https://cran.r-project.org/package=NumericEnsembles).
+
+![](censemble.png){fig-alt="Accuracy plot of ensembles"}
+
+
+
 
 [e2tree](https://cran.r-project.org/package=e2tree) v0.1.2: Implements the explainable ensemble trees 'approach proposed by [Aria et al. (2024)](https://link.springer.com/article/10.1007/s00180-022-01312-6) which aims to explain and interpret decision tree ensemble models using a single tree-like structure. See [README](https://cran.r-project.org/web/packages/e2tree/readme/README.html) for examples.
 
@@ -153,6 +168,16 @@ and future development will include additional clock architectures and other gen
 [ernm](https://cran.r-project.org/package=ernm) v1.0.0: Provides functions to estimate  fully and partially observed Exponential-Family Random Network Models (ERNM). Exponential-family Random Graph Models (ERGM) and Gibbs Fields are special cases of ERNMs and can also be estimated with the package. See [Fellows and Handcock (2012)](https://arxiv.org/abs/1208.0121)
 
 
+## Psychology
+
+[IRTM](https://cran.r-project.org/package=IRTM) v0.0.1.1: Implements  a semi-supervised approach based on Bayesian Item Response Theory that produces theoretically identified underlying dimensions from input data and a constraints matrix. The methodology is  described in [Morucci et al. (2024)](https://www.cambridge.org/core/journals/american-political-science-review/article/measurement-that-matches-theory-theorydriven-identification-in-item-response-theory-models/395DA1DFE3DCD7B866DC053D7554A30B). See the [vignette](https://cran.r-project.org/web/packages/IRTM/vignettes/introduction_synth.html) to get started.
+
+![](IRTM.png){fig-alt="Plots of posterior distributions"}
+[RStanTVA](https://cran.r-project.org/package=RStanTVA) v0.3.0: Provides a `Stan` implementation of the Theory of Visual Attention described in [Bundesen (1990)](https://psycnet.apa.org/doiLanding?doi=10.1037%2F0033-295X.97.4.523) along with numerous convenience functions for generating, compiling, fitting, and analyzing TVA models. See [README](https://cran.r-project.org/web/packages/RStanTVA/readme/README.html) for examples.
+
+
+
+
 ## Statistics
 
 [ctsmTMB](https://cran.r-project.org/package=ctsmTMB) v1.0.0: Provides an interface for defining and fitting continuous-time state space models built with the `R6` ctsmTMB class. Available inter inference methods include Kalman filters and a Laplace approximation-based smoothing method. For details on the methods see the [documentation](https://ctsm.info/ctsmr-reference.pdf)) for  the `CTSMR` package and [Thygesen (2025)](https://arxiv.org/abs/2503.21358). There are six vignettes including a [Getting Started](https://cran.r-project.org/web/packages/ctsmTMB/vignettes/ctsmTMB.html) guide and [Moment Predictions](https://cran.r-project.org/web/packages/ctsmTMB/vignettes/predict.html).
@@ -164,6 +189,20 @@ and future development will include additional clock architectures and other gen
 [funMoDisco](https://cran.r-project.org/package=funMoDisco) v1.0.0: Implements two complementary methodologies for discovering motifs in functional data: *ProbKMA* a probabilistic K-Means algorithm ([Cremona and Chiaromonte (2023)](https://www.tandfonline.com/doi/full/10.1080/10618600.2022.2156522)), and *FunBIalign*, a hierarchical algorithm for functional motif discovery based on mean square residue ([Cremona, and Chiaromonte (2023)](https://arxiv.org/abs/2306.04254)). See the [vignette](https://cran.r-project.org/web/packages/funMoDisco/vignettes/funMoDisco_vignette.pdf) for examples.
 
 ![](funMo.png){fig-alt="Plot of random curve motifs"}
+
+[hdMTD](https://cran.r-project.org/package=hdMTD) v0.1.0: Provides functions to estimates parameters in Mixture Transition Distribution (MTD) models, a class of high-order Markov chains. Estimated parameters include pasts (lags), transition probabilities and oscillations. A [perfect sampling algorithm](https://www.image.ucar.edu/staff/uli/DOWNLOAD/ps_notes.pdf) generates samples of an MTD model from its invariant distribution. See [Ost & Takahashi (2023)](http://jmlr.org/papers/v24/22-0266.html) for the theory and [README](https://cran.r-project.org/web/packages/hdMTD/readme/README.html) for examples.
+
+
+[joker](https://cran.r-project.org/package=joker) v0.14.2: Extends he range of available distribution families and facilitates the computation of key parametric quantities, such as moments and information-theoretic measures. All package features are available both in a stats-like syntax for entry-level users, and in an S4 object-oriented programming system for more experienced ones. See the [vignette](https://cran.r-project.org/web/packages/joker/vignettes/joker.html).
+
+[postcard](https://cran.r-project.org/package=postcard) v1.0.0: Provides functions to perfom power analysis and inference on marginal effects using plug-in estimation and influence functions that optionally leverage historical data to increase precision with prognostic covariate adjustment. The methods are described in [Højbjerre-Frandsen et al. (2025)](https://arxiv.org/abs/2503.22284). There are three vignettes including an [Introduction](https://cran.r-project.org/web/packages/postcard/vignettes/postcard.html) and [Prospective Power Estimation](https://cran.r-project.org/web/packages/postcard/vignettes/prospective-power.html).
+
+![](postcard.png){fig-alt="Plots of power curve approcimations"}
+
+[tvcure](https://cran.r-project.org/package=tvcure) v0.1.0: Implements  a double additive cure survival model with time-varying covariates. The additive terms in the long- and short-term survival submodels, modelling the cure probability and the event timing for susceptible units, are estimated using Laplace P-splines. See [Lambert and Kreyenfeld (2025)](https://academic.oup.com/jrsssa/advance-article/doi/10.1093/jrsssa/qnaf035/8098090?login=false) for details and look [here](https://github.com/plambertULiege/tvcure) for examples.
+
+![](tvcure.png){fig-alt="Survival plot and hazzard plot"}
+
 
 ## Time Series
 
@@ -179,7 +218,7 @@ and future development will include additional clock architectures and other gen
 
 ## Utilities
 
-[cheetahR](https://cran.r-project.org/package=cheetahR) v0.2.0: Provides an interface to [Cheetah Grid](https://github.com/future-architect/cheetah-grid), a high-performance JavaScript table widget. See [Get Started](https://cran.r-project.org/web/packages/cheetahR/vignettes/cheetahR.html).
+[cheetahR](https://cran.r-project.org/package= v0.2.0: Provides an interface to [Cheetah Grid](https://github.com/future-architect/cheetah-grid), a high-performance JavaScript table widget. See [Get Started](https://cran.r-project.org/web/packages/cheetahR/vignettes/cheetahR.html).
 
 
 [whirl](https://cran.r-project.org/package=whirl) v0.2.0: Eenables execution of scripts in batch, while simultaneously creating logs for the execution of each script, and providing an overview summary log of the entire batch execution. The package is suitable for clinical trials using `Quarto` to create nice human readable logs. See the [vignette](https://cran.r-project.org/web/packages/whirl/vignettes/whirl.html) to get started.
