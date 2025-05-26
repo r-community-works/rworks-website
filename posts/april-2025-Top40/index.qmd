@@ -2,9 +2,9 @@
 title: "April 2025 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
 date: "2025-05-28"
-description: "An attempt to capture the depth and breadth of what's new on CRAN: Here are my Top 40 picks in fifteen categories: Artificial Intelligence, Computational Methods, Ecology, Genomics, Health Sciences, Mathematics, Machine Learning, Medicine, Music, Pharma, Statistics, Time Series, Utilities, Visualization, and Weather."
-image: ""
-image-alt: ""
+description: "An attempt to capture the depth and breadth of what's new on CRAN: Here are my Top 40 picks in twenty-two categories: Archaeology, Artificial Intelligence, Biology, Chemistry, Climate Science, Data, Ecology, Epidemiology, Genomics, Geoscience, Health Technology Assessment, Lingusitics, Machine Learning,  Mathematics, Medicine, Networks, Psychology, Statistics, Time Series, Utilities,and Visualization.."
+image: "tabs.gif"
+image-alt: "Coastline reconstruction"
 categories: "Top 40"
 editor: source
 ---
@@ -13,7 +13,6 @@ editor: source
 
 ::: {.column width="45%"}
 
-![](){fig-alt=""}
 
 ## Archaeology
 
@@ -53,7 +52,7 @@ editor: source
 
 ## Data
 
-[connector](https://cran.r-project.org/package=connector) v0.1.1: Facilitates cliniclresearch by providing a consistent interface for connecting to various data sources including file systems and databases including *ADAM* and *SDTM*. See the vignettes [connector](https://cran.r-project.org/web/packages/connector/vignettes/connector.html) and [How to extend connector](https://cran.r-project.org/web/packages/connector/vignettes/customize.html).
+[connector](https://cran.r-project.org/package=connector) v0.1.1: Facilitates clinical research by providing a consistent interface for connecting to various data sources including file systems and databases including *ADAM* and *SDTM*. See the vignettes [connector](https://cran.r-project.org/web/packages/connector/vignettes/connector.html) and [How to extend connector](https://cran.r-project.org/web/packages/connector/vignettes/customize.html).
 
 [verdata](https://cran.r-project.org/package=verdata) v1.0.0: Facilitates use and analysis of data about the armed conflict in Colombia resulting from the joint project between La Jurisdicción Especial para la Paz (JEP), La Comisión para el Esclarecimiento de la Verdad, la Convivencia y la No repetición (CEV), and the Human Rights Data Analysis Group (HRDAG). The data are 100 replicates from a multiple imputation through chained equations as described in [Van Buuren and Groothuis-Oudshoorn (2011)](https://www.jstatsoft.org/article/view/v045i03). See [README](https://cran.r-project.org/web/packages/verdata/readme/README.html) tp get started.
 
@@ -63,7 +62,7 @@ editor: source
 
 ![](RRgeo.png){fig-alt="Map showing suitability for Ursus Maritimus"}
 
-[spotr](https://cran.r-project.org/package=spotr) v0.1.0: Provides funcions to compute relative or absolute population trends across space and time using predictions from models fitted to ecological population abundance data, as described in [Knape (2025)](https://www.sciencedirect.com/science/article/pii/S1470160X25003656?via%3Dihub). See the [vignette](https://cran.r-project.org/web/packages/spotr/vignettes/spotr-intro.html).
+[spotr](https://cran.r-project.org/package=spotr) v0.1.0: Provides functions to compute relative or absolute population trends across space and time using predictions from models fitted to ecological population abundance data, as described in [Knape (2025)](https://www.sciencedirect.com/science/article/pii/S1470160X25003656?via%3Dihub). See the [vignette](https://cran.r-project.org/web/packages/spotr/vignettes/spotr-intro.html).
 
 
 ![](spotr.png){fig-alt="Plots of indices of abundance"}
@@ -82,7 +81,7 @@ editor: source
 
 ## Genomics
 
-[DeSciDe](https://cran.r-project.org/package=DeSciDe) v1.0.0: Facilitates genomic and proteomic data analysis by providing tools for unbiased PubMed searching, protein interaction network visualization, and comprehensive data summarization. See [Szklarczyk et al. (2023)](https://academic.oup.com/nar/article/51/D1/D638/6825349?login=false) and [Winter (2017)](https://journal.r-project.org/archive/2017/RJ-2017-066/index.html) for background and the [vignette](https://cran.r-project.org/web/packages/DeSciDe/vignettes/DeSciDe-vignette.html) dor examples.
+[DeSciDe](https://cran.r-project.org/package=DeSciDe) v1.0.0: Facilitates genomic and proteomic data analysis by providing tools for unbiased PubMed searching, protein interaction network visualization, and comprehensive data summarization. See [Szklarczyk et al. (2023)](https://academic.oup.com/nar/article/51/D1/D638/6825349?login=false) and [Winter (2017)](https://journal.r-project.org/archive/2017/RJ-2017-066/index.html) for background and the [vignette](https://cran.r-project.org/web/packages/DeSciDe/vignettes/DeSciDe-vignette.html) for examples.
 
 ![](DeSciDe.png){fig-alt="PubMed Search Results"}
 
@@ -95,7 +94,7 @@ editor: source
 
 ## Geoscience
 
-[geoprofiler](https://cran.r-project.org/package=geoprofiler) v0.0.2: Implements a toolset to create perpendicular profile graphs and swath profiles. Method are based on coordinate rotation algorithm by [Schaeben et al. (2024)](https://onlinelibrary.wiley.com/doi/10.1002/mma.9823). There are two vignettes: [Distances Along Oriented Profiles](https://cran.r-project.org/web/packages/geoprofiler/vignettes/A_Distances.html) and [Swath Profiles](https://cran.r-project.org/web/packages/geoprofiler/vignettes/B_Swath.html).
+[geoprofiler](https://cran.r-project.org/package=geoprofiler) v0.0.2: Implements a tool set to create perpendicular profile graphs and swath profiles. Method are based on coordinate rotation algorithm by [Schaeben et al. (2024)](https://onlinelibrary.wiley.com/doi/10.1002/mma.9823). There are two vignettes: [Distances Along Oriented Profiles](https://cran.r-project.org/web/packages/geoprofiler/vignettes/A_Distances.html) and [Swath Profiles](https://cran.r-project.org/web/packages/geoprofiler/vignettes/B_Swath.html).
 
 ![](geoprofiler.png){fig-alt="Profile Plot"}
 
@@ -105,9 +104,18 @@ editor: source
 
 ## Health Technology Assessment
 
-[assertHE](https://cran.r-project.org/package=assertHE) v1.0.0: Provides tools tohelp health economic modellers when building and reviewing models. The visualisation functions allow users to more easily review the network of functions in a project, and get lay summaries of them. The asserts included are intended to check for common errors. See [Smith et al. (2024)](https://wellcomeopenresearch.org/articles/9-701/v1) for details and [README](https://cran.r-project.org/web/packages/assertHE/readme/README.html) for examples.
+[assertHE](https://cran.r-project.org/package=assertHE) v1.0.0: Provides tools to help health economic modelers when building and reviewing models. The visualization functions allow users to more easily review the network of functions in a project, and get lay summaries of them. The asserts included are intended to check for common errors. See [Smith et al. (2024)](https://wellcomeopenresearch.org/articles/9-701/v1) for details and [README](https://cran.r-project.org/web/packages/assertHE/readme/README.html) for examples.
 
 ![](assertHE.png){fig-alt="Plot of function network"}
+
+:::
+
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
 
 
 
@@ -133,7 +141,7 @@ editor: source
 
 ## Mathematics
 
-[lsoda](https://cran.r-project.org/package=lsoda) v1.2: Provides an implementation of the `lsoda` function from the `ODEPACK` libraryefor solving initial value problems for first order ordinary differential equations [Hindmarsh (1982)](https://coemputing.llnl.gov/sites/default/files/ODEPACK_pub1_u88007.pdf) which can be called inline using `Rcpp`, and an `R` function,`ode`. Look [here](https://github.com/mclements/lsoda) for examples.
+[lsoda](https://cran.r-project.org/package=lsoda) v1.2: Provides an implementation of the `lsoda` function from the `ODEPACK` library for solving initial value problems for first order ordinary differential equations [Hindmarsh (1982)](https://coemputing.llnl.gov/sites/default/files/ODEPACK_pub1_u88007.pdf) which can be called inline using `Rcpp`, and an `R` function,`ode`. Look [here](https://github.com/mclements/lsoda) for examples.
 
 [MCSimMod](https://cran.r-project.org/package=MCSimMod) v0.0.1: Provides tools to facilitate ordinary differential equation (ODE) modeling by performing simulations for ODE models that are encoded in the GNU `MCSim` model specification language ([Bois  (2009)](https://academic.oup.com/bioinformatics/article/25/11/1453/330661?login=false)) using ODE solvers from `deSolve` ([Soetaert et al. (2010)](https://www.jstatsoft.org/article/view/v033i09)). There are seven vignettes including an [Introduction](https://cran.r-project.org/web/packages/MCSimMod/vignettes/quickstart.html) and [A Model of Newton's Law of Cooling](https://cran.r-project.org/web/packages/MCSimMod/vignettes/newt_cool_demo.html).
 
@@ -154,14 +162,7 @@ editor: source
 
 [NHSRwaitinglist](https://cran.r-project.org/package=NHSRwaitinglist) v0.1.1: Provides queueing theory functions to assist with waiting list management based on the approach described in [Fong et al. (2022)](https://www.medrxiv.org/content/10.1101/2022.08.23.22279117v1). There are three vignettes including [Three example waiting lists](https://cran.r-project.org/web/packages/NHSRwaitinglist/vignettes/three_example_waiting_lists.html) and [Exploring with Simulation](https://cran.r-project.org/web/packages/NHSRwaitinglist/vignettes/waiting_list_sim.html). 
 
-:::
 
-
-::: {.column width="10%"}
-
-:::
-
-::: {.column width="45%"}
 
 ## Networks
 
@@ -195,7 +196,7 @@ editor: source
 
 [joker](https://cran.r-project.org/package=joker) v0.14.2: Extends he range of available distribution families and facilitates the computation of key parametric quantities, such as moments and information-theoretic measures. All package features are available both in a stats-like syntax for entry-level users, and in an S4 object-oriented programming system for more experienced ones. See the [vignette](https://cran.r-project.org/web/packages/joker/vignettes/joker.html).
 
-[postcard](https://cran.r-project.org/package=postcard) v1.0.0: Provides functions to perfom power analysis and inference on marginal effects using plug-in estimation and influence functions that optionally leverage historical data to increase precision with prognostic covariate adjustment. The methods are described in [Højbjerre-Frandsen et al. (2025)](https://arxiv.org/abs/2503.22284). There are three vignettes including an [Introduction](https://cran.r-project.org/web/packages/postcard/vignettes/postcard.html) and [Prospective Power Estimation](https://cran.r-project.org/web/packages/postcard/vignettes/prospective-power.html).
+[postcard](https://cran.r-project.org/package=postcard) v1.0.0: Provides functions to perform power analysis and inference on marginal effects using plug-in estimation and influence functions that optionally leverage historical data to increase precision with prognostic covariate adjustment. The methods are described in [Højbjerre-Frandsen et al. (2025)](https://arxiv.org/abs/2503.22284). There are three vignettes including an [Introduction](https://cran.r-project.org/web/packages/postcard/vignettes/postcard.html) and [Prospective Power Estimation](https://cran.r-project.org/web/packages/postcard/vignettes/prospective-power.html).
 
 ![](postcard.png){fig-alt="Plots of power curve approcimations"}
 
@@ -221,7 +222,7 @@ editor: source
 [cheetahR](https://cran.r-project.org/package= v0.2.0: Provides an interface to [Cheetah Grid](https://github.com/future-architect/cheetah-grid), a high-performance JavaScript table widget. See [Get Started](https://cran.r-project.org/web/packages/cheetahR/vignettes/cheetahR.html).
 
 
-[whirl](https://cran.r-project.org/package=whirl) v0.2.0: Eenables execution of scripts in batch, while simultaneously creating logs for the execution of each script, and providing an overview summary log of the entire batch execution. The package is suitable for clinical trials using `Quarto` to create nice human readable logs. See the [vignette](https://cran.r-project.org/web/packages/whirl/vignettes/whirl.html) to get started.
+[whirl](https://cran.r-project.org/package=whirl) v0.2.0: Enables execution of scripts in batch, while simultaneously creating logs for the execution of each script, and providing an overview summary log of the entire batch execution. The package is suitable for clinical trials using `Quarto` to create nice human readable logs. See the [vignette](https://cran.r-project.org/web/packages/whirl/vignettes/whirl.html) to get started.
 
 
 
