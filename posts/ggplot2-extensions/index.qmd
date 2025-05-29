@@ -95,7 +95,7 @@ penguins_clean |>
 
 ## Step 1: Define Compute and test.
 
-Define the compute that will transform your input data before rendering it.[@cr-step11]
+Define the compute that will transform your input data "under the hood" before rendering it.[@cr-step11]
 
 :::{#cr-step11 .scale-to-fill}
 ```{r}
