@@ -129,7 +129,7 @@ editor: source
 
 
 
-[e2tree](https://cran.r-project.org/package=e2tree) v0.1.2: Implements the explainable ensemble trees 'approach proposed by [Aria et al. (2024)](https://link.springer.com/article/10.1007/s00180-022-01312-6), which aims to explain and interpret decision tree ensemble models using a single tree-like structure. See the [README](https://cran.r-project.org/web/packages/e2tree/readme/README.html) for examples.
+[e2tree](https://cran.r-project.org/package=e2tree) v0.1.2: Implements the explainable ensemble trees approach proposed by [Aria et al. (2024)](https://link.springer.com/article/10.1007/s00180-022-01312-6), which aims to explain and interpret decision tree ensemble models using a single tree-like structure. See the [README](https://cran.r-project.org/web/packages/e2tree/readme/README.html) for examples.
 
 ![](e2tree.png){fig-alt="Ensemble Tree"}
 
