@@ -1,0 +1,221 @@
+---
+title: "April 2025 Top 40 New CRAN Packages"
+author: "Joseph Rickert"
+date: "2025-05-28"
+description: "An attempt to capture the depth and breadth of what's new on CRAN: Here are my Top 40 picks in twenty-two categories: Archaeology, Artificial Intelligence, Biology, Chemistry, Climate Science, Data, Ecology, Epidemiology, Genomics, Geoscience, Health Technology Assessment, Linguistics, Machine Learning,Mathematics, Medicine, Networks, Psychology, Statistics, Time Series, Utilities, and Visualization."
+image: "tabs.gif"
+image-alt: "Coastline reconstruction"
+categories: "Top 40"
+editor: source
+---
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+## Archaeology
+
+[ananke](https://cran.r-project.org/package=ananke) v0.1.0: Implements tools for calibration of radiocarbon ages and modern carbon fraction values using multiple calibration curves. Functions calculate the highest density region intervals and credible intervals, and visualize results. Look [here](https://packages.tesselle.org/ananke/) for examples.
+
+![](ananke.png){fig-alt="Calibration plot"}
+
+## Artificial Intelligence
+
+[emend](https://cran.r-project.org/package=emend) v0.1.0: Provides functions to clean and standardize messy data, including textual categories and free-text addresses, using Large Language Models. Functions correct typos, expand abbreviations, and map inconsistent entries to standardized values. Ideal for Bioinformatics, business, and general data cleaning tasks. See the [README](https://cran.r-project.org/web/packages/emend/readme/README.html) for examples.
+
+[PacketLLM](https://cran.r-project.org/package=PacketLLM) v0.1.0: Implements interactive *RStudio* gadget interface for communicating with [*OpenAI*](https://platform.openai.com/docs/api-reference/introduction) LLMs e.g., `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `o1`, and `o3-mini`, enabling users to conduct multiple chat conversations simultaneously in separate tabs. See the [vignette](https://cran.r-project.org/web/packages/PacketLLM/vignettes/PacketLLM-introduction.html).
+
+[pangoling](https://cran.r-project.org/package=pangoling) v1.0.3: Provides access to word predictability estimates using large language models (LLMs) based on *transformer* architectures via integration with the [Hugging Face](https://huggingface.co) ecosystem. The package interfaces with pre-trained neural networks and supports both causal/auto-regressive LLMs (e.g., 'GPT-2') and masked/bidirectional LLMs (e.g., 'BERT') to compute the probability of words, phrases, or tokens given their linguistic context. For details on GPT-2 and causal models, see [Radford et al. (2019)](https://storage.prod.researchhub.com/uploads/papers/2020/06/01/language-models.pdf). For details on BERT and masked models, see [Devlin et al. (2019)](https://arxiv.org/abs/1810.04805). There are four vignettes, including [Using BERT](https://cran.r-project.org/web/packages/pangoling/vignettes/intro-bert.html) and [Using GPT2](https://cran.r-project.org/web/packages/pangoling/vignettes/intro-gpt2.html).
+
+## Biology
+
+[clockSim](https://cran.r-project.org/package=clockSim) v0.1.2: Provides tools to open up system-level exploration of the circadian clock to wet-lab experimentalists. Current models are based on [Leloup and Goldbeter (1998)](https://journals.sagepub.com/doi/10.1177/074873098128999934). There are three vignettes including [Simulation of the circadian clock]{https://cran.r-project.org/web/packages/clockSim/vignettes/clock-models.html) and [noisy LG model](https://cran.r-project.org/web/packages/clockSim/vignettes/noisy-LG-model.html).
+
+![](clockSim.png){fig-alt="Noise plot"}
+
+
+## Chemistry
+
+[PhotoGEA](https://cran.r-project.org/package=PhotoGEA) v1.3.2: Provides functions to read, process, fit, and analyze photosynthetic gas exchange measurements. See Lochocki, Salesse-Smith, & McGrath (2025)](https://onlinelibrary.wiley.com/doi/10.1111/pce.15501) for background and the [vignette](https://cran.r-project.org/web/packages/PhotoGEA/vignettes/PhotoGEA.html) to get started.
+
+![](PhotoGEA.png){fig-alt="Plot of noe CO2 assimilation"}
+
+
+## Climate
+
+[puff](https://cran.r-project.org/package=puff) v0.1.0: Provides functions to simulate the Gaussian puff forward atmospheric model in sensor (specific sensor coordinates) or grid (across the grid of a full oil and gas operations site) modes, following [Jia et al. (2024)](https://chemrxiv.org/engage/chemrxiv/article-details/672a296b7be152b1d00fcc60) and offers numerous visualization options, including static and animated, 2D and 3D, and a site map generator. See the [vignette](https://cran.r-project.org/web/packages/puff/vignettes/getting-started.html) to get started.
+
+![](puff.png){fig-alt="Censor Plots"}
+
+## Data
+
+[connector](https://cran.r-project.org/package=connector) v0.1.1: Facilitates clinical research by providing a consistent interface for connecting to various data sources, including file systems and databases such as *ADAM* and *SDTM*. See the vignettes [connector](https://cran.r-project.org/web/packages/connector/vignettes/connector.html) and [How to extend connector](https://cran.r-project.org/web/packages/connector/vignettes/customize.html).
+
+[verdata](https://cran.r-project.org/package=verdata) v1.0.0: Facilitates use and analysis of data about the armed conflict in Colombia resulting from the joint project between La Jurisdicción Especial para la Paz (JEP), La Comisión para el Esclarecimiento de la Verdad, la Convivencia y la No repetición (CEV), and the Human Rights Data Analysis Group (HRDAG). The data are 100 replicates from a multiple imputation through chained equations as described in [Van Buuren and Groothuis-Oudshoorn (2011)](https://www.jstatsoft.org/article/view/v045i03). See the [README](https://cran.r-project.org/web/packages/verdata/readme/README.html) to get started.
+
+## Ecology
+
+[RRgeo](https://cran.r-project.org/package=RRgeo) v0.0.3: Provides tools to perform accurate species distribution modeling for rare species. See [Mondanaro et al. (2023)](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.14478) and [Mondanaro et al. (2025)](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.14066) for background on finding the area of origin of species and past inter-species contact while considering climatic variability. There are four vignettes, including [ENphylo](https://cran.r-project.org/web/packages/RRgeo/vignettes/ENphylo.html) and [Preparing Data](https://cran.r-project.org/web/packages/RRgeo/vignettes/Preparing-Data.html).
+
+![](RRgeo.png){fig-alt="Map showing suitability for Ursus Maritimus"}
+
+[spotr](https://cran.r-project.org/package=spotr) v0.1.0: Provides functions to compute relative or absolute population trends across space and time using predictions from models fitted to ecological population abundance data, as described in [Knape (2025)](https://www.sciencedirect.com/science/article/pii/S1470160X25003656?via%3Dihub). See the [vignette](https://cran.r-project.org/web/packages/spotr/vignettes/spotr-intro.html).
+
+
+![](spotr.png){fig-alt="Plots of indices of abundance"}
+
+## Epidemiology
+
+
+[branchingprocess](https://cran.r-project.org/package=branchingprocess) v0.1.0: Provides tools to quantify outbreak risk posed by individual importers of a transmissible pathogen and calculate probabilities of final outbreak size and generations of transmission. See [Toth et al. (2015)](https://wwwnc.cdc.gov/eid/article/21/8/15-0170_article) and [Toth et al. (2016)](https://www.sciencedirect.com/science/article/pii/S1755436516300123?via%3Dihub) for the theory and the [vignette](https://cran.r-project.org/web/packages/branchingprocess/vignettes/H5N1Example.html) for an example. 
+
+[simBKMRdata](https://cran.r-project.org/package=simBKMRdata) v0.3.1: Provides functions to support Bayesian Kernel Machine Regression analyses in environmental health research. It enables the simulation of realistic multivariate exposure data, estimation of distributional parameters by subgroup, and application of adaptive, data-driven thresholds for feature selection via Posterior Inclusion Probabilities. See [Hasan et al. (2025)](https://www.medrxiv.org/content/10.1101/2025.04.14.25325822v1). There are three vignettes, including [Calculate PIP Threshold from Response Vector](https://cran.r-project.org/web/packages/simBKMRdata/vignettes/bkmr_threshold.html) and [Simulation and Estimation](https://cran.r-project.org/web/packages/simBKMRdata/vignettes/estimation_and_simulation.html).
+
+![](simBK.png){fig-alt="Density Plots for Metals"}
+
+
+## Genomics
+
+[DeSciDe](https://cran.r-project.org/package=DeSciDe) v1.0.0: Facilitates genomic and proteomic data analysis by providing tools for unbiased PubMed searching, protein interaction network visualization, and comprehensive data summarization. See [Szklarczyk et al. (2023)](https://academic.oup.com/nar/article/51/D1/D638/6825349?login=false) and [Winter (2017)](https://journal.r-project.org/archive/2017/RJ-2017-066/index.html) for background and the [vignette](https://cran.r-project.org/web/packages/DeSciDe/vignettes/DeSciDe-vignette.html) for examples.
+
+![](DeSciDe.png){fig-alt="PubMed Search Results"}
+
+[HTGM2D](https://cran.r-project.org/package=HTGM2D) v1.1: Provides a two-dimensional heat map to be used with [GoMiner](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2003-4-4-r28) for the ontological analysis of microarray and proteomics studies that leverage the Gene Ontology Consortium [GO](https://geneontology.org/) resource. The heat map reflects the Jaccard metric p-value for the number of genes in common for each corresponding pair. See the [vignette](https://cran.r-project.org/web/packages/HTGM2D/vignettes/HTGM2D.html).
+
+![](HTGM2D.jpeg){fig-alt="Heat Map of Gene Ontology"}
+
+
+
+
+## Geoscience
+
+[geoprofiler](https://cran.r-project.org/package=geoprofiler) v0.0.2: Implements a tool set to create perpendicular profile graphs and swath profiles. Method is based on the coordinate rotation algorithm by [Schaeben et al. (2024)](https://onlinelibrary.wiley.com/doi/10.1002/mma.9823). There are two vignettes: [Distances Along Oriented Profiles](https://cran.r-project.org/web/packages/geoprofiler/vignettes/A_Distances.html) and [Swath Profiles](https://cran.r-project.org/web/packages/geoprofiler/vignettes/B_Swath.html).
+
+![](geoprofiler.png){fig-alt="Profile Plot"}
+
+[tabs](https://cran.r-project.org/package=tabs) v0.1.1: Implements a standardized workflow to reconstruct spatial configurations of altitude-bounded biogeographic systems over time; for example, model how island archipelagos expand or contract with changing sea levels or how alpine biomes shift in response to tree line movements. For details, see [De Groeve et al. (2025)](https://preprints.arphahub.com/article/151900/) and look [here](https://uva_ibed_piac.gitlab.io/tabs/) to get started.
+
+![](tabs.gif){fig-alt="Coastline reconstruction"}
+
+## Health Technology Assessment
+
+[assertHE](https://cran.r-project.org/package=assertHE) v1.0.0: Provides tools to help health economic modelers when building and reviewing models. The visualization functions allow users to more easily review the network of functions in a project and get lay summaries of them. The asserts included are intended to check for common errors. See [Smith et al. (2024)](https://wellcomeopenresearch.org/articles/9-701/v1) for details and the [README](https://cran.r-project.org/web/packages/assertHE/readme/README.html) for examples.
+
+![](assertHE.png){fig-alt="Plot of function network"}
+
+:::
+
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+
+
+## Linguistics
+
+[tlda](https://cran.r-project.org/package=tlda) v0.1.0: Provides support functions and datasets to facilitate the analysis of linguistic data with a focus on the calculation of corpus-linguistic dispersion measures as described in [Gries (2021)](https://link.springer.com/chapter/10.1007/978-3-030-46216-1_5) and [Soenning (2025)](https://www.euppublishing.com/doi/10.3366/cor.2025.0326). See the vignettes [Dispersion Analysis](https://cran.r-project.org/web/packages/tlda/vignettes/dispersion-analysis.html) and [Frequency adjusted dispersion scores](https://cran.r-project.org/web/packages/tlda/vignettes/frequency-adjustment.html).
+
+![](tlda.png){fig-alt="Plot of minimally even dispersion"}
+
+## Machine Learning
+
+[ClassificationEnsembles](https://cran.r-project.org/package=ClassificationEnsembles) v0.5.0: Automatically builds 12 individual classification models, including error (RMSE) and predictions. These results are used to create an ensemble, which is then modeled using eight methods. See the [vignette](https://cran.r-project.org/web/packages/ClassificationEnsembles/vignettes/ClassificationEnsembles-vignette.html) and the two sister packages by the same author: [LogisticEnsembles](https://cran.r-project.org/package=LogisticEnsembles) and [NumericEnsembles](https://cran.r-project.org/package=NumericEnsembles).
+
+![](censemble.png){fig-alt="Accuracy plot of ensembles"}
+
+
+
+
+[e2tree](https://cran.r-project.org/package=e2tree) v0.1.2: Implements the explainable ensemble trees 'approach proposed by [Aria et al. (2024)](https://link.springer.com/article/10.1007/s00180-022-01312-6), which aims to explain and interpret decision tree ensemble models using a single tree-like structure. See the [README](https://cran.r-project.org/web/packages/e2tree/readme/README.html) for examples.
+
+![](e2tree.png){fig-alt="Ensemble Tree"}
+
+
+## Mathematics
+
+[lsoda](https://cran.r-project.org/package=lsoda) v1.2: Provides an implementation of the `lsoda` function from the `ODEPACK` library for solving initial value problems for first-order ordinary differential equations [Hindmarsh (1982)](https://computing.llnl.gov/sites/default/files/ODEPACK_pub1_u88007.pdf), which can be called inline using `Rcpp`, and an `R` function, `ode`. Look [here](https://github.com/mclements/lsoda) for examples.
+
+[MCSimMod](https://cran.r-project.org/package=MCSimMod) v0.0.1: Provides tools to facilitate ordinary differential equation (ODE) modeling by performing simulations for ODE models that are encoded in the GNU `MCSim` model specification language ([Bois  (2009)](https://academic.oup.com/bioinformatics/article/25/11/1453/330661?login=false)) using ODE solvers from `deSolve` ([Soetaert et al. (2010)](https://www.jstatsoft.org/article/view/v033i09)). There are seven vignettes, including an [Introduction](https://cran.r-project.org/web/packages/MCSimMod/vignettes/quickstart.html) and [A Model of Newton's Law of Cooling](https://cran.r-project.org/web/packages/MCSimMod/vignettes/newt_cool_demo.html).
+
+![](MCSimMod.png){fig-alt="Plot of cooling over time"}
+
+
+[riemtan](https://cran.r-project.org/package=riemtan) v0.1.0: Implements various Riemannian metrics for symmetric positive definite matrices, including AIRM (Affine Invariant Riemannian Metric, see [Pennec et al. (2006)](https://link.springer.com/article/10.1007/s11263-005-3222-z); Log-Euclidean, see [Arsigny et al. (2006)](https://onlinelibrary.wiley.com/doi/10.1002/mrm.20965); Euclidean; Log-Cholesky. [see Lin (2019)](https://epubs.siam.org/doi/10.1137/18M1221084); and Bures-Wasserstein metrics, see [Bhatia et al. (2019)](https://www.sciencedirect.com/science/article/pii/S0723086918300021?via%3Dihub). It also provides functions for computing logarithmic and exponential maps, vectorization, and statistical operations on the manifold of positive definite matrices. See the [vignette](https://cran.r-project.org/web/packages/riemtan/vignettes/riemtan.html).
+
+
+## Medicine
+
+[neuroim2](https://cran.r-project.org/package=neuroim2) v0.8.1: Provides data structures and methods for handling volumetric brain imaging data, with a focus on functional magnetic resonance imaging (fMRI) and efficient representations for three-dimensional and four-dimensional neuroimaging data. Implements methods for image resampling, spatial filtering, region of interest analysis, and connected component labeling. See [Poldrack et al. (2024)](https://www.cambridge.org/core/books/handbook-of-functional-mri-data-analysis/8EDF966C65811FCCC306F7C916228529). There are four vignettes, including [Working with Image Volumes](https://cran.r-project.org/web/packages/neuroim2/vignettes/ImageVolumes.html) and [Regions of Interest](https://cran.r-project.org/web/packages/neuroim2/vignettes/regionOfInterest.html).
+
+[NHSRwaitinglist](https://cran.r-project.org/package=NHSRwaitinglist) v0.1.1: Provides queueing theory functions to assist with waiting list management based on the approach described in [Fong et al. (2022)](https://www.medrxiv.org/content/10.1101/2022.08.23.22279117v1). There are three vignettes including [Three example waiting lists](https://cran.r-project.org/web/packages/NHSRwaitinglist/vignettes/three_example_waiting_lists.html) and [Exploring with Simulation](https://cran.r-project.org/web/packages/NHSRwaitinglist/vignettes/waiting_list_sim.html). 
+
+## Networks
+
+[ernm](https://cran.r-project.org/package=ernm) v1.0.0: Provides functions to estimate  fully and partially observed Exponential-Family Random Network Models (ERNM). Exponential-family Random Graph Models (ERGM) and Gibbs Fields are special cases of ERNMs and can also be estimated with the package. See [Fellows and Handcock (2012)](https://arxiv.org/abs/1208.0121).
+
+
+## Psychology
+
+[IRTM](https://cran.r-project.org/package=IRTM) v0.0.1.1: Implements  a semi-supervised approach based on Bayesian Item Response Theory that produces theoretically identified underlying dimensions from input data and a constraints matrix. The methodology is  described in [Morucci et al. (2024)](https://www.cambridge.org/core/journals/american-political-science-review/article/measurement-that-matches-theory-theorydriven-identification-in-item-response-theory-models/395DA1DFE3DCD7B866DC053D7554A30B). See the [vignette](https://cran.r-project.org/web/packages/IRTM/vignettes/introduction_synth.html) to get started.
+
+![](IRTM.png){fig-alt="Plots of posterior distributions"}
+[RStanTVA](https://cran.r-project.org/package=RStanTVA) v0.3.0: Provides a `Stan` implementation of the Theory of Visual Attention described in [Bundesen (1990)](https://psycnet.apa.org/doiLanding?doi=10.1037%2F0033-295X.97.4.523) along with numerous convenience functions for generating, compiling, fitting, and analyzing TVA models. See the [README](https://cran.r-project.org/web/packages/RStanTVA/readme/README.html) for examples.
+
+## Statistics
+
+[ctsmTMB](https://cran.r-project.org/package=ctsmTMB) v1.0.0: Provides an interface for defining and fitting continuous-time state space models built with the `R6` ctsmTMB class. Available inter-inference methods include Kalman filters and a Laplace approximation-based smoothing method. For details on the methods, see the [documentation](https://ctsm.info/ctsmr-reference.pdf)) for  the `CTSMR` package and [Thygesen (2025)](https://arxiv.org/abs/2503.21358). There are six vignettes, including a [Getting Started](https://cran.r-project.org/web/packages/ctsmTMB/vignettes/ctsmTMB.html) guide and [Moment Predictions](https://cran.r-project.org/web/packages/ctsmTMB/vignettes/predict.html).
+
+![](ctsmTMB.png){fig-alt="Plot of forecast and actual data"}
+
+[fitdistcp](https://cran.r-project.org/package=fitdistcp) v0.1.1: Provides functions to generate predictive distributions based on calibrating priors for various commonly used statistical models, including models with predictors. Functions are provided for densities, probabilities, quantiles, random deviates, and the parameter posterior. Predictions are generated from the Bayesian prediction integral, with priors chosen to give good reliability (also known as calibration). See [Jewson et al. (2024)](https://ascmo.copernicus.org/articles/11/1/2025/) for background, and look [here](https://www.fitdistcp.info/index.html) for detailed documentation.
+
+[funMoDisco](https://cran.r-project.org/package=funMoDisco) v1.0.0: Implements two complementary methodologies for discovering motifs in functional data: *ProbKMA*, a probabilistic K-Means algorithm ([Cremona and Chiaromonte (2023)](https://www.tandfonline.com/doi/full/10.1080/10618600.2022.2156522)), and *FunBIalign*, a hierarchical algorithm for functional motif discovery based on mean square residue ([Cremona, and Chiaromonte (2023)](https://arxiv.org/abs/2306.04254)). See the [vignette](https://cran.r-project.org/web/packages/funMoDisco/vignettes/funMoDisco_vignette.pdf) for examples.
+
+![](funMo.png){fig-alt="Plot of random curve motifs"}
+
+[hdMTD](https://cran.r-project.org/package=hdMTD) v0.1.0: Provides functions to estimate parameters in Mixture Transition Distribution (MTD) models, a class of high-order Markov chains. Estimated parameters include pasts (lags), transition probabilities, and oscillations. A [perfect sampling algorithm](https://www.image.ucar.edu/staff/uli/DOWNLOAD/ps_notes.pdf) generates samples of an MTD model from its invariant distribution. See [Ost & Takahashi (2023)](http://jmlr.org/papers/v24/22-0266.html) for the theory and the [README](https://cran.r-project.org/web/packages/hdMTD/readme/README.html) for examples.
+
+
+[joker](https://cran.r-project.org/package=joker) v0.14.2: Extends the range of available distribution families and facilitates the computation of key parametric quantities, such as moments and information-theoretic measures. All package features are available both in a stats-like syntax for entry-level users, and in an S4 object-oriented programming system for more experienced ones. See the [vignette](https://cran.r-project.org/web/packages/joker/vignettes/joker.html).
+
+[postcard](https://cran.r-project.org/package=postcard) v1.0.0: Provides functions to perform power analysis and inference on marginal effects using plug-in estimation and influence functions that optionally leverage historical data to increase precision with prognostic covariate adjustment. The methods are described in [Højbjerre-Frandsen et al. (2025)](https://arxiv.org/abs/2503.22284). There are three vignettes, including an [Introduction](https://cran.r-project.org/web/packages/postcard/vignettes/postcard.html) and [Prospective Power Estimation](https://cran.r-project.org/web/packages/postcard/vignettes/prospective-power.html).
+
+![](postcard.png){fig-alt="Plots of power curve approcimations"}
+
+[tvcure](https://cran.r-project.org/package=tvcure) v0.1.0: Implements  a double additive cure survival model with time-varying covariates. The additive terms in the long- and short-term survival submodels, modelling the cure probability and the event timing for susceptible units, are estimated using Laplace P-splines. See [Lambert and Kreyenfeld (2025)](https://academic.oup.com/jrsssa/advance-article/doi/10.1093/jrsssa/qnaf035/8098090?login=false) for details and look [here](https://github.com/plambertULiege/tvcure) for examples.
+
+![](tvcure.png){fig-alt="Survival plot and hazzard plot"}
+
+
+## Time Series
+
+[butterfly](https://cran.r-project.org/package=butterfly) v1.1.2: Provides functions to verify continually updating time series data where new values are expected, but previous data should remain unchanged. See the [vignette](https://cran.r-project.org/web/packages/butterfly/vignettes/butterfly.html).
+
+![](butterfly.png){fig-alt="Illustration of continually updating timeseries"}
+
+[tsissm](https://cran.r-project.org/package=tsissm) v1.0.1: Implements an unobserved components time series model using the linear innovations state space representation with a choice of error distributions and an option for dynamic variance. Features include automatic differentiation, automatic model selection and ensembling, prediction, filtering, simulation and backtesting. See [Hyndman et al. (2012)](https://www.tandfonline.com/doi/abs/10.1198/jasa.2011.tm09771) for background. There are five vignettes, including [The Innovations State Space Model](https://cran.r-project.org/web/packages/tsissm/vignettes/issm_introduction.pdf) and [Filtering and Prediction](https://cran.r-project.org/web/packages/tsissm/vignettes/demo_filtering.html).
+
+![](tsissm.png){fig-alt="Plot of actual data and forecasts"}
+
+## Utilities
+
+[cheetahR](https://cran.r-project.org/package= v0.2.0): Provides an interface to [Cheetah Grid](https://github.com/future-architect/cheetah-grid), a high-performance JavaScript table widget. See [Get Started](https://cran.r-project.org/web/packages/cheetahR/vignettes/cheetahR.html).
+
+[whirl](https://cran.r-project.org/package=whirl) v0.2.0: Enables execution of scripts in batch, while simultaneously creating logs for the execution of each script, and providing an overview summary log of the entire batch execution. The package is suitable for clinical trials using `Quarto` to create nice human-readable logs. See the [vignette](https://cran.r-project.org/web/packages/whirl/vignettes/whirl.html) to get started.
+
+## Visualization
+
+[vayr](https://cran.r-project.org/package=vayr) v1.0.0: Implements position adjustment "visualize as you randomize" principles for `ggplot2`, which can be especially useful when plotting experimental data. See [README](https://cran.r-project.org/web/packages/vayr/readme/README.html) for examples.
+
+![](vayr.png){fig-alt="Plots with different aspect ratios"}
+
+
+:::
+
+
+::::
+
+
