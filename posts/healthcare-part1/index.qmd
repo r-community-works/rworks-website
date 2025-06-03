@@ -2,7 +2,7 @@
 title: "Tidyverse with Copilot for Healthcare Analytics -- Part 1"
 author: "Vidisha Vachharajani"
 date: "2025-06-04"
-description: "In this post, first in a series of two focused on healthcare applications, I will introduce a complex healthcare data set and outline the problems I propose to solve using tidyverse and Copilot to facilitate nuanced argument tuning of tidyverse functions and accelerate the data analysis process."
+description: "In this post, the first in a series of two focused on healthcare applications, I will introduce a complex healthcare data set and outline the problems I propose to solve using tidyverse and Copilot to facilitate nuanced argument tuning of tidyverse functions and accelerate the data analysis process."
 image: "InfoGraphic.png"
 image-alt: "Healthcare Infographic"
 editor: source
@@ -19,7 +19,11 @@ EMH data aims to improve the accuracy of diagnoses and treatment plans while enh
 
 In this first post in a series of two, I will introduce a complex healthcare data set and outline the problems I propose to solve using `tidyverse` and Copilot, which will facilitate nuanced argument tuning in `tidyverse` functions and accelerate our data analysis process.
 
-> This series is designed to help you refine and improve your data analysis skills, understand the role of AI in healthcare analytics, while demonstrating the practical application of R and Copilot in real-world scenarios.
+::: {.callout-note  appearance="simple"}
+
+This series is designed to help you refine and improve your data analysis skills and understand the role of AI in healthcare analytics, while demonstrating the practical application of R and Copilot in real-world scenarios.
+
+:::
 
 Before we proceed, a few words of caution regarding Copilot:
 
@@ -31,9 +35,9 @@ Before we proceed, a few words of caution regarding Copilot:
 
 ### Understanding the data
 
-I first encountered the diabetes data a few years ago, when I was exploring the types of healthcare data sets freely available for users. The UCI machine learning repository offers a rich set of options – the diabetes data captivated me due to its size and the volume of information it gathered, where each row is an inpatient hospital diabetic encounter, i.e. diabetes was entered as a diagnosis, where lab tests were performed and medications were administered. The original paper that used this data can be found [here](https://onlinelibrary.wiley.com/doi/10.1155/2014/781670), and the data itself is [here](https://archive.ics.uci.edu/dataset/34/diabetes).
+I first encountered the UC Irvine (UCI) diabetes data a few years ago when I was exploring the types of healthcare data sets freely available for users. The UCI machine learning repository offers a rich set of options – the diabetes data captivated me due to its size and the volume of information it gathered, where each row is an inpatient hospital diabetic encounter, i.e., diabetes was entered as a diagnosis, where lab tests were performed and medications were administered. The original paper that used this data can be found [here](https://onlinelibrary.wiley.com/doi/10.1155/2014/781670), and the data itself is [here](https://archive.ics.uci.edu/dataset/34/diabetes).
 
-Let's look at the data, with an example of a diabetic encounter with a patient admitted for heart failure.
+Let's look at the data with an example of a diabetic encounter with a patient admitted for heart failure.
 
 ```{r}
 #| label: Chunk1
@@ -48,18 +52,17 @@ library(dplyr)
 library(ggplot2)
 library(tidyr)
 library(kableExtra)
-
 # --------------------------------------------- #
 # Read in the data, show example row
 # --------------------------------------------- #
-D <- read.csv("diabetes_data.csv", sep=",")
+D <- read.csv("diabetes_data.csv", sep = ",")
 
-row_ex <- t(D[47,c(-1,-2,-3,-4)])
-row_ex <- data.frame("Fields" = rownames(row_ex), "Values"=row_ex[,1], row.names = NULL)
+row_ex <- t(D[47, c(-1, -2, -3, -4)])
+row_ex <- data.frame("Fields" = rownames(row_ex), "Values" = row_ex[, 1], row.names = NULL)
 
 knitr::kable(
   row_ex,
-  caption = 'An example data row {#tbl-ex}',
+  caption = "An example data row {#tbl-ex}",
   booktabs = TRUE
 ) %>%
   kable_styling(full_width = F) %>%
@@ -72,23 +75,32 @@ Look at the richness of the encounter data. This row is a $70+$ year old who was
 
 There are $100,000+$ rows of such encounters! To be able to use this data, we need to get to the bottom of its $50+$ fields and identify which ones will tell us the story that will have implications for patient management and improved health outcomes. Let's consider some examples.
 
-Hospital admission and diagnoses fields like `admission_type_id`, `discharge_disposition_id`, `admission_source_id` and `diag_1` are defined using codes that are mapped to values in a separate data file provided with the data, which we will use to transform these fields into a usable format. We will explore how Copilot can assist with this transformation.
+Hospital admission and diagnoses fields like `admission_type_id`, `discharge_disposition_id`, `admission_source_id`, and `diag_1` are defined using codes that are mapped to values in a separate data file provided with the data, which we will use to transform these fields into a usable format. We will explore how Copilot can assist with this transformation.
 
-> ***Setting up Copilot in RStudio:** Adding Copilot as a pair programmer to your RStudio is simple, and has a seamless interface.* *Take a look at the documentation [**here**](https://docs.posit.co/ide/user/ide/guide/tools/copilot.html)***.**
+::: {.callout-note}
+
+## Setting up Copilot in RStudio
+
+Adding Copilot as a pair programmer to your RStudio is simple, and has a seamless interface. Take a look at the documentation [**here**](https://docs.posit.co/ide/user/ide/guide/tools/copilot.html).
+
+:::
 
 When using Copilot directly in RStudio, it is essential to provide sufficient detail in your prompts. We will begin with `admission_type_id`:
 
-![](images/admission_type_updated.png)
+![](images/admission_type_updated.png){fig-align="center" style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); border-radius: 5px;"}
 
-> ***Notes on Copilot:***
->
-> -   *Take a look at the structure of the output above – the first part is my written prompt, while the ghost text is the output you that generates automatically when you hit ENTER after the prompt. In order for the output code itself to manifest, all you do it hit TAB. All subsequent Copilot outputs will be of this structure.*
->
-> -   *Its good to see we didn't even have to specify the use of `dplyr` for the transformation! Note that without Copilot, my original strategy was to use `if-else`, which makes for a slightly more unwieldy code chunk; I much prefer the use of `case-when`.*
+::: {.callout-note}
+
+## Notes on Copilot
+
+-   Take a look at the structure of the output above – the first part is my written prompt, while the ghost text is the output you that generates automatically when you hit ENTER after the prompt. In order for the output code itself to manifest, all you do it hit TAB. All subsequent Copilot outputs will be of this structure.
+-   Its good to see we didn't even have to specify the use of `dplyr` for the transformation! Note that without Copilot, my original strategy was to use `if-else()`, which makes for a slightly more unwieldy code chunk; I much prefer the use of `case_when()`.
+
+:::
 
 Now let's handle the slightly more complicated `diag_1`, which defines primary diagnosis using ICD9 codes; see Table $2$ [here](https://onlinelibrary.wiley.com/doi/10.1155/2014/781670). We will need to specify the mapping very clearly, as below.
 
-![](images/diag_1.png)
+![](images/diag_1.png){fig-align="center" style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); border-radius: 5px;"}
 
 These transformations will help us conduct a range of exploratory analyses and visualizations. For instance, primary diagnoses can significantly influence whether a patient receives the *A1c test* for diabetes. Let's prepare the data to implement these in part $2$.
 
@@ -103,30 +115,32 @@ These transformations will help us conduct a range of exploratory analyses and v
 # --------------------------------------------- #
 
 D <- D %>%
-  mutate(admission_type = case_when(
-    admission_type_id == 1 ~ "Emergency",
-    admission_type_id == 2 ~ "Urgent",
-    admission_type_id == 3 ~ "Elective",
-    admission_type_id == 4 ~ "Newborn",
-    admission_type_id == 5 ~ "Not Available",
-    admission_type_id == 6 ~ "NULL",
-    admission_type_id == 7 ~ "Trauma Center",
-    admission_type_id == 8 ~ "Not Mapped"
-  ), primary_diag = case_when(
-    diag_1 %in% c(390:459, 785) ~ "Circulatory",
-    diag_1 %in% c(460:519, 786) ~ "Respiratory",
-    diag_1 %in% c(520:579, 787) ~ "Digestive",
-    diag_1 %in% c(580:629, 788) ~ "Genitourinary",
-    diag_1 %in% c(630:679) ~ "Pregnancy",
-    diag_1 %in% c(680:709, 782) ~ "Skin",
-    diag_1 %in% c(710:739) ~ "Musculoskeletal",
-    diag_1 %in% c(740:759) ~ "Congenital",
-    diag_1 %in% c(800:999) ~ "Injury",
-    grepl("^250", diag_1) ~ "Diabetes",
-    is.na(diag_1) ~ "Missing",
-    TRUE ~ "Other"
-  ), a1c=ifelse(A1Cresult=="None", "not measured", "measured"), 
-  reAdmit=ifelse(readmitted=="<30", "early readmit", "no/late readmit"))
+  mutate(
+    admission_type = case_when(
+      admission_type_id == 1 ~ "Emergency",
+      admission_type_id == 2 ~ "Urgent",
+      admission_type_id == 3 ~ "Elective",
+      admission_type_id == 4 ~ "Newborn",
+      admission_type_id == 5 ~ "Not Available",
+      admission_type_id == 6 ~ "NULL",
+      admission_type_id == 7 ~ "Trauma Center",
+      admission_type_id == 8 ~ "Not Mapped"
+    ), primary_diag = case_when(
+      diag_1 %in% c(390:459, 785) ~ "Circulatory",
+      diag_1 %in% c(460:519, 786) ~ "Respiratory",
+      diag_1 %in% c(520:579, 787) ~ "Digestive",
+      diag_1 %in% c(580:629, 788) ~ "Genitourinary",
+      diag_1 %in% c(630:679) ~ "Pregnancy",
+      diag_1 %in% c(680:709, 782) ~ "Skin",
+      diag_1 %in% c(710:739) ~ "Musculoskeletal",
+      diag_1 %in% c(740:759) ~ "Congenital",
+      diag_1 %in% c(800:999) ~ "Injury",
+      grepl("^250", diag_1) ~ "Diabetes",
+      is.na(diag_1) ~ "Missing",
+      TRUE ~ "Other"
+    ), a1c = ifelse(A1Cresult == "None", "not measured", "measured"),
+    reAdmit = ifelse(readmitted == "<30", "early readmit", "no/late readmit")
+  )
 ```
 
 ```{r}
@@ -139,22 +153,24 @@ D <- D %>%
 # Testing the Copilot output for diagnoses
 # --------------------------------------------- #
 
-testDiag <- D %>% subset(primary_diag=="Respiratory") %>% group_by(diag_1, primary_diag) %>% summarise(n=n())
-result <- testDiag %>% 
+testDiag <- D %>%
+  subset(primary_diag == "Respiratory") %>%
+  group_by(diag_1, primary_diag) %>%
+  summarise(n = n())
+result <- testDiag %>%
   group_by(primary_diag) %>%
   summarise(diag_1 = paste(diag_1, collapse = ", ")) %>%
   ungroup()
 
-
 knitr::kable(
-  #list(testDiag[1:21,], testDiag[22:42,]),
+  # list(testDiag[1:21,], testDiag[22:42,]),
   result,
-  caption = 'Testing Copilot output - ICD9 codes for a respiratory primary diagnosis {#tbl-val}',
+  caption = "Testing Copilot output - ICD9 codes for a respiratory primary diagnosis {#tbl-val}",
   booktabs = TRUE
 )
 ```
 
-We see that the ICD9 values for a respiratory diagnosis checks out in the output. Also note there is no code $460$ (a common cold diagnosis).
+We see that the ICD9 values for a respiratory diagnosis check out in the output. Also note there is no code $460$ (a common cold diagnosis).
 
 ### Missing values
 
@@ -166,7 +182,7 @@ Before proceeding to part $2$, we must concede that the complexity of this data 
 
 Let's implement the above, using Copilot's recommendations for the second question.
 
-![](images/missing_diag.png)
+![](images/missing_diag.png){fig-align="center" style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); border-radius: 5px;"}
 
 ```{r}
 #| label: Chunk4
@@ -177,14 +193,17 @@ Let's implement the above, using Copilot's recommendations for the second questi
 # --------------------------------------------- #
 # 1) Missing value vs NULL for admission type
 # --------------------------------------------- #
-p <- D %>% group_by(admission_type, age) %>% 
-  summarise(n=n()) %>% mutate(freq = n / sum(n)) 
+p <- D %>%
+  group_by(admission_type, age) %>%
+  summarise(n = n()) %>%
+  mutate(freq = n / sum(n))
 
-ggplot(p, aes(x=age, y=admission_type)) + geom_tile(aes(fill=n)) + 
-  scale_fill_gradient(low="white", high="blue", labels=function(n) scales::comma(abs(n))) +
-  labs(title="Plot 1: Admission type vs Age - examining missing values") + 
-  theme(plot.title = element_text(size=14, color="black", hjust = 0.5)) + 
-  geom_text(aes(label = scales::comma(n)), size=3, color="gray")
+ggplot(p, aes(x = age, y = admission_type)) +
+  geom_tile(aes(fill = n)) +
+  scale_fill_gradient(low = "white", high = "blue", labels = function(n) scales::comma(abs(n))) +
+  labs(title = "Plot 1: Admission type vs Age - examining missing values") +
+  theme(plot.title = element_text(size = 14, color = "black", hjust = 0.5)) +
+  geom_text(aes(label = scales::comma(n)), size = 3, color = "gray")
 
 ```
 
@@ -205,20 +224,27 @@ missing_diag <- D %>%
   mutate(Diagnosis = factor(Diagnosis, levels = c("diag_1", "diag_2", "diag_3")))
 
 ggplot(missing_diag, aes(x = Diagnosis, y = Missing)) +
-  geom_bar(stat = "identity", fill = "#56B4E9", color="black") +
-  labs(x = "", y = "Number of Missing Values") + theme_minimal() + 
-  labs(title="Plot 2: Diagnoses - examining missing values") + 
-  theme(plot.title = element_text(size=14, color="black", hjust = 0.5)) + 
+  geom_bar(stat = "identity", fill = "#56B4E9", color = "black") +
+  labs(x = "", y = "Number of Missing Values") +
+  theme_minimal() +
+  labs(title = "Plot 2: Diagnoses - examining missing values") +
+  theme(plot.title = element_text(size = 14, color = "black", hjust = 0.5)) +
   scale_y_continuous(labels = function(n) scales::comma(abs(n)))
 ```
 
 Here are a few notes on these plots (click on "Show the code .." above each plot for more details) –
 
-1.  In plot 1, its useful to see the missing value pattern, via `NULL`, `Not Available` and `Not Mapped` values. Also, by plotting `admission_type` against `age`, we can see encounters where the data was the most dense, e.g. emergency admissions for the $70-80$ year age group.
+1.  In plot 1, it's useful to see the missing value pattern, via `NULL`, `Not Available` and `Not Mapped` values. Also, by plotting `admission_type` against `age`, we can see encounters where the data was the most dense, e.g., emergency admissions for the $70-80$ year age group.
 
 2.  In plot 2, we see how `diag_1` has close to no missing values, which is helpful since the primary diagnosis in the encounter will be an important factor in shaping patient care response variables.
 
-> ***Notes on Copilot:** For the missing value analysis of the diagnosis fields in plot* $2$*, I appreciate the utility of `pivot_longer` and `across(everything())`, two tidy functions I have not previously utilized, here recommended by Copilot. The synergy between our analytical vision and Copilot's assistance significantly enhances our productivity. Note that I did modify the Copilot recommendation quite a bit for the visualization, adding `labels = function(n) scales::comma(abs(n))` to neatly format numbers; its a function I have used repeatedly for many years for an easier review of graphics that display numbers.*
+::: {.callout-note}
+
+## Notes on Copilot:
+
+For the missing value analysis of the diagnosis fields in plot $2$, I appreciate the utility of `pivot_longer()` and `across(everything())`, two tidy functions I have not previously utilized, here recommended by Copilot. The synergy between our analytical vision and Copilot's assistance significantly enhances our productivity. Note that I did modify the Copilot recommendation quite a bit for the visualization, adding `labels = function(n) scales::comma(abs(n))` to neatly format numbers; its a function I have used repeatedly for many years for an easier review of graphics that display numbers.
+
+:::
 
 ## Conclusion and a glimpse into part 2
 
@@ -236,22 +262,19 @@ We will closely examine the following relationships:
 
 Here, the *A1c test* is defined as a binary indicator of whether this vital assessment was conducted. This analysis is pivotal for understanding patient management and hospital readmission, ultimately contributing to improved patient care outcomes. Stay tuned for more!
 
-> ***Some more tips on Copilot in RStudio:***
->
-> 1.  *After Copilot is running in your RStudio, take another look at Posit's [guide](https://docs.posit.co/ide/user/ide/guide/tools/copilot.html), especially where they describe the most effective way to use it while working within RStudio. For example -*
->
->     -   *Code suggestions are typically most useful when applied to a well-scoped and specific problem. When trying to solve larger problems or write longer functions, it is best to break the problem down into smaller pieces and use Copilot and your own expertise to generate code for each chunk. Similar to how a chef might use a recipe to cook each dish that makes up a larger meal, Copilot can be used to generate code for smaller pieces of a larger problem.*
->
-> 2.  *When starting to use Copilot for the first time within RStudio, try asking it simpler questions as prompts, to get used to its autocompletions, e.g.*
->
->     -   *`# summarize the data`*
->
->     -   *`# plot glucose vs bmi in a scatterplot`*
->
-> 3.  *You can also begin writing a piece of code and allow Copilot to finish it via autocomplete, e.g.*
->
->     ![](images/autocomplete.png)
+## Some more tips on Copilot in RStudio
 
+1.  After Copilot is running in your RStudio, take another look at Posit's [guide](https://docs.posit.co/ide/user/ide/guide/tools/copilot.html), especially where they describe the most effective way to use it while working within RStudio. For example: 
+
+> Code suggestions are typically most useful when applied to a well-scoped and specific problem. When trying to solve larger problems or write longer functions, it is best to break the problem down into smaller pieces and use Copilot and your own expertise to generate code for each chunk. Similar to how a chef might use a recipe to cook each dish that makes up a larger meal, Copilot can be used to generate code for smaller pieces of a larger problem.
+
+2.  When starting to use Copilot for the first time within RStudio, try asking it simpler questions as prompts, to get used to its autocompletions, e.g.,
+  -   `# summarize the data`
+  -   `# plot glucose vs bmi in a scatterplot`
+
+3.  You can also begin writing a piece of code and allow Copilot to finish it via autocomplete, e.g.,
+
+![](images/autocomplete.png){fig-align="center" style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); border-radius: 5px;"}
 
 ## About the Author
 
