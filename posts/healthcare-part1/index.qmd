@@ -15,9 +15,9 @@ The primary objective of healthcare analytics is to seek benefits for health adm
 
 EMH data aims to improve the accuracy of diagnoses and treatment plans while enhancing overall care quality by making patients' health histories readily accessible to authorized providers. In contrast, administrative data encompasses patient interaction details, such as diagnoses and hospital readmissions, which can be analyzed to evaluate healthcare delivery, advantages, disadvantages, and cost-effectiveness.
 
-## Using Copilot in RStudio with a health dataset
+## Using GitHub Copilot in RStudio with a health dataset
 
-In this first post in a series of two, I will introduce a complex healthcare data set and outline the problems I propose to solve using `tidyverse` and Copilot, which will facilitate nuanced argument tuning in `tidyverse` functions and accelerate our data analysis process.
+In this first post in a series of two, I will introduce a complex healthcare data set and outline the problems I propose to solve using `tidyverse` and [GitHub Copilot](https://docs.posit.co/ide/user/ide/guide/tools/copilot.html), which will facilitate nuanced argument tuning in `tidyverse` functions and accelerate our data analysis process.
 
 ::: {.callout-note  appearance="simple"}
 
