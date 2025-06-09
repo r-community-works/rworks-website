@@ -224,13 +224,13 @@ penguins_clean |>
 
 And then you're done! You've created your first ggplot extension 🥳.
 
-Want to try your own hand at creating `geom_means()`? Go through the interactive tutorial in [Easy geom recipes](https://evamaerey.github.io/easy-geom-recipes/recipe1means.html#your-turn-write-geom_means)!
+Going through the recipes is a great way to easing into your ggplot2 extension journey. They offer three well-crafted examples with a clear structure and sequence of steps. A fun note is that the geom recipes website uses [webR](https://docs.r-wasm.org/webr/latest/) and [Quarto Live](https://github.com/r-wasm/quarto-live) to embed interactive code chunks directly in the tutorial. It makes for an immersive experience while going through the exercises.
 
-A fun note is that the geom recipes website uses [webR](https://docs.r-wasm.org/webr/latest/) and [Quarto Live](https://github.com/r-wasm/quarto-live) to embed interactive code chunks directly in the tutorial. It makes for an immersive experience while going through the exercises.
+Want to try your own hand at creating `geom_means()`? Go through the interactive tutorial in [Easy geom recipes](https://evamaerey.github.io/easy-geom-recipes/recipe1means.html#your-turn-write-geom_means)!
 
 ## Resources
 
-It's a true delight going through Gina's resources, from seeing the [adorable ggextenders hex](https://evamaerey.github.io/everyday_ggplot2_extension/community.html) to reading all the touching notes about ggplot2, comparing it to art, food, and more. It's a true testament of how a tool can inspire so many. Here are some of my favorites quotations and metaphors:
+It's a true delight going through Gina's resources, from seeing the [adorable ggextenders hex](https://evamaerey.github.io/everyday_ggplot2_extension/community.html) to reading all the touching notes about ggplot2, comparing it to art, food, poetry, and more. It's a true testament of how a tool can inspire so many. Here are some of my favorites quotations and metaphors:
 
 * "ggplot2 lets users 'speak their plots into existence'"
 * "You are a composer of ‘graphical poems’"
