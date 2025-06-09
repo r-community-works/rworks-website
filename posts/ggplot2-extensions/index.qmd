@@ -21,7 +21,7 @@ If you use ggplot2, you are probably used to creating plots with `geom_line()` a
 
 Enter the exciting world of creating your own ggplot2 extensions.
 
-I had the pleasure of meeting [Gina Reynolds](https://github.com/EvaMaeRey) when I first began my job at Posit (then RStudio) and she was contributing a blog post on [flipbookr](https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html#1). Since then, we've kept in touch through the [ggextenders](https://ggplot2-extenders.github.io/ggplot-extension-club/) extension club. Every few months, the club meets virtually to hear from a ggextender. The speaker can talk about a custom geom they've created for the community or more general R visualization topics. In these meetings, I've learned about cool packages like [ggstats](https://larmarange.github.io/ggstats/). Each presentation is insightful and interesting. [Join us sometime](https://docs.google.com/forms/d/e/1FAIpQLSe3M1KwUPrmTfEGuuQp0fZ0J7dZkk_82gb310JCvdouMTa_7Q/viewform)!
+I had the pleasure of meeting [Gina Reynolds](https://github.com/EvaMaeRey) when I first began my job at Posit (then RStudio) and she was contributing a blog post on [flipbookr](https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html#1). Since then, we've kept in touch through the [ggextenders](https://ggplot2-extenders.github.io/ggplot-extension-club/) extension club. Every few months, the club meets virtually to hear from a ggextender (someone who works with ggplot2 extensions). The speaker can talk about a custom geom they've created for the community or more general R visualization topics. Each presentation is insightful and interesting. I've had the opportunity to learn about cool packages like [ggstats](https://larmarange.github.io/ggstats/).  [Join us sometime](https://docs.google.com/forms/d/e/1FAIpQLSe3M1KwUPrmTfEGuuQp0fZ0J7dZkk_82gb310JCvdouMTa_7Q/viewform)!
 
 However, I was never a "ggextender" myself (having just used and never developed extenders). I found the idea of creating an extension daunting. That is, until recently!
 
@@ -238,10 +238,10 @@ It's a delight going through Gina's resources, from seeing the [adorable ggexten
 
 Learn more about Gina's work here:
 
+* [ggplot2 extenders club website](https://ggplot2-extenders.github.io/ggplot-extension-club/): See previous talks and sign up for future webinars
 * [Everyday ggplot2 extension](https://evamaerey.github.io/everyday_ggplot2_extension/): Education materials for potential extenders 
 * [ggplot2 extension cookbook](https://evamaerey.github.io/ggplot2-extension-cookbook/): Guide that presents extension strategies in a consistent and accessible way
-* [ggplot2 extenders club website](https://ggplot2-extenders.github.io/ggplot-extension-club/): See previous talks and sign up for future webinars
-* [Easy geom recipes](https://evamaerey.github.io/easy-geom-recipes/): Try your hand at creating your first extension!
+* [Easy geom recipes](https://evamaerey.github.io/easy-geom-recipes/): A series of tutorials on creating a tutorial
 
 There is a comprehensive [list of resources on the ggplot2 extenders club website](https://ggplot2-extenders.github.io/ggplot-extension-club/additional-resources.html).
 
