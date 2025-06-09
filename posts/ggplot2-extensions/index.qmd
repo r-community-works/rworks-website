@@ -231,7 +231,7 @@ Want to try your own hand at creating `geom_means()`? Go through the interactive
 
 ## Resources
 
-It's a true delight going through Gina's resources, from seeing the [adorable ggextenders hex](https://evamaerey.github.io/everyday_ggplot2_extension/community.html) to reading all the touching notes about ggplot2, comparing it to art, food, poetry, and more. It's a true testament of how a tool can inspire so many. Here are some of my favorites quotations and metaphors:
+It's a delight going through Gina's resources, from seeing the [adorable ggextenders hex](https://evamaerey.github.io/everyday_ggplot2_extension/community.html) to reading all the touching notes about ggplot2, comparing it to art, food, poetry, and more. It's a testament of how a tool can inspire so many. Here are some of my favorites quotations and metaphors:
 
 * "ggplot2 lets users 'speak their plots into existence'"
 * "You are a composer of ‘graphical poems’"
