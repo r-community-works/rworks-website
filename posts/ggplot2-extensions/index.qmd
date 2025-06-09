@@ -3,7 +3,7 @@ title: "Speak your plot into existence by writing your own ggplot2 extension"
 author: "Isabella Velásquez"
 date: 2025-06-12
 editor: source
-description: "Enter the exciting world of the ggextenders."
+description: "The ggextenders club provides inspiration and resources for those venturing into the exciting world of creating custom ggplot2 extensions."
 image: ggextenders-hex.png
 image-alt: "ggextenders hex showing the image of a cat stretching"
 page-layout: article
@@ -14,6 +14,7 @@ format:
       narrative-background-color-sidebar: transparent
       section-background-color: transparent
       narrative-text-color-overlay: black
+    theme: [cosmo, styles.css]
 ---
 
 If you use ggplot2, you are probably used to creating plots with `geom_line()` and `geom_point()`. You may also have ventured into to the broader ggplot2 ecosystem to use geoms like `geom_density_ridges()` from [ggridges](https://wilkelab.org/ggridges/) or `geom_signif()` from [ggsignif](https://const-ae.github.io/ggsignif/). But have you ever wondered _how_ these extensions were created? Where did the authors figure out how to create a new geom? And, if the plot of your dreams doesn't exist, how would you make your own?
@@ -22,7 +23,7 @@ Enter the exciting world of creating your own ggplot2 extensions.
 
 I had the pleasure of meeting [Gina Reynolds](https://github.com/EvaMaeRey) when I first began my job at Posit and she was contributing a blog post on [flipbookr](https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html#1). Since then, we've kept in touch through the [ggextenders](https://ggplot2-extenders.github.io/ggplot-extension-club/) extension club. Every few months, the club meets virtually to hear from a ggextender. The speaker can talk about a custom geom they've created for the community or more general R visualization topics. In these meetings I've learned about cool packages like [ggstats](https://larmarange.github.io/ggstats/). Each presentation is insightful and interesting. [Join us sometime](https://docs.google.com/forms/d/e/1FAIpQLSe3M1KwUPrmTfEGuuQp0fZ0J7dZkk_82gb310JCvdouMTa_7Q/viewform)!
 
-However, I was never a "ggextender" myself (having just used and never developed an extender).  found the idea of creating an extension daunting. That is, until recently!
+However, I was never a "ggextender" myself (having just used and never developed extenders). I found the idea of creating an extension daunting. That is, until recently!
 
 Gina held a focus group that worked through the [Easy geom recipes](https://evamaerey.github.io/easy-geom-recipes/), a series of tutorials on creating ggplot2 extensions. Following "recipes", you methodically create three extensions. Each time, certain key knowledge points are reinforced and new variations are introduced.
 

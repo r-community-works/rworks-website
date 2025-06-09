@@ -32,9 +32,6 @@ format:
   html:
     theme: [cosmo, styles.css]
     include-in-header: plausible.html
-  closeread-html:
-    theme: [cosmo, styles.css]
-    include-in-header: plausible.html
     
 editor: source
 highlight-style: tango
