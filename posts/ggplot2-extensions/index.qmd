@@ -1,9 +1,9 @@
 ---
 title: "Speak your plot into existence by writing your own ggplot2 extension"
 author: "Isabella Velásquez"
-date: 2024-11-15
+date: 2025-06-12
 editor: source
-description: "100 bushes of corn are distributed to 100 people such that every man receives 3 bushels, every woman 2 bushels, and every child 1/2 a bushel. How many men, women, and children are there? (Solved with R)."
+description: "Enter the exciting world of the ggextenders."
 image: ggextenders-hex.png
 image-alt: "ggextenders hex showing the image of a cat stretching"
 page-layout: article
@@ -16,13 +16,13 @@ format:
       narrative-text-color-overlay: black
 ---
 
-If you use ggplot2, you are probably used to creating plots with `geom_line()` and `geom_point()`. You may also have ventured into to the broader ggplot2 ecosystem to use geoms like `geom_density_ridges()` from [ggridges](https://wilkelab.org/ggridges/) or `geom_signif()` from [ggsignif](https://const-ae.github.io/ggsignif/). But have you ever wondered _how_ these extensions were created? Where did the authors figure out how to create a new geom? And---if the plot of your dreams doesn't exist---how would you make your own?
+If you use ggplot2, you are probably used to creating plots with `geom_line()` and `geom_point()`. You may also have ventured into to the broader ggplot2 ecosystem to use geoms like `geom_density_ridges()` from [ggridges](https://wilkelab.org/ggridges/) or `geom_signif()` from [ggsignif](https://const-ae.github.io/ggsignif/). But have you ever wondered _how_ these extensions were created? Where did the authors figure out how to create a new geom? And, if the plot of your dreams doesn't exist, how would you make your own?
 
 Enter the exciting world of creating your own ggplot2 extensions.
 
-I had the pleasure of meeting [Gina Reynolds](https://github.com/EvaMaeRey) when I first began my job at Posit and she was contributing a blog post on [flipbookr](https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html#1). Since then, we've kept in touch through the [ggextenders](https://ggplot2-extenders.github.io/ggplot-extension-club/) extension club. Every few months, the club meets virtually to hear from a ggextender. The speaker can talk about a custom geom they've created for the community or more general R visualization topics. In these meetings I've learned about cool packages like [ggstats](https://larmarange.github.io/ggstats/). Each presentation is insightful and interesting---[join us sometime](https://docs.google.com/forms/d/e/1FAIpQLSe3M1KwUPrmTfEGuuQp0fZ0J7dZkk_82gb310JCvdouMTa_7Q/viewform)!
+I had the pleasure of meeting [Gina Reynolds](https://github.com/EvaMaeRey) when I first began my job at Posit and she was contributing a blog post on [flipbookr](https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html#1). Since then, we've kept in touch through the [ggextenders](https://ggplot2-extenders.github.io/ggplot-extension-club/) extension club. Every few months, the club meets virtually to hear from a ggextender. The speaker can talk about a custom geom they've created for the community or more general R visualization topics. In these meetings I've learned about cool packages like [ggstats](https://larmarange.github.io/ggstats/). Each presentation is insightful and interesting. [Join us sometime](https://docs.google.com/forms/d/e/1FAIpQLSe3M1KwUPrmTfEGuuQp0fZ0J7dZkk_82gb310JCvdouMTa_7Q/viewform)!
 
-However, I was never a "ggextender" myself and more a great appreciator of ggextensions. That is, until recently!
+However, I was never a "ggextender" myself (having just used and never developed an extender).  found the idea of creating an extension daunting. That is, until recently!
 
 Gina held a focus group that worked through the [Easy geom recipes](https://evamaerey.github.io/easy-geom-recipes/), a series of tutorials on creating ggplot2 extensions. Following "recipes", you methodically create three extensions. Each time, certain key knowledge points are reinforced and new variations are introduced.
 
@@ -32,13 +32,13 @@ So, let's say we want to create a new `geom_*()` that adds a point on the median
 
 ## Step 0. Get the job done with 'base' ggplot2.
 
-First, clarify what needs to happen without getting into the extension architecture. Load the tidyverse package and the palmerpenguins package. [@cr-step01]{highlight="1,2"}
+First, clarify what needs to happen without getting into the extension architecture. Load the tidyverse package and the palmerpenguins package. [@cr-step-0a]{highlight="1,2"}
 
-Remove the missing values from the `penguins` dataset. [@cr-step01]{highlight="4"}
+Remove the missing values from the `penguins` dataset. [@cr-step-0a]{highlight="4"}
 
-Calculate the median of the x variable (`bill_length_mm`) and y variable (`bill_depth_mm`) as you would normally. [@cr-step01]{highlight="6,7,8,9"}
+Calculate the median of the x variable (`bill_length_mm`) and y variable (`bill_depth_mm`) as you would normally. [@cr-step-0a]{highlight="6,7,8,9"}
 
-:::{#cr-step01 .scale-to-fill}
+:::{#cr-step-0a .scale-to-fill}
 ```{r}
 #| echo: true
 #| message: false
@@ -57,9 +57,9 @@ penguins_medians <- penguins_clean |>
 
 Now, use base ggplot2 to get the job done.[@cr-step02]
 
-This requires specifying `bill_depth_mm_median` and `bill_length_mm_median`, which we just created, within `aes()` in `geom_point()`.[@cr-step02]{highlight="7,8"}
+This requires specifying `bill_depth_mm_median` and `bill_length_mm_median`, which we just created, within `aes()` in `geom_point()`.[@cr-step-0b]{highlight="7,8"}
 
-:::{#cr-step02 .scale-to-fill}
+:::{#cr-step-0b .scale-to-fill}
 ```{r}
 #| echo: true
 #| eval: false
@@ -76,9 +76,9 @@ penguins_clean |>
 ```
 :::
 
-This is the resulting plot.[@cr-step03]
+This is the resulting plot.[@cr-step-0c]
 
-:::{#cr-step03 .scale-to-fill}
+:::{#cr-step-0c .scale-to-fill}
 ```{r}
 # Plot
 penguins_clean |> 
@@ -95,9 +95,9 @@ penguins_clean |>
 
 ## Step 1: Define Compute and test.
 
-Define the compute that will transform your input data "under the hood" before rendering it.[@cr-step11]
+Define the compute that will transform your input data "under the hood" before rendering it.[@cr-step-1a]
 
-:::{#cr-step11 .scale-to-fill}
+:::{#cr-step-1a .scale-to-fill}
 ```{r}
 #| echo: true
 #| message: false
@@ -112,8 +112,119 @@ compute_group_medians <- function(data, scales){
 
 :::
 
+Next, test the compute to make sure that the output matches what you expect. Note that the names `x` and `y` are required.[@cr-step-1b]
+
+:::{#cr-step-1b .scale-to-fill}
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+# Test compute. 
+penguins_clean |>
+  select(x = bill_depth_mm,  
+         y = bill_length_mm) |>  
+  compute_group_medians()
+```
+:::
+
+## Step 2: Define new Stat. Test.
+
+Next, use the ggplot2::ggproto function, which creates a new Stat function that does computation under the hood when building a plot.[@cr-step-2a]
+
+:::{#cr-step-2a .scale-to-fill}
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+StatMedians <-
+  ggplot2::ggproto(
+    `_class` = "StatMedians",
+    `_inherit` = ggplot2::Stat,
+    compute_group = compute_group_medians,
+    required_aes = c("x", "y")
+  )
+```
+:::
+
+Test your new Stat by using it in a `geom_*()` function.[@cr-step-2b]{highlight="6"}
+
+:::{#cr-step-2b .scale-to-fill}
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+penguins_clean |> 
+  ggplot() + 
+  aes(x = bill_depth_mm,
+      y = bill_length_mm) + 
+  geom_point() + 
+  geom_point(stat = StatMedians, size = 7) + 
+  labs(title = "Testing StatMedians")
+```
+:::
+
+## Step 3: Define user-facing functions. Test.
+
+Now, define the user-facing function.[@cr-step-3a]
+
+The `stat_*()` function name derives from the Stat objects’s name, but is snake case.[@cr-step-3a]{highlight="1"}
+
+"Point" is specified as the default for the geom argument in the function. This means that the ggplot2::GeomPoint will be used in the layer unless otherwise specified by the user.[@cr-step-3a]{highlight="3"}
+
+`StatMedians` defines the new layer function, so summarizing the medians will be in play before the layer is rendered.[@cr-step-3a]{highlight="6"}
+
+:::{#cr-step-3a .scale-to-fill}
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+stat_medians <- 
+  function(mapping = NULL, data = NULL, 
+           geom = "point", position = "identity", 
+           ..., show.legend = NA, inherit.aes = TRUE) 
+    {
+    layer(data = data, mapping = mapping, stat = StatMedians, 
+          geom = geom, position = position, show.legend = show.legend, 
+          inherit.aes = inherit.aes, params = rlang::list2(na.rm = FALSE, 
+                                                           ...))
+    }
+```
 
 :::
+
+Because users are more accustom to using layers that have the ‘geom’ prefix, you might also define geom with identical properties via aliasing.[@cr-step-3b]
+
+:::{#cr-step-3b .scale-to-fill}
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+geom_medians <- stat_medians
+```
+:::
+
+Now, test your user-facing function by using it in a ggplot2 plot.[@cr-step-3c]{highlight="6"}
+
+:::{#cr-step-3c .scale-to-fill}
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+## Test user-facing.
+penguins_clean |>
+  ggplot() +
+  aes(x = bill_depth_mm, y = bill_length_mm) +
+  geom_point() +
+  geom_medians(size = 8)  +
+  labs(title = "Testing geom_medians()")
+```
+:::
+
+:::
+
+And then you're done! You've created your first ggplot extension 🥳.
+
+Want to try your own hand at creating `geom_means()`? Go through the interactive tutorial in [Easy geom recipes](https://evamaerey.github.io/easy-geom-recipes/recipe1means.html#your-turn-write-geom_means)!
 
 A fun note is that the geom recipes website uses [webR](https://docs.r-wasm.org/webr/latest/) and [Quarto Live](https://github.com/r-wasm/quarto-live) to embed interactive code chunks directly in the tutorial. It makes for an immersive experience while going through the exercises.
 
@@ -126,12 +237,11 @@ It's a true delight going through Gina's resources, from seeing the [adorable gg
 
 Learn more about Gina's work here:
 
-* [Everyday ggplot2 extension](https://evamaerey.github.io/everyday_ggplot2_extension/): education materials for potential extenders 
+* [Everyday ggplot2 extension](https://evamaerey.github.io/everyday_ggplot2_extension/): Education materials for potential extenders 
 * [ggplot2 extension cookbook](https://evamaerey.github.io/ggplot2-extension-cookbook/): Guide that presents extension strategies in a consistent and accessible way
 * [ggplot2 extenders club website](https://ggplot2-extenders.github.io/ggplot-extension-club/): See previous talks and sign up for future webinars
 * [Easy geom recipes](https://evamaerey.github.io/easy-geom-recipes/): Try your hand at creating your first extension!
 
-More resources on ggplot2 extensions:
+There is a comprehensive [list of resources on the ggplot2 extenders club website](https://ggplot2-extenders.github.io/ggplot-extension-club/additional-resources.html).
 
-* [Extending your ability to extend ggplot2](https://www.youtube.com/watch?v=uj7A3i2fi54): Thomas Lin Pederson's talk from rstudio::conf(2020) on entering the world of ggplot2 extensions
-* [Writing ggplot2 extensions chapter in ggplot2: Elegant Graphics for Data Analysis (3e)](https://ggplot2-book.org/extensions.html) by Hadley Wickham, Danielle Navarro, and Thomas Lin Pedersen
+Many thanks to Andrew Bray, James Goldie, and the QMD Lab for [Closeread](https://closeread.dev/), a Quarto extension for scrollytelling, which walked through the ggextender steps!
