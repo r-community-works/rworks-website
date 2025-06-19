@@ -1,0 +1,113 @@
+---
+title: "May 2025 Top 40 New CRAN Packages"
+author: "Joseph Rickert"
+date: "2025-06-28"
+description: "An attempt to capture the depth and breadth of what's new on CRAN. Here are my Top 40 picks in twenty-two categories: Archaeology, Artificial Intelligence, Biology, Chemistry, Climate Science, Data, Ecology, Epidemiology, Genomics, Geoscience, Health Technology Assessment, Linguistics, Machine Learning,Mathematics, Medicine, Networks, Psychology, Statistics, Time Series, Utilities, and Visualization."
+image: "tabs.gif"
+image-alt: "Coastline reconstruction"
+categories: "Top 40"
+editor: source
+---
+
+![](.png){fig-alt=""}
+
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+## Archaeology
+
+
+## Climate Science
+
+[forcis](https://cran.r-project.org/package=forcis) v1/0/1: Provides an interface to the [FORCIS Working Group](https://www.fondationbiodiversite.fr/en/the-frb-in-action/programs-and-projects/le-cesab/forcis) database [Chaabane et al. (2024)](https://zenodo.org/records/12724286) on global foraminifera distribution. There are six vignettes including [Getting Started](https://cran.r-project.org/web/packages/forcis/vignettes/forcis.html) and [Data Visualization](https://cran.r-project.org/web/packages/forcis/vignettes/data-visualization.html).
+
+
+
+![](forcis.png){fig-alt="Drawing illustrating sampling process"}
+
+## Computational Methods
+
+[dspline](https://cran.r-project.org/package=dspline) v1.0.2: Provides tools for computations with discrete splines, a class of univariate piecewise polynomial functions which are analogous to splines, but for which smoothness is defined via divided differences rather than derivatives. Tools include discrete differentiation and integration, various matrix computations. See [Tibshirani (2020)](https://arxiv.org/abs/2003.03886) for the theory and [README](https://cran.r-project.org/web/packages/dspline/readme/README.html) for an example.
+
+![](dspline.png){fig-alt="Plot of discrete splines"}
+
+[RANSAC](https://cran.r-project.org/package=RANSAC) v0.1.0: Provides functions to fit both linear and non-linear models using the RANSAC (RANdom SAmple Consensus) algorithm, which is robust to outliers. See [Fischler & Bolles (1981)](https://dl.acm.org/doi/pdf/10.1145/358669.358692) fora description of the algorithm and the [vignette]() for a a brief introducion.
+
+
+
+[wex](https://cran.r-project.org/package=wex) v0.1.0: Provides functions to compute the exact observation weights for the Kalman filter and smoother, based on the method described in [Koopman and Harvey (2003)](https://www.sciencedirect.com/science/article/abs/pii/S0165188902000611) and supports in-depth exploration of state-space models. See [README](https://cran.r-project.org/web/packages/wex/readme/README.html) for examples.
+
+![](wex.png){fig-alt="Smoothed and filtered time series plot"}
+
+## Data
+
+[CardioDataSets](https://cran.r-project.org/package=CardioDataSets) v0.1.0: Offers a diverse collection of datasets focused on cardiovascular and heart disease research, including heart failure, myocardial infarction, aortic dissection, transplant outcomes, cardiovascular risk factors, drug efficacy, and mortality trends. See the [vignette](https://cran.r-project.org/web/packages/CardioDataSets/vignettes/Introduction_to_CardioDataSets.html)
+
+
+![](CardioDS.png){fig-alt="Distribution of Heart Diease by Age and Sex"}
+
+[NeuroDataSets](https://CRAN.R-project.org/package=NeuroDataSets) v0.1.0: Offers a diverse collection of datasets focused on the brain, nervous system, and related disorders including clinical, experimental, neuroimaging, behavioral, cognitive, and simulated data on conditions such as Parkinson's disease, Alzheimer's, epilepsy, schizophrenia, gliomas, and mental health. See the [Introduction](https://cran.r-project.org/web/packages/NeuroDataSets/vignettes/introduction_to_neurodatasets.html).
+
+![](NeuroDs.png){fig-alt="Plot of Subcortical patterns vs Condition"}
+
+
+## Decision Analysis
+
+[aggreCAT](https://cran.r-project.org/web/packages/aggreCAT/vignettes/aggreCAT.pdf) v1.0.0:  Implements mathematical aggregation methods for structured data elicitation including those defined in [Hanea, A. et al. (2021)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0256919) to inform decision making. See the [Vignette](https://cran.r-project.org/web/packages/aggreCAT/vignettes/aggreCAT.pdf).
+
+![](aggreCAT.png){fig-alt="Diagram illustrating decision aggregation"}
+
+## Ecology
+
+[fireexposuR](https://cran.r-project.org/package=fireexposuR) v1.1.0: Provides methods for computing and visualizing wildfire igntion exposure and directional vulnerability. See [Beverly et al. (2010)](https://www.publish.csiro.au/wf/WF09071) and [Beverly and Forbes (2023)](https://link.springer.com/article/10.1007/s11069-023-05885-3) for background and methodology and the [Introduction](https://cran.r-project.org/web/packages/fireexposuR/vignettes/fireexposuR.html) to get started.
+
+
+
+
+
+:::
+
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+
+
+## Linguistics
+
+## Statistics
+
+[ExtendedLaplace](https://cran.r-project.org/package=ExtendedLaplace) v0.1.6: Provides computational tools for working with the Extended Laplace distribution, including the probability density function, cumulative distribution function, quantile function, random variate generation. See [Saah & Kozubowski (2025)](https://www.sciencedirect.com/science/article/abs/pii/S0377042725001037?via%3Dihub) for the theory and the [vignette](https://cran.r-project.org/web/packages/ExtendedLaplace/vignettes/ExtendedLaplace-intro.html) for examples.
+
+
+## Time Series
+
+[gglinedensity](https://cran.r-project.org/package=gglinedensity) v0.2.0: Implements the *DenseLine* algorithm, which normalizes time series by the arc length to compute accurate densities. See [Moritz and Fisher (2018)](https://arxiv.org/abs/1808.06019) for background and [README](https://cran.r-project.org/web/packages/gglinedensity/readme/README.html) for examples.
+
+![](ggline.png){fig-alt="Line density Plots"}
+
+
+## Topological Data Analysis
+
+[tdarec](https://CRAN.R-project.org/package=tdarec) v0.1.0 Provides functions and `tidyverse` recipies for vectorizing Topological Data Analysis persistence diagrams. See [Ali &al (2000)](https://arxiv.org/abs/2212.09703) for background and the [vignette](https://cran.r-project.org/web/packages/tdarec/vignettes/hyperparameter-tuning.html) for examples.
+
+
+## Visualization
+
+
+
+
+[ggpedigree](https://cran.r-project.org/package=ggpedigree) v0.7.0: Provides plotting functions for visualizing pedigrees in behavior genetics and kinship research. Features include support for duplicated individuals, complex mating structures, integration with simulated pedigrees, and layout customization. See the vignettes [Plotting pedigrees](https://cran.r-project.org/web/packages/ggpedigree/vignettes/v00_plots.html), [Interactive Plotting](https://cran.r-project.org/web/packages/ggpedigree/vignettes/v10_interactiveplots.html) and [Visualizing Relatedness Matrices](https://cran.r-project.org/web/packages/ggpedigree/vignettes/v20_matrix.html).
+
+![](ggpedigree.png){fig-alt="Plot of pedigree tree"}
+
+:::
+
+
+::::
+
