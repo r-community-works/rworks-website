@@ -61,6 +61,15 @@ editor: source
 
 ## Ecology
 
+[ecorisk](https://cran.r-project.org/package=ecorisk) v0.1.1: Implements a modular framework for ecosystem risk assessments, combining existing risk assessment approaches tailored to semi-quantitative and quantitative analyses. See the [vignette](https://cran.r-project.org/web/packages/ecorisk/vignettes/ecorisk.html).
+
+![](ecorisk.png){fig-alt="Risk assessment framework diagram"}
+
+[fastei](https://cran.r-project.org/package=fastei) v0.0.7: Provides functions to estimate the probability matrix for the R×C Ecological Inference problem using the Expectation-Maximization Algorithm with four approximation methods for the E-Step, and an exact method as well. See [Thrraves et. al (2024)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4832834) for background and the [vignette](https://cran.r-project.org/web/packages/fastei/vignettes/demonstration.html) for examples.
+
+![](fastei.png){fig-alt="Estimated probabilities" }
+
+
 [fireexposuR](https://cran.r-project.org/package=fireexposuR) v1.1.0: Provides methods for computing and visualizing wildfire igntion exposure and directional vulnerability. See [Beverly et al. (2010)](https://www.publish.csiro.au/wf/WF09071) and [Beverly and Forbes (2023)](https://link.springer.com/article/10.1007/s11069-023-05885-3) for background and methodology and the [Introduction](https://cran.r-project.org/web/packages/fireexposuR/vignettes/fireexposuR.html) to get started.
 
 
@@ -82,8 +91,17 @@ editor: source
 
 ## Statistics
 
+[clustord](https://cran.r-project.org/package=clustord) v1.3.4: Provides functions for biclustering, row clustering and column clustering using the proportional odds model, ordered stereotype model or binary model for ordinal categorical data. See [Fernández et al. (2019)](https://link.springer.com/article/10.1007/s11634-018-0324-3) for the theory. There are seven vignettes incluting a [Tutorial](https://cran.r-project.org/web/packages/clustord/vignettes/clustordTutorial.pdf) and [Ordinal Models](https://cran.r-project.org/web/packages/clustord/vignettes/clustordOrdinalModels.pdf).
+
+![](clust.png){fig-alt="Row and column clustering"} 
+
 [ExtendedLaplace](https://cran.r-project.org/package=ExtendedLaplace) v0.1.6: Provides computational tools for working with the Extended Laplace distribution, including the probability density function, cumulative distribution function, quantile function, random variate generation. See [Saah & Kozubowski (2025)](https://www.sciencedirect.com/science/article/abs/pii/S0377042725001037?via%3Dihub) for the theory and the [vignette](https://cran.r-project.org/web/packages/ExtendedLaplace/vignettes/ExtendedLaplace-intro.html) for examples.
 
+
+[glmmsel](https://cran.r-project.org/package=glmmsel) v1/0/2": Provides functions to fit sparse generalised linear mixed models with $l_0$ regularisation. Selects fixed and random effects under the hierarchy constraint that fixed effects must precede random effects and currently supports Gaussian and binomial response families. See [Ptukhina & Garai (2024)](https://www.taylorfrancis.com/books/mono/10.1201/9780429092060/generalized-linear-mixed-models-walter-stroup-marina-ptukhina-julie-garai) and the [vignette](https://cran.r-project.org/web/packages/glmmsel/vignettes/vignette.html) for examples.
+
+
+[survregVB](https://cran.r-project.org/package=survregVB) v0.0.1: Implements Bayesian inference in accelerated failure time (AFT) models for right-censored survival times assuming a log-logistic distribution. See [Xian et al. (2024)](https://link.springer.com/article/10.1007/s11222-023-10365-6) and [Xian et al. (2024)](https://arxiv.org/abs/2408.00177) for background and the [vignette](https://cran.r-project.org/web/packages/survregVB/vignettes/survregVB.html) for examples.
 
 ## Time Series
 
