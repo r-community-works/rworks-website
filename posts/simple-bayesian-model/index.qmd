@@ -345,7 +345,7 @@ In this section we present the some theoretical results for discrete time absorb
 # Seretide transition Probabilities
 s_TP <- rbind(
   s_STW_smry[1,],
-  s_UTW_smry[1],
+  s_UTW_smry[1,],
   s_Hex_smry[1,],
   s_Pex_smry[1,]
 )
@@ -358,7 +358,7 @@ rownames(s_TP) <- c("STW", "UTW", "Hex", "Pex", "TF")
 # Fluticasone transition Probabilities
 f_TP <- rbind(
   f_STW_smry[1,],
-  f_UTW_smry[1],
+  f_UTW_smry[1,],
   f_Hex_smry[1,],
   f_Pex_smry[1,]
 )
@@ -571,7 +571,7 @@ From here it is trivial to compute the probability that patients will not be in 
 #| code-fold: true
 #| code-summary: "Show the code"
 
-N <- 35 #weeks
+N <- 156 #weeks
 s_surv_dat <- vector("numeric", length = N)
 f_surv_dat <- vector("numeric", length = N)
 
