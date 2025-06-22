@@ -87,7 +87,11 @@ editor: source
 
 
 
-## Linguistics
+## Phylogentics
+
+[RRmorph](https://cran.r-project.org/package=RRmorph) v0.0.1: Provides a toolkit designed to investigate the effects of evolutionary rates and morphological convergence on phenotypes. See [Melchionna et al. (2024)](https://www.nature.com/articles/s42003-024-06710-8) for details and the [vignette](https://cran.r-project.org/web/packages/RRmorph/vignettes/vignette.html) for examples.
+
+![](RRmorph.png){fig-alt="3D Brain renderings for compaaison"}
 
 ## Statistics
 
@@ -117,12 +121,20 @@ editor: source
 
 ## Visualization
 
+[gghexsize](https://cran.r-project.org/package=gghexsize) v0.1.0: Extends `ggplot2` to create heatmaps with the `size` aesthetic to variably size each hexagon.
 
+![](gghexsize.png){fig-alt="Plot with varying hexsizes"}
 
 
 [ggpedigree](https://cran.r-project.org/package=ggpedigree) v0.7.0: Provides plotting functions for visualizing pedigrees in behavior genetics and kinship research. Features include support for duplicated individuals, complex mating structures, integration with simulated pedigrees, and layout customization. See the vignettes [Plotting pedigrees](https://cran.r-project.org/web/packages/ggpedigree/vignettes/v00_plots.html), [Interactive Plotting](https://cran.r-project.org/web/packages/ggpedigree/vignettes/v10_interactiveplots.html) and [Visualizing Relatedness Matrices](https://cran.r-project.org/web/packages/ggpedigree/vignettes/v20_matrix.html).
 
 ![](ggpedigree.png){fig-alt="Plot of pedigree tree"}
+[ggtreebar](https://cran.r-project.org/package=ggtreebar) v0.1.0: Extends `ggplot2` with geoms analogous to `geom_col()` and `geom_bar()` that allow for treemaps nested within each bar segment. Also provides geometries for subgroup bordering and text annotation. Look [here](https://hrryt.github.io/ggtreebar/) for examples.
+
+![](ggtreebar.png){fig-alt="Trees within bar plot"}
+
+
+
 
 :::
 
