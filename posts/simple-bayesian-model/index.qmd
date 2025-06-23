@@ -5,12 +5,13 @@ date: 2025-06-25
 code-fold: true
 code-summary: "Show the code"
 image: states.png
-description: ""
+description: "This post shows how to use the elementary theory of discrete time Markov Chains to construct a multi-state model of patients progressing through various health states in a randomized clinical trial comparing different treatments for asthma management under the assumption that all patients in each of the two arms of the trial will eventually experience treatment failure. The post shows how to calculate transition probabilities using a simple multinomial Bayesian model and exploit the theory of absorbing Markov chains to calculate fundamental health metrics."
+
 categories: ""
 editor: source
 ---
 
-This post shows how to use a simple Bayesian model to estimate the transition probabilities of patients progressing through various health states in a randomized clinical trial comparing different treatments for asthma management. These probabilities are used to construct a discrete time Markov chain model. The post goes on to show how the basic theory of discrete time Markov chains can be to compare the effectiveness of two different treatments by estimating fundamental health metrics including the expected time spent in each health state, survival curves, and the expected time to treatment failure for each of the two treatments. 
+This post shows how to use the elementary theory of discrete time Markov Chains to construct a multi-state model of patients progressing through various health states in a randomized clinical trial comparing different treatments for asthma management under the assumption that all patients in each of the two arms of the trial will eventually experience treatment failure. The post shows how to calculate transition probabilities using a simple multinomial Bayesian model and exploit the theory of absorbing Markov chains to calculate fundamental health metrics including the expected time spent in each health state, survival curves, and the expected time to treatment failure for each of the two treatments. These estimates provide a natural way to compare the effectiveness of the two treatments and can be used to drive cost-effectiveness comparisons.
 
 Although the theory is basic and the calculations are simple, variations of this model should be applicable to a wide range of problems in health economics and decision analysis. 
 
@@ -62,6 +63,29 @@ smry <- function(res_matrix){
     upper = quantile(x, probs = 0.975))
 })
 }
+
+plot_row_dist <- function(matrix,treatment,start_state){
+  # code to plot the posterior marginal distributions 
+  # Inputs:
+  # matrix the simulation matrix for the health state of interest
+  # treatment: either Seretide or Fluticasone as a character
+  # start_state: name of health state that agrees with matrix as a character
+treatment <- treatment
+start_state <- start_state
+plot_df <- matrix %>% 
+  as.data.frame() %>%
+  pivot_longer(cols=everything(), names_to="transitions", values_to="prob") 
+
+ggplot(plot_df, aes(x = prob)) +
+  geom_histogram(aes(y = after_stat(density)),bins = 15, fill = "lightgrey", color = "black") + #histogram for each category
+  geom_density(aes(y = after_stat(density)), color = "red", linewidth = 0.5) + # density line
+  scale_x_continuous(breaks = scales::pretty_breaks(n = 5)) +
+  xlab("probability") +
+  facet_wrap(~ transitions, scales = "free") +  # faceting for each category
+  labs(x = "Probability",y = " ") +
+  ggtitle(paste(treatment,": Posterior State Transition Probabilities for states starting in", start_state))
+}
+
 
 # Function to compute the probability of being in each state at time t
 prob_at_time <- function(matrix, time, i_state){
@@ -170,7 +194,7 @@ s_state
 
 ```{r}
 #| code-fold: true
-#| code-summary: "Obsereved States for Flucticasone"
+#| code-summary: "Obsereved States for Fluticasone"
 #| 
 f_state
 ```
@@ -180,7 +204,7 @@ f_state
 
 ## The Markov Model
 
-The state diagram, which shows directed arcs between the states, is a useful way to visualize the Markov model. The arcs represent the possible transitions between states, and the numbers on the arcs represent the *from-to* state transitions. Since there are no arcs emanating from *TF* it is clear that this state is being modeled as an absorbing state, similar to *death* in a survival model.
+The state diagram, which shows directed arcs between the states, is a useful way to visualize the Markov model. The arcs represent the possible transitions between states, and the numbers on the arcs represent the **from-to** state transitions. Since there are no arcs emanating from `TF` it is clear that this state is being modeled as an absorbing state, similar to death in a survival model.
 
 ```{r}
 #| message: FALSE
@@ -217,9 +241,9 @@ plotmat(t(TM), pos = pos,
         main = " Asthma Markov Model State Transition Diagram",)
 ```
 
-## THe Bayesian Model
+## The Bayesian Model
 
-The Bayesian is a simple [conjugate model](https://en.wikipedia.org/wiki/Conjugate_prior) with a Multinomial likelihood function and Dirichlet prior distribution. Because these to distributions are conjugate the posterior distribution will also be a Dirichlet. 
+The Bayesian is a simple [conjugate prior model](https://en.wikipedia.org/wiki/Conjugate_prior) with a Multinomial likelihood function and Dirichlet prior distribution. Because these to distributions are conjugate the posterior distribution will also be a Dirichlet. 
 
 ### The Dirichlet Distribution
 
@@ -258,33 +282,19 @@ s_Pex_smry <- smry(s_Pex_sim)
 ```
 
 
-This code plots the marginal posterior distributions of the transition probabilities for Seretide starting in health state STW. Note that the marginal distributions of a Dirichlet distribution are Beta distributions. The plot supports this assertion.
+This code plots the marginal posterior distributions of the transition probabilities for Seretide starting in health state, `STW`. Note that the marginal distributions of a Dirichlet distribution are Beta distributions. The plot supports this theoretical result.
 
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
-# code for histogram of rd_df data frame
-s_STW_sim_df <- s_STW_sim %>% 
-  as.data.frame() %>%
-  pivot_longer(cols=everything(), names_to="transitions", values_to="prob") 
 
-ggplot(s_STW_sim_df, aes(x = prob)) +
-  geom_histogram(aes(y = after_stat(density)),bins = 15, fill = "lightgrey", color = "black") + #histogram for each category
-  geom_density(aes(y = after_stat(density)), color = "red", linewidth = 0.5) + # density line
-  scale_x_continuous(breaks = scales::pretty_breaks(n = 5)) +
-  xlab("probability") +
-  facet_wrap(~ transitions, scales = "free") +  # facetting for each category
-  labs(
-    title = "Seretide: Posterior State Transition Probabilities for states starting in STW",
-    x = "Probability",
-    y = " "
-  ) 
+plot_row_dist(matrix=s_STW_sim,treatment="Seretide",start_state="STW")
 ```
 
 
-### Flucticasone Simulations
+### Fluticasone Simulations
 
-This section of code uses the `sim_res` function to simulate the posterior distribution of the transition probabilities for Flucticasone, starting in each of the four transient states. The results are summarized using the `smry` function, which computes the mean and 95% credible intervals for each transition probability.
+This section of code uses the `sim_res` function to simulate the posterior distribution of the transition probabilities for Fluticasone, starting in each of the four transient states. The results are summarized using the `smry` function, which computes the mean and 95% credible intervals for each transition probability.
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
@@ -304,28 +314,14 @@ f_Pex_smry <- smry(f_Pex_sim)
 ```
 
 
-This code plots the marginal posterior distributions of the transition probabilities for Flucticasone starting in STW.
+This code plots the marginal posterior distributions of the transition probabilities for Fluticasone starting in STW.
 
 
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
 # code for histogram of rd_df data frame
-f_STW_sim_df <- f_STW_sim %>% 
-  as.data.frame() %>%
-  pivot_longer(cols=everything(), names_to="transitions", values_to="prob") 
-
-ggplot(f_STW_sim_df, aes(x = prob)) +
-  geom_histogram(aes(y = after_stat(density)),bins = 15, fill = "lightgrey", color = "black") + #histogram for each category
-  geom_density(aes(y = after_stat(density)), color = "red", linewidth = 0.5) + # density line
-  scale_x_continuous(breaks = scales::pretty_breaks(n = 5)) +
-  xlab("probability") +
-  facet_wrap(~ transitions, scales = "free") +  # facetting for each category
-  labs(
-    title = "Flucticasone: Posterior State Transition Probabilities for states starting in STW",
-    x = "Probability",
-    y = " "
-  ) 
+plot_row_dist(matrix=f_STW_sim,treatment="Fluticasone",start_state="STW")
 ```
 
 
@@ -333,7 +329,7 @@ ggplot(f_STW_sim_df, aes(x = prob)) +
 
 ## Theoretical Results
 
-In this section we present the some theoretical results for discrete time absorbing Markov chains that are applicable to analyzing the asthma treatment data. The first step is to recover the mean transition probabilities from the posterior distributions computed above. Using these, we construct the *Fundamental Matrix* for the absorbing Markov chains associate with each treatment group.
+In this section we present some theoretical results for discrete time absorbing Markov chains that are applicable to analyzing the asthma treatment data. The first step is to recover the mean transition probabilities from the posterior distributions computed above. Using these, we construct the **Fundamental Matrix** for the absorbing Markov chains associate with each treatment group.
 
 ### Transition Probabilities
 
@@ -394,7 +390,7 @@ round(s_TP,2)
 
 ```{r}
 #| code-fold: true
-#| code-summary: "Flucticasone Transition Probability Matrix"
+#| code-summary: "Fluticasone Transition Probability Matrix"
 round(f_TP,2)
 ```
 :::
@@ -403,9 +399,9 @@ round(f_TP,2)
 
 ### Fundamental Matrix
 
-For an absorbing Markov Chain, each entry $n_{ijj$ of the fundamental matrix, $N$, gives the expected number of times the process is in state $s_j$ given that it starts in state $s-i$.  For our example, this corresponds to the number of weeks that a patient is expected to spend in each of the transient states before reaching the absorbing state, *TF*. 
+For an absorbing Markov Chain, each entry $n_{ij}$ of the fundamental matrix, $N$, gives the expected number of times the process is in state $s_j$ given that it starts in state $s-i$.  For our example, this corresponds to the number of weeks that a patient is expected to spend in each of the transient states before reaching the absorbing state, *TF*. 
 
-The first step in getting to $N$ is to partition the transition matrix into sub-matrices of $Q$ of transient state transition probabilities, and  $R$, absorbing state transition probabilities. transition probabilities as illustrated in the figure below. If there are $q$ transitive states and $r$ absorbing state, $Q$ is a $q \times q$ matrix, $R$ is a $q \times r$ matrix, $0$ is a $r \times q$ matrix, and $I$ is a $r \times r$ identity matrix. The figure is reproduced from Professor Nickolay Atanasov's *Chapter 11* notes on Markov chains [1] which presents lucid account of the theory presented here.
+The first step in getting to $N$ is to partition the transition matrix into sub-matrices of $Q$ of transient state transition probabilities, and  $R$, absorbing state transition probabilities as illustrated in the figure below. If there are $q$ transitive states and $r$ absorbing state, $Q$ is a $q \times q$ matrix, $R$ is a $q \times r$ matrix, $0$ is a $r \times q$ matrix, and $I$ is a $r \times r$ identity matrix. The figure is reproduced from Professor Nickolay Atanasov's *Chapter 11* notes on Markov chains [1] which presents lucid account of the theory presented here.
 
 
 
@@ -421,7 +417,7 @@ This code partitions the transition probability matrix as described above. Note 
 ```{r}
 #| code-fold: true
 #| code-summary: "Show the code"
-Q_s <- s_TP[1:4, 1:4] # Extract the sub-matrix of transition probabilities for non-absorbingstates
+Q_s <- s_TP[1:4, 1:4] # Extract the sub-matrix of transition probabilities for non-absorbing states
 
 rownames(Q_s) <- names(states)[1:4]
 colnames(Q_s) <- names(states)[1:4]# Set the row and column names to the state names
@@ -458,7 +454,7 @@ round(Q_s,2)
 
 ```{r}
 #| code-fold: true
-#| code-summary: "Flucticasone Q Matrix"
+#| code-summary: "Fluticasone Q Matrix"
 round(Q_f,2)
 ```
 
@@ -469,7 +465,7 @@ round(Q_f,2)
 
 #### Calculate the Fundamental Matrix, N. 
 
-Calculating $N = (I - Q)^{-1}$ involves computing the inverse of the matrix $I - Q$ which is easy enough to do in `R`. Remember each entry $n_ij$ of N gives the expected number of times that an absorbing process is expected to be transient state $s_j$ before absorption given that it starts in state $s_i$. So, given that patients start in health state `STW`, the expected number of weeks that patients are expected to spend in the various states before treatment failure are given by the first rows of $N_s$ and $N_f$ respectively. 
+Calculating $N = (I - Q)^{-1}$ involves computing the inverse of the matrix $I - Q$ which is easy enough to do in `R`. Remember each entry $n_ij$ of N gives the expected number of times that an absorbing process is expected to be in the transient state $s_j$ before absorption, given that it starts in state $s_i$. So, given that patients start in health state `STW`, the expected number of weeks that patients are expected to spend in the various states before treatment failure are given by the first rows of $N_s$ and $N_f$ respectively. 
 
 .
 ```{r}
@@ -479,7 +475,7 @@ I <- diag(4) # Identity matrix of size 4
 N_s <- solve(I - Q_s) # Fundamental matrix for Seretide
 #round(N_s,3)
 
-N_f <- solve(I - Q_f) # Fundamental matrix for Flucticasone
+N_f <- solve(I - Q_f) # Fundamental matrix for Fluticasone
 #round(N_f,3)
 
 ```
@@ -507,7 +503,7 @@ round(N_s,2)
 
 ```{r}
 #| code-fold: true
-#| code-summary: "Flucticasone Fundamental Matrix"
+#| code-summary: "Fluticasone Fundamental Matrix"
 round(N_f,2)
 ```
 
@@ -530,8 +526,8 @@ E_s <- N_s %*% c # Expected time to absorption for Seretide
 colnames(E_s) <- "Seretide"
 
 #Calculation for Fluticasone
-E_f <- N_f %*% c # Expected time to absorption for Flucticasone
-colnames(E_f) <- "Flucticasone"
+E_f <- N_f %*% c # Expected time to absorption for Fluticasone
+colnames(E_f) <- "Fluticasone"
 
 # Combine the expected times to absorption for both treatments
 E <- cbind(E_s, E_f) %>% data.frame()
@@ -552,7 +548,7 @@ t <- 13
 u <- c(1,0,0,0,0) # Initial state vector, starting in STW
 spt <- prob_at_time(s_TP, t, u)
 
-#Flucticasone
+#Fluticasone
 t <- 12
 u <- c(1,0,0,0,0) # Initial state vector, starting in STW
 fpt <- prob_at_time(f_TP, t, u)
@@ -607,9 +603,9 @@ The curves clearly suggest that Seretide would be the preferred treatment.
 
 ### Expected time spent in selected state
 
-This section of code computes a matrix that provides the expected time expected time the markov chain will spend in state up to some time n. Each row of the matrix assumes the process starts in the state designated by the row name. The entry for each column of that row is the expected time spent in that state up to time n. Matrices are computed for both Seretide and Flucticasone.
+This section of code computes a matrix that provides the expected time the markov chain will spend in each state up to some time n. Each row of the matrix assumes the process starts in the state designated by the row name. The entry for each column of that row is the expected time spent in that state up to time n. Matrices are computed for both Seretide and Fluticasone.
 
-Here we choose n = 20 weeks.
+Here we choose n = 26 weeks.
 
 Note that in a healthcare cost-effectiveness model these time could be used to compute the financial and quality of life costs for patients who survive to n weeks.
 
@@ -617,7 +613,7 @@ Note that in a healthcare cost-effectiveness model these time could be used to c
 #| code-fold: true
 #| code-summary: "Show the code"
 # 
-n <- 12
+n <- 26
 
 s_state_times <- time_in_state2(tpm = s_TP, n = n)
 f_state_times <- time_in_state2(tpm = f_TP, n = n)
@@ -631,7 +627,7 @@ f_state_times <- time_in_state2(tpm = f_TP, n = n)
 
 ```{r}
 #| code-fold: true
-#| code-summary: "Seretide: State times at n = 20"
+#| code-summary: "Seretide: State times at n = 26"
 # Seretide
 round(s_state_times,2)
 ```
@@ -648,8 +644,8 @@ round(s_state_times,2)
 
 ```{r}
 #| code-fold: true
-#| code-summary: "Flucticasone: State times at n = 20"
-# Flucticasene
+#| code-summary: "Fluticasone: State times at n = 26"
+# Fluticasone
 round(f_state_times,2)
 ```
 
@@ -670,7 +666,7 @@ s_time_in_STW <- sum(s_state_times[1,1:4]) # Exclude the absorbing state TF
 f_time_in_STW <- sum(f_state_times[1,1:4]) # Exclude the absorbing state TF
 time_in_STW <- data.frame(
   Seretide = s_time_in_STW,
-  Flucticasone = f_time_in_STW
+  Fluticasone = f_time_in_STW
 )
 round(time_in_STW,2)
 ```
