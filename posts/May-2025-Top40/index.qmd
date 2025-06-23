@@ -70,8 +70,31 @@ editor: source
 ![](fastei.png){fig-alt="Estimated probabilities" }
 
 
-[fireexposuR](https://cran.r-project.org/package=fireexposuR) v1.1.0: Provides methods for computing and visualizing wildfire igntion exposure and directional vulnerability. See [Beverly et al. (2010)](https://www.publish.csiro.au/wf/WF09071) and [Beverly and Forbes (2023)](https://link.springer.com/article/10.1007/s11069-023-05885-3) for background and methodology and the [Introduction](https://cran.r-project.org/web/packages/fireexposuR/vignettes/fireexposuR.html) to get started.
+[fireexposuR](https://cran.r-project.org/package=fireexposuR) v1.1.0: Provides methods for computing and visualizing wildfire igntion exposure and directional vulnerability. See [Beverly et al. (2010)](https://www.publish.csiro.au/wf/WF09071) and [Beverly and Forbes (2023)](https://link.springer.com/article/10.1007/s11069-023-05885-3) for background and methodology and the [Introduction](https://cran.r-project.org/web/packages/fireexposuR/vignettes/fireexposuR.html) to get started. 
 
+## Machine Learning
+
+[clusterv](https://cran.r-project.org/package=clusterv) v1.1.1: Implements a set of stability measures, tailored to high-dimensional data, to assess the reliability of the clusters discovered by a generic clustering algorithm. See [Valentini (2005)](https://academic.oup.com/bioinformatics/article/22/3/369/220858?login=false) for background and the [vignette](https://cran.r-project.org/web/packages/clusterv/vignettes/clusterv-tutorial.pdf) for examples, and look [here](https://valentini.di.unimi.it/SW/clusterv/) for a tutorial.
+
+![](clusterv.gif){fig-alt="Plots comparing distortion" }
+
+[cramR](https://cran.r-project.org/package=cramR) v0.1.0: Implements *Cram*, a general approach to simultaneous learning and evaluation using a generic machine learning algorithm. In a single pass of batched data, Cram uses all of the data to repeatedly train a machine learning algorithm and tests its empirical performance.  A cramming process begins by randomly dividing a dataset into batches, and defining a baseline rule. Cram
+trains an ML algorithm using the first batch of data, yielding an updated rule, and then
+evaluate the performance difference between these two rules, i.e., ∆(Rule 1, Rule 0), using the
+remaining T − 1 batches
+
+
+
+
+
+Cram evaluates the final learned model directly, providing sharper inference aligned with real-world deployment. The method naturally applies to both policy learning and contextual bandits, where decisions are based on individual features to maximize outcomes. The package includes cram_policy() for learning and evaluating individualized binary treatment rules, cram_ml() to train and assess the population-level performance of machine learning models, and cram_bandit() for on-policy evaluation of contextual bandit algorithms. For all three functions, the package provides estimates of the average outcome that would result if the model were deployed, along with standard errors and confidence intervals for these estimates. Details of the method are described in Jia, Imai, and Li (2024) <https://www.hbs.edu/ris/Publication%20Files/2403.07031v1_a83462e0-145b-4675-99d5-9754aa65d786.pdf> and Jia et al. (2025) <doi:10.48550/arXiv.2403.07031>.
+
+
+## Medicine
+
+[DTEBOP2](https://cran.r-project.org/package=DTEBOP2) v1.0.3: Implements a Bayesian Optimal Phase II design (DTE-BOP2) for trials with delayed treatment effects, particularly relevant to immunotherapy studies where treatment benefits may emerge after a delay. The method incorporates uncertainty in the delay timepoint through a truncated gamma prior and supports two-arm trial designs. See the [vignette](https://cran.r-project.org/web/packages/DTEBOP2/vignettes/DTEBOP2.htmlDTE).
+
+![](DTEBOP2.png){fig-alt="Survival cuves" }
 
 
 
