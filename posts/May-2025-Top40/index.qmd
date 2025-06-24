@@ -1,22 +1,22 @@
 ---
 title: "May 2025 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
-date: "2025-06-28"
-description: "An attempt to capture the depth and breadth of what's new on CRAN. Here are my Top 40 picks in twenty-two categories: Archaeology, Artificial Intelligence, Biology, Chemistry, Climate Science, Data, Ecology, Epidemiology, Genomics, Geoscience, Health Technology Assessment, Linguistics, Machine Learning,Mathematics, Medicine, Networks, Psychology, Statistics, Time Series, Utilities, and Visualization."
+date: "2025-06-27"
+description: "An attempt to capture the depth and breadth of what's new on CRAN.  Visualization." - One Hundred seventy-six new packages madde it to CRAN in May. Here are my Top 40 picks in eighteen categories: Climate Science, Computational Methods, Data, Decision Analysis, Ecology, Epidemiology, Finance, Machine Learning, Mathematics, Medicine, Networks,  Statistics, Phylogenetics, Programming, Time Series, Topological Data Analysis, Utilities, and Visualization.
 image: "tabs.gif"
 image-alt: "Coastline reconstruction"
 categories: "Top 40"
 editor: source
 ---
 
-![](.png){fig-alt=""}
+One Hundred seventy-six new packages madde it to CRAN in May. Here are my Top 40 picks in eighteen categories: Climate Science, Computational Methods, Data, Decision Analysis, Ecology, Epidemiology, Finance, Machine Learning, Mathematics, Medicine, Networks,  Statistics, Phylogenetics, Programming, Time Series, Topological Data Analysis, Utilities, and Visualization.
 
 
 :::: {.columns}
 
 ::: {.column width="45%"}
 
-## Archaeology
+
 
 
 ## Climate Science
@@ -78,6 +78,20 @@ editor: source
 
 ![](SeaGraphs.png){fig-alt="Plots of Current Components"}
 
+[QuAnTeTrack](https://cran.r-project.org/package=QuAnTeTrack) v0.1.0: Provides a structured  workflow for analyzing trackway data, facilitating the assessment of paleoecological and paleoethological hypotheses that integrates various functions for data digitization, loading, exploratory analysis, statistical testing, simulation, similarity assessment, intersection detection, and clustering. See [Alexander 1976](https://www.nature.com/articles/261129a0) and [Rohlf (2009)](https://sbmorphometrics.org/) for background and the [vignette]() for examples.
+
+![](QuAnTe.png){fig-alt="Plot of trajectories classified by velocity"}
+
+## Epidemiology 
+
+[DESA](https://cran.r-project.org/package=DESA) v1.0.0: Provides a  framework for early epidemic detection through school absenteeism surveillance via three core  methods (1) simulation of epidemic spread, and resulting school absenteeism patterns; (2) surveillance models that generate alerts based on absenteeism data and (3) evaluation of alert timeliness and accuracy to optimize model parameters. See [Vanderkruk et al. (2023)]() and [Ward et al. (2019)]() for background on the methods, and [README](https://cran.r-project.org/web/packages/DESA/readme/README.html) for examples.
+
+![](DESA.png){fig-alt="Plots of infections and reported cases"}
+
+[dlmwwbe](https://cran.r-project.org/package=dlmwwbe) v0.1.0: Implements dynamic linear models outlined in[ ]Shumway and Stoffer (2025)](https://link.springer.com/book/10.1007/978-3-031-70584-7) for wastewater modeling. See the [vignette](https://cran.r-project.org/web/packages/dlmwwbe/vignettes/my-vignette.html)
+
+![](dlmwwbe.png){fig-alt=" Smoothed wastewater plot"}
+
 ## Finance
 
 [TVMVP](https://cran.r-project.org/package=TVMVP) v1.0.4: Offers functions to estimate the time-dependent covariance matrix of returns for portfolio optimization, methods for determining the optimal number of factors to be used in the covariance estimation, a hypothesis test of time-varying covariance,  functions for portfolio optimization and rolling window evaluation. See [Su and Wang (2017)](https://www.sciencedirect.com/science/article/abs/pii/S0304407617300143?via%3Dihub),  [Fan et al. (2024)](https://www.sciencedirect.com/science/article/abs/pii/S0304407622001646?via%3Dihub), and [Chen et al. (2019)](https://www.sciencedirect.com/science/article/abs/pii/S0304407619300806?via%3Dihub) for background. THere are two vignettes: [Overview and Getting Started Guide](https://cran.r-project.org/web/packages/TVMVP/vignettes/TVMVP_overview.html) and [Master's Thesis](https://cran.r-project.org/web/packages/TVMVP/vignettes/thesis.pdf).
@@ -86,18 +100,45 @@ editor: source
 
 ## Genomics
 
+[doblin](https://cran.r-project.org/package=doblin) v0.1.1: Provides functions to quantify dominant clonal lineages from DNA barcoding time-series data along with functions to cluster barcode lineage trajectories and functions to identify persistent clonal lineages across time points. For more details, see [Gagné-Leroux et al. (2024)](https://www.biorxiv.org/content/10.1101/2024.09.08.611892v1). The [vignette](https://cran.r-project.org/web/packages/doblin/vignettes/doblin.pdf) steps through the Doblin pipeline.
+
+![](doblin.png){fig-alt="Plots showing clustering dynamics"}
+
+[GencoDymo2](https://cran.r-project.org/package=GencoDymo2) v1.0.1: Provides  helper functions to facilitate the analysis of genomic annotations from the [GENCODE](https://www.gencodegenes.org) database supporting both human and mouse genomes. This toolkit enables users to extract, filter, and analyze a wide range of annotation features including genes, transcripts, exons, and introns across different GENCODE releases. See the [vignette](https://cran.r-project.org/web/packages/GencoDymo2/vignettes/GencoDymo2_vignette.html).
+
+![](Genco.png){fig-alt="GENCODE Mouse M37"}
+
+
 [HTGM3D](https://cran.r-project.org/package=HTGM3D) v1.0: Provides tools for working with and visualizing the three gene ontologies based on biological process (BP), molecular function (MF), and cellular component (CC, i.e., subcellular localization) developed by the [Gene Ontology (GO) Consortium](https://geneontology.org/). See Zeeberg et al. (2003)](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2003-4-4-r28) for background and the [vignette](https://cran.r-project.org/web/packages/HTGM3D/vignettes/HTGM3D.html) for examples.
 
 
 ![](HTGM3D.jpeg){fig-alt="Annotated HTGM3D 3D graphic for cluster52 gene list" }
 
+:::
 
 
+::: {.column width="10%"}
 
-## Machine Learning
+:::
+
+::: {.column width="45%"}
+
+## Machine Learning 
 
 
 [cramR](https://cran.r-project.org/package=cramR) v0.1.0: Implements *Cram*, a general approach to simultaneous learning and evaluation using a generic machine learning algorithm. In a single pass of batched data, Cram uses all of the data to repeatedly train a machine learning algorithm and tests its empirical performance.  A cramming process begins by randomly dividing a dataset into batches, and defining a baseline rule. Cram trains an ML algorithm using the first batch of data, yielding an updated rule, and then evaluate the performance difference between these two rules, using the remaining T − 1 batches.  Details of the method are described in [Jia et al. (2024)](https://www.hbs.edu/ris/Publication%20Files/2403.07031v1_a83462e0-145b-4675-99d5-9754aa65d786.pdf) and [Jia et al. (2025)](https://arxiv.org/abs/2403.07031). There are eight vignettes including [Quick Start](https://cran.r-project.org/web/packages/cramR/vignettes/quickstart.html) and [Cram Bandit](https://cran.r-project.org/web/packages/cramR/vignettes/cram_bandit.html).
+
+
+[fairmetrics](https://cran.r-project.org/package=fairmetrics) v1.0.3: Provides  functions for computing fairness metrics for machine learning and statistical models, including confidence intervals for each metric. The package supports the evaluation of group-level fairness criterion commonly used in fairness research, particularly in healthcare. See [Gao et al. (2024)](https://arxiv.org/abs/2406.09307) for background and the [vignette](https://cran.r-project.org/web/packages/fairmetrics/vignettes/fairmetrics.html) for an example.
+
+![](fairmetrics.png){fig-alt="Correlation plot"}
+
+
+
+[spareg](https://cran.r-project.org/package=spareg) v1.0.0: Implements a framework combining variable screening and random projection techniques for fitting ensembles of predictive generalized linear models to high-dimensional data.See [Parzer et al. (2024a)](https://arxiv.org/abs/2312.00130) and [Parzer et al. (2024b)](https://arxiv.org/abs/2410.00971) for details and the [vignette](https://cran.r-project.org/web/packages/spareg/vignettes/spareg.pdf) for package documentation.
+
+
+
 
 
 
@@ -111,14 +152,7 @@ editor: source
 
 
 
-:::
 
-
-::: {.column width="10%"}
-
-:::
-
-::: {.column width="45%"}
 
 ## Networks
 
@@ -128,12 +162,12 @@ editor: source
 [rcoins](https://cran.r-project.org/package=rcoins) v0.3.2: Provides functions to group lines that form naturally continuous lines in a spatial network. The algorithm  is based on the Continuity in Street Networks (COINS) method from [Tripathy et al. (2021)](https://journals.sagepub.com/doi/10.1177/2399808320967680) which identifies continuous "strokes" in the network as the line strings that maximize the angles between consecutive segments. See the [vignette](https://cran.r-project.org/web/packages/rcoins/vignettes/using-rcoins.html),
 
 ![](rcoins.png){fig-alt="Continuous streets on a map" }
-
-## Phylogentics
+## Phylogenetics
 
 [RRmorph](https://cran.r-project.org/package=RRmorph) v0.0.1: Provides a toolkit designed to investigate the effects of evolutionary rates and morphological convergence on phenotypes. See [Melchionna et al. (2024)](https://www.nature.com/articles/s42003-024-06710-8) for details and the [vignette](https://cran.r-project.org/web/packages/RRmorph/vignettes/vignette.html) for examples.
 
 ![](RRmorph.png){fig-alt="3D Brain renderings for compaaison"}
+
 
 ## Programming
 
@@ -141,14 +175,28 @@ editor: source
 
 ## Statistics
 
-[clustord](https://cran.r-project.org/package=clustord) v1.3.4: Provides functions for biclustering, row clustering and column clustering using the proportional odds model, ordered stereotype model or binary model for ordinal categorical data. See [Fernández et al. (2019)](https://link.springer.com/article/10.1007/s11634-018-0324-3) for the theory. There are seven vignettes incluting a [Tutorial](https://cran.r-project.org/web/packages/clustord/vignettes/clustordTutorial.pdf) and [Ordinal Models](https://cran.r-project.org/web/packages/clustord/vignettes/clustordOrdinalModels.pdf).
 
-![](clust.png){fig-alt="Row and column clustering"} 
+
+[cutpoint](https://cran.r-project.org/package=cutpoint) v1.0.0: Provides functions to estimate cutpoints of a metric or ordinal-scaled variable in the multivariable context of survival data or time-to-event data and visualize the cutpoint estimation process using contour plots, index plots, and spline plots.  See [Govindarajulu and Tarpey (2022)](https://www.tandfonline.com/doi/full/10.1080/02664763.2020.1846690) for the theory and [README](https://cran.r-project.org/web/packages/cutpoint/readme/README.html) for examples.
+
+![](cutpoint.png){fig-alt="Contor plot colored by AIC showing cutpoint"} 
+
+
+[densityratio](https://cran.r-project.org/package=densityratio) v0.2.1: Implements multiple non-parametric density ratio techniques  including unconstrained least-squares importance fitting, the Kullback-Leibler importance estimation procedure, spectral density ratio estimation, and more for comparing probability distributions. See [Sugiyama et al. (2012)](https://www.cambridge.org/core/books/density-ratio-estimation-in-machine-learning/BCBEA6AEAADD66569B1E85DDDEAA7648) for an overview of density ratio estimation. There are three vignettes including [density ratio](https://cran.r-project.org/web/packages/densityratio/vignettes/densityratio.html) and [High dimensional two sample testing](https://cran.r-project.org/web/packages/densityratio/vignettes/high-dim-testing.html).
+
+![](densityratio.png){fig-alt="Density ratio scatter plots"} 
 
 [ExtendedLaplace](https://cran.r-project.org/package=ExtendedLaplace) v0.1.6: Provides computational tools for working with the Extended Laplace distribution, including the probability density function, cumulative distribution function, quantile function, random variate generation. See [Saah & Kozubowski (2025)](https://www.sciencedirect.com/science/article/abs/pii/S0377042725001037?via%3Dihub) for the theory and the [vignette](https://cran.r-project.org/web/packages/ExtendedLaplace/vignettes/ExtendedLaplace-intro.html) for examples.
 
 
 [glmmsel](https://cran.r-project.org/package=glmmsel) v1/0/2": Provides functions to fit sparse generalised linear mixed models with $l_0$ regularisation. Selects fixed and random effects under the hierarchy constraint that fixed effects must precede random effects and currently supports Gaussian and binomial response families. See [Ptukhina & Garai (2024)](https://www.taylorfrancis.com/books/mono/10.1201/9780429092060/generalized-linear-mixed-models-walter-stroup-marina-ptukhina-julie-garai) and the [vignette](https://cran.r-project.org/web/packages/glmmsel/vignettes/vignette.html) for examples.
+
+[sanba](https://cran.r-project.org/package=sanba) v0.0.1: Provides functions to fit Bayesian nested mixture models based on shared *atoms* as described in [Denti et al. (2023)](https://www.tandfonline.com/doi/full/10.1080/01621459.2021.1933499) and  [D'Angelo and Denti (2024)](https://projecteuclid.org/journals/bayesian-analysis/volume--1/issue--1/A-Finite-Infinite-Shared-Atoms-Nested-Model-for-the-Bayesian/10.1214/24-BA1458.full). See [README](https://cran.r-project.org/web/packages/sanba/readme/README.html) for examples.
+
+
+[sfclust](https://cran.r-project.org/package=sfclust) v1.0.1: Implements Bayesian clustering of spatial regions with similar functional shapes using spanning trees and latent Gaussian models. The algorithm is based on [Zhong et al. (2024)](https://arxiv.org/abs/2407.12633). There are three vignettes including [Getting started](https://cran.r-project.org/web/packages/sfclust/vignettes/get-started.html) and [Additional features](https://cran.r-project.org/web/packages/sfclust/vignettes/additional-features.html).
+
+![](sfclust.png){fig-alt="Trends plot"} 
 
 
 [survregVB](https://cran.r-project.org/package=survregVB) v0.0.1: Implements Bayesian inference in accelerated failure time (AFT) models for right-censored survival times assuming a log-logistic distribution. See [Xian et al. (2024)](https://link.springer.com/article/10.1007/s11222-023-10365-6) and [Xian et al. (2024)](https://arxiv.org/abs/2408.00177) for background and the [vignette](https://cran.r-project.org/web/packages/survregVB/vignettes/survregVB.html) for examples.
@@ -162,8 +210,21 @@ editor: source
 
 ## Topological Data Analysis
 
+[phutil](https://cran.r-project.org/package=phutil) v0.0.1: Implements a class for hosting persistence data and provides functions to coerce existing data structures and functions to compute distances between persistence diagrams.  See [Bubenik et al. (2023)](https://link.springer.com/article/10.1007/s41468-022-00103-8) for a formal study of  bottleneck and Wasserstein distances and the vignettes: [The persistence class](https://cran.r-project.org/web/packages/phutil/vignettes/persistence-class.html) and [V]alidation and Benchmark of Wasserstein Distance](https://cran.r-project.org/web/packages/phutil/vignettes/validation-benchmark.html).
+
+![](phutil.png){fig-alt="Comparison of benchmarks"}
+
 [tdarec](https://CRAN.R-project.org/package=tdarec) v0.1.0 Provides functions and `tidyverse` recipies for vectorizing Topological Data Analysis persistence diagrams. See [Ali &al (2000)](https://arxiv.org/abs/2212.09703) for background and the [vignette](https://cran.r-project.org/web/packages/tdarec/vignettes/hyperparameter-tuning.html) for examples.
 
+
+## Utilities
+
+[bitfield](https://cran.r-project.org/package=bitfield) v0.6.1: Provides functions to capture the computational footprint of any model workflow or output by encoding computational decisions into sequences of bits or [bitfields](https://en.wikipedia.org/wiki/Bit_field) that are transformed to integer values. This allows storing information useful for documenting metadata, intermediate that accrue along a workflow, or output metrics. See [README](https://cran.r-project.org/web/packages/bitfield/readme/README.html).
+
+
+[trackopt](https://cran.r-project.org/package=trackopt) v0.1.0: Provides a function track to parameter value, gradient, and Hessian at each iteration of numerical optimizers. Useful for analyzing optimization progress, diagnosing issues, and studying convergence behavior. See [README](https://cran.r-project.org/web/packages/trackopt/readme/README.html) for examples.
+
+![](trackopt.png){fig-alt="nlm minimization of the track of Himmelbrau's function"}
 
 ## Visualization
 
