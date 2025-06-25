@@ -2,14 +2,14 @@
 title: "May 2025 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
 date: "2025-06-27"
-description: "An attempt to capture the depth and breadth of what's new on CRAN.  Visualization." - One Hundred seventy-six new packages madde it to CRAN in May. Here are my Top 40 picks in eighteen categories: Climate Science, Computational Methods, Data, Decision Analysis, Ecology, Epidemiology, Finance, Machine Learning, Mathematics, Medicine, Networks,  Statistics, Phylogenetics, Programming, Time Series, Topological Data Analysis, Utilities, and Visualization.
-image: "tabs.gif"
-image-alt: "Coastline reconstruction"
+description: "An attempt to capture the depth and breadth of what's new on CRAN. - One Hundred seventy-six new packages made it to CRAN in May. Here are my Top 40 picks in eighteen categories: Climate Science, Computational Methods, Data, Decision Analysis, Ecology, Epidemiology, Finance, Genomics, Machine Learning, Medicine, Networks, Phylogenetics, Programming, Statistics, Time Series, Topological Data Analysis, Utilities, and Visualization."
+image: "Genco.png"
+image-alt: "GENCODE Mouse M37"
 categories: "Top 40"
 editor: source
 ---
 
-One Hundred seventy-six new packages madde it to CRAN in May. Here are my Top 40 picks in eighteen categories: Climate Science, Computational Methods, Data, Decision Analysis, Ecology, Epidemiology, Finance, Machine Learning, Mathematics, Medicine, Networks,  Statistics, Phylogenetics, Programming, Time Series, Topological Data Analysis, Utilities, and Visualization.
+One Hundred seventy-six new packages made it to CRAN in May. Here are my Top 40 picks in eighteen categories: Climate Science, Computational Methods, Data, Decision Analysis, Ecology, Epidemiology, Finance, Genomics, Machine Learning, Medicine, Networks, Phylogenetics, Programming, Statistics, Time Series, Topological Data Analysis, Utilities, and Visualization.
 
 
 :::: {.columns}
@@ -33,7 +33,7 @@ One Hundred seventy-six new packages madde it to CRAN in May. Here are my Top 40
 
 ![](dspline.png){fig-alt="Plot of discrete splines"}
 
-[RANSAC](https://cran.r-project.org/package=RANSAC) v0.1.0: Provides functions to fit both linear and non-linear models using the RANSAC (RANdom SAmple Consensus) algorithm, which is robust to outliers. See [Fischler & Bolles (1981)](https://dl.acm.org/doi/pdf/10.1145/358669.358692) fora description of the algorithm and the [vignette]() for a a brief introducion.
+[RANSAC](https://cran.r-project.org/package=RANSAC) v0.1.0: Provides functions to fit both linear and non-linear models using the RANSAC (RANdom SAmple Consensus) algorithm, which is robust to outliers. See [Fischler & Bolles (1981)](https://dl.acm.org/doi/pdf/10.1145/358669.358692) fora description of the algorithm and the [vignette]() for a a brief introduction.
 
 
 
@@ -72,9 +72,9 @@ One Hundred seventy-six new packages madde it to CRAN in May. Here are my Top 40
 ![](fastei.png){fig-alt="Estimated probabilities" }
 
 
-[fireexposuR](https://cran.r-project.org/package=fireexposuR) v1.1.0: Provides methods for computing and visualizing wildfire igntion exposure and directional vulnerability. See [Beverly et al. (2010)](https://www.publish.csiro.au/wf/WF09071) and [Beverly and Forbes (2023)](https://link.springer.com/article/10.1007/s11069-023-05885-3) for background and methodology and the [Introduction](https://cran.r-project.org/web/packages/fireexposuR/vignettes/fireexposuR.html) to get started. 
+[fireexposuR](https://cran.r-project.org/package=fireexposuR) v1.1.0: Provides methods for computing and visualizing wildfire ignition exposure and directional vulnerability. See [Beverly et al. (2010)](https://www.publish.csiro.au/wf/WF09071) and [Beverly and Forbes (2023)](https://link.springer.com/article/10.1007/s11069-023-05885-3) for background and methodology and the [Introduction](https://cran.r-project.org/web/packages/fireexposuR/vignettes/fireexposuR.html) to get started. 
 
-[SeaGraphs](https://cran.r-project.org/package=SeaGraphs) v0.1.2: Provides functions to transform sea currents to connectivity data. Two files of horizontal and vertical currents flows are transformed into connectivity data in the form of shapefile network. See [Nagkoulis et al. (2025)](https://www.sciencedirect.com/science/article/pii/S2352340924012307?via%3Dihub) for an abblication and the [vignette](https://cran.r-project.org/web/packages/SeaGraphs/vignettes/Introduction.html) for an introduction.
+[SeaGraphs](https://cran.r-project.org/package=SeaGraphs) v0.1.2: Provides functions to transform sea currents to connectivity data. Two files of horizontal and vertical currents flows are transformed into connectivity data in the form of shapefile network. See [Nagkoulis et al. (2025)](https://www.sciencedirect.com/science/article/pii/S2352340924012307?via%3Dihub) for an application and the [vignette](https://cran.r-project.org/web/packages/SeaGraphs/vignettes/Introduction.html) for an introduction.
 
 ![](SeaGraphs.png){fig-alt="Plots of Current Components"}
 
@@ -94,7 +94,7 @@ One Hundred seventy-six new packages madde it to CRAN in May. Here are my Top 40
 
 ## Finance
 
-[TVMVP](https://cran.r-project.org/package=TVMVP) v1.0.4: Offers functions to estimate the time-dependent covariance matrix of returns for portfolio optimization, methods for determining the optimal number of factors to be used in the covariance estimation, a hypothesis test of time-varying covariance,  functions for portfolio optimization and rolling window evaluation. See [Su and Wang (2017)](https://www.sciencedirect.com/science/article/abs/pii/S0304407617300143?via%3Dihub),  [Fan et al. (2024)](https://www.sciencedirect.com/science/article/abs/pii/S0304407622001646?via%3Dihub), and [Chen et al. (2019)](https://www.sciencedirect.com/science/article/abs/pii/S0304407619300806?via%3Dihub) for background. THere are two vignettes: [Overview and Getting Started Guide](https://cran.r-project.org/web/packages/TVMVP/vignettes/TVMVP_overview.html) and [Master's Thesis](https://cran.r-project.org/web/packages/TVMVP/vignettes/thesis.pdf).
+[TVMVP](https://cran.r-project.org/package=TVMVP) v1.0.4: Offers functions to estimate the time-dependent covariance matrix of returns for portfolio optimization, methods for determining the optimal number of factors to be used in the covariance estimation, a hypothesis test of time-varying covariance,  functions for portfolio optimization and rolling window evaluation. See [Su and Wang (2017)](https://www.sciencedirect.com/science/article/abs/pii/S0304407617300143?via%3Dihub),  [Fan et al. (2024)](https://www.sciencedirect.com/science/article/abs/pii/S0304407622001646?via%3Dihub), and [Chen et al. (2019)](https://www.sciencedirect.com/science/article/abs/pii/S0304407619300806?via%3Dihub) for background. There are two vignettes: [Overview and Getting Started Guide](https://cran.r-project.org/web/packages/TVMVP/vignettes/TVMVP_overview.html) and [Master's Thesis](https://cran.r-project.org/web/packages/TVMVP/vignettes/thesis.pdf).
 
 
 
@@ -189,7 +189,7 @@ One Hundred seventy-six new packages madde it to CRAN in May. Here are my Top 40
 [ExtendedLaplace](https://cran.r-project.org/package=ExtendedLaplace) v0.1.6: Provides computational tools for working with the Extended Laplace distribution, including the probability density function, cumulative distribution function, quantile function, random variate generation. See [Saah & Kozubowski (2025)](https://www.sciencedirect.com/science/article/abs/pii/S0377042725001037?via%3Dihub) for the theory and the [vignette](https://cran.r-project.org/web/packages/ExtendedLaplace/vignettes/ExtendedLaplace-intro.html) for examples.
 
 
-[glmmsel](https://cran.r-project.org/package=glmmsel) v1/0/2": Provides functions to fit sparse generalised linear mixed models with $l_0$ regularisation. Selects fixed and random effects under the hierarchy constraint that fixed effects must precede random effects and currently supports Gaussian and binomial response families. See [Ptukhina & Garai (2024)](https://www.taylorfrancis.com/books/mono/10.1201/9780429092060/generalized-linear-mixed-models-walter-stroup-marina-ptukhina-julie-garai) and the [vignette](https://cran.r-project.org/web/packages/glmmsel/vignettes/vignette.html) for examples.
+[glmmsel](https://cran.r-project.org/package=glmmsel) v1/0/2": Provides functions to fit sparse generalized linear mixed models with $l_0$ regularization. Selects fixed and random effects under the hierarchy constraint that fixed effects must precede random effects and currently supports Gaussian and binomial response families. See [Ptukhina & Garai (2024)](https://www.taylorfrancis.com/books/mono/10.1201/9780429092060/generalized-linear-mixed-models-walter-stroup-marina-ptukhina-julie-garai) and the [vignette](https://cran.r-project.org/web/packages/glmmsel/vignettes/vignette.html) for examples.
 
 [sanba](https://cran.r-project.org/package=sanba) v0.0.1: Provides functions to fit Bayesian nested mixture models based on shared *atoms* as described in [Denti et al. (2023)](https://www.tandfonline.com/doi/full/10.1080/01621459.2021.1933499) and  [D'Angelo and Denti (2024)](https://projecteuclid.org/journals/bayesian-analysis/volume--1/issue--1/A-Finite-Infinite-Shared-Atoms-Nested-Model-for-the-Bayesian/10.1214/24-BA1458.full). See [README](https://cran.r-project.org/web/packages/sanba/readme/README.html) for examples.
 
@@ -210,7 +210,7 @@ One Hundred seventy-six new packages madde it to CRAN in May. Here are my Top 40
 
 ## Topological Data Analysis
 
-[phutil](https://cran.r-project.org/package=phutil) v0.0.1: Implements a class for hosting persistence data and provides functions to coerce existing data structures and functions to compute distances between persistence diagrams.  See [Bubenik et al. (2023)](https://link.springer.com/article/10.1007/s41468-022-00103-8) for a formal study of  bottleneck and Wasserstein distances and the vignettes: [The persistence class](https://cran.r-project.org/web/packages/phutil/vignettes/persistence-class.html) and [V]alidation and Benchmark of Wasserstein Distance](https://cran.r-project.org/web/packages/phutil/vignettes/validation-benchmark.html).
+[phutil](https://cran.r-project.org/package=phutil) v0.0.1: Implements a class for hosting persistence data and provides functions to coerce existing data structures and functions to compute distances between persistence diagrams.  See [Bubenik et al. (2023)](https://link.springer.com/article/10.1007/s41468-022-00103-8) for a formal study of  bottleneck and Wasserstein distances and the vignettes: [The persistence class](https://cran.r-project.org/web/packages/phutil/vignettes/persistence-class.html) and [Validation and Benchmark of Wasserstein Distance](https://cran.r-project.org/web/packages/phutil/vignettes/validation-benchmark.html).
 
 ![](phutil.png){fig-alt="Comparison of benchmarks"}
 
