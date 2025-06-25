@@ -21,7 +21,7 @@ One Hundred seventy-six new packages made it to CRAN in May. Here are my Top 40 
 
 ## Climate Science
 
-[forcis](https://cran.r-project.org/package=forcis) v1/0/1: Provides an interface to the [FORCIS Working Group](https://www.fondationbiodiversite.fr/en/the-frb-in-action/programs-and-projects/le-cesab/forcis) database [Chaabane et al. (2024)](https://zenodo.org/records/12724286) on global foraminifera distribution. There are six vignettes including [Getting Started](https://cran.r-project.org/web/packages/forcis/vignettes/forcis.html) and [Data Visualization](https://cran.r-project.org/web/packages/forcis/vignettes/data-visualization.html).
+[forcis](https://cran.r-project.org/package=forcis) v1.0.1: Provides an interface to the [FORCIS Working Group](https://www.fondationbiodiversite.fr/en/the-frb-in-action/programs-and-projects/le-cesab/forcis) database [Chaabane et al. (2024)](https://zenodo.org/records/12724286) on global foraminifera distribution. There are six vignettes including [Getting Started](https://cran.r-project.org/web/packages/forcis/vignettes/forcis.html) and [Data Visualization](https://cran.r-project.org/web/packages/forcis/vignettes/data-visualization.html).
 
 
 
@@ -37,13 +37,13 @@ One Hundred seventy-six new packages made it to CRAN in May. Here are my Top 40 
 
 
 
-[wex](https://cran.r-project.org/package=wex) v0.1.0: Provides functions to compute the exact observation weights for the Kalman filter and smoother, based on the method described in [Koopman and Harvey (2003)](https://www.sciencedirect.com/science/article/abs/pii/S0165188902000611) and supports in-depth exploration of state-space models. See [README](https://cran.r-project.org/web/packages/wex/readme/README.html) for examples.
+[wex](https://cran.r-project.org/package=wex) v0.1.0: Provides functions to compute the exact observation weights for the Kalman filter and smoother based on the method described in [Koopman and Harvey (2003)](https://www.sciencedirect.com/science/article/abs/pii/S0165188902000611) and supports in-depth exploration of state-space models. See [README](https://cran.r-project.org/web/packages/wex/readme/README.html) for examples.
 
 ![](wex.png){fig-alt="Smoothed and filtered time series plot"}
 
 ## Data
 
-[CardioDataSets](https://cran.r-project.org/package=CardioDataSets) v0.1.0: Offers a diverse collection of datasets focused on cardiovascular and heart disease research, including heart failure, myocardial infarction, aortic dissection, transplant outcomes, cardiovascular risk factors, drug efficacy, and mortality trends. See the [vignette](https://cran.r-project.org/web/packages/CardioDataSets/vignettes/Introduction_to_CardioDataSets.html)
+[CardioDataSets](https://cran.r-project.org/package=CardioDataSets) v0.1.0: Offers a diverse collection of datasets focused on cardiovascular and heart disease research, including heart failure, myocardial infarction, aortic dissection, transplant outcomes, cardiovascular risk factors, drug efficacy, and mortality trends. See the [vignette](https://cran.r-project.org/web/packages/CardioDataSets/vignettes/Introduction_to_CardioDataSets.html).
 
 
 ![](CardioDS.png){fig-alt="Distribution of Heart Diease by Age and Sex"}
@@ -74,23 +74,23 @@ One Hundred seventy-six new packages made it to CRAN in May. Here are my Top 40 
 
 [fireexposuR](https://cran.r-project.org/package=fireexposuR) v1.1.0: Provides methods for computing and visualizing wildfire ignition exposure and directional vulnerability. See [Beverly et al. (2010)](https://www.publish.csiro.au/wf/WF09071) and [Beverly and Forbes (2023)](https://link.springer.com/article/10.1007/s11069-023-05885-3) for background and methodology and the [Introduction](https://cran.r-project.org/web/packages/fireexposuR/vignettes/fireexposuR.html) to get started. 
 
-[SeaGraphs](https://cran.r-project.org/package=SeaGraphs) v0.1.2: Provides functions to transform sea currents to connectivity data. Two files of horizontal and vertical currents flows are transformed into connectivity data in the form of shapefile network. See [Nagkoulis et al. (2025)](https://www.sciencedirect.com/science/article/pii/S2352340924012307?via%3Dihub) for an application and the [vignette](https://cran.r-project.org/web/packages/SeaGraphs/vignettes/Introduction.html) for an introduction.
+[SeaGraphs](https://cran.r-project.org/package=SeaGraphs) v0.1.2: Provides functions to transform sea current data to connectivity data. Two files of horizontal and vertical currents flows are transformed into connectivity data in the form of shapefile network. See [Nagkoulis et al. (2025)](https://www.sciencedirect.com/science/article/pii/S2352340924012307?via%3Dihub) for an application and the [vignette](https://cran.r-project.org/web/packages/SeaGraphs/vignettes/Introduction.html) for an introduction.
 
 ![](SeaGraphs.png){fig-alt="Plots of Current Components"}
 
-[QuAnTeTrack](https://cran.r-project.org/package=QuAnTeTrack) v0.1.0: Provides a structured  workflow for analyzing trackway data, facilitating the assessment of paleoecological and paleoethological hypotheses that integrates various functions for data digitization, loading, exploratory analysis, statistical testing, simulation, similarity assessment, intersection detection, and clustering. See [Alexander 1976](https://www.nature.com/articles/261129a0) and [Rohlf (2009)](https://sbmorphometrics.org/) for background and the [vignette]() for examples.
+[QuAnTeTrack](https://cran.r-project.org/package=QuAnTeTrack) v0.1.0: Provides a structured  workflow for analyzing trackway data, facilitating the assessment of paleoecological and paleoethological hypotheses, and also provides functions for data digitization, loading, exploratory analysis, statistical testing, simulation, similarity assessment, intersection detection, and clustering. See [Alexander 1976](https://www.nature.com/articles/261129a0) and [Rohlf (2009)](https://sbmorphometrics.org/) for background and the [vignette]() for examples.
 
 ![](QuAnTe.png){fig-alt="Plot of trajectories classified by velocity"}
 
 ## Epidemiology 
 
-[DESA](https://cran.r-project.org/package=DESA) v1.0.0: Provides a  framework for early epidemic detection through school absenteeism surveillance via three core  methods (1) simulation of epidemic spread, and resulting school absenteeism patterns; (2) surveillance models that generate alerts based on absenteeism data and (3) evaluation of alert timeliness and accuracy to optimize model parameters. See [Vanderkruk et al. (2023)]() and [Ward et al. (2019)]() for background on the methods, and [README](https://cran.r-project.org/web/packages/DESA/readme/README.html) for examples.
+[DESA](https://cran.r-project.org/package=DESA) v1.0.0: Provides a  framework for early epidemic detection through school absenteeism surveillance via three core methods: (1) simulation of epidemic spread, and resulting school absenteeism patterns, (2) surveillance models that generate alerts based on absenteeism data, and (3) evaluation of alert timeliness and accuracy to optimize model parameters. See [Vanderkruk et al. (2023)](https://bmcpublichealth.biomedcentral.com/articles/10.1186/s12889-023-15747-z) and [Ward et al. (2019)](https://bmcpublichealth.biomedcentral.com/articles/10.1186/s12889-019-7521-7) for background on the methods, and [README](https://cran.r-project.org/web/packages/DESA/readme/README.html) for examples.
 
 ![](DESA.png){fig-alt="Plots of infections and reported cases"}
 
-[dlmwwbe](https://cran.r-project.org/package=dlmwwbe) v0.1.0: Implements dynamic linear models outlined in[ ]Shumway and Stoffer (2025)](https://link.springer.com/book/10.1007/978-3-031-70584-7) for wastewater modeling. See the [vignette](https://cran.r-project.org/web/packages/dlmwwbe/vignettes/my-vignette.html)
+[dlmwwbe](https://cran.r-project.org/package=dlmwwbe) v0.1.0: Implements dynamic linear models outlined in [Shumway and Stoffer (2025)](https://link.springer.com/book/10.1007/978-3-031-70584-7) for wastewater modeling. See the [vignette](https://cran.r-project.org/web/packages/dlmwwbe/vignettes/my-vignette.html)
 
-![](dlmwwbe.png){fig-alt=" Smoothed wastewater plot"}
+![](dlmwwbe.png){fig-alt="Smoothed wastewater plot"}
 
 ## Finance
 
@@ -109,7 +109,7 @@ One Hundred seventy-six new packages made it to CRAN in May. Here are my Top 40 
 ![](Genco.png){fig-alt="GENCODE Mouse M37"}
 
 
-[HTGM3D](https://cran.r-project.org/package=HTGM3D) v1.0: Provides tools for working with and visualizing the three gene ontologies based on biological process (BP), molecular function (MF), and cellular component (CC, i.e., subcellular localization) developed by the [Gene Ontology (GO) Consortium](https://geneontology.org/). See Zeeberg et al. (2003)](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2003-4-4-r28) for background and the [vignette](https://cran.r-project.org/web/packages/HTGM3D/vignettes/HTGM3D.html) for examples.
+[HTGM3D](https://cran.r-project.org/package=HTGM3D) v1.0: Provides tools for working with and visualizing the three gene ontologies based on biological process (BP), molecular function (MF), and cellular component (CC, i.e., subcellular localization) developed by the [Gene Ontology (GO) Consortium](https://geneontology.org/). See [Zeeberg et al. (2003)](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2003-4-4-r28) for background and the [vignette](https://cran.r-project.org/web/packages/HTGM3D/vignettes/HTGM3D.html) for examples.
 
 
 ![](HTGM3D.jpeg){fig-alt="Annotated HTGM3D 3D graphic for cluster52 gene list" }
@@ -135,7 +135,7 @@ One Hundred seventy-six new packages made it to CRAN in May. Here are my Top 40 
 
 
 
-[spareg](https://cran.r-project.org/package=spareg) v1.0.0: Implements a framework combining variable screening and random projection techniques for fitting ensembles of predictive generalized linear models to high-dimensional data.See [Parzer et al. (2024a)](https://arxiv.org/abs/2312.00130) and [Parzer et al. (2024b)](https://arxiv.org/abs/2410.00971) for details and the [vignette](https://cran.r-project.org/web/packages/spareg/vignettes/spareg.pdf) for package documentation.
+[spareg](https://cran.r-project.org/package=spareg) v1.0.0: Implements a framework combining variable screening and random projection techniques for fitting ensembles of predictive generalized linear models to high-dimensional data. See [Parzer et al. (2024a)](https://arxiv.org/abs/2312.00130) and [Parzer et al. (2024b)](https://arxiv.org/abs/2410.00971) for details and the [vignette](https://cran.r-project.org/web/packages/spareg/vignettes/spareg.pdf) for package documentation.
 
 
 
@@ -210,7 +210,7 @@ One Hundred seventy-six new packages made it to CRAN in May. Here are my Top 40 
 
 ## Topological Data Analysis
 
-[phutil](https://cran.r-project.org/package=phutil) v0.0.1: Implements a class for hosting persistence data and provides functions to coerce existing data structures and functions to compute distances between persistence diagrams.  See [Bubenik et al. (2023)](https://link.springer.com/article/10.1007/s41468-022-00103-8) for a formal study of  bottleneck and Wasserstein distances and the vignettes: [The persistence class](https://cran.r-project.org/web/packages/phutil/vignettes/persistence-class.html) and [Validation and Benchmark of Wasserstein Distance](https://cran.r-project.org/web/packages/phutil/vignettes/validation-benchmark.html).
+[phutil](https://cran.r-project.org/package=phutil) v0.0.1: Implements a class for hosting persistence data and provides functions to coerce existing data structures, and functions to compute distances between persistence diagrams.  See [Bubenik et al. (2023)](https://link.springer.com/article/10.1007/s41468-022-00103-8) for a formal study of  bottleneck and Wasserstein distances and the vignettes: [The persistence class](https://cran.r-project.org/web/packages/phutil/vignettes/persistence-class.html) and [Validation and Benchmark of Wasserstein Distance](https://cran.r-project.org/web/packages/phutil/vignettes/validation-benchmark.html).
 
 ![](phutil.png){fig-alt="Comparison of benchmarks"}
 
@@ -228,7 +228,7 @@ One Hundred seventy-six new packages made it to CRAN in May. Here are my Top 40 
 
 ## Visualization
 
-[gghexsize](https://cran.r-project.org/package=gghexsize) v0.1.0: Extends `ggplot2` to create heatmaps with the `size` aesthetic to variably size each hexagon.
+[gghexsize](https://cran.r-project.org/package=gghexsize) v0.1.0: Extends `ggplot2` to create heatmaps with the `size` aesthetic to vary hexagon size.
 
 ![](gghexsize.png){fig-alt="Plot with varying hexsizes"}
 
