@@ -1,0 +1,94 @@
+---
+title: "June 2025 Top 40 New CRAN Packages"
+author: "Joseph Rickert"
+date: 2025-07-27
+description: "An attempt to capture the depth and breadth of what's new on CRAN."
+image: ".png"
+image-alt: ".png"
+categories: "Top 40"
+editor: source
+---
+
+In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 40 picks in eighteen categories: Agriculture, Biology, Computational Methods, Data, Ecology, Epidemiology, Genomics, Healthcare, Health Technology Assessment, Machine Learning, Medicine, Networks, Statistics, Time Series, Utilities, and Visualization.
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+
+![](.png){fig-alt=""}
+
+### AI
+
+[statlingua](https://cran.r-project.org/package=statlingua) v0.1.0: Provides functions to transform complex statistical output into straightforward, understandable, and context-aware natural language descriptions using Large Language Models (LLMs).  It works with [OpenAI](https://openai.com/), [Google AI Studio](https://aistudio.google.com/), and [Anthropic](https://www.anthropic.com/). See the [vignette](https://cran.r-project.org/web/packages/statlingua/vignettes/statlingua.html) for examples.
+
+
+[vitals](https://cran.r-project.org/package=vitals) v0.1.0: Provides a port of `Inspect`, a widely adopted `Python` framework for large language model evaluation that supports prompt engineering, tool usage, multi-turn dialog, and model graded evaluations. It is pecifically aimed at `ellmer` users who want to measure the effectiveness of their LLM based products. There are two vignettes [Getting Started](https://cran.r-project.org/web/packages/vitals/vignettes/vitals.html) and [Writing Evals](https://cran.r-project.org/web/packages/vitals/vignettes/writing-evals.html).
+
+### Chess
+
+[chess2plyrs](https://cran.r-project.org/package=chess2plyrs) v0.3.0: Implements a chess program based on the [Minimax](https://www.chessprogramming.org/Minimax) chess engine which allows users to create games, read and write [FEN](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation#:~:text=Forsyth%E2%80%93Edwards%20Notation%20(FEN),Scottish%20newspaper%20journalist%20David%20Forsyth.) and more. See the [vignette](https://cran.r-project.org/web/packages/chess2plyrs/vignettes/chess2plyrs.html) for examples.
+
+![](chess.png){fig-alt="Plot of chess board"}
+
+### Computational Methods
+
+[tvdenoising](https://cran.r-project.org/package=tvdenoising) v1.0.0: Implements total variation denoising which can be used to approximate a given sequence of noisy observations by a piecewise constant sequence, with adaptively-chosen break points. See [Johnson (2013)](https://www.tandfonline.com/doi/full/10.1080/10618600.2012.681238) and [README](https://cran.r-project.org/web/packages/tvdenoising/readme/README.html) for anexample.
+
+![](tvdenoising.png){fig-alt="Plot of function with approximating points"}
+
+### Finance
+
+[fEGarch](https://cran.r-project.org/package=fEGarch) v1.01: Provides functions to implement Implement and fit a variety of short-memory and long-memory  models from a very broad family of exponential generalized autoregressive conditional heteroskedasticity EGARCH models, including MEGARCH, modified EGARCH, FIEGARCH, fractionally integrated EGARCH, and FIMLog-GARCH, fractionally integrated modulus Log-GARCH. Look [here](https://econpapers.repec.org/paper/pdnciepap/156.htm) for background and see [README](https://cran.r-project.org/web/packages/fEGarch/readme/README.html) for examples.
+
+![](fEGarch.png){fig-alt="Plots of various Garch models"}
+
+
+### Mathematics
+
+[polarzonoid](https://cran.r-project.org/package=polarzonoid) v0.1-2: Implements some applications of the the polar zonoid, a straightforward generalization of the polar zonohedron in dimension 3 and a root solver for triginometric polynomials. There are five vignettes including a [User Guide](https://cran.r-project.org/web/packages/polarzonoid/vignettes/polarzonoid-guide.html) and [Real Projective Spaces and 3x3 Rotation Matrices](https://cran.r-project.org/web/packages/polarzonoid/vignettes/rotations.html). 
+
+![](polarzonoid.png){fig-alt="when 𝑛=1, ∂𝑍1 is homeomorphic to 𝕊2and it has cusps at 2 “poles” corresponding to the 2 points in 𝐴0."}
+
+
+
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+
+
+### Machine Learning
+
+
+### Statistics
+
+[aamatch](https://cran.r-project.org/package=aamatch) v0.3.7: Implements a simple version of multivariate matching using a propensity score, near-exact matching, near-fine balance, and robust Mahalanobis distance matching. You specify the variables, and the program does everything else. See [Rosenbaum (2020)](https://www.annualreviews.org/content/journals/10.1146/annurev-statistics-031219-041058) for details.
+
+
+[bayesmsm](https://cran.r-project.org/package=bayesmsm) v1.0.0: Implements Bayesian marginal structural models for causal effect estimation with time-varying treatment and confounding and includes an extension for informative right censoring. [See Saarela (2015)](https://academic.oup.com/biometrics/article-abstract/71/2/279/7511423?redirectedFrom=fulltext&login=false) for methodological details. There are two vignettes giving examples [with right censoring](https://cran.r-project.org/web/packages/bayesmsm/vignettes/bayesmsm-censoring.html) and [without right censoring](https://cran.r-project.org/web/packages/bayesmsm/vignettes/bayesmsm-nocensoring.html).
+
+
+![](bayesmsm.png){fig-alt="Distribution of estimated treatment effects"}
+
+[survextrap](https://cran.r-project.org/package=survextrap) v1.0: Provides functions for survival analysis using a Bayesian model for individual-level right-censored data. There are several options for describing hazard functions which are modeled with M-splines. Priors can be customised and calibrated to substantive beliefs. Posterior distributions are estimated using `Stan`. See [Jackson (2023)](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-023-02094-1) for details. There are three vignettes including [Examples](https://cran.r-project.org/web/packages/survextrap/vignettes/examples.html) and [Priors](https://cran.r-project.org/web/packages/survextrap/vignettes/priors.html).
+
+![](survextrap.png){fig-alt="Survival curves showing spline knots"}
+
+### Utilities
+
+[quickr](https://cran.r-project.org/package=quickr) v0.1.0: Provides compiled R functions annotated with type and shape declarations for fast performance with robust runtime type checking. Supports both just-in-time (JIT) and ahead-of-time (AOT) compilation. Compilation is performed by lowering R code to Fortran. See [README](https://cran.r-project.org/web/packages/quickr/readme/README.html) forexamples.
+
+
+:::
+
+
+
+
+
+::::
