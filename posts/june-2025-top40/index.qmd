@@ -37,11 +37,48 @@ In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 
 
 ![](tvdenoising.png){fig-alt="Plot of function with approximating points"}
 
+[wideRhino](https://cran.r-project.org/package=wideRhino) v1.0.2: Provides functions to construct anonical Variate Analysis Biplot via the Generalised Singular Value Decomposition, for cases when the number of samples is less than the number of variables. For more information on biplots, see [Gower et al. (2011)](https://onlinelibrary.wiley.com/doi/book/10.1002/9780470973196), for more information on the generalised singular value decomposition, see [Edelman & Wang  (2020)](https://epubs.siam.org/doi/10.1137/18M1234412), and see [README](https://cran.r-project.org/web/packages/wideRhino/readme/README.html) for examples.
+
+![](wideRhino.png){fig-alt="CVA biplot"}
+### Data
+
+[ecoteach](https://cran.r-project.org/package=ecoteach) v0.1.0: A collection of curated educational datasets for teaching ecology and agriculture concepts. Includes data on wildlife monitoring, plant treatments, and ecological observations with documentation and examples for educational use. All datasets are derived from published scientific studies and are available under CC0 or compatible licenses. See the [vignette](https://cran.r-project.org/web/packages/ecoteach/vignettes/introduction-to-ecoteach.html).
+
+[jpinfect](https://cran.r-project.org/package=jpinfect) v0.1.2: Provides functions to download and post process the infectious disease case data from [Japan Institute for Health Security](https://id-info.jihs.go.jp/). See the [vignette](https://cran.r-project.org/web/packages/jpinfect/vignettes/jpinfect.html) to get started.
+
+[LBDiscover](https://cran.r-project.org/package=LBDiscover0) v0.1.0: Provides a suite of tools for literature-based discovery in biomedical research. Provides functions for retrieving scientific articles from PubMed and other NCBI databases, extracting biomedical entities (diseases, drugs, genes, etc.), building co-occurrence networks, and applying various discovery models. See [README](https://cran.r-project.org/web/packages/LBDiscover/readme/README.html) to get started.
+
+[Rdatasets](https://cran.r-project.org/package=Rdatasets) v0.0.1: Provides functions to search, download, and view documentation for thousands of datasets from R packages included in the [Rdatasets archive](https://vincentarelbundock.github.io/Rdatasets/). Datasets are available in both CSV and Parquet formats. See [README](https://cran.r-project.org/web/packages/Rdatasets/readme/README.html) to get started.
+
+### Decision Analysis
+
+[RMCDA](https://cran.r-project.org/package=RMCDA) v0.3: Provides toosl to support decision making involving multiple criteria. See [Najafi & Mirzaei (2025)](https://www.sciencedirect.com/science/article/pii/S2665963825000223?via%3Dihub) and the [vignette](https://cran.r-project.org/web/packages/RMCDA/vignettes/RMCDA_guidelines.html).
+
+### Ecology
+
+[movedesign](https://cran.r-project.org/package=movedesign) v0.3.1: Implements a toolbox and `shiny` application to help researchers design movement ecology studies, focusing on two key objectives: estimating home range areas, and estimating fine-scale movement behavior, specifically speed and distance traveled. See [Silva et al. (2023)](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.14153) for background. There are three vignetes including [Get started]() and [Tutorial](https://cran.r-project.org/web/packages/movedesign/vignettes/tutorial_pop.html).
+
+![](movedesign.png){fig-alt="Sample plots"}
+
+### Epidemiology
+
+
+[infectiousR](https://cran.r-project.org/package=infectiousR) v0.1.0: Provides functions to access real-time infectious disease data from the [disease.sh API](https://disease.sh/), including global COVID-19 data, vaccination coverage, influenza-like illness data from CDC, and more. It also includes curated datasets on a variety of infectious disease. See the [vignette](https://cran.r-project.org/web/packages/infectiousR/vignettes/infectiousR_vignette.html) to get started.
+
+![](infectiousR.png){fig-alt="Covid-19 data from Latin America"}
+
+[rifttable](https://cran.r-project.org/package=rifttable) v0.7.1: Provides functions to help automate the production of reproducible, presentation-ready tables for epidemiologists. Users specifie the design of the table, with rows and/or columns defined by exposures, effect modifiers, and estimands. See [Rothman (2017)](https://link.springer.com/article/10.1007/s10654-017-0314-3) for background. There are six vignettes including [Get started](https://cran.r-project.org/web/packages/rifttable/vignettes/rifttable.html) and [Survival outcomes](https://cran.r-project.org/web/packages/rifttable/vignettes/estimators_survival.html).
+
 ### Finance
 
 [fEGarch](https://cran.r-project.org/package=fEGarch) v1.01: Provides functions to implement Implement and fit a variety of short-memory and long-memory  models from a very broad family of exponential generalized autoregressive conditional heteroskedasticity EGARCH models, including MEGARCH, modified EGARCH, FIEGARCH, fractionally integrated EGARCH, and FIMLog-GARCH, fractionally integrated modulus Log-GARCH. Look [here](https://econpapers.repec.org/paper/pdnciepap/156.htm) for background and see [README](https://cran.r-project.org/web/packages/fEGarch/readme/README.html) for examples.
 
 ![](fEGarch.png){fig-alt="Plots of various Garch models"}
+### Linguistics
+
+[tidynorm](https://cran.r-project.org/package=tidynorm) v0.3.0: Implements tidy speaker vowel normalization and includes generic functions for defining new normalization methods for points, formant tracks, and Discrete Cosine Transform coefficients, as well as convenience functions implementing established normalization methods. See [Johnson (2020)](https://pubs.aip.org/asa/jasa/article-abstract/49/2B/606/747097/Classification-of-Russian-Vowels-Spoken-by?redirectedFrom=fulltext), [Lobanov (1971)](https://sites.ualberta.ca/~tnearey/Nearey1978_compressed.pdf), and [Watt & Fabricius (2002)](https://www.latl.leeds.ac.uk/article/evaluation-of-a-technique-for-improving-the-mapping-of-multiple-speakers-vowel-spaces-in-the-f1-f2-plane/) for the theory. There are five vignettes including [Normalization Methods](https://cran.r-project.org/web/packages/tidynorm/vignettes/norm-methods.html) and [Normalization Overview](https://cran.r-project.org/web/packages/tidynorm/vignettes/normalization-overview.html).
+
+![](tidynorm.png){fig-alt="Plot of vowel space for different speakers"}
 
 
 ### Mathematics
@@ -80,11 +117,22 @@ In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 
 
 ![](survextrap.png){fig-alt="Survival curves showing spline knots"}
 
+### Time Series
+
 ### Utilities
 
 [quickr](https://cran.r-project.org/package=quickr) v0.1.0: Provides compiled R functions annotated with type and shape declarations for fast performance with robust runtime type checking. Supports both just-in-time (JIT) and ahead-of-time (AOT) compilation. Compilation is performed by lowering R code to Fortran. See [README](https://cran.r-project.org/web/packages/quickr/readme/README.html) forexamples.
 
 
+### Visualization
+
+[fractalforest](https://cran.r-project.org/package=fractalforest) v1.0.1: Provides functions to create and visualize fractal trees and fractal forests, based on the Lindenmayer system (L-system). For more details see [Lindenmayer (1968a)](https://www.sciencedirect.com/science/article/abs/pii/0022519368900799?via%3Dihub) and [Lindenmayer (1968b)](https://www.sciencedirect.com/science/article/abs/pii/0022519368900805?via%3Dihub). There is an [Introduction](https://cran.r-project.org/web/packages/fractalforest/vignettes/intro-to-fractal-forest.html) and a vignette on [customizing fractal trees](https://cran.r-project.org/web/packages/fractalforest/vignettes/customizing-fractal-trees.html).
+
+![](fractalforest.png){fig-alt="Fractal based rendering of trees"}
+
+[ggtime](https://cran.r-project.org/package=ggtime) v0.1.0: Extends `ggplot2` by implementing a grammar of temporal graphics and helper functions for visualizing temporal patterns in time series graphics, time plots, season plots, and seasonal sub-series plots. See [README]() for examples.
+
+![](ggtime.png){fig-alt="Multi year seasonal plots"}
 :::
 
 
