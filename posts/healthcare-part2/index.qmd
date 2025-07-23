@@ -16,7 +16,7 @@ Healthcare analytics offers significant benefits to a wide range of stakeholders
 
 In the first [part](https://rworks.dev/posts/healthcare-part1/) of this series, we introduced a complex dataset of diabetes patient encounters, comprising 100,000+ rows and over 50 columns. This dataset includes a rich array of variables, such as admission type and primary diagnosis. We demonstrated the process of cleaning, redefining, and preparing this data for analysis, highlighting the use of GitHub Copilot to navigate a particularly challenging variable.
 
-In this second installment, we will dive deeper to evaluate the effectiveness of healthcare delivery and the impact of patient-level variables on downstream outcomes. We start by exploring medication prescriptions more closely and setting up the analytics around patient outcomes like hospital readmissions, the analysis of which we will see more in the next post.
+In this second installment, we will dive deeper to evaluate the effectiveness of healthcare delivery and the impact of patient-level variables on downstream outcomes. We start by exploring medication prescriptions more closely and setting up the analytics around patient outcomes like hospital readmissions.
 
 Finally, in a supplemental post that we will publish shortly after this one, we will examine the use of Copilot a little more, especially around avoiding tricky situations arising from insufficient context or guidance provided to Copilot (see here for [more](https://docs.posit.co/ide/user/ide/guide/tools/copilot.html)).
 
@@ -641,7 +641,7 @@ These findings highlight meaningful variation in both insulin administration and
 
 Taken together, these patterns suggest that diagnostic practices and comorbid conditions meaningfully shape treatment decisions. With these foundational relationships established, we are now ready to explore how factors like HbA1c measurement and primary diagnosis influence downstream outcomes such as early readmission — a metric of both clinical quality and financial strain. Reducing preventable readmissions not only helps relieve the cost burden on the healthcare system but also improves the patient experience — making this a priority for administrators, caregivers, and, most importantly, the patients themselves. Leveraging AI-assisted pattern discovery, we can now surface deeper insights into how inpatient care decisions translate into longer-term outcomes, guiding more equitable and effective interventions across the board.
 
-> *In the meantime, be sure to check out this supplemental **post** we will publish shortly after this one on how we used Copilot in this post, including guidance on effective prompt writing for Copilt, and additional visualizations of the complex data we’re exploring!*
+> *In the meantime, be sure to check out the supplemental post we will publish shortly after this one on how we used Copilot in this post, including guidance on effective prompt writing for Copilot, and additional visualizations of the complex data we’re exploring!*
 
 ## About the Author
 
