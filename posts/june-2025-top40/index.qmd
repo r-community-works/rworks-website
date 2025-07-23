@@ -40,6 +40,7 @@ In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 
 [wideRhino](https://cran.r-project.org/package=wideRhino) v1.0.2: Provides functions to construct anonical Variate Analysis Biplot via the Generalised Singular Value Decomposition, for cases when the number of samples is less than the number of variables. For more information on biplots, see [Gower et al. (2011)](https://onlinelibrary.wiley.com/doi/book/10.1002/9780470973196), for more information on the generalised singular value decomposition, see [Edelman & Wang  (2020)](https://epubs.siam.org/doi/10.1137/18M1234412), and see [README](https://cran.r-project.org/web/packages/wideRhino/readme/README.html) for examples.
 
 ![](wideRhino.png){fig-alt="CVA biplot"}
+
 ### Data
 
 [ecoteach](https://cran.r-project.org/package=ecoteach) v0.1.0: A collection of curated educational datasets for teaching ecology and agriculture concepts. Includes data on wildlife monitoring, plant treatments, and ecological observations with documentation and examples for educational use. All datasets are derived from published scientific studies and are available under CC0 or compatible licenses. See the [vignette](https://cran.r-project.org/web/packages/ecoteach/vignettes/introduction-to-ecoteach.html).
@@ -102,6 +103,11 @@ In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 
 
 ### Machine Learning
 
+### Medicine
+
+[bbssr](https://cran.r-project.org/package=bbssr) v1.0.2: Provides comprehensive tools for blinded sample size re-estimation (BSSR) in two-arm clinical trials with binary endpoints that allow for adaptive sample size adjustments during trials while maintaining statistical integrity and study blinding. Implements five exact statistical tests: Pearson chi-squared, Fisher exact, Fisher mid-p, Z-pooled exact unconditional, and Boschloo exact unconditional tests.  See [Mehrotra et al. (2003)](https://academic.oup.com/biometrics/article-abstract/59/2/441/7286196?redirectedFrom=fulltext&login=false) and [Kieser (2020)](https://link.springer.com/chapter/10.1007/978-3-030-49528-2_21). There are three vignetes including an [Introduction](https://cran.r-project.org/web/packages/bbssr/vignettes/bbssr-introduction.html) and [Statistical Methods](https://cran.r-project.org/web/packages/bbssr/vignettes/bbssr-statistical-methods.html). 
+
+![](bbssr.png){fig-alt="Power comparison plot"}
 
 ### Statistics
 
@@ -113,9 +119,25 @@ In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 
 
 ![](bayesmsm.png){fig-alt="Distribution of estimated treatment effects"}
 
+[BCD](https://cran.r-project.org/package=BCD) v0.1.1: Implements bivariate binomial, geometric, and Poisson distributions based on conditional specifications and includes tools for data generation and goodness-of-fit testing for these three distribution families. For methodological details, see [Ghosh et al.(2025)](https://www.tandfonline.com/doi/full/10.1080/03610926.2024.2315294),  [Ghosh et al. (2023)](https://www.tandfonline.com/doi/full/10.1080/03610918.2021.2004419), and [Ghosh et al. (202)](https://www.tandfonline.com/doi/full/10.1080/02664763.2020.1793307). There are three vignettes: [Bivariate Binomial Conditionals](https://cran.r-project.org/web/packages/BCD/vignettes/bbcd.html), [Bivariate Geometric Conditionals](https://cran.r-project.org/web/packages/BCD/vignettes/bgcd.html), and [Bivariate Poisson COnditionals](https://cran.r-project.org/web/packages/BCD/vignettes/bpcd.html).
+
+[lognGPD](https://cran.r-project.org/package=lognGPD) v0.1.0: Provides functions to estimate a lognormal, generalized Pareto mixture model via the Expectation-Maximization algorithm and includes functions for random number simulation and density evaluation. For details see [Bee and Santi (2025)](doi:10.48550/arXiv.2505.22507).
+
+[QuantilePeer](https://cran.r-project.org/package=QuantilePeer) v0.0.1: Provides functions to simulate and estimate peer effect models including the quantile-based specification [Houndetoungan (2025)](https://arxiv.org/abs/2506.12920), and the models with Constant Elasticity of Substitution (CES)-based social norm [Boucher et al. (2024)](https://www.econometricsociety.org/publications/econometrica/2024/03/01/Toward-a-General-Theory-of-Peer-Effects). See the [vignette](https://cran.r-project.org/web/packages/QuantilePeer/vignettes/introduction_to_QuantilePeer.pdf) for details.
+
+[riskdiff](https://cran.r-project.org/package=riskdiff) v0.2.1: Provides functions to calculate risk differences (or prevalence differences for cross-sectional data) using generalized linear models with automatic link function selection. IPTW ethods are based [Donoghoe &  Marschner (2018)]https://www.jstatsoft.org/article/view/v086i09). [Austin (2011)](https://www.tandfonline.com/doi/full/10.1080/00273171.2011.568786). Methods for risk difference estimation as described in Rothman et al. (2008): *Modern Epidemiology* (SBN:9780781755641). Yhere are two vignettes: [Getting Started](https://cran.r-project.org/web/packages/riskdiff/vignettes/riskdiff-intro.html), [Causal Inference](https://cran.r-project.org/web/packages/riskdiff/vignettes/iptw-analysis.htm).
+
+![](riskdiff.png){fig-alt="Propensity score plot"}
+
+
+
 [survextrap](https://cran.r-project.org/package=survextrap) v1.0: Provides functions for survival analysis using a Bayesian model for individual-level right-censored data. There are several options for describing hazard functions which are modeled with M-splines. Priors can be customised and calibrated to substantive beliefs. Posterior distributions are estimated using `Stan`. See [Jackson (2023)](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-023-02094-1) for details. There are three vignettes including [Examples](https://cran.r-project.org/web/packages/survextrap/vignettes/examples.html) and [Priors](https://cran.r-project.org/web/packages/survextrap/vignettes/priors.html).
 
 ![](survextrap.png){fig-alt="Survival curves showing spline knots"}
+
+[unsum](https://cran.r-project.org/package=unsum) v0.2.0: Reconstructs all possible raw data that could have led to reported summary statistics. Provides a wrapper for the `Rust` implementation of the `CLOSURE` algorithm. See the [vignette](https://cran.r-project.org/web/packages/unsum/vignettes/unsum.html).
+
+![](unsum.png){fig-alt="Plot of mean sapple found by CLOSURE"}
 
 ### Time Series
 
