@@ -635,7 +635,7 @@ ggplot(meds_a1c, aes(x = value, y = medication, fill = pct)) +
 
 ```
 
-## 3. Conclusion and what's next
+## 4. Conclusion and what's next
 
 These findings highlight meaningful variation in both insulin administration and dosage adjustment across patient groups. While insulin is routinely given to diabetic patients, it is prescribed far less frequently for those with high-risk circulatory or respiratory conditions — and even less likely to be adjusted when given. Notably, patients who receive an HbA1c measurement are not only more likely to be prescribed insulin, but also more likely to have their dosage adjusted — a pattern aligned with clinical guidance emphasizing the role of HbA1c in tailoring diabetes treatment.
 
