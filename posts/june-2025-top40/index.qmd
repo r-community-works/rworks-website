@@ -103,11 +103,21 @@ In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 
 
 ### Machine Learning
 
-### Medicine
+### Medical Statistics
 
 [bbssr](https://cran.r-project.org/package=bbssr) v1.0.2: Provides comprehensive tools for blinded sample size re-estimation (BSSR) in two-arm clinical trials with binary endpoints that allow for adaptive sample size adjustments during trials while maintaining statistical integrity and study blinding. Implements five exact statistical tests: Pearson chi-squared, Fisher exact, Fisher mid-p, Z-pooled exact unconditional, and Boschloo exact unconditional tests.  See [Mehrotra et al. (2003)](https://academic.oup.com/biometrics/article-abstract/59/2/441/7286196?redirectedFrom=fulltext&login=false) and [Kieser (2020)](https://link.springer.com/chapter/10.1007/978-3-030-49528-2_21). There are three vignetes including an [Introduction](https://cran.r-project.org/web/packages/bbssr/vignettes/bbssr-introduction.html) and [Statistical Methods](https://cran.r-project.org/web/packages/bbssr/vignettes/bbssr-statistical-methods.html). 
 
 ![](bbssr.png){fig-alt="Power comparison plot"}
+[causens](https://cran.r-project.org/package=causens) v0.0.3: Implements methods to perform causal sensitivity analysis to adjust for possible unmeasured confounders when working with observational data. Methods include those developed in [Brumback et al. (2004)](https://onlinelibrary.wiley.com/doi/10.1002/sim.1657), [Li et al. (2011)](https://academic.oup.com/aje/article-abstract/174/3/345/247053?redirectedFrom=fulltext&login=false), the Bayesian and Monte Carlo approaches of [McCandless et al. (2017)](https://onlinelibrary.wiley.com/doi/10.1002/sim.7298). See the [vignette](https://cran.r-project.org/web/packages/causens/vignettes/causens-vignette.html) for examples.
+
+### Music Theory
+
+[musicMCT](https://cran.r-project.org/package=musicMCT)v 0.2.0: Provides functions to analyze musical scales a la *Modal Color Theory* of [Sherrill (2025)](https://read.dukeupress.edu/journal-of-music-theory/article-abstract/69/1/1/401399/Modal-Color-Theory?redirectedFrom=fulltext), work with convential music ptch theory and the *continuous geometries* of [Callender et al. (2008)](https://www.science.org/doi/10.1126/science.1153021), and identify structural properties of scales and calculate derived values. There is an [Introduction](https://cran.r-project.org/web/packages/musicMCT/vignettes/musicMCT.html) and a vignette on [Visualizing Higher Dimensions](https://cran.r-project.org/web/packages/musicMCT/vignettes/visualizing_higher_dimensions.html).
+
+![](musicMCT.png){fig-alt="Plot scale evenness"}
+
+
+
 
 ### Statistics
 
@@ -142,6 +152,11 @@ In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 
 ### Time Series
 
 ### Utilities
+
+[blocking](https://cran.r-project.org/package=blocking) v1.0.1: Provides provide blocking methods for record linkage and deduplication using approximate nearest neighbour (ANN) algorithms and graph techniques, generate shingles from character strings and similarity vectors for record comparison, and evaluation metrics for assessing blocking performance including false positive and false negative rates. For background and details see [Papadakis et al. (2020)](https://dl.acm.org/doi/10.1145/3377455), [Steorts et al. (2014)](https://link.springer.com/chapter/10.1007/978-3-319-11257-2_20), [Dasylva and Goussanou (2021)](https://www150.statcan.gc.ca/n1/en/catalogue/12-001-X202100200002), and [Dasylva and Goussanou (2022)](https://link.springer.com/article/10.1007/s42081-022-00153-3). There are three vignettes including blocking records for [deduplication](https://cran.r-project.org/web/packages/blocking/vignettes/v1-deduplication.html) and [record linkage](https://cran.r-project.org/web/packages/blocking/vignettes/v2-reclin.html).
+
+![](blocking.png){fig-alt="Plot of distribution of cluster distances"}
+
 
 [quickr](https://cran.r-project.org/package=quickr) v0.1.0: Provides compiled R functions annotated with type and shape declarations for fast performance with robust runtime type checking. Supports both just-in-time (JIT) and ahead-of-time (AOT) compilation. Compilation is performed by lowering R code to Fortran. See [README](https://cran.r-project.org/web/packages/quickr/readme/README.html) forexamples.
 
