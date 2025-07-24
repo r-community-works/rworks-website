@@ -80,6 +80,11 @@ In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 
 [tidynorm](https://cran.r-project.org/package=tidynorm) v0.3.0: Implements tidy speaker vowel normalization and includes generic functions for defining new normalization methods for points, formant tracks, and Discrete Cosine Transform coefficients, as well as convenience functions implementing established normalization methods. See [Johnson (2020)](https://pubs.aip.org/asa/jasa/article-abstract/49/2B/606/747097/Classification-of-Russian-Vowels-Spoken-by?redirectedFrom=fulltext), [Lobanov (1971)](https://sites.ualberta.ca/~tnearey/Nearey1978_compressed.pdf), and [Watt & Fabricius (2002)](https://www.latl.leeds.ac.uk/article/evaluation-of-a-technique-for-improving-the-mapping-of-multiple-speakers-vowel-spaces-in-the-f1-f2-plane/) for the theory. There are five vignettes including [Normalization Methods](https://cran.r-project.org/web/packages/tidynorm/vignettes/norm-methods.html) and [Normalization Overview](https://cran.r-project.org/web/packages/tidynorm/vignettes/normalization-overview.html).
 
 ![](tidynorm.png){fig-alt="Plot of vowel space for different speakers"}
+### Machine Learning
+
+[midr](https://cran.r-project.org/package=midr) v0.5.0: Implements *Maximum Interpretation Decomposition*, a functional decomposition technique, to provide a model-agnostic method for interpreting and explaining black-box predictive models by creating a globally interpretable surrogate model. See [Asashiba et al. (2025)](https://arxiv.org/abs/2506.08338) for details and [README](https://cran.r-project.org/web/packages/midr/readme/README.html) for examples.
+
+![](midr.png){fig-alt="ICE curves of interactions"}
 
 
 ### Mathematics
@@ -100,15 +105,17 @@ In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 
 ::: {.column width="45%"}
 
 
-
-### Machine Learning
-
 ### Medical Statistics
 
 [bbssr](https://cran.r-project.org/package=bbssr) v1.0.2: Provides comprehensive tools for blinded sample size re-estimation (BSSR) in two-arm clinical trials with binary endpoints that allow for adaptive sample size adjustments during trials while maintaining statistical integrity and study blinding. Implements five exact statistical tests: Pearson chi-squared, Fisher exact, Fisher mid-p, Z-pooled exact unconditional, and Boschloo exact unconditional tests.  See [Mehrotra et al. (2003)](https://academic.oup.com/biometrics/article-abstract/59/2/441/7286196?redirectedFrom=fulltext&login=false) and [Kieser (2020)](https://link.springer.com/chapter/10.1007/978-3-030-49528-2_21). There are three vignetes including an [Introduction](https://cran.r-project.org/web/packages/bbssr/vignettes/bbssr-introduction.html) and [Statistical Methods](https://cran.r-project.org/web/packages/bbssr/vignettes/bbssr-statistical-methods.html). 
 
 ![](bbssr.png){fig-alt="Power comparison plot"}
 [causens](https://cran.r-project.org/package=causens) v0.0.3: Implements methods to perform causal sensitivity analysis to adjust for possible unmeasured confounders when working with observational data. Methods include those developed in [Brumback et al. (2004)](https://onlinelibrary.wiley.com/doi/10.1002/sim.1657), [Li et al. (2011)](https://academic.oup.com/aje/article-abstract/174/3/345/247053?redirectedFrom=fulltext&login=false), the Bayesian and Monte Carlo approaches of [McCandless et al. (2017)](https://onlinelibrary.wiley.com/doi/10.1002/sim.7298). See the [vignette](https://cran.r-project.org/web/packages/causens/vignettes/causens-vignette.html) for examples.
+
+[door](https://cran.r-project.org/package=door) v0.0.2: Provides functions for the design, analysis, and interpretation of clinical trials and other research studies based on the patient centric benefit risk evaluation. See [Hamasaki & Evans (2025)](https://www.taylorfrancis.com/books/edit/10.1201/9781003390855/handbook-generalized-pairwise-comparisons-marc-buyse-everardo-saad-johan-verbeeck-micka%C3%ABl-de-backer-geert-molenberghs-vaiva-deltuvaite-thomas) for detais of the statistical methods and the [Shiny App](https://methods.bsc.gwu.edu/) for documentation and examples.
+
+![](door.png){fig-alt="Sample size page from door shiny app."}
+
 
 ### Music Theory
 
@@ -151,11 +158,17 @@ In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 
 
 ### Time Series
 
+[gseries](https://cran.r-project.org/package=gseries) v3.0.2: Provides functions to improve the coherence of time series data. The methods used are described in [Dagum & Cholette (2006)](https://link.springer.com/book/10.1007/0-387-35439-5). There are four vignettes including [Benchmarking Cookbook](https://cran.r-project.org/web/packages/gseries/vignettes/benchmarking-cookbook.html) and [A Beginners Benchmarking Script](https://cran.r-project.org/web/packages/gseries/vignettes/benchmarking-demo-script.html).
+
 ### Utilities
 
 [blocking](https://cran.r-project.org/package=blocking) v1.0.1: Provides provide blocking methods for record linkage and deduplication using approximate nearest neighbour (ANN) algorithms and graph techniques, generate shingles from character strings and similarity vectors for record comparison, and evaluation metrics for assessing blocking performance including false positive and false negative rates. For background and details see [Papadakis et al. (2020)](https://dl.acm.org/doi/10.1145/3377455), [Steorts et al. (2014)](https://link.springer.com/chapter/10.1007/978-3-319-11257-2_20), [Dasylva and Goussanou (2021)](https://www150.statcan.gc.ca/n1/en/catalogue/12-001-X202100200002), and [Dasylva and Goussanou (2022)](https://link.springer.com/article/10.1007/s42081-022-00153-3). There are three vignettes including blocking records for [deduplication](https://cran.r-project.org/web/packages/blocking/vignettes/v1-deduplication.html) and [record linkage](https://cran.r-project.org/web/packages/blocking/vignettes/v2-reclin.html).
 
 ![](blocking.png){fig-alt="Plot of distribution of cluster distances"}
+
+[flir](https://cran.r-project.org/package=flir) v0.5.0: Provides functions to find and fix lints (code patterns that are not optimal because they are inefficient) in R code. There are three vignettes including [Adding new rules](https://cran.r-project.org/web/packages/flir/vignettes/adding_rules.html) and [Automatic fixes](https://cran.r-project.org/web/packages/flir/vignettes/automatic_fixes.html).
+
+![](flir.gif){fig-alt="Gif showing reviewing of fixes"}
 
 
 [quickr](https://cran.r-project.org/package=quickr) v0.1.0: Provides compiled R functions annotated with type and shape declarations for fast performance with robust runtime type checking. Supports both just-in-time (JIT) and ahead-of-time (AOT) compilation. Compilation is performed by lowering R code to Fortran. See [README](https://cran.r-project.org/web/packages/quickr/readme/README.html) forexamples.
