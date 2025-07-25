@@ -57,6 +57,11 @@ In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 
 
 ### Ecology
 
+[climodr](https://cran.r-project.org/package=climodr) v1.0.0: Provides tools to automate workflows for predictive climate mapping using climate station data and to create reproducible climate models. See [Meyer (2019)](https://www.sciencedirect.com/science/article/abs/pii/S0304380019303230?via%3Dihub) and [Meyer (2022)](https://www.nature.com/articles/s41467-022-29838-9) for background on the methods implemanted and the [vignette](https://cran.r-project.org/web/packages/climodr/vignettes/climodr.html) and [website](https://envima.github.io/climodr/) for details.
+
+![](climodr.png){fig-alt="Sample climate map"}
+
+
 [movedesign](https://cran.r-project.org/package=movedesign) v0.3.1: Implements a toolbox and `shiny` application to help researchers design movement ecology studies, focusing on two key objectives: estimating home range areas, and estimating fine-scale movement behavior, specifically speed and distance traveled. See [Silva et al. (2023)](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.14153) for background. There are three vignetes including [Get started]() and [Tutorial](https://cran.r-project.org/web/packages/movedesign/vignettes/tutorial_pop.html).
 
 ![](movedesign.png){fig-alt="Sample plots"}
@@ -75,6 +80,17 @@ In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 
 [fEGarch](https://cran.r-project.org/package=fEGarch) v1.01: Provides functions to implement Implement and fit a variety of short-memory and long-memory  models from a very broad family of exponential generalized autoregressive conditional heteroskedasticity EGARCH models, including MEGARCH, modified EGARCH, FIEGARCH, fractionally integrated EGARCH, and FIMLog-GARCH, fractionally integrated modulus Log-GARCH. Look [here](https://econpapers.repec.org/paper/pdnciepap/156.htm) for background and see [README](https://cran.r-project.org/web/packages/fEGarch/readme/README.html) for examples.
 
 ![](fEGarch.png){fig-alt="Plots of various Garch models"}
+
+### Genomics
+
+[multiDEGGs](https://cran.r-project.org/package=multiDEGGs) 1.0.0: Provides functions to perform multi-omic differential network analysis by revealing differential interactions between molecular entities (genes, proteins, transcription factors, or other biomolecules) across the omic datasets provided. A comprehensive visualization is constructed from differential networks is constructed for each omic data set where links represent statistically significant differential interactions between entities. See [Sciacca et al. (2023)](https://academic.oup.com/bioinformatics/article/39/4/btad192/7135827?login=false) for information on themethods implemented, and the [vignette](https://cran.r-project.org/web/packages/multiDEGGs/vignettes/multiDEGGs_vignette.html) for examles.
+
+![](multiDEGGS.png){fig-alt="Dig=fferential regression plot"}
+
+
+[rsynthbio](https://cran.r-project.org/package=rsynthbio) v2.0.0: Implements a wrapper to the [Synthesize Bio API](https://app.synthesize.bio/) which enables users to generate realistic gene expression data based on specified biological conditions. R esearchers can access AI-generated transcriptomic data for various modalities including bulk RNA-seq, single-cell RNA-seq, and microarray data. See the [vignette](https://cran.r-project.org/web/packages/rsynthbio/vignettes/getting-started.html) to get started.
+
+
 ### Linguistics
 
 [tidynorm](https://cran.r-project.org/package=tidynorm) v0.3.0: Implements tidy speaker vowel normalization and includes generic functions for defining new normalization methods for points, formant tracks, and Discrete Cosine Transform coefficients, as well as convenience functions implementing established normalization methods. See [Johnson (2020)](https://pubs.aip.org/asa/jasa/article-abstract/49/2B/606/747097/Classification-of-Russian-Vowels-Spoken-by?redirectedFrom=fulltext), [Lobanov (1971)](https://sites.ualberta.ca/~tnearey/Nearey1978_compressed.pdf), and [Watt & Fabricius (2002)](https://www.latl.leeds.ac.uk/article/evaluation-of-a-technique-for-improving-the-mapping-of-multiple-speakers-vowel-spaces-in-the-f1-f2-plane/) for the theory. There are five vignettes including [Normalization Methods](https://cran.r-project.org/web/packages/tidynorm/vignettes/norm-methods.html) and [Normalization Overview](https://cran.r-project.org/web/packages/tidynorm/vignettes/normalization-overview.html).
@@ -123,9 +139,11 @@ In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 
 
 ![](musicMCT.png){fig-alt="Plot scale evenness"}
 
+### Programming
 
+[putior](https://cran.r-project.org/package=putior) v0.1.0: Provides tools for extracting and processing structured annotations from *R* and *Python* source files to facilitate workflow visualization. Functions scan source files for annotations that define nodes, connections, and metadata within a data processing workflow which be used to generate visual representations of data flows and processing steps across polyglot software environments. See [Knuth (1984)](https://academic.oup.com/comjnl/article-abstract/27/2/97/343244?redirectedFrom=fulltext&login=false) for background and the [vignette](https://cran.r-project.org/web/packages/putior/vignettes/getting-started.html) and [README](https://cran.r-project.org/web/packages/putior/readme/README.html) for more information.
 
-
+[quickr](https://cran.r-project.org/package=quickr) v0.1.0: Provides compiled R functions annotated with type and shape declarations for fast performance with robust runtime type checking. Supports both just-in-time (JIT) and ahead-of-time (AOT) compilation. Compilation is performed by lowering R code to Fortran. See [README](https://cran.r-project.org/web/packages/quickr/readme/README.html) for examples.
 ### Statistics
 
 [aamatch](https://cran.r-project.org/package=aamatch) v0.3.7: Implements a simple version of multivariate matching using a propensity score, near-exact matching, near-fine balance, and robust Mahalanobis distance matching. You specify the variables, and the program does everything else. See [Rosenbaum (2020)](https://www.annualreviews.org/content/journals/10.1146/annurev-statistics-031219-041058) for details.
@@ -171,7 +189,7 @@ In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 
 ![](flir.gif){fig-alt="Gif showing reviewing of fixes"}
 
 
-[quickr](https://cran.r-project.org/package=quickr) v0.1.0: Provides compiled R functions annotated with type and shape declarations for fast performance with robust runtime type checking. Supports both just-in-time (JIT) and ahead-of-time (AOT) compilation. Compilation is performed by lowering R code to Fortran. See [README](https://cran.r-project.org/web/packages/quickr/readme/README.html) forexamples.
+
 
 
 ### Visualization
