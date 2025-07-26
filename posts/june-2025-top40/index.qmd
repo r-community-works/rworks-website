@@ -43,6 +43,10 @@ In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 
 
 ### Data
 
+[avilistr](https://cran.r-project.org/package=avilistr) v0.0.1: Provides easy to the [AviList Global Avian Checklist](https://www.avilist.org/checklist/v2025/), the first unified global bird taxonomy that harmonizes previous differences between International Ornithological Committee, Clements, and BirdLife checklists. See the [vignette](https://cran.r-project.org/web/packages/avilistr/vignettes/getting-started.html) to get started.
+
+![](avilistr.png){"Barplot of top 10 species-rich bird orders"   }
+
 [ecoteach](https://cran.r-project.org/package=ecoteach) v0.1.0: A collection of curated educational datasets for teaching ecology and agriculture concepts. Includes data on wildlife monitoring, plant treatments, and ecological observations with documentation and examples for educational use. All datasets are derived from published scientific studies and are available under CC0 or compatible licenses. See the [vignette](https://cran.r-project.org/web/packages/ecoteach/vignettes/introduction-to-ecoteach.html).
 
 [jpinfect](https://cran.r-project.org/package=jpinfect) v0.1.2: Provides functions to download and post process the infectious disease case data from [Japan Institute for Health Security](https://id-info.jihs.go.jp/). See the [vignette](https://cran.r-project.org/web/packages/jpinfect/vignettes/jpinfect.html) to get started.
@@ -53,7 +57,7 @@ In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 
 
 ### Decision Analysis
 
-[RMCDA](https://cran.r-project.org/package=RMCDA) v0.3: Provides toosl to support decision making involving multiple criteria. See [Najafi & Mirzaei (2025)](https://www.sciencedirect.com/science/article/pii/S2665963825000223?via%3Dihub) and the [vignette](https://cran.r-project.org/web/packages/RMCDA/vignettes/RMCDA_guidelines.html).
+[RMCDA](https://cran.r-project.org/package=RMCDA) v0.3: Implemenyd methods including AHP, TOPSIS, PROMETHEE, VIKOR, Stratified MCDM, and the Stratified Best–Worst Method to support multiple criteria tdecision making [Najafi & Mirzaei (2025)](https://www.sciencedirect.com/science/article/pii/S2665963825000223?via%3Dihub) and the [vignette](https://cran.r-project.org/web/packages/RMCDA/vignettes/RMCDA_guidelines.html).
 
 ### Ecology
 
@@ -138,6 +142,12 @@ In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 
 [musicMCT](https://cran.r-project.org/package=musicMCT)v 0.2.0: Provides functions to analyze musical scales a la *Modal Color Theory* of [Sherrill (2025)](https://read.dukeupress.edu/journal-of-music-theory/article-abstract/69/1/1/401399/Modal-Color-Theory?redirectedFrom=fulltext), work with convential music ptch theory and the *continuous geometries* of [Callender et al. (2008)](https://www.science.org/doi/10.1126/science.1153021), and identify structural properties of scales and calculate derived values. There is an [Introduction](https://cran.r-project.org/web/packages/musicMCT/vignettes/musicMCT.html) and a vignette on [Visualizing Higher Dimensions](https://cran.r-project.org/web/packages/musicMCT/vignettes/visualizing_higher_dimensions.html).
 
 ![](musicMCT.png){fig-alt="Plot scale evenness"}
+
+### Networks
+
+[INetTool](https://cran.r-project.org/package=INetTool) v0.1.1: Implements methods to model complex systems as as a concensus network where nodes can represent either statistical units or observed variables and edges represent distance metrics or correlation between units. See [Policastro et al. (2024)](https://link.springer.com/article/10.1007/s00180-024-01536-8) for a description of the method and the [vignette](https://cran.r-project.org/web/packages/INetTool/vignettes/INet.html) for an example.
+
+![](INet.png){fig-alt="Plot of concensus network"}
 
 ### Programming
 
