@@ -2,14 +2,14 @@
 title: "June 2025 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
 date: 2025-07-27
-description: "An attempt to capture the depth and breadth of what's new on CRAN."
-image: ".png"
-image-alt: ".png"
+description: "An attempt to capture the depth and breadth of what's new on CRAN: here are my Top 40 picks in twenty-one categories: AI, Chess, Computational Methods, Data, Decision Analysis, Ecology, Epidemiology, Finance, Genomics, Lingusitics, Machine Learning, Mathematics, Medical Statistics, Music Theory, Networks, Programming, Statistics, Time Series, Utilities, and Visualization."
+image: "polarzonoid.png"
+image-alt: "The polarzonoid"
 categories: "Top 40"
 editor: source
 ---
 
-In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 40 picks in eighteen categories: Agriculture, Biology, Computational Methods, Data, Ecology, Epidemiology, Genomics, Healthcare, Health Technology Assessment, Machine Learning, Medicine, Networks, Statistics, Time Series, Utilities, and Visualization.
+In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 40 picks in twenty-one categories: AI, Chess, Computational Methods, Data, Decision Analysis, Ecology, Epidemiology, Finance, Genomics, Linguistics, Machine Learning, Mathematics, Medical Statistics, Music Theory, Networks, Programming, Statistics, Time Series, Utilities, and Visualization.
 
 :::: {.columns}
 
@@ -23,7 +23,7 @@ In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 
 [statlingua](https://cran.r-project.org/package=statlingua) v0.1.0: Provides functions to transform complex statistical output into straightforward, understandable, and context-aware natural language descriptions using Large Language Models (LLMs).  It works with [OpenAI](https://openai.com/), [Google AI Studio](https://aistudio.google.com/), and [Anthropic](https://www.anthropic.com/). See the [vignette](https://cran.r-project.org/web/packages/statlingua/vignettes/statlingua.html) for examples.
 
 
-[vitals](https://cran.r-project.org/package=vitals) v0.1.0: Provides a port of `Inspect`, a widely adopted `Python` framework for large language model evaluation that supports prompt engineering, tool usage, multi-turn dialog, and model graded evaluations. It is pecifically aimed at `ellmer` users who want to measure the effectiveness of their LLM based products. There are two vignettes [Getting Started](https://cran.r-project.org/web/packages/vitals/vignettes/vitals.html) and [Writing Evals](https://cran.r-project.org/web/packages/vitals/vignettes/writing-evals.html).
+[vitals](https://cran.r-project.org/package=vitals) v0.1.0: Provides a port of `Inspect`, a widely adopted `Python` framework for large language model evaluation that supports prompt engineering, tool usage, multi-turn dialog, and model graded evaluations. It is specifically aimed at `ellmer` users who want to measure the effectiveness of their LLM based products. There are two vignettes: [Getting Started](https://cran.r-project.org/web/packages/vitals/vignettes/vitals.html) and [Writing Evals](https://cran.r-project.org/web/packages/vitals/vignettes/writing-evals.html).
 
 ### Chess
 
@@ -33,73 +33,74 @@ In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 
 
 ### Computational Methods
 
-[tvdenoising](https://cran.r-project.org/package=tvdenoising) v1.0.0: Implements total variation denoising which can be used to approximate a given sequence of noisy observations by a piecewise constant sequence, with adaptively-chosen break points. See [Johnson (2013)](https://www.tandfonline.com/doi/full/10.1080/10618600.2012.681238) and [README](https://cran.r-project.org/web/packages/tvdenoising/readme/README.html) for anexample.
+[tvdenoising](https://cran.r-project.org/package=tvdenoising) v1.0.0: Implements total variation denoising which can be used to approximate a given sequence of noisy observations by a piecewise constant sequence with adaptively-chosen break points. See [Johnson (2013)](https://www.tandfonline.com/doi/full/10.1080/10618600.2012.681238) for background and [README](https://cran.r-project.org/web/packages/tvdenoising/readme/README.html) for an example.
 
 ![](tvdenoising.png){fig-alt="Plot of function with approximating points"}
 
-[wideRhino](https://cran.r-project.org/package=wideRhino) v1.0.2: Provides functions to construct anonical Variate Analysis Biplot via the Generalised Singular Value Decomposition, for cases when the number of samples is less than the number of variables. For more information on biplots, see [Gower et al. (2011)](https://onlinelibrary.wiley.com/doi/book/10.1002/9780470973196), for more information on the generalised singular value decomposition, see [Edelman & Wang  (2020)](https://epubs.siam.org/doi/10.1137/18M1234412), and see [README](https://cran.r-project.org/web/packages/wideRhino/readme/README.html) for examples.
+[wideRhino](https://cran.r-project.org/package=wideRhino) v1.0.2: Provides functions to construct a canonical Variate Analysis biplot via the Generalized Singular Value Decomposition for cases when the number of samples is less than the number of variables. For more information on biplots, see [Gower et al. (2011)](https://onlinelibrary.wiley.com/doi/book/10.1002/9780470973196), for a discussion of the generalized singular value decomposition, see [Edelman & Wang  (2020)](https://epubs.siam.org/doi/10.1137/18M1234412), and see [README](https://cran.r-project.org/web/packages/wideRhino/readme/README.html) for examples.
 
 ![](wideRhino.png){fig-alt="CVA biplot"}
 
 ### Data
 
-[avilistr](https://cran.r-project.org/package=avilistr) v0.0.1: Provides easy to the [AviList Global Avian Checklist](https://www.avilist.org/checklist/v2025/), the first unified global bird taxonomy that harmonizes previous differences between International Ornithological Committee, Clements, and BirdLife checklists. See the [vignette](https://cran.r-project.org/web/packages/avilistr/vignettes/getting-started.html) to get started.
+[avilistr](https://cran.r-project.org/package=avilistr) v0.0.1: Provides easy access to the [AviList Global Avian Checklist](https://www.avilist.org/checklist/v2025/), the first unified global bird taxonomy that harmonizes differences between International Ornithological Committee, Clements, and BirdLife checklists. See the [vignette](https://cran.r-project.org/web/packages/avilistr/vignettes/getting-started.html) to get started.
 
-![](avilistr.png){"Barplot of top 10 species-rich bird orders"   }
+![](avilistr.png){fig-alt="Barplot of top 10 species-rich bird orders"}
 
-[ecoteach](https://cran.r-project.org/package=ecoteach) v0.1.0: A collection of curated educational datasets for teaching ecology and agriculture concepts. Includes data on wildlife monitoring, plant treatments, and ecological observations with documentation and examples for educational use. All datasets are derived from published scientific studies and are available under CC0 or compatible licenses. See the [vignette](https://cran.r-project.org/web/packages/ecoteach/vignettes/introduction-to-ecoteach.html).
+[ecoteach](https://cran.r-project.org/package=ecoteach) v0.1.0: A collection of curated educational datasets for teaching ecology and agriculture concepts. Includes data on wildlife monitoring, plant treatments, and ecological observations with documentation and examples for educational use. All datasets are derived from published scientific studies. See the [vignette](https://cran.r-project.org/web/packages/ecoteach/vignettes/introduction-to-ecoteach.html).
 
-[jpinfect](https://cran.r-project.org/package=jpinfect) v0.1.2: Provides functions to download and post process the infectious disease case data from [Japan Institute for Health Security](https://id-info.jihs.go.jp/). See the [vignette](https://cran.r-project.org/web/packages/jpinfect/vignettes/jpinfect.html) to get started.
+[jpinfect](https://cran.r-project.org/package=jpinfect) v0.1.2: Provides functions to download and post process the infectious disease case data from the [Japan Institute for Health Security](https://id-info.jihs.go.jp/). See the [vignette](https://cran.r-project.org/web/packages/jpinfect/vignettes/jpinfect.html) to get started.
 
-[LBDiscover](https://cran.r-project.org/package=LBDiscover0) v0.1.0: Provides a suite of tools for literature-based discovery in biomedical research. Provides functions for retrieving scientific articles from PubMed and other NCBI databases, extracting biomedical entities (diseases, drugs, genes, etc.), building co-occurrence networks, and applying various discovery models. See [README](https://cran.r-project.org/web/packages/LBDiscover/readme/README.html) to get started.
+[LBDiscover](https://cran.r-project.org/package=LBDiscover0) v0.1.0: Provides a suite of tools for literature-based discovery in biomedical research including functions for retrieving scientific articles from PubMed and other NCBI databases, extracting biomedical entities (diseases, drugs, genes, etc.), building co-occurrence networks, and applying various discovery models. See [README](https://cran.r-project.org/web/packages/LBDiscover/readme/README.html) to get started.
 
 [Rdatasets](https://cran.r-project.org/package=Rdatasets) v0.0.1: Provides functions to search, download, and view documentation for thousands of datasets from R packages included in the [Rdatasets archive](https://vincentarelbundock.github.io/Rdatasets/). Datasets are available in both CSV and Parquet formats. See [README](https://cran.r-project.org/web/packages/Rdatasets/readme/README.html) to get started.
 
 ### Decision Analysis
 
-[RMCDA](https://cran.r-project.org/package=RMCDA) v0.3: Implemenyd methods including AHP, TOPSIS, PROMETHEE, VIKOR, Stratified MCDM, and the Stratified Best–Worst Method to support multiple criteria tdecision making [Najafi & Mirzaei (2025)](https://www.sciencedirect.com/science/article/pii/S2665963825000223?via%3Dihub) and the [vignette](https://cran.r-project.org/web/packages/RMCDA/vignettes/RMCDA_guidelines.html).
+[RMCDA](https://cran.r-project.org/package=RMCDA) v0.3: Implements methods including AHP, TOPSIS, PROMETHEE, VIKOR, Stratified MCDM, and the Stratified Best–Worst Method to support multiple criteria decision making. [Najafi & Mirzaei (2025)](https://www.sciencedirect.com/science/article/pii/S2665963825000223?via%3Dihub) contains references for all of these acronyms and provides details of the package. See the  [vignette](https://cran.r-project.org/web/packages/RMCDA/vignettes/RMCDA_guidelines.html) for examples.
 
 ### Ecology
 
-[climodr](https://cran.r-project.org/package=climodr) v1.0.0: Provides tools to automate workflows for predictive climate mapping using climate station data and to create reproducible climate models. See [Meyer (2019)](https://www.sciencedirect.com/science/article/abs/pii/S0304380019303230?via%3Dihub) and [Meyer (2022)](https://www.nature.com/articles/s41467-022-29838-9) for background on the methods implemanted and the [vignette](https://cran.r-project.org/web/packages/climodr/vignettes/climodr.html) and [website](https://envima.github.io/climodr/) for details.
+[climodr](https://cran.r-project.org/package=climodr) v1.0.0: Provides tools to automate workflows for predictive climate mapping using climate station data,  and tools to create reproducible climate models. See [Meyer (2019)](https://www.sciencedirect.com/science/article/abs/pii/S0304380019303230?via%3Dihub) and [Meyer (2022)](https://www.nature.com/articles/s41467-022-29838-9) for background on the methods implemented and the [vignette](https://cran.r-project.org/web/packages/climodr/vignettes/climodr.html) and [website](https://envima.github.io/climodr/) for details.
 
 ![](climodr.png){fig-alt="Sample climate map"}
 
 
-[movedesign](https://cran.r-project.org/package=movedesign) v0.3.1: Implements a toolbox and `shiny` application to help researchers design movement ecology studies, focusing on two key objectives: estimating home range areas, and estimating fine-scale movement behavior, specifically speed and distance traveled. See [Silva et al. (2023)](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.14153) for background. There are three vignetes including [Get started]() and [Tutorial](https://cran.r-project.org/web/packages/movedesign/vignettes/tutorial_pop.html).
+[movedesign](https://cran.r-project.org/package=movedesign) v0.3.1: Implements a toolbox and `shiny` application to help researchers design movement ecology studies, focusing on two key objectives: estimating home range areas, and estimating fine-scale movement behavior, specifically speed and distance traveled. See [Silva et al. (2023)](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.14153) for background. There are three vignettes including [Get started]() and [Tutorial](https://cran.r-project.org/web/packages/movedesign/vignettes/tutorial_pop.html).
 
 ![](movedesign.png){fig-alt="Sample plots"}
 
 ### Epidemiology
 
 
-[infectiousR](https://cran.r-project.org/package=infectiousR) v0.1.0: Provides functions to access real-time infectious disease data from the [disease.sh API](https://disease.sh/), including global COVID-19 data, vaccination coverage, influenza-like illness data from CDC, and more. It also includes curated datasets on a variety of infectious disease. See the [vignette](https://cran.r-project.org/web/packages/infectiousR/vignettes/infectiousR_vignette.html) to get started.
+[infectiousR](https://cran.r-project.org/package=infectiousR) v0.1.0: Provides functions to access real-time infectious disease data from the [disease.sh API](https://disease.sh/), including global COVID-19 data, vaccination coverage, influenza-like illness data from CDC, and more. It also includes curated datasets on a variety of infectious diseases. See the [vignette](https://cran.r-project.org/web/packages/infectiousR/vignettes/infectiousR_vignette.html) to get started.
 
 ![](infectiousR.png){fig-alt="Covid-19 data from Latin America"}
 
-[rifttable](https://cran.r-project.org/package=rifttable) v0.7.1: Provides functions to help automate the production of reproducible, presentation-ready tables for epidemiologists. Users specifie the design of the table, with rows and/or columns defined by exposures, effect modifiers, and estimands. See [Rothman (2017)](https://link.springer.com/article/10.1007/s10654-017-0314-3) for background. There are six vignettes including [Get started](https://cran.r-project.org/web/packages/rifttable/vignettes/rifttable.html) and [Survival outcomes](https://cran.r-project.org/web/packages/rifttable/vignettes/estimators_survival.html).
+[rifttable](https://cran.r-project.org/package=rifttable) v0.7.1: Provides functions to automate the production of reproducible, presentation-ready tables for epidemiologists. Users specify the design of the table, with rows and/or columns defined by exposures, effect modifiers, and estimands. See [Rothman (2017)](https://link.springer.com/article/10.1007/s10654-017-0314-3) for background. There are six vignettes including [Get started](https://cran.r-project.org/web/packages/rifttable/vignettes/rifttable.html) and [Survival outcomes](https://cran.r-project.org/web/packages/rifttable/vignettes/estimators_survival.html).
 
 ### Finance
 
-[fEGarch](https://cran.r-project.org/package=fEGarch) v1.01: Provides functions to implement Implement and fit a variety of short-memory and long-memory  models from a very broad family of exponential generalized autoregressive conditional heteroskedasticity EGARCH models, including MEGARCH, modified EGARCH, FIEGARCH, fractionally integrated EGARCH, and FIMLog-GARCH, fractionally integrated modulus Log-GARCH. Look [here](https://econpapers.repec.org/paper/pdnciepap/156.htm) for background and see [README](https://cran.r-project.org/web/packages/fEGarch/readme/README.html) for examples.
+[fEGarch](https://cran.r-project.org/package=fEGarch) v1.01: Provides functions to implement and fit a variety of short-memory and long-memory  models from a very broad family of exponential generalized autoregressive conditional heteroskedasticity EGARCH models. Includes MEGARCH, modified EGARCH, FIEGARCH, fractionally integrated EGARCH, and FIMLog-GARCH, fractionally integrated modulus Log-GARCH. Look [here](https://econpapers.repec.org/paper/pdnciepap/156.htm) for background and see [README](https://cran.r-project.org/web/packages/fEGarch/readme/README.html) for examples.
 
 ![](fEGarch.png){fig-alt="Plots of various Garch models"}
 
 ### Genomics
 
-[multiDEGGs](https://cran.r-project.org/package=multiDEGGs) 1.0.0: Provides functions to perform multi-omic differential network analysis by revealing differential interactions between molecular entities (genes, proteins, transcription factors, or other biomolecules) across the omic datasets provided. A comprehensive visualization is constructed from differential networks is constructed for each omic data set where links represent statistically significant differential interactions between entities. See [Sciacca et al. (2023)](https://academic.oup.com/bioinformatics/article/39/4/btad192/7135827?login=false) for information on themethods implemented, and the [vignette](https://cran.r-project.org/web/packages/multiDEGGs/vignettes/multiDEGGs_vignette.html) for examles.
+[multiDEGGs](https://cran.r-project.org/package=multiDEGGs) 1.0.0: Provides functions to perform multi-omic differential network analysis by revealing differential interactions between molecular entities (genes, proteins, transcription factors, or other biomolecules) across the omic datasets provided. A comprehensive visualization from differential networks is constructed for each omic data set where links represent statistically significant differential interactions between entities. See [Sciacca et al. (2023)](https://academic.oup.com/bioinformatics/article/39/4/btad192/7135827?login=false) for information on the methods implemented, and the [vignette](https://cran.r-project.org/web/packages/multiDEGGs/vignettes/multiDEGGs_vignette.html) for examples.
 
 ![](multiDEGGS.png){fig-alt="Dig=fferential regression plot"}
 
 
-[rsynthbio](https://cran.r-project.org/package=rsynthbio) v2.0.0: Implements a wrapper to the [Synthesize Bio API](https://app.synthesize.bio/) which enables users to generate realistic gene expression data based on specified biological conditions. R esearchers can access AI-generated transcriptomic data for various modalities including bulk RNA-seq, single-cell RNA-seq, and microarray data. See the [vignette](https://cran.r-project.org/web/packages/rsynthbio/vignettes/getting-started.html) to get started.
+[rsynthbio](https://cran.r-project.org/package=rsynthbio) v2.0.0: Implements a wrapper to the [Synthesize Bio API](https://app.synthesize.bio/) which enables users to generate realistic gene expression data based on specified biological conditions. Researchers can access AI-generated transcriptomic data for various modalities including bulk RNA-seq, single-cell RNA-seq, and microarray data. See the [vignette](https://cran.r-project.org/web/packages/rsynthbio/vignettes/getting-started.html) to get started.
 
 
 ### Linguistics
 
-[tidynorm](https://cran.r-project.org/package=tidynorm) v0.3.0: Implements tidy speaker vowel normalization and includes generic functions for defining new normalization methods for points, formant tracks, and Discrete Cosine Transform coefficients, as well as convenience functions implementing established normalization methods. See [Johnson (2020)](https://pubs.aip.org/asa/jasa/article-abstract/49/2B/606/747097/Classification-of-Russian-Vowels-Spoken-by?redirectedFrom=fulltext), [Lobanov (1971)](https://sites.ualberta.ca/~tnearey/Nearey1978_compressed.pdf), and [Watt & Fabricius (2002)](https://www.latl.leeds.ac.uk/article/evaluation-of-a-technique-for-improving-the-mapping-of-multiple-speakers-vowel-spaces-in-the-f1-f2-plane/) for the theory. There are five vignettes including [Normalization Methods](https://cran.r-project.org/web/packages/tidynorm/vignettes/norm-methods.html) and [Normalization Overview](https://cran.r-project.org/web/packages/tidynorm/vignettes/normalization-overview.html).
+[tidynorm](https://cran.r-project.org/package=tidynorm) v0.3.0: Implements tidy speaker vowel normalization and includes generic functions for defining new normalization methods for points, format tracks, and Discrete Cosine Transform coefficients, as well as convenience functions implementing established normalization methods. See [Johnson (2020)](https://pubs.aip.org/asa/jasa/article-abstract/49/2B/606/747097/Classification-of-Russian-Vowels-Spoken-by?redirectedFrom=fulltext), [Lobanov (1971)](https://sites.ualberta.ca/~tnearey/Nearey1978_compressed.pdf), and [Watt & Fabricius (2002)](https://www.latl.leeds.ac.uk/article/evaluation-of-a-technique-for-improving-the-mapping-of-multiple-speakers-vowel-spaces-in-the-f1-f2-plane/) for the theory. There are five vignettes including [Normalization Methods](https://cran.r-project.org/web/packages/tidynorm/vignettes/norm-methods.html) and [Normalization Overview](https://cran.r-project.org/web/packages/tidynorm/vignettes/normalization-overview.html).
 
 ![](tidynorm.png){fig-alt="Plot of vowel space for different speakers"}
+
 ### Machine Learning
 
 [midr](https://cran.r-project.org/package=midr) v0.5.0: Implements *Maximum Interpretation Decomposition*, a functional decomposition technique, to provide a model-agnostic method for interpreting and explaining black-box predictive models by creating a globally interpretable surrogate model. See [Asashiba et al. (2025)](https://arxiv.org/abs/2506.08338) for details and [README](https://cran.r-project.org/web/packages/midr/readme/README.html) for examples.
@@ -107,14 +108,14 @@ In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 
 ![](midr.png){fig-alt="ICE curves of interactions"}
 
 
+
+
+
 ### Mathematics
 
-[polarzonoid](https://cran.r-project.org/package=polarzonoid) v0.1-2: Implements some applications of the the polar zonoid, a straightforward generalization of the polar zonohedron in dimension 3 and a root solver for triginometric polynomials. There are five vignettes including a [User Guide](https://cran.r-project.org/web/packages/polarzonoid/vignettes/polarzonoid-guide.html) and [Real Projective Spaces and 3x3 Rotation Matrices](https://cran.r-project.org/web/packages/polarzonoid/vignettes/rotations.html). 
+[polarzonoid](https://cran.r-project.org/package=polarzonoid) v0.1-2: Implements some applications of the the polar zonoid, a straightforward generalization of the polar zonohedron in dimension 3 and a root solver for trigonometric polynomials. There are five vignettes including a [User Guide](https://cran.r-project.org/web/packages/polarzonoid/vignettes/polarzonoid-guide.html) and [Real Projective Spaces and 3x3 Rotation Matrices](https://cran.r-project.org/web/packages/polarzonoid/vignettes/rotations.html). 
 
-![](polarzonoid.png){fig-alt="when 𝑛=1, ∂𝑍1 is homeomorphic to 𝕊2and it has cusps at 2 “poles” corresponding to the 2 points in 𝐴0."}
-
-
-
+![](polarzonoid.png){fig-alt="When 𝑛=1, ∂𝑍1 is homeomorphic to 𝕊2and it has cusps at 2 “poles” corresponding to the 2 points in 𝐴0."}
 
 :::
 
@@ -125,35 +126,40 @@ In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 
 ::: {.column width="45%"}
 
 
+
+
+
 ### Medical Statistics
 
-[bbssr](https://cran.r-project.org/package=bbssr) v1.0.2: Provides comprehensive tools for blinded sample size re-estimation (BSSR) in two-arm clinical trials with binary endpoints that allow for adaptive sample size adjustments during trials while maintaining statistical integrity and study blinding. Implements five exact statistical tests: Pearson chi-squared, Fisher exact, Fisher mid-p, Z-pooled exact unconditional, and Boschloo exact unconditional tests.  See [Mehrotra et al. (2003)](https://academic.oup.com/biometrics/article-abstract/59/2/441/7286196?redirectedFrom=fulltext&login=false) and [Kieser (2020)](https://link.springer.com/chapter/10.1007/978-3-030-49528-2_21). There are three vignetes including an [Introduction](https://cran.r-project.org/web/packages/bbssr/vignettes/bbssr-introduction.html) and [Statistical Methods](https://cran.r-project.org/web/packages/bbssr/vignettes/bbssr-statistical-methods.html). 
+[bbssr](https://cran.r-project.org/package=bbssr) v1.0.2: Provides comprehensive tools for blinded sample size re-estimation in two-arm clinical trials with binary endpoints that allow for adaptive sample size adjustments during trials while maintaining statistical integrity and study blinding. Implements five exact statistical tests: Pearson chi-squared, Fisher exact, Fisher mid-p, Z-pooled exact unconditional, and Boschloo exact unconditional tests.  See [Mehrotra et al. (2003)](https://academic.oup.com/biometrics/article-abstract/59/2/441/7286196?redirectedFrom=fulltext&login=false) and [Kieser (2020)](https://link.springer.com/chapter/10.1007/978-3-030-49528-2_21). There are three vignettes including an [Introduction](https://cran.r-project.org/web/packages/bbssr/vignettes/bbssr-introduction.html) and [Statistical Methods](https://cran.r-project.org/web/packages/bbssr/vignettes/bbssr-statistical-methods.html). 
 
 ![](bbssr.png){fig-alt="Power comparison plot"}
 [causens](https://cran.r-project.org/package=causens) v0.0.3: Implements methods to perform causal sensitivity analysis to adjust for possible unmeasured confounders when working with observational data. Methods include those developed in [Brumback et al. (2004)](https://onlinelibrary.wiley.com/doi/10.1002/sim.1657), [Li et al. (2011)](https://academic.oup.com/aje/article-abstract/174/3/345/247053?redirectedFrom=fulltext&login=false), the Bayesian and Monte Carlo approaches of [McCandless et al. (2017)](https://onlinelibrary.wiley.com/doi/10.1002/sim.7298). See the [vignette](https://cran.r-project.org/web/packages/causens/vignettes/causens-vignette.html) for examples.
 
-[door](https://cran.r-project.org/package=door) v0.0.2: Provides functions for the design, analysis, and interpretation of clinical trials and other research studies based on the patient centric benefit risk evaluation. See [Hamasaki & Evans (2025)](https://www.taylorfrancis.com/books/edit/10.1201/9781003390855/handbook-generalized-pairwise-comparisons-marc-buyse-everardo-saad-johan-verbeeck-micka%C3%ABl-de-backer-geert-molenberghs-vaiva-deltuvaite-thomas) for detais of the statistical methods and the [Shiny App](https://methods.bsc.gwu.edu/) for documentation and examples.
+[door](https://cran.r-project.org/package=door) v0.0.2: Provides functions for the design, analysis, and interpretation of clinical trials and other research studies based on the patient centric benefit risk evaluation. See [Hamasaki & Evans (2025)](https://www.taylorfrancis.com/books/edit/10.1201/9781003390855/handbook-generalized-pairwise-comparisons-marc-buyse-everardo-saad-johan-verbeeck-micka%C3%ABl-de-backer-geert-molenberghs-vaiva-deltuvaite-thomas) for details of the statistical methods and the [Shiny App](https://methods.bsc.gwu.edu/) for documentation and examples.
 
 ![](door.png){fig-alt="Sample size page from door shiny app."}
 
 
 ### Music Theory
 
-[musicMCT](https://cran.r-project.org/package=musicMCT)v 0.2.0: Provides functions to analyze musical scales a la *Modal Color Theory* of [Sherrill (2025)](https://read.dukeupress.edu/journal-of-music-theory/article-abstract/69/1/1/401399/Modal-Color-Theory?redirectedFrom=fulltext), work with convential music ptch theory and the *continuous geometries* of [Callender et al. (2008)](https://www.science.org/doi/10.1126/science.1153021), and identify structural properties of scales and calculate derived values. There is an [Introduction](https://cran.r-project.org/web/packages/musicMCT/vignettes/musicMCT.html) and a vignette on [Visualizing Higher Dimensions](https://cran.r-project.org/web/packages/musicMCT/vignettes/visualizing_higher_dimensions.html).
+[musicMCT](https://cran.r-project.org/package=musicMCT)v 0.2.0: Provides functions to analyze musical scales à la *Modal Color Theory* of [Sherrill (2025)](https://read.dukeupress.edu/journal-of-music-theory/article-abstract/69/1/1/401399/Modal-Color-Theory?redirectedFrom=fulltext), work with conventional music pitch theory and the *continuous geometries* of [Callender et al. (2008)](https://www.science.org/doi/10.1126/science.1153021), and identify structural properties of scales and calculate derived values. There is an [Introduction](https://cran.r-project.org/web/packages/musicMCT/vignettes/musicMCT.html) and a vignette on [Visualizing Higher Dimensions](https://cran.r-project.org/web/packages/musicMCT/vignettes/visualizing_higher_dimensions.html).
 
 ![](musicMCT.png){fig-alt="Plot scale evenness"}
 
 ### Networks
 
-[INetTool](https://cran.r-project.org/package=INetTool) v0.1.1: Implements methods to model complex systems as as a concensus network where nodes can represent either statistical units or observed variables and edges represent distance metrics or correlation between units. See [Policastro et al. (2024)](https://link.springer.com/article/10.1007/s00180-024-01536-8) for a description of the method and the [vignette](https://cran.r-project.org/web/packages/INetTool/vignettes/INet.html) for an example.
+[INetTool](https://cran.r-project.org/package=INetTool) v0.1.1: Implements methods to model complex systems as as a consensus network where nodes can represent either statistical units or observed variables and edges represent distance metrics or correlation between units. See [Policastro et al. (2024)](https://link.springer.com/article/10.1007/s00180-024-01536-8) for a description of the method and the [vignette](https://cran.r-project.org/web/packages/INetTool/vignettes/INet.html) for an example.
 
 ![](INet.png){fig-alt="Plot of concensus network"}
 
 ### Programming
 
-[putior](https://cran.r-project.org/package=putior) v0.1.0: Provides tools for extracting and processing structured annotations from *R* and *Python* source files to facilitate workflow visualization. Functions scan source files for annotations that define nodes, connections, and metadata within a data processing workflow which be used to generate visual representations of data flows and processing steps across polyglot software environments. See [Knuth (1984)](https://academic.oup.com/comjnl/article-abstract/27/2/97/343244?redirectedFrom=fulltext&login=false) for background and the [vignette](https://cran.r-project.org/web/packages/putior/vignettes/getting-started.html) and [README](https://cran.r-project.org/web/packages/putior/readme/README.html) for more information.
+[putior](https://cran.r-project.org/package=putior) v0.1.0: Provides tools for extracting and processing structured annotations from `R` and `Python` source files to facilitate workflow visualization. Functions scan source files for annotations that define nodes, connections, and metadata within a data processing workflow which be used to generate visual representations of data flows and processing steps across polyglot software environments. See [Knuth (1984)](https://academic.oup.com/comjnl/article-abstract/27/2/97/343244?redirectedFrom=fulltext&login=false) for background and the [vignette](https://cran.r-project.org/web/packages/putior/vignettes/getting-started.html) and [README](https://cran.r-project.org/web/packages/putior/readme/README.html) for more information.
 
-[quickr](https://cran.r-project.org/package=quickr) v0.1.0: Provides compiled R functions annotated with type and shape declarations for fast performance with robust runtime type checking. Supports both just-in-time (JIT) and ahead-of-time (AOT) compilation. Compilation is performed by lowering R code to Fortran. See [README](https://cran.r-project.org/web/packages/quickr/readme/README.html) for examples.
+[quickr](https://cran.r-project.org/package=quickr) v0.1.0: Provides compiled `R` functions annotated with type and shape declarations for fast performance with robust runtime type checking. Supports both just-in-time (JIT) and ahead-of-time (AOT) compilation. Compilation is performed by lowering `R` code to `FORTRAN`. See [README](https://cran.r-project.org/web/packages/quickr/readme/README.html) for examples.
+
+
 ### Statistics
 
 [aamatch](https://cran.r-project.org/package=aamatch) v0.3.7: Implements a simple version of multivariate matching using a propensity score, near-exact matching, near-fine balance, and robust Mahalanobis distance matching. You specify the variables, and the program does everything else. See [Rosenbaum (2020)](https://www.annualreviews.org/content/journals/10.1146/annurev-statistics-031219-041058) for details.
@@ -164,19 +170,19 @@ In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 
 
 ![](bayesmsm.png){fig-alt="Distribution of estimated treatment effects"}
 
-[BCD](https://cran.r-project.org/package=BCD) v0.1.1: Implements bivariate binomial, geometric, and Poisson distributions based on conditional specifications and includes tools for data generation and goodness-of-fit testing for these three distribution families. For methodological details, see [Ghosh et al.(2025)](https://www.tandfonline.com/doi/full/10.1080/03610926.2024.2315294),  [Ghosh et al. (2023)](https://www.tandfonline.com/doi/full/10.1080/03610918.2021.2004419), and [Ghosh et al. (202)](https://www.tandfonline.com/doi/full/10.1080/02664763.2020.1793307). There are three vignettes: [Bivariate Binomial Conditionals](https://cran.r-project.org/web/packages/BCD/vignettes/bbcd.html), [Bivariate Geometric Conditionals](https://cran.r-project.org/web/packages/BCD/vignettes/bgcd.html), and [Bivariate Poisson COnditionals](https://cran.r-project.org/web/packages/BCD/vignettes/bpcd.html).
+[BCD](https://cran.r-project.org/package=BCD) v0.1.1: Implements bivariate binomial, geometric, and Poisson distributions based on conditional specifications and includes tools for data generation and goodness-of-fit testing for these three distribution families. For methodological details, see [Ghosh et al.(2025)](https://www.tandfonline.com/doi/full/10.1080/03610926.2024.2315294),  [Ghosh et al. (2023)](https://www.tandfonline.com/doi/full/10.1080/03610918.2021.2004419), and [Ghosh et al. (202)](https://www.tandfonline.com/doi/full/10.1080/02664763.2020.1793307). There are three vignettes: [Bivariate Binomial Conditionals](https://cran.r-project.org/web/packages/BCD/vignettes/bbcd.html), [Bivariate Geometric Conditionals](https://cran.r-project.org/web/packages/BCD/vignettes/bgcd.html), and [Bivariate Poisson Conditionals](https://cran.r-project.org/web/packages/BCD/vignettes/bpcd.html).
 
-[lognGPD](https://cran.r-project.org/package=lognGPD) v0.1.0: Provides functions to estimate a lognormal, generalized Pareto mixture model via the Expectation-Maximization algorithm and includes functions for random number simulation and density evaluation. For details see [Bee and Santi (2025)](doi:10.48550/arXiv.2505.22507).
+[lognGPD](https://cran.r-project.org/package=lognGPD) v0.1.0: Provides functions to estimate a lognormal, generalized Pareto mixture model via the Expectation-Maximization algorithm and includes functions for random number simulation and density evaluation. For details see [Bee & Santi (2025)](doi:10.48550/arXiv.2505.22507).
 
-[QuantilePeer](https://cran.r-project.org/package=QuantilePeer) v0.0.1: Provides functions to simulate and estimate peer effect models including the quantile-based specification [Houndetoungan (2025)](https://arxiv.org/abs/2506.12920), and the models with Constant Elasticity of Substitution (CES)-based social norm [Boucher et al. (2024)](https://www.econometricsociety.org/publications/econometrica/2024/03/01/Toward-a-General-Theory-of-Peer-Effects). See the [vignette](https://cran.r-project.org/web/packages/QuantilePeer/vignettes/introduction_to_QuantilePeer.pdf) for details.
+[QuantilePeer](https://cran.r-project.org/package=QuantilePeer) v0.0.1: Provides functions to simulate and estimate peer effect models including the quantile-based specification ([Houndetoungan (2025)](https://arxiv.org/abs/2506.12920)), and the models with Constant Elasticity of Substitution (CES)-based social norm ([Boucher et al. (2024)](https://www.econometricsociety.org/publications/econometrica/2024/03/01/Toward-a-General-Theory-of-Peer-Effects)). See the [vignette](https://cran.r-project.org/web/packages/QuantilePeer/vignettes/introduction_to_QuantilePeer.pdf) for details.
 
-[riskdiff](https://cran.r-project.org/package=riskdiff) v0.2.1: Provides functions to calculate risk differences (or prevalence differences for cross-sectional data) using generalized linear models with automatic link function selection. IPTW ethods are based [Donoghoe &  Marschner (2018)]https://www.jstatsoft.org/article/view/v086i09). [Austin (2011)](https://www.tandfonline.com/doi/full/10.1080/00273171.2011.568786). Methods for risk difference estimation as described in Rothman et al. (2008): *Modern Epidemiology* (SBN:9780781755641). Yhere are two vignettes: [Getting Started](https://cran.r-project.org/web/packages/riskdiff/vignettes/riskdiff-intro.html), [Causal Inference](https://cran.r-project.org/web/packages/riskdiff/vignettes/iptw-analysis.htm).
+[riskdiff](https://cran.r-project.org/package=riskdiff) v0.2.1: Provides functions to calculate risk differences (or prevalence differences for cross-sectional data) using generalized linear models with automatic link function selection. See [Austin (2011)](https://www.tandfonline.com/doi/full/10.1080/00273171.2011.568786) for background on propensity sore matching and [Donoghoe &  Marschner (2018)](https://www.jstatsoft.org/article/view/v086i09)  for package details. There are two vignettes: [Getting Started](https://cran.r-project.org/web/packages/riskdiff/vignettes/riskdiff-intro.html), [Causal Inference](https://cran.r-project.org/web/packages/riskdiff/vignettes/iptw-analysis.htm).
 
 ![](riskdiff.png){fig-alt="Propensity score plot"}
 
 
 
-[survextrap](https://cran.r-project.org/package=survextrap) v1.0: Provides functions for survival analysis using a Bayesian model for individual-level right-censored data. There are several options for describing hazard functions which are modeled with M-splines. Priors can be customised and calibrated to substantive beliefs. Posterior distributions are estimated using `Stan`. See [Jackson (2023)](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-023-02094-1) for details. There are three vignettes including [Examples](https://cran.r-project.org/web/packages/survextrap/vignettes/examples.html) and [Priors](https://cran.r-project.org/web/packages/survextrap/vignettes/priors.html).
+[survextrap](https://cran.r-project.org/package=survextrap) v1.0: Provides functions for survival analysis using Bayesian models for individual-level right-censored data. Hazard functions are modeled with M-splines. Priors can be customized and calibrated to substantive beliefs. Posterior distributions are estimated using `Stan`. See [Jackson (2023)](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-023-02094-1) for details. There are three vignettes including [Examples](https://cran.r-project.org/web/packages/survextrap/vignettes/examples.html) and [Priors](https://cran.r-project.org/web/packages/survextrap/vignettes/priors.html).
 
 ![](survextrap.png){fig-alt="Survival curves showing spline knots"}
 
@@ -190,11 +196,11 @@ In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 
 
 ### Utilities
 
-[blocking](https://cran.r-project.org/package=blocking) v1.0.1: Provides provide blocking methods for record linkage and deduplication using approximate nearest neighbour (ANN) algorithms and graph techniques, generate shingles from character strings and similarity vectors for record comparison, and evaluation metrics for assessing blocking performance including false positive and false negative rates. For background and details see [Papadakis et al. (2020)](https://dl.acm.org/doi/10.1145/3377455), [Steorts et al. (2014)](https://link.springer.com/chapter/10.1007/978-3-319-11257-2_20), [Dasylva and Goussanou (2021)](https://www150.statcan.gc.ca/n1/en/catalogue/12-001-X202100200002), and [Dasylva and Goussanou (2022)](https://link.springer.com/article/10.1007/s42081-022-00153-3). There are three vignettes including blocking records for [deduplication](https://cran.r-project.org/web/packages/blocking/vignettes/v1-deduplication.html) and [record linkage](https://cran.r-project.org/web/packages/blocking/vignettes/v2-reclin.html).
+[blocking](https://cran.r-project.org/package=blocking) v1.0.1: Provides blocking methods for record linkage and deduplication using approximate nearest neighbor algorithms, functions to generate shingles from character strings and similarity vectors for record comparison, and evaluation metrics for assessing blocking performance including false positive and false negative rates. For background and details see [Papadakis et al. (2020)](https://dl.acm.org/doi/10.1145/3377455), [Steorts et al. (2014)](https://link.springer.com/chapter/10.1007/978-3-319-11257-2_20), [Dasylva and Goussanou (2021)](https://www150.statcan.gc.ca/n1/en/catalogue/12-001-X202100200002), and [Dasylva and Goussanou (2022)](https://link.springer.com/article/10.1007/s42081-022-00153-3). There are three vignettes including blocking records for [deduplication](https://cran.r-project.org/web/packages/blocking/vignettes/v1-deduplication.html) and [record linkage](https://cran.r-project.org/web/packages/blocking/vignettes/v2-reclin.html).
 
 ![](blocking.png){fig-alt="Plot of distribution of cluster distances"}
 
-[flir](https://cran.r-project.org/package=flir) v0.5.0: Provides functions to find and fix lints (code patterns that are not optimal because they are inefficient) in R code. There are three vignettes including [Adding new rules](https://cran.r-project.org/web/packages/flir/vignettes/adding_rules.html) and [Automatic fixes](https://cran.r-project.org/web/packages/flir/vignettes/automatic_fixes.html).
+[flir](https://cran.r-project.org/package=flir) v0.5.0: Provides functions to find and fix [lints](https://english.stackexchange.com/questions/623031/etymology-of-the-verb-lint-in-the-context-of-programming-where-it-means-to-app) (code patterns that are not optimal because they are inefficient) in R code. There are three vignettes including [Adding new rules](https://cran.r-project.org/web/packages/flir/vignettes/adding_rules.html) and [Automatic fixes](https://cran.r-project.org/web/packages/flir/vignettes/automatic_fixes.html).
 
 ![](flir.gif){fig-alt="Gif showing reviewing of fixes"}
 
@@ -208,7 +214,7 @@ In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 
 
 ![](fractalforest.png){fig-alt="Fractal based rendering of trees"}
 
-[ggtime](https://cran.r-project.org/package=ggtime) v0.1.0: Extends `ggplot2` by implementing a grammar of temporal graphics and helper functions for visualizing temporal patterns in time series graphics, time plots, season plots, and seasonal sub-series plots. See [README]() for examples.
+[ggtime](https://cran.r-project.org/package=ggtime) v0.1.0: Extends `ggplot2` by implementing a grammar of temporal graphics and helper functions for visualizing temporal patterns in time series graphics, time plots, season plots, and seasonal sub-series plots. See [README](https://cran.r-project.org/web/packages/ggtime/readme/README.html) for examples.
 
 ![](ggtime.png){fig-alt="Multi year seasonal plots"}
 :::
