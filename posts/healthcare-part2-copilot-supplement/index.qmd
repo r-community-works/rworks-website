@@ -1,10 +1,10 @@
 ---
 title: "Health Technology notes: Copilot tips and guidance"
 author: "Vidisha Vachharajani"
-date: "2025-07-23"
-description: ""
-image: "part2.png"
-image-alt: "Plot showing distribution of diagnosis upon admission"
+date: "2025-07-30"
+description: "In this post, we walk the reader through the fundamental driver of successfully using AI agents – prompting. Prompting is the method of instructing an LLM to perform a task by carefully designing an input text."
+image: "Copilot_start.png"
+image-alt: "Screen showing cop9poy session"
 editor: source
 ---
 
@@ -18,7 +18,7 @@ We [introduced](https://rworks.dev/posts/healthcare-part1/) the use of the AI pa
 
 > ***Setting up Copilot in RStudio:** Adding Copilot as a pair programmer to your RStudio is simple, and has a seamless interface.* *Take a look at the Posit documentation [**here**](https://docs.posit.co/ide/user/ide/guide/tools/copilot.html)***.** *Make sure to enable it! See below.*
 
-![](images/clipboard-2604793550.png){width="538"}
+![](Copilot_start.png){width="538"}
 
 ## 2. Using Copilot to get data summaries
 
@@ -27,7 +27,7 @@ After cleaning our data like we do in this [snippet](https://github.com/VidishaV
 These are the fields we will summarize.
 
 | Field name | Field type | Field description |
-|------------------------|------------------------|------------------------|
+|--------------|--------------|---------------------------------------------|
 | `primary_diag` | initial admission covariate | primary diagnosis upon admission |
 | `a1c` | initial admission covariate | whether a patient was given the A1c test or not |
 | `diabetesMed` | intermediate response | whether a patient was given any diabetes medication |
@@ -290,7 +290,7 @@ Consider the 23 medication prescriptions, each categorized into one of four leve
 
 💡 Takeaway: The quality of your output depends on the quality of your prompt. Copilot is powerful, but only if you guide it with precision.
 
-![](images/clipboard-3142793684.png){width="785"}
+![](convo.png){width="785"}
 
 Click on "Show the code" to see the actual back-and-forth conversation with Copilot that was the basis of the final visualization.
 
