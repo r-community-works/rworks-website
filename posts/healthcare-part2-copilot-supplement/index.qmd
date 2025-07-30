@@ -1,0 +1,467 @@
+---
+title: "Health Technology notes: Copilot tips and guidance"
+author: "Vidisha Vachharajani"
+date: "2025-07-30"
+description: "In this post, we walk the reader through the fundamental driver of successfully using AI agents – prompting. Prompting is the method of instructing an LLM to perform a task by carefully designing an input text."
+image: "Copilot_start.png"
+image-alt: "Screen showing cop9poy session"
+editor: source
+---
+
+## 1. Introduction
+
+### 1.1. The use of AI agents and the case for "prompt" choices
+
+We [introduced](https://rworks.dev/posts/healthcare-part1/) the use of the AI pair programmer, Copilot, while working with `tidyverse`. In this post, we walk the reader through the fundamental driver of successfully using AI agents – prompting. Prompting is the method of instructing an LLM to perform a task by carefully designing an input text. Our prompting will be the "regular" or "zero-shot" prompting, the most commonly used prompting [technique](https://towardsdatascience.com/recap-of-all-types-of-llm-agents/) where you simply ask the agent a question and receive an answer. Typically, while using this, iteration is recommended to get to a more exact answer, especially with coding outputs. This technique is flexible and easy to use, but in my other more complex coding and analytics workflows, I have also used [few-shot](https://www.datacamp.com/tutorial/few-shot-prompting) prompting, where you provide the LLM with examples and/or context in your prompt. In this post, we will focus on iterative zero-shot prompting.
+
+### 1.2. A recap of getting started with Copilot in RStudio
+
+> ***Setting up Copilot in RStudio:** Adding Copilot as a pair programmer to your RStudio is simple, and has a seamless interface.* *Take a look at the Posit documentation [**here**](https://docs.posit.co/ide/user/ide/guide/tools/copilot.html)***.** *Make sure to enable it! See below.*
+
+![](Copilot_start.png){width="538"}
+
+## 2. Using Copilot to get data summaries
+
+After cleaning our data like we do in this [snippet](https://github.com/VidishaVac/healthcare-analytics/blob/main/cleanDiabetic_data.R), we will now use Copilot for our first task – to get some useful summaries of the fields we think are likely to impact patient care outcomes. We do this in section 2 of our analytics post. Note that to give the right guidance to Copilot for these summaries, we would need to know what fields we are summarizing, and their underlying `class` within your R workspace, all of which we will specify in our prompt.
+
+These are the fields we will summarize.
+
+| Field name | Field type | Field description |
+|--------------|--------------|---------------------------------------------|
+| `primary_diag` | initial admission covariate | primary diagnosis upon admission |
+| `a1c` | initial admission covariate | whether a patient was given the A1c test or not |
+| `diabetesMed` | intermediate response | whether a patient was given any diabetes medication |
+| `acarbose:troglitazone` | intermediate response | individual 23 diabetes medications that were prescribed or not, and if prescribed, were held steady, increased or decreased |
+| `readmitted` | final response | whether the patient was readmitted early (\<30 days) |
+
+Table 1: Important data fields and their descriptions
+
+> ***Notes:** Take a look at the clip where I show the prompt I wrote to get to the summary code. Note the following -*
+>
+> 1.  *The ghost text auto-complete that is typical of Copilot once you begin materializing the initial line of the code.*
+> 2.  *The specifics of the prompt - the field names and that they are `factor` fields, etc.*
+>
+> *Note that I went back and modified the prompt since I forgot to ask it to include frequency percentages. I also went back and added `arrange()` myself in order to enable sorting for a neater look. Right after the video, see the final code that was used in the analysis. Note that this does not get us to the final kable outputs and table formatting, which were done manually.*
+
+{{< video summaryMovie.mov >}}
+
+Click on "Show the code" to see the Copilot code output from the above interaction.
+
+```{r eval=FALSE}
+#| label: Chunk0
+#| warning: false
+#| code-fold: true
+#| code-summary: "Show the code"
+
+# ---------- ---------- ---------- ---------- #
+# Final code output after iterating with Copilot 
+# ---------- ---------- ---------- ---------- #
+summary_a1c <- D %>%
+  group_by(a1c) %>%
+  summarise(count = n(), percent = n() / nrow(D) * 100) %>%
+  arrange(desc(percent))
+summary_primary_diag <- D %>% 
+  group_by(primary_diag) %>%
+  summarise(count = n(), percent = n() / nrow(D) * 100) %>%
+  arrange(desc(percent))
+summary_readmitted <- D %>% 
+  group_by(readmitted) %>%
+  summarise(count = n(), percent = n() / nrow(D) * 100) %>%
+  arrange(desc(percent))
+summary_change <- D %>% 
+  group_by(change) %>%
+  summarise(count = n(), percent = n() / nrow(D) * 100) %>%
+  arrange(desc(percent))
+summary_diabetesMed <- D %>% 
+  group_by(diabetesMed) %>%
+  summarise(count = n(), percent = n() / nrow(D) * 100) %>%
+  arrange(desc(percent))
+```
+
+Click on "Show the code" to see the final code used to clean the data and generate the summaries.
+
+```{r}
+#| label: Chunk1
+#| warning: false
+#| code-fold: true
+#| code-summary: "Show the code"
+
+# --------------------------------------------- #
+# Load necessary libraries
+# --------------------------------------------- #
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(kableExtra)
+library(gridExtra)
+library(grid)
+library(lattice)
+
+# --------------------------------------------- #
+# Read in the data
+# --------------------------------------------- #
+
+D <- read.csv("https://raw.githubusercontent.com/VidishaVac/healthcare-analytics/refs/heads/main/dataset_diabetes/diabetic_data.csv", sep=",")
+
+# -------------------------------------------------------- #
+# Clean and re-define HbA1c and primary diag
+# -------------------------------------------------------- #
+
+D <- D %>%
+  mutate(a1c=ifelse(A1Cresult=="None", "not measured", "measured"), 
+         primary_diag = case_when(
+    diag_1 %in% c(390:459, 785) ~ "Circulatory",
+    diag_1 %in% c(460:519, 786) ~ "Respiratory",
+    diag_1 %in% c(520:579, 787) ~ "Digestive",
+    diag_1 %in% c(580:629, 788) ~ "Genitourinary",
+    diag_1 %in% c(630:679) ~ "Pregnancy",
+    diag_1 %in% c(680:709, 782) ~ "Skin",
+    diag_1 %in% c(710:739) ~ "Musculoskeletal",
+    diag_1 %in% c(740:759) ~ "Congenital",
+    diag_1 %in% c(800:999) ~ "Injury",
+    grepl("^250", diag_1) ~ "Diabetes",
+    is.na(diag_1) ~ "Missing",
+    TRUE ~ "Other"
+  ))
+
+# Remove columns not used, patients with a discharge disposition of "expired" or "hospice"
+D <- D %>% select(1,2,7:9,25:52) %>% 
+  filter(!discharge_disposition_id %in% c('11','13','14','19','20','21'))
+
+# Summarize
+summary_a1c <- D %>%
+  group_by(a1c) %>%
+  summarise(count = n(), percent = n() / nrow(D) * 100) %>%
+  arrange(desc(percent))
+summary_primary_diag <- D %>% 
+  group_by(primary_diag) %>%
+  summarise(count = n(), percent = n() / nrow(D) * 100) %>%
+  arrange(desc(percent))
+summary_readmitted <- D %>% 
+  group_by(readmitted) %>%
+  summarise(count = n(), percent = n() / nrow(D) * 100) %>%
+  arrange(desc(percent))
+summary_change <- D %>% 
+  group_by(change) %>%
+  summarise(count = n(), percent = n() / nrow(D) * 100) %>%
+  arrange(desc(percent))
+summary_diabetesMed <- D %>% 
+  group_by(diabetesMed) %>%
+  summarise(count = n(), percent = n() / nrow(D) * 100) %>%
+  arrange(desc(percent))
+
+# summary_primary_diag %>% 
+#   kable(digits = 1, format.args = list(big.mark = ","), 
+#         caption = "Breakdown of the primary patient diagnosis upon admission for a diabetic encounter") %>%
+#           row_spec(1, background = "yellow", font_size = "larger")
+
+
+```
+
+We show an example summary for patient primary diagnosis on admission – notice how circulatory diagnoses account for the most common reason for hospital admissions in diabetic encounters. This is a vital insight and an important theme that will run through our analyses.
+
+To make the summary data easier to consume, we use a circular bar plot. While I did not use Copilot for the actual bar plot, I used GPT-4o (directly in a browser) to achieve this clean 2-column look for the plot and its notes to the right. See here for the full conversation.
+
+Finally, see "Plot notes" for details on the design.
+
+:::::: columns
+::: {.column width="65%"}
+```{r fig.width=10, fig.height=8}
+#| label: Chunk21
+#| warning: false
+#| echo: false
+#| eval: true
+
+df <- summary_primary_diag
+df <- df %>% mutate(
+  label=c(paste(round(df$percent[1:5]), "%", sep=""),rep(NA,nrow(df)-5)))
+
+
+p0 <- ggplot(data=df, aes(x=reorder(primary_diag,count), y=count, fill=percent)) +
+  geom_bar(stat="identity", color="black") + 
+  coord_polar() +
+  scale_fill_gradientn(
+    "Percent",
+    colours = c( "#6C5B7B","#C06C84","#F67280","#F8B195")) +
+  geom_text(aes(x=primary_diag, y=count/2,label = label), size=5, 
+            color="black",
+            fontface="bold") +
+scale_y_continuous(breaks = seq(0, 40000, by = 10000),
+                  limits = c(-10000, 40000),
+                  expand = c(0, 0)) +
+  annotate("text", x = 11.95, y = 12000, label = "10,000", size = 4, color = "black") +
+  annotate("text", x = 11.95, y = 22000, label = "20,000", size = 4, color = "black") +
+  annotate("text", x = 11.95, y = 32000, label = "30,000", size = 4, color = "black") +
+    theme(
+    # Remove axis ticks and text
+    axis.title = element_blank(),
+    axis.ticks = element_blank(),
+    axis.text.y = element_blank(),
+    # Use gray text for the region names
+    axis.text.x = element_text(color = "gray12", size = 15),
+    legend.position = "none",
+    plot.title = element_text(face = "bold", size = 22),
+    plot.subtitle = element_text(size = 15)) +
+  # Add labels
+  labs(
+    title = "\nPatient primary diagnoses",
+    subtitle = paste(
+      "\nPrimary diagnoses of admitted patients vary considerably.",
+      "Even for diabetic encounters, the most common admitting diagnosis",
+      "is circulatory or heart disease. We will call this out in our analysis,",
+      "comparing patient outcomes for these high-risk but non-diabetic",
+      "admissions with diabetic admissions (which are only 9% of the",
+      "admitting or primary diagnoses).",
+      sep = "\n"
+    )) 
+
+p0
+```
+:::
+
+:::: {.column width="35%"}
+::: {.callout-note title="Plot notes"}
+[*The circular bar plot offers a visually engaging and effective way to convey categorical comparisons, combining aesthetic appeal with immediate interpretability. One of the strengths of the design here is its ability to simultaneously emphasize both absolute and relative differences through clear axis labeling and proportional arc length. For instance, circulatory disease accounts for 30% of the sample — roughly 30,000 encounters — while diabetes as a primary admission diagnosis represents just 9%, or fewer than 10,000. These contrasts are instantly evident not only in the numbers but also in the visual impact of the plot. The minimalist style, paired with concise explanatory text above the chart, makes each visual a self-contained and accessible summary — both analytically rich and reader-friendly.*]{style="font-size: 0.8em;"}
+:::
+::::
+::::::
+
+```{r}
+#| label: Chunk22
+#| warning: false
+#| eval: false
+#| code-fold: true
+#| code-summary: "Show the code"
+
+df <- summary_primary_diag
+df <- df %>% mutate(
+  label=c(paste(round(df$percent[1:5]), "%", sep=""),rep(NA,nrow(df)-5)))
+
+
+p0 <- ggplot(data=df, aes(x=reorder(primary_diag,count), y=count, fill=percent)) +
+  geom_bar(stat="identity", color="black") + 
+  coord_polar() +
+  scale_fill_gradientn(
+    "Percent",
+    colours = c( "#6C5B7B","#C06C84","#F67280","#F8B195")) +
+  geom_text(aes(x=primary_diag, y=count/2,label = label), size=3.5, 
+            color="black",
+            fontface="bold") +
+scale_y_continuous(breaks = seq(0, 40000, by = 10000),
+                  limits = c(-10000, 40000),
+                  expand = c(0, 0)) +
+  annotate("text", x = 11.95, y = 12000, label = "10,000", size = 2.5, color = "black") +
+  annotate("text", x = 11.95, y = 22000, label = "20,000", size = 2.5, color = "black") +
+  annotate("text", x = 11.95, y = 32000, label = "30,000", size = 2.5, color = "black") +
+    theme(
+    # Remove axis ticks and text
+    axis.title = element_blank(),
+    axis.ticks = element_blank(),
+    axis.text.y = element_blank(),
+    # Use gray text for the region names
+    axis.text.x = element_text(color = "gray12", size = 10),
+    legend.position = "none",
+    plot.title = element_text(face = "bold", size = 15),
+    plot.subtitle = element_text(size = 9)) +
+  # Add labels
+  labs(
+    title = "\nPatient primary diagnoses",
+    subtitle = paste(
+      "\nPrimary diagnoses of admitted patients vary considerably.",
+      "Even for diabetic encounters, the most common admitting diagnosis",
+      "is circulatory or heart disease. We will call this out in our analysis,",
+      "comparing patient outcomes for these high-risk but non-diabetic",
+      "admissions with diabetic admissions (which are only 9% of the",
+      "admitting or primary diagnoses).",
+      sep = "\n"
+    )) 
+
+```
+
+## 3. Prompting pitfalls: What You Ask Is What You Get
+
+Copilot is powerful and easy to use, but in this section, we'll dive a little more into the importance of iteration – how effective prompting often requires fine-tuning, and how insufficient or non-specific guidance can lead you astray.
+
+Consider the 23 medication prescriptions, each categorized into one of four levels: 𝘕𝘰, 𝘚𝘵𝘦𝘢𝘥𝘺, 𝘜𝘱, or 𝘋𝘰𝘸𝘯., where the medications include well-known drugs like insulin and metformin. I wanted a strong visual for looking at all 23 in 1 plot, and I started with my own code for a bar plot. Next, I wanted to explore alternate plot types that could reveal more nuanced insights.
+
+🖼️ In the image below, you can follow my conversation with Copilot: I began with a vague prompt (“Can you fix this blank plot?”) Then refined it a little (“Can you use a different kind of plot?”) Finally, I gave it the specific guidance it needed (which variables to use and how to specify its aesthetics)
+
+🔍 Only when I provided clear, well-scoped instructions did Copilot return a useful, meaningful visualization.
+
+💡 Takeaway: The quality of your output depends on the quality of your prompt. Copilot is powerful, but only if you guide it with precision.
+
+![](convo.png){width="785"}
+
+Click on "Show the code" to see the actual back-and-forth conversation with Copilot that was the basis of the final visualization.
+
+```{r eval=FALSE}
+#| label: Chunk2
+#| warning: false
+#| code-fold: true
+#| code-summary: "Show the code"
+# ---------- # 
+# Prompt 1
+# ---------- # 
+
+# Consider "meds" and "p0" above. 
+# Can you recommend a plot that is not geom_col 
+# or geom_bar but that will capture how they are 
+# being prescribed, using "freq"?
+
+# ---------- # 
+# Output 1
+# ---------- # 
+
+p1 <- ggplot(data=meds, aes(x=medication, y=freq, fill=value)) + 
+  geom_area(position = "fill") + 
+  theme_minimal() + 
+  coord_flip() +
+  labs(title = "Proportion of Medication Prescriptions", y = "Proportion (%)", x = "Medication")
+
+# ---------- # 
+# Prompt 2
+# ---------- # 
+
+# This plot above is blank, can you fix this?
+
+# ---------- # 
+# Output 2
+# ---------- # 
+
+p1 <- ggplot(data=meds, aes(x=medication, y=freq, fill=value)) + 
+  geom_area(position = "fill") + 
+  theme_minimal() + 
+  coord_flip() +
+  labs(title = "Proportion of Medication Prescriptions", y = "Proportion (%)", x = "Medication") +
+  scale_y_continuous(labels = scales::percent_format(scale = 1))
+
+# ---------- # 
+# Prompt 3
+# ---------- # 
+
+# It is still blank, can you use a different type of plot?
+
+# ---------- # 
+# Output 3
+# ---------- # 
+
+p2 <- ggplot(data=meds, aes(x=medication, y=freq, fill=value)) + 
+  geom_tile() + 
+  theme_minimal() + 
+  coord_flip() +
+  labs(title = "Medication Prescription Frequency", y = "Frequency (%)", x = "Medication") +
+  scale_y_continuous(labels = scales::percent_format(scale = 1))
+
+# ---------- # 
+# Prompt 4
+# ---------- # 
+
+# Do you think geom_tile needs "medication" and "value" to be on the axes and "freq"
+# to be the fill?
+
+# ---------- # 
+# Output 4
+# ---------- # 
+
+p3 <- ggplot(data=meds, aes(x=value, y=medication, fill=freq)) + 
+  geom_tile() + 
+  theme_minimal() + 
+  labs(title = "Medication Prescription Frequency", y = "Medication", x = "Value") +
+  scale_fill_gradient(low = "blue", high = "red") +
+  scale_x_continuous(labels = scales::percent_format(scale = 1))
+
+# ---------- # 
+# Final tweak -- Prompt 5
+# ---------- # 
+
+# It seems discrete values have been supplied to continuous scale, can you fix?
+
+# ---------- # 
+# Output 5
+# ---------- # 
+
+p4 <- ggplot(data=meds, aes(x=value, y=medication, fill=freq)) + 
+  geom_tile() + 
+  theme_minimal() + 
+  labs(title = "Medication Prescription Frequency", y = "Medication", x = "Value") +
+  scale_fill_gradient(low = "blue", high = "red") +
+  scale_x_discrete(labels = scales::percent_format(scale = 1))
+
+```
+
+Let's see the final code used for the visualization outputs, generated from the Copilot conversation above. See plot design notes below for the motivation behind the original bar plot and the crucial difference between the specifications of the 2 plots, and how it relates back to the Copilot iteration above. Click on "Show the code" to see the underlying plot generating code.
+
+### Plot 1: Original barplot with flipped coordinates
+
+:::::: columns
+::: {.column width="50%"}
+```{r}
+#| label: Chunk3
+#| warning: false
+#| code-fold: true
+#| code-summary: "Show the code"
+
+# Reshaping wide to get a better view of medications
+meds <- D %>%
+  select(metformin:metformin.pioglitazone) %>%
+  gather(key = "medication", value = "value") %>%
+  group_by(medication, value) %>% summarise(n=n()) %>% mutate(pct = (n / sum(n))*100)
+
+# My original barplot with flipped coordinates
+p0 <- ggplot(data=meds, aes(x=medication, y=pct, fill=value)) + geom_col() + 
+  labs(title = "Diabetes medications bar plot",
+       x = "Medication name",
+       y = "Percent prescribed", fill="Medication value") + theme_minimal() + coord_flip() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+p0
+```
+:::
+
+:::: {.column width="50%"}
+::: {.callout-note title="Plot notes"}
+***Plot notes:** The original barplot on the left is a slightly different use of `geom_col()`. While it is normally used for a bar chart use case, in this plot, it has a quite useful "heatmap" look. By using `coord_flip()`, we are able to clearly see the full name of each medication. In my mind, this is a slightly better look than having the medication names be on the x-axis at a 45-degree angle. We enhanced this further by also using `geom_tile()`.*
+:::
+::::
+::::::
+
+### Plot 2: Heatmap with improved palette and labels
+
+:::::: columns
+::: {.column width="50%"}
+```{r}
+#| label: Chunk4
+#| warning: false
+#| code-fold: true
+#| code-summary: "Show the code"
+
+# Heatmap with improved color palette and labels
+p1 <- ggplot(data=meds, aes(x=value, y=medication, fill=pct)) + geom_tile() + 
+  labs(title = "Diabetes medication heatmap",
+       x = "Medication value",
+       y = "Medication name", fill="Percent prescribed") + theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) + 
+  scale_fill_gradientn(colors = palette.colors(9), 
+                       limits = c(0, 100)) +
+  geom_text(aes(label = paste(round(pct, 1), "%", sep="")), color = "white", size = 3) 
+
+p1
+```
+:::
+
+:::: {.column width="50%"}
+::: {.callout-note title="Plot notes"}
+[***Plot notes**: Upon switching to a `geom_tile()`*]{style="font-size: 0.95em;"} *heatmap plot, the more nuanced prescription variations become much more evident. However, the default color parameters from Copilot output 4 does not offer this as clearly. I adjust these color parameters to make them more robust under color vision deficiencies, making them easily distinguishable for all viewers, and surfacing the actual variations across medications prescribed. I also add data labels to the final plot.*
+:::
+::::
+::::::
+
+Finally, notice the very important difference in the `aes()` specifications between the 2 plots, which is where the Copilot output 3 from the conversation goes awry, and needs a fine-tuned prompt – for the left hand side `geom_col()`, the `fill` parameter is the `value` or the levels of the medication, while for the right hand side `geom_tile()`, its the actual percent. The legend to the right of each plot shows this.
+
+## 4. What's next
+
+We will continue showcasing the use of AI agents in our healthcare analytics workflow while using `tidyverse`, to demonstrate how health technology can benefit stakeholders in this industry, especially given the richness of the data sitting in our health systems. Effectively mining this data using the right tools in order to extract insights that impact care delivery decisions is not just our end goal, but also crucial for the advancement of the use of technology in healthcare.
+
+## About the Author
+
+*Vidisha writes: "I am a statistician and data science professional. For practitioners like me, 'tidyverse' is a household word. I’ve used it for complex data wrangling, visualization, and advanced analytics work, especially where I needed clarity on how to leverage my data so that it allows for story-telling that informs business decisions, recasting my work into actionable insights. I recently began exploring GPT-4o mini and GitHub Copilot to help me speed up my workflows, especially within Healthcare Analytics. I am excited to share this post series to help readers understand the role of RStudio and AI in Healthcare Analytics!"*
