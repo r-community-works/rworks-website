@@ -1,7 +1,7 @@
 ---
 title: "June 2025 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
-date: 2025-07-27
+date: 2025-07-30
 description: "An attempt to capture the depth and breadth of what's new on CRAN: here are my Top 40 picks in twenty-one categories: AI, Chess, Computational Methods, Data, Decision Analysis, Ecology, Epidemiology, Finance, Genomics, Lingusitics, Machine Learning, Mathematics, Medical Statistics, Music Theory, Networks, Programming, Statistics, Time Series, Utilities, and Visualization."
 image: "polarzonoid.png"
 image-alt: "The polarzonoid"
