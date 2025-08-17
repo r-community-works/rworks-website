@@ -1,0 +1,251 @@
+---
+title: "ANES 2024 is Out! How to Analyze the Data with R"
+author: "Isabella Velásquez"
+date: 2025-08-20
+code-summary: "Show the code"
+description: "Explore the newly released ANES 2024 survey data in R with {survey} and {srvyr}."
+categories: ""
+image: image.jpg
+editor: source
+---
+
+Last fall, my co-authors Stephanie Zimmer, Rebecca Powell, and I released [Exploring Complex Survey Data Analysis Using R](https://tidy-survey-r.github.io/tidy-survey-book/). Earlier this August, we had the joy of teaching a [workshop](https://tidy-survey-r.github.io/user-2025-survey-data-tutorial/) based on the book at [useR! 2025](https://user2025.r-project.org/).
+
+One of our favorite examples in both the book and workshop comes from the [American National Election Studies (ANES)](https://electionstudies.org/). ANES surveys are a goldmine for anyone interested in public opinion and voting behavior in U.S. presidential elections. They cover everything from party affiliation to trust in government, and the data are designed to be representative of the voting population.
+
+Just a couple of days after returning from useR!, I was thrilled to see that the brand-new ANES 2024 dataset had been released!
+
+<center>
+<blockquote class="bluesky-embed" data-bluesky-uri="at://did:plc:l5kkuquemh5xnycs2axptlam/app.bsky.feed.post/3lw7tc5qqic2z" data-bluesky-cid="bafyreibnu557kdchflh56tq6ecqchxuiw455j3i3mqfjit67tlrutfw7vq" data-bluesky-embed-color-mode="system"><p lang="en">The full release of the ANES 2024 Time Series #Data is now available. More details here: electionstudies.org/anes-announc...<br><br><a href="https://bsky.app/profile/did:plc:l5kkuquemh5xnycs2axptlam/post/3lw7tc5qqic2z?ref_src=embed">[image or embed]</a></p>&mdash; American National Election Studies (<a href="https://bsky.app/profile/did:plc:l5kkuquemh5xnycs2axptlam?ref_src=embed">@electionstudies.bsky.social</a>) <a href="https://bsky.app/profile/did:plc:l5kkuquemh5xnycs2axptlam/post/3lw7tc5qqic2z?ref_src=embed">August 12, 2025 at 12:24 PM</a></blockquote><script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
+</center>
+
+So, let’s walk through how you can get started analyzing this dataset in R with the {survey} and {srvyr} packages. For more depth, the [Getting Started](https://tidy-survey-r.github.io/tidy-survey-book/c04-getting-started.html) chapter of our book is a handy companion.
+
+## Download the data
+
+Head to the [Election Studies website](https://electionstudies.org/data-center/2024-time-series-study/) and grab the CSV version of the 2024 Time Series study. The download comes as a Zip file that includes both the dataset and documentation.
+
+## Load packages and data
+
+We’ll use the tidyverse for wrangling, and {survey} plus {srvyr} for analysis:
+
+```{r}
+#| message: false
+library(tidyverse)
+library(survey)
+library(srvyr)
+
+anes_2024 <-
+  read_csv("anes_timeseries_2024_csv_20250808.csv")
+```
+
+## Review the documentation
+
+[Reviewing the survey documentation](https://tidy-survey-r.github.io/tidy-survey-book/c03-survey-data-documentation.html) is a critical part of survey analysis. The ANES materials include details about the sample, weighting, and codebook.
+
+### Sample
+
+The 2024 sample was designed to represent U.S. citizens age 18 or older. Respondents were recruited from both in-person and web samples, with careful notes on eligibility and exclusions.
+
+### Codebook
+
+The codebook decodes variable names into something human-readable.
+
+![](codebook.png){width=40% fig-align="center" style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); border-radius: 5px;"}
+
+Here are two variables we’ll use:
+
+* `V240002b`: MODE OF INTERVIEW: POST-ELECTION: This variable captures the mode in which the respondent completed the majority of the post-election survey.
+  * -7. Insuﬃcient parital, interview deleted
+  * -6. No post interview
+  * 1. Face-to-face (FTF)
+  * 2. Internet (WEB)
+  * 3. Paper (PAPI)
+  * 4. Phone
+  * 5. Video
+  
+* `V241229`: PRE: HOW OFTEN TRUST GOVERNMENT IN WASHINGTON TO DO WHAT IS RIGHT [REVISED]: 
+  * -9. Refused
+  * -8. Don’t know
+  * -1. Inapplicable
+  * 1. Always
+  * 2. Most of the time
+  * 3. About half the time
+  * 4. Some of the time
+  * 5. Never
+  
+Let’s recode `V241229` for easier analysis:
+  
+```{r}
+anes_2024_code <-
+  anes_2024 |> 
+  mutate(
+    TrustGovernment = factor(
+      case_when(
+        V241229 == 1 ~ "Always",
+        V241229 == 2 ~ "Most of the time",
+        V241229 == 3 ~ "About half the time",
+        V241229 == 4 ~ "Some of the time",
+        V241229 == 5 ~ "Never",
+        .default = NA
+      ),
+      levels = c("Always", "Most of the time", "About half the time", "Some of the time", "Never")
+    )
+  )
+```
+
+
+See more on [codebooks](https://tidy-survey-r.github.io/tidy-survey-book/c03-survey-data-documentation.html#codebooks).
+
+## Create a design object
+
+The design object is the backbone of survey analysis. Survey data use weights, strata, and clusters to reflect the population. That means we need a survey design object before running any analyses, and the design object tells R which weights to use, how respondents were sampled, and what adjustments are needed. Without it, any estimates we calculate could be misleading.
+
+To build the design object, we need three key ingredients:
+
+1. Weights: to make sure results reflect the population.
+2. Strata: groups used in sampling to ensure coverage.
+3. Clusters (PSUs): primary sampling units, like households or addresses.
+
+### Finding the right weight
+
+The ANES documentation lists which weight variables go with which sample:
+
+![](weights.png){width=40% fig-align="center" style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); border-radius: 5px;"}
+
+Since we’re looking at the post-election fresh in-person sample, we’ll use weight variable `V240101b`.
+
+One important note: ANES weights add up to the sample size, not the population size. Let’s confirm:
+
+```{r}
+anes_2024_code |> filter(V240101b > 0) |> summarize(sum = sum(V240101b))
+```
+
+This matches the `925` respondents shown in the documentation’s sample table.
+
+![](sample.png){width=40% fig-align="center" style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); border-radius: 5px;"}
+
+### Adjusting for the population
+
+If we want to make inferences about the entire U.S. population, we need to adjust the weights. The target population for this sample is about 232.5 million U.S. citizens aged 18 or older, but that’s just a rough number. For something more precise, we can pull population counts from the Current Population Survey (CPS).
+
+We go [into detail on how to calculate the population size using CPS](https://tidy-survey-r.github.io/tidy-survey-book/c04-getting-started.html#american-national-election-studies-design-object), but for brevity, here I just share the code using {censusapi}:
+
+```{r}
+#| eval: false
+library(censusapi)
+
+cps_state_in <- getCensus(
+  name = "cps/basic/mar",
+  vintage = 2024,
+  region = "state",
+  vars = c(
+    "HRMONTH", "HRYEAR4",
+    "PRTAGE", "PRCITSHP", "PWSSWGT"
+  ),
+  key = Sys.getenv("CENSUS_KEY")
+)
+
+cps_state <- cps_state_in |>
+  as_tibble() |>
+  mutate(across(
+    .cols = everything(),
+    .fns = as.numeric
+  ))
+
+cps_narrow_resp <- cps_state |>
+  filter(
+    PRTAGE >= 18,
+    PRCITSHP %in% c(1:4)
+  )
+
+targetpop <- cps_narrow_resp |>
+  pull(PWSSWGT) |>
+  sum()
+
+scales::comma(targetpop)
+```
+
+```{r}
+#| include: false
+targetpop = 235171701
+```
+
+The estimated target population for 2024 is `r scales::comma(targetpop)`. Now we can rescale the ANES weights so they add up to the population size:
+
+```{r}
+anes_adjwgt <- anes_2024_code |> 
+  mutate(Weight = V240101b / sum(V240101b, na.rm = TRUE) * targetpop)
+```
+
+### Strata and clusters
+
+The documentation also tells us which strata and PSU (cluster) variables pair with each weight.
+
+![](weight-strata-cluster.png){width=40% fig-align="center" style="box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); border-radius: 5px;"}
+
+For V240101b, those are:
+
+* Strata: `V240101d`
+* PSU: `V240101c`
+
+More on [sampling design can be found in this chapter](https://tidy-survey-r.github.io/tidy-survey-book/c10-sample-designs-replicate-weights.html).
+
+### Putting it all together
+
+Finally, we can build the design object. We’ll also filter to respondents who actually completed the in-person post-election interview (`V240002b == 1`):
+
+```{r}
+#| output: false
+options(survey.lonely.psu="adjust")
+
+anes_des <- anes_adjwgt |>
+  filter(V240002b == 1) |>
+  as_survey_design(
+    weights = Weight,
+    strata = V240101d,
+    ids = V240101c,
+    nest = TRUE
+  )
+
+anes_des
+```
+
+And there we go! `anes_des` is our fully specified survey design object. From here on, we use it so every estimate we calculate properly reflects the survey’s design.
+
+## Analyze the data
+
+Now for the fun part! Let’s see how people answered the Trust Government question:
+
+```{r}
+#| warning: false
+(trustgov <- anes_des |>
+  drop_na(TrustGovernment) |>
+  group_by(TrustGovernment) |>
+  summarize(p = survey_prop()) |>
+  mutate(Variable = "V241229") |>
+  rename(Answer = TrustGovernment) |>
+  select(Variable, everything()))
+```
+
+
+And a quick plot:
+
+```{r}
+trustgov |> 
+  ggplot(aes(x = Answer, y = p, fill = Answer)) +
+  geom_bar(stat = "identity", color = "#0b3954") +
+  theme_minimal() + 
+  theme(legend.position = "none",
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank()) +
+  scale_fill_manual(values = c("#0b3954", "#ecf3f9", "#8d6b94", "#ff8484", "#087e8b"))
+```
+
+The results show just how varied public trust is, with only a small fraction of respondents saying they always trust the government.
+
+## Wrap up
+
+The ANES 2024 release is packed with insights, and what we’ve covered here is just the tip of the iceberg. With hundreds of variables across attitudes, demographics, and behaviors, you’ll definitely find questions worth exploring.
+
+If you try out the dataset, I’d love to hear what you discover. Feel free to share your own analyses or visualizations!
