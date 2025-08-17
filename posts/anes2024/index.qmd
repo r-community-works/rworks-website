@@ -141,7 +141,8 @@ cps_state_in <- getCensus(
   region = "state",
   vars = c(
     "HRMONTH", "HRYEAR4",
-    "PRTAGE", "PRCITSHP", "PWSSWGT"
+    "PRTAGE", "PRCITSHP", "PWSSWGT",
+    "HEHOUSUT", "HRHTYPE"
   ),
   key = Sys.getenv("CENSUS_KEY")
 )
@@ -156,7 +157,44 @@ cps_state <- cps_state_in |>
 cps_narrow_resp <- cps_state |>
   filter(
     PRTAGE >= 18,
-    PRCITSHP %in% c(1:4)
+    PRCITSHP %in% c(1:4),
+    !state %in% c(2, 15),
+    !HEHOUSUT %in% c(8:12),
+    !HRHTYPE %in% c(9, 10)
+  )
+
+targetpop <- cps_narrow_resp |>
+  pull(PWSSWGT) |>
+  sum()
+
+scales::comma(targetpop)
+library(censusapi)
+
+cps_state_in <- getCensus(
+  name = "cps/basic/mar",
+  vintage = 2024,
+  region = "state",
+  vars = c(
+    "HRMONTH", "HRYEAR4",
+    "PRTAGE", "PRCITSHP", "PWSSWGT",
+    "HEHOUSUT"
+  ),
+  key = Sys.getenv("CENSUS_KEY")
+)
+
+cps_state <- cps_state_in |>
+  as_tibble() |>
+  mutate(across(
+    .cols = everything(),
+    .fns = as.numeric
+  ))
+
+cps_narrow_resp <- cps_state |>
+  filter(
+    PRTAGE >= 18,
+    PRCITSHP %in% c(1:4),
+    !state %in% c(2, 15),
+    !HEHOUSUT %in% c(8:12)
   )
 
 targetpop <- cps_narrow_resp |>
@@ -168,7 +206,7 @@ scales::comma(targetpop)
 
 ```{r}
 #| include: false
-targetpop = 235171701
+targetpop = 233506581
 ```
 
 The estimated target population for 2024 is `r scales::comma(targetpop)`. Now we can rescale the ANES weights so they add up to the population size:
