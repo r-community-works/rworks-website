@@ -9,7 +9,7 @@ image: image.jpg
 editor: source
 ---
 
-Last fall, my co-authors Stephanie Zimmer, Rebecca Powell, and I released [Exploring Complex Survey Data Analysis Using R](https://tidy-survey-r.github.io/tidy-survey-book/). Earlier this August, we had the joy of teaching a [workshop](https://tidy-survey-r.github.io/user-2025-survey-data-tutorial/) based on the book at [useR! 2025](https://user2025.r-project.org/).
+Last fall, my co-authors [Stephanie Zimmer](https://www.linkedin.com/in/stephanie-zimmer/), [Rebecca Powell](https://www.linkedin.com/in/rebecca-powell-1416226b/), and I released [Exploring Complex Survey Data Analysis Using R](https://tidy-survey-r.github.io/tidy-survey-book/). Earlier this August, we had the joy of teaching a [workshop](https://tidy-survey-r.github.io/user-2025-survey-data-tutorial/) based on the book at [useR! 2025](https://user2025.r-project.org/).
 
 One of our favorite examples in both the book and workshop comes from the [American National Election Studies (ANES)](https://electionstudies.org/). ANES surveys are a goldmine for anyone interested in public opinion and voting behavior in U.S. presidential elections. They cover everything from party affiliation to trust in government, and the data are designed to be representative of the voting population.
 
@@ -127,86 +127,78 @@ This matches the `925` respondents shown in the documentation’s sample table.
 
 ### Adjusting for the population
 
-If we want to make inferences about the entire U.S. population, we need to adjust the weights. The target population for this sample is about 232.5 million U.S. citizens aged 18 or older, but that’s just a rough number. For something more precise, we can pull population counts from the Current Population Survey (CPS).
+If we want to make inferences about the entire U.S. population, we need to adjust the weights. The target population for this sample is about 232.5 million U.S. citizens aged 18 or older, but that’s just a rough number. Per the documentation, for something more precise, we can pull population counts from the 2023 American Community Survey 1-year estimates.
 
-We go [into detail on how to calculate the population size using CPS](https://tidy-survey-r.github.io/tidy-survey-book/c04-getting-started.html#american-national-election-studies-design-object), but for brevity, here I just share the code using {censusapi}:
+Thank you, Stephanie, for writing up the code for the population estimates! 
 
 ```{r}
 #| eval: false
-library(censusapi)
+library(tidyverse)
+library(tidycensus)
 
-cps_state_in <- getCensus(
-  name = "cps/basic/mar",
-  vintage = 2024,
-  region = "state",
-  vars = c(
-    "HRMONTH", "HRYEAR4",
-    "PRTAGE", "PRCITSHP", "PWSSWGT",
-    "HEHOUSUT", "HRHTYPE"
-  ),
-  key = Sys.getenv("CENSUS_KEY")
-)
+varlist_2023 <- load_variables(2023, "acs1")
 
-cps_state <- cps_state_in |>
-  as_tibble() |>
-  mutate(across(
-    .cols = everything(),
-    .fns = as.numeric
-  ))
-
-cps_narrow_resp <- cps_state |>
-  filter(
-    PRTAGE >= 18,
-    PRCITSHP %in% c(1:4),
-    !state %in% c(2, 15),
-    !HEHOUSUT %in% c(8:12),
-    !HRHTYPE %in% c(9, 10)
+citizen_pop_18_plus <-
+  get_acs(
+    geography = "state",
+    variable = "S2901_C01_001",
+    year = 2023,
+    survey = "acs1"
   )
 
-targetpop <- cps_narrow_resp |>
-  pull(PWSSWGT) |>
-  sum()
-
-scales::comma(targetpop)
-library(censusapi)
-
-cps_state_in <- getCensus(
-  name = "cps/basic/mar",
-  vintage = 2024,
-  region = "state",
-  vars = c(
-    "HRMONTH", "HRYEAR4",
-    "PRTAGE", "PRCITSHP", "PWSSWGT",
-    "HEHOUSUT"
-  ),
-  key = Sys.getenv("CENSUS_KEY")
-)
-
-cps_state <- cps_state_in |>
+pums_vars_2023 <- pums_variables |>
   as_tibble() |>
-  mutate(across(
-    .cols = everything(),
-    .fns = as.numeric
-  ))
+  filter(year == 2023, survey == "acs1")
 
-cps_narrow_resp <- cps_state |>
-  filter(
-    PRTAGE >= 18,
-    PRCITSHP %in% c(1:4),
-    !state %in% c(2, 15),
-    !HEHOUSUT %in% c(8:12)
-  )
+pums_vars_2023 |>
+  filter(var_code %in% c("AGEP", "TYPEHUGQ", "CIT")) |>
+  select(var_code, var_label, val_min, val_max, val_label) |>
+  print(n = 50)
 
-targetpop <- cps_narrow_resp |>
-  pull(PWSSWGT) |>
-  sum()
+# Find those who are 18+ and in group quarters
+get_citizen_pop_18_plus_gq <- function(state) {
+  get_pums(
+    variables = c("AGEP", "TYPEHUGQ"),
+    state = state,
+    year = 2023,
+    survey = "acs1",
+    variables_filter = list(
+      TYPEHUGQ = 2:3 ,
+      CIT = 1:4,
+      AGEP = (18:200)
+    )
+  ) |>
+    summarize(estimate = sum(PWGTP), .by = STATE)
+}
 
-scales::comma(targetpop)
+citizen_pop_18_plus_gq_l <- c(state.abb, "DC") |>
+  map(get_citizen_pop_18_plus_gq)
+
+citizen_pop_18_plus_gq_df <-
+  citizen_pop_18_plus_gq_l |>
+  list_rbind() |>
+  rename(estimate_gq = estimate)
+
+state_pops <- citizen_pop_18_plus |>
+  select(GEOID, NAME, estimate_tot = estimate) |>
+  full_join(citizen_pop_18_plus_gq_df, by = c("GEOID" = "STATE")) |>
+  filter(NAME != "Puerto Rico") |>
+  mutate(estimate_scope = estimate_tot - estimate_gq)
+
+# Total without AK and HI
+targetpop <-
+  state_pops |>
+  filter(!GEOID %in% c("02", "15")) |>
+  summarize(TargetPop = sum(estimate_scope))
+
+# Total with AK and HI
+state_pops |>
+  summarize(TargetPop = sum(estimate_scope))
 ```
 
 ```{r}
 #| include: false
-targetpop = 233506581
+targetpop = 232449541
 ```
 
 The estimated target population for 2024 is `r scales::comma(targetpop)`. Now we can rescale the ANES weights so they add up to the population size:
