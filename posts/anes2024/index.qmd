@@ -281,7 +281,7 @@ trustgov |>
   ) +
   ylim(0, 0.5) +
   scale_fill_manual(values = c("#0b3954", "#ecf3f9", "#8d6b94", "#ff8484", "#087e8b")) +
-  labs(title = "Reported frequency of trust in the federal government", 
+  labs(title = "Reported frequency of trust in the federal government to do what is right", 
        subtitle = "U.S. voting population",
        caption = "Source: American National Election Studies, 2024")
 ```
@@ -358,16 +358,18 @@ trustgov_female <- trustgov_gender |>
   labs(subtitle = "U.S. female voting population")
 
 trustgov_male + trustgov_female +
-  plot_annotation(title = "Reported frequency of trust in the federal government", caption = "Source: American National Election Studies, 2024")
+  plot_annotation(title = "Reported frequency of trust in the federal government to do what is right", caption = "Source: American National Election Studies, 2024")
 ```
 
 :::
 
 ## Wrap up
 
-The ANES 2024 release is packed with insights, and what we’ve covered here is just the tip of the iceberg. With hundreds of variables across attitudes, demographics, and behaviors, you’ll definitely find questions worth exploring.
+The ANES 2024 release is packed with insights, and what we’ve covered here is just the beginning. With hundreds of variables across attitudes, demographics, and behaviors, you’ll definitely find questions worth exploring.
 
 If you try out the dataset, I’d love to hear what you discover. Feel free to share your own analyses or visualizations!
+
+Find me on Bluesky: [@ivelasq3](https://bsky.app/profile/ivelasq3.bsky.social)
 
 Check out more resources:
 
