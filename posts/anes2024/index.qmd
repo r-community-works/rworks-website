@@ -11,13 +11,17 @@ editor: source
 
 Last fall, my co-authors [Stephanie Zimmer](https://www.linkedin.com/in/stephanie-zimmer/), [Rebecca Powell](https://www.linkedin.com/in/rebecca-powell-1416226b/), and I released [Exploring Complex Survey Data Analysis Using R](https://tidy-survey-r.github.io/tidy-survey-book/). Earlier this August, we had the joy of teaching a [workshop](https://tidy-survey-r.github.io/user-2025-survey-data-tutorial/) based on the book at [useR! 2025](https://user2025.r-project.org/).
 
-One of our favorite examples in both the book and workshop comes from the [American National Election Studies (ANES)](https://electionstudies.org/). ANES surveys are a goldmine for anyone interested in public opinion and voting behavior in U.S. presidential elections. They cover everything from party affiliation to trust in government, and the data are designed to be representative of the voting population.
+One of our favorite examples in both the book and workshop comes from the [American National Election Studies (ANES)](https://electionstudies.org/), a long-running project from Stanford University and the University of Michigan supported by the National Science Foundation. Since 1948, ANES has fielded surveys almost every two years, making it one of the richest resources for studying public opinion and voting behavior in U.S. elections. The data cover everything from party affiliation to trust in government, and are carefully designed to represent the voting population.
 
 Just a couple of days after returning from useR!, I was thrilled to see that the brand-new ANES 2024 dataset had been released!
 
 <center>
 <blockquote class="bluesky-embed" data-bluesky-uri="at://did:plc:l5kkuquemh5xnycs2axptlam/app.bsky.feed.post/3lw7tc5qqic2z" data-bluesky-cid="bafyreibnu557kdchflh56tq6ecqchxuiw455j3i3mqfjit67tlrutfw7vq" data-bluesky-embed-color-mode="system"><p lang="en">The full release of the ANES 2024 Time Series #Data is now available. More details here: electionstudies.org/anes-announc...<br><br><a href="https://bsky.app/profile/did:plc:l5kkuquemh5xnycs2axptlam/post/3lw7tc5qqic2z?ref_src=embed">[image or embed]</a></p>&mdash; American National Election Studies (<a href="https://bsky.app/profile/did:plc:l5kkuquemh5xnycs2axptlam?ref_src=embed">@electionstudies.bsky.social</a>) <a href="https://bsky.app/profile/did:plc:l5kkuquemh5xnycs2axptlam/post/3lw7tc5qqic2z?ref_src=embed">August 12, 2025 at 12:24 PM</a></blockquote><script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
 </center>
+
+Survey data like ANES are not as straightforward as a simple random sample. Some groups are intentionally oversampled, others are harder to reach, and not every respondent has the same probability of being included. To correct for this, surveys provide "weights", or numbers that tell us how much each response should “count” when estimating results for the whole population.
+
+If we ignore these weights and just calculate raw percentages, we risk drawing the wrong conclusions. That’s where the [{survey}](https://r-survey.r-forge.r-project.org/survey/) and [{srvyr}](http://gdfe.co/srvyr/) packages come in: they handle weights, strata, and clusters behind the scenes so our estimates properly reflect the survey design.
 
 So, let’s walk through how you can get started analyzing this dataset in R with the {survey} and {srvyr} packages. For more depth, the [Getting Started](https://tidy-survey-r.github.io/tidy-survey-book/c04-getting-started.html) chapter of our book is a handy companion.
 
@@ -41,7 +45,7 @@ anes_2024 <-
 
 ## Review the documentation
 
-[Reviewing the survey documentation](https://tidy-survey-r.github.io/tidy-survey-book/c03-survey-data-documentation.html) is a critical part of survey analysis. The ANES materials include details about the sample, weighting, and codebook.
+[Reviewing the survey documentation](https://tidy-survey-r.github.io/tidy-survey-book/c03-survey-data-documentation.html) is a critical part of survey analysis. The [ANES materials](https://electionstudies.org/wp-content/uploads/2025/08/anes_timeseries_2024_userguidecodebook_20250808.pdf) include details about the sample, weighting, and codebook.
 
 ### Sample
 
@@ -133,7 +137,6 @@ Thank you, Stephanie, for writing up the code for the population estimates!
 
 ```{r}
 #| eval: false
-library(tidyverse)
 library(tidycensus)
 
 varlist_2023 <- load_variables(2023, "acs1")
@@ -201,10 +204,10 @@ state_pops |>
 targetpop = 232449541
 ```
 
-The estimated target population for 2024 is `r scales::comma(targetpop)`. Now we can rescale the ANES weights so they add up to the population size:
+The estimated target population (`targetpop`) for 2024 is `r scales::comma(targetpop)`. Now we can rescale the ANES weights so they add up to the population size:
 
 ```{r}
-anes_adjwgt <- anes_2024_code |> 
+anes_adjwgt <- anes_2024_code |>
   mutate(Weight = V240101b / sum(V240101b, na.rm = TRUE) * targetpop)
 ```
 
@@ -227,7 +230,7 @@ Finally, we can build the design object. We’ll also filter to respondents who 
 
 ```{r}
 #| output: false
-options(survey.lonely.psu="adjust")
+options(survey.lonely.psu = "adjust")
 
 anes_des <- anes_adjwgt |>
   filter(V240002b == 1) |>
@@ -249,33 +252,126 @@ Now for the fun part! Let’s see how people answered the Trust Government quest
 
 ```{r}
 #| warning: false
-(trustgov <- anes_des |>
-  drop_na(TrustGovernment) |>
-  group_by(TrustGovernment) |>
-  summarize(p = survey_prop()) |>
-  mutate(Variable = "V241229") |>
-  rename(Answer = TrustGovernment) |>
-  select(Variable, everything()))
+(
+  trustgov <- anes_des |>
+    drop_na(TrustGovernment) |>
+    group_by(TrustGovernment) |>
+    summarize(p = survey_prop(vartype = "ci")) |>
+    mutate(Variable = "V241229") |>
+    rename(Answer = TrustGovernment) |>
+    select(Variable, everything())
+)
 ```
-
 
 And a quick plot:
 
 ```{r}
-trustgov |> 
+#| dpi: 300
+#| echo: false
+trustgov |>
   ggplot(aes(x = Answer, y = p, fill = Answer)) +
   geom_bar(stat = "identity", color = "#0b3954") +
-  theme_minimal() + 
-  theme(legend.position = "none",
-        axis.title.x = element_blank(),
-        axis.title.y = element_blank()) +
-  scale_fill_manual(values = c("#0b3954", "#ecf3f9", "#8d6b94", "#ff8484", "#087e8b"))
+  geom_errorbar(aes(ymin = p_low, ymax = p_upp), width = .2) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)
+  ) +
+  ylim(0, 0.5) +
+  scale_fill_manual(values = c("#0b3954", "#ecf3f9", "#8d6b94", "#ff8484", "#087e8b")) +
+  labs(title = "Reported frequency of trust in the federal government", 
+       subtitle = "U.S. voting population",
+       caption = "Source: American National Election Studies, 2024")
 ```
 
 The results show just how varied public trust is, with only a small fraction of respondents saying they always trust the government.
+
+We can also look at the data by subgroups:
+
+```{r}
+#| warning: false
+anes_des <-
+  anes_des |>
+  mutate(Gender = factor(
+    case_when(V241550 == 1 ~ "Male", V241550 == 2 ~ "Female", .default = NA),
+    levels = c("Male", "Female")
+  ))
+
+(
+  trustgov_gender <- anes_des |>
+    drop_na(Gender, TrustGovernment) |>
+    group_by(Gender, TrustGovernment) |>
+    summarize(p = survey_prop(vartype = "ci")) |>
+    mutate(Variable = "V241229") |>
+    rename(Answer = TrustGovernment) |>
+    select(Variable, everything())
+)
+```
+
+:::{.column-page}
+
+```{r}
+#| dpi: 300
+#| echo: false
+library(patchwork)
+
+trustgov_male <- trustgov_gender |>
+  filter(Gender == "Male") |>
+  ggplot(aes(x = Answer, y = p, fill = Answer)) +
+  geom_bar(stat = "identity", color = "#0b3954") +
+  geom_errorbar(aes(ymin = p_low, ymax = p_upp), width = .2) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.x = element_text(
+      angle = 45,
+      vjust = 1,
+      hjust = 1
+    )
+  ) +
+  ylim(0, 0.55) +
+  scale_fill_manual(values = c("#0b3954", "#ecf3f9", "#8d6b94", "#ff8484", "#087e8b")) +
+  labs(subtitle = "U.S. male voting population")
+
+trustgov_female <- trustgov_gender |>
+  filter(Gender == "Female") |>
+  ggplot(aes(x = Answer, y = p, fill = Answer)) +
+  geom_bar(stat = "identity", color = "#0b3954") +
+  geom_errorbar(aes(ymin = p_low, ymax = p_upp), width = .2) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.x = element_text(
+      angle = 45,
+      vjust = 1,
+      hjust = 1
+    )
+  ) +
+  ylim(0, 0.55) +
+  scale_fill_manual(values = c("#0b3954", "#ecf3f9", "#8d6b94", "#ff8484", "#087e8b")) +
+  labs(subtitle = "U.S. female voting population")
+
+trustgov_male + trustgov_female +
+  plot_annotation(title = "Reported frequency of trust in the federal government", caption = "Source: American National Election Studies, 2024")
+```
+
+:::
 
 ## Wrap up
 
 The ANES 2024 release is packed with insights, and what we’ve covered here is just the tip of the iceberg. With hundreds of variables across attitudes, demographics, and behaviors, you’ll definitely find questions worth exploring.
 
 If you try out the dataset, I’d love to hear what you discover. Feel free to share your own analyses or visualizations!
+
+Check out more resources:
+
+* [Exploring Complex Survey Data Analysis Using R](https://tidy-survey-r.github.io/tidy-survey-book/) free online book
+* [{survey}](https://r-survey.r-forge.r-project.org/survey/) package documentation
+* [{srvyr}](http://gdfe.co/srvyr/) package documentation
+  * [{srvyr} cheatsheet](https://github.com/gergness/srvyr/blob/main/cheatsheet/srvyr.pdf) for quick function references
