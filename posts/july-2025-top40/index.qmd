@@ -1,0 +1,84 @@
+---
+title: "July 2025 Top 40 New CRAN Packages"
+author: "Joseph Rickert"
+date: 2025-07-30
+description: "An attempt to capture the depth and breadth of what's new on CRAN: here are my Top 40 picks in twenty-one categories: AI, Chess, Computational Methods, Data, Decision Analysis, Ecology, Epidemiology, Finance, Genomics, Lingusitics, Machine Learning, Mathematics, Medical Statistics, Music Theory, Networks, Programming, Statistics, Time Series, Utilities, and Visualization."
+image: "polarzonoid.png"
+image-alt: "The polarzonoid"
+categories: "Top 40"
+editor: source
+---
+
+In July, 9999999 new packages made it to CRAN. Here are my Top 40 picks in twenty-one categories: AI, Chess, Computational Methods, Data, Decision Analysis, Ecology, Epidemiology, Finance, Genomics, Linguistics, Machine Learning, Mathematics, Medical Statistics, Music Theory, Networks, Programming, Statistics, Time Series, Utilities, and Visualization.
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+
+![](.png){fig-alt=""}
+
+
+
+
+### Computational Methods
+
+[hmde](https://cran.r-project.org/package=hmde) v1.2.1: Implements a wrapper for `Stan` with built-in hierarchical Bayesian longitudinal model for repeat observation data. Model choice selects the differential equation that is fit to the observations. See [O'Brien et al. (2024)](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.14463) for the theory. There are six vignettes including [Constant Growth](https://cran.r-project.org/web/packages/hmde/vignettes/constant-growth.html) and [hmde for Mathematicians](https://cran.r-project.org/web/packages/hmde/vignettes/hmde_for_mathematicians.html).
+
+![](hmde.png){fig-alt="Canham growth curve"}
+### Data
+
+[getRad](https://cran.r-project.org/package=getRad) v0.2.0: Provides functions to load polar volume and vertical profile data from several sources in Europe and the US for aeroecological research. See the [vignette](https://cran.r-project.org/web/packages/getRad/vignettes/supported_sources.html) and [GitHub page](https://aloftdata.github.io/getRad/) for examples.
+
+![](getRad.png){fig-alt="Polar volume plot"}
+
+### Epidemilogy
+
+[rtestim](https://cran.r-project.org/package=rtestim) v1.0.0: Use trend filtering, a type of regularized nonparametric regression, to estimate the instantaneous reproduction number, Rt, which indicates how many new infections will result from each new infection today. See [Liu et al.(2024)](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1012324) for background. There is an [Introduction](https://cran.r-project.org/web/packages/rtestim/vignettes/delay-distributions.html) and a vignette on [Delay Distributions](https://cran.r-project.org/web/packages/rtestim/vignettes/delay-distributions.html).
+
+![](rtestim.png){fig-alt="Plot of variants in circulation"}
+
+### Mathematics
+
+[inteq](https://cran.r-project.org/package=inteq) v1.0: Implements Matthew Thomas's *Python* library `inteq`. Solves Fredholm integral equations of the first kind ($f(s) = \int_a^b K(s, y) g(y) dy$) using methods described by [Twomey (1963)](https://dl.acm.org/doi/10.1145/321150.321157). Solves Volterra integral equations of the first kind ($f(s) = \int_0^s K(s,y) g(t) dt$) using methods from [Betto and Thomas (2021)](https://arxiv.org/abs/2106.08496) Solves Voltera integral equations of the second kind ($g(s) = f(s) + \int_a^s K(s,y) g(y) dy$) using methods from [Linz (1969)](https://epubs.siam.org/doi/10.1137/0706034). See the [vignette](https://cran.r-project.org/web/packages/inteq/vignettes/documentation.html).
+
+
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+
+
+
+
+### Medical Statistics
+
+[GHRexplore](https://cran.r-project.org/package=GHRexplore) v0.1.1: Provides commonly used visualizations of temporal and spatio-temporal health data including case counts, incidence rates, and covariates including time series, heatmaps, seasonality plots, maps and more. See the [vignette](https://cran.r-project.org/web/packages/GHRexplore/vignettes/GHRexplore.html).
+
+![](GHRexplore.png){fig-alt="Time series plot}"}
+
+
+
+
+### Statistics
+
+[hbsaems](https://cran.r-project.org/package=hbsaems) v0.1.1: Implements Hierarchical Bayesian Small Area Estimation models using the `brms` package to facilitate a principled Bayesian workflow, enabling users to conduct prior predictive checks, model fitting, posterior predictive checks, model comparison, and sensitivity analysis in a coherent and reproducible manner. See [Rao and Molina (2015)](https://onlinelibrary.wiley.com/doi/book/10.1002/9781118735855) for background on the methods implemented. There are seven vignettes including [Hierarchical Bayesian Small Area Modeling](https://cran.r-project.org/web/packages/hbsaems/vignettes/hbsaems-modelling.html) and [Logit-normal model](https://cran.r-project.org/web/packages/hbsaems/vignettes/hbsaems-binlogitnorm-model.html) and a [`shiny`dashboard](https://cran.r-project.org/web/packages/hbsaems/vignettes/hbsaems-run_sae_app.html).
+
+
+
+
+
+
+:::
+
+
+
+
+
+::::
+
