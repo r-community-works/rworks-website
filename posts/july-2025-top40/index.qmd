@@ -26,6 +26,13 @@ In July, 9999999 new packages made it to CRAN. Here are my Top 40 picks in twent
 [hmde](https://cran.r-project.org/package=hmde) v1.2.1: Implements a wrapper for `Stan` with built-in hierarchical Bayesian longitudinal model for repeat observation data. Model choice selects the differential equation that is fit to the observations. See [O'Brien et al. (2024)](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.14463) for the theory. There are six vignettes including [Constant Growth](https://cran.r-project.org/web/packages/hmde/vignettes/constant-growth.html) and [hmde for Mathematicians](https://cran.r-project.org/web/packages/hmde/vignettes/hmde_for_mathematicians.html).
 
 ![](hmde.png){fig-alt="Canham growth curve"}
+[ironseed](https://cran.r-project.org/package=ironseed) v0.2.0: Implements a procedure for seeding R's built in random number generators using a variable-length sequence of values. The algorithm accumulates entropy into a 256-bit hash digest or "ironseed" and generates a variable-length sequence of output seeds. See the [vignette](https://cran.r-project.org/web/packages/ironseed/readme/README.html) for an overview.
+
+[RBaM](https://cran.r-project.org/package=RBaM) v1.0.1: Implements an interface to the `BaM` (Bayesian Modeling) engine, a `Fortran` - based executable for Bayesian estimation with a particular focus on uncertainty quantification. See [Renard (2017)](https://hal.science/hal-02606929v1) for technical detaila and the [vignette](https://cran.r-project.org/web/packages/RBaM/readme/README.html) for examplesRBam
+
+![](RBaM.png){fig-alt="Posterior Distribution Curves"}
+
+
 ### Data
 
 [getRad](https://cran.r-project.org/package=getRad) v0.2.0: Provides functions to load polar volume and vertical profile data from several sources in Europe and the US for aeroecological research. See the [vignette](https://cran.r-project.org/web/packages/getRad/vignettes/supported_sources.html) and [GitHub page](https://aloftdata.github.io/getRad/) for examples.
@@ -41,6 +48,9 @@ In July, 9999999 new packages made it to CRAN. Here are my Top 40 picks in twent
 ### Mathematics
 
 [inteq](https://cran.r-project.org/package=inteq) v1.0: Implements Matthew Thomas's *Python* library `inteq`. Solves Fredholm integral equations of the first kind ($f(s) = \int_a^b K(s, y) g(y) dy$) using methods described by [Twomey (1963)](https://dl.acm.org/doi/10.1145/321150.321157). Solves Volterra integral equations of the first kind ($f(s) = \int_0^s K(s,y) g(t) dt$) using methods from [Betto and Thomas (2021)](https://arxiv.org/abs/2106.08496) Solves Voltera integral equations of the second kind ($g(s) = f(s) + \int_a^s K(s,y) g(y) dy$) using methods from [Linz (1969)](https://epubs.siam.org/doi/10.1137/0706034). See the [vignette](https://cran.r-project.org/web/packages/inteq/vignettes/documentation.html).
+
+
+[topolow](https://cran.r-project.org/package=topolow) v2.0.0: Implements the Topolow algorithm to embed objects into a low-dimensional Euclidean space from a matrix of pairwise dissimilarities, even when the data do not satisfy metric or Euclidean axioms. The algorithm is particularly well-suited for sparse, incomplete, and censored (thresholded) datasets such as antigenic relationships. It  employs a likelihood-based approach to determine the optimal number of dimensions for the embedding/map, avoiding distortions common in methods with fixed low dimensions. See [Arhami & Rohani (2025a)](https://academic.oup.com/bioinformatics/article/41/7/btaf372/8173949?login=false) for methods and mathematical proofs, [Arhami and Rohani (2025b)](https://arxiv.org/abs/2508.01733) for embedding details, and the [vignette](https://cran.r-project.org/web/packages/topolow/vignettes/Comprehensive_Evaluation.html) for an introduction.
 
 
 
@@ -67,12 +77,26 @@ In July, 9999999 new packages made it to CRAN. Here are my Top 40 picks in twent
 
 ### Statistics
 
+
+
+[GCEstim](https://cran.r-project.org/package=GCEstim) v0.1.0: Provides functions for regression estimation and inference using the Generalized Maximum Entropy (GME) and Generalized Cross Entropy (GCE) framework, a flexible method for solving ill-posed inverse problems and parameter estimation under uncertainty. See [Macedo et al. (2025)](https://link.springer.com/chapter/10.1007/978-3-031-97589-9_21), [Macedo & Costa (2019)](https://link.springer.com/chapter/10.1007/978-3-030-26036-1_2), and [Macedo (2022)](https://www.tandfonline.com/doi/full/10.1080/03610918.2022.2057540) for background. There ae seven vignettes including [Quick Start](https://cran.r-project.org/web/packages/GCEstim/vignettes/V1_Quick_start.html) and [Generalized Maximum Entropy framework](https://cran.r-project.org/web/packages/GCEstim/vignettes/V2_GME_framework.html).
+
+![](GCEstim.png){fig-alt="Prediction Error vs Supports}"}
+
+
 [hbsaems](https://cran.r-project.org/package=hbsaems) v0.1.1: Implements Hierarchical Bayesian Small Area Estimation models using the `brms` package to facilitate a principled Bayesian workflow, enabling users to conduct prior predictive checks, model fitting, posterior predictive checks, model comparison, and sensitivity analysis in a coherent and reproducible manner. See [Rao and Molina (2015)](https://onlinelibrary.wiley.com/doi/book/10.1002/9781118735855) for background on the methods implemented. There are seven vignettes including [Hierarchical Bayesian Small Area Modeling](https://cran.r-project.org/web/packages/hbsaems/vignettes/hbsaems-modelling.html) and [Logit-normal model](https://cran.r-project.org/web/packages/hbsaems/vignettes/hbsaems-binlogitnorm-model.html) and a [`shiny`dashboard](https://cran.r-project.org/web/packages/hbsaems/vignettes/hbsaems-run_sae_app.html).
 
 
 
+[ROCnGO](https://cran.r-project.org/package=ROCnGO) v0.1.0: Povides tools for analyzing classifier performance by using receiver operating characteristic (ROC) curves. Performance may be assessed on a single or multiple classifier. Different metrics allow the evaluation of local performance when working within restricted ranges of sensitivity and specificity. For details on the different implementations, see [McClish (1989)](https://journals.sagepub.com/doi/10.1177/0272989X8900900307), [Vivo et al. (2018)](https://link.springer.com/article/10.1007/s11634-017-0295-9), [Jiang et al. (1996)](https://pubs.rsna.org/doi/10.1148/radiology.201.3.8939225), [Franco & Vivo] (2021)](https://www.mdpi.com/2227-7390/9/21/2826), and [Carrington et al. (2020)](https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/s12911-019-1014-6). There is an [Introduction](https://cran.r-project.org/web/packages/ROCnGO/vignettes/ROCnGO.html) and another vignette on [Selecting condition of interest](https://cran.r-project.org/web/packages/ROCnGO/vignettes/selecting-condition.html).
 
 
+
+### Visualization
+
+[moveEZ](https://cran.r-project.org/package=moveEZ) v1.1.0: Provides functions to create animated biplots that enable dynamic visualisation of temporal or sequential changes in multivariate data by animating a single biplot across the levels of a time variable. See the [vignette](https://cran.r-project.org/web/packages/moveEZ/vignettes/moveEZ.html)
+
+![](moveEZ.png){fig-alt="Multiple biplots"}
 
 :::
 
