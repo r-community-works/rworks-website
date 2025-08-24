@@ -41,9 +41,31 @@ In July, 9999999 new packages made it to CRAN. Here are my Top 40 picks in twent
 
 ### Epidemilogy
 
+
+[Pv3Rs](https://cran.r-project.org/package=Pv3Rs) v0.0.2: Provides functions to plot malaria parasite genetic data, compute per-person posterior probabilities that each Plasmodium vivax (Pv) recurrence is a recrudescence, relapse, or reinfection (3Rs) using per-person P, and plot per-recurrence posterior probabilities. See [Taylor, Foo and White (2022]() for background and the [vignette](https://cran.r-project.org/web/packages/Pv3Rs/vignettes/demonstrate-usage.html) for examples. 
+
+![](Pv3Rs.png){fig-alt="Simplex plot of per-recurrence posterior probabilities"}
+
+
 [rtestim](https://cran.r-project.org/package=rtestim) v1.0.0: Use trend filtering, a type of regularized nonparametric regression, to estimate the instantaneous reproduction number, Rt, which indicates how many new infections will result from each new infection today. See [Liu et al.(2024)](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1012324) for background. There is an [Introduction](https://cran.r-project.org/web/packages/rtestim/vignettes/delay-distributions.html) and a vignette on [Delay Distributions](https://cran.r-project.org/web/packages/rtestim/vignettes/delay-distributions.html).
 
 ![](rtestim.png){fig-alt="Plot of variants in circulation"}
+
+### Machine Learning
+
+[mrIML](https://cran.r-project.org/package=mrIML) v2.1.0: Provides machine learning techniques to automatically fit multiple response models to multivariate data and interpret the results. See [Fountain-Jones (2021)](https://onlinelibrary.wiley.com/doi/10.1111/1755-0998.13495) and [Fountain-Jones et al. (2024)](https://www.authorea.com/users/729149/articles/1226458-advancing-ecological-community-analysis-with-mriml-2-0-unravelling-taxa-associations-through-interpretable-machine-learning?commit=9dfb71ae58318bc0d38e5121f061c63dd9861ae9) and the [vignette](https://cran.r-project.org/web/packages/mrIML/vignettes/mrIML.html) for examples.
+
+![](mrIML.png){fig-alt="Multiple Importance Plots"}
+ 
+
+[Silhouette](https://cran.r-project.org/package=Silhouette) v0.94: Provides tools to quantifies clustering quality by measuring both cohesion within clusters and separation between clusters and tools of computation and visualization. See [Raymaekers & Rousseeuw, (2022)](https://www.tandfonline.com/doi/full/10.1080/10618600.2022.2050249), [Campello & Hruschka, 2006](https://www.sciencedirect.com/science/article/abs/pii/S0165011406002892?via%3Dihub), and [](https://link.springer.com/article/10.1007/s00357-008-9005-9) for background and the [vignette](https://cran.r-project.org/web/packages/Silhouette/vignettes/Silhouette.html) for examples.
+
+![](Silhouette.png){fig-alt="Clusters Silhouette Plot"}
+
+[survdnn](https://cran.r-project.org/package=survdnn) v0.6.0: Implements deep learning models for right-censored survival data using the `torch` backend including Cox partial likelihood, L2-penalized Cox, time-dependent Cox, and accelerated failure time loss models. Provides a formula-based interface, built-in support for cross-validation, hyperparameter tuning, survival curve plotting, and evaluation metrics such as the C-index, Brier score, and integrated Brier score. See [Kvamme et al. (2019)](https://www.jmlr.org/papers/v20/18-424.html>) for details and look [here](https://github.com/ielbadisy/survdnn) for examples.
+
+![](survdnn.png){fig-alt="Survival Curves"}
+
 
 ### Mathematics
 
@@ -91,8 +113,17 @@ In July, 9999999 new packages made it to CRAN. Here are my Top 40 picks in twent
 [ROCnGO](https://cran.r-project.org/package=ROCnGO) v0.1.0: Povides tools for analyzing classifier performance by using receiver operating characteristic (ROC) curves. Performance may be assessed on a single or multiple classifier. Different metrics allow the evaluation of local performance when working within restricted ranges of sensitivity and specificity. For details on the different implementations, see [McClish (1989)](https://journals.sagepub.com/doi/10.1177/0272989X8900900307), [Vivo et al. (2018)](https://link.springer.com/article/10.1007/s11634-017-0295-9), [Jiang et al. (1996)](https://pubs.rsna.org/doi/10.1148/radiology.201.3.8939225), [Franco & Vivo] (2021)](https://www.mdpi.com/2227-7390/9/21/2826), and [Carrington et al. (2020)](https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/s12911-019-1014-6). There is an [Introduction](https://cran.r-project.org/web/packages/ROCnGO/vignettes/ROCnGO.html) and another vignette on [Selecting condition of interest](https://cran.r-project.org/web/packages/ROCnGO/vignettes/selecting-condition.html).
 
 
+### Time Series
+
+[calcal](https://cran.r-project.org/package=calcal) v1.0.0: Implements the algorithms described in [Reingold and Dershowitz](https://www.cambridge.org/core/books/calendrical-calculations/B897CA3260110348F1F7D906B8D9480D) that allows conversion between many different calendar systems and calculates cultural and religious holidays. See the [vignette](https://cran.r-project.org/web/packages/calcal/vignettes/new_calendar.html).
+
+[tEDM](https://cran.r-project.org/package=tEDM) v1.0: Implements methods to infer causation from time series data through empirical dynamic modeling (EDM).  Methods include convergent cross mapping from [Sugihara et al.](https://www.science.org/doi/10.1126/science.1227079), partial cross mapping as outlined in [Leng et al. (2020)](https://www.nature.com/articles/s41467-020-16238-0), and cross mapping cardinality as described in [Tao et al. (2023)](https://www.sciencedirect.com/science/article/pii/S2667325823000122?via%3Dihub). Se the [vignette](https://cran.r-project.org/web/packages/tEDM/vignettes/tEDM.html) for examples.
+
+![](tEDM.png){fig-alt="Diagram illustrating causal inference "}
 
 ### Visualization
+
+
 
 [moveEZ](https://cran.r-project.org/package=moveEZ) v1.1.0: Provides functions to create animated biplots that enable dynamic visualisation of temporal or sequential changes in multivariate data by animating a single biplot across the levels of a time variable. See the [vignette](https://cran.r-project.org/web/packages/moveEZ/vignettes/moveEZ.html)
 
