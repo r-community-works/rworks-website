@@ -1,0 +1,223 @@
+---
+title: "July 2025 Top 40 New CRAN Packages"
+author: "Joseph Rickert"
+date: 2025-08-27
+description: "The CRAN new package Top 40 - Here are my picks for the best new packages to land on CRAN in July, organized in thirteen categories: Causal Inference, Computational Methods, Data, Ecology, Epidemiology,  Machine Learning, Mathematics, Medical Statistics, Pharma, Statistics, Time Series, Utilities, and Visualization."
+image: "Pv3RS.png"
+image-alt: "Simplex plot of per-recurrence posterior probabilities"
+categories: "Top 40"
+editor: source
+---
+
+
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+
+
+### Causal Inference
+
+[ciflyr](https://cran.r-project.org/package=ciflyr) v0.1.1: Provides a framework for specifying flexible linear-time reachability-based algorithms for graphical causal inference. Rule tables are used to encode and customize the 'reachability' algorithm for typical causal and probabilistic reasoning tasks, such as finding d-connected nodes or more advanced applications. See [Wienöbst, Weichwald and Henckel (2025)](https://arxiv.org/abs/2506.15758) for the details.
+
+
+
+### Computational Methods
+
+[hmde](https://cran.r-project.org/package=hmde) v1.2.1: Implements a wrapper for `Stan` with a built-in hierarchical Bayesian longitudinal model for repeat observation data. Model choice selects the differential equation that is fit to the observations. See [O'Brien et al. (2024)](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.14463) for the theory. There are six vignettes, including [Constant Growth](https://cran.r-project.org/web/packages/hmde/vignettes/constant-growth.html) and [hmde for Mathematicians](https://cran.r-project.org/web/packages/hmde/vignettes/hmde_for_mathematicians.html).
+
+![](hmde.png){fig-alt="Canham growth curve"}
+
+[ironseed](https://cran.r-project.org/package=ironseed) v0.2.0: Implements a procedure for seeding R's built in random number generators using a variable-length sequence of values. The algorithm accumulates entropy into a 256-bit hash digest or "ironseed" and generates a variable-length sequence of output seeds. See the [vignette](https://cran.r-project.org/web/packages/ironseed/readme/README.html) for an overview.
+
+[RBaM](https://cran.r-project.org/package=RBaM) v1.0.1: Implements an interface to the `BaM` (Bayesian Modeling) engine, a `Fortran` - based executable for Bayesian estimation with a particular focus on uncertainty quantification. See [Renard (2017)](https://hal.science/hal-02606929v1) for technical details and the [vignette](https://cran.r-project.org/web/packages/RBaM/readme/README.html) for examples.
+
+![](RBaM.png){fig-alt="Posterior Distribution Curves"}
+
+
+### Data
+
+[ArgentinAPI](https://cran.r-project.org/package=ArgentinAPI) v0.1.0: Provides functions to access data from the [ArgentinaDatos API](https://argentinadatos.com/) and the [REST Countries API](https://restcountries.com/) related to Argentina's exchange rates, inflation, political figures, holidays, and general country-level indicators. Additionally, the package includes curated datasets related to Argentina, covering topics such as economic indicators, biodiversity, agriculture, human rights, genetic data, and consumer prices. See the [vignette](https://cran.r-project.org/web/packages/ArgentinAPI/vignettes/ArgentinAPI_vignette.html).
+
+[bcRP](https://cran.r-project.org/package=bcRP) v1.0.1: Enables search and access for more than ten thousand BANCO CENTRAL DE RESERVA DEL PERÚ Gerencia Central de Estudios Económicos ([BCRPDATA](https://estadisticas.bcrp.gob.pe/estadisticas/series/ayuda/bcrpdata)) data sets. See [README](https://cran.r-project.org/web/packages/bcRP/readme/README.html) for an example.
+
+[ChileDataAPI](https://cran.r-project.org/package=ChileDataAPI) v0.1.0: Provides functions to access data from the [FINDIC API](https://restcountries.com/) and the [REST Countries API](https://findic.cl), related to Chile's financial indicators, international country information, and more. Additionally, the package includes curated datasets related to Chile, covering topics such as human rights violations during the Pinochet regime, electoral data, census samples, health surveys, seismic events, territorial codes, and environmental measurements. See the [vignette](https://cran.r-project.org/web/packages/ChileDataAPI/vignettes/ChileDataAPI_vignette.html).
+
+![](Chile.png){fig-alt="Ploot of Blood pressuredata by Age and Sex"}
+
+[galaxias](https://cran.r-project.org/package=galaxias) v0.1.0: Provides tools to access the [Darwin Core](https://dwc.tdwg.org/) data standard for biodiversity information. For details, see [Wieczorek et al. (2012)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0029715). There are three vignettes, including [Quick Start Guide](https://cran.r-project.org/web/packages/galaxias/vignettes/quick_start_guide.html) and [Standardize an Event Dataset](https://cran.r-project.org/web/packages/galaxias/vignettes/events-example.html).
+
+
+[getRad](https://cran.r-project.org/package=getRad) v0.2.0: Provides functions to load polar volume and vertical profile data from several sources in Europe and the US for aeroecological research. See the [vignette](https://cran.r-project.org/web/packages/getRad/vignettes/supported_sources.html) and [GitHub page](https://aloftdata.github.io/getRad/) for examples.
+
+![](getRad.png){fig-alt="Polar volume plot"}
+
+[MexicoDataAPI](https://cran.r-project.org/package=MexicoDataAPI) v0.1.0: Provides functions to access data from the [World Bank API](https://datahelpdesk.worldbank.org/knowledgebase/articles/889392) and the [REST Countries API](https://restcountries.com/), related to Mexico's economic indicators, population statistics, literacy rates, and international geopolitical information. Additionally, the package includes curated datasets related to Mexico, including air quality monitoring stations, pollution zones, income surveys, postal abbreviations, election studies, forest productivity, and demographic data by state. See the [vignette](https://cran.r-project.org/web/packages/MexicoDataAPI/vignettes/MexicoDataAPI_vignette.html).
+
+![](Mexico.png){fig-alt="Plot of Average Household Data by Education Level"}
+
+### Ecology
+
+[commecometrics](https://cran.r-project.org/package=commecometrics) v1.0.0: Provides a framework for modeling relationships between functional traits and  environmental variables at the community level, including tools for trait binning, likelihood-based environmental estimation, model evaluation, fossil projection into modern ecometric space, and visualization. For more details, see [Vermillion et al. (2018)](https://link.springer.com/chapter/10.1007/978-3-319-94265-0_17), [Polly et al. (2011)](https://royalsocietypublishing.org/doi/10.1098/rspb.2010.2233), and [Polly & Head (2015)](https://www.cambridge.org/core/journals/the-paleontological-society-papers/article/abs/measuring-earthlife-transitions-ecometric-analysis-of-functional-traits-from-late-cenozoic-vertebrates/C0068D2B30ACCF76F415B2EB75F8BEB2). There is an [Introduction](https://cran.r-project.org/web/packages/commecometrics/vignettes/introduction_to_commecometrics.html) and a vignette on [Fossil Commecometrics](https://cran.r-project.org/web/packages/commecometrics/vignettes/fossil_commecometrics.html).
+
+
+[ConFluxPro](https://cran.r-project.org/package=ConFluxPro) v1.3.1: Provides tools to model soil gas fluxes with the Flux-Gradient Method, including functions for data handling, a forward and an inverse model for flux modeling, and methods for calibration and uncertainty estimation. For more details, see [Gartiser et al. (2025a)](https://joss.theoj.org/papers/10.21105/joss.08094) and [Gartiser et al. (2025b)](https://bsssjournals.onlinelibrary.wiley.com/doi/10.1111/ejss.70126). There are five vignettes, including [Flux](https://cran.r-project.org/web/packages/ConFluxPro/vignettes/flux.html) and [Uncertainty Estimation](https://cran.r-project.org/web/packages/ConFluxPro/vignettes/uncertainty.html).
+
+![](ConFlux.svg){fig-alt="Concentration Plots"}
+
+### Epidemilogy
+
+
+[Pv3Rs](https://cran.r-project.org/package=Pv3Rs) v0.0.2: Provides functions to plot malaria parasite genetic data on two or more episodes and compute the per-person posterior probabilities that each Plasmodium vivax (Pv) recurrence is a recrudescence, relapse, or reinfection (3Rs) using per-person P. vivax genetic data on two or more episodes. It uses the statistical model described in  [Taylor, Foo and White (2022](https://www.medrxiv.org/content/10.1101/2022.11.23.22282669v1). See the [vignette](https://cran.r-project.org/web/packages/Pv3Rs/vignettes/demonstrate-usage.html) for examples. 
+
+![](Pv3Rs.png){fig-alt="Simplex plot of per-recurrence posterior probabilities"}
+
+
+[rtestim](https://cran.r-project.org/package=rtestim) v1.0.0: Use trend filtering, a type of regularized nonparametric regression, to estimate the instantaneous reproduction number, Rt, which indicates how many new infections will result from each new infection today. See [Liu et al.(2024)](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1012324) for background. There is an [Introduction](https://cran.r-project.org/web/packages/rtestim/vignettes/rtestim.html) and a vignette on [Delay Distributions](https://cran.r-project.org/web/packages/rtestim/vignettes/delay-distributions.html).
+
+![](rtestim.png){fig-alt="Plot of variants in circulation"}
+
+
+
+
+### Machine Learning
+
+[flowcluster](https://cran.r-project.org/package=flowcluster) v0.2.1: Provides functions for clustering origin-destination pairs flows. Includes functions for creating distance matrices between OD pairs and passing distance matrices to a clustering algorithm. See [Tao &  Thill (2016)](https://onlinelibrary.wiley.com/doi/10.1111/gean.12100) for details on the spatial clustering of flows, [Mahfouz et al. (2025)](https://www.sciencedirect.com/science/article/pii/S2667091725000378?via%3Dihub) for an extended example, and [README](https://cran.r-project.org/web/packages/flowcluster/readme/README.html) to get started.
+
+![](flow.png){fig-alt="Plot of clustered flows"}
+
+
+[mrIML](https://cran.r-project.org/package=mrIML) v2.1.0: Provides machine learning techniques to automatically fit multiple response models to multivariate data and interpret the results. See [Fountain-Jones (2021)](https://onlinelibrary.wiley.com/doi/10.1111/1755-0998.13495) and [Fountain-Jones et al. (2024)](https://www.authorea.com/users/729149/articles/1226458-advancing-ecological-community-analysis-with-mriml-2-0-unravelling-taxa-associations-through-interpretable-machine-learning?commit=9dfb71ae58318bc0d38e5121f061c63dd9861ae9) and the [vignette](https://cran.r-project.org/web/packages/mrIML/vignettes/mrIML.html) for examples.
+
+![](mrIML.png){fig-alt="Multiple Importance Plots"}
+ 
+
+[Silhouette](https://cran.r-project.org/package=Silhouette) v0.94: Provides tools to quantify clustering quality by measuring both cohesion within clusters and separation between clusters. See [Raymaekers & Rousseeuw, (2022)](https://www.tandfonline.com/doi/full/10.1080/10618600.2022.2050249), [Campello & Hruschka, 2006](https://www.sciencedirect.com/science/article/abs/pii/S0165011406002892?via%3Dihub), and [Schepers et al.](https://link.springer.com/article/10.1007/s00357-008-9005-9) for background and the [vignette](https://cran.r-project.org/web/packages/Silhouette/vignettes/Silhouette.html) for examples.
+
+![](Silhouette.png){fig-alt="Clusters Silhouette Plot"}
+
+[survdnn](https://cran.r-project.org/package=survdnn) v0.6.0: Implements deep learning models for right-censored survival data using the `torch` back-end that include Cox partial likelihood, L2-penalized Cox, time-dependent Cox, and accelerated failure time loss models. Also provides a formula-based interface, built-in support for cross-validation, hyperparameter tuning, survival curve plotting, and evaluation metrics such as the C-index, Brier score, and integrated Brier score. See [Kvamme et al. (2019)](https://www.jmlr.org/papers/v20/18-424.html) for details and look [here](https://github.com/ielbadisy/survdnn) for examples.
+
+![](survdnn.png){fig-alt="Survival Curves"}
+
+
+### Mathematics
+
+[boostmath](https://cran.r-project.org/package=boostmath) v1.0.2: Provides `R` bindings for the various functions and statistical distributions provided by the [`Boost`](https://www.boost.org/doc/libs/latest/libs/math/doc/html/index.html) Math library. There are four vignettes, including [Quadrature and Differention](https://cran.r-project.org/web/packages/boostmath/vignettes/quadrature-differentiation.html) and [Special Functions](https://cran.r-project.org/web/packages/boostmath/vignettes/special-functions.html
+).
+
+[inteq](https://cran.r-project.org/package=inteq) v1.0: Implements Matthew Thomas's *Python* library `inteq`. Solves Fredholm integral equations of the first kind, $f(s) = \int_a^b K(s, y) g(y) dy$, using methods described by [Twomey (1963)](https://dl.acm.org/doi/10.1145/321150.321157). Solves Volterra integral equations of the first kind, $f(s) = \int_0^s K(s,y) g(t) dt$, using methods from [Betto and Thomas (2021)](https://arxiv.org/abs/2106.08496). Solves Voltera integral equations of the second kind, $g(s) = f(s) + \int_a^s K(s,y) g(y) dy$, using methods from [Linz (1969)](https://epubs.siam.org/doi/10.1137/0706034). See the [vignette](https://cran.r-project.org/web/packages/inteq/vignettes/documentation.html).
+
+
+[topolow](https://cran.r-project.org/package=topolow) v2.0.0: Implements the Topolow algorithm to embed objects into a low-dimensional Euclidean space from a matrix of pairwise dissimilarities, even when the data do not satisfy metric or Euclidean axioms. The algorithm is particularly well-suited for sparse, incomplete, and censored (thresholded) datasets such as antigenic relationships. It  employs a likelihood-based approach to determine the optimal number of dimensions for the embedding, avoiding distortions common in methods with fixed low dimensions. See [Arhami & Rohani (2025a)](https://academic.oup.com/bioinformatics/article/41/7/btaf372/8173949?login=false) for methods and mathematical proofs, [Arhami and Rohani (2025b)](https://arxiv.org/abs/2508.01733) for embedding details, and the [vignette](https://cran.r-project.org/web/packages/topolow/vignettes/Comprehensive_Evaluation.html) for an introduction.
+
+
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+
+
+
+
+### Medical Statistics
+
+[GHRexplore](https://cran.r-project.org/package=GHRexplore) v0.1.1: Provides commonly used visualizations of temporal and spatio-temporal health data including case counts, incidence rates, and covariates including time series, heatmaps, seasonality plots, maps and more. See the [vignette](https://cran.r-project.org/web/packages/GHRexplore/vignettes/GHRexplore.html).
+
+![](GHRexplore.png){fig-alt="Time series plot}"}
+
+[MDCcure](https://cran.r-project.org/package=MDCcure) v0.1.0: Provides functions to compute martingale difference correlation, martingale difference divergence, and partial extensions to assess conditional mean dependence. Also implements a novel hypothesis test for evaluating covariate effects on the cure rate in mixture cure models. See [Shao & Zhang (2014)](https://www.tandfonline.com/doi/full/10.1080/01621459.2014.887012) for background on the martingale methods and the [vignette](https://cran.r-project.org/web/packages/MDCcure/vignettes/MDCcure.html) for information on the covariate effects test.
+
+### Pharma
+
+[junco](https://cran.r-project.org/package=junco) v0.1.1: Provides general and reusable tooling for use alongside `rtables`, `rlistings`, and `tern` for creating table and listing outputs. Major features include: extended statistical analyses beyond what `tern` supports for safety and efficacy tables,  a robust production-grade RTF exporter for both tables and listings, structural support for spanning column headers and risk difference columns in tables, and robust font-aware automatic column width algorithms for both listings and tables. See the vignettes [Automatic Column Widths](https://cran.r-project.org/web/packages/junco/vignettes/auto_colwidths.html) and [Tabulation](https://cran.r-project.org/web/packages/junco/vignettes/junco.html). 
+
+[verifyr2](https://cran.r-project.org/package=verifyr2) v1.0.0: Provides Extendable `R6` file comparison classes, and a `shiny` App for integrating comparison functions into file comparison applications. The idea originates from the pharma drug development processes, which require different versions of files and datasets to be compared and reviewed. See [README](https://cran.r-project.org/web/packages/verifyr2/readme/README.html).
+
+### Statistics
+
+
+
+[GCEstim](https://cran.r-project.org/package=GCEstim) v0.1.0: Provides functions for regression estimation and inference using the Generalized Maximum Entropy (GME) and Generalized Cross Entropy (GCE) framework, a flexible method for solving ill-posed inverse problems and parameter estimation under uncertainty. See [Macedo et al. (2025)](https://link.springer.com/chapter/10.1007/978-3-031-97589-9_21), [Macedo & Costa (2019)](https://link.springer.com/chapter/10.1007/978-3-030-26036-1_2), and [Macedo (2022)](https://www.tandfonline.com/doi/full/10.1080/03610918.2022.2057540) for background. There are seven vignettes, including [Quick Start](https://cran.r-project.org/web/packages/GCEstim/vignettes/V1_Quick_start.html) and [Generalized Maximum Entropy framework](https://cran.r-project.org/web/packages/GCEstim/vignettes/V2_GME_framework.html).
+
+![](GCEstim.png){fig-alt="Prediction Error vs Supports"}
+
+[gilmour](https://cran.r-project.org/package=gilmour) v0.1.1:  Implements the method described in [Gilmour (1996)](https://www.jstor.org/stable/2348411?origin=crossref) for selecting a subset of regressors from a set of k candidate variables in multiple linear regression. All possible regression models are compared using Mallows's Cp statistic, and the submodel with the minimum adjusted value Cp (ModelMin) is identified. The final model is selected by applying a sequence of hypothesis tests on submodels nested within ModelMin. See the [vignette](https://cran.r-project.org/web/packages/gilmour/vignettes/gilmour-spec.html) for an overview and example.
+
+![](Gilmour.png){fig-alt="Diagram of model selection process"}
+
+
+[hbsaems](https://cran.r-project.org/package=hbsaems) v0.1.1: Implements Hierarchical Bayesian Small Area Estimation models using the `brms` package to facilitate a principled Bayesian workflow, enabling users to conduct prior predictive checks, model fitting, posterior predictive checks, model comparison, and sensitivity analysis in a coherent and reproducible manner. See [Rao and Molina (2015)](https://onlinelibrary.wiley.com/doi/book/10.1002/9781118735855) for background on the methods implemented. There are seven vignettes, including [Hierarchical Bayesian Small Area Modeling](https://cran.r-project.org/web/packages/hbsaems/vignettes/hbsaems-modelling.html) and [Logit-normal model](https://cran.r-project.org/web/packages/hbsaems/vignettes/hbsaems-binlogitnorm-model.html) and a [`shiny`dashboard](https://cran.r-project.org/web/packages/hbsaems/vignettes/hbsaems-run_sae_app.html).
+
+
+
+[ROCnGO](https://cran.r-project.org/package=ROCnGO) v0.1.0: Provides tools for analyzing classifier performance by using receiver operating characteristic (ROC) curves. Performance may be assessed on a single or multiple classifier. Different metrics allow the evaluation of local performance when working within restricted ranges of sensitivity and specificity. For details on the different implementations, see [McClish (1989)](https://journals.sagepub.com/doi/10.1177/0272989X8900900307), [Vivo et al. (2018)](https://link.springer.com/article/10.1007/s11634-017-0295-9), [Jiang et al. (1996)](https://pubs.rsna.org/doi/10.1148/radiology.201.3.8939225), [Franco & Vivo (2021)](https://www.mdpi.com/2227-7390/9/21/2826), and [Carrington et al. (2020)](https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/s12911-019-1014-6). There is an [Introduction](https://cran.r-project.org/web/packages/ROCnGO/vignettes/ROCnGO.html) and another vignette on [Selecting condition of interest](https://cran.r-project.org/web/packages/ROCnGO/vignettes/selecting-condition.html).
+
+
+[smoothemplik](https://cran.r-project.org/package=smoothemplik) v0.0.15: Uses `Rcpp` to implement Kernel-based non-parametric methods for density and regression estimation and numerical routines for empirical likelihood maximization. See [Kitamura, Tripathi & Ahn (2004)](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1468-0262.2004.00550.x) and [Owen (2013)](https://onlinelibrary.wiley.com/doi/10.1002/cjs.11183) for background and the two vignettes [Choosing Weights](https://cran.r-project.org/web/packages/smoothemplik/vignettes/choice-of-SEL-weights.html) and [Using Rcpp](https://cran.r-project.org/web/packages/smoothemplik/vignettes/non-parametric-rcpp.html).
+
+
+![](smooth.png){fig-alt="3 D plots showing differences between kernels"}
+
+### Time Series
+
+[calcal](https://cran.r-project.org/package=calcal) v1.0.0: Implements the algorithms described in [Reingold and Dershowitz](https://www.cambridge.org/core/books/calendrical-calculations/B897CA3260110348F1F7D906B8D9480D) that allow conversion between many different calendar systems and calculate cultural and religious holidays. See the [vignette](https://cran.r-project.org/web/packages/calcal/vignettes/new_calendar.html).
+
+[mantis](https://cran.r-project.org/package=mantis) v0.4.3: Provides tools to generate interactive html reports that enable quick visual review of multiple related time series.   The reports are self-contained and shareable without a web server. There are three vignettes, including [Get Started](https://cran.r-project.org/web/packages/mantis/vignettes/alert-rules.html) and [Specifying Alerting Rules](https://cran.r-project.org/web/packages/mantis/vignettes/mantis.html).
+ 
+![](mantis.png){fig-alt="Multiple Selected TIme Series"}
+
+[REPS](https://cran.r-project.org/package=REPS) v1.0.0: Provides functions to compute price indices using various Hedonic and multilateral methods, including Laspeyres, Paasche, Fisher, and HMTS (Hedonic Multilateral Time series re-estimation with splicing). Functions support index construction workflows across a wide range of domains, including but not limited to real estate, where quality-adjusted price comparisons over time are essential. 
+The HMTS method implemented here is described in [Ishaak, Ouwehand & Remøy (2024)](https://journals.sagepub.com/doi/10.1177/0282423X241246617). See the vignettes [	Getting Started with Price Index Calculation](https://cran.r-project.org/web/packages/REPS/vignettes/calculate_price_index.html) and [Regression Diagnostics by Period](https://cran.r-project.org/web/packages/REPS/vignettes/calculate_regression_diagnostics.html).
+
+![](REPS.png){fig-alt="Regression Diagnostic Plots"}
+
+
+
+[tEDM](https://cran.r-project.org/package=tEDM) v1.0: Implements methods to infer causation from time series data through empirical dynamic modeling (EDM).  Methods include convergent cross mapping from [Sugihara et al.](https://www.science.org/doi/10.1126/science.1227079), partial cross mapping as outlined in [Leng et al. (2020)](https://www.nature.com/articles/s41467-020-16238-0), and cross mapping cardinality as described in [Tao et al. (2023)](https://www.sciencedirect.com/science/article/pii/S2667325823000122?via%3Dihub). See the [vignette](https://cran.r-project.org/web/packages/tEDM/vignettes/tEDM.html) for examples.
+
+![](tEDM.png){fig-alt="Diagram illustrating causal inference "}
+
+### Utilities
+
+[geeLite](https://cran.r-project.org/package=geeLite) v1.0.2: Simplifies the creation, management, and updating of local databases using data extracted from [Google Earth Engine](https://earthengine.google.com/) (GEE) by providing tools that leverage `SQLite` to store, aggregate, and process spatio-temporal data. Utilities support real-time monitoring and analysis of geospatial features, making it suitable for researchers and practitioners in geospatial science. See [Kurbucz & Andrée (2025)](https://hdl.handle.net/10986/43165) for details and the [vignette](https://cran.r-project.org/web/packages/geeLite/vignettes/geeLite.html) for examples.
+
+![](geeLite.png){fig-alt="Gootle Earth Map"}
+
+
+[otel](https://cran.r-project.org/package=otel) v0.1.0: Implements a collection of tools based on the [OpenTelemetry API](https://opentelemetry.io/docs/specs/otel/) to instrument software to generate, collect, and export telemetry data (metrics, logs, and traces) to analyze the software and understand its performance and behavior. See [README](https://cran.r-project.org/web/packages/otel/readme/README.html) for an example. 
+
+[qryflow](https://cran.r-project.org/package=qryflow) v0.1.0: Provides functions to execute multi-step `SQL` workflows by leveraging specially formatted comments to define and control execution. This enables users to mix queries, commands, and metadata within a single script. There are three vignettes, including [Getting Started](https://cran.r-project.org/web/packages/qryflow/vignettes/qryflow.html) and [Advanced Usage](https://cran.r-project.org/web/packages/qryflow/vignettes/advanced-qryflow.html).
+
+
+[staninside](https://cran.r-project.org/package=staninside) v0.0.4: Provides infrastructure and functions for integrating [`Stan`](https://www.jstatsoft.org/article/view/v076i01) code into standalone `R` packages, which, in turn, use the [`CmdStan`](https://github.com/stan-dev/cmdstan) engine. see the [vignette](https://cran.r-project.org/web/packages/staninside/vignettes/using-staninside.html).  
+
+
+
+
+
+### Visualization
+
+[ggchord](https://cran.r-project.org/package=ggchord) v0.2.0: Extends `ggplot2` to visualize pairwise [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) alignment results as chord diagrams, intuitively displaying homologous regions between query and subject sequences. See the [vignette](https://cran.r-project.org/web/packages/ggchord/vignettes/ggchord_vignette.html).
+
+![](ggchord.png){fig-alt="Chord Plot of BLAST alignments"}
+
+
+[moveEZ](https://cran.r-project.org/package=moveEZ) v1.1.0: Provides functions to create animated biplots that enable dynamic visualization of temporal or sequential changes in multivariate data by animating a single biplot across the levels of a time variable. See the [vignette](https://cran.r-project.org/web/packages/moveEZ/vignettes/moveEZ.html).
+
+![](moveEZ.png){fig-alt="Multiple biplots"}
+
+:::
+
+
+
+
+
+::::
+
