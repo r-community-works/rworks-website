@@ -89,7 +89,7 @@ In June, one hundred twenty-three new packages made it to CRAN. Here are my Top 
 
 [multiDEGGs](https://cran.r-project.org/package=multiDEGGs) 1.0.0: Provides functions to perform multi-omic differential network analysis by revealing differential interactions between molecular entities (genes, proteins, transcription factors, or other biomolecules) across the omic datasets provided. A comprehensive visualization from differential networks is constructed for each omic dataset, where links represent statistically significant differential interactions between entities. See [Sciacca et al. (2023)](https://academic.oup.com/bioinformatics/article/39/4/btad192/7135827?login=false) for information on the methods implemented, and the [vignette](https://cran.r-project.org/web/packages/multiDEGGs/vignettes/multiDEGGs_vignette.html) for examples.
 
-![](multiDEGGS.png){fig-alt="Dig=fferential regression plot"}
+![](multiDEGGS.png){fig-alt="Differential regression plot"}
 
 
 [rsynthbio](https://cran.r-project.org/package=rsynthbio) v2.0.0: Implements a wrapper to the [Synthesize Bio API](https://app.synthesize.bio/), which enables users to generate realistic gene expression data based on specified biological conditions. Researchers can access AI-generated transcriptomic data for various modalities, including bulk RNA-seq, single-cell RNA-seq, and microarray data. See the [vignette](https://cran.r-project.org/web/packages/rsynthbio/vignettes/getting-started.html) to get started.
