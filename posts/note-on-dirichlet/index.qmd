@@ -2,31 +2,16 @@
 title: "A Note on the Dirichlet Distribution"
 author: "Joseph Rickert"
 date: 2025-08-27
-description: "T"
-image: ".png"
-image-alt: "s"
+description: "In this post, I explore some properties of the Dirichlet distribution and illustrate the behavior of the symmetric Dirilichet distribution as alpha, the concentration parameter, varies. Understanding this behavior may be helpful in constructing an informative prior for the multinomial distribution."
+image: "anim2.gif"
+image-alt: "Evolution of Dirichlet distribution"
 categories: ""
 editor: source
 ---
 
 
-```{r}
-#| message: false
-#| warning: false
-#| code-fold: true
-#| code-summary: "R packages used in this post"
-library(ggplot2)
-library(gganimate)
-library(dplyr)
-library(magick)
-library(MCMCpack)  # for rdirichlet
-library(gtools)  # for ddirichlet
-#library(patchwork)  # for combining plots
-library(threejs)
-library(extraDistr)
-```
 
-In 1839, [Peter Gustav Lejeune Dirichlet](https://en.wikipedia.org/wiki/Peter_Gustav_Lejeune_Dirichlet) was a mathematician attached to the Philosophy department at the University of Berlin working for less than full pay even though he had become a member of the Prussian Academy of Sciences in 1832. To become a "full professor" at the university at that time it was required that a candidate deliver *his* *Habilitationsschrift* talk in Latin. Apparently, Dirichlet's facility with Latin wasn't up to the task, so like many "adjunct professors" today, Dirichlet took a side gig to support his family. He taught math at a military school.  Anyway, I digress. It was about that time that Dirichlet began to work on a problem in celestial mechanics which involved this integral:
+In 1839, the gifted mathematician [Peter Gustav Lejeune Dirichlet](https://en.wikipedia.org/wiki/Peter_Gustav_Lejeune_Dirichlet) was attached to the Philosophy department at the University of Berlin working for less than full pay even though he had become a member of the Prussian Academy of Sciences in 1832. At that time, to become a "full professor" at the university it was required that a candidate deliver a [*Habilitationsschrift*](https://en.wikipedia.org/wiki/Habilitation#:~:text=Habilitation%20is%20the%20highest%20university,their%20field%20in%20its%20entirety.) lecture in Latin. Apparently, Dirichlet's facility with Latin wasn't up to the task, so like many proficient "adjunct professors" today, Dirichlet took a side gig to support his family. He taught math at a military school.  Anyway, I digress. It was about that time that Dirichlet began to work on a problem in celestial mechanics which involved this integral:
  
 
 $$\quad I := \iiint_{S_s} \frac{dx\, dy\, dz}{\rho^p}$$
@@ -52,11 +37,30 @@ $\mathrm{B}(\boldsymbol{\alpha}) =
 
 The Dirichlet distribution is a multivariate generalization of the Beta distribution that is often used in Bayesian statistics as a prior distribution for categorical and multinomial distributions. I illustrated this use of the Dirichlet in a [previous post](https://rworks.dev/posts/simple-bayesian-model/) while constructing a Bayesian model for a three-state Markov chain. The Dirichlet distribution is remarkable in that it brings together 18th and 19th century work in analysis as exemplified by the Gamma, Beta and digamma functions with early 20th ideas from geometry and topology (the simplex) and modern Bayesian statistics.
 
-## the (2)-Simplex
+## The (2)-Simplex
 
 A simplex is a generalization of the notion of a triangle to multiple dimensions. Informally in K dimensions, a simplex is the simplest polygon that is the convex hull of its K vertices. The vectors that comprise the simplex must be non-negative and sum to 1. So, a simplex is a natural way to represent probabilities that sum to 1 in multidimensional spaces.
 
 The support for the three dimensional Dirichlet distribution, the points on which the distribution is defined, is a (2)-simplex the triangular subset of a 2-dimensional plane intersecting the Euclidean axes at the points (1,0,0), (0,1,0), and (0,0,1). (Orient the triangle in the interactive plot below so that the reference plane is on top and the tip is pointing downward and you will see how the axes line up.)
+
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: true
+#| code-summary: "R packages used in this post"
+library(ggplot2)
+library(gganimate)
+library(dplyr)
+library(magick)
+library(MCMCpack)  # for rdirichlet
+library(gtools)  # for ddirichlet
+#library(patchwork)  # for combining plots
+library(threejs)
+library(extraDistr)
+```
+
+
 
 ```{r}
 #| message: false
@@ -93,12 +97,11 @@ scatterplot3js(x = x, y = y, z = z,
 ```
 
 
-When $\alpha_1 = \alpha_2 = \alpha_3 = constant$, the Dirichlet density is symmetric about the middle of the simplex. In the special case when $\boldsymbol{\alpha} = (1, 1, 1)$, the density is uniform over the simplex. When all the $\alpha_i < 1$ the density is concentrated at the vertices of the simplex, and when $\alpha_i > 1$, the density is concentrated in the center of the simplex.
+When $\alpha_1 = \alpha_2 = \alpha_3 = constant$, the Dirichlet density is symmetric about the middle of the simplex, $\boldsymbol{\alpha} = (1/3, 1/3, 1/3)$ . In the special case when $\boldsymbol{\alpha} = (1, 1, 1)$, the density is uniform over the simplex. When all the $\alpha_i < 1$ the density is concentrated at the vertices of the simplex, and when $\alpha_i > 1$, the density is concentrated in the center of the simplex with most of the mass concentrated on a few values. 
 
 ## How the symetric Dirichlet distribution changes as $\alpha$ changes
 
-The following animation, which projects the above plot onto two dimensions, shows how the Dirichlet distribution changes as the common value of $\alpha_i$, called the concentration parameter, moves systematically from (1,1,1), the uniform distribution, to (0.1,0.1,0.1). Generally values of the concentration parameter less than 1 lead to distributions concentrated at the vertices of the simplex while values greater than 1 lead to distributions with most of the mass concentrated on a few values. 
-
+The following animation, which projects the above plot onto two dimensions, shows how the Dirichlet distribution changes as the common value of $\alpha_i$, called the concentration parameter, moves systematically from (1,1,1), the uniform distribution, to (0.1,0.1,0.1).  
 
 
 ```{r}
@@ -182,7 +185,7 @@ plot_dirichlet_evolution <- function(animation_data) {
       subtitle = "",
       x = "Projected X",
       y = "Projected Y",
-      caption = "Transitioning belief over simplex"
+      caption = "Transition from uniform to concentrated distribution"
     ) +
     theme_minimal() +
     theme(
@@ -220,7 +223,7 @@ plot_dirichlet_evolution(animation_data)
 ```
 
 
-These next two plots of the first and last frames of the animation clearly show how the density moves from being uniformly distributed over the simplex to being concentrated at the vertices of the simplex. When modeling the development of a multi-state Markov chain as I was doing in the post I alluded to above, it might be reasonable to select a Dirichlet prior with $\boldsymbol{\alpha} = (1,1,1)$ if you had no prior information about the transition probabilities. However, if you had reason to believe that the process was likely to remain in the same state, then a prior with $\boldsymbol{\alpha} = (0.1,0.1,0.1)$ to start of the simulation with points concentrated near the sates.
+These next two plots, the first and last frames of the animation, clearly show how the density moves from being uniformly distributed over the simplex to being concentrated at the vertices of the simplex. When modeling the development of a multi-state Markov chain, as I was doing in the post I alluded to above, it is common practice to select a uniform Dirichlet prior with $\boldsymbol{\alpha} = (1,1,1)$. However, if you believe that the process is likely to start off uniformly distributed among the states, then a prior with $\boldsymbol{\alpha} = (0.1,0.1,0.1)$ might be appropriate. If you had reason to believe that the process would start off concentrated on particular states, then you might explore using an asymmetric distribution by setting different values for the $\alpha_i$. The code driving these animations might be helpful.
 
 :::: {.columns}
 
@@ -263,7 +266,7 @@ ggplot(subset(animation_data, frame == 1), aes(x = x, y = y)) +
 
 ::::
 
-This concentration of density as $\boldsymbol{\alpha}$ increases is very apparent in this next simulation as $\boldsymbol{\alpha}$ moves from (0.1, 0.1, 0.1)  to (10.0, 10.0, 10.0). Here we see the distribution concentrating on the mean which is (1/3, 1/3, 1/3).
+This concentration of density as $\boldsymbol{\alpha}$ increases is very apparent in this next simulation as $\boldsymbol{\alpha}$ moves from (0.1, 0.1, 0.1)  to (10.0, 10.0, 10.0). Here we see the distribution concentrating on the mean, $\boldsymbol{\alpha}$ = (1/3, 1/3, 1/3).
 
 ```{r}
 #| message: false
@@ -277,11 +280,12 @@ alpha3 <- seq(.1, 10, by = 0.1)
 
 animation_data <- generate_dirichlet_animation_data(alpha1, alpha2, alpha3, n_samples = 2000)
 
-plot_dirichlet_evolution(animation_data)
+anim2 <- plot_dirichlet_evolution(animation_data)
+anim2
 
 ```
 
-Note that during this animation $\alpha$ passing through 0.5 which is the [Jeffreys prior](https://en.wikipedia.org/wiki/Jeffreys_prior) for the Dirichlet distribution. 
+Note that during this animation $\alpha$ passes through 0.5 which is the [Jeffreys prior](https://en.wikipedia.org/wiki/Jeffreys_prior) for the Dirichlet distribution. 
 
 
 ## Differential Entropy and Variance 
@@ -292,9 +296,9 @@ $\boldsymbol{\alpha} = (\alpha_1, \alpha_2, \dots, \alpha_K)$ is the concentrati
 $$H(\boldsymbol{\alpha}) = \log B(\boldsymbol{\alpha}) + (\alpha_0 - K) \psi(\alpha_0) - \sum_{i=1}^{K} (\alpha_i - 1) \psi(\alpha_i)$$
 
 
-where: $B(\boldsymbol{\alpha})$ is the  multivariate Beta function, $\Gamma(\cdot)$ is the Gamma function and $\psi(\cdot)$ is the digamma function: $\psi(x) = \frac{d}{dx} \log \Gamma(x)$
+where: $B(\boldsymbol{\alpha})$ is the  multivariate Beta function, $\Gamma(\cdot)$ is the Gamma function and $\psi(\cdot)$ is the digamma function: $\psi(x) = \frac{d}{dx} \log \Gamma(x)$.
 
-Differential entropy is defined for continuous probability distributions. It does not behave the same as the Shannon entropy which is used for discrete distributions. Among other things, differential entropy can be negative, in not invariant under a change of variables, and may not conform to any intuition you may have developed about maximum entropy. The plot on the left below shows the behavior of the differential entropy for the symmetric Dirichlet distribution we have been considering as $\alpha$ moves from 0.1 to 5.0. Note that the entropy keeps increasing beyond the point $\alpha = 1$ which corresponds to the uniform distribution over the simplex.
+Note that differential entropy is defined for continuous probability distributions. It does not behave the same way as the Shannon entropy which is used for discrete distributions. Among other things, differential entropy can be negative, in not invariant under a change of variables, and may not conform to any intuition you may have developed about maximum entropy. The plot on the left below shows the behavior of the differential entropy for the symmetric Dirichlet distribution we have been considering as $\alpha$ moves from (0.1, 0.1, 0.1) to (5.0, 5.0, 5.0). Note that the entropy keeps increasing beyond the point $\alpha = 1$ which corresponds to the uniform distribution over the simplex.
 
 :::: {.columns}
 
@@ -404,12 +408,11 @@ The plot on the right shows the variance of the Dirichlet distribution as a func
 
 * Bela A. Frigyik, Amol Kapila, and Maya R. Gupta, [Introduction to the Dirichlet Distribution and Related Processes](https://web.archive.org/web/20150219021331/https://www.ee.washington.edu/techsite/papers/documents/UWEETR-2010-0006.pdf)
 
-* Thomas M. Cover and Joy A. Thomas, *Elements of Information Theory Authors*, Wiley-Interscience Edition: 2nd Edition, (2006) 
+* Thomas M. Cover and Joy A. Thomas, *Elements of Information Theory*, Wiley-Interscience Edition: 2nd Edition, (2006) 
 
 * Rameshwar Gupta and Donald St. P. Richards, [The History of the Dirchet and Liouville Distributions](https://en.wikipedia.org/wiki/Peter_Gustav_Lejeune_Dirichlets) international Statistical Review (2001) 
 
-
 * Jiayu Lin, [On the Dirichlet Distribution](https://qspace.library.queensu.ca/server/api/core/bitstreams/0a2eb9d4-145a-4e76-84eb-1aa16d6670aa/content)
 
-:::: {.columns}
+
 
