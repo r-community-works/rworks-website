@@ -1,14 +1,13 @@
 ---
 title: "A Note on the Dirichlet Distribution"
 author: "Joseph Rickert"
-date: 2025-08-27
+date: 2025-08-22
 description: "In this post, I explore some properties of the Dirichlet distribution and illustrate the behavior of the symmetric Dirilichet distribution as alpha, the concentration parameter, varies. Understanding this behavior may be helpful in constructing an informative prior for the multinomial distribution."
 image: "anim2.gif"
 image-alt: "Evolution of Dirichlet distribution"
 categories: ""
 editor: source
 ---
-
 
 
 In 1839, the gifted mathematician [Peter Gustav Lejeune Dirichlet](https://en.wikipedia.org/wiki/Peter_Gustav_Lejeune_Dirichlet) was attached to the Philosophy department at the University of Berlin working for less than full pay even though he had become a member of the Prussian Academy of Sciences in 1832. At that time, to become a "full professor" at the university it was required that a candidate deliver a [*Habilitationsschrift*](https://en.wikipedia.org/wiki/Habilitation#:~:text=Habilitation%20is%20the%20highest%20university,their%20field%20in%20its%20entirety.) lecture in Latin. Apparently, Dirichlet's facility with Latin wasn't up to the task, so like many proficient "adjunct professors" today, Dirichlet took a side gig to support his family. He taught math at a military school.  Anyway, I digress. It was about that time that Dirichlet began to work on a problem in celestial mechanics which involved this integral:
@@ -285,20 +284,16 @@ anim2
 
 ```
 
-Note that during this animation $\alpha$ passes through 0.5 which is the [Jeffreys prior](https://en.wikipedia.org/wiki/Jeffreys_prior) for the Dirichlet distribution. 
+Note that the animation $\alpha$ passes through (0.5, 0.5, 0.5) which is the [Jeffreys prior](https://en.wikipedia.org/wiki/Jeffreys_prior) for the Dirichlet distribution. 
 
 
-## Differential Entropy and Variance 
+##  Variance and Differential Entropy
 
-The entropy displayed for the [Dirichlet distribution](https://en.wikipedia.org/wiki/Dirichlet_distribution) is the differential entropy which is defined as: $h(X) = -\int p(x) \log p(x) \, dx$. For the Dirichlet distribution where 
-$\boldsymbol{\alpha} = (\alpha_1, \alpha_2, \dots, \alpha_K)$ is the concentration parameter, differential entropy $H(\boldsymbol{\alpha})$ is given by:$
+The Wikipedia article for the [Dirichlet distribution](https://en.wikipedia.org/wiki/Dirichlet_distribution) prominently displays the distribution's differential entropy:
 
 $$H(\boldsymbol{\alpha}) = \log B(\boldsymbol{\alpha}) + (\alpha_0 - K) \psi(\alpha_0) - \sum_{i=1}^{K} (\alpha_i - 1) \psi(\alpha_i)$$
 
-
-where: $B(\boldsymbol{\alpha})$ is the  multivariate Beta function, $\Gamma(\cdot)$ is the Gamma function and $\psi(\cdot)$ is the digamma function: $\psi(x) = \frac{d}{dx} \log \Gamma(x)$.
-
-Note that differential entropy is defined for continuous probability distributions. It does not behave the same way as the Shannon entropy which is used for discrete distributions. Among other things, differential entropy can be negative, in not invariant under a change of variables, and may not conform to any intuition you may have developed about maximum entropy. The plot on the left below shows the behavior of the differential entropy for the symmetric Dirichlet distribution we have been considering as $\alpha$ moves from (0.1, 0.1, 0.1) to (5.0, 5.0, 5.0). Note that the entropy keeps increasing beyond the point $\alpha = 1$ which corresponds to the uniform distribution over the simplex.
+where $\boldsymbol{\alpha}$ and $B(\boldsymbol{\alpha})$ are defined above and $\psi(\cdot)$ is the digamma function. (This equation triggered my mention of the digamma function above.) But please be advised that differential entropy defined as: $h(X) = -\int p(x) \log p(x) \, dx$ for continuous distributions is not the same as the Shannon entropy $H(X) = -\sum p(x) \log p(x)$ for discrete distributions and does not have a similar interpretation.  Among other things, differential entropy can be negative, in not invariant under a change of variables, and probably doesn't conform to any intuition you may have developed about maximum entropy. The plot on the left below shows the behavior of the differential entropy for the symmetric Dirichlet distribution we have been considering as $\alpha$ moves from (0.1, 0.1, 0.1) to (5.0, 5.0, 5.0). Note that the entropy keeps increasing beyond the point $\alpha = 1$ which corresponds to the uniform distribution over the simplex.
 
 :::: {.columns}
 
@@ -399,7 +394,7 @@ ggplot(df, aes(x = k, y = variance)) +
 
 ::::
 
-The plot on the right shows the variance of the Dirichlet distribution as a function increasing $\alpha$. We see that the variance decreases towards zero as $\alpha$ increases. This is reflected in the second animation above which shows the distribution concentrating on the mean. Uncertainty is going to zero but differential entropy is shooting off towards to infinity. For those of you who would like to get a better understanding of differential entropy, I have included a couple of mathematical references below. 
+The plot on the right shows the variance of the Dirichlet distribution as a function increasing $\alpha$. We see that the variance decreases towards zero as $\alpha$ increases. This is reflected in the second animation above which shows the distribution concentrating on the mean. Uncertainty is going to zero but differential entropy is shooting off towards to infinity. If you are nevertheless intrigued by differential entropy, you may want to have a look at the references I have included below.
 
 
 
