@@ -1,8 +1,8 @@
 ---
 title: "A Note on the Dirichlet Distribution"
 author: "Joseph Rickert"
-date: 2025-08-22
-description: "In this post, I explore some properties of the Dirichlet distribution and illustrate the behavior of the symmetric Dirilichet distribution as alpha, the concentration parameter, varies. Understanding this behavior may be helpful in constructing an informative prior for the multinomial distribution."
+date: 2025-09-22
+description: "In this post, I explore some properties of the Dirichlet distribution and illustrate the behavior of the symmetric Dirichlet distribution as alpha, the concentration parameter, varies. Understanding this behavior may be helpful in constructing an informative prior for the multinomial distribution."
 image: "anim2.gif"
 image-alt: "Evolution of Dirichlet distribution"
 categories: ""
@@ -10,14 +10,14 @@ editor: source
 ---
 
 
-In 1839, the gifted mathematician [Peter Gustav Lejeune Dirichlet](https://en.wikipedia.org/wiki/Peter_Gustav_Lejeune_Dirichlet) was attached to the Philosophy department at the University of Berlin working for less than full pay even though he had become a member of the Prussian Academy of Sciences in 1832. At that time, to become a "full professor" at the university it was required that a candidate deliver a [*Habilitationsschrift*](https://en.wikipedia.org/wiki/Habilitation#:~:text=Habilitation%20is%20the%20highest%20university,their%20field%20in%20its%20entirety.) lecture in Latin. Apparently, Dirichlet's facility with Latin wasn't up to the task, so like many proficient "adjunct professors" today, Dirichlet took a side gig to support his family. He taught math at a military school.  Anyway, I digress. It was about that time that Dirichlet began to work on a problem in celestial mechanics which involved this integral:
+In 1839, the gifted mathematician [Peter Gustav Lejeune Dirichlet](https://en.wikipedia.org/wiki/Peter_Gustav_Lejeune_Dirichlet) was attached to the Philosophy department at the University of Berlin, working for less than full pay even though he had become a member of the Prussian Academy of Sciences in 1832. At that time, to become a "full professor" at the university, it was required that a candidate deliver a [*Habilitationsschrift*](https://en.wikipedia.org/wiki/Habilitation#:~:text=Habilitation%20is%20the%20highest%20university,their%20field%20in%20its%20entirety.) lecture in Latin. Apparently, Dirichlet's facility with Latin wasn't up to the task, so like many proficient "adjunct professors" today, Dirichlet took a side gig to support his family. He taught math at a military school.  Anyway, I digress. It was about that time that Dirichlet began to work on a problem in celestial mechanics which involved this integral:
  
 
 $$\quad I := \iiint_{S_s} \frac{dx\, dy\, dz}{\rho^p}$$
 
 Here $(x,y,z) \in R^3$ which is attracted to a point $(a,b,c)$ where $1/\rho^p$ is the force of attraction $(1 < p <3)$ and $\rho^2 := (x - a)^2 + (y - b)^2 + (z - c)^2$ is the Euclidean norm.
 
-After a supernaturally insightful series manipulations detailed by [Gupta and Richards](https://www.jstor.org/stable/1403524), Dirichlet arrived at the following integral 
+After a supernaturally insightful series of manipulations detailed by [Gupta and Richards](https://www.jstor.org/stable/1403524), Dirichlet arrived at the following integral:
 
 
 $$\int_{S_s} \left(1 - \sum_{i=1}^n x_i^2 \right)^{\alpha - 1} x_1^{v_1} x_2^{v_2} \cdots x_n^{v_n} \, dx_1 dx_2 \cdots dx_n = \frac{\Gamma(\alpha) \Gamma\left(\frac{1 + v_1}{2}\right) \cdots \Gamma\left(\frac{1 + v_n}{2}\right)}{\Gamma\left(\alpha + \frac{n + v_1 + \cdots + v_n}{2}\right)}$$
@@ -34,13 +34,13 @@ where
 $\mathrm{B}(\boldsymbol{\alpha}) = 
 \frac{\prod_{i=1}^{K} \Gamma(\alpha_i)}{\Gamma\left(\sum_{i=1}^{K} \alpha_i\right)}$ and $\alpha_0 = \sum_{i=1}^{K} \alpha_i$
 
-The Dirichlet distribution is a multivariate generalization of the Beta distribution that is often used in Bayesian statistics as a prior distribution for categorical and multinomial distributions. I illustrated this use of the Dirichlet in a [previous post](https://rworks.dev/posts/simple-bayesian-model/) while constructing a Bayesian model for a three-state Markov chain. The Dirichlet distribution is remarkable in that it brings together 18th and 19th century work in analysis as exemplified by the Gamma, Beta and digamma functions with early 20th ideas from geometry and topology (the simplex) and modern Bayesian statistics.
+The Dirichlet distribution is a multivariate generalization of the Beta distribution that is often used in Bayesian statistics as a prior distribution for categorical and multinomial distributions. I illustrated this use of the Dirichlet in a [previous post](https://rworks.dev/posts/simple-bayesian-model/) while constructing a Bayesian model for a three-state Markov chain. The Dirichlet distribution is remarkable in that it brings together 18th and 19th century work in analysis, as exemplified by the Gamma, Beta, and digamma functions, with early 20th century ideas from geometry and topology (the simplex) and modern Bayesian statistics.
 
 ## The (2)-Simplex
 
-A simplex is a generalization of the notion of a triangle to multiple dimensions. Informally in K dimensions, a simplex is the simplest polygon that is the convex hull of its K vertices. The vectors that comprise the simplex must be non-negative and sum to 1. So, a simplex is a natural way to represent probabilities that sum to 1 in multidimensional spaces.
+A simplex is a generalization of the notion of a triangle to multiple dimensions. Informally, in K dimensions, a simplex is the simplest polygon that is the convex hull of its K vertices. The vectors that comprise the simplex must be non-negative and sum to 1. So, a simplex is a natural way to represent probabilities that sum to 1 in multidimensional spaces.
 
-The support for the three dimensional Dirichlet distribution, the points on which the distribution is defined, is a (2)-simplex the triangular subset of a 2-dimensional plane intersecting the Euclidean axes at the points (1,0,0), (0,1,0), and (0,0,1). (Orient the triangle in the interactive plot below so that the reference plane is on top and the tip is pointing downward and you will see how the axes line up.)
+The support for the three-dimensional Dirichlet distribution, the points on which the distribution is defined, is a (2)-simplex, the triangular subset of a 2-dimensional plane intersecting the Euclidean axes at the points (1,0,0), (0,1,0), and (0,0,1). (Orient the triangle in the interactive plot below so that the reference plane is on top and the tip is pointing downward, and you will see how the axes line up.)
 
 
 ```{r}
@@ -66,7 +66,6 @@ library(extraDistr)
 #| warning: false
 #| code-fold: true
 #| code-summary: "Show the code"
-#| 
 set.seed(42)
 
 # Sample from Dirichlet distribution over 3 categories
@@ -90,9 +89,6 @@ scatterplot3js(x = x, y = y, z = z,
                  "(0,1,0)",
                  "(0,0,1)"
                ))
-
-
-
 ```
 
 
@@ -201,11 +197,6 @@ plot_dirichlet_evolution <- function(animation_data) {
   return(p_animation)
 }
 
-#| message: false
-#| warning: false
-#| code-fold: true
-#| code-summary: "Animation Code"
-#| 
 set.seed(42)
 
 # Parameters
@@ -293,7 +284,7 @@ The Wikipedia article for the [Dirichlet distribution](https://en.wikipedia.org/
 
 $$H(\boldsymbol{\alpha}) = \log B(\boldsymbol{\alpha}) + (\alpha_0 - K) \psi(\alpha_0) - \sum_{i=1}^{K} (\alpha_i - 1) \psi(\alpha_i)$$
 
-where $\boldsymbol{\alpha}$ and $B(\boldsymbol{\alpha})$ are defined above and $\psi(\cdot)$ is the digamma function. (This equation triggered my mention of the digamma function above.) But please be advised that differential entropy defined as: $h(X) = -\int p(x) \log p(x) \, dx$ for continuous distributions is not the same as the Shannon entropy $H(X) = -\sum p(x) \log p(x)$ for discrete distributions and does not have a similar interpretation.  Among other things, differential entropy can be negative, in not invariant under a change of variables, and probably doesn't conform to any intuition you may have developed about maximum entropy. The plot on the left below shows the behavior of the differential entropy for the symmetric Dirichlet distribution we have been considering as $\alpha$ moves from (0.1, 0.1, 0.1) to (5.0, 5.0, 5.0). Note that the entropy keeps increasing beyond the point $\alpha = 1$ which corresponds to the uniform distribution over the simplex.
+where $\boldsymbol{\alpha}$ and $B(\boldsymbol{\alpha})$ are defined above and $\psi(\cdot)$ is the digamma function. (This equation triggered my mention of the digamma function above.) But please be advised that differential entropy defined as: $h(X) = -\int p(x) \log p(x) \, dx$ for continuous distributions is not the same as the Shannon entropy $H(X) = -\sum p(x) \log p(x)$ for discrete distributions and does not have a similar interpretation.  Among other things, differential entropy can be negative, is not invariant under a change of variables, and probably doesn't conform to any intuition you may have developed about maximum entropy. The plot on the left below shows the behavior of the differential entropy for the symmetric Dirichlet distribution we have been considering as $\alpha$ moves from (0.1, 0.1, 0.1) to (5.0, 5.0, 5.0). Note that the entropy keeps increasing beyond the point $\alpha = 1$ which corresponds to the uniform distribution over the simplex.
 
 :::: {.columns}
 
@@ -394,7 +385,7 @@ ggplot(df, aes(x = k, y = variance)) +
 
 ::::
 
-The plot on the right shows the variance of the Dirichlet distribution as a function increasing $\alpha$. We see that the variance decreases towards zero as $\alpha$ increases. This is reflected in the second animation above which shows the distribution concentrating on the mean. Uncertainty is going to zero but differential entropy is shooting off towards to infinity. If you are nevertheless intrigued by differential entropy, you may want to have a look at the references I have included below.
+The plot on the right shows the variance of the Dirichlet distribution as a function increasing $\alpha$. We see that the variance decreases towards zero as $\alpha$ increases. This is reflected in the second animation above, which shows the distribution concentrating on the mean. Uncertainty is going to zero, but differential entropy is shooting off towards to infinity. If you are nevertheless intrigued by differential entropy, you may want to have a look at the references I have included below.
 
 
 
