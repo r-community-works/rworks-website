@@ -1,0 +1,185 @@
+---
+title: "August 2025 Top 40 New CRAN Packages"
+author: "Joseph Rickert"
+date: 2025-08-27
+description: "Here are my picks for the best new packages to land on CRAN in August, organized in thirteen categories: Causal Inference, Computational Methods, Data, Ecology, Epidemiology,  Machine Learning, Mathematics, Medical Statistics, Pharma, Statistics, Time Series, Utilities, and Visualization."
+image: ""
+image-alt: ""
+categories: "Top 40"
+editor: source
+---
+
+![](.png){fig-alt=""}
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+### Causal Inference
+
+[gadjid](https://cran.r-project.org/package=gadjid) v0.1.0: Enables efficient `Rust` implementations of graph adjustment identification distances available in R. These distances (based on ancestor, optimal, and parent adjustment) count how often the respective adjustment identification strategy leads to causal inferences that are incorrect relative to a ground-truth graph when applied to a candidate graph instead. See [Henckel, Würtzen, Weichwald (2024)](doi:10.48550/arXiv.2402.08616) for background and [README](https://cran.r-project.org/web/packages/gadjid/readme/README.html) to get started.
+
+### Data
+
+
+
+[datacommons](https://cran.r-project.org/package=datacommons) v0.1.0: Implements a wrapper to the [Google Data Commons API V2](https://docs.datacommons.org/api/rest/v2/) that provides programmatic access to statistical and demographic data from dozens of sources organized in a knowledge graph. See the [vignette](https://cran.r-project.org/web/packages/datacommons/vignettes/analyzing-census-data.html).
+
+[imfweo](https://cran.r-project.org/package=imfweo) v0.1.0: Provides tools to download, process, and analyze data from the International Monetary Fund's [World Economic Outlook (WEO) database](https://www.imf.org/en/Publications/SPROLLs/world-economic-outlook-databases) including functions for downloading complete WEO releases, accessing specific economic indicators for selected countries, and listing available data. See [README](https://cran.r-project.org/web/packages/imfweo/readme/README.html).
+
+[letsRept](https://cran.r-project.org/package=letsRept) v1.0.1: Provides tools to retrieve and summarize taxonomic information and synonymy data for reptile species using data scraped from [The Reptile Database](https://reptile-database.reptarium.cz/) website. See the [vignette](https://cran.r-project.org/web/packages/letsRept/vignettes/letsRept.html)
+.
+
+[pubchem.bio](https://cran.r-project.org/package=pubchem.bio) v1.0.1: Provides functions to parse the biologically relevant compounds from all [PubChem](https://pubchem.ncbi.nlm.nih.gov/search/help_search.html) compounds, using biological database sources, pathway presence, and taxonomic relationships. See the [vignette](https://cran.r-project.org/web/packages/pubchem.bio/vignettes/pubchem.bio.vignette.html).
+
+
+[redlist](https://cran.r-project.org/package=redlist) v0.2.0: Provides an interface to access data from the International Union for Conservation of Nature (IUCN) [Red List](https://api.iucnredlist.org/api-docs/index.html) allowing users to retrieve up-to-date information on species' conservation status in support of biodiversity research and conservation efforts. There is an [Introduction](https://cran.r-project.org/web/packages/redlist/vignettes/get_data.html) and a vignette on [Visualization](https://cran.r-project.org/web/packages/redlist/vignettes/data_visualisation.html).
+
+![](redlist.jpeg){fig-alt="Plot of criticlly endangerd species by region"}
+
+[verdadecu](https://cran.r-project.org/package=verdadecu) v1.0.0: Provides access to data collected by the Ecuadorian Truth Commission including datasets documenting human rights violations from 1984-2008 containinf victim information, violation types, perpetrators, and geographic distribution. See the [vignette](https://cran.r-project.org/web/packages/verdadecu/vignettes/verdadecu.html).
+
+
+### Differential Privacy
+
+[GRANDpriv](https://cran.r-project.org/package=GRANDpriv) v0.1.3: Implements a novel method for privatizing network data using differential privacy and includes functions for generating synthetic networks based on a latent space model, applying differential privacy to network latent positions, and evaluating the utility of privatized networks. See [Liu, Bi, & Li (2025)](https://arxiv.org/abs/2507.00402) for details and [README](https://cran.r-project.org/web/packages/GRANDpriv/readme/README.html) for examples.
+
+### Ecology
+
+[ecodive](https://cran.r-project.org/package=ecodive) v2.0.0: Provides functions to compute alpha and beta diversity metrics using concurrent `C` threads. Metrics include [UniFrac](https://en.wikipedia.org/wiki/UniFrac), [Faith's phylogenetic diversity](https://danielpfaith.wordpress.com/phylogenetic-diversity/), [Bray-Curtis dissimilarity](https://en.wikipedia.org/wiki/Bray%E2%80%93Curtis_dissimilarity), [Shannon diversity index](https://www.statology.org/shannon-diversity-index/). Functions also parse [newick trees](https://en.wikipedia.org/wiki/Newick_format) into *phylo* objects and rarefies feature tables. There are six vignettes including an [Introduction](https://cran.r-project.org/web/packages/ecodive/vignettes/ecodive.html) and [Selecting a Beta Diversity Metric](https://cran.r-project.org/web/packages/ecodive/vignettes/bdiv_guide.html).
+
+![](ecodive.png){fig-alt="A phylogenetic tree"}
+
+### Environmental Studies
+
+[ffaframework](https://cran.r-project.org/package=ffaframework) v0.1.1: Implements the the FFA framework proposed by Vidrio- [Sahagún et al. (2024)](https://www.sciencedirect.com/science/article/abs/pii/S136481522400001X?via%3Dihub) to support systematic and reproducible workflows for both stationary and nonstationary flood frequency analysis, with applications extending to other hydroclimate extremes, such as precipitation frequency analysis. There are sig vignettes including [Change Point Detection](https://cran.r-project.org/web/packages/ffaframework/vignettes/change-points.html) and [Notstationary FFA](https://cran.r-project.org/web/packages/ffaframework/vignettes/non-stationary-ffa.html).
+
+![](ffaf.png){fig-alt="Plot illustrating L-distance model selection"}
+
+### Epidemiology
+
+[mlspatial](https://cran.r-project.org/package=mlspatial) v0.1.0: Provides tools for the integration, visualization, and modelling of spatial epidemiological data using the method described in [Azeez & Noel (2025)](https://zenodo.org/records/16529986). Users can import and pre-process shapefiles and associated demographic or disease incidence data, generate richly annotated thematic maps, and apply predictive models to identify spatial patterns and risk factors. See the [vignette](https://cran.r-project.org/web/packages/mlspatial/vignettes/mlspatial.html).
+
+![](mlspatial.png){fig-alt="Plot of predictions vs observations for multiple models"}
+
+### Genetics 
+
+[tidypopgen](https://cran.r-project.org/package=tidypopgen) v0.3.2: Provide a tidy grammar of population genetics, facilitating the manipulation and analysis of data on biallelic single nucleotide polymorphisms (SNPs). Functions scale to very large genetic datasets by storing genotypes on disk, and performing operations on them in chunks, without ever loading all data in memory. See [Carter et al. (2025)](https://www.biorxiv.org/content/10.1101/2025.06.06.658325v1) got details. There are five vignettes including and [Introduction](https://cran.r-project.org/web/packages/tidypopgen/vignettes/tidypopgen.html) and the [The grammar of population genetics](https://cran.r-project.org/web/packages/tidypopgen/vignettes/a01_overview.html). 
+
+![](tidypopgen.png){fig-alt="PCA Plot"}
+
+### Genomics
+
+[ibdfindr](https://cran.r-project.org/package=ibdfindr) v0.3.1: Implements continuous-time hidden Markov models (HMMs) to infer identity-by-descent (IBD) segments shared by two individuals from their single-nucleotide polymorphism (SNP) genotypes. Provides posterior probabilities at each marker (forward-backward algorithm), prediction of IBD segments (Viterbi algorithm), and functions for visualizing results. Supports both autosomal data and X-chromosomal data. See [README](https://cran.r-project.org/web/packages/ibdfindr/readme/README.html) fo examples.
+
+![](ibdfindr.png){fig-alt="Multiple IBD plots"}
+
+[readyomics](https://cran.r-project.org/package=readyomics) v0.1.2: Provides a flexible and streamlined pipeline for formatting, analyzing, and visualizing *omics* data (e.g. transcriptomics, proteomics, metabolomics) and includes tools for shaping input data, fitting linear or mixed-effect models, extracting key contrasts, and generating publication-quality plots. See the [vignette](https://cran.r-project.org/web/packages/readyomics/vignettes/readyomics.html).
+
+![](readyomics.png){fig-alt="Annotated distribution plots"}
+
+
+### Health Technology Assessment
+
+[searchAnalyzeR](https://cran.r-project.org/package=searchAnalyzeR) v0.1.0: Provides comprehensive analytics, reporting, and testing capabilities for systematic review search strategies focusing on validating search performance, generating standardized `PRISMA`-compliant reports, and ensuring reproducibility in evidence synthesis. Features include precision-recall analysis, cross-database performance comparison, benchmark validation against gold standards, sensitivity analysis, temporal coverage assessment, automated report generation, and statistical comparison of search strategies. See the vignettes [Comparing Search strategies](https://cran.r-project.org/web/packages/searchAnalyzeR/vignettes/Comparing_Search_Strategies_with_searchAnalyzeR.html) and [Real PubMed Search Analysis](https://cran.r-project.org/web/packages/searchAnalyzeR/vignettes/Real_PubMed_Search_Analysis_with_searchAnalyzeR.html).
+
+![](searchA.png){fig-alt="Search Strategy Comparison"}
+
+
+
+### Machine Learning
+
+[LCCkNN](https://cran.r-project.org/package=LCCkNN) v0.1.0: Implements the kK-NN algorithm, an adaptive k-nearest neighbor classifier that adjusts the neighborhood size based on local data curvature. The method estimates local Gaussian curvature by approximating the shape operator of the data manifold. This approach aims to improve classification performance, particularly in datasets with limited samples. Look [here](https://github.com/Gabrielforest/LCCkNN) for examples.
+
+### Medical Statistics
+
+[E2E](https://cran.r-project.org/package=E2E) v0.1.0: Provides a framework to build and evaluate diagnosis or prognosis models using stacking, voting, and bagging ensemble techniques with various base learners. There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/E2E/vignettes/getting-started.html) and [Advanced Features & Customization](https://cran.r-project.org/web/packages/E2E/vignettes/advanced-features.html).
+
+
+[kfre](https://cran.r-project.org/package=kfre) v0.0.2: Implements the Kidney Failure Risk Equation [Tangri et al. (2011)](https://jamanetwork.com/journals/jama/fullarticle/897102) and [Tangri et al. (2016)](https://jamanetwork.com/journals/jama/fullarticle/2481005) to compute two and five year kidney failure risk. Includes helper functions to classify chronic kidney disease (CKD) stages and end-stage renal disease (ESRD) outcomes, and evaluate and plot model performance. See the [vignette]https://cran.r-project.org/web/packages/kfre/vignettes/getting-started.html) to get started.
+
+[metaSVR](https://cran.r-project.org/package=metaSVR) v0.1.0: Provides a hybrid modeling framework combining Support Vector Regression with metaheuristic optimization algorithms, including the [Archimedes Optimization Algorithm], [Hashim et al. (2021)](https://link.springer.com/article/10.1007/s10489-020-01893-z); Coot Bird Optimization, [Naruei & Keynia (2021)](https://www.sciencedirect.com/science/article/abs/pii/S0957417421007806?via%3Dihub); as well as several others. Functions enable automatic tuning of SVR hyperparameters (cost, gamma, and epsilon) to enhance prediction performance. See [Setiawan et al. (2021)](https://www.sciencedirect.com/science/article/pii/S1877050920324364?via%3Dihub) and [Liu et al. (2018)](https://onlinelibrary.wiley.com/doi/10.1155/2018/6076475) for implementation details and [README](https://cran.r-project.org/web/packages/metaSVR/readme/README.html) for an example.
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+### Statistics
+
+[allocation](https://cran.r-project.org/package=allocation) v0.1.0: 
+Implements several exact methods for allocating optimal sample sizes when designing stratified samples. These methods are discussed in [Wright (2012)](https://www.tandfonline.com/doi/abs/10.1080/00031305.2012.733679) and [Wright (2017)](https://www.sciencedirect.com/science/article/abs/pii/S0167715217301657?via%3Dihub). See the [vignette](https://cran.r-project.org/web/packages/allocation/vignettes/allocation.pdf).
+
+[BSTFA](https://cran.r-project.org/package=BSTFA) v0.1.0: Implements Bayesian spatio-temporal factor analysis models for multivariate data observed across space and time. The package provides MCMC tools for model fitting, spatial and temporal interpolation, and visualization of latent factors and loadings. See [Berrett et al. (2020)](https://onlinelibrary.wiley.com/doi/10.1002/env.2609) and the [vignette](https://cran.r-project.org/web/packages/BSTFA/vignettes/BSTFA-Vignette.pdf) for examples.
+
+![](BSTFA.png){fig-alt="Plots comparing factor loadings using different bases"}
+
+[CCI](https://cran.r-project.org/package=CCI) v0.3.4: Implements a tool for performing computational testing for conditional independence between variables in a dataset by using permutations in combination with Monte Carlo cross-validation to generate null distributions and test statistics. See [Thorjussen et al. (2024)](https://www.mdpi.com/1999-4893/17/8/323) for details and [README](https://cran.r-project.org/web/packages/CCI/readme/README.html) for examples.
+
+
+[senseweight](https://cran.r-project.org/package=senseweight) v0.0.1: Provides tools to conduct interpretable sensitivity analyses for weighted estimators to evaluate the sensitivity of the underlying weighting estimators to omitted moderators or confounders. See [Huang (2024)](https://academic.oup.com/jrsssa/article/187/4/900/7626119?login=false) and [Hartman and Huang (2024)](https://www.cambridge.org/core/journals/political-analysis/article/sensitivity-analysis-for-survey-weights/0A13E3843155099F169CF195B8D7604F) for background. There are two vignettes [External Validitity](https://cran.r-project.org/web/packages/senseweight/vignettes/external-validity.html) and [Survey](https://cran.r-project.org/web/packages/senseweight/vignettes/survey.html).
+
+![](senseweight.png){fig-alt="Contour plot to visualize sensitivity"}
+
+[WData](https://cran.r-project.org/package=WData) v0.1.0: Provides functions to estimate the density and cumulative distribution functions from biased samples of continuous distributions. Includes the estimators proposed by [Bhattacharyya et al. (1988)](https://www.tandfonline.com/doi/abs/10.1080/03610928808829825) and [Jones (1991)](https://academic.oup.com/biomet/article-abstract/78/3/511/255888?redirectedFrom=fulltext&login=false) for density, and [Bose and Dutta (2022)](https://link.springer.com/article/10.1007/s00184-021-00824-3) for distributions. See [README](https://cran.r-project.org/web/packages/WData/readme/README.html) for examples.
+
+![](WData.png){fig-alt="Plots of various density estimators"}
+
+### Surveys
+
+[CATAcode](https://cran.r-project.org/package=CATAcode) v1.0.0: Provides tools to assist with data transformations and subjective decisions often required on "check-all-that-apply" surveys. Includes functions for exploring response patterns, data transformations, applying a set of decision rules for coding responses, and summarizing response frequencies. See the [vignette](https://cran.r-project.org/web/packages/CATAcode/vignettes/CATAcode-overview.html).
+
+
+### Time Series
+
+[dsp](https://cran.r-project.org/package=dsp) v1.2.0: Provides efficient MCMC algorithms for dynamic shrinkage processes, which extend global-local shrinkage priors to the time series setting by allowing shrinkage to depend on its own past. These priors yield locally adaptive estimates, useful for time series and regression functions with irregular features. See [Kowal et al. (2019)](https://academic.oup.com/jrsssb/article/81/4/781/7048377?login=false), [Wu et al. (2024)](https://www.tandfonline.com/doi/full/10.1080/07350015.2024.2362269) and [Cho and Matteson (2024)](https://arxiv.org/abs/2408.11315) for background on the methods implemented and [README](https://cran.r-project.org/web/packages/dsp/readme/README.html) to get started.
+
+[unfold](https://cran.r-project.org/package=unfold) v1.0.0: Implements an algorithm that reframes time series forecasting as a geometric learning problem through variational mapping that expands future temporal dynamics from folded high-dimensional geometric distance spaces. It turns time series into a 4D block of pairwise distances between reframed windows and maps those distances to the next reframed window to produce predictive functions. Look [here](https://rpubs.com/giancarlo_vercellino/unfold) for the details.
+
+![](unfold.png){fig-alt="schmetic of unfold algorithm"}
+
+### Utilities
+
+[CBTF](https://cran.r-project.org/package=CBTF) v0.5.0: Provides simple runner (the mechanism responsible for executing the fuzzing process) for fuzz-testing functions in an R package's public interface. Fuzz testing helps identify functions lacking sufficient argument validation, and uncovers problematic inputs that, while valid by function signature, may cause issues within the function body. See [README](https://cran.r-project.org/web/packages/CBTF/readme/README.html) for examples.
+
+
+[gtregression](https://cran.r-project.org/package=gtregression) v1.0.0: 
+
+
+[multideploy](https://cran.r-project.org/package=multideploy) v0.1.1: Provides tools to deploy file changes across multiple GitHub repositories using the [GitHub Web API](https://docs.github.com/en/rest), allow synchronizing common files, and continuous Integration workflows. See the [vignette](https://cran.r-project.org/web/packages/multideploy/vignettes/multideploy.html).
+
+### Visualization
+
+
+[ggdiagram](https://cran.r-project.org/package=ggdiagram) v0.1.1: Provides object oriented functions to create diagrams with geometric objects that have computed properties with information about themselves (e.g., their area) or about their relationships with other objects (e.g, the distance between their edges).See the [vignette](https://cran.r-project.org/web/packages/ggdiagram/vignettes/ggdiagram.html).
+
+![](ggdiagram.png){fig-alt="Plotted geometric objects"}
+
+
+[ggdiceplot](https://cran.r-project.org/package=ggdiceplot) v0.1.0: Provides `ggplot2` extensions including `geom_dice()` for creating dice-based visualizations where each dot position represents a specific categorical variable. Look [here](https://github.com/maflot/ggdiceplot) for examples.
+
+![](ggdiceplot.png){fig-alt="Multiple dice plots"}
+
+
+[gridify](https://cran.r-project.org/package=gridify) v0.7.4: Implements a tool to create enriched figures and tables by providing a way to add text around them through predefined or custom layouts. Any input such as `ggplot`, `gt` or `flextable` which is convertible to `grob` Functions are based `grid` graphics. See [Murrell (2018)](https://www.taylorfrancis.com/books/mono/10.1201/9780429422768/graphics-third-edition-paul-murrell) for details. There are five vignettes including [Get Started](https://cran.r-project.org/web/packages/gridify/vignettes/gridify.html) and [Multi-Page and Multi-Figure Examples](https://cran.r-project.org/web/packages/gridify/vignettes/multi_page_examples.html).
+
+![](gridify.png){fig-alt="Template with watermark"}
+
+[terminalgraphics](https://cran.r-project.org/package=terminalgraphics) v0.1.1: Defines a graphics device and functions for graphical output in terminal emulators that support graphical output. Currently supports the [Terminal Graphics Protocol](https://sw.kovidgoyal.net/kitty/graphics-protocol/) and [Sixel](https://en.wikipedia.org/wiki/Sixel). Look [here](https://codeberg.org/djvanderlaan/terminalgraphics) for examples.
+
+![](terminal.png){fig-alt="Example of terminal plot"}
+
+[TheseusPlot](https://cran.r-project.org/package=TheseusPlot) v0.1.1: Provides tools for decomposing visualizing differences in rate metrics between two groups into contributions from individual subgroups. A Theseus plot combines the stepwise progression of a waterfall plot with the comparative bars of a bar chart, offering an intuitive way to understand subgroup-level effects. See [README](https://cran.r-project.org/web/packages/TheseusPlot/readme/README.html) for examples.
+
+![](Theseus.png){fig-alt="Example of Theseus Plot"}
+
+
+:::
+
+
+
+::::
+
