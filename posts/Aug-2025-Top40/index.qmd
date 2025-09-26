@@ -1,10 +1,10 @@
 ---
 title: "August 2025 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
-date: 2025-08-27
-description: "Here are my picks for the best new packages to land on CRAN in August, organized in thirteen categories: Causal Inference, Computational Methods, Data, Ecology, Epidemiology,  Machine Learning, Mathematics, Medical Statistics, Pharma, Statistics, Time Series, Utilities, and Visualization."
-image: ""
-image-alt: ""
+date: 2025-09-29
+description: "Here are my picks for the best the ninty-seven new packages that landed on CRAN in August, organized in Eighteen categories: Causal Inference, Data, Differential Privacy, Ecology, Environmental Studies, Epidemiology, Geology, Genetics, Genomics, Health Technology Assessment, Machine Learning, Medical Statistics, Statistics, Surveys, Time Series, Toxicology, Utilities, and Visualization."
+image: "tidypopgen"
+image-alt: "PCA Plot"
 categories: "Top 40"
 editor: source
 ---
@@ -37,7 +37,7 @@ editor: source
 
 ![](redlist.jpeg){fig-alt="Plot of criticlly endangerd species by region"}
 
-[verdadecu](https://cran.r-project.org/package=verdadecu) v1.0.0: Provides access to data collected by the Ecuadorian Truth Commission including datasets documenting human rights violations from 1984-2008 containinf victim information, violation types, perpetrators, and geographic distribution. See the [vignette](https://cran.r-project.org/web/packages/verdadecu/vignettes/verdadecu.html).
+[verdadecu](https://cran.r-project.org/package=verdadecu) v1.0.0: Provides access to data collected by the Ecuadorian Truth Commission including datasets documenting human rights violations from 1984-2008 containing victim information, violation types, perpetrators, and geographic distribution. See the [vignette](https://cran.r-project.org/web/packages/verdadecu/vignettes/verdadecu.html).
 
 
 ### Differential Privacy
@@ -52,7 +52,7 @@ editor: source
 
 ### Environmental Studies
 
-[ffaframework](https://cran.r-project.org/package=ffaframework) v0.1.1: Implements the the FFA framework proposed by Vidrio- [Sahagún et al. (2024)](https://www.sciencedirect.com/science/article/abs/pii/S136481522400001X?via%3Dihub) to support systematic and reproducible workflows for both stationary and nonstationary flood frequency analysis, with applications extending to other hydroclimate extremes, such as precipitation frequency analysis. There are sig vignettes including [Change Point Detection](https://cran.r-project.org/web/packages/ffaframework/vignettes/change-points.html) and [Notstationary FFA](https://cran.r-project.org/web/packages/ffaframework/vignettes/non-stationary-ffa.html).
+[ffaframework](https://cran.r-project.org/package=ffaframework) v0.1.1: Implements the the FFA framework proposed by Vidrio- [Sahagún et al. (2024)](https://www.sciencedirect.com/science/article/abs/pii/S136481522400001X?via%3Dihub) to support systematic and reproducible workflows for both stationary and nonstationary flood frequency analysis, with applications extending to other hydroclimate extremes, such as precipitation frequency analysis. There are six vignettes including [Change Point Detection](https://cran.r-project.org/web/packages/ffaframework/vignettes/change-points.html) and [Notstationary FFA](https://cran.r-project.org/web/packages/ffaframework/vignettes/non-stationary-ffa.html).
 
 ![](ffaf.png){fig-alt="Plot illustrating L-distance model selection"}
 
@@ -61,6 +61,10 @@ editor: source
 [mlspatial](https://cran.r-project.org/package=mlspatial) v0.1.0: Provides tools for the integration, visualization, and modelling of spatial epidemiological data using the method described in [Azeez & Noel (2025)](https://zenodo.org/records/16529986). Users can import and pre-process shapefiles and associated demographic or disease incidence data, generate richly annotated thematic maps, and apply predictive models to identify spatial patterns and risk factors. See the [vignette](https://cran.r-project.org/web/packages/mlspatial/vignettes/mlspatial.html).
 
 ![](mlspatial.png){fig-alt="Plot of predictions vs observations for multiple models"}
+
+### Geology
+
+[stratcols](https://cran.r-project.org/package=stratcols) v1.0.0: Provides tools to quantify stratigraphic disorder using the metrics defined by [Burgess (2016)](https://pubs.geoscienceworld.org/sepm/jsedres/article-abstract/86/3/148/145523/Identifying-Ordered-Strata-Evidence-Methods-and?redirectedFrom=fulltext) including range of utility tools to construct and manipulate stratigraphic columns. There are three vignettes including an [Introduction](https://cran.r-project.org/web/packages/stratcols/vignettes/stratcols.html) and [Quantifying stratigraphic order](https://cran.r-project.org/web/packages/stratcols/vignettes/stratorder.html).
 
 ### Genetics 
 
@@ -110,6 +114,8 @@ editor: source
 
 ### Statistics
 
+[AdapDiscom](https://cran.r-project.org/package=AdapDiscom) v1.0.0: Implements adaptive direct sparse regression for high-dimensional multimodal data with heterogeneous missing patterns and measurement errors. The method supports flexible block configurations and includes robust variants for heavy-tailed distributions and fast implementations for large-scale applications. See [Diakité et al. (2025)](https://arxiv.org/abs/2508.00120) for background and the [vignette](https://cran.r-project.org/web/packages/AdapDiscom/vignettes/AdapDiscom.html) to get started.
+
 [allocation](https://cran.r-project.org/package=allocation) v0.1.0: 
 Implements several exact methods for allocating optimal sample sizes when designing stratified samples. These methods are discussed in [Wright (2012)](https://www.tandfonline.com/doi/abs/10.1080/00031305.2012.733679) and [Wright (2017)](https://www.sciencedirect.com/science/article/abs/pii/S0167715217301657?via%3Dihub). See the [vignette](https://cran.r-project.org/web/packages/allocation/vignettes/allocation.pdf).
 
@@ -117,8 +123,15 @@ Implements several exact methods for allocating optimal sample sizes when design
 
 ![](BSTFA.png){fig-alt="Plots comparing factor loadings using different bases"}
 
+[calms](https://cran.r-project.org/package=calms) v1.0-1: Provides a Shiny application to conduct comprehensive analysis of latent means including the examination of group equivalency, propensity score analysis, measurement in variance analysis, and assessment of latent mean differences of equivalent groups with invariant data.[Ho et al. (2011)](https://www.jstatsoft.org/article/view/v042i08), [Rosseel (2012)](https://www.jstatsoft.org/article/view/v048i02), and [Hammack-Brown et al. (2021)](https://onlinelibrary.wiley.com/doi/10.1002/hrdq.21452) for background and the [vignette](https://cran.r-project.org/web/packages/calms/vignettes/intro.html) for examples.
+
+![](calms.png){fig-alt="Shiny interface for latent means analysis"}
+
 [CCI](https://cran.r-project.org/package=CCI) v0.3.4: Implements a tool for performing computational testing for conditional independence between variables in a dataset by using permutations in combination with Monte Carlo cross-validation to generate null distributions and test statistics. See [Thorjussen et al. (2024)](https://www.mdpi.com/1999-4893/17/8/323) for details and [README](https://cran.r-project.org/web/packages/CCI/readme/README.html) for examples.
 
+[ExactVaRTest](https://cran.r-project.org/package=ExactVaRTest) v0.1.3: Provides fast dynamic-programming algorithms in `C++`/`Rcpp`  for the exact finite-sample distributions and p-values of [Christoffersen (1998)](https://www.jstor.org/stable/2527341?origin=crossref) independence and conditional-coverage VaR back tests. For completeness, it also provides the exact unconditional-coverage test following [Kupiec (1995)](https://www.pm-research.com/content/iijderiv/3/2/73) via a closed-form binomial enumeration. See the [vignette](https://cran.r-project.org/web/packages/ExactVaRTest/vignettes/ExactVaRTest-intro.html).
+
+[propertee](https://cran.r-project.org/package=propertee) v1.0.1: Provides functions to facilitate direct adjustment for experiments and observational studies that are compatible with a range of study designs and covariance adjustment strategies. Functions use explicit specification of clusters, blocks and treatment allocations to furnish probability of assignment-based weights targeting any of several average treatment effect parameters. There are three vignettes including [Introduction](https://cran.r-project.org/web/packages/propertee/vignettes/intro-to-propertee.html) an [Regression Discontinuity Design](https://cran.r-project.org/web/packages/propertee/vignettes/RDD.html).
 
 [senseweight](https://cran.r-project.org/package=senseweight) v0.0.1: Provides tools to conduct interpretable sensitivity analyses for weighted estimators to evaluate the sensitivity of the underlying weighting estimators to omitted moderators or confounders. See [Huang (2024)](https://academic.oup.com/jrsssa/article/187/4/900/7626119?login=false) and [Hartman and Huang (2024)](https://www.cambridge.org/core/journals/political-analysis/article/sensitivity-analysis-for-survey-weights/0A13E3843155099F169CF195B8D7604F) for background. There are two vignettes [External Validitity](https://cran.r-project.org/web/packages/senseweight/vignettes/external-validity.html) and [Survey](https://cran.r-project.org/web/packages/senseweight/vignettes/survey.html).
 
@@ -141,12 +154,17 @@ Implements several exact methods for allocating optimal sample sizes when design
 
 ![](unfold.png){fig-alt="schmetic of unfold algorithm"}
 
+
+### Toxicology
+
+[invitroTKstats](https://cran.r-project.org/package=invitroTKstats) v0.0.13: Provides tools for processing and analyzing in vitro toxicokinetic measurements in a standardized and reproducible pipeline. Function perform frequentist and Bayesian estimation on a variety of in vitro toxicokinetic measurements including chemical fraction unbound in the presence of plasma (f_up), intrinsic hepatic clearance (Clint, uL/min/million hepatocytes), and membrane permeability for oral absorption (Caco2). See [Wambaugh et al. (2019)](https://academic.oup.com/toxsci/article/172/2/235/5571377?login=false) for background. There are seven vignettes including [Data Guide](https://cran.r-project.org/web/packages/invitroTKstats/vignettes/Data-guide-and-L0_vignette.html) and [Clint](https://cran.r-project.org/web/packages/invitroTKstats/vignettes/Clint_vignette.html).
+
+![](invitro.png){fig-alt="Plots comparing multiple compounds"}
+
+
 ### Utilities
 
 [CBTF](https://cran.r-project.org/package=CBTF) v0.5.0: Provides simple runner (the mechanism responsible for executing the fuzzing process) for fuzz-testing functions in an R package's public interface. Fuzz testing helps identify functions lacking sufficient argument validation, and uncovers problematic inputs that, while valid by function signature, may cause issues within the function body. See [README](https://cran.r-project.org/web/packages/CBTF/readme/README.html) for examples.
-
-
-[gtregression](https://cran.r-project.org/package=gtregression) v1.0.0: 
 
 
 [multideploy](https://cran.r-project.org/package=multideploy) v0.1.1: Provides tools to deploy file changes across multiple GitHub repositories using the [GitHub Web API](https://docs.github.com/en/rest), allow synchronizing common files, and continuous Integration workflows. See the [vignette](https://cran.r-project.org/web/packages/multideploy/vignettes/multideploy.html).
