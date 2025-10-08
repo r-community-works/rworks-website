@@ -47,12 +47,10 @@ Calculate the median of the x variable (`bill_length_mm`) and y variable (`bill_
 library(tidyverse)
 library(palmerpenguins)
 
-penguins_clean <- remove_missing(penguins)
-
 # Compute
 penguins_medians <- penguins_clean |> 
-  summarize(bill_length_mm_median = median(bill_length_mm),
-            bill_depth_mm_median = median(bill_depth_mm))
+  summarize(bill_length_mm_median = median(bill_length_mm, na.rm = TRUE),
+            bill_depth_mm_median = median(bill_depth_mm, na.rm = TRUE))
 ```
 :::
 
