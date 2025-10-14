@@ -4,7 +4,7 @@ author: "Joseph Rickert"
 date: 2025-10-15
 code-fold: true
 code-summary: "Show the code"
-description: "In previous post, *A Simple Bayesian Multi-state Survival Model for a Clinical Trial*, I described a textbook example that fit a discrete-time Markov model to clinical trial data in order to compare the effectiveness of treatments for asthma. In this post, I elaborate on that analysis by fitting a continuous-time Markov chain to the same, discretely observed state-table data from the original example. A clever EM algorithm reconstructs the likelihood function to estimate the generator matrix for the continuous-time Markov chain. The post describes some of the differences between discrete-time and continuous-tim Markov models and highlights the importance of understanding how the data implicitly sets time scales when modeling real world processes."
+description: "In a previous post, *A Simple Bayesian Multi-state Survival Model for a Clinical Trial*, I described a textbook example that fit a discrete-time Markov model to clinical trial data in order to compare the effectiveness of treatments for asthma. In this post, I elaborate on that analysis by fitting a continuous-time Markov chain to the same, discretely observed state-table data from the original example. A clever EM algorithm reconstructs the likelihood function to estimate the generator matrix for the continuous-time Markov chain. The post describes some of the differences between discrete-time and continuous-tim Markov models and highlights the importance of understanding how the data implicitly sets time scales when modeling real world processes."
 categories: ""
 editor: source
 ---
