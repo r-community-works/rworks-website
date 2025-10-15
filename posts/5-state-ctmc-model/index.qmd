@@ -4,8 +4,9 @@ author: "Joseph Rickert"
 date: 2025-10-15
 code-fold: true
 code-summary: "Show the code"
-description: "In a previous post, *A Simple Bayesian Multi-state Survival Model for a Clinical Trial*, I described a textbook example that fit a discrete-time Markov model to clinical trial data in order to compare the effectiveness of treatments for asthma. In this post, I elaborate on that analysis by fitting a continuous-time Markov chain to the same, discretely observed state-table data from the original example. A clever EM algorithm reconstructs the likelihood function to estimate the generator matrix for the continuous-time Markov chain. The post describes some of the differences between discrete-time and continuous-tim Markov models and highlights the importance of understanding how the data implicitly sets time scales when modeling real world processes."
+description: "In a previous post, *A Simple Bayesian Multi-state Survival Model for a Clinical Trial*, I described a textbook example that compared the effectiveness of asthma treatments by fitting a discrete-time Markov model to clinical trial data. In this post, I elaborate on that analysis by fitting a continuous-time Markov chain (CTMC) to the same, discretely observed state-table data. An EM algorithm reconstructs the likelihood function to estimate the generator matrix for the CTMC. I describe some of the differences between discrete-time and continuous-time Markov models and highlight the importance of understanding how the data implicitly sets time scales when modeling real world processes."
 categories: ""
+image: "states.png"
 editor: source
 ---
 
@@ -56,7 +57,7 @@ plotmat(t(TM),
 
 ## It's A Matter of Time
 
-Before getting into the analysis itself, let's review some of the salient differences between discrete-time and continuous-time Markov models. The choice between the two approaches hinges on how much the available can tell you about time.
+Before getting into the analysis itself, let's review some of the salient differences between discrete-time and continuous-time Markov models. The choice between the two approaches hinges on how much the available data can tell you about time.
 
 A discrete-time Markov chain (DTMC) models only the most primitive notion of time. The process starts in some state and then at the next time step, the process either stays in the same state or jumps to another state according to a according to a matrix of transition probabilities that do not vary with time. The mathematical model assumes that the time interval between transitions is fixed and equal to one time unit. Hence, using a DTMC to model a real world process requires that the modeler choose a time step interval that is appropriate for the process being modeled. The time interval could be any regular interval that is consistent with the development of the real world process being modeled. For example, when modeling the progression of a disease, the time interval must be on a scale that is appropriate for the biology of disease progression and reflects the with which data are collected. 
 
@@ -65,6 +66,8 @@ A DTMC model is fully specified when the transition probability matrix $P$ is gi
 In contrast to a DTMC, a continuous-time Markov chain (CTMC) explicitly models the time between transitions as exponentially distributed random variables with rates determined by the generator matrix, $Q$. The elements $q_{ij}$ of $Q$ give the instantaneous rate of transitioning from state $i$ to state $j$. The time spent in state $i$ before transitioning to another state is also exponentially distributed. In a CTMC model the rates are fixed and do not vary with time, but the transition probabilities do vary with time. The time-dependent transition probability matrix $P(t)$ may be computed from $Q$ by solving the Kolomogorov differential equations. (See below.) For any time interval $t$, the probabilities of transitioning from state $i$ to state $j$ may be computed by matrix exponential: $P(t) = e^{Qt}$. 
 
 Unlike a DTMC model, a CTMC model explicitly allows for states to change at random intervals determined by transition rates that are unique to each state. So while time interval are random, it may not be apparent that the overall time scale is set by the data used to estimate the $Q$ matrix. We will see how this plays out in the analysis below.
+
+Both DTCMC and CTMC Markov models are fit by finding modeling parameters maximally consistent with the data. One would expect both models to produce similar results for time within the study period. However, this is not necessarily the case for times beyond the study period. The example below illustrates this kind of breakdown and raises important questions about long term outcomes. Beyond the scope of the data differences in modeling assumptions become important.
 
 Also note that the Appendix below provides some of the relevant background on CTMCs.
 
@@ -211,7 +214,7 @@ f_state
 
 ## The Likelihood Solution
 
-The model below uses the EM algorithm developed by Bladt and Sørensen (2005), further described in Inamura (2006), and implemented in the  [`ctmcd`](https://cran.r-project.org/package=ctmcd) R package to calculate the Maximum Likelihood estimator for the generator matrix, $Q$. To understand the method, consider that if complete continuous-time data were available it would be straightforward to compute the Likelihood function for the $Q$ matrix.
+The model below uses the EM algorithm developed by Bladt and Sørensen (2005), further described in Inamura (2006), and implemented in the  [`ctmcd`](https://cran.r-project.org/package=ctmcd) R package to calculate the Maximum Likelihood estimator for the generator matrix, $Q$. (See Israel et al. (2001) for its use in credit rating applications.) To understand the method, consider that if complete continuous-time data were available it would be straightforward to compute the Likelihood function for the $Q$ matrix.
 
 
 
@@ -614,9 +617,9 @@ ggplot(df, aes(x = time, y = survival, color = cohort)) +
 
 The estimated sojourn times seem reasonable, but the long range estimates are to be contemplated with a good deal of skepticism. A literature search did not produce any evidence that asthma would progress as modeled over extended time periods, and it is doubtful that the treatment regimens would remain unmodified over long periods of time. It is also noteworthy that Welton et al. did not offer any long range projections based on their discrete-time model. Nevertheless, the long term estimations presented are representative of the kinds of results that can be obtained by modeling in continuous-time. 
 
-The survival curves in the plot above are consistent with the survival curves presented in discrete-time Markov model estimated in the post referenced above: **except for the labeling of the time axis!!**. Both of these models proceed from reasonable assumptions, but they both can't be correct. As explained above, transition probabilities for DTMC do not vary over time. So having obtained these probabilities, the internal evidence of the model would suggest that disease progression is over weeks. Nevertheless, the CTMC model which replicates the estimated probabilities of the DTMCM shows progression over a time scale that is an order of magnitude longer. This inconsistency dramatically points out the need for expert opinion and external validation to assess the assumptions about time. Even without a change in the underlying dynamics of a system, a model may only be useful over a time scale that needs to be determined from external evidence.
+The survival curves in the plot above initially appear to be consistent with those produced in the DTMC post referenced above. However, looking beyond the shape of the curves, one sees that **the time scales differ by an order of magnitude**. Both of these models proceed from reasonable assumptions, and share many similar structural elements, but they lead to significantly different conclusions. As explained above, transition probabilities for DTMC do not vary over time. So having obtained these probabilities, the internal evidence of the model would suggest that disease progression is over weeks. Nevertheless, the CTMC model which replicates the estimated probabilities of the DTMCM shows progression over a time scale that dramatically different. This inconsistency urgently points out the need for expert opinion and external validation to assess the assumptions about time. Even without a change in the underlying dynamics of a system, a model may only be useful over a time scale that needs to be determined from external evidence.
 
-Be careful with the time.
+Be careful with the time!
 
 ## Appendix: Continuous-Time Markov Chains
 
@@ -675,6 +678,8 @@ via the wizardry of who laid out the computation to solve two complicated condit
 
 * Inamura, Yasunari. [Estimating Continuous Time Transition Matrices From Discretely Observed Data](https://www.boj.or.jp/en/research/wps_rev/wps_2006/data/wp06e07.pdf), Bank of
 Japan Working Paper Series (2006). 
+
+* Israel, R.B. et al. [Finding generators for Markov chains via empirical transition matrices, with applications to credit ratings](https://onlinelibrary.wiley.com/doi/10.1111/1467-9965.00114). Mathematical Finance (2001) 
 
 * Kavuru M, Melamed J, Gross G, Laforce C, House K, Prillaman B, Baitinger L, Woodring A, and Shah T. [Salmeterol and fluticasone propionate combined in a new powder inhalation device for the treatment of asthma: a randomized, double-blind, placebo-controlled trial](https://pubmed.ncbi.nlm.nih.gov/10856143/). (2000) 
 
