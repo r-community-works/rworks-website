@@ -1,10 +1,11 @@
 ---
-title: "Estimating continuous-time Markov Chains from Incomplete Data: Be mindful of the time"
+title: "Be Mindful of the Time"
+subtitle: "Estimating a Continuous-Time Markov Chain from Incomplete Data"
 author: "Joseph Rickert"
-date: 2025-10-15
+date: 2025-10-20
 code-fold: true
 code-summary: "Show the code"
-description: "In a previous post, *A Simple Bayesian Multi-state Survival Model for a Clinical Trial*, I described a textbook example that compared the effectiveness of asthma treatments by fitting a discrete-time Markov model to clinical trial data. In this post, I elaborate on that analysis by fitting a continuous-time Markov chain (CTMC) to the same, discretely observed state-table data. An EM algorithm reconstructs the likelihood function to estimate the generator matrix for the CTMC. I describe some of the differences between discrete-time and continuous-time Markov models and highlight the importance of understanding how the data implicitly sets time scales when modeling real world processes."
+description: "In a previous post, *A Simple Bayesian Multi-state Survival Model for a Clinical Trial*, I described a textbook example comparing the effectiveness of asthma treatments by fitting a discrete-time Markov model to clinical trial data. In this post, I elaborate on that analysis by fitting a continuous-time Markov chain (CTMC) to the same, discretely observed state-table data. An EM algorithm reconstructs the likelihood function to estimate the generator matrix for the CTMC. I describe some of the differences between discrete-time and continuous-time Markov models and highlight the importance of understanding how the data implicitly sets time scales when modeling real world processes."
 categories: ""
 image: "states.png"
 editor: source
