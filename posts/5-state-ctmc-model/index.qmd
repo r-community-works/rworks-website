@@ -11,7 +11,7 @@ image: "states.png"
 editor: source
 ---
 
-The continuous-time Markov model is a 5-state, absorbing Markov chain where patients move through various health states as they undergo treatment for asthma. The states are defined as follows: `STW`= successfully treated week, `UTW`= unsuccessfully treated week, `Hex`= hospital-managed exacerbation ,`Pex`= primary care-managed exacerbation, and `TF`= treatment failure. The state diagram is shown below.
+The following diagram illustrates the 5-state, absorbing Markov chain framework used to model the progression of patients through various health states as they undergo treatment for asthma. The states are defined as follows: `STW`= successfully treated week, `UTW`= unsuccessfully treated week, `Hex`= hospital-managed exacerbation ,`Pex`= primary care-managed exacerbation, and `TF`= treatment failure. In the previously published post, *A Simple Bayesian Multi-state Survival Model for a Clinical Trial*, I followed Welton et al. (2010) by using a discrete-time Markov model to compare the the effectiveness of two asthma treatments. In this post, I fit a continuous-time Markov chain (CTMC) to the same data.
 
 ```{r}
 #| message: FALSE
@@ -60,7 +60,7 @@ plotmat(t(TM),
 
 Before getting into the analysis itself, let's review some of the salient differences between discrete-time and continuous-time Markov models. The choice between the two approaches hinges on how much the available data can tell you about time.
 
-A discrete-time Markov chain (DTMC) models only the most primitive notion of time. The process starts in some state and then at the next time step, the process either stays in the same state or jumps to another state according to a according to a matrix of transition probabilities that do not vary with time. The mathematical model assumes that the time interval between transitions is fixed and equal to one time unit. Hence, using a DTMC to model a real world process requires that the modeler choose a time step interval that is appropriate for the process being modeled. The time interval could be any regular interval that is consistent with the development of the real world process being modeled. For example, when modeling the progression of a disease, the time interval must be on a scale that is appropriate for the biology of disease progression and reflects the with which data are collected. 
+A discrete-time Markov chain (DTMC) models only the most primitive notion of time. The process starts in some state and then at the next time step, the process either stays in the same state or jumps to another state according to a matrix of transition probabilities that do not vary with time. The mathematical model assumes that the time interval between transitions is fixed and equal to one time unit. Hence, using a DTMC to model a real world process requires that the modeler choose a time step interval that is appropriate for the process being modeled. The time interval could be any regular interval that is consistent with the development of the real world process being modeled. For example, when modeling the progression of a disease, the time interval must be on a scale that is appropriate for the biology of disease progression and reflects the process with which data were collected. 
 
 A DTMC model is fully specified when the transition probability matrix $P$ is given or estimated. Each element $p_{ij}$ of $P$ gives the probability of transitioning from state $i$ to state $j$ in one time step. The transition probability matrix for multiple time steps may be computed by raising the one-step transition matrix to the appropriate power. For example, if the time step interval is one week, then the three-week transition probability matrix is given by $P^3$. So that while time does not generally explicitly enter into the process of estimating the $P$ matrix, the time interval is implicitly defined by the frequency of data collection. Developing a useful DTMC model requires verifying that model predictions compare well with the observed progress of the real world process being modeled. For a disease progression model this would mean comparing state transitions over time to the to actual transitions observed in a cohort of patients.
 
@@ -136,7 +136,7 @@ return(list(TP,Time))
 
 ## The Data
 
-The data for the model comes from the clinical trial conducted by Kavuru et al. (2000) comparing multiple treatments for asthma management. As in the previous post, I follow Welton et al. and confine the analysis to comparing the two treatments Seretide and Flucticasone. These data, which are reproduced in in Welton et al., are just state tables that give the aggregate number of state transition observed over the course of 12 weeks. Data of this sort is sometimes described as "incomplete discrete data" because it does not provide the complete continuous-time history of each patient. Instead, the data only give the number of patients in each state at the beginning and end of the 12 week period. 
+The data for the model comes from the clinical trial conducted by Kavuru et al. (2000). This data is published in Welton et al. (2010) as state tables that give the aggregate number of state transition observed over the course of 12 weeks for the two treatments Seretide and Flucticasone. Data of this sort is sometimes described as "incomplete discrete data" because it does not provide the complete continuous-time history of each patient. The data are given with reference to only two time points, the beginning and end of the follow up period. 
 
 
 ```{r}
@@ -254,7 +254,7 @@ Three sets of matrices are laid out here for each treatment. The first is the tr
 
 ::: {.column width="45%"}
 
-## Seretide  Matirces
+## Seretide  Matrices
 
 
 ```{r}
@@ -638,9 +638,7 @@ Hence, just like a discrete-time Markov chain, a CTMC is *memoryless*. However, 
 $$E[T_{i}]=\frac{1}{q_{i}}=\frac{1}{\sum_{j\ne i}q_{ij}}$$
 
 
-
-
-## Conditional Equations
+## Appendix: The Conditional EM Equations
 
 The integral equations required to estimate the likelihood function for the $Q$ matrix from incomplete data are: 
 $$E(R_i(T) \mid Q, s(0), s(T)) = \frac{n_{i,0}s(T)\,\mathbf{u}_{s(0)}^T 
@@ -660,16 +658,7 @@ where
 * $n$ refers to an element of the discrete-time absolute transition frequency matrix $N(T)$ which constitutes the data * * $uk$ denotes a unit vector with a 1 at position $k$.
 * $l$ indicates the current iteration step of the EM algorithm.
 
-See Pfeuffer (2017), Inamura (2006), and Bladt and Sørensen (2000) (2005) for more details.
-
-The computation of the integrals is carried out following the matrix exponential approach described
-in van Loan (1978) and . In order to perform an estimate based on the EM algorithm
- In the
-following example, this will be the matrix gm0, which is an arbitrarily chosen generator matrix where
-all off diagonal entries are 1 and state 8 is determined as an absorbing state.
-
-
-via the wizardry of who laid out the computation to solve two complicated conditional integral equations via the EM algorithm. (See the [ctmcd package vignette](https://cran.r-project.org/web/packages/ctmcd/vignettes/RJ-2017-038.pdf) for a first look at the equations.)
+In order to initialize the EM algorithm it is necessary to provide an initial guess for the generator matrix, $Q$. See Pfeuffer (2017), Inamura (2006), and Bladt and Sørensen (2000), and the [ctmcd package vignette](https://cran.r-project.org/web/packages/ctmcd/vignettes/RJ-2017-038.pdf) for more details.
 
 
 ## Refernces
