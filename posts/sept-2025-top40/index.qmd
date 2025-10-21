@@ -1,0 +1,84 @@
+---
+title: "September 2025 Top 40 New CRAN Packages"
+author: "Joseph Rickert"
+date: 2025-10-29
+description: "Here are my picks for the best from the ninety-seven new packages that landed on CRAN in , organized in eighteen categories: Causal Inference, Data, Differential Privacy, Ecology, Environmental Studies, Epidemiology, Geology, Genetics, Genomics, Health Technology Assessment, Machine Learning, Medical Statistics, Statistics, Surveys, Time Series, Toxicology, Utilities, and Visualization."
+image: ".png"
+image-alt: ""
+categories: "Top 40"
+editor: source
+---
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+
+![](.png){fig-alt=""}
+
+### Causal Inference
+
+
+### Epidemiology
+
+[mitey](https://cran.r-project.org/package=mitey) v0.2.0: Provides methods to estimate serial intervals and time-varying case reproduction numbers from infectious disease outbreak data. Serial intervals measure the time between symptom onset in linked transmission pairs, while case reproduction numbers quantify how many secondary cases each infected individual generates over time. See [Vink et al. (2014)](https://academic.oup.com/aje/article-abstract/180/9/865/2739204?redirectedFrom=fulltext&login=false) and [Wallinga & Lipsitch (2007)](https://royalsocietypublishing.org/doi/10.1098/rspb.2006.3754) for background and the [vignette](https://cran.r-project.org/web/packages/mitey/vignettes/quick_start_guide.html) for examples.
+
+![](mitey.png){fig-alt="Fitted Serial Interval Distribution"}
+
+![](polarisR.png){fig-alt="Image of Shiny app Screen"}
+
+### Machine Learning
+
+[polarisR](https://cran.r-project.org/package=polarisR) v0.1.4: Implements a `shiny` application based on the [`quollr`](https://cran.r-project.org/package=quollr) for visualizing high-dimensional data using non-linear dimensionality reduction (NLDR) techniques such as t-SNE and UMAP. It provides an interactive platform for exploring high-dimensional datasets, diagnosing the quality of embeddings using  package, and comparing different NLDR methods. There is an [Introduction](https://cran.r-project.org/web/packages/polarisR/vignettes/polarisR-vignette.html) and a vignette on [Tips, Requirements, and Support](https://cran.r-project.org/web/packages/polarisR/vignettes/polarisR-vignette2.html).
+
+
+
+
+### Mathematics
+
+[ricci](https://cran.r-project.org/package=ricci) v0.1.1: Provides a compact interface for performing tensor calculations by allowing (upper and lower) index labeling of arrays and using the Ricci calculus conventions to implicitly trigger contractions and diagonal subsetting. Supports explicit tensor operations, such as addition, subtraction and multiplication of tensors via the standard operators, raising and lowering indices, taking symmetric or antisymmetric tensor parts, the Kronecker product, Levi Civita epsilon, the Christoffel symbols, the Riemann ans Ricci tensors. See [README](https://cran.r-project.org/web/packages/ricci/readme/README.html) and the vignettes [ricci](https://cran.r-project.org/web/packages/ricci/vignettes/ricci.html) and [Tensor Fields](https://cran.r-project.org/web/packages/ricci/vignettes/tensor_fields.html).
+
+
+### Medicine
+
+[TrialSimulator](https://cran.r-project.org/package=TrialSimulator) v1.3.0: Implements tools to simulate phase II and/or phase III clinical trials including carrying out graphical testing procedure and combination test under group sequential design. It supports various types of endpoints and adaptive strategies. There are eleven vignettes including: [An Example of Simulating a Trial with Adaptive Design](https://cran.r-project.org/web/packages/TrialSimulator/vignettes/adaptiveDesign.html) and [Simulate Correlated Progression-Free Survival and Overall Survival as Endpoints](https://cran.r-project.org/web/packages/TrialSimulator/vignettes/simulatePfsAndOs.html).
+
+![](TrialSimulator.png){fig-alt="Diagram of model for simulating trial data"}
+
+
+### Programming
+
+[kerasnip]() v0.0.3: Provides a seamless bridge between `keras` and the `tidymodels` frameworks that allows for the dynamic creation of `parsnip` model specifications for `keras` models. There are eight vignettes including [Transfer Learning with Keras Applications](https://cran.r-project.org/web/packages/kerasnip/vignettes/applications.html) and [Tidymodels Workflow with Functional Keras Models](https://cran.r-project.org/web/packages/kerasnip/vignettes/workflows_functional.html).
+
+
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+### Statistics
+
+[inphr](https://cran.r-project.org/package=inphr) v0.0.1: Provides functions for performing null hypothesis testing on samples of persistence diagrams using the theory of permutations. Inputs can be either samples of persistence diagrams themselves or vectorizations. In the former case, they are embedded in a metric space using either the Bottleneck or Wasserstein distance. In the latter case, persistence data becomes functional data. See [Pini & Vantini (2017)](https://www.tandfonline.com/doi/full/10.1080/10485252.2017.1306627) and [Lovato et al. (2020)]() for background and look [here](https://www.sciencedirect.com/science/article/abs/pii/S0167947319302518?via%3Dihub) for an example.
+
+![](inphr.png){fig-alt="Functional data plot"}
+
+
+### Visualization
+
+[regress3d](https://cran.r-project.org/package=regress3d) v1.0.0: Provides functions that use ['plotly`](https://CRAN.R-project.org/package=plotly) to plot regression surfaces and marginal effects in three dimensions. See [README](https://cran.r-project.org/web/packages/regress3d/readme/README.html).
+
+
+![](regress3d.gif){fig-alt="3D plot of regression surface"}
+
+
+
+
+:::
+
+
+
+::::
