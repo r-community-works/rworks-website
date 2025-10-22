@@ -26,28 +26,71 @@ editor: source
 
 [rjuliabugs](https://cran.r-project.org/package=rjuliabugs) v0.1.0: Implements an interface to the [`JuliaBUGS.jl`](https://github.com/TuringLang/JuliaBUGS.jl)  package for Bayesian inference using the BUGS modeling language alowing `R` users to run models in Julia and return results as familiar `R` objects. Visualization and posterior analysis are supported via the `bayesplot` and `posterior` packages. See [README])(https://cran.r-project.org/web/packages/rjuliabugs/index.html) for an example.
 
+### DATA
+
+[BioWorldR](https://cran.r-project.org/package=BioWorldR) v0.1.0: Provides a curated collection of biodiversity and species-related datasets (birds, plants, reptiles, turtles, mammals, bees, marine data and related biological measurements), together with small utilities to load and explore them. The package aims to simplify reproducible workflows by packaging commonly used example datasets and metadata so they can be easily inspected, visualized, and used for teaching, testing, and prototyping analyses. See the [vignette](https://cran.r-project.org/web/packages/BioWorldR/vignettes/BioWorldR_vignette.html).
+
+![](BioWorldR.png){fig-alt="Barplotof brain weight for various species"}
 
 ### Epidemiology
+
+[epitraxr](https://cran.r-project.org/package=epitraxr) v0.5.0: Implements a tool for generating disease surveillance reports from data exported from [EpiTrax](https://epi.utah.gov/utah-national-electronic-disease-surveillance-system-ut-nedss/), a central repository for epidemiological data used by public health officials. It provides functions to manipulate 'EpiTrax' datasets, tailor reports to internal or public use, and export reports in CSV, Excel `xlsx`, or PDF formats. See the vignettes [epitraxr](https://cran.r-project.org/web/packages/epitraxr/epitraxr.pdf) and [Piped Mode](https://cran.r-project.org/web/packages/epitraxr/vignettes/piped-mode.html).
+
+
+
 
 [mitey](https://cran.r-project.org/package=mitey) v0.2.0: Provides methods to estimate serial intervals and time-varying case reproduction numbers from infectious disease outbreak data. Serial intervals measure the time between symptom onset in linked transmission pairs, while case reproduction numbers quantify how many secondary cases each infected individual generates over time. See [Vink et al. (2014)](https://academic.oup.com/aje/article-abstract/180/9/865/2739204?redirectedFrom=fulltext&login=false) and [Wallinga & Lipsitch (2007)](https://royalsocietypublishing.org/doi/10.1098/rspb.2006.3754) for background and the [vignette](https://cran.r-project.org/web/packages/mitey/vignettes/quick_start_guide.html) for examples.
 
 ![](mitey.png){fig-alt="Fitted Serial Interval Distribution"}
 
-![](polarisR.png){fig-alt="Image of Shiny app Screen"}
+
+[vaxineR](https://cran.r-project.org/package=vaxineR) v0.1.0: Provides tools to analyze vaccine coverage data and simulate potential disease outbreak scenarios and to calculate key epidemiological metrics. such as the effective reproduction number (Re), outbreak probabilities, and expected infection counts based on county-level vaccination rates, disease characteristics, and vaccine effectiveness. The package includes historical kindergarten vaccination data for Florida counties. See the [vignette](https://cran.r-project.org/web/packages/vaxineR/vignettes/using_vaxineR.html).
+
+![](vacineR.png){fig-alt="Plots of Historical Trends"}
+
+
+
+
+
+
+
+
+
+
 
 ### Machine Learning
 
+[causalDT](https://cran.r-project.org/package=causalDT) v1.0.0: Implements a novel machine learning method for estimating interpretable subgroups with heterogeneous treatment effects. CDT allows researchers to fit any machine learning model (or metalearner) to estimate heterogeneous treatment effects for each individual, and then "distills" these predicted heterogeneous treatment effects into interpretable subgroups by fitting an ordinary decision tree to predict the previously-estimated heterogeneous treatment effects. See [Huang, Tang, and Kenney (2025)](https://arxiv.org/abs/2502.07275) for details and [README](https://cran.r-project.org/web/packages/causalDT/readme/README.html) for an example.
+
+![](causalDT.png){fig-alt="Plot of causal treatment tree"}
+
+
 [polarisR](https://cran.r-project.org/package=polarisR) v0.1.4: Implements a `shiny` application based on the [`quollr`](https://cran.r-project.org/package=quollr) for visualizing high-dimensional data using non-linear dimensionality reduction (NLDR) techniques such as t-SNE and UMAP. It provides an interactive platform for exploring high-dimensional datasets, diagnosing the quality of embeddings using  package, and comparing different NLDR methods. There is an [Introduction](https://cran.r-project.org/web/packages/polarisR/vignettes/polarisR-vignette.html) and a vignette on [Tips, Requirements, and Support](https://cran.r-project.org/web/packages/polarisR/vignettes/polarisR-vignette2.html).
 
+![](polarisR.png){fig-alt="Image of Shiny app Screen"}
 
 
+
+[SemanticDistance](https://cran.r-project.org/package=SemanticDistance) v0.1.1: Implements tools to cleans and format language transcripts guided by a series of transformation options (e.g., lemmatize words, omit stopwords, split strings across rows). 'SemanticDistance'. Functions compute two distinct metrics of cosine semantic distance which reflect pairwise cosine distance between different elements or chunks of a language sample. Guided by user-secified options, the package tools can process stories, dialogues, word lists and more. There are five vignettes including [Dialogues](https://cran.r-project.org/web/packages/SemanticDistance/vignettes/SemanticDistance_Dialogues.html) and [Monologues](https://cran.r-project.org/web/packages/SemanticDistance/vignettes/SemanticDistance_Monologues_Lists.html).
+
+![](SD.png){fig-alt="Plot of a word cluster network"}
 
 ### Mathematics
 
 [ricci](https://cran.r-project.org/package=ricci) v0.1.1: Provides a compact interface for performing tensor calculations by allowing (upper and lower) index labeling of arrays and using the Ricci calculus conventions to implicitly trigger contractions and diagonal subsetting. Supports explicit tensor operations, such as addition, subtraction and multiplication of tensors via the standard operators, raising and lowering indices, taking symmetric or antisymmetric tensor parts, the Kronecker product, Levi Civita epsilon, the Christoffel symbols, the Riemann ans Ricci tensors. See [README](https://cran.r-project.org/web/packages/ricci/readme/README.html) and the vignettes [ricci](https://cran.r-project.org/web/packages/ricci/vignettes/ricci.html) and [Tensor Fields](https://cran.r-project.org/web/packages/ricci/vignettes/tensor_fields.html).
 
 
-### Medical Statistics
+### Medical Applications
+
+
+[diegr](https://cran.r-project.org/package=diegr) v0.1.0: Provides tools to visualize high-density electroencephalography (HD-EEG) data through interactive plots and animations, enabling exploratory and communicative analysis of temporal-spatial brain signals. See the [vignette](https://cran.r-project.org/web/packages/diegr/vignettes/diegr.html).
+
+
+![](diegr.png){fig-alt="Topographic map of baseline signal"}
+
+[Epoch](https://cran.r-project.org/package=Epoch) v1.0.3: Provides tools for working with iEEG matrix data, including downloading curated iEEG data from OSF [The Open Science Framework](https://osf.io/), making new objects, processing, and visualizing the data. See the [vignette](https://cran.r-project.org/web/packages/Epoch/vignettes/Epoch.html).
+
+![](Epoch.png){fig-alt="Plot of time series for each electrode"}
 
 
 [optconerrf](https://cran.r-project.org/package=optconerrf) v1.0.1: Provides tools to design and analyze confirmatory adaptive clinical trials using the optimal conditional error framework of [Brannath and Bauer (2004)](https://academic.oup.com/biometrics/article-abstract/60/3/715/7289312?redirectedFrom=fulltext&login=false) and the extensions of [Brannath and Dreher (2024)](https://arxiv.org/abs/2402.00814). There is an [Introduction](https://cran.r-project.org/web/packages/optconerrf/vignettes/introduction.html) and a vignette, [Using Constraints and Interim Estimates for the Optimal Conditional Error Function](https://cran.r-project.org/web/packages/optconerrf/vignettes/constraints_interim_estimates.html).
