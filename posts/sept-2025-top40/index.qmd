@@ -32,11 +32,43 @@ editor: source
 
 ![](BioWorldR.png){fig-alt="Barplotof brain weight for various species"}
 
+[ecotourism](https://cran.r-project.org/package=ecotourism) v0.1.0: This is a collection of data files for exploring sightings of wild things, relative to weather and tourism patterns in Australia. There are eight vignettes including [Glowworms](https://cran.r-project.org/web/packages/ecotourism/vignettes/glowworms.html)
+and [Gouldian Finch](https://cran.r-project.org/web/packages/ecotourism/vignettes/gouldian_finch.html).
+
+![](ecotourism.jpeg){fig-alt="Photo of a Gouldian Finch"}
+
+[ineapir](https://cran.r-project.org/package=ineapir) v0.2.5: Provides access to open statistical data and metadata disseminated by the National Statistics Institute of Spain (INE). The functions return data frames with the requested information thanks to calls to the [INE API](https://www.ine.es/dyngs/DAB/index.htm?cid=1100). See [README](https://cran.r-project.org/web/packages/ineapir/readme/README.html) for information.
+
+![](ineapir.png){fig-alt="Cheat Sheet"}
+
+### Decision Analysis
+
+[DUToolkit](https://cran.r-project.org/package=DUToolkit) v1.0.2: Provides  tools to help modelers and decision-makers effectively interpret and communicate decision risk when evaluating multiple policy options. It uses model outputs from uncertainty analysis for baseline scenarios and policy alternatives to generate visual representations of uncertainty and quantitative measures for assessing associated risks. See [Wiggins et al. (2025)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0332522) and the [webpage](https://dut.ihe.ca/) for more details. There are six vignettes including [Calculating Risk](https://cran.r-project.org/web/packages/DUToolkit/vignettes/Calculating_Risk.html) and [Introduction](https://cran.r-project.org/web/packages/DUToolkit/vignettes/DUToolkit.html).
+
+![](DUToolkit.png){fig-alt="Plot in which the trajectory of the outcome is summarized over time and plotted using the mean value for a given policy alternative"}
+
+### Ecology
+
+[ConSciR](https://cran.r-project.org/package=ConSciR) v0.3.0: Provides data science tools for conservation science, including methods for environmental data analysis, humidity calculations, sustainability metrics, engineering calculations, and data visualisation. See [Cosaert and Beltran et al. (2022)](https://www.getty.edu/conservation/publications_resources/pdf_publications/tools_for_the_analysis_of_collection_environments.html) for background and the [vignette](https://cran.r-project.org/web/packages/ConSciR/vignettes/ConSciR.html) for examples.
+
+
+![](ConSciR.png){fig-alt="Plot of humidity and dewpoint"}
+
+[geospatialsuite](https://cran.r-project.org/package=geospatialsuite) v 0.1.0: Provides a toolkit for geospatiotemporal analysis featuring 60+ vegetation indices, advanced raster visualization, universal spatial mapping, water quality analysis, CDL crop analysis, spatial interpolation, temporal analysis, and terrain analysis.  Methods include vegetation indices calculations [Rouse et al. (1974)](https://www.sciencedirect.com/science/article/abs/pii/S0034425797001041?via%3Dihub), water quality indices [McFeeters (1996)](https://www.tandfonline.com/doi/abs/10.1080/01431169608948714), and crop data layer analysis [USDA NASS (2024)](https://www.nass.usda.gov/Research_and_Science/Cropland/). There are seven vignettes including [Getting Started](https://cran.r-project.org/web/packages/geospatialsuite/vignettes/getting-started.html) and [Water Quality Assessment](https://cran.r-project.org/web/packages/geospatialsuite/vignettes/water-quality.html).
+
+
+[streamsampler](https://cran.r-project.org/package=streamsampler) v0.1.0: Provides tools to characterize daily stream discharge and water quality data and subsample water quality data. Stream sampling protocols are described in [Lee et al. (2016)](https://www.sciencedirect.com/science/article/pii/S0022169416305492?via%3Dihub) and [Lee et al. (2019)](https://pubs.usgs.gov/publication/sir20195084). See the [vignette](https://cran.r-project.org/web/packages/streamsampler/vignettes/streamsampler.html) for an introduction.
+
+![](streamsampler.png){fig-alt="Time series of samples categorized by subgroup"}
+
+
+
+
+
+
 ### Epidemiology
 
 [epitraxr](https://cran.r-project.org/package=epitraxr) v0.5.0: Implements a tool for generating disease surveillance reports from data exported from [EpiTrax](https://epi.utah.gov/utah-national-electronic-disease-surveillance-system-ut-nedss/), a central repository for epidemiological data used by public health officials. It provides functions to manipulate 'EpiTrax' datasets, tailor reports to internal or public use, and export reports in CSV, Excel `xlsx`, or PDF formats. See the vignettes [epitraxr](https://cran.r-project.org/web/packages/epitraxr/epitraxr.pdf) and [Piped Mode](https://cran.r-project.org/web/packages/epitraxr/vignettes/piped-mode.html).
-
-
 
 
 [mitey](https://cran.r-project.org/package=mitey) v0.2.0: Provides methods to estimate serial intervals and time-varying case reproduction numbers from infectious disease outbreak data. Serial intervals measure the time between symptom onset in linked transmission pairs, while case reproduction numbers quantify how many secondary cases each infected individual generates over time. See [Vink et al. (2014)](https://academic.oup.com/aje/article-abstract/180/9/865/2739204?redirectedFrom=fulltext&login=false) and [Wallinga & Lipsitch (2007)](https://royalsocietypublishing.org/doi/10.1098/rspb.2006.3754) for background and the [vignette](https://cran.r-project.org/web/packages/mitey/vignettes/quick_start_guide.html) for examples.
@@ -49,14 +81,16 @@ editor: source
 ![](vacineR.png){fig-alt="Plots of Historical Trends"}
 
 
+### Finance
+
+[PortfolioTesteR](https://cran.r-project.org/package=PortfolioTesteR) v0.1.3: Provides functions to design, backtest, and analyze portfolio strategies using simple, English-like function chains. Includes technical indicators, flexible stock selection, portfolio construction methods (equal weighting, signal weighting, inverse volatility, hierarchical risk parity), and a compact backtesting engine for portfolio returns, drawdowns, and summary metrics. There are three vignettes including [Getting Started](https://cran.r-project.org/web/packages/PortfolioTesteR/vignettes/getting-started.html) and [ML Strategies](https://cran.r-project.org/web/packages/PortfolioTesteR/vignettes/Getting_Started_Advanced.html).
 
 
+![](portfolio.png){fig-alt="Portfolio momentum plots"}
 
+[Rmfrac](https://cran.r-project.org/package=Rmfrac) v0.1.1: Provides functions to simulate fractional and multifractional processes along with a `shiny`app for interative exploration. Functions simulate Brownian and fractional Brownian motions, bridges and Gaussian Haar-based multifractional processes (GHBMP), and Hurst functions. See [Ayache, Olenko and Samarakoon (2025)](https://arxiv.org/abs/2503.07286) <doi:10.48550/arXiv.2503.07286> for background. See [README](https://cran.r-project.org/web/packages/Rmfrac/readme/README.html) to get started.
 
-
-
-
-
+![](Rmfrac.png){fig-alt="Plot Hurst functions"}
 
 ### Machine Learning
 
