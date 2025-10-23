@@ -232,7 +232,7 @@ However, we don't have complete data. The two data matrices represent data obser
 
 ## Generating Matrix (Q) and Transition Probability Matrix (P)
 
-This section calculates the Q matrix and some basic properties for the CTMC models of the Seretide and Flucticasone treatments using the EM algorithm described above. Note that in the code below, I set the `te` = 1. Even though the data were collected over a 12 week period, this information is not reflected in the state table. This means that the time scale, as discussed above, is one unit equals twelve weeks. The practical effect is that to estimate the time-dependent transition transition probabilities for week 1, t should be set to 1/12. 
+This section calculates the Q matrix and some basic properties for the CTMC models of the Seretide and Flucticasone treatments using the EM algorithm described above. Note that in the code below, I set the `te` = 1. Even though the data were collected over a 12 week period, this information is not reflected in the state table. This means that the time scale, as discussed above, is one unit equals twelve weeks. The practical effect is that to estimate the time-dependent transition probabilities for week 1, t should be set to 1/12. 
 
 This code sets up the initial guess for the $Q$ matrix, which will be used for both the Seretide and Flucticasone calculations. The initial guess does not appear to be critical, but it must be a valid generator matrix.
 ```{r}
@@ -482,7 +482,7 @@ Probs_f1
 
 
 
-## Some Estimates Based on CTMC Theory.
+## Some Estimates Based on CTMC Theory
 
 This next section presents some additional estimates based on the theory of continuous-time Markov chains. These estimates include the mean sojourn times in each state and the mean time to absorption. Note that all of these time estimates are in the units of weeks x 12 defined by the data. 
 
