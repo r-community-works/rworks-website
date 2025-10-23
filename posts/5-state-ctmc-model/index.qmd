@@ -11,7 +11,7 @@ image: "states.png"
 editor: source
 ---
 
-The following diagram illustrates the 5-state, absorbing Markov chain framework used to model the progression of patients through various health states as they undergo treatment for asthma. The states are defined as follows: `STW`= successfully treated week, `UTW`= unsuccessfully treated week, `Hex`= hospital-managed exacerbation ,`Pex`= primary care-managed exacerbation, and `TF`= treatment failure. In the previously published post, *A Simple Bayesian Multi-state Survival Model for a Clinical Trial*, I followed Welton et al. (2010) by using a discrete-time Markov model to compare the the effectiveness of two asthma treatments. In this post, I fit a continuous-time Markov chain (CTMC) to the same data.
+The following diagram illustrates the 5-state, absorbing Markov chain framework used to model the progression of patients through various health states as they undergo treatment for asthma. The states are defined as follows: `STW`= successfully treated week, `UTW`= unsuccessfully treated week, `Hex`= hospital-managed exacerbation, `Pex`= primary care-managed exacerbation, and `TF`= treatment failure. In the previously published post, [*A Simple Bayesian Multi-state Survival Model for a Clinical Trial*](https://rworks.dev/posts/simple-bayesian-model/), I followed Welton et al. (2010) by using a discrete-time Markov model to compare the effectiveness of two asthma treatments. In this post, I fit a continuous-time Markov chain (CTMC) to the same data.
 
 ```{r}
 #| message: FALSE
@@ -64,11 +64,11 @@ A discrete-time Markov chain (DTMC) models only the most primitive notion of tim
 
 A DTMC model is fully specified when the transition probability matrix $P$ is given or estimated. Each element $p_{ij}$ of $P$ gives the probability of transitioning from state $i$ to state $j$ in one time step. The transition probability matrix for multiple time steps may be computed by raising the one-step transition matrix to the appropriate power. For example, if the time step interval is one week, then the three-week transition probability matrix is given by $P^3$. So that while time does not generally explicitly enter into the process of estimating the $P$ matrix, the time interval is implicitly defined by the frequency of data collection. Developing a useful DTMC model requires verifying that model predictions compare well with the observed progress of the real world process being modeled. For a disease progression model this would mean comparing state transitions over time to the to actual transitions observed in a cohort of patients.
 
-In contrast to a DTMC, a continuous-time Markov chain (CTMC) explicitly models the time between transitions as exponentially distributed random variables with rates determined by the generator matrix, $Q$. The elements $q_{ij}$ of $Q$ give the instantaneous rate of transitioning from state $i$ to state $j$. The time spent in state $i$ before transitioning to another state is also exponentially distributed. In a CTMC model the rates are fixed and do not vary with time, but the transition probabilities do vary with time. The time-dependent transition probability matrix $P(t)$ may be computed from $Q$ by solving the Kolomogorov differential equations. (See below.) For any time interval $t$, the probabilities of transitioning from state $i$ to state $j$ may be computed by matrix exponential: $P(t) = e^{Qt}$. 
+In contrast to a DTMC, a continuous-time Markov chain (CTMC) explicitly models the time between transitions as exponentially distributed random variables with rates determined by the generator matrix, $Q$. The elements $q_{ij}$ of $Q$ give the instantaneous rate of transitioning from state $i$ to state $j$. The time spent in state $i$ before transitioning to another state is also exponentially distributed. In a CTMC model the rates are fixed and do not vary with time, but the transition probabilities do vary with time. The time-dependent transition probability matrix $P(t)$ may be computed from $Q$ by solving the Kolmogorov differential equations. (See below.) For any time interval $t$, the probabilities of transitioning from state $i$ to state $j$ may be computed by matrix exponential: $P(t) = e^{Qt}$. 
 
 Unlike a DTMC model, a CTMC model explicitly allows for states to change at random intervals determined by transition rates that are unique to each state. So while time interval are random, it may not be apparent that the overall time scale is set by the data used to estimate the $Q$ matrix. We will see how this plays out in the analysis below.
 
-Both DTCMC and CTMC Markov models are fit by finding modeling parameters maximally consistent with the data. One would expect both models to produce similar results for time within the study period. However, this is not necessarily the case for times beyond the study period. The example below illustrates this kind of breakdown and raises important questions about long term outcomes. Beyond the scope of the data differences in modeling assumptions become important.
+Both DTCMC and CTMC Markov models are fit by finding modeling parameters maximally consistent with the data. One would expect both models to produce similar results for time within the study period. However, this is not necessarily the case for times beyond the study period. The example below illustrates this kind of breakdown and raises important questions about long term outcomes. Beyond the scope of the data, differences in modeling assumptions become important.
 
 Also note that the Appendix below provides some of the relevant background on CTMCs.
 
@@ -136,7 +136,7 @@ return(list(TP,Time))
 
 ## The Data
 
-The data for the model comes from the clinical trial conducted by Kavuru et al. (2000). This data is published in Welton et al. (2010) as state tables that give the aggregate number of state transition observed over the course of 12 weeks for the two treatments Seretide and Flucticasone. Data of this sort is sometimes described as "incomplete discrete data" because it does not provide the complete continuous-time history of each patient. The data are given with reference to only two time points, the beginning and end of the follow up period. 
+The data for the model comes from the clinical trial conducted by Kavuru et al. (2000). This data is published in Welton et al. (2010) as state tables that give the aggregate number of state transitions observed over the course of 12 weeks for the two treatments Seretide and Flucticasone. Data of this sort is sometimes described as "incomplete discrete data" because it does not provide the complete continuous-time history of each patient. The data are given with reference to only two time points, the beginning and end of the follow up period. 
 
 
 ```{r}
@@ -215,7 +215,7 @@ f_state
 
 ## The Likelihood Solution
 
-The model below uses the EM algorithm developed by Bladt and Sørensen (2005), further described in Inamura (2006), and implemented in the  [`ctmcd`](https://cran.r-project.org/package=ctmcd) R package to calculate the Maximum Likelihood estimator for the generator matrix, $Q$. (See Israel et al. (2001) for its use in credit rating applications.) To understand the method, consider that if complete continuous-time data were available it would be straightforward to compute the Likelihood function for the $Q$ matrix.
+The model below uses the EM algorithm developed by Bladt and Sørensen (2005), further described in Inamura (2006), and implemented in the  [`ctmcd`](https://cran.r-project.org/package=ctmcd) R package to calculate the Maximum Likelihood estimator for the generator matrix, $Q$. (See Israel et al. (2001) for its use in credit rating applications.) To understand the method, consider that if complete continuous-time data were available, it would be straightforward to compute the Likelihood function for the $Q$ matrix.
 
 
 
@@ -226,15 +226,15 @@ where $N_{ij}(T)$ denotes the number of transitions from $i$ to $j$ within time 
 
 $$\hat{q}_{ij}^{\mathrm{ML}} = \frac{N_{ij}(T)}{R_i(T)}$$
 
-However, we don't have complete data. The two data matrices represent data observed only at times 0 and $T$.  Nevertheless, there are several methods for estimating $N_{ij}(T)$, $R_i(T)$, and $Q(T)$ which require developing numerical solutions to the two complicated conditional integral equations reproduced in the appendix below. In this post, use the EM algorithm solution implement in the `gm()` function of Marius Pfeuffer's [`ctmcd` R package](https://cran.r-project.org/package=ctmcd). Note that the `gmEM()`method called by `gm()` requires `gmguess` and initial guess for the $Q$ matrix an `te`, the **time elapsed in the transition process**.
+However, we don't have complete data. The two data matrices represent data observed only at times 0 and $T$.  Nevertheless, there are several methods for estimating $N_{ij}(T)$, $R_i(T)$, and $Q(T)$ which require developing numerical solutions to the two complicated conditional integral equations reproduced in the appendix below. In this post, use the EM algorithm solution implemented in the `gm()` function of Marius Pfeuffer's [`ctmcd` R package](https://cran.r-project.org/package=ctmcd). Note that the `gmEM()`method called by `gm()` requires `gmguess` and initial guess for the $Q$ matrix an `te`, the **time elapsed in the transition process**.
 
 
 
 ## Generating Matrix (Q) and Transition Probability Matrix (P)
 
-This section calculates the Q matrix and some basic properties for the CTMC models of the Seretide and Flucticasone treatments using the EM algorithm described above. Note that in the code below, I set the `te` = 1. Even though the data were collected over a 12 week period, this information in not reflected in the state table. This means that the time scale as discussed above is one unit equals twelve weeks. The practical effect is that to estimate the time-dependent transition transition probabilities for week 1, t should be set to 1/12. 
+This section calculates the Q matrix and some basic properties for the CTMC models of the Seretide and Flucticasone treatments using the EM algorithm described above. Note that in the code below, I set the `te` = 1. Even though the data were collected over a 12 week period, this information is not reflected in the state table. This means that the time scale, as discussed above, is one unit equals twelve weeks. The practical effect is that to estimate the time-dependent transition transition probabilities for week 1, t should be set to 1/12. 
 
-This code sets up the initial guess for the $Q$ matrix which will be used for both the Seretide and Flucticasone calculations. The initial guess does not appear to be critical, but it must be a valid generator matrix.
+This code sets up the initial guess for the $Q$ matrix, which will be used for both the Seretide and Flucticasone calculations. The initial guess does not appear to be critical, but it must be a valid generator matrix.
 ```{r}
 #| code-fold: TRUE
 #| code-summary: "Initial Guess for Q Matrix"
@@ -247,7 +247,7 @@ s0[5,] <- 0
 
 ```
 
-Three sets of matrices are laid out here for each treatment. The first is the transition probability matrix, $P$, reported in Welton et al. (2010) which was derived from the state table data. These transitions are used to demonstrate the face value credibility of the CTMC model. The second pair of matrices are the generator matrices, $Q$, estimated by the EM algorithm. The third set show the estimated transition probability matrices, $P(t)$, computed from the estimated $Q$ matrix by matrix exponentiation for a time interval of one unit (12 weeks).
+Three sets of matrices are laid out here for each treatment. The first is the transition probability matrix, $P$, reported in Welton et al. (2010) which was derived from the state table data. These transitions are used to demonstrate the face value credibility of the CTMC model. The second pair of matrices is the generator matrices, $Q$, estimated by the EM algorithm. The third set show the estimated transition probability matrices, $P(t)$, computed from the estimated $Q$ matrix by matrix exponentiation for a time interval of one unit (12 weeks).
 
 
 :::: {.columns}
@@ -357,7 +357,7 @@ As it turns out, the continuous-time estimates are very credible. For both Seret
 
 ## Transition Probabilities over Time
 
-This next bit of code plots out the transition probabilities over three time periods for both treatments.  Note that the points on the curves at twelve weeks match the matrices computed above, and the values plotted for the first eleven weeks seem to be plausible estimates. Note that in the code below the matrices `TP_s` and `TP_f` contain all of the transition probabilities and that the code to plot these probabilities is also given. This may be useful for exploring the behavior of the model over time.
+This next bit of code plots out the transition probabilities over three time periods for both treatments.  Note that the points on the curves at twelve weeks match the matrices computed above, and the values plotted for the first eleven weeks seem to be plausible estimates. Note that in the code below, the matrices `TP_s` and `TP_f` contain all of the transition probabilities, and that the code to plot these probabilities is also given. This may be useful for exploring the behavior of the model over time.
 
 ### Seretide Probabilities over time
 ```{r}
@@ -490,7 +490,7 @@ This next section presents some additional estimates based on the theory of cont
 
 
 
-Let V be the sub matrix of the generator matrix, Q, comprising the transient states. Then the matrix $F = -V^{-1}$ is called the fundamental matrix. For all transient states $i$ and $j$, $F_{ij}$ is the time that a process started in state $i$ spends in state $j$. Then for each state i, $T_a = \sum_{j}F_{ij}$ is the mean time to absorption.
+Let V be the sub matrix of the generator matrix, Q, comprising the transient states. Then the matrix $F = -V^{-1}$ is called the fundamental matrix. For all transient states $i$ and $j$, $F_{ij}$ is the time that a process started in state $i$ spends in state $j$. Then, for each state i, $T_a = \sum_{j}F_{ij}$ is the mean time to absorption.
 
 
 :::: {.columns}
@@ -618,15 +618,15 @@ ggplot(df, aes(x = time, y = survival, color = cohort)) +
 
 The estimated sojourn times seem reasonable, but the long range estimates are to be contemplated with a good deal of skepticism. A literature search did not produce any evidence that asthma would progress as modeled over extended time periods, and it is doubtful that the treatment regimens would remain unmodified over long periods of time. It is also noteworthy that Welton et al. did not offer any long range projections based on their discrete-time model. Nevertheless, the long term estimations presented are representative of the kinds of results that can be obtained by modeling in continuous-time. 
 
-The survival curves in the plot above initially appear to be consistent with those produced in the DTMC post referenced above. However, looking beyond the shape of the curves, one sees that **the time scales differ by an order of magnitude**. Both of these models proceed from reasonable assumptions, and share many similar structural elements, but they lead to significantly different conclusions. As explained above, transition probabilities for DTMC do not vary over time. So having obtained these probabilities, the internal evidence of the model would suggest that disease progression is over weeks. Nevertheless, the CTMC model which replicates the estimated probabilities of the DTMCM shows progression over a time scale that dramatically different. This inconsistency urgently points out the need for expert opinion and external validation to assess the assumptions about time. Even without a change in the underlying dynamics of a system, a model may only be useful over a time scale that needs to be determined from external evidence.
+The survival curves in the plot above initially appear to be consistent with those produced in the DTMC post referenced above. However, looking beyond the shape of the curves, one sees that **the time scales differ by an order of magnitude**. Both of these models proceed from reasonable assumptions and share many similar structural elements, but they lead to significantly different conclusions. As explained above, transition probabilities for DTMC do not vary over time. So, having obtained these probabilities, the internal evidence of the model would suggest that disease progression is over weeks. Nevertheless, the CTMC model, which replicates the estimated probabilities of the DTMCM, shows progression over a time scale that is dramatically different. This inconsistency urgently points out the need for expert opinion and external validation to assess the assumptions about time. Even without a change in the underlying dynamics of a system, a model may only be useful over a time scale that needs to be determined from external evidence.
 
 Be careful with the time!
 
 ## Appendix: Continuous-Time Markov Chains
 
-As in the previous post, the progress of patients passing through various states of health as they undergo for asthma is modeled by the following 5-state Markov chain. In the present analysis, I fit the model to a continuous-time Markov Chain (CTMC) so a little background on continuous-time Markov chains is in order. A Continuous-Time Markov Chain (CTMC) is a stochastic process $X(t), t \ge 0$ over a finite or countable state space, $S$, such that the process satisfies the Markov property: the future state depends only on the current state, not on the past history. 
+As in the previous post, the progress of patients passing through various states of health as they undergo treatment for asthma is modeled by the following 5-state Markov chain. In the present analysis, I fit the model to a continuous-time Markov Chain (CTMC), so a little background on continuous-time Markov chains is in order. A Continuous-Time Markov Chain (CTMC) is a stochastic process $X(t), t \ge 0$ over a finite or countable state space, $S$, such that the process satisfies the Markov property: the future state depends only on the current state, not on the past history. 
 $$P(X(t + s) =j | X(s) = i, history) = P(X(t + s) =j | X(s) = i)$$
-Hence, just like a discrete-time Markov chain, a CTMC is *memoryless*. However, unlike a discrete-time Markov chain where the behavior of the process is determined by a matrix of transition probabilities, the dynamics of a CTMC are determined by its generator matrix $Q$ which has the following following properties:
+Hence, just like a discrete-time Markov chain, a CTMC is *memoryless*. However, unlike a discrete-time Markov chain where the behavior of the process is determined by a matrix of transition probabilities, the dynamics of a CTMC are determined by its generator matrix $Q$, which has the following properties:
 
 * For ${i \neq j}$, the off-diagonal entries $q_{ij} \geq 0$ represent the instantaneous transition rate from state $i$ to state $j$.
 
@@ -661,7 +661,7 @@ where
 In order to initialize the EM algorithm it is necessary to provide an initial guess for the generator matrix, $Q$. See Pfeuffer (2017), Inamura (2006), and Bladt and Sørensen (2000), and the [ctmcd package vignette](https://cran.r-project.org/web/packages/ctmcd/vignettes/RJ-2017-038.pdf) for more details.
 
 
-## Refernces
+## References
 
 * Bladt, M  and M. Sørensen. [Statistical inference for discretely observed Markov jump processes](https://doi.org/10.1111/j.1467-
 9868.2005.00508.x) Journal of the Royal Statistical (2005). Look [here](https://www.maphysto.dk/publications2/MPS-RR/2003/21.pdf) for the pdf.
