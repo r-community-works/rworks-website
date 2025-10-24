@@ -1,10 +1,10 @@
 ---
 title: "September 2025 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
-date: 2025-10-29
-description: "Here are my picks for the best from the ninety-seven new packages that landed on CRAN in , organized in eighteen categories: Causal Inference, Data, Differential Privacy, Ecology, Environmental Studies, Epidemiology, Geology, Genetics, Genomics, Health Technology Assessment, Machine Learning, Medical Statistics, Statistics, Surveys, Time Series, Toxicology, Utilities, and Visualization."
-image: ".png"
-image-alt: ""
+date: 2025-10-28
+description: "Here are my picks for the best from the two hundred forty new packages that landed on CRAN in September, organized in thirteen categories: Computational Methods, Data, Decision Analysis, Ecology, Epidemiology, Finance, Machine Learning, Mathematics, Medical Applications, Programming, Statistics, Utilities, and Visualization."
+image: "ecotourism.png"
+image-alt: "Gouldian Finch"
 categories: "Top 40"
 editor: source
 ---
@@ -14,11 +14,9 @@ editor: source
 ::: {.column width="45%"}
 
 
-![](.png){fig-alt=""}
-
 ### Computational Methods
 
-[fastfocal](https://cran.r-project.org/package=fastfocal) v0.1.3: Provides fast moving-window ("focal") and buffer-based extraction for raster data using the ['terra`](https://CRAN.R-project.org/package=terra) package. Automatically selects between a `C++` backend and a Fast Fourier Transform (FFT) backend depending on problem size. The FFT backend supports sum and mean, while other statistics (e.g., median, min, max, standard deviation) are handled by `terra`. There are two vignettes: [Benchmarking](https://cran.r-project.org/web/packages/fastfocal/vignettes/benchmark.html) and [Fast Multi-scale Raster Extraction and Moving Window Analysis with FFT](https://cran.r-project.org/web/packages/fastfocal/vignettes/index.html).
+[fastfocal](https://cran.r-project.org/package=fastfocal) v0.1.3: Provides v fast moving-window ("focal") and buffer-based extraction for raster data using the [`terra`](https://CRAN.R-project.org/package=terra) package. Automatically selects between a `C++` backend and a Fast Fourier Transform (FFT) backend depending on problem size. The FFT backend supports sum and mean. Other statistics are handled by `terra`. There are two vignettes: [Benchmarking](https://cran.r-project.org/web/packages/fastfocal/vignettes/benchmark.html) and [Fast Multi-scale Raster Extraction and Moving Window Analysis with FFT](https://cran.r-project.org/web/packages/fastfocal/vignettes/index.html).
 
 ![](fastfocal.png){fig-alt="FFT contour plots"}
 
@@ -75,6 +73,9 @@ and [Gouldian Finch](https://cran.r-project.org/web/packages/ecotourism/vignette
 
 ![](mitey.png){fig-alt="Fitted Serial Interval Distribution"}
 
+[Rnaught](https://cran.r-project.org/package=Rnaught) v0.1.0: Provides a collection of methods for estimating the basic reproduction number (R0) of infectious diseases, and includes a 'shiny' application and datasets for Canadian national and provincial COVID-19 case counts from [Berry et al. (2021)](https://www.nature.com/articles/s41597-021-00955-2). See [Fisman et al. (2013)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0083622), [Bettencourt & Ribeiro (2008)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0002185), and [White & Pagano (2008)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0002185) for the models implemented. There are three vignettes including [Introduction](https://cran.r-project.org/web/packages/Rnaught/vignettes/Rnaught.html) and [Sequential Bayes](https://cran.r-project.org/web/packages/Rnaught/vignettes/seq_bayes_post.html).
+
+![](Rnaught.png){fig-alt="Posterior distribution of R0"}
 
 [vaxineR](https://cran.r-project.org/package=vaxineR) v0.1.0: Provides tools to analyze vaccine coverage data and simulate potential disease outbreak scenarios and to calculate key epidemiological metrics. such as the effective reproduction number (Re), outbreak probabilities, and expected infection counts based on county-level vaccination rates, disease characteristics, and vaccine effectiveness. The package includes historical kindergarten vaccination data for Florida counties. See the [vignette](https://cran.r-project.org/web/packages/vaxineR/vignettes/using_vaxineR.html).
 
@@ -92,11 +93,38 @@ and [Gouldian Finch](https://cran.r-project.org/web/packages/ecotourism/vignette
 
 ![](Rmfrac.png){fig-alt="Plot Hurst functions"}
 
+### Genomics
+
+[cellGeometry](https://cran.r-project.org/package=cellGeometry) v0.5.4: Provides tools for the deconvolution of bulk RNA-Sequencing data into proportions of cells based on a reference single-cell RNA-Sequencing dataset using high-dimensional geometric methodology. See the vignettes [quickstart](https://cran.r-project.org/web/packages/cellGeometry/vignettes/intro.html) and [Deconvolution with the brain atlas]()'
+
+![](cellGeometry.png){fig-alt="Plot showing cosine similarity of cell clusters"}
+
+
+[MicrobTiSDA](https://cran.r-project.org/package=MicrobTiSDA). v0.1.0: Provides tools specifically designed for analyzing longitudinal microbiome data that integrate seven functional modules, providing a systematic framework for microbiome time-series analysis. See [Fisher (2014)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0102451) for more details on inferences involving interspecies interactions and the [vignette](https://cran.r-project.org/web/packages/MicrobTiSDA/vignettes/MicrobTiSDA.html) for examples.
+
+![](MicrobTiSDA.png){fig-alt="Cluster plot of microbial features"}
+
+
+
+
 ### Machine Learning
 
 [causalDT](https://cran.r-project.org/package=causalDT) v1.0.0: Implements a novel machine learning method for estimating interpretable subgroups with heterogeneous treatment effects. CDT allows researchers to fit any machine learning model (or metalearner) to estimate heterogeneous treatment effects for each individual, and then "distills" these predicted heterogeneous treatment effects into interpretable subgroups by fitting an ordinary decision tree to predict the previously-estimated heterogeneous treatment effects. See [Huang, Tang, and Kenney (2025)](https://arxiv.org/abs/2502.07275) for details and [README](https://cran.r-project.org/web/packages/causalDT/readme/README.html) for an example.
 
 ![](causalDT.png){fig-alt="Plot of causal treatment tree"}
+
+
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+
+### Machine Learning (continued)
 
 
 [polarisR](https://cran.r-project.org/package=polarisR) v0.1.4: Implements a `shiny` application based on the [`quollr`](https://cran.r-project.org/package=quollr) for visualizing high-dimensional data using non-linear dimensionality reduction (NLDR) techniques such as t-SNE and UMAP. It provides an interactive platform for exploring high-dimensional datasets, diagnosing the quality of embeddings using  package, and comparing different NLDR methods. There is an [Introduction](https://cran.r-project.org/web/packages/polarisR/vignettes/polarisR-vignette.html) and a vignette on [Tips, Requirements, and Support](https://cran.r-project.org/web/packages/polarisR/vignettes/polarisR-vignette2.html).
@@ -107,11 +135,12 @@ and [Gouldian Finch](https://cran.r-project.org/web/packages/ecotourism/vignette
 
 [SemanticDistance](https://cran.r-project.org/package=SemanticDistance) v0.1.1: Implements tools to cleans and format language transcripts guided by a series of transformation options (e.g., lemmatize words, omit stopwords, split strings across rows). 'SemanticDistance'. Functions compute two distinct metrics of cosine semantic distance which reflect pairwise cosine distance between different elements or chunks of a language sample. Guided by user-secified options, the package tools can process stories, dialogues, word lists and more. There are five vignettes including [Dialogues](https://cran.r-project.org/web/packages/SemanticDistance/vignettes/SemanticDistance_Dialogues.html) and [Monologues](https://cran.r-project.org/web/packages/SemanticDistance/vignettes/SemanticDistance_Monologues_Lists.html).
 
-![](SD.png){fig-alt="Plot of a word cluster network"}
 
 ### Mathematics
 
 [ricci](https://cran.r-project.org/package=ricci) v0.1.1: Provides a compact interface for performing tensor calculations by allowing (upper and lower) index labeling of arrays and using the Ricci calculus conventions to implicitly trigger contractions and diagonal subsetting. Supports explicit tensor operations, such as addition, subtraction and multiplication of tensors via the standard operators, raising and lowering indices, taking symmetric or antisymmetric tensor parts, the Kronecker product, Levi Civita epsilon, the Christoffel symbols, the Riemann ans Ricci tensors. See [README](https://cran.r-project.org/web/packages/ricci/readme/README.html) and the vignettes [ricci](https://cran.r-project.org/web/packages/ricci/vignettes/ricci.html) and [Tensor Fields](https://cran.r-project.org/web/packages/ricci/vignettes/tensor_fields.html).
+
+
 
 
 ### Medical Applications
@@ -142,13 +171,7 @@ and [Gouldian Finch](https://cran.r-project.org/web/packages/ecotourism/vignette
 
 
 
-:::
 
-::: {.column width="10%"}
-
-:::
-
-::: {.column width="45%"}
 
 ### Statistics
 
@@ -167,6 +190,15 @@ and [Gouldian Finch](https://cran.r-project.org/web/packages/ecotourism/vignette
 ![](SLGP.png){fig-alt="Plot showing multiple densities of median value vs age of home"}
 
 
+### Utilities
+
+[houba](https://cran.r-project.org/package=houba) v0.1.0: Provides tools to manipulate data through memory-mapped files, as vectors, matrices or arrays. Basic arithmetic functions are implemented. It also includes funcions to write and read descriptor files for compatibility with the `bigmemory` package. See the [vignette](https://cran.r-project.org/web/packages/houba/vignettes/houba.html).
+
+
+[memshare](https://cran.r-project.org/package=memshare) v1.0.2: Extends `R` with a mechanism for efficient parallel data access by utilizing `C++` shared memory. Large data objects can be accessed and manipulated directly from `R` without redundant copying, providing both speed and memory efficiency. See [README](https://cran.r-project.org/web/packages/memshare/readme/README.html) to get started.
+
+
+[plumber2](https://cran.r-project.org/package=plumber2) v0.1.0: Provides tools to automatically create a web server from annotated `R` files or by building it up programmatically. Includes automatic `OpenAPI` documentation, input handling, asynchronous evaluation, and plugin support. There are ten vignettes including [Get Started](https://cran.r-project.org/web/packages/plumber2/vignettes/plumber.html) and [Programmatic Usage](https://cran.r-project.org/web/packages/plumber2/vignettes/programmatic-usage.html).
 
 
 ### Visualization
