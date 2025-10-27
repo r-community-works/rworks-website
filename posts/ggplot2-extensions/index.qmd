@@ -189,7 +189,7 @@ stat_medians <-
 ```
 :::
 
-Alternatively, the new `make_constructor()` function, available in ggplot2 v4.0.0, will write much of the above boilerplate code written for you.[@cr-step-3a-1]{highlight="6"}
+Alternatively, the new `make_constructor()` function, available in ggplot2 v4.0.0, will write much of the above boilerplate code for you.[@cr-step-3a-1]{highlight="6"}
 
 :::{#cr-step-3a-1 .scale-to-fill}
 ```{r}
