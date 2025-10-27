@@ -1,7 +1,7 @@
 ---
-title: "Speak your plot into existence by writing your own ggplot2 extension"
+title: "An Introduction to Writing Your Own ggplot2 Geoms"
 author: "Isabella Velásquez"
-date: 2025-06-12
+date: 2025-10-30
 editor: source
 description: "The ggextenders club provides inspiration and resources for those venturing into the exciting world of creating custom ggplot2 extensions."
 image: ggextenders-hex.png
@@ -260,4 +260,4 @@ Learn more about Gina's work here:
 
 There is a comprehensive [list of resources on the ggplot2 extenders club website](https://ggplot2-extenders.github.io/ggplot-extension-club/additional-resources.html).
 
-Many thanks to Andrew Bray, James Goldie, and the QMD Lab for [Closeread](https://closeread.dev/), a Quarto extension for scrollytelling, which walked through the ggextender steps!
+Many thanks to Andrew Bray, James Goldie, and the QMD Lab for [Closeread](https://closeread.dev/), a Quarto extension for scrollytelling, which walked through the ggextender steps, and Gina, for both organizing the ggplot2 extenders club and reviewing this post!
