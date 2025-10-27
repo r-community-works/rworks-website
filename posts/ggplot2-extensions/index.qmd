@@ -35,9 +35,7 @@ So, say we want to create a new `geom_*()` that adds a point on the median of th
 
 First, clarify what needs to happen without getting into the extension architecture. Load the tidyverse package and the palmerpenguins package. [@cr-step-0a]{highlight="1,2"}
 
-Remove the missing values from the `penguins` dataset. [@cr-step-0a]{highlight="4"}
-
-Calculate the median of the x variable (`bill_length_mm`) and y variable (`bill_depth_mm`) as you would normally. [@cr-step-0a]{highlight="6,7,8,9"}
+Calculate the median of the x variable (`bill_length_mm`) and y variable (`bill_depth_mm`) as you would normally. [@cr-step-0a]{highlight="5,6,7"}
 
 :::{#cr-step-0a .scale-to-fill}
 ```{r}
@@ -79,6 +77,7 @@ This is the resulting plot.[@cr-step-0c]
 
 :::{#cr-step-0c .scale-to-fill}
 ```{r}
+#| warning: false
 # Plot
 penguins |> 
   ggplot() + 
@@ -128,7 +127,7 @@ penguins |>
 
 ## Step 2: Define new Stat. Test.
 
-Next, use the ggplot2::ggproto function, which creates a new Stat function that does computation under the hood when building a plot.[@cr-step-2a]
+Next, use the `ggplot2::ggproto()` function, which creates a new Stat function that does computation under the hood when building a plot. Don't worry, you don't have to write this yourself. This is provided as boilerplate code, all you have to do is edit the relevant code![@cr-step-2a]
 
 :::{#cr-step-2a .scale-to-fill}
 ```{r}
@@ -164,7 +163,7 @@ penguins |>
 
 ## Step 3: Define user-facing functions. Test.
 
-Now, define the user-facing function.[@cr-step-3a]
+Now, define the user-facing function. This is more boilerplate code that you edit depending on what you are creating.[@cr-step-3a]
 
 The `stat_*()` function name derives from the Stat objects’s name, but is snake case.[@cr-step-3a]{highlight="1"}
 
@@ -188,8 +187,9 @@ stat_medians <-
                                                            ...))
     }
 ```
+:::
 
-But alternatively the new `make_constructor()` function, available in ggplot2 v4.0.0, will write much of the above boilerplate code written for you.[@cr-step-3a-1]{highlight="6"}
+Alternatively, the new `make_constructor()` function, available in ggplot2 v4.0.0, will write much of the above boilerplate code written for you.[@cr-step-3a-1]{highlight="6"}
 
 :::{#cr-step-3a-1 .scale-to-fill}
 ```{r}
@@ -200,13 +200,12 @@ stat_medians <- make_constructor(StatMedians, geom = "point")
 
 ## check the new function's specification
 print(stat_medians)
-
 ```
 
 
 :::
 
-And because users are more accustomed to using layers that have the ‘geom’ prefix, you might also define geom with almost identical properties using `make_constructor`.[@cr-step-3b]  The difference between `stat_medians` and `geom_medians` is that the `stat` is fixed in the former, and the `geom` is fixed in the latter.
+And because users are more accustomed to using layers that have the ‘geom’ prefix, you might also define geom with almost identical properties using `make_constructor()`.[@cr-step-3b]  The difference between `stat_medians` and `geom_medians` is that the `stat` is fixed in the former, and the `geom` is fixed in the latter.
 
 :::{#cr-step-3b .scale-to-fill}
 ```{r}
@@ -241,7 +240,7 @@ penguins |>
 
 And then you're done! You've created your first ggplot extension 🥳.
 
-Going through the recipes is a great way to ease into your ggplot2 extension journey. They offer three well-crafted examples with a clear structure and sequence of steps. A fun note is that the geom recipes website uses [webR](https://docs.r-wasm.org/webr/latest/) and [Quarto Live](https://github.com/r-wasm/quarto-live) to embed interactive code chunks directly in the tutorial. It makes for an immersive experience while going through the exercises.
+Going through the recipes is a great way to ease into your ggplot2 extension journey. They offer three well-crafted examples with a clear structure and sequence of steps. The boilerplate code looks daunting, but you can copy/paste it and edit it depending on what you are creating; if you want to go into more detail as to what it's actually doing, the tutorials provide additional resources A fun note is that the geom recipes website uses [webR](https://docs.r-wasm.org/webr/latest/) and [Quarto Live](https://github.com/r-wasm/quarto-live) to embed interactive code chunks directly in the tutorial. It makes for an immersive experience while going through the exercises.
 
 Want to try your own hand at creating `geom_means()`? Go through the interactive tutorial in [Easy geom recipes](https://evamaerey.github.io/easy-geom-recipes/recipe1means.html#your-turn-write-geom_means)!
 
