@@ -32,7 +32,7 @@ format:
   html:
     theme: [cosmo, styles.css]
     include-in-header: plausible.html
-
+    
 editor: source
 highlight-style: arrow
 lightbox: true
