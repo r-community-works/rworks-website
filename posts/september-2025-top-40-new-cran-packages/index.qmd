@@ -1,0 +1,245 @@
+---
+title: "September 2025 Top 40 New CRAN Packages"
+author: "Joseph Rickert"
+date: 2025-10-28
+description: "Here are my picks of the best of the two hundred forty new packages that landed on CRAN in September, organized into thirteen categories: Computational Methods, Data, Decision Analysis, Ecology, Epidemiology, Finance, Machine Learning, Mathematics, Medical Applications, Programming, Statistics, Utilities, and Visualization."
+image: "regress3d.gif"
+image-alt: "3D plot of Regression Surface"
+categories: "Top 40"
+editor: source
+---
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+
+### Computational Methods
+
+[fastfocal](https://cran.r-project.org/package=fastfocal) v0.1.3: Provides a fast moving-window ("focal") and buffer-based extraction for raster data using the [`terra`](https://CRAN.R-project.org/package=terra) package. Automatically selects between a `C++` backend and a Fast Fourier Transform (FFT) backend depending on problem size. The FFT backend supports sum and mean. Other statistics are handled by `terra`. There are two vignettes: [Benchmarking](https://cran.r-project.org/web/packages/fastfocal/vignettes/benchmark.html) and [Fast Multi-scale Raster Extraction and Moving Window Analysis with FFT](https://cran.r-project.org/web/packages/fastfocal/vignettes/index.html).
+
+![](fastfocal.png){fig-alt="FFT contour plots"}
+
+[GTRT](https://cran.r-project.org/package=GTRT) v0.1.0: Provides a collection of functions for testing randomness (or mutual independence) in linear and circular data as proposed in [Gehlot and Laha (2025a)](doi:10.48550/arXiv.2506.21157) and [Gehlot and Laha (2025b)](https://arxiv.org/abs/2506.23522). See the vignettes [Randomness Tests for Circular Data](https://cran.r-project.org/web/packages/GTRT/vignettes/GTRT_circular.html) and [Randomness Tests for Linear Data](https://cran.r-project.org/web/packages/GTRT/vignettes/GTRT_linear.html).
+
+[rjuliabugs](https://cran.r-project.org/package=rjuliabugs) v0.1.0: Implements an interface to the [`JuliaBUGS.jl`](https://github.com/TuringLang/JuliaBUGS.jl)  package for Bayesian inference using the BUGS modeling language. `R` users can run models in Julia and return results as familiar `R` objects. Visualization and posterior analysis are supported via the `bayesplot` and `posterior` packages. See [README](https://cran.r-project.org/web/packages/rjuliabugs/readme/README.html) for an example.
+
+### Data
+
+[BioWorldR](https://cran.r-project.org/package=BioWorldR) v0.1.0: Provides a curated collection of biodiversity and species-related datasets (birds, plants, reptiles, turtles, mammals, bees, marine data and related biological measurements), together with small utilities to load and explore them. The package aims to simplify reproducible workflows by packaging commonly used example datasets and metadata so they can be easily inspected, visualized, and used for teaching, testing, and prototyping analyses. See the [vignette](https://cran.r-project.org/web/packages/BioWorldR/vignettes/BioWorldR_vignette.html).
+
+![](BioWorldR.png){fig-alt="Barplotof brain weight for various species"}
+
+[ecotourism](https://cran.r-project.org/package=ecotourism) v0.1.0: This is a collection of data files for exploring sightings of wild things, relative to weather and tourism patterns in Australia. There are eight vignettes, including [Glowworms](https://cran.r-project.org/web/packages/ecotourism/vignettes/glowworms.html)
+and [Gouldian Finch](https://cran.r-project.org/web/packages/ecotourism/vignettes/gouldian_finch.html).
+
+![](ecotourism.jpeg){fig-alt="Photo of a Gouldian Finch"}
+
+[ineapir](https://cran.r-project.org/package=ineapir) v0.2.5: Provides access to open statistical data and metadata disseminated by the National Statistics Institute of Spain (INE). The functions return data frames with the requested information thanks to calls to the [INE API](https://www.ine.es/dyngs/DAB/index.htm?cid=1100). See [README](https://cran.r-project.org/web/packages/ineapir/readme/README.html) for information.
+
+![](ineapir.png){fig-alt="Cheat Sheet"}
+
+### Decision Analysis
+
+[DUToolkit](https://cran.r-project.org/package=DUToolkit) v1.0.2: Provides  tools to help modelers and decision-makers effectively interpret and communicate decision risk when evaluating multiple policy options. It uses model outputs from uncertainty analysis for baseline scenarios and policy alternatives to generate visual representations of uncertainty and quantitative measures for assessing associated risks. See [Wiggins et al. (2025)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0332522) and the [webpage](https://dut.ihe.ca/) for more details. There are six vignettes, including [Calculating Risk](https://cran.r-project.org/web/packages/DUToolkit/vignettes/Calculating_Risk.html) and [Introduction](https://cran.r-project.org/web/packages/DUToolkit/vignettes/DUToolkit.html).
+
+![](DUToolkit.png){fig-alt="Plot in which the trajectory of the outcome is summarized over time and plotted using the mean value for a given policy alternative"}
+
+### Ecology
+
+[ConSciR](https://cran.r-project.org/package=ConSciR) v0.3.0: Provides data science tools for conservation science, including methods for environmental data analysis, humidity calculations, sustainability metrics, engineering calculations, and data visualization. See [Cosaert & Beltran et al. (2022)](https://www.getty.edu/conservation/publications_resources/pdf_publications/tools_for_the_analysis_of_collection_environments.html) for background and the [vignette](https://cran.r-project.org/web/packages/ConSciR/vignettes/ConSciR.html) for examples.
+
+
+![](ConSciR.png){fig-alt="Plot of humidity and dewpoint"}
+
+[geospatialsuite](https://cran.r-project.org/package=geospatialsuite) v 0.1.0: Provides a toolkit for geospatio temporal analysis featuring 60+ vegetation indices, advanced raster visualization, universal spatial mapping, water quality analysis, CDL crop analysis, spatial interpolation, temporal analysis, and terrain analysis.  Methods include vegetation indices calculations [Rouse et al. (1974)](https://www.sciencedirect.com/science/article/pii/S0034425797001041), water quality indices [McFeeters (1996)](https://www.tandfonline.com/doi/abs/10.1080/01431169608948714), and crop data layer analysis [USDA NASS (2024)](https://www.nass.usda.gov/Research_and_Science/Cropland/). There are seven vignettes, including [Getting Started](https://cran.r-project.org/web/packages/geospatialsuite/vignettes/getting-started.html) and [Water Quality Assessment](https://cran.r-project.org/web/packages/geospatialsuite/vignettes/water-quality.html).
+
+
+[streamsampler](https://cran.r-project.org/package=streamsampler) v0.1.0: Provides tools to characterize daily stream discharge and water quality data and subsample water quality data. Stream sampling protocols are described in [Lee et al. (2016)](https://www.sciencedirect.com/science/article/pii/S0022169416305492?via%3Dihub) and [Lee et al. (2019)](https://pubs.usgs.gov/publication/sir20195084). See the [vignette](https://cran.r-project.org/web/packages/streamsampler/vignettes/streamsampler.html) for an introduction.
+
+![](streamsampler.png){fig-alt="Time series of samples categorized by subgroup"}
+
+
+
+
+
+
+### Epidemiology
+
+[epitraxr](https://cran.r-project.org/package=epitraxr) v0.5.0: Implements a tool for generating disease surveillance reports from data exported from [EpiTrax](https://epi.utah.gov/utah-national-electronic-disease-surveillance-system-ut-nedss/), a central repository for epidemiological data used by public health officials. It provides functions to manipulate `EpiTrax` datasets, tailor reports to internal or public use, and export reports in `csv`, `xlsx`, or `pdf` formats. See the vignettes [epitraxr](https://cran.r-project.org/web/packages/epitraxr/epitraxr.pdf) and [Piped Mode](https://cran.r-project.org/web/packages/epitraxr/vignettes/piped-mode.html).
+
+
+[mitey](https://cran.r-project.org/package=mitey) v0.2.0: Provides methods to estimate serial intervals and time-varying case reproduction numbers from infectious disease outbreak data. Serial intervals measure the time between symptom onset in linked transmission pairs, while case reproduction numbers quantify how many secondary cases each infected individual generates over time. See [Vink et al. (2014)](https://academic.oup.com/aje/article-abstract/180/9/865/2739204?redirectedFrom=fulltext&login=false) and [Wallinga & Lipsitch (2007)](https://royalsocietypublishing.org/doi/10.1098/rspb.2006.3754) for background and the [vignette](https://cran.r-project.org/web/packages/mitey/vignettes/quick_start_guide.html) for examples.
+
+![](mitey.png){fig-alt="Fitted Serial Interval Distribution"}
+
+[Rnaught](https://cran.r-project.org/package=Rnaught) v0.1.0: Provides a collection of methods for estimating the basic reproduction number (R0) of infectious diseases, and includes a `shiny` application and datasets for Canadian national and provincial COVID-19 case counts from [Berry et al. (2021)](https://www.nature.com/articles/s41597-021-00955-2). See [Fisman et al. (2013)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0083622), [Bettencourt & Ribeiro (2008)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0002185), and [White & Pagano (2008)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0002185) for the models implemented. There are three vignettes, including [Introduction](https://cran.r-project.org/web/packages/Rnaught/vignettes/Rnaught.html) and [Sequential Bayes](https://cran.r-project.org/web/packages/Rnaught/vignettes/seq_bayes_post.html).
+
+![](Rnaught.png){fig-alt="Posterior distribution of R0"}
+
+[vaxineR](https://cran.r-project.org/package=vaxineR) v0.1.0: Provides tools to analyze vaccine coverage data and simulate potential disease outbreak scenarios and to calculate key epidemiological metrics, such as the effective reproduction number (Re), outbreak probabilities, and expected infection counts based on county-level vaccination rates, disease characteristics, and vaccine effectiveness. The package includes historical kindergarten vaccination data for Florida counties. See the [vignette](https://cran.r-project.org/web/packages/vaxineR/vignettes/using_vaxineR.html).
+
+![](vacineR.png){fig-alt="Plots of Historical Trends"}
+
+
+### Finance
+
+[PortfolioTesteR](https://cran.r-project.org/package=PortfolioTesteR) v0.1.3: Provides functions to design, backtest, and analyze portfolio strategies using simple, English-like function chains. Includes technical indicators, flexible stock selection, portfolio construction methods (equal weighting, signal weighting, inverse volatility, hierarchical risk parity), and a compact backtesting engine for portfolio returns, drawdowns, and summary metrics. There are three vignettes, including [Getting Started](https://cran.r-project.org/web/packages/PortfolioTesteR/vignettes/getting-started.html) and [ML Strategies](https://cran.r-project.org/web/packages/PortfolioTesteR/vignettes/Getting_Started_Advanced.html).
+
+
+![](portfolio.png){fig-alt="Portfolio momentum plots"}
+
+[Rmfrac](https://cran.r-project.org/package=Rmfrac) v0.1.1: Provides functions to simulate fractional and multifractional processes along with a `shiny`app for interactive exploration. Functions simulate Brownian and fractional Brownian motions, bridges and Gaussian Haar-based multifractional processes (GHBMP), and Hurst functions. See [Ayache, Olenko and Samarakoon (2025)](https://arxiv.org/abs/2503.07286) <doi:10.48550/arXiv.2503.07286> for background and [README](https://cran.r-project.org/web/packages/Rmfrac/readme/README.html) to get started.
+
+![](Rmfrac.png){fig-alt="Plot Hurst functions"}
+
+### Genomics
+
+[cellGeometry](https://cran.r-project.org/package=cellGeometry) v0.5.4: Provides tools for the deconvolution of bulk RNA-Sequencing data into proportions of cells based on a reference single-cell RNA-Sequencing dataset using high-dimensional geometric methodology. See the vignettes [quickstart](https://cran.r-project.org/web/packages/cellGeometry/vignettes/intro.html) and [Deconvolution with the brain atlas](https://cran.r-project.org/web/packages/cellGeometry/vignettes/brain_atlas.html)'.
+
+![](cellGeometry.png){fig-alt="Plot showing cosine similarity of cell clusters"}
+
+
+[MicrobTiSDA](https://cran.r-project.org/package=MicrobTiSDA)  v0.1.0: Provides a framework for microbiome time-series analysis and tools specifically designed for analyzing longitudinal microbiome data that integrate seven functional modules. See [Fisher (2014)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0102451) for more details on inferences involving interspecies interactions and the [vignette](https://cran.r-project.org/web/packages/MicrobTiSDA/vignettes/MicrobTiSDA.html) for examples.
+
+![](MicrobTiSDA.png){fig-alt="Cluster plot of microbial features"}
+
+
+
+
+### Machine Learning
+
+[causalDT](https://cran.r-project.org/package=causalDT) v1.0.0: Implements a novel machine learning method for estimating interpretable subgroups with heterogeneous treatment effects. CDT allows researchers to fit any machine learning model (or metalearner) to estimate heterogeneous treatment effects for each individual, and then "distills" these predicted heterogeneous treatment effects into interpretable subgroups by fitting an ordinary decision tree to predict the previously-estimated heterogeneous treatment effects. See [Huang, Tang, and Kenney (2025)](https://arxiv.org/abs/2502.07275) for details and [README](https://cran.r-project.org/web/packages/causalDT/readme/README.html) for an example.
+
+![](causalDT.png){fig-alt="Plot of causal treatment tree"}
+
+
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+
+### Machine Learning (continued)
+
+
+[polarisR](https://cran.r-project.org/package=polarisR) v0.1.4: Provides an interactive platform for exploring high-dimensional datasets, diagnosing the quality of embeddings and comparing different NLDR methods such as t-SNE and UMAP. It also implements a `shiny` application  There is an [Introduction](https://cran.r-project.org/web/packages/polarisR/vignettes/polarisR-vignette.html) and a vignette on [Tips, Requirements, and Support](https://cran.r-project.org/web/packages/polarisR/vignettes/polarisR-vignette2.html).
+
+![](polarisR.png){fig-alt="Image of Shiny app Screen"}
+
+
+
+[SemanticDistance](https://cran.r-project.org/package=SemanticDistance) v0.1.1: Implements tools to clean and format language transcripts based on a series of transformations such as lemmatize words, omit stopwords, and split strings across rows). Functions compute two distinct metrics of cosine semantic distance which reflect pairwise cosine distance between different elements or chunks of a language sample. Guided by user-specified options, the package tools can process stories, dialogues, word lists and more. There are five vignettes including [Dialogues](https://cran.r-project.org/web/packages/SemanticDistance/vignettes/SemanticDistance_Dialogues.html) and [Monologues](https://cran.r-project.org/web/packages/SemanticDistance/vignettes/SemanticDistance_Monologues_Lists.html).
+
+### Mathematics
+
+[ricci](https://cran.r-project.org/package=ricci) v0.1.1: Provides a compact interface for performing tensor calculations by allowing upper and lower index labeling of arrays. Ricci calculus conventions implicitly trigger contractions and diagonal subsetting. Features include explicit tensor operations, such as addition, subtraction and multiplication of tensors via the standard operators, raising and lowering indices, taking symmetric or antisymmetric tensor parts, the Kronecker product, the Levi Civita epsilon, the Christoffel symbols, the Riemann ans Ricci tensors. See [README](https://cran.r-project.org/web/packages/ricci/readme/README.html) and the vignettes [ricci](https://cran.r-project.org/web/packages/ricci/vignettes/ricci.html) and [Tensor Fields](https://cran.r-project.org/web/packages/ricci/vignettes/tensor_fields.html).
+
+
+
+### Medical Applications
+
+
+[diegr](https://cran.r-project.org/package=diegr) v0.1.0: Provides tools to visualize high-density electroencephalography (HD-EEG) data through interactive plots and animations, enabling exploratory and communicative analysis of temporal-spatial brain signals. See the [vignette](https://cran.r-project.org/web/packages/diegr/vignettes/diegr.html).
+
+
+![](diegr.png){fig-alt="Topographic map of baseline signal"}
+
+[Epoch](https://cran.r-project.org/package=Epoch) v1.0.3: Provides tools for working with iEEG matrix data, including downloading curated iEEG data from [The Open Science Framework](https://osf.io/) (OSF), making new objects, processing, and visualizing the data. See the [vignette](https://cran.r-project.org/web/packages/Epoch/vignettes/Epoch.html).
+
+![](Epoch.png){fig-alt="Plot of time series for each electrode"}
+
+
+[optconerrf](https://cran.r-project.org/package=optconerrf) v1.0.1: Provides tools to design and analyze confirmatory adaptive clinical trials using the optimal conditional error framework of [Brannath and Bauer (2004)](https://academic.oup.com/biometrics/article-abstract/60/3/715/7289312?redirectedFrom=fulltext&login=false) and the extensions of [Brannath and Dreher (2024)](https://arxiv.org/abs/2402.00814). There is an [Introduction](https://cran.r-project.org/web/packages/optconerrf/vignettes/introduction.html) and a vignette, [Using Constraints and Interim Estimates for the Optimal Conditional Error Function](https://cran.r-project.org/web/packages/optconerrf/vignettes/constraints_interim_estimates.html).
+
+![](optconerrf.png){fig-alt="Plot of second-stage information required to achieve the target condiitonal power"}
+
+[TrialSimulator](https://cran.r-project.org/package=TrialSimulator) v1.3.0: Implements tools to simulate phase II and/or phase III clinical trials including carrying out graphical testing procedure and combination test under group sequential design. It supports various types of endpoints and adaptive strategies. There are eleven vignettes including: [An Example of Simulating a Trial with Adaptive Design](https://cran.r-project.org/web/packages/TrialSimulator/vignettes/adaptiveDesign.html) and [Simulate Correlated Progression-Free Survival and Overall Survival as Endpoints](https://cran.r-project.org/web/packages/TrialSimulator/vignettes/simulatePfsAndOs.html).
+
+![](TrialSimulator.png){fig-alt="Diagram of model for simulating trial data"}
+
+
+### Programming
+
+[kerasnip](https://cran.r-project.org/package=kerasnip) v0.0.3: Provides a seamless bridge between the `keras` and the `tidymodels` frameworks that allows for the dynamic creation of `parsnip` model specifications for `keras` models. There are eight vignettes, including [Transfer Learning with Keras Applications](https://cran.r-project.org/web/packages/kerasnip/vignettes/applications.html) and [Tidymodels Workflow with Functional Keras Models](https://cran.r-project.org/web/packages/kerasnip/vignettes/workflows_functional.html).
+
+
+
+
+
+### Statistics
+
+[eFCM](https://cran.r-project.org/package=eFCM) v1.0: Implements the exponential Factor Copula Model (eFCM) of [Castro-Camilo & Huser (2020)](https://www.tandfonline.com/doi/full/10.1080/01621459.2019.1647842) for spatial extremes, with tools for dependence estimation, tail inference, and visualization. The package supports likelihood-based inference, Gaussian process modeling via [Matérn covariance functions](https://en.wikipedia.org/wiki/Mat%C3%A9rn_covariance_function), and bootstrap uncertainty quantification. See the [vignette](https://cran.r-project.org/web/packages/eFCM/vignettes/prEurope.html) for an example.
+
+![](eFCM.png){fig-alt="Plot of conditional exceedance probability"}
+
+[inphr](https://cran.r-project.org/package=inphr) v0.0.1: Provides functions for performing null hypothesis testing on samples of persistence diagrams using the theory of permutations. Inputs can be either samples of persistence diagrams themselves or vectorizations. In the former case, they are embedded in a metric space using either the Bottleneck or Wasserstein distance. In the latter case, persistence data becomes functional data. See [Pini & Vantini (2017)](https://www.tandfonline.com/doi/full/10.1080/10485252.2017.1306627) and [Lovato et al. (2020)]() for background and look [here](https://www.sciencedirect.com/science/article/abs/pii/S0167947319302518?via%3Dihub) for an example.
+
+![](inphr.png){fig-alt="Functional data plot"}
+
+[ordinalTables](https://cran.r-project.org/package=ordinalTables) v1.0.0.3: Provides over 340 functions to fit a variety of models to two-way tables with ordered categories. Most models apply to tables with correlated ordered response categories. There is a particular focus on rater data and models for rescore tables. Functions are organized by the last name of the primary author of the source article suggesting the model. There are five vignettes, including [Goodman's Analysis of Association](https://cran.r-project.org/web/packages/ordinalTables/vignettes/analysis_of_association.html) and [Models to Fit Square Tables](https://cran.r-project.org/web/packages/ordinalTables/vignettes/tests_of_square_tables.html).
+
+[SLGP](https://cran.r-project.org/package=SLGP) v1.0.0: Provides tools for conditional and spatially dependent density estimation using spatial logistic Gaussian processes. Probability densities are represented through finite-rank Gaussian process priors transformed via a spatial logistic density transformation. Functions include density prediction, quantile and moment estimation, sampling methods, and preprocessing. See [Leonard (1978)](https://academic.oup.com/jrsssb/article/40/2/113/7027600?login=false), [Lenk (1988)](https://www.tandfonline.com/doi/abs/10.1080/01621459.1988.10478625), and other references provided for background. There is an [introduction](https://cran.r-project.org/web/packages/SLGP/vignettes/IntroductionSLGP.html) and an additional [vignette](https://cran.r-project.org/web/packages/SLGP/vignettes/SLGPdiscrete.html).
+
+![](SLGP.png){fig-alt="Plot showing multiple densities of median value vs age of home"}
+
+
+### Utilities
+
+[houba](https://cran.r-project.org/package=houba) v0.1.0: Provides tools to manipulate data through memory-mapped files, as vectors, matrices, or arrays. Basic arithmetic functions are implemented. It also includes functions to write and read descriptor files for compatibility with the `bigmemory` package. See the [vignette](https://cran.r-project.org/web/packages/houba/vignettes/houba.html).
+
+
+[memshare](https://cran.r-project.org/package=memshare) v1.0.2: Extends `R` with a mechanism for efficient parallel data access by utilizing `C++` shared memory. Large data objects can be accessed and manipulated directly from `R` without redundant copying, providing both speed and memory efficiency. See [README](https://cran.r-project.org/web/packages/memshare/readme/README.html) to get started.
+
+
+[plumber2](https://cran.r-project.org/package=plumber2) v0.1.0: Provides tools to automatically create a web server from annotated `R` files or by building it up programmatically. Includes automatic `OpenAPI` documentation, input handling, asynchronous evaluation, and plugin support. There are ten vignettes, including [Get Started](https://cran.r-project.org/web/packages/plumber2/vignettes/plumber.html) and [Programmatic Usage](https://cran.r-project.org/web/packages/plumber2/vignettes/programmatic-usage.html).
+
+
+### Visualization
+
+[clockplot](https://cran.r-project.org/package=clockplot) v0.8.3: Provides a novel visualization technique for plotting time stamped events on a 24-hour circular clock face. This is particularly useful for analyzing daily patterns, event clustering, and gaps in temporal data. See the vignettes [clockplot](https://cran.r-project.org/web/packages/clockplot/vignettes/clockplot.html) and [clockchart construction](https://cran.r-project.org/web/packages/clockplot/vignettes/clockchart-construction.html).
+
+![](clockplot.png){fig-alt="Example of a Clock Plot"}
+
+[ggDNAvis](https://cran.r-project.org/package=ggDNAvis) v0.3.0: Use `ggplot2 to visualize a single DNA/RNA sequence split across multiple lines,  multiple DNA/RNA sequences, each occupying a whole line, or base modifications such as DNA methylation called by modified bases models in [Dorado](https://nanoporetech.com/software/other/dorado) or [Guppy](https://nanoporetech.com/software/other/guppy). See the *non-expert* [user guide](https://ejade42.github.io/ggDNAvis/).
+
+![](ggDNAvis.png){fig-alt="Methylation Visualization"}
+
+[isocubes](https://cran.r-project.org/package=isocubes) v1.0.0: Provides functions for visualizing voxel data using fixed viewpoint isometric cubes for each data point. There are four vignettes, including [Animated Isosurface](https://cran.r-project.org/web/packages/isocubes/vignettes/animated-isosurface.html) and [Heightmaps](https://cran.r-project.org/web/packages/isocubes/vignettes/heightmaps.html).
+
+![](isocubes.png){fig-alt="3D R"}
+
+
+
+[radviz3d](https://cran.r-project.org/package=radviz3d) v2.3.0: Extends traditional radial coordinate visualization techniques to three-dimensional space for enhanced exploration and analysis of high-dimensional datasets through interactive 3D plots. See [Zhu, Dai & Maitra (2022)](https://www.tandfonline.com/doi/full/10.1080/10618600.2021.2020129) for background and [README](https://cran.r-project.org/web/packages/radviz3d/readme/README.html) for examples. 
+
+![](radviz3d.png){fig-alt="3D radial plot"}
+
+
+
+[regress3d](https://cran.r-project.org/package=regress3d) v1.0.0: Provides functions that use [`plotly`](https://CRAN.R-project.org/package=plotly) to plot regression surfaces and marginal effects in three dimensions. See [README](https://cran.r-project.org/web/packages/regress3d/readme/README.html).
+
+
+![](regress3d.gif){fig-alt="3D plot of regression surface"}
+
+[splineplot](https://cran.r-project.org/package=splineplot) v0.1.1: Provides functions to create `ggplot2`visualizations of smooth effects from GAM (Generalized Additive Models) fitted with `mgcv`.  Supports interaction terms and provides hazard ratio plots with histograms for survival analysis. See the [vignette](https://cran.r-project.org/web/packages/splineplot/vignettes/getting-started.html).
+
+![](splineplot.png){fig-alt="Spline plot with axes for odds ratio and percent of population"}
+
+
+
+
+
+
+
+
+
+:::
+
+
+
+::::
