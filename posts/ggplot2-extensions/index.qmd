@@ -21,7 +21,7 @@ If you use ggplot2, you are probably used to creating plots with `geom_line()` a
 
 Enter the exciting world of creating your own ggplot2 extensions.
 
-I had the pleasure of meeting [Gina Reynolds](https://github.com/EvaMaeRey) when I first began my job at Posit (then RStudio) and she was contributing a blog post on [flipbookr](https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html#1). Since then, we've kept in touch through the [ggextenders](https://ggplot2-extenders.github.io/ggplot-extension-club/) extension club. Every few months, the club meets virtually to hear from a ggextender (someone who works with ggplot2 extensions). The speaker can talk about a custom geom they've created for the community or more general R visualization topics. Each presentation is insightful and interesting. I've had the opportunity to learn about cool packages like [ggstats](https://larmarange.github.io/ggstats/).  [Join us sometime](https://docs.google.com/forms/d/e/1FAIpQLSe3M1KwUPrmTfEGuuQp0fZ0J7dZkk_82gb310JCvdouMTa_7Q/viewform)!
+I had the pleasure of meeting [Gina Reynolds](https://github.com/EvaMaeRey) when I first began my job at Posit (then RStudio) and she was contributing a blog post on [flipbookr](https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html#1). Since then, we've kept in touch through the [ggextenders](https://ggplot2-extenders.github.io/ggplot-extension-club/) extension club. Every few months, the club meets virtually to hear from a ggextender (someone who works with ggplot2 extensions). The speaker can talk about a custom geom they've created for the community or more general R visualization topics. Each presentation is insightful and interesting. I've had the opportunity to learn about cool packages like [ggstats](https://larmarange.github.io/ggstats/).  [Join us sometime by filling out this questionnaire](https://docs.google.com/forms/d/e/1FAIpQLSe3M1KwUPrmTfEGuuQp0fZ0J7dZkk_82gb310JCvdouMTa_7Q/viewform)!
 
 However, I was never a "ggextender" myself (having just used and never developed extenders). I found the idea of creating an extension daunting. That is, until recently!
 
@@ -167,7 +167,7 @@ Now, define the user-facing function. This is more boilerplate code that you edi
 
 The `stat_*()` function name derives from the Stat objects’s name, but is snake case.[@cr-step-3a]{highlight="1"}
 
-"Point" is specified as the default for the geom argument in the function. This means that the ggplot2::GeomPoint will be used in the layer unless otherwise specified by the user.[@cr-step-3a]{highlight="3"}
+"Point" is specified as the default for the geom argument in the function. This means that the `ggplot2::geom_point()` will be used in the layer unless otherwise specified by the user.[@cr-step-3a]{highlight="3"}
 
 `StatMedians` defines the new layer function, so summarizing the medians will be in play before the layer is rendered.[@cr-step-3a]{highlight="6"}
 
