@@ -1,0 +1,51 @@
+/*-- scss:defaults --*/
+
+// Fonts
+ @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
+
+$link-color: #39729E;
+$text-muted: #6a737b;
+$navbar-bg: #FFFFFF;
+$body-bg: #FFFFFF;
+$font-size-root: .9rem;
+$font-family-sans-serif: "Open Sans";
+
+/*-- scss:rules --*/
+
+.left {
+  text-align: left;
+  padding-left: 1em;
+}
+
+.right {
+  text-align: right;
+  padding-right: 1em;
+}
+
+
+.dropdown-text {
+  color: "#FFFFFF";
+}
+
+.navbar-title {
+  font-size: 26px;
+} 
+
+.listing-categories {
+  font-weight: 300;
+  font-size: 1.4rem;
+  text-decoration: none;
+}
+
+a.listing-categories {
+  color: #565A5F;
+  text-decoration: none;
+}
+
+.container {
+  transition-duration: 0.4s;
+}
+
+.container:hover {
+  background-color: #ECF0F6;
+}
