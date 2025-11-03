@@ -1,7 +1,7 @@
 ---
 title: "An Introduction to Writing Your Own ggplot2 Geoms"
 author: "Isabella Velásquez"
-date: 2025-10-30
+date: 2025-11-03
 editor: source
 description: "The ggextenders club provides inspiration and resources for those venturing into the exciting world of creating custom ggplot2 extensions."
 image: ggextenders-hex.png
