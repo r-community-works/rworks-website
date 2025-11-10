@@ -1,17 +1,17 @@
 ---
 title: "ROC Curves in Two Lines of Code"
 author: "Robert Horton"
-date: 2025-11-10
+date: 2025-11-12
 format: html
 editor: source
 description: "This post explains the basics of ROC curves using simple code and intuitive explanations."
-image: ""
-image-alt: ""
+image: "turtle.png"
+image-alt: "ROC Curve drawn by a 'turtle' walking through specificity/sensitivity plane"
 categories: "ROC Curves"
 ---
 
 
-*Editor's Note: This post first appeared on the Revolution Analytics/Microsoft Blog, "Revolutions" on August 2, 2016. As the Revolutions blog no longer exists, we republishing it here with permission from the author.*
+*Editor's Note: This post first appeared on the Revolution Analytics/Microsoft Blog, "Revolutions" on August 2, 2016. As the Revolutions blog no longer exists, we are republishing it here with permission from the author.*
 
 
 [ROC curves](https://en.wikipedia.org/wiki/Receiver_operating_characteristic) are commonly used to characterize the sensitivity/specificity tradeoffs for a binary classifier. Most machine learning classifiers produce real-valued scores that correspond with the strength of the prediction that a given case is positive. Turning these real-valued scores into yes or no predictions requires setting a threshold; cases with scores above the threshold are classified as positive, and cases with scores below the threshold are predicted to be negative. Different threshold values give different levels of sensitivity and specificity. A high threshold is more conservative about labeling a case as positive; this makes it less likely to produce false positive results but more likely to miss cases that are in fact positive (lower rate of true positives). A low threshold produces positive labels more liberally, so it is less specific (more false positives) but also more sensitive (more true positives). The ROC curve plots true positive rate against false positive rate, giving a picture of the whole spectrum of such tradeoffs.
@@ -20,31 +20,27 @@ There are commonly used packages to plot these curves and to compute metrics fro
 
 The calculation has two steps:
 
-Sort the observed outcomes by their predicted scores with the highest scores first.
-Calculate cumulative True Positive Rate (TPR) and True Negative Rate (TNR) for the ordered observed outcomes.
+1. Sort the observed outcomes by their predicted scores with the highest scores first.
+2. Calculate cumulative True Positive Rate (TPR) and True Negative Rate (TNR) for the ordered observed outcomes.
 
-
-
-The function takes two inputs: labels is a Boolean vector with the actual classification of each case, and scores is a vector of real-valued prediction scores assigned by some classifier.
-
-Since this is a binary outcome, the labels vector is a series of TRUE and FALSE values (or ones and zeros if you prefer). You can think of this series of binary values as a sequence of instructions for [turtle graphics](https://en.wikipedia.org/wiki/Logo_(programming_language)), only in this case the turtle has a compass and takes instructions in terms of absolute plot directions (North or East) instead of relative left or right. The turtle starts at the origin (as turtles do) and it traces a path across the page dictated by the sequence of instructions. When it sees a one (TRUE) it takes a step Northward (in the positive y direction); when it sees a zero (FALSE) it takes a step to the East (the positive x direction). The sizes of the steps along each axis are scaled so that once the turtle has seen all of the ones it will be at 1.0 on the y-axis, and once it has seen all of the zeros it will be at 1.0 on the x-axis. The path across the page is determined by the order of the ones and zeros, and it always finishes in the upper right corner.
-
-The progress of the turtle along the bits of the instruction string represents adjusting the classification threshold to be less and less stringent. Once the turtle has passed a bit, it has decided to classify that bit as positive. If the bit was in fact positive it is a true positive; otherwise it is a false positive. The y-axis shows the true positive rate (TPR), which is the number of true positives encountered so far divided by the total number of actual positives. The x-axis shows the false positive rate (the number of false positives encountered up to that point divided by total number of true negatives). The vectorized implementation of this logic uses cumulative sums (the cumsum function) instead of walking through the values one at a time, though that is what the computer is doing at a lower level.
-
-An ROC “curve” computed in this way is actually a step function. If you had very large numbers of positive and negative cases, these steps would be very small and the curve would appear smooth. (If you actually want to plot ROC curves for large numbers of cases, it could be problematic to plot every point; this one reason that production-grade ROC functions take more than two lines of code.)
-
-First we load the `pROC` package, which we will use later to compare results. Then we define the simple_roc function.
 ```{r}
 #| message: FALSE
 #| warning: FALSE
-#| code-fold: TRUE
-library(pROC)
+#| code-fold: FALSE
+
 simple_roc <- function(labels, scores){
   labels <- labels[order(scores, decreasing=TRUE)]
   data.frame(TPR=cumsum(labels)/sum(labels), FPR=cumsum(!labels)/sum(!labels), labels)
 }
 ```
 
+The function takes two inputs: `labels` is a Boolean vector with the actual classification of each case, and `scores` is a vector of real-valued prediction scores assigned by some classifier.
+
+Since this is a binary outcome, the labels vector is a series of TRUE and FALSE values (or ones and zeros if you prefer). You can think of this series of binary values as a sequence of instructions for [turtle graphics](https://en.wikipedia.org/wiki/Logo_(programming_language)), only in this case the turtle has a compass and takes instructions in terms of absolute plot directions (North or East) instead of relative left or right. The turtle starts at the origin (as turtles do) and it traces a path across the page dictated by the sequence of instructions. When it sees a one (TRUE) it takes a step Northward (in the positive y direction); when it sees a zero (FALSE) it takes a step to the East (the positive x direction). The sizes of the steps along each axis are scaled so that once the turtle has seen all of the ones it will be at 1.0 on the y-axis, and once it has seen all of the zeros it will be at 1.0 on the x-axis. The path across the page is determined by the order of the ones and zeros, and it always finishes in the upper right corner.
+
+The progress of the turtle along the bits of the instruction string represents adjusting the classification threshold to be less and less stringent. Once the turtle has passed a bit, it has decided to classify that bit as positive. If the bit was in fact positive it is a true positive; otherwise it is a false positive. The y-axis shows the true positive rate (TPR), which is the number of true positives encountered so far divided by the total number of actual positives. The x-axis shows the false positive rate (the number of false positives encountered up to that point divided by total number of actual negatives). The vectorized implementation of this logic uses cumulative sums (the cumsum function) instead of walking through the values one at a time, though that is what the computer is doing at a lower level.
+
+An ROC “curve” computed in this way is actually a step function. If you had very large numbers of positive and negative cases, these steps would be very small and the curve would appear smooth. (If you actually want to plot ROC curves for large numbers of cases, it could be problematic to plot every point; this one reason that production-grade ROC functions take more than two lines of code.)
 
 As an example, we will simulate data about widgets. Here we have an input feature x that is linearly related to a latent outcome y which also includes some randomness. The value of y determines whether the widget exceeds tolerance requirements; if it does, it is a bad widget.
 
@@ -75,7 +71,7 @@ test_set %>%
   ggtitle("Bad widgets related to x")
 ```
 
-We reserve about 1/4 of cases for test set, and we’ll use the rest for training a predictive model. The plot shows the test set, since that is the data we’ll use to generate the ROC curves. If x below about 20 all the points are red, and above about 80 they are all black. In between is a region of varying uncertainty with more red at one end and more black at the other.
+We reserve about 1/4 of cases for test set, and we’ll use the rest for training a predictive model. The plot shows the test set, since that is the data we’ll use to generate the ROC curves. If x is below about 20 all the points are red, and if it is above about 80 they are all black. In between is a region of varying uncertainty with more red at one end and more black at the other.
 
 We use the training set to fit a logistic regression model using the x feature to predict whether a given widget is likely to be bad. This model will be used to generate scores for the test set, which will be used together with the actual labels of the test cases to calculate ROC curves. The values from the scores vector will not appear in the plot; they are only used to sort the labels. Two classifiers that put the labels in the same order will have exactly the same ROC curve regardless of the absolute values of the scores. This is shown by comparing the ROC curve you get using either the ‘response’ or the ‘link’ predictions from a logistic regression model. The ‘response’ scores have been mapped into the range between 0 and 1 by a sigmoid function and the ‘link’ scores have not. But either of these scores will put the points in the same order.
 
@@ -102,8 +98,20 @@ score_data %>%
   ggtitle("Both link and response scores put cases in the same order")
 ```
 
+Here the ROC curve for the response scores from the logistic regression model is calculated with the widely used `pROC` package and plotted as a yellow line. The `simple_roc` function was also used to calculate an ROC curve, but in this case it is calculated from the link scores. Since both sets of scores put the labels in the same order, and since both functions are doing essentially the same thing, we get the same curve. The points of the simple_roc curve are plotted as open circles, which land exactly on top of the yellow line. Each point represents a single case in the test set, and the outline colors of the circles show whether that case was a “bad widget” (red) or not (black). Red circles tell the turtle to go North, and black circles tell it to go East.
 
-Here the ROC curve for the response scores from the logistic regression model is calculated with the widely used `pROC` package and plotted as a yellow line. The simple_roc function was also used to calculate an ROC curve, but in this case it is calculated from the link scores. Since both sets of scores put the labels in the same order, and since both functions are doing essentially the same thing, we get the same curve. The points of the simple_roc curve are plotted as open circles, which land exactly on top of the yellow line. Each point represents a single case in the test set, and the outline colors of the circles show whether that case was a “bad widget” (red) or not (black). Red circles tell the turtle to go North, and black circles tell it to go East.
+```{r roc_curve, fig.height=7, fig.width=7}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+
+library(pROC)
+plot(roc(test_set$bad_widget, glm_response_scores, direction="<"),
+		 col="yellow", lwd=3, asp=1, main="The turtle finds its way")
+
+glm_simple_roc <- simple_roc(test_set$bad_widget=="TRUE", glm_link_scores)
+with(glm_simple_roc, points(1 - FPR, TPR, col=1 + labels))
+```
 
 Note that the `pROC` package labels the x-axis “Specificity” with 1.0 on the left and 0 on the right (specificity is 1 minus the false positive rate). This means we had to do a similar subtraction to plot the simple_roc results the same way. Also, left to its own devices, roc decides how to label the cases and controls based on which group has the higher median score, which means it can flip a negative AUC to be positive (basically, a consistently wrong predictor can still be useful if you use reverse psychology). I specify direction="<" to prevent this since the simple_roc function is not that smart.
 
@@ -111,7 +119,7 @@ This brings up another limitation of this simple approach; by assuming that the 
 
 We’ll show an extreme case by creating an unbalanced dataset that is positive in only about 1% of cases. For prediction, we just always guess that the result will be negative (achieving 99% accuracy). Since all the scores are the same, we don’t really have any basis for sorting the outcomes; `pROC` handles this correctly and draws a diagonal line. The turtle assumes that the order of the cases means something when in fact it does not, and it takes a sort of random walk up to the top right corner.
 
-```{r}
+```{r wandering_along_diagonal, fig.height=7, fig.width=7}
 #| message: FALSE
 #| warning: FALSE
 #| code-fold: TRUE
@@ -121,16 +129,10 @@ P <- 0.01
 rare_success <- sample(c(TRUE, FALSE), N, replace=TRUE, prob=c(P, 1-P))
 guess_not <- rep(0, N)
 plot(roc(rare_success, guess_not), print.auc=TRUE)
-## 
-## Call:
-## roc.default(response = rare_success, predictor = guess_not)
-## 
-## Data: guess_not in 1978 controls (rare_success FALSE) < 22 cases (rare_success TRUE).
-## Area under the curve: 0.5
+
 simp_roc <- simple_roc(rare_success, guess_not)
 with(simp_roc, lines(1 - FPR, TPR, col="blue", lty=2))
 simp_roc2 <- simple_roc(rare_success, runif(length(guess_not)))
-
 
 ```
 
@@ -138,7 +140,7 @@ If you repeat this simulation with larger value of N you will see that the turtl
 
 For a less extreme example, you can usually generate diagonal segments in an ordinary ROC curve by rounding scores so that multiple points get identical ranks; this is left as an exercise for the reader.
 
-Because ROC curves are so instructive and commonly used, they deserve some study and contemplation. For further information I recommend this shiny app showing continuous-valued ROC curves computed from probability distributions, and the excellent paper by Tom Fawcett entitled [An introduction to ROC analysis](https://ccrma.stanford.edu/workshops/mir2009/references/ROCintro.pdf).
+Because ROC curves are so instructive and commonly used, they deserve some study and contemplation. For further information I recommend this [shiny app](https://kennis-research.shinyapps.io/ROC-Curves/) showing continuous-valued ROC curves computed from probability distributions, and the excellent paper by Tom Fawcett entitled [An introduction to ROC analysis](https://ccrma.stanford.edu/workshops/mir2009/references/ROCintro.pdf).
 
 
 *Bob Horton started his career as a molecular biologist, studying genes involved in immune responses (MHC evolution and TCR repertoire), and developing genetic engineering techniques. Analyzing and simulating biological data led him to data science and his current interests, which include semantic searching of text data and decision modeling.*
