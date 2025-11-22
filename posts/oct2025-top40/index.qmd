@@ -1,0 +1,83 @@
+---
+title: "October 2025 Top 40 New CRAN Packages"
+author: "Joseph Rickert"
+date: 2025-11-28
+description: "Here are my picks of the best of the XXXXXXX new packages that landed on CRAN in October, organized into thirteen categories: Computational Methods, Data, Decision Analysis, Ecology, Epidemiology, Finance, Machine Learning, Mathematics, Medical Applications, Programming, Statistics, Utilities, and Visualization."
+image: ""
+image-alt: ""
+categories: "Top 40"
+editor: source
+---
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+![](.png){fig-alt=""}
+
+
+### Data
+
+
+### Econometrics
+
+[pvars](https://cran.r-project.org/package=pvars) v1.1.1: Implements panel cointegration rank tests, estimators for panel vector autoregressive models, and identification methods for panel structural vector autoregressive models. Functions allow to account for cross-sectional dependence and for structural breaks in the deterministic terms of the VAR processes. Particularly noteworthy are those that implement the correlation-augmented inverse normal test on the cointegration rank by [Arsova and Oersal (2021)](https://www.sciencedirect.com/science/article/pii/S2452306220300484?via%3Dihub), the two-step estimator for pooled cointegrating vectors by [Breitung (2005)](https://www.tandfonline.com/doi/abs/10.1081/ETC-200067895), and the pooled identification based on independent component analysis by [Herwartz and Wang (20240)](https://onlinelibrary.wiley.com/doi/10.1002/jae.3044). See the [vignette](https://cran.r-project.org/web/packages/pvars/vignettes/pvars_vignette.pdf) for a detailed introduction to the package and undersying theory
+
+
+![](pvars.png){fig-alt="Scree plot showing share of variance"}
+
+
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+
+### Machine Learning (continued)
+
+### Medical Statistics
+
+[PERSUADE](https://cran.r-project.org/package=PERSUADE) v0.1.2: Provides a standardized framework to support the selection and evaluation of parametric survival models for time-to-event data. Includes tools for visualizing survival data, checking proportional hazards assumptions ([Grambsch and Therneau (1994)](https://academic.oup.com/biomet/article-abstract/81/3/515/257037?redirectedFrom=fulltext&login=false)), comparing parametric ([Ishak et al. (2013)](https://link.springer.com/article/10.1007/s40273-013-0064-3)), spline ([Royston and Parmar (2002)](https://onlinelibrary.wiley.com/doi/10.1002/sim.1203)) and cure models, examining hazard functions, and evaluating model extrapolation. Methods are consistent with recommendations in the NICE Decision Support Unit Technical Support [Documents 14 and 21](https://sheffield.ac.uk/nice-dsu/tsds/survival-analysis). See [README](https://cran.r-project.org/web/packages/PERSUADE/readme/README.html) to get started.
+
+![](PERSUADE.png){fig-alt="Workflow diagram"}
+
+
+
+[shinymrp](https://cran.r-project.org/package=shinymrp) v0.9.1: Provides a dual interface, graphical and programmatic for multilevel regression and post stratification applications offering tools for data cleaning, exploratory analysis, model building, and visualization. Users can apply the method to a variety of datasets including electronic health records to sample survey data. See [Si (2025)](https://projecteuclid.org/journals/statistical-science/volume-40/issue-2/On-the-Use-of-Auxiliary-Variables-in-Multilevel-Regression-and/10.1214/24-STS932.short) for background. There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/shinymrp/vignettes/getting-started.html) and [Programmatic workflow demonstration](https://cran.r-project.org/web/packages/shinymrp/vignettes/workflow.html).
+
+![](shinymrp.png){fig-alt="Model Comparison Plot"}
+
+### Statistics
+
+[choicedata](https://cran.r-project.org/package=choicedata) v0.1.0: Offers a set of objects tailored to simplify working with choice data. It enables the computation of choice probabilities and the likelihood of various types of choice models based on given data. Look [here](https://loelschlaeger.de/choicedata/) for a detailed introduction.
+
+![](choicedata.png){fig-alt="Workflow diagram"}
+
+
+[PanelSelect](https://cran.r-project.org/package=PanelSelect) v1.0.0: Extends the Heckman selection framework to panel data with individual random effects. The first stage models participation via a panel Probit specification, while the second stage can take a panel linear, Probit, Poisson, or Poisson log-normal form. Model details are provided in [Bailey and Peng (2025)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5475626) and [Peng and Van den Bulte (2024)](https://pubsonline.informs.org/doi/10.1287/mnsc.2019.01897). See the [vignette](https://cran.r-project.org/web/packages/PanelSelect/vignettes/vignette.html) for an introduction.
+
+
+[projoint](https://cran.r-project.org/package=projoint) v1.0.6: Provides tools for analyzing data generated from conjoint survey experiments including functions to estimate marginal means and average marginal component effects, with corrections for measurement error and methods for profile-level and choice-level estimators, bias correction using intra-respondent reliability, and visualization utilities. For details on the methodology, see [Clayton et al. (2025)](https://gking.harvard.edu/conjointE>) There are seven vignetes including [Analyze and Visualize Important QOIs](https://cran.r-project.org/web/packages/projoint/vignettes/analyze.html) and [Explore and Compare Further](https://cran.r-project.org/web/packages/projoint/vignettes/explore.html)
+
+![](projoint.png){fig-alt="Plot of mean preferences"}
+
+### Time Series
+
+[kardl](https://cran.r-project.org/package=kardl) v0.1.1: Implements estimation procedures for Autoregressive Distributed Lag (ARDL) and Nonlinear ARDL (NARDL) models, which allow researchers to investigate both short- and long-run relationships in time series data under mixed orders of integration. The package includes several cointegration testing approaches such as the [Pesaran et al. (2001)](https://www.sciencedirect.com/science/article/abs/pii/S0304407601000495?via%3Dihub) F and t bounds tests, the Banerjee error correction test, and the restricted ECM test, together with diagnostic tools including Wald tests for asymmetry, ARCH tests, and stability procedures. See [README](https://cran.r-project.org/web/packages/kardl/readme/README.html) to get started.
+
+
+end
+
+
+
+
+:::
+
+
+
+::::
+
