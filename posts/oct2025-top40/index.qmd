@@ -26,18 +26,31 @@ editor: source
 
 ![](pvars.png){fig-alt="Scree plot showing share of variance"}
 
+### Genomics
+
+[BTIME](https://cran.r-project.org/package=BTIME) v1.0.0: Implements Bayesian Hierarchical beta-binomial models for modeling cell population to predictors/exposures. This package utilizes `runjags` to run Gibbs sampling with parallel chains. Options for different covariances/relationship structures between parameters of interest. There is an [Introduction](https://cran.r-project.org/web/packages/BTIME/vignettes/BICAM.html) and a vignette on [Covariance Structures](https://cran.r-project.org/web/packages/BTIME/vignettes/BICAM_Cov.html).
+
+![](BTIME.png){fig-alt="T cell hierarchy"}
 
 
-:::
-
-::: {.column width="10%"}
-
-:::
-
-::: {.column width="45%"}
+### Machine Learning
 
 
-### Machine Learning (continued)
+[bigPCAcpp](https://cran.r-project.org/package=bigPCAcpp) v0.9.0: Implements high performance principal component analysis routines that operate directly on `bigmemory::big.matrix` objects. The package avoids materialising large matrices in memory by streaming data through `BLAS` and `LAPACK` kernels and provides helpers to derive scores, loadings, correlations, and contribution diagnostics, including utilities that stream results into `bigmemory`-backed matrices for file-based workflows. Also implements the the Scalable principal component analysis of [Elgamal et al. (2015)](https://dl.acm.org/doi/10.1145/2723372.2751520). There is an [Introduction](https://cran.r-project.org/web/packages/bigPCAcpp/vignettes/bigPCAcpp.html) and a vignette on [Benchmarking](https://cran.r-project.org/web/packages/bigPCAcpp/vignettes/bigPCA-benchmarks.html).
+
+![](bigPCAcpp.png){fig-alt="Plot showing benchmark times"}
+
+[FuzzySpec](https://cran.r-project.org/package=FuzzySpec) v1.0.0: Implements *FVIBES* the Fuzzy Variable-Importance Based Eigenspace Separation algorithm. See the [vignette](https://cran.r-project.org/web/packages/FuzzySpec/vignettes/FuzzySpec.html).
+
+![](FuzzySpec.png){fig-alt="Plot showing fuzzy spectral clustering of spiral data"}
+
+
+[roclab](https://cran.r-project.org/package=roclab) v0.1.4: Implements ROC (Receiver Operating Characteristic)–Optimizing Binary Classifiers, supporting both linear and kernel models. Scalability for large datasets is achieved through approximation-based options, which accelerate training and make fitting feasible on large data. Utilities are provided for model training, prediction, and cross-validation. The implementation builds on the ROC-Optimizing Support Vector Machines. See [Hernàndez-Orallo et al. (2004)]() background ant the [vignette](https://cran.r-project.org/web/packages/roclab/vignettes/roclab-intro.html) for examples.
+
+
+[rSDR](https://cran.r-project.org/package=rSDR) v1.0.3.0: Implements a novel sufficient-dimension reduction method that is robust against outliers using alpha-distance covariance and manifold-learning in dimensionality reduction problems. See [Huang et al.(2024)](https://www.tandfonline.com/doi/full/10.1080/10485252.2024.2313137) for details and the [vignette](https://cran.r-project.org/web/packages/rSDR/vignettes/rSDR_vignette.html) for examples. 
+
+![](rSDR.png){fig-alt="3D projectio plot"}
 
 ### Medical Statistics
 
@@ -50,6 +63,14 @@ editor: source
 [shinymrp](https://cran.r-project.org/package=shinymrp) v0.9.1: Provides a dual interface, graphical and programmatic for multilevel regression and post stratification applications offering tools for data cleaning, exploratory analysis, model building, and visualization. Users can apply the method to a variety of datasets including electronic health records to sample survey data. See [Si (2025)](https://projecteuclid.org/journals/statistical-science/volume-40/issue-2/On-the-Use-of-Auxiliary-Variables-in-Multilevel-Regression-and/10.1214/24-STS932.short) for background. There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/shinymrp/vignettes/getting-started.html) and [Programmatic workflow demonstration](https://cran.r-project.org/web/packages/shinymrp/vignettes/workflow.html).
 
 ![](shinymrp.png){fig-alt="Model Comparison Plot"}
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
 
 ### Statistics
 
@@ -57,17 +78,49 @@ editor: source
 
 ![](choicedata.png){fig-alt="Workflow diagram"}
 
+[GPpenalty](https://cran.r-project.org/package=GPpenalty) v1.0.0: Implements maximum likelihood estimation for Gaussian processes, supporting both isotropic and separable models with predictive capabilities. Includes penalized likelihood estimation following [Li and Sudjianto (2005)](https://www.tandfonline.com/doi/abs/10.1198/004017004000000671) using decorrelated prediction error (DPE)-based metrics, motivated by Mahalanobis distance, that account for uncertainty, and cross validation techniques for tuning parameter selection. Designed specifically for small datasets. See [README](https://cran.r-project.org/web/packages/GPpenalty/readme/README.html) for an example.
+
+![](GPpenalty.png){fig-alt="Plot comparing target function with estimation"}
+
+[mda.biber](https://cran.r-project.org/package=mda.biber) v1.0.1: Implements the factor analysis developed in [Biber (1992)](https://link.springer.com/article/10.1007/BF00136979). Its most common use is to describe language as it varies by genre, register, and use. This package contains functions for carrying out the calculations needed to describe and plot MDA results: dimension scores, dimension means, and factor loadings. See the [vignette](https://cran.r-project.org/web/packages/mda.biber/vignettes/introduction.html) for an introduction.
+
+
+![](mda.png){fig-alt="Boxplots of contributing variables"}
 
 [PanelSelect](https://cran.r-project.org/package=PanelSelect) v1.0.0: Extends the Heckman selection framework to panel data with individual random effects. The first stage models participation via a panel Probit specification, while the second stage can take a panel linear, Probit, Poisson, or Poisson log-normal form. Model details are provided in [Bailey and Peng (2025)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5475626) and [Peng and Van den Bulte (2024)](https://pubsonline.informs.org/doi/10.1287/mnsc.2019.01897). See the [vignette](https://cran.r-project.org/web/packages/PanelSelect/vignettes/vignette.html) for an introduction.
+
+[partialling.out](https://cran.r-project.org/package=partialling.out) v0.2.0: Creates a data frame with the residuals of partial regressions of the main explanatory variable and the variable of interest. This method follows the Frisch-Waugh-Lovell theorem, as explained in [Lovell (2008)](https://www.tandfonline.com/doi/abs/10.3200/JECE.39.1.88-91). See the [vignette](https://cran.r-project.org/web/packages/partialling.out/vignettes/partialling_out.html).
+
+![](partial.png){fig-alt="Residual Plot"}
 
 
 [projoint](https://cran.r-project.org/package=projoint) v1.0.6: Provides tools for analyzing data generated from conjoint survey experiments including functions to estimate marginal means and average marginal component effects, with corrections for measurement error and methods for profile-level and choice-level estimators, bias correction using intra-respondent reliability, and visualization utilities. For details on the methodology, see [Clayton et al. (2025)](https://gking.harvard.edu/conjointE>) There are seven vignetes including [Analyze and Visualize Important QOIs](https://cran.r-project.org/web/packages/projoint/vignettes/analyze.html) and [Explore and Compare Further](https://cran.r-project.org/web/packages/projoint/vignettes/explore.html)
 
 ![](projoint.png){fig-alt="Plot of mean preferences"}
 
+[RegCalReliab](https://cran.r-project.org/package=RegCalReliab) v0.2.0: Implements regression calibration methods for correcting measurement error in regression models using external or internal reliability studies. Methods are described in [Carroll et al. (2006)](https://www.taylorfrancis.com/books/mono/10.1201/9781420010138/measurement-error-nonlinear-models-ciprian-crainiceanu-raymond-carroll-leonard-stefanski-david-ruppert). See the [vignette](https://cran.r-project.org/web/packages/RegCalReliab/vignettes/regcal_example.html).
+
+
+[RTMBdist](https://cran.r-project.org/package=RTMBdist) v0.1.0: Extends the functionality of the [`RTMB`](https://kaskr.r-universe.dev/RTMB) package by providing a collection of non-standard probability distributions compatible with automatic differentiation. Automatic differentiation and Laplace approximation are described in [Kristensen et al. (2016)](https://www.jstatsoft.org/article/view/v070i05). See the vignettes [Examples](https://cran.r-project.org/web/packages/RTMBdist/vignettes/Examples.html) and [distlist](https://cran.r-project.org/web/packages/RTMBdist/vignettes/distlist.html).
+
+
 ### Time Series
 
+[conformalForecast](https://cran.r-project.org/package=conformalForecast) v0.1.0: Provides methods and tools for performing multistep-ahead time series forecasting using conformal prediction methods including classical conformal prediction, adaptive conformal prediction, conformal PID (Proportional-Integral-Derivative) control, and autocorrelated multistep-ahead conformal prediction. The methods were described by [Wang and Hyndman (2024)](https://arxiv.org/abs/2410.13115). See the [vignette](https://cran.r-project.org/web/packages/conformalForecast/vignettes/conformalForecast.html) for examples.
+
+![](conformalF.png){fig-alt="Time series plots for various methods and parameter settings"}
+[funbootband](https://cran.r-project.org/package=funbootband) v0.2.0: Provides methods to compute simultaneous prediction and confidence bands for dense time series data. The implementation builds on the functional bootstrap approach proposed by [Lenhoff et al. (1999)](https://www.sciencedirect.com/science/article/abs/pii/S0966636298000435?via%3Dihub) and extended by [Koska et al. (2023)](https://www.sciencedirect.com/science/article/abs/pii/S0021929023000751?via%3Dihub) to support both independent and clustered (hierarchical) data. See the [vignette](https://cran.r-project.org/web/packages/funbootband/vignettes/funbootband-intro.html).
+
+![](funboot.png){fig-alt="Time series with multiple confidence bands"}
+
 [kardl](https://cran.r-project.org/package=kardl) v0.1.1: Implements estimation procedures for Autoregressive Distributed Lag (ARDL) and Nonlinear ARDL (NARDL) models, which allow researchers to investigate both short- and long-run relationships in time series data under mixed orders of integration. The package includes several cointegration testing approaches such as the [Pesaran et al. (2001)](https://www.sciencedirect.com/science/article/abs/pii/S0304407601000495?via%3Dihub) F and t bounds tests, the Banerjee error correction test, and the restricted ECM test, together with diagnostic tools including Wald tests for asymmetry, ARCH tests, and stability procedures. See [README](https://cran.r-project.org/web/packages/kardl/readme/README.html) to get started.
+
+
+![](SimpleU.png){fig-alt="Example of an Upset Plot"}
+
+### Visualization
+
+[SimpleUpset](https://cran.r-project.org/package=SimpleUpset) v0.1.3: Provides functions to create Upset plots using a combination of `ggplot2` and `patchwork'. See [Lex et al. (2014)](https://ieeexplore.ieee.org/document/6876017) for background and the [vignette]() for examples.
 
 
 end
