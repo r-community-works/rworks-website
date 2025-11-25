@@ -18,6 +18,45 @@ editor: source
 
 ### Data
 
+[AlgeriAPIs](https://cran.r-project.org/package=AlgeriAPIs) v0.1.0: Provides functions to access data from public RESTful APIs including *World Bank API* and *REST Countries API*, retrieving real-time or historical information related to Algeria. The package enables users to query economic indicators and international demographic and geopolitical statistics in a reproducible way. See the [vignette](https://cran.r-project.org/web/packages/AlgeriAPIs/vignettes/AlgeriAPIs_vignette.html).
+
+![](Algeria.png){fig-alt="% of Algerian population using internet compared to other regions"}
+
+[CopernicusClimate](https://cran.r-project.org/package=CopernicusClimate) v0.0.3: Provides functions to subset and download data from [EU Copernicus Climate Data Service](https://cds.climate.copernicus.eu/) including information about the Earth's past, present and future climate. See the vignettes [Downloading from Copernicus](https://cran.r-project.org/web/packages/CopernicusClimate/vignettes/download.html) and [Translate API Code](https://cran.r-project.org/web/packages/CopernicusClimate/vignettes/translate.html).
+
+[FakeDataR](https://cran.r-project.org/package=FakeDataR) v0.2.2: Provides functions to generate privacy-preserving synthetic datasets that mirror structure, types, factor levels, and missingness; export bundles for *LLM* workflows and build fake data directly from `SQL` database tables without reading real rows. See [Nowok et al. (2016)](https://journal.r-project.org/articles/RJ-2016-019/index.html) for background methods and [Bommasani et al. (2021)](https://arxiv.org/abs/2108.07258) for an overview of the foundation model. There are three vignettes includint [Getting started](https://cran.r-project.org/web/packages/FakeDataR/vignettes/getting-started.html) and [Priacy and validation](https://cran.r-project.org/web/packages/FakeDataR/vignettes/privacy-and-validation.html).
+
+
+[faunabr](https://cran.r-project.org/package=faunabr) v1.0.0: Provides functions to retrieve, filter and spatialize data from the [Catálogo Taxônomico da Faunado Brasil](https://fauna.jbrj.gov.br/fauna/listaBrasil/PrincipalUC/PrincipalUC.do;jsessionid=224496C2BF225A44F7B2B31C67858904). There are eight vignettes including [Getting Started](https://cran.r-project.org/web/packages/faunabr/vignettes/getting_started.html) and [Flag Erroneous Records](https://cran.r-project.org/web/packages/faunabr/vignettes/Spatialize_faunabr.html). 
+
+![](faunabr.png){fig-alt="Map showing true and false records."}
+
+
+[ForCausality](https://CRAN.R-project.org/package=ForCausality) v0.1.0: Provides a comprehensive set of datasets and tools for causal inference research that includes data from clinical trials, cancer studies, epidemiological surveys, environmental exposures, and health-related observational studies. The package is inspired by the foundational work of [Pearl (2009)](https://www.cambridge.org/core/books/causality/B0046844FAE10CBF274D4ACBDAEB5F5B). See the [vignette](https://cran.r-project.org/web/packages/ForCausality/vignettes/ForCausality_vignette.html).
+
+[healthmotionR](https://cran.r-project.org/package=healthmotionR) v0.2.0: Provides a broad collection of datasets focused on health, biomechanics, and human motion including clinical, physiological, and kinematic information from diverse sources, covering aspects such as surgery outcomes, vital signs, rheumatoid arthritis, osteoarthritis, accelerometry, gait analysis, motion sensing, and biomechanics experiments. See the [vignette](https://cran.r-project.org/web/packages/healthmotionR/vignettes/healthmotionR_vignette.html).
+
+![](healthmotionR.png){fig-alt=" Distribution of Body Temperature by Sex"}
+
+[imfapi](https://cran.r-project.org/package=imfapi) v0.1.2: Provides user-friendly functions for programmatic access to macroeconomic data from the International Monetary Fund's [SDMX 3.0 IMF Data API](https://data.imf.org/en/Resource-Pages/IMF-API). See [README](https://cran.r-project.org/web/packages/imfapi/readme/README.html) to get started.
+
+[scf](https://cran.r-project.org/package=scf) v1.0.5: Provides functions to analyze public use micro data from the [Survey of Consumer Finances](https://www.federalreserve.gov/econres/scfindex.htm) including tools to download prepared data files, construct replicate-weighted multiply imputed survey designs, compute descriptive statistics and model estimates, and produce plots and tables. See the [vignette](https://cran.r-project.org/web/packages/scf/vignettes/SCF-guide.html).
+
+![](scf.png){fig-alt="Plot of households by age"}
+
+
+### Decision Analysis
+
+[andorR](https://cran.r-project.org/package=andorR) v0.3.1: Implements a decision support tool to strategically prioritise evidence gathering in complex, hierarchical AND-OR decision trees. It is designed for situations with incomplete or uncertain information where the goal is to reach a confident conclusion as efficiently as possible (responding to the minimum number of questions, and only spending resources on generating improved evidence when it is of significant value to the final decision). There are five vignettes including [Introduction](https://cran.r-project.org/web/packages/andorR/vignettes/andorR-intro.html) and [Example Data Files](https://cran.r-project.org/web/packages/andorR/vignettes/example-data-files.html).
+
+
+### Ecology
+
+[greenSD](https://cran.r-project.org/package=greenSD) v0.1.1: Access and analyze multi-band greenspace seasonality data cubes (available for 1,028 major global cities), global Normalized Difference Vegetation Index / land cover data from the European Space Agency WorldCover 10m Dataset, and Sentinel-2-l2a images.  The package also supports calculating human exposure to greenspace using a population-weighted greenspace exposure model introduced by [Chen et al. (2022)](https://www.nature.com/articles/s41467-022-32258-4) based on Global Human Settlement Layer population data. See the vignette [get data](https://cran.r-project.org/web/packages/greenSD/vignettes/get_data.html) and look [here](https://billbillbilly.github.io/greenSD/) for additional information.
+
+![](greenspace.gif){fig-alt="Popupation weighted greenspace exposure"}
+
+[paisaje](https://cran.r-project.org/package=paisaje) v0.1.1: Provides functions for landscape analysis and data retrieval whcih allow users to download environmental variables from global datasets (e.g., WorldClim, ESA WorldCover, Nighttime Lights), and to compute spatial and landscape metrics using a hexagonal grid system based on the H3 spatial index. See [Fick and Hijmans (2017)](https://rmets.onlinelibrary.wiley.com/doi/10.1002/joc.5086) and [Zanaga et al. (2022)](https://zenodo.org/records/7254221) for background and the [vignette](https://cran.r-project.org/web/packages/paisaje/vignettes/paisaje.html) for examples. 
 
 ### Econometrics
 
