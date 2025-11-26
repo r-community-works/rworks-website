@@ -2,9 +2,9 @@
 title: "October 2025 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
 date: 2025-11-28
-description: "Here are my picks of the best of the XXXXXXX new packages that landed on CRAN in October, organized into thirteen categories: Computational Methods, Data, Decision Analysis, Ecology, Epidemiology, Finance, Machine Learning, Mathematics, Medical Applications, Programming, Statistics, Utilities, and Visualization."
-image: ""
-image-alt: ""
+description: "Here are my picks of the best of the two hundred and four new packages that landed on CRAN in October, organized into fifteen categories: Data, Decision Analysis, Ecology, Econometrics, Finance, Genomics, Logic, Machine Learning, Mathematics, Medical Statistics, Statistics, Time Series, Utilities, and Visualization."
+image: "greenspace.gif"
+image-alt: "fig-alt="Population weighted greenspace exposure"
 categories: "Top 40"
 editor: source
 ---
@@ -13,7 +13,6 @@ editor: source
 
 ::: {.column width="45%"}
 
-![](.png){fig-alt=""}
 
 
 ### Data
@@ -54,22 +53,37 @@ editor: source
 
 [greenSD](https://cran.r-project.org/package=greenSD) v0.1.1: Access and analyze multi-band greenspace seasonality data cubes (available for 1,028 major global cities), global Normalized Difference Vegetation Index / land cover data from the European Space Agency WorldCover 10m Dataset, and Sentinel-2-l2a images.  The package also supports calculating human exposure to greenspace using a population-weighted greenspace exposure model introduced by [Chen et al. (2022)](https://www.nature.com/articles/s41467-022-32258-4) based on Global Human Settlement Layer population data. See the vignette [get data](https://cran.r-project.org/web/packages/greenSD/vignettes/get_data.html) and look [here](https://billbillbilly.github.io/greenSD/) for additional information.
 
-![](greenspace.gif){fig-alt="Popupation weighted greenspace exposure"}
+![](greenspace.gif){fig-alt="Population weighted greenspace exposure"}
 
 [paisaje](https://cran.r-project.org/package=paisaje) v0.1.1: Provides functions for landscape analysis and data retrieval whcih allow users to download environmental variables from global datasets (e.g., WorldClim, ESA WorldCover, Nighttime Lights), and to compute spatial and landscape metrics using a hexagonal grid system based on the H3 spatial index. See [Fick and Hijmans (2017)](https://rmets.onlinelibrary.wiley.com/doi/10.1002/joc.5086) and [Zanaga et al. (2022)](https://zenodo.org/records/7254221) for background and the [vignette](https://cran.r-project.org/web/packages/paisaje/vignettes/paisaje.html) for examples. 
 
 ### Econometrics
+
+[BayesianDisaggregation](https://cran.r-project.org/package=BayesianDisaggregation) v0.1.2: Implements a novel Bayesian disaggregation framework that combines Principal Component Analysis (PCA) and Singular Value Decomposition (SVD) dimension reduction of prior weight matrices with deterministic Bayesian updating rules. The method provides Markov Chain Monte Carlo (MCMC) free posterior estimation with built-in diagnostic metrics. Read the vignette in [English](https://cran.r-project.org/web/packages/BayesianDisaggregation/vignettes/USERMANUAL-ENG.html) or [Spanish](https://cran.r-project.org/web/packages/BayesianDisaggregation/vignettes/MANUALUSUARIO-ESP.html).
+
 
 [pvars](https://cran.r-project.org/package=pvars) v1.1.1: Implements panel cointegration rank tests, estimators for panel vector autoregressive models, and identification methods for panel structural vector autoregressive models. Functions allow to account for cross-sectional dependence and for structural breaks in the deterministic terms of the VAR processes. Particularly noteworthy are those that implement the correlation-augmented inverse normal test on the cointegration rank by [Arsova and Oersal (2021)](https://www.sciencedirect.com/science/article/pii/S2452306220300484?via%3Dihub), the two-step estimator for pooled cointegrating vectors by [Breitung (2005)](https://www.tandfonline.com/doi/abs/10.1081/ETC-200067895), and the pooled identification based on independent component analysis by [Herwartz and Wang (20240)](https://onlinelibrary.wiley.com/doi/10.1002/jae.3044). See the [vignette](https://cran.r-project.org/web/packages/pvars/vignettes/pvars_vignette.pdf) for a detailed introduction to the package and undersying theory
 
 
 ![](pvars.png){fig-alt="Scree plot showing share of variance"}
 
+### Finance
+
+[amsSim](https://cran.r-project.org/package=amsSim) v0.1.0: Implements simulation and pricing routines for rare-event options using adaptive multilevel splitting and standard Monte Carlo under Black-Scholes and Heston models. Core routines are implemented in `C++` via `Rcpp` and `RcppArmadillo` with lightweight `R` wrappers. Look [here](https://arxiv.org/html/2510.23461v1) for the theory and see [README](https://cran.r-project.org/web/packages/amsSim/readme/README.html) to get started.
+
+![](AMS.png){fig-alt="Plot illustrating first 2 iterations of AMS algorithm"}
+
+
 ### Genomics
 
 [BTIME](https://cran.r-project.org/package=BTIME) v1.0.0: Implements Bayesian Hierarchical beta-binomial models for modeling cell population to predictors/exposures. This package utilizes `runjags` to run Gibbs sampling with parallel chains. Options for different covariances/relationship structures between parameters of interest. There is an [Introduction](https://cran.r-project.org/web/packages/BTIME/vignettes/BICAM.html) and a vignette on [Covariance Structures](https://cran.r-project.org/web/packages/BTIME/vignettes/BICAM_Cov.html).
 
 ![](BTIME.png){fig-alt="T cell hierarchy"}
+
+
+### Logic
+
+[Pinference](https://cran.r-project.org/package=Pinference) v0.2.5: Implements T. Hailperin's procedure to calculate lower and upper bounds of the probability for a propositional-logic expression, given equality and inequality constraints on the probabilities for other expressions. Truth-valuation is included as a special case. Applications range from decision-making and probabilistic reasoning, to pedagogical for probability and logic courses. See [Hailperin (1965)]() for details on the logic and the [vignette](https://cran.r-project.org/web/packages/Pinference/vignettes/inferP.html) for an analysis of the **Monty Hall Problem** and more.
 
 
 ### Machine Learning
@@ -91,6 +105,26 @@ editor: source
 
 ![](rSDR.png){fig-alt="3D projectio plot"}
 
+
+
+
+
+### Mathematics
+
+[SimplicialComplex](https://cran.r-project.org/package=SimplicialComplex) v0.1.0: Implements simplicial complexes for Topological Data Analysis (TDA), and includes functions to compute faces, boundary operators, Betti numbers, Euler characteristic, and to construct simplicial complexes. It also provides tools for studying persistent homology with the aim of helping readers understand the core concepts of computational topology. [Zomorodian and Carlsson (2005)](https://link.springer.com/article/10.1007/s00454-004-1146-y) and [Chazal and Michel (2021)](https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2021.667963/full) for background and look [here](https://github.com/TDA-R/SimplicialComplex) to get started. Make sure to check out the `Shiny` App [playground](https://tf3q5u-0-0.shinyapps.io/simplicialcomplex/) which allows exploring the concepts underlying TDA.
+
+![](SImp.png){fig-alt="Simple simplicial complex"}
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+
+
 ### Medical Statistics
 
 [PERSUADE](https://cran.r-project.org/package=PERSUADE) v0.1.2: Provides a standardized framework to support the selection and evaluation of parametric survival models for time-to-event data. Includes tools for visualizing survival data, checking proportional hazards assumptions ([Grambsch and Therneau (1994)](https://academic.oup.com/biomet/article-abstract/81/3/515/257037?redirectedFrom=fulltext&login=false)), comparing parametric ([Ishak et al. (2013)](https://link.springer.com/article/10.1007/s40273-013-0064-3)), spline ([Royston and Parmar (2002)](https://onlinelibrary.wiley.com/doi/10.1002/sim.1203)) and cure models, examining hazard functions, and evaluating model extrapolation. Methods are consistent with recommendations in the NICE Decision Support Unit Technical Support [Documents 14 and 21](https://sheffield.ac.uk/nice-dsu/tsds/survival-analysis). See [README](https://cran.r-project.org/web/packages/PERSUADE/readme/README.html) to get started.
@@ -102,13 +136,7 @@ editor: source
 [shinymrp](https://cran.r-project.org/package=shinymrp) v0.9.1: Provides a dual interface, graphical and programmatic for multilevel regression and post stratification applications offering tools for data cleaning, exploratory analysis, model building, and visualization. Users can apply the method to a variety of datasets including electronic health records to sample survey data. See [Si (2025)](https://projecteuclid.org/journals/statistical-science/volume-40/issue-2/On-the-Use-of-Auxiliary-Variables-in-Multilevel-Regression-and/10.1214/24-STS932.short) for background. There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/shinymrp/vignettes/getting-started.html) and [Programmatic workflow demonstration](https://cran.r-project.org/web/packages/shinymrp/vignettes/workflow.html).
 
 ![](shinymrp.png){fig-alt="Model Comparison Plot"}
-:::
 
-::: {.column width="10%"}
-
-:::
-
-::: {.column width="45%"}
 
 
 ### Statistics
@@ -155,11 +183,37 @@ editor: source
 [kardl](https://cran.r-project.org/package=kardl) v0.1.1: Implements estimation procedures for Autoregressive Distributed Lag (ARDL) and Nonlinear ARDL (NARDL) models, which allow researchers to investigate both short- and long-run relationships in time series data under mixed orders of integration. The package includes several cointegration testing approaches such as the [Pesaran et al. (2001)](https://www.sciencedirect.com/science/article/abs/pii/S0304407601000495?via%3Dihub) F and t bounds tests, the Banerjee error correction test, and the restricted ECM test, together with diagnostic tools including Wald tests for asymmetry, ARCH tests, and stability procedures. See [README](https://cran.r-project.org/web/packages/kardl/readme/README.html) to get started.
 
 
-![](SimpleU.png){fig-alt="Example of an Upset Plot"}
+![](kardl.png){fig-alt="Plot showing lag criteria comparison"}
+
+### Utilities
+
+[bakerrr](https://cran.r-project.org/package=bakerrr) v0.2.0: Provides functions to  launch, track, and control functions as background-parallel jobs and includes utilities for job status, error handling, resource monitoring, and result collection. Designed for scalable workflows in interactive and automated settings (local or remote). Look [here](https://anirbanshaw24.github.io/bakerrr/) for more information. There are four vignettes including [Logging ti File](https://cran.r-project.org/web/packages/bakerrr/vignettes/log_file.html) and [Orchestrating Multiple Functions in Parallel and in Background](https://cran.r-project.org/web/packages/bakerrr/vignettes/multi_function.html).
+
+[localLLM](https://cran.r-project.org/package=localLLM) v1.0.1:  Provides `R` bindings to the `llama.cpp` library for running large language models. The package uses a lightweight architecture where the `C++` backend library is downloaded at runtime rather than bundled with the package. Package features include text generation, reproducible generation, and parallel inference. Look [here](https://github.com/EddieYang211/localLLM) to get started.
+
+[rixpress](https://cran.r-project.org/package=rixpress) v0.10.1: Provides functions to streamline the creation of reproducible analytical pipelines using `default.nix` expressions generated via the `rix` package for reproducibility. Define derivations in `R`, `Python` or `Julia`', chain them into a composition of pure functions and build the resulting pipeline using `Nix` as the underlying end-to-end build tool. Functions to plot the pipeline as a directed acyclic graph are included, as well as functions to load and inspect intermediary results for interactive analysis. There are twelve vignettes including [introductory concepts](https://cran.r-project.org/web/packages/rixpress/vignettes/intro-concepts.html) and [core functions](https://cran.r-project.org/web/packages/rixpress/vignettes/core-functions.html).
+
+<iframe width="400" height="250" src="https://www.youtube.com/embed/a1eNG9TFZ_o" title="Nix for Data Science: a 2-min intro to rixpress, a package for multilanguage reproducible pipelines" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+[summarytabl](https://cran.r-project.org/package=summarytabl) v0.2.1: Provides functions for tabulating and summarizing categorical, multiple response, ordinal, and continuous variables in R data frames. Makes it easy to create clear, structured summary tables, so you spend less time wrangling data and more time interpreting it. See the [ignette](https://cran.r-project.org/web/packages/summarytabl/vignettes/summarytabl-intro.html).
+
+
+
+[tabler](https://cran.r-project.org/package=tabler) v0.1.0: Provides functions to build interactive dashboards combining the `Tabler UI Kit` with `Shiny`, making it easy to create professional-looking web applications. Dashboards are fully responsive and compatible with all modern browsers. Offers customizable layouts and components built with `HTML5` and `CSS3`. See [README](https://cran.r-project.org/web/packages/tabler/readme/README.html) to get started.
+
+<iframe width="400" height="250" src="https://www.youtube.com/embed/_PWVmmis-AE" title="Tabler short demo using Shiny" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 
 ### Visualization
 
-[SimpleUpset](https://cran.r-project.org/package=SimpleUpset) v0.1.3: Provides functions to create Upset plots using a combination of `ggplot2` and `patchwork'. See [Lex et al. (2014)](https://ieeexplore.ieee.org/document/6876017) for background and the [vignette]() for examples.
+[graphonmix](https://cran.r-project.org/package=graphonmix) v0.0.1.0: Generates (U,W) mixture graphs where U is a line graph graphon and W is a dense graphon. Graphons are graph limits and graphon U can be written as sequence of positive numbers adding to 1. Graphs are sampled from U and W and joined randomly to obtain the mixture graph. Given a mixture graph, U can be inferred. [Kandanaarachchi and Ong (2025)](https://arxiv.org/abs/2505.13864) for background and the vignettes [Introduction](https://cran.r-project.org/web/packages/graphonmix/vignettes/graphonmix.html) and [Sparse graphs fom line graphons](https://cran.r-project.org/web/packages/graphonmix/vignettes/linegraphons.html).
+
+![](graphon.png){fig-alt="Line graphon U"}
+
+[SimpleUpset](https://cran.r-project.org/package=SimpleUpset) v0.1.3: Provides functions to create Upset plots using a combination of `ggplot2` and `patchwork'. See [Lex et al. (2014)](https://ieeexplore.ieee.org/document/6876017) for background and the [vignette](https://cran.r-project.org/web/packages/SimpleUpset/vignettes/introduction.html) for examples.
+
+![](SimpleU.png){fig-alt="Example of an Upset Plot"}
 
 
 end
