@@ -20,7 +20,7 @@ editor: source
 
 ![](fastfocal.png){fig-alt="FFT contour plots"}
 
-[GTRT](https://cran.r-project.org/package=GTRT) v0.1.0: Provides a collection of functions for testing randomness (or mutual independence) in linear and circular data as proposed in [Gehlot and Laha (2025a)](doi:10.48550/arXiv.2506.21157) and [Gehlot and Laha (2025b)](https://arxiv.org/abs/2506.23522). See the vignettes [Randomness Tests for Circular Data](https://cran.r-project.org/web/packages/GTRT/vignettes/GTRT_circular.html) and [Randomness Tests for Linear Data](https://cran.r-project.org/web/packages/GTRT/vignettes/GTRT_linear.html).
+[GTRT](https://cran.r-project.org/package=GTRT) v0.1.0: Provides a collection of functions for testing randomness (or mutual independence) in linear and circular data as proposed in [Gehlot and Laha (2025a)](https://arxiv.org/abs/2506.21157) and [Gehlot and Laha (2025b)](https://arxiv.org/abs/2506.23522). See the vignettes [Randomness Tests for Circular Data](https://cran.r-project.org/web/packages/GTRT/vignettes/GTRT_circular.html) and [Randomness Tests for Linear Data](https://cran.r-project.org/web/packages/GTRT/vignettes/GTRT_linear.html).
 
 [rjuliabugs](https://cran.r-project.org/package=rjuliabugs) v0.1.0: Implements an interface to the [`JuliaBUGS.jl`](https://github.com/TuringLang/JuliaBUGS.jl)  package for Bayesian inference using the BUGS modeling language. `R` users can run models in Julia and return results as familiar `R` objects. Visualization and posterior analysis are supported via the `bayesplot` and `posterior` packages. See [README](https://cran.r-project.org/web/packages/rjuliabugs/readme/README.html) for an example.
 
