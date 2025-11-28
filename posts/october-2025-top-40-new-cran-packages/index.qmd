@@ -113,7 +113,7 @@ editor: source
 
 [SimplicialComplex](https://cran.r-project.org/package=SimplicialComplex) v0.1.0: Implements simplicial complexes for Topological Data Analysis (TDA) and includes functions to compute faces, boundary operators, Betti numbers, and Euler characteristics. It also provides tools for studying persistent homology with the aim of helping readers understand the core concepts of computational topology. [Zomorodian and Carlsson (2005)](https://link.springer.com/article/10.1007/s00454-004-1146-y) and [Chazal and Michel (2021)](https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2021.667963/full) for background and look [here](https://github.com/TDA-R/SimplicialComplex) to access the `Shiny` App [playground](https://tf3q5u-0-0.shinyapps.io/simplicialcomplex/), which allows exploring the concepts underlying TDA.
 
-![](SImp.png){fig-alt="Simple simplicial complex"}
+![](Simp.png){fig-alt="Simple simplicial complex"}
 
 :::
 
