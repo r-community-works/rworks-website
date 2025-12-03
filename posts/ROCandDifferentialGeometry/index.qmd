@@ -1,9 +1,9 @@
 ---
 title: "ROC Curves, Arc Length, and Differential Geometry"
 subtitle: "A mathematical take on ROC curves"
-description: "This post explores the application of differential geometry concepts to ROC curve analysis. It shows how to use splines to construct smooth versions of ROC curves, proposes arc length as a complementary metric to AUC, shows how the derivative of the ROC curve enables conducting likelihood ratio tests and shows how curvature may be useful in interpreting and selecting ROC curves in binary classification problems.."
 author: Joseph B. Rickert
 date: December 9, 2025
+description: "This post explores the application of differential geometry concepts to ROC curve analysis. It shows how to use splines to construct smooth versions of ROC curves, proposes arc length as a complementary metric to AUC, shows how the derivative of the ROC curve enables conducting likelihood ratio tests and shows how curvature may be useful in interpreting and selecting ROC curves in binary classification problems."
 format: html
 ---
 
