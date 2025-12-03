@@ -1,0 +1,1019 @@
+---
+title: "ROC Curves, Arc Length, and Differential Geometry"
+subtitle: "A mathematical take on ROC curves"
+description: "This post explores the application of differential geometry concepts to ROC curve analysis. It shows how to use splines to construct smooth versions of ROC curves, proposes arc length as a complementary metric to AUC, shows how the derivative of the ROC curve enables conducting likelihood ratio tests and shows how curvature may be useful in interpreting and selecting ROC curves in binary classification problems.."
+author: Joseph B. Rickert
+date: December 9, 2025
+format: html
+---
+
+This post attempts to make the case that basic concepts from differential geometry could be helpful for analyzing ROC curves. None of this is either particularly difficult or profound, but it involves a little more mathematics than most machine learning analyses attempt. The fundamental insight is that using ideas from functional analysis to smooth ROC curves produces functional objects, smoothed curves that can be studied with calculus. This approach should be helpful for most of  ROC curves that you are likely to find in the wild. 
+
+The first insight from differential geometry comes from realizing that it is meaningful to compute arc length for smooth ROC curves. Arc length is not a useful concept for the stair-step like ROC curves since any curve that goes from (0,0) to (1,1) will have a length of 2. However for smooth ROC curves, arc length is a viable alternative to AUC for comparing multiple curves.
+
+```{r}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Show the packages required"
+library(tidymodels) # For modeling and evaluation
+library(dplyr)    # For data manipulation
+library(ggplot2)  # For plotting
+library(MASS) # for Pima.tr
+library(mlbench) # for data
+library(broom)
+library(pROC)  # For ROC curve analysis
+library(patchwork)
+library(gt)   # For tables)
+library(katex) # For rendering math)
+tidymodels_prefer()
+
+```
+
+## The Data
+
+Rather than only using synthetic data, I thought that the ideas in the post would make more of a positive impression if they were illustrated with small familiar data sets. So in addition to the `two_class_dat` artificial data set from the the `modeldata` package, I have included `Pima.tr` from the `MASS` package and a subset of the `aSAH` data set from the  `pROC` package. I have selected just two numeric features from each data set in order to process the with a single, minimal `tidymodels` workflow.
+
+The next section of code prepares these three data sets for processing. I am only going to use the `aSAH2` data set in the rest of the post, but you can easily switch to one of the other two data sets by changing a single line of code. I admit that this is a minimal effort on my part to show you that the ideas in this post are broadly applicable, but I hope it is sufficient to whet your appetite for running the code o your own data.
+
+
+```{r}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Look at the available data sets"
+# Load a sample dataset (e.g., `two_class_dat` from `modeldata`)
+data(two_class_dat, package = "modeldata")
+two_class_dat2 <- two_class_dat %>%  mutate(Class = recode(Class,
+                           "Class1" = "1",
+                           "Class2" = "2"))
+
+data(Pima.tr, package = "MASS")
+Pima.tr2 <- Pima.tr %>% mutate(
+                              Class = type,
+                              Class = recode(Class,
+                              "Yes" = "2",
+                              "No" = "1")) %>%
+                        select(c(bmi,bp,Class))
+
+data(aSAH, package = "pROC")
+aSAH2 <- aSAH %>% mutate(
+                              Class = outcome,
+                              Class = recode(Class,
+                              "Good" = "1",
+                              "Poor" = "2")) %>%
+                        select(c(s100b,ndka,Class))
+
+```
+
+This is the section where you can select which data set to explore by un-commenting the assignment to df that corresponds to the data set you want. Any one you choose will have two numeric features and a class label column `Class`. 
+
+```{r}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Look here to select a data set"
+# Set a seed for reproducibility
+set.seed(123)
+
+# Select a data set
+
+#df<- two_class_dat2 # try FPC = 1, FNC = 10
+#df <- Pima.tr2 # try FPC = 10 , FNC = 1
+df <- aSAH2 #try FPC = 1, FNC = 1
+head(df)
+
+# Split the data into training and testing sets
+data_split <- initial_split(df, prop = 0.75, strata = Class)
+train_data <- training(data_split)
+test_data <- testing(data_split)
+
+```
+
+## The Classifiers
+The workflows use three classifiers to fit the models: logistic regression, SVM, and decision tree.
+
+```{r}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Show the workflow code"
+# Define the models
+
+# 1. Logistic Regression
+log_reg_spec <- logistic_reg() %>%
+  set_engine("glm") %>%
+  set_mode("classification")
+
+# 2. Support Vector Machine (SVM)
+svm_spec <- svm_linear() %>%
+  set_engine("kernlab") %>%
+  set_mode("classification")
+
+# 3. Decision Tree
+tree_spec <- decision_tree() %>%
+  set_engine("rpart") %>%
+  set_mode("classification")
+
+# Create workflows for each model
+log_reg_wf <- workflow() %>%
+  add_model(log_reg_spec) %>%
+  add_formula(Class ~ .)
+
+svm_wf <- workflow() %>%
+  add_model(svm_spec) %>%
+  add_formula(Class ~ .)
+
+tree_wf <- workflow() %>%
+  add_model(tree_spec) %>%
+  add_formula(Class ~ .)
+
+# Fit the models to the training data
+log_reg_fit <- fit(log_reg_wf, data = train_data)
+svm_fit <- fit(svm_wf, data = train_data)
+tree_fit <- fit(tree_wf, data = train_data)
+
+# Collect predictions for each model on the test data
+log_reg_preds <- predict(log_reg_fit, new_data = test_data, type = "prob") %>%
+  bind_cols(test_data %>% select(Class)) %>%
+  mutate(model = "Logistic Regression")
+
+svm_preds <- predict(svm_fit, new_data = test_data, type = "prob") %>%
+  bind_cols(test_data %>% select(Class)) %>%
+  mutate(model = "SVM")
+
+tree_preds <- predict(tree_fit, new_data = test_data, type = "prob") %>%
+  bind_cols(test_data %>% select(Class)) %>%
+  mutate(model = "Decision Tree")
+
+# Compute AUCs and relabel models with AUC values
+auc_tree <- roc_auc(tree_preds, truth = Class, .pred_1)$.estimate
+auc_svm <- roc_auc(svm_preds, truth = Class, .pred_1)$.estimate
+auc_log_reg <- roc_auc(log_reg_preds, truth = Class, .pred_1)$.estimate
+
+# Update model labels to include AUC
+log_reg_preds <- log_reg_preds %>%
+  mutate(model = paste0("Logistic Regression (AUC = ", round(auc_log_reg, 3), ")"))
+
+svm_preds <- svm_preds %>%
+  mutate(model = paste0("SVM (AUC = ", round(auc_svm, 3), ")"))
+
+tree_preds <- tree_preds %>%
+  mutate(model = paste0("Decision Tree (AUC = ", round(auc_tree, 3), ")"))
+
+# Combine predictions with updated labels
+all_preds <- bind_rows(log_reg_preds, svm_preds, tree_preds)
+```
+
+This section of code fits the models, computes AUC for each model, and plots the basic ROC curves.
+```{r}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Show Code"
+### Plot the ROC Curves
+
+ all_preds %>%
+   group_by(model) %>%
+  roc_curve(truth = Class, .pred_1) %>%
+  autoplot() +
+  labs(
+    title = "ROC Curves for Multiple Classifiers",
+    color = "Model"
+  ) 
+
+
+# Make a copy of all_preds with cleaned model names
+all_preds_2 <- all_preds %>%
+    mutate(model_AUC = model,
+              model= sub(" \\(AUC.*$", "", model_AUC))
+
+
+# Compute ROC data for each model
+roc_data <- all_preds_2 %>%
+  group_by(model) %>%
+  roc_curve(truth = Class, .pred_1)
+
+# Compute AUC for each model
+auc_data <- all_preds_2 %>%
+  group_by(model) %>%
+  roc_auc(truth = Class, .pred_1)
+
+# Inspect actual model names
+#print(unique(roc_data$model))
+
+# Build legend labels with AUC
+legend_labels <- paste0(auc_data$model,
+                        " (AUC = ", sprintf("%.3f", auc_data$.estimate), ")")
+
+# IMPORTANT: match colors to the actual values in your data
+# Replace the strings below with the exact output from unique(roc_data$model)
+color_values <- c(
+  "Logistic Regression" = "#1b9e77",
+  "SVM"                 = "#7570b3",
+  "Decision Tree"       = "#d95f02"
+)
+
+
+# Ensure model is a factor with levels matching auc_data$model
+roc_data <- roc_data %>%
+  mutate(model = factor(model, levels = auc_data$model))
+
+# An alternative plot with more elaborate formatting.
+# Plot raw step-function ROC curves
+#ggplot(roc_data, aes(x = 1 - specificity, y = sensitivity, color = model)) +
+  # geom_path(size = 1.4) +
+  # geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "grey50") +
+  # coord_fixed(ratio = 1, xlim = c(0,1), ylim = c(0,1), expand = FALSE) +
+  # labs(title = "ROC Curves for Multiple Classifiers",
+  #      x = "False Positive Rate (FPR)",
+  #      y = "True Positive Rate (TPR)",
+  #      color = NULL) +
+  # scale_color_manual(values = color_values, labels = legend_labels) +
+  # #theme_classic() +
+  # theme(
+  #   legend.position = c(0.65, 0.25),
+  #   legend.text = element_text(size = 9, lineheight = 1.1),
+  #   legend.background = element_rect(fill = alpha("white", 0.7), color = NA),
+  #   plot.margin = margin(20, 20, 20, 20)
+  # )
+
+```
+
+## Smooth ROC Curves and Arc Length
+
+In this section a spline bases is used to construct smoothed curves. AUC is computed for both raw and smoothed ROC curves. Arc length is only computed for the smoothed curves. The comments in the code provide some technical details about the methods used.
+
+
+```{r}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Show Code"
+
+df <- all_preds
+# Numerical integration using the trapezoidal rule
+trapz <- function(x, y) {
+  sum((y[-1] + y[-length(y)]) / 2 * diff(x))
+}
+# Compute discrete ROC points from predictions
+discrete_roc <- function(df) {
+  roc_obj <- roc(response = df$Class,
+                 predictor = df$.pred_1,
+                 levels = c("2","1"),   # control first, positive second
+                 direction = "<")
+  
+  rc <- coords(roc_obj, "all", ret = c("specificity","sensitivity"), transpose = FALSE)
+  FPR <- 1 - rc$specificity
+  TPR <- rc$sensitivity
+  
+  FPR <- c(0, FPR, 1)
+  TPR <- c(0, TPR, 1)
+  ord <- order(FPR, TPR)
+  FPR <- FPR[ord]
+  TPR <- cummax(TPR[ord])   # enforce monotonicity
+  
+  tibble(FPR = FPR, TPR = TPR)
+}
+
+#   smooth_roc takes raw ROC points (FPR, TPR) and produces a smoothed ROC curve with:
+#      A monotone spline interpolation of TPR vs. FPR
+#.     A dense grid of points (n = 400 by default)
+#.     Computed AUC (area under the curve)
+#.     Computed arc length (geometric length of the ROC trajectory)
+#.  It returns a tibble with the smoothed ROC coordinates and the two summary metrics.  
+# 
+# "monoH.FC" is a special option in R’s splinefun that stands for Monotone Hermite cubic spline (Fritsch–Carlson method).
+#. It guarantees that the interpolated function is monotone increasing if the data are monotone.
+#  Unlike ordinary cubic splines, which can overshoot and produce non‑monotone artifacts, 
+#. "monoH.FC" preserves the monotonicity of ROC curves (TPR should not decrease as FPR increases).
+#  The algorithm adjusts slopes at knots to prevent oscillations while keeping the interpolation smooth.
+#  This matters for ROC curves because:
+#.    ROC curves must be monotone (TPR should not decrease with increasing FPR).
+#     "monoH.FC" ensures the smoothed curve respects this property and avoids unrealistic wiggles 
+#.     that could distort AUC or arc length.
+
+
+smooth_roc <- function(FPR, TPR, n = 400) {
+  df <- tibble(FPR = FPR, TPR = TPR) %>% arrange(FPR) %>% distinct(FPR, .keep_all = TRUE)
+  mono_fun <- splinefun(x = df$FPR, y = df$TPR, method = "monoH.FC")
+  x <- seq(0, 1, length.out = n)
+  y <- pmin(pmax(mono_fun(x), 0), 1)
+  
+  auc <- trapz(x, y)
+  dy <- mono_fun(x, deriv = 1)
+  arc <- trapz(x, sqrt(1 + dy^2))
+  
+  tibble(FPR = x, TPR = y, auc = auc, arc = arc)
+}
+
+# Normalize model names
+ df <- df %>%
+  mutate(model_norm = sub(" \\(.*$", "", model))
+
+smooth_results <- df %>%
+  group_by(model_norm) %>%
+  group_modify(~ {
+    dr <- discrete_roc(.x)
+    sr <- smooth_roc(dr$FPR, dr$TPR, n = 400)
+    #sr %>% mutate(model_norm = unique(.x$model_norm))
+  }) %>%
+  ungroup()
+
+metrics <- smooth_results %>%
+  group_by(model_norm) %>%
+  summarise(AUC = unique(auc), Arc = unique(arc), .groups = "drop")
+
+#
+```
+
+
+This bloc of code overlays the smoothed and raw ROC curves for each model and adds a legend with raw AUC, smoothed AUC, and arc length for each model.
+
+```{r}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Show Code"
+
+# df_raw: columns .pred_1, .pred_2, Class, model
+# smooth_results: columns model_norm, FPR, TPR, auc, arc
+
+# 1) Normalize model names in the raw data so they match smooth_results$model_norm
+df_raw <- all_preds %>%
+  mutate(model_norm = sub(" \\(.*$", "", model))  # e.g., "Logistic Regression (AUC = ...)" -> "Logistic Regression"
+
+# 2) Compute raw ROC coordinates and raw AUC per model
+raw_results <- df_raw %>%
+  group_by(model_norm) %>%
+  group_map(~{
+    roc_obj <- roc(response = .x$Class,
+                   predictor = .x$.pred_1,
+                   levels = c("2","1"),
+                   direction = "<")
+
+    rc <- coords(roc_obj, "all", ret = c("specificity","sensitivity"), transpose = FALSE)
+    FPR <- 1 - rc$specificity
+    TPR <- rc$sensitivity
+
+    # pad ends, order, enforce monotone TPR
+    FPR <- c(0, FPR, 1)
+    TPR <- c(0, TPR, 1)
+    ord <- order(FPR, TPR)
+    FPR <- FPR[ord]
+    TPR <- cummax(TPR[ord])
+
+    auc_raw <- as.numeric(auc(roc_obj))
+    m <- .y$model_norm[[1]]  # group label; safer than looking back into .x
+
+    tibble(
+      model_norm = rep(m, length(FPR)),
+      FPR = FPR,
+      TPR = TPR,
+      auc_raw = rep(auc_raw, length(FPR)),
+      curve_type = rep("raw", length(FPR))
+    )
+  }) %>%
+  bind_rows()
+
+# 3) Prepare smoothed results to match columns (add curve_type and placeholder auc_raw)
+smooth_results_plot <- smooth_results %>%
+  mutate(
+    curve_type = "smooth",
+    auc_raw = NA_real_  # placeholder so bind_rows columns align
+  )
+
+# 4) Combine raw + smooth results
+roc_results <- bind_rows(raw_results, smooth_results_plot)
+
+# 5) Build legend metrics: Raw AUC (from raw_results), Smooth AUC and Arc (from smooth_results)
+metrics_raw <- raw_results %>%
+  distinct(model_norm, auc_raw) %>%
+  rename(AUC_raw = auc_raw)
+
+metrics_smooth <- smooth_results %>%
+  distinct(model_norm, auc, arc) %>%
+  rename(AUC_smooth = auc, Arc = arc)
+
+metrics <- metrics_raw %>%
+  left_join(metrics_smooth, by = "model_norm")
+
+legend_labels <- setNames(
+  paste0(metrics$model_norm,
+         "\nRaw AUC = ", sprintf("%.3f", metrics$AUC_raw),
+         "\nSmooth AUC = ", sprintf("%.3f", metrics$AUC_smooth),
+         "\nArc = ", sprintf("%.3f", metrics$Arc)),
+  metrics$model_norm
+)
+
+# 6) Pastel colors (keep model association). Ensure names match smooth_results$model_norm exactly.
+color_values <- c(
+  "Decision Tree"        = "#fcae91",  # pastel red
+  "Logistic Regression"  = "#a1d99b",  # pastel green
+  "SVM"                  = "#9ecae1"   # pastel blue
+)
+
+
+
+legend_labels <- setNames(
+  paste0(metrics$model_norm,
+         "\nRaw AUC = ", sprintf("%.3f", metrics$AUC_raw),
+         " | Smooth AUC = ", sprintf("%.3f", metrics$AUC_smooth),
+         "\nArc = ", sprintf("%.3f", metrics$Arc),
+         "\n"),   # blank line between models
+  metrics$model_norm
+)
+
+ggplot(roc_results, aes(x=FPR, y=TPR,
+                        color=model_norm,
+                        linetype=curve_type)) +
+  geom_line(linewidth=1) +
+  geom_abline(slope=1, intercept=0,
+              linetype="dashed", color="grey60") +
+  scale_color_manual(values=color_values, labels=legend_labels) +
+  scale_linetype_manual(
+    values = c("raw"="dashed", "smooth"="solid"),
+    labels = c("raw"="Raw ROC: dashed", "smooth"="Smoothed ROC: solid")
+  ) +
+  scale_x_continuous(limits=c(0,1), expand=c(0,0)) +
+  scale_y_continuous(limits=c(0,1), expand=c(0,0)) +
+  labs(title="ROC curves by model (raw vs smoothed)",
+       x="False Positive Rate",
+       y="True Positive Rate",
+       color=NULL, linetype=NULL) +
+  guides(
+    color = guide_legend(order = 1, title = NULL, label.theme = element_text(size = 7)),
+    linetype = guide_legend(order = 2, title = NULL, label.theme = element_text(size = 7))
+  ) +
+  theme_minimal(base_size=10) +
+  theme(
+    plot.title = element_text(size=9, face="bold"),
+    axis.title = element_text(size=8),
+    axis.text  = element_text(size=7),
+    legend.position = c(0.65, 0.25),   # inside plot, under diagonal
+    legend.text = element_text(size=7, lineheight=1.2),
+    legend.background = element_rect(fill = alpha("white", 0.8), color = NA),
+    legend.key.size = unit(0.5, "lines"),
+    plot.margin = margin(2, 2, 2, 2)
+  )
+
+
+```
+
+The first thing to observe that the smooth curves do not perfectly overlay the stair-step curves, as one might expect for curves with large steps. Nevertheless the AUC numbers are close, and in this case they preserve the order. Also note that selecting the curves passed on arc length would lead to the same results.
+
+
+### The Case for Arc Length
+
+The main insight is that ROC curve is the direct representation of the conditional probability distribution relating True Positive Rate (TPR) and False Positive Rate (FPR). Each point (x,y) on the ROC curve yields the conditional distribution of TPR given the distribution of FPR. $P(TPR \le y \mid FPR \le x)$. This to my mind a direct, clear,and as you will see below, useful probability statement. The area under the curve (AUC), on the other hand, is an indirect measure with the probability interpretation that is usually rendered something like the definition provided in [wikipedia](https://en.wikipedia.org/wiki/Receiver_operating_characteristic#:~:text=The%20area%20under%20the%20curve,ranks%20higher%20than%20'negative')
+
+> AUC is equal to the probability that a classifier will rank a randomly chosen positive instance higher than a randomly chosen negative one (assuming 'positive' ranks higher than 'negative'). 
+
+I always ask my self when would I want to perform this experiment, and never come up with a good answer. Also, I have never seen this probability invoked to clarify a practical analysis. 
+
+It is also the case that arc length is a linear measure while AUC is an area. I may very well be be wrong about this, but I think most people have a better intuition of the practical significance of a linear difference of 0.3 inches than an area difference of 0.3 square inches.
+
+Arc length also mostly avoids the criticism of AUC that led to the development of [Partial Arc length](https://en.wikipedia.org/wiki/Partial_Area_Under_the_ROC_Curve). It is relatively easy to exclude segments of regions that are not important to the application. An unless the ROC curve pathologically crosses the diagonal at FPR > .5 and TPR < .5 it will not be troubled region of [low sensitivity and low specificity](https://en.wikipedia.org/wiki/Receiver_operating_characteristic#:~:text=The%20main%20criticism%20to%20the,the%20plot%20on%20the%20right.).
+
+Finally, arc length is directly related to the geometry of the ROC curve and as I hope to convince you below, some basic ideas of differential geometry may be useful in interpreting the behavior of ROC curves. The following table is as close as I can come to a fair comparison of the two metrics. I hope you find it useful, however, I despair of ever seeing a clinical practitioner abandoning AUC.
+
+### Table Comparing Arclength with AUC 
+
+
+
+```{r}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Show the code to build the table"
+# --- Data for table ---
+tbl_data <- tribble(
+  ~Aspect, ~AUC, ~ArcLength,
+  "Definition",
+  "$\\int_0^1 f(x)\\,dx$",
+  "$\\int_0^1 \\sqrt{1+(f'(x))^2}\\,dx$",
+  
+  "Probabilistic meaning",
+  "Probability that a randomly chosen positive is ranked above a randomly chosen negative",
+  "Probability that TPR ≤ y given FPR ≤ x (joint distribution along ROC trajectory)",
+  
+  "Bounds",
+  "0.5 (random) to 1.0 (perfect)",
+  "$\\sqrt{2} \\approx 1.414$ (diagonal) to 2.0 (perfect staircase ROC)",
+  
+  "Interpretability",
+  "Widely used, intuitive for clinicians; benchmarks exist (e.g., >0.9 = excellent)",
+  "Linear measure, easier to visualize by eye; highlights curve geometry and trajectory",
+  
+  "Sensitivity to curve shape",
+  "Less sensitive — curves with different shapes can yield similar AUC",
+  "More sensitive — captures slope changes, curvature, and smoothness differences",
+  
+  "Partial evaluation",
+  "Partial AUC requires normalization; less visually obvious",
+  "It is easy to avoid problematic regions for most reasonable ROC curves",
+  
+  "Noise robustness",
+  "Relatively robust; integrates over curve",
+  "More sensitive to noise or jaggedness; small oscillations inflate length",
+  
+  "Clinical adoption",
+  "Standard metric with established thresholds",
+  "Novel metric; not yet widely adopted, requires new benchmarks",
+  
+  "Use cases",
+  "Ranking accuracy, overall discrimination power",
+  "Diagnostic trajectory, geometric comparison, highlighting regional performance differences"
+)
+
+gt_tbl <- tbl_data %>%
+  gt() %>%
+  tab_header(title = "Comparison of ROC Metrics: AUC vs. Arc Length") %>%
+  cols_label(
+    Aspect = "Aspect",
+    AUC = "AUC (Area Under Curve)",
+    ArcLength = "Arc Length (ROC Curve Length)"
+  ) %>%
+  fmt_markdown(columns = everything()) %>%
+  tab_options(
+    table.font.size = px(12),   # smaller text
+    data_row.padding = px(2)    # tighter row spacing
+  )
+
+
+
+gt_tbl
+
+```
+
+
+## A Little Calculus with ROC curves
+
+This next plot shows the ROC curves for the three classifiers in the left column and the derivative of TPR with respect to FPR, $d(TPR) / d(FPR)$ in the right hand column for each classifier showing how the slopes of the ROC curves change as FPR increases. Comments in the code provide some details on the hows and whys of building the splines, and the Appendix at the end of the post writes out the equations for the derivatives.
+
+
+```{r}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Show the code for computing slope"
+# --- Palette: pastel per model ---
+model_colors <- c(
+  "Decision Tree"       = "#F28E8E",  # pastel red
+  "Logistic Regression" = "#8FD19E",  # pastel green
+  "SVM"                 = "#8EB8FF"   # pastel blue
+)
+
+# --- Clean ROC per group: sort, drop duplicate FPR, enforce monotone TPR ---
+clean_roc <- function(df) {
+  df %>%
+    arrange(FPR) %>%
+    distinct(FPR, .keep_all = TRUE) %>%
+    mutate(
+      FPR = pmin(pmax(FPR, 0), 1),
+      TPR = pmin(pmax(cummax(TPR), 0), 1)
+    )
+}
+
+# The goal of make_spline and compute_roc_geometry is to build a spline representation of the ROC curve 
+#   that allows derivatives (first and second) to be computed easily.
+#  splinefun(..., method = "natural") — uses natural cubic splines which are smoother and differentiable up to second order.
+# note that "monoH.FC" splines guarantee monotonicity but can sometimes produce derivative discontinuities or numerical  
+#   instability in higher higher‑order derivatives.
+# The output is a tibble with columns FPR, TPR, dTPR (first derivative), and d2TPR (second derivative) evaluated on a uniform grid of FPR values from 0 to 1.
+# Use case: When you need geometry (curvature, slope, phase space analysis) rather than just smoothed ROC points
+
+# --- Spline builder (use "natural" to avoid strict monotonicity errors) ---
+make_spline <- function(df) {
+  df <- clean_roc(df)
+  splinefun(x = df$FPR, y = df$TPR, method = "natural")
+}
+
+# --- Geometry over a uniform grid: y, y', y'' ---
+compute_roc_geometry <- function(df, n_grid = 1001) {
+  f <- make_spline(df)
+  xg  <- seq(0, 1, length.out = n_grid)
+  yg  <- f(xg, deriv = 0)
+  y1g <- f(xg, deriv = 1)
+  y2g <- f(xg, deriv = 2)
+  tibble(FPR = xg, TPR = yg, dTPR = y1g, d2TPR = y2g)
+}
+
+
+# --- Plotters with small text and single-color line per model ---
+plot_roc <- function(geom_df, model_label, color_hex) {
+  ggplot(geom_df, aes(x = FPR, y = TPR)) +
+    geom_line(color = color_hex, linewidth = 0.9) +
+    labs(
+      title = paste(model_label, "— Smoothed ROC"),
+      x = "FPR",
+      y = "TPR"
+    ) +
+    coord_cartesian(xlim = c(0, 1), ylim = c(0, 1)) +
+    theme_minimal(base_size = 9) +
+    theme(
+      plot.title = element_text(face = "bold", size = 9),
+      axis.title = element_text(size = 8),
+      axis.text  = element_text(size = 8),
+      panel.grid.minor = element_blank()
+    )
+}
+
+plot_derivative <- function(geom_df, model_label, color_hex) {
+  ggplot(geom_df, aes(x = FPR, y = dTPR)) +
+    geom_hline(yintercept = 0, color = "grey80") +
+    geom_line(color = color_hex, linewidth = 0.9) +
+    labs(
+      title = paste(model_label, "— dTPR/dFPR vs FPR"),
+      x = "FPR",
+      y = "dTPR/dFPR"
+    ) +
+    coord_cartesian(xlim = c(0, 1)) +
+    theme_minimal(base_size = 9) +
+    theme(
+      plot.title = element_text(face = "bold", size = 9),
+      axis.title = element_text(size = 8),
+      axis.text  = element_text(size = 8),
+      panel.grid.minor = element_blank()
+    )
+}
+
+# --- Main: build 3x2 grid with ROC on the LEFT, derivative on the RIGHT ---
+plot_roc_geometry_grid <- function(smooth_results, n_grid = 1001) {
+  # Ensure intended order of rows
+  model_order <- c("Decision Tree", "Logistic Regression", "SVM")
+  models <- intersect(model_order, unique(smooth_results$model_norm))
+  stopifnot(length(models) > 0)
+
+  rows <- map(models, function(m) {
+    df <- smooth_results %>% filter(model_norm == m)
+    geom_df <- compute_roc_geometry(df, n_grid)
+    col_hex <- model_colors[[m]]
+    p_left  <- plot_roc(geom_df, m, col_hex)
+    p_right <- plot_derivative(geom_df, m, col_hex)
+    p_left | p_right
+  })
+
+  # Stack rows into 3x2 (or as many as available)
+  reduce(rows, `/`)
+}
+
+# --- Usage ---
+# smooth_results must have columns: model_norm, FPR, TPR
+grid_plot <- plot_roc_geometry_grid(smooth_results, n_grid = 2001)
+print(grid_plot)
+
+```
+
+It a well known result from mathematical statistics, not usually emphasized in a machine learning context, that the slope of the tangent to the ROC curve at any point is equal to the the instantaneous likelihood ratio at that point. [Choi (1998)](https://academic.oup.com/aje/article-abstract/148/11/1127/123231?redirectedFrom=PDF). This is exactly what is plotted in the second column. However, to understand the connection with differential geometry, the following section of code re derives the plot by considering ROC curves parameterized by threshold $t \in [0,1]$ so the curve is the set of points $(FPR(t),TPR(t))$. This point of view is preferred for analyzing likelihood ratios and connecting with diagnostic test theory. In both cases the likelihood ratio is identical since likelihood is a property of the curve and $\frac{d(TPR)}{d(FPR)} = \frac{d(TPR)/dt))}{d(FPR)/dt}$
+
+
+```{r}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Show the code for parameterized ROC curves"
+
+# --- Pastel palette per model ---
+model_colors <- c(
+  "Decision Tree"       = "#F28E8E",  # pastel red
+  "Logistic Regression" = "#8FD19E",  # pastel green
+  "SVM"                 = "#8EB8FF"   # pastel blue
+)
+
+# --- Ensure threshold column exists ---
+add_threshold <- function(df) {
+  df %>%
+    group_by(model_norm) %>%
+    mutate(threshold = seq(0, 1, length.out = n())) %>%
+    ungroup()
+}
+
+# --- Clean ROC per group ---
+clean_roc <- function(df) {
+  df %>%
+    arrange(threshold) %>%
+    distinct(threshold, .keep_all = TRUE) %>%
+    mutate(
+      FPR = pmin(pmax(FPR, 0), 1),
+      TPR = pmin(pmax(TPR, 0), 1)
+    )
+}
+
+# --- Spline builders for parametric ROC (FPR(t), TPR(t)) ---
+make_spline_pair <- function(df) {
+  df <- clean_roc(df)
+  f_fpr <- splinefun(x = df$threshold, y = df$FPR, method = "natural")
+  f_tpr <- splinefun(x = df$threshold, y = df$TPR, method = "natural")
+  list(f_fpr = f_fpr, f_tpr = f_tpr)
+}
+
+# --- Compute ROC geometry with respect to threshold t ---
+compute_roc_geometry <- function(df, n_grid = 1001) {
+  spl <- make_spline_pair(df)
+  f_fpr <- spl$f_fpr
+  f_tpr <- spl$f_tpr
+
+  tg <- seq(min(df$threshold), max(df$threshold), length.out = n_grid)
+
+  x   <- f_fpr(tg, deriv = 0)   # FPR(t)
+  y   <- f_tpr(tg, deriv = 0)   # TPR(t)
+  x1  <- f_fpr(tg, deriv = 1)   # dFPR/dt
+  y1  <- f_tpr(tg, deriv = 1)   # dTPR/dt
+
+  # slope of ROC curve = dTPR/dFPR = (dTPR/dt) / (dFPR/dt)
+  slope <- y1 / x1
+
+  tibble(
+    threshold = tg,
+    FPR = x,
+    TPR = y,
+    dFPR_dt = x1,
+    dTPR_dt = y1,
+    slope_dTPR_dFPR = slope
+  )
+}
+
+# --- Build combined data frame for all models ---
+make_derivative_df <- function(smooth_results, n_grid = 1001) {
+  smooth_results <- add_threshold(smooth_results)
+
+  model_order <- c("Decision Tree", "Logistic Regression", "SVM")
+  models <- intersect(model_order, unique(smooth_results$model_norm))
+
+  results <- map_dfr(models, function(m) {
+    df <- smooth_results %>% filter(model_norm == m)
+    geom_df <- compute_roc_geometry(df, n_grid)
+    geom_df %>% mutate(model = m)
+  })
+
+  results
+}
+
+# --- Plotters ---
+plot_curvature <- function(geom_df, model_label, color_hex) {
+  ggplot(geom_df, aes(x = threshold, y = TPR)) +
+    geom_line(color = color_hex, linewidth = 0.9) +
+    labs(title = paste(model_label, "— ROC curve TPR(t)"),
+         x = "Threshold", y = "TPR") +
+    theme_minimal(base_size = 9) +
+    theme(plot.title = element_text(face = "bold", size = 9),
+          axis.title = element_text(size = 8),
+          axis.text  = element_text(size = 8),
+          panel.grid.minor = element_blank())
+}
+
+plot_slope <- function(geom_df, model_label, color_hex) {
+  ggplot(geom_df, aes(x = threshold, y = slope_dTPR_dFPR)) +
+    geom_hline(yintercept = 0, color = "grey80") +
+    geom_line(color = color_hex, linewidth = 0.9) +
+    labs(title = paste(model_label, "— dTPR/dFPR (Likelihood Ratio)"),
+         x = "Threshold", y = "dTPR/dFPR") +
+    theme_minimal(base_size = 9) +
+    theme(plot.title = element_text(face = "bold", size = 9),
+          axis.title = element_text(size = 8),
+          axis.text  = element_text(size = 8),
+          panel.grid.minor = element_blank())
+}
+
+# --- Main: build 3x2 grid (ROC curve | slope dTPR/dFPR) ---
+plot_roc_geometry_grid <- function(smooth_results, n_grid = 1001) {
+  smooth_results <- add_threshold(smooth_results)
+
+  model_order <- c("Decision Tree", "Logistic Regression", "SVM")
+  models <- intersect(model_order, unique(smooth_results$model_norm))
+  stopifnot(length(models) > 0)
+
+  rows <- map(models, function(m) {
+    df <- smooth_results %>% filter(model_norm == m)
+    geom_df <- compute_roc_geometry(df, n_grid)
+    col_hex <- model_colors[[m]]
+    p_left  <- plot_curvature(geom_df, m, col_hex)
+    p_right <- plot_slope(geom_df, m, col_hex)
+    patchwork::wrap_plots(p_left, p_right, ncol = 2)
+  })
+
+  reduce(rows, `/`)
+}
+
+# --- Usage ---
+derivative_df <- make_derivative_df(smooth_results, n_grid = 2001)
+grid_plot <- plot_roc_geometry_grid(smooth_results, n_grid = 2001)
+
+print(grid_plot)
+#head(derivative_df)
+
+```
+
+The plot above shows the Likelihood ratios as a function of threshold for each of the three models. These values are stored in `slope_DTPR_dFPR` column of the `derivative_df` data frame. The following code extracts the maximum positive likelihood ratio and minimum negative likelihood ratio for each model. It follows Choi (1998) where he suggests comparing LR values to decision thresholds that are convenient for diagnostic testing:
+
+ * LR+ (positive test): slope of the operating point where TPR is high and FPR is low (upper left of ROC curve)
+ * LR- negative test: slope of the operating point where TPR is low and FPR is high (lower right of ROC curve)
+
+```{r}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| #| code-summary: "Show the LR test code"
+derivative_df %>%
+  group_by(model) %>%
+  summarise(
+    max_LR_plus = max(slope_dTPR_dFPR, na.rm = TRUE),
+    min_LR_minus = min(slope_dTPR_dFPR, na.rm = TRUE)
+  )
+
+```
+
+A standard interpretation for a diagnostic test is that LR+ values above 10 are considered strong evidence to rule in a condition while LR- values below 0.1 are considered strong evidence to rule out a condition.
+
+## Curvature
+
+Our final topic will be to take a brief look at curvature. The curvature, $\kappa(t)$ of a two dimensional planer curve, like an ROC curve, measures how sharply the curve bends at a given threshold, $t$. Computing it involves computing second derivatives as the equations in the Appendix show. High curvature implies rapidly changing slope while low curvature indicates that slope is changing slowly. The derivative of curvature (a third derivative) indicates how fast the changing slope itself is changing. Large positive values of $d\kappa(t)/dt$ can indicate threshold zone where small changes in the decision rule can produce large changes in discrimination. Large negative values of $d\kappa(t)/dt$ can indicate zones where slope changes are stabilizing suggesting diminishing returns for tightening or loosening the decision rules. Zones with values near zero indicate regions that are relatively stable with respect of threshold. The following code calculates $\kappa(t)$ and $d\kappa(t)/dt$ for each of the three models and plots them side by side.
+
+These ideas my be helpful in understanding the trade offs involved is selecting a threshold for a particular application.
+
+
+```{r}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Code for curvature plots"
+
+# --- Pastel palette per model ---
+model_colors <- c(
+  "Decision Tree"       = "#F28E8E",  # pastel red
+  "Logistic Regression" = "#8FD19E",  # pastel green
+  "SVM"                 = "#8EB8FF"   # pastel blue
+)
+
+# --- Ensure threshold column exists ---
+# If smooth_results has only FPR/TPR, add a synthetic threshold
+add_threshold <- function(df) {
+  df %>%
+    group_by(model_norm) %>%
+    mutate(threshold = seq(0, 1, length.out = n())) %>%
+    ungroup()
+}
+
+# --- Clean ROC per group ---
+clean_roc <- function(df) {
+  df %>%
+    arrange(threshold) %>%
+    distinct(threshold, .keep_all = TRUE) %>%
+    mutate(
+      FPR = pmin(pmax(FPR, 0), 1),
+      TPR = pmin(pmax(TPR, 0), 1)
+    )
+}
+
+# --- Spline builders for parametric ROC (FPR(t), TPR(t)) ---
+make_spline_pair <- function(df) {
+  df <- clean_roc(df)
+  f_fpr <- splinefun(x = df$threshold, y = df$FPR, method = "natural")
+  f_tpr <- splinefun(x = df$threshold, y = df$TPR, method = "natural")
+  list(f_fpr = f_fpr, f_tpr = f_tpr)
+}
+
+# --- Compute ROC geometry with respect to threshold t ---
+compute_roc_geometry <- function(df, n_grid = 1001) {
+  spl <- make_spline_pair(df)
+  f_fpr <- spl$f_fpr
+  f_tpr <- spl$f_tpr
+
+  tg <- seq(min(df$threshold), max(df$threshold), length.out = n_grid)
+
+  x   <- f_fpr(tg, deriv = 0)
+  y   <- f_tpr(tg, deriv = 0)
+  x1  <- f_fpr(tg, deriv = 1)
+  y1  <- f_tpr(tg, deriv = 1)
+  x2  <- f_fpr(tg, deriv = 2)
+  y2  <- f_tpr(tg, deriv = 2)
+  x3  <- f_fpr(tg, deriv = 3)
+  y3  <- f_tpr(tg, deriv = 3)
+
+  # curvature κ(t)
+  num   <- x1 * y2 - y1 * x2
+  denom <- (x1^2 + y1^2)^(3/2)
+  kappa <- abs(num) / denom
+
+  # derivative of curvature wrt t
+  dnum   <- x1 * y3 - y1 * x3 + x2 * y2 - y2 * x2
+  ddenom <- (3/2) * (x1^2 + y1^2)^(1/2) * (2*x1*x2 + 2*y1*y2)
+  dkappa_dt <- (dnum * denom - num * ddenom) / (denom^2)
+
+  tibble(
+    threshold = tg,
+    FPR = x,
+    TPR = y,
+    dFPR_dt = x1,
+    dTPR_dt = y1,
+    kappa = kappa,
+    dkappa_dt = dkappa_dt
+  )
+}
+
+# --- Build combined data frame for all models ---
+make_derivative_df <- function(smooth_results, n_grid = 1001) {
+  smooth_results <- add_threshold(smooth_results)
+
+  model_order <- c("Decision Tree", "Logistic Regression", "SVM")
+  models <- intersect(model_order, unique(smooth_results$model_norm))
+
+  results <- map_dfr(models, function(m) {
+    df <- smooth_results %>% filter(model_norm == m)
+    geom_df <- compute_roc_geometry(df, n_grid)
+    geom_df %>% mutate(model = m)
+  })
+
+  results
+}
+
+# --- Plotters ---
+plot_curvature <- function(geom_df, model_label, color_hex) {
+  ggplot(geom_df, aes(x = threshold, y = kappa)) +
+    geom_line(color = color_hex, linewidth = 0.9) +
+    labs(title = paste(model_label, "— curvature κ(t)"),
+         x = "Threshold", y = "κ(t)") +
+    theme_minimal(base_size = 9) +
+    theme(plot.title = element_text(face = "bold", size = 9),
+          axis.title = element_text(size = 8),
+          axis.text  = element_text(size = 8),
+          panel.grid.minor = element_blank())
+}
+
+plot_dcurvature <- function(geom_df, model_label, color_hex) {
+  ggplot(geom_df, aes(x = threshold, y = dkappa_dt)) +
+    geom_hline(yintercept = 0, color = "grey80") +
+    geom_line(color = color_hex, linewidth = 0.9) +
+    labs(title = paste(model_label, "— dκ/dt"),
+         x = "Threshold", y = "dκ/dt") +
+    theme_minimal(base_size = 9) +
+    theme(plot.title = element_text(face = "bold", size = 9),
+          axis.title = element_text(size = 8),
+          axis.text  = element_text(size = 8),
+          panel.grid.minor = element_blank())
+}
+
+# --- Main: build 3x2 grid (curvature | dκ/dt) ---
+plot_roc_geometry_grid <- function(smooth_results, n_grid = 1001) {
+  smooth_results <- add_threshold(smooth_results)
+
+  model_order <- c("Decision Tree", "Logistic Regression", "SVM")
+  models <- intersect(model_order, unique(smooth_results$model_norm))
+  stopifnot(length(models) > 0)
+
+  rows <- map(models, function(m) {
+    df <- smooth_results %>% filter(model_norm == m)
+    geom_df <- compute_roc_geometry(df, n_grid)
+    col_hex <- model_colors[[m]]
+    p_left  <- plot_curvature(geom_df, m, col_hex)
+    p_right <- plot_dcurvature(geom_df, m, col_hex)
+    patchwork::wrap_plots(p_left, p_right, ncol = 2)
+  })
+
+  reduce(rows, `/`)
+}
+
+# --- Usage ---
+derivative_df <- make_derivative_df(smooth_results, n_grid = 2001)
+#head(derivative_df)
+grid_plot <- plot_roc_geometry_grid(smooth_results, n_grid = 2001)
+
+grid_plot
+
+
+```
+
+Using curvature in ROC studies is a relatively new idea. However, it seems to be an idea that holds some promise. In their 2022 paper, [Definign the extent of gene function using ROC curvature](https://academic.oup.com/bioinformatics/article/38/24/5390/6769888?login=false), Fischer and Gillis introduce the curvature of ROC curves as a method to evaluate gene function prediction. They write:
+> We identify Functional Equivalence Classes (FECs), subsets of annotated and unannotated genes that jointly
+drive performance, by assessing the presence of straight lines in ROC curves built from gene-centric prediction
+tasks, such as function or interaction predictions.
+
+Maybe in genomics, the curvature of ROC curves will point to the shape of things to come.
+
+## Appendix
+
+Here are the equations for the some of derivatives implemented in the code above.
+
+$y'(x) = \frac{d\,\text{TPR}}{d\,\text{FPR}}$
+
+$y'(x) = \frac{d\,\text{TPR}}{d\,\text{FPR}}$
+
+$y''(x) = \frac{d^2\,\text{TPR}}{d\,\text{FPR}^2}$
+
+$y'''(x) = \frac{d^3\,\text{TPR}}{d\,\text{FPR}^3}$
+
+$\kappa(x) = \frac{|y''(x)|}{\left(1 + \left[y'(x)\right]^2\right)^{3/2}}$
+
+$\frac{d\kappa}{dx} = \frac{y'''(x)\,\left(1 + \left[y'(x)\right]^2\right) - 3\,y'(x)\,\left(y''(x)\right)^2}{\left(1 + \left[y'(x)\right]^2\right)^{5/2}}$
+
+$x'(t) = \frac{dx}{dt}, \quad y'(t) = \frac{dy}{dt}$
+
+$x''(t) = \frac{d^2x}{dt^2}, \quad y''(t) = \frac{d^2y}{dt^2}$
+
+$\kappa(t) = \frac{\left|\,x'(t)\,y''(t) - y'(t)\,x''(t)\,\right|}{\big(x'(t)^2 + y'(t)^2\big)^{3/2}}$
+
+$\frac{d\kappa}{dt} = \operatorname{sgn}\!\big(x'(t) y''(t) - y'(t) x''(t))\big)\cdot$
+$\frac{\Big(x'(t) y^{(3)}(t) - y'(t) x^{(3)}(t) + x''(t) y''(t) - y''(t) x''(t)\Big)\,(x'(t)^2 + y'(t)^2)^{3/2} - \big(x'(t) y''(t) - y'(t) x''(t)\big)\,\tfrac{3}{2}(x'(t)^2 + y'(t)^2)^{1/2}\,(2x'(t)x''(t) + 2y'(t)y''(t))}{\big(x'(t)^2 + y'(t)^2\big)^3}$
+
+
