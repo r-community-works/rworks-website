@@ -1,0 +1,655 @@
+---
+title: "ROC Exploration Lab"
+author: Joseph B. Rickert
+Date: November 28, 2025
+format: html
+---
+
+## Introduction
+
+This notebook implements functions to help the reader interactively explore the properties of Receiver Operating Characteristic (ROC) curves which are used extensively in Machine Learning to evaluate the performance of binary classifiers and in medical applications to evaluate the effectiveness of tests. The reader is expected to have some minimal knowledge of ROC curves such as that that can be obtained from the Wikipedia Article [Receiver operating characteristic](https://en.wikipedia.org/wiki/Receiver_operating_characteristic).
+
+The notebook is divided into two parts. Part 1 focuses on exploring a single ROC curve that is created by selecting distributions for positive values (signal is present) and negative values (signal no present, only noise) and selecting a threshold to distinguish between the tw. Signal and noise distributions can be Normal, Beta, Cauchy or Student's t distribution.
+
+Part 2 provides an atlas of ROC curves that contains one example with *default* settings from each of the sixteen possible combinations of distributions, and one example with *stress* parameters for each of the sixteen combinations.
+
+Synthetic ROC generator with flexible signal/noise distributions
+Below is a modular R implementation that:
+
+
+## PART 1: ROC Simulation
+
+### Required Packages
+
+```{r}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Show the packages required"
+library(tibble)
+library(dplyr)
+library(ggplot2)
+library(pROC) # for Part  ROC curve
+library(tidymodels)
+library(purrr)
+library(patchwork)
+library(zoo)
+library(gt)
+```
+
+
+## PART 1
+
+### Helper Functions
+
+```{R}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Show the code"
+# --- Distribution constructors ---
+dist_normal <- function(mean = 0, sd = 1) {
+  list(name="normal", r=function(n) rnorm(n, mean, sd),
+       d=function(x) dnorm(x, mean, sd),
+       default_threshold=mean)
+}
+
+dist_beta <- function(shape1=2, shape2=5) {
+  list(name="beta", r=function(n) rbeta(n, shape1, shape2),
+       d=function(x) dbeta(x, shape1, shape2),
+       default_threshold=shape1/(shape1+shape2))
+}
+
+dist_student_t <- function(df=5, loc=0, scale=1) {
+  list(name="student_t", r=function(n) loc+scale*rt(n,df),
+       d=function(x) dt((x-loc)/scale,df)/scale,
+       default_threshold=loc)
+}
+
+dist_cauchy <- function(loc=0, scale=1) {
+  list(name="cauchy", r=function(n) rcauchy(n, loc, scale),
+       d=function(x) dcauchy(x, loc, scale),
+       default_threshold=loc)
+}
+
+# --- Factory ---
+get_distribution <- function(name, ...) {
+  switch(name,
+    normal    = dist_normal(...),
+    beta      = dist_beta(...),
+    student_t = dist_student_t(...),
+    cauchy    = dist_cauchy(...)
+  )
+}
+
+# --- ROC utilities ---
+compute_roc_table <- function(df, predictor_col = ".pred_1") {
+  roc_obj <- roc(response = df$Class,
+                 predictor = df[[predictor_col]],
+                 levels = c("2","1"),
+                 direction = "<")
+  coords_df <- coords(roc_obj, "all",
+                      ret = c("threshold","sensitivity","specificity"),
+                      transpose = FALSE)
+  tibble(
+    threshold = coords_df$threshold,
+    TPR = coords_df$sensitivity,
+    FPR = 1 - coords_df$specificity
+  )
+}
+
+# Sweep thresholds empirically on a chosen decision variable
+# Computes TPR/FPR for every unique threshold in the variable's domain,
+# using rule: predict positive if var >= threshold
+sweep_thresholds <- function(df, decision_col = ".pred_1") {
+  x <- df[[decision_col]]
+  y <- df$Class
+  thr <- sort(unique(x), decreasing = TRUE)  # thresholds to test
+  pos <- (y == "1")
+  neg <- (y == "2")
+
+  purrr::map_dfr(thr, function(t) {
+    pred_pos <- (x >= t)
+    TP <- sum(pred_pos & pos)
+    FP <- sum(pred_pos & neg)
+    FN <- sum(!pred_pos & pos)
+    TN <- sum(!pred_pos & neg)
+    TPR <- ifelse((TP+FN) > 0, TP/(TP+FN), NA_real_)
+    FPR <- ifelse((FP+TN) > 0, FP/(FP+TN), NA_real_)
+    tibble(threshold = t, TPR = TPR, FPR = FPR)
+  })
+}
+
+
+plot_densities <- function(df, signal, noise, threshold, bins = 50, xlim = c(-10, 10)) {
+  df_trunc <- df %>% filter(score >= xlim[1], score <= xlim[2])
+
+  ggplot(df_trunc, aes(x = score)) +
+    geom_histogram(data = filter(df_trunc, Class == "1"),
+                   aes(y = after_stat(density), fill = "Signal"),
+                   bins = bins, alpha = 0.3, position = "identity", color = NA) +
+    geom_histogram(data = filter(df_trunc, Class == "2"),
+                   aes(y = after_stat(density), fill = "Noise"),
+                   bins = bins, alpha = 0.3, position = "identity", color = NA) +
+    geom_density(data = filter(df_trunc, Class == "1"),
+                 aes(y = ..density.., color = "Signal"), linewidth = 1) +
+    geom_density(data = filter(df_trunc, Class == "2"),
+                 aes(y = ..density.., color = "Noise"), linewidth = 1) +
+    geom_vline(xintercept = threshold, linetype = "dashed", linewidth = 0.8) +
+    scale_color_manual(values = c(Signal = "#1f78b4", Noise = "#33a02c")) +
+    scale_fill_manual(values = c(Signal = "#1f78b4", Noise = "#33a02c")) +
+    labs(title = sprintf("Truncated Density Plot: Signal (%s) vs Noise (%s)", signal$name, noise$name),
+         x = "Score", y = "Density", color = "Curve", fill = "Histogram") +
+    coord_cartesian(xlim = xlim) +
+    theme_minimal(base_size = 11) +
+    theme(plot.title = element_text(size = 12, face = "bold"))
+}
+
+
+## Plot ROC Curve
+plot_roc_with_point <- function(df, threshold, predictor_col = ".pred_1") {
+  roc_obj <- roc(response = df$Class,
+                 predictor = df[[predictor_col]],
+                 levels = c("2","1"),
+                 direction = "<")
+  plot(roc_obj, col="#1f78b4", lwd=2, main="ROC Curve")
+
+  coords_pt <- coords(roc_obj, x = threshold, input="threshold",
+                      ret=c("specificity","sensitivity"))
+  points(1 - coords_pt["specificity"], coords_pt["sensitivity"],
+         col="red", pch=19, cex=1.2)
+  text(1 - coords_pt["specificity"], coords_pt["sensitivity"],
+       labels = paste0("t=", threshold), pos=4, col="red")
+}
+
+
+
+plot_threshold_performance <- function(df, decision_col = ".pred_1") {
+  # Build perf_df inside the function
+  perf_df <- sweep_thresholds(df, decision_col = decision_col)
+
+  ggplot(perf_df %>% tidyr::pivot_longer(cols = c(TPR, FPR),
+                                         names_to = "Metric", values_to = "Value"),
+         aes(x = threshold, y = Value, color = Metric)) +
+    geom_line(linewidth = 1) +
+    facet_wrap(~Metric, scales = "free_y") +
+    scale_color_manual(values = c(TPR = "#1f78b4", FPR = "#d62728")) +
+    labs(title = sprintf("Threshold sweep on %s: TPR and FPR vs threshold", decision_col),
+         x = "Threshold", y = "Value") +
+    theme_minimal(base_size = 11) +
+    theme(plot.title = element_text(size = 12, face = "bold"))
+}
+
+
+```
+
+
+### User Input
+Define your simulation parameters and choose distributions for signal and noise.
+
+```{r}
+# User input
+n_pos <- 1000
+n_neg <- 1000
+seed  <- 123
+
+# To run a Normal / Cauchy simulation set the paraneters as follows:
+signal_name <- "normal"   # options: "normal", "beta", "student_t", "cauchy"
+noise_name  <- "cauchy"  # options: "normal", "beta", "student_t", "cauchy"
+
+
+# Normal- Cauchy
+signal_params <- list(mean = 1.5, sd = 1) # Moderate separation from noise at 0 with unit 
+noise_params <- list(loc = 0, scale = 1) # Centered at 0 with standard scale captures heavy-tail false positives; useful stress-test against Gaussian signal.
+
+#Neutral baseline; adjust as needed to reflect clinical class imbalance (this affects posterior probabilities but not ROC shape).
+threshold <- 1.5
+
+# To run a Normal / Normulation use these parameters:
+   # signal_name <- "normal"   
+   # noise_name  <- "normal"
+   # signal_params <- list(mean = 2, sd = 1)       # normal defaults
+   # noise_params <- list(mean = 0, sd = 2) 
+   # threshold <- 1.5
+```
+
+
+
+### Simulate Data
+
+```{r}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Show the code"
+simulate_data <- function(n_pos, n_neg, signal_name, noise_name,
+                          signal_params, noise_params,
+                          threshold = NULL, seed = NULL, prevalence = NULL) {
+  if (!is.null(seed)) set.seed(seed)
+
+  # If threshold is set, shift the signal distribution mean/location
+  if (!is.null(threshold)) {
+    if (signal_name == "normal") signal_params$mean <- threshold
+    if (signal_name == "student_t") signal_params$loc <- threshold
+    if (signal_name == "cauchy") signal_params$loc <- threshold
+    if (signal_name == "beta") {
+      # For beta, interpret threshold as mean = alpha/(alpha+beta)
+      target_mean <- threshold
+      total <- signal_params$shape1 + signal_params$shape2
+      signal_params$shape1 <- target_mean * total
+      signal_params$shape2 <- (1 - target_mean) * total
+    }
+  }
+
+  # Build distributions
+  signal <- do.call(get_distribution, c(list(signal_name), signal_params))
+  noise  <- do.call(get_distribution, c(list(noise_name),  noise_params))
+
+  s_pos <- signal$r(n_pos)
+  s_neg <- noise$r(n_neg)
+
+  df <- tibble(
+    score = c(s_pos, s_neg),
+    Class = factor(c(rep("1", n_pos), rep("2", n_neg)), levels = c("2","1"))
+  )
+
+  if (is.null(prevalence)) prevalence <- n_pos / (n_pos + n_neg)
+
+  f1 <- signal$d(df$score)
+  f0 <- noise$d(df$score)
+  denom <- prevalence*f1 + (1-prevalence)*f0
+  df <- df %>%
+    mutate(.pred_1 = ifelse(denom > 0, prevalence*f1/denom, 0),
+           threshold = threshold,
+           signal_name = signal$name,
+           noise_name  = noise$name)
+  df
+}
+
+```
+
+
+### Run the Simulation
+
+```{r}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Show the code"
+# Simulate Data ---
+df <- simulate_data(n_pos, n_neg,
+                    signal_name, noise_name,
+                    signal_params, noise_params,
+                    threshold = threshold, seed = seed)
+
+# Density Plot ---
+signal <- do.call(get_distribution, c(list(signal_name), signal_params))
+noise  <- do.call(get_distribution, c(list(noise_name), noise_params))
+plot_densities(df, signal, noise, threshold)
+
+#head(perf_df)
+
+```
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+
+```{r}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Plot threshold performance"
+# Plot threshold performance
+plot_threshold_performance(df, decision_col = ".pred_1")
+```
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+
+```{r}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Plot ROC Curve"
+# Plot ROC curve with chosen threshold point
+plot_roc_with_point(df, threshold = threshold, predictor_col = ".pred_1")
+```
+
+:::
+
+
+::::
+
+
+## PART 2: ROC Atlas with Baseline, Stress, and Prevalence
+
+This section builds an atlas of Receiver Operating Characteristic (ROC) curves designed to show some typical and then interesting behavior. This script builds a grid of ROC plots showing  curves for different combinations of signal and noise distributions. Each plot overlays three scenarios:
+
+1. **Baseline** (balanced prevalence, default parameters)  
+2. **Stress-test** (heavier tails / wider spread parameters)  
+3. **Prevalence-shift** (imbalanced dataset, e.g. 20% positives)
+
+Descriptions of the default parameters for the Baseline distributions are given in the table in Appendix A. Descriptions for the stress distributions are given in Appendix B.
+
+
+
+```{r}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Show the code"
+#
+# --- Validation helper ---
+validate_dataset <- function(df, score_col = "score", class_col = "Class") {
+  if (!score_col %in% names(df) || !class_col %in% names(df)) return(NULL)
+  df <- df[!is.na(df[[score_col]]) & !is.na(df[[class_col]]), , drop = FALSE]
+  if (nrow(df) == 0) return(NULL)
+  if (!is.numeric(df[[score_col]])) {
+    df[[score_col]] <- suppressWarnings(as.numeric(df[[score_col]]))
+    if (any(is.na(df[[score_col]]))) return(NULL)
+  }
+  df[[class_col]] <- as.character(df[[class_col]])
+  labs <- unique(df[[class_col]])
+  if (length(labs) != 2) return(NULL)
+  tab <- table(df[[class_col]])
+  if (any(tab == 0)) return(NULL)
+  df
+}
+
+# --- Positive class detection ---
+detect_positive_label <- function(df, score_col = "score", class_col = "Class") {
+  m_by_class <- tapply(df[[score_col]], df[[class_col]], mean, na.rm = TRUE)
+  pos_label <- names(which.max(m_by_class))
+  neg_label <- setdiff(names(m_by_class), pos_label)
+  list(pos_label = pos_label, neg_label = neg_label)
+}
+
+# --- Manual ROC sweep ---
+manual_roc <- function(df, score_col = "score", class_col = "Class", n_grid = 200) {
+  df <- validate_dataset(df, score_col, class_col)
+  if (is.null(df)) return(list(roc_df = tibble(FPR = numeric(0), TPR = numeric(0)), auc = NA_real_))
+  labs <- detect_positive_label(df, score_col, class_col)
+  scores <- df[[score_col]]
+  thresholds <- seq(min(scores), max(scores), length.out = n_grid)
+  out <- map_dfr(thresholds, function(t) {
+    pred_pos <- (scores >= t)
+    TP <- sum(pred_pos & (df[[class_col]] == labs$pos_label))
+    FP <- sum(pred_pos & (df[[class_col]] == labs$neg_label))
+    FN <- sum(!pred_pos & (df[[class_col]] == labs$pos_label))
+    TN <- sum(!pred_pos & (df[[class_col]] == labs$neg_label))
+    if ((TP+FN) > 0 && (FP+TN) > 0) tibble(TPR = TP/(TP+FN), FPR = FP/(FP+TN)) else NULL
+  })
+  if (nrow(out) == 0) out <- tibble(TPR = c(0,1), FPR = c(0,1))
+  else out <- bind_rows(tibble(TPR=0,FPR=0), out, tibble(TPR=1,FPR=1)) %>% arrange(FPR)
+  auc <- if (nrow(out) > 1) sum(diff(out$FPR) * rollmean(out$TPR, 2)) else NA_real_
+  list(roc_df = out, auc = auc)
+}
+
+# --- Parameter sets ---
+signal_list <- list(
+  normal    = list(mean = 1.5, sd = 1),
+  beta      = list(shape1 = 3, shape2 = 2),
+  student_t = list(df = 5, loc = 1.5, scale = 1),
+  cauchy    = list(loc = 1.5, scale = 1)
+)
+noise_list <- list(
+  normal    = list(mean = 0, sd = 1),
+  beta      = list(shape1 = 2, shape2 = 3),
+  student_t = list(df = 5, loc = 0, scale = 1),
+  cauchy    = list(loc = 0, scale = 1)
+)
+signal_stress <- list(
+  normal    = list(mean = 1.5, sd = 2),
+  beta      = list(shape1 = 7, shape2 = 3),
+  student_t = list(df = 3, loc = 1.5, scale = 2),
+  cauchy    = list(loc = 1.5, scale = 2)
+)
+noise_stress <- list(
+  normal    = list(mean = 0, sd = 2),
+  beta      = list(shape1 = 3, shape2 = 7),
+  student_t = list(df = 3, loc = 0, scale = 2),
+  cauchy    = list(loc = 0, scale = 2)
+)
+
+# --- Dynamic threshold helper ---
+beta_mean <- function(shape1, shape2) shape1/(shape1+shape2)
+internal_threshold <- function(sig_name, params) {
+  switch(sig_name,
+    beta      = beta_mean(params$shape1, params$shape2),
+    normal    = params$mean,
+    student_t = params$loc,
+    cauchy    = params$loc,
+    0.0
+  )
+}
+
+
+
+# --- Overlay plot with legend suppressed ---
+plot_overlay_safe <- function(roc_base, roc_stress, roc_prev, title_txt) {
+  # Add Curve labels
+  roc_base$roc_df$Curve   <- "Baseline"
+  roc_stress$roc_df$Curve <- "Stress"
+  roc_prev$roc_df$Curve   <- "Prevalence"
+
+  # Combine into one data frame
+  all_df <- bind_rows(
+    roc_base$roc_df,
+    roc_stress$roc_df,
+    roc_prev$roc_df
+  )
+
+  p <- ggplot() +
+    geom_abline(slope=1, intercept=0, linetype="dotted", color="gray50") +
+    geom_line(data=all_df, aes(x=FPR, y=TPR, color=Curve, linetype=Curve)) +
+    labs(
+      title=title_txt,
+      subtitle=sprintf("Baseline AUC=%s | Stress AUC=%s | Prevalence AUC=%s",
+                       ifelse(is.na(roc_base$auc),"NA",sprintf("%.3f",roc_base$auc)),
+                       ifelse(is.na(roc_stress$auc),"NA",sprintf("%.3f",roc_stress$auc)),
+                       ifelse(is.na(roc_prev$auc),"NA",sprintf("%.3f",roc_prev$auc))),
+      x="False Positive Rate", y="True Positive Rate"
+    ) +
+    scale_color_manual(values=c(
+      "Baseline"   = "#1f78b4",
+      "Stress"     = "#e31a1c",
+      "Prevalence" = "#33a02c"
+    )) +
+    scale_linetype_manual(values=c(
+      "Baseline"   = "solid",
+      "Stress"     = "dashed",
+      "Prevalence" = "dotdash"
+    )) +
+    theme_minimal(base_size=9) +
+    theme(
+      plot.title    = element_text(size=8, face="bold"),
+      plot.subtitle = element_text(size=7),
+      legend.position = "none"   # suppress per-plot legend
+    )
+
+  p
+}
+
+# --- Build overlay plot for one signal–noise pair ---
+build_overlay_plot <- function(sig, noi) {
+  thr_base   <- internal_threshold(sig, signal_list[[sig]])
+  thr_stress <- internal_threshold(sig, signal_stress[[sig]])
+
+  # Baseline balanced prevalence
+  df_base <- simulate_data(1000,1000,sig,noi,signal_list[[sig]],noise_list[[noi]],threshold=thr_base,seed=123)
+  # Stress
+  df_stress <- simulate_data(1000,1000,sig,noi,signal_stress[[sig]],noise_stress[[noi]],threshold=thr_stress,seed=123)
+  # Prevalence imbalance (20% positives, 80% negatives)
+  df_prev <- simulate_data(200,800,sig,noi,signal_list[[sig]],noise_list[[noi]],threshold=thr_base,seed=123)
+
+  roc_base   <- manual_roc(df_base,"score","Class")
+  roc_stress <- manual_roc(df_stress,"score","Class")
+  roc_prev   <- manual_roc(df_prev,"score","Class")
+
+  plot_overlay_safe(roc_base,roc_stress,roc_prev,paste("Signal:",sig,"| Noise:",noi))
+}
+
+# --- Build all plots ---
+pairs <- expand.grid(sig=names(signal_list), noi=names(noise_list), stringsAsFactors=FALSE)
+plots <- purrr::pmap(pairs, build_overlay_plot)
+
+# --- Assemble panels with one shared legend each ---
+panel1 <- wrap_plots(plots[1:4],  ncol=2) +
+  plot_layout(guides="collect") &
+  theme(legend.position="bottom", legend.title=element_blank())
+
+panel2 <- wrap_plots(plots[5:8],  ncol=2) +
+  plot_layout(guides="collect") &
+  theme(legend.position="bottom", legend.title=element_blank())
+
+panel3 <- wrap_plots(plots[9:12], ncol=2) +
+  plot_layout(guides="collect") &
+  theme(legend.position="bottom", legend.title=element_blank())
+
+panel4 <- wrap_plots(plots[13:16],ncol=2) +
+  plot_layout(guides="collect") &
+  theme(legend.position="bottom", legend.title=element_blank())
+panel1; panel2; panel3; panel4 # prints out plots and grid layout tables
+```
+
+
+## Appendix A: Parameter Settings
+
+#### Default parameters for 16 signal–noise combinations
+
+```{r}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Show the code"
+
+# Create the data frame
+tbl_data <- data.frame(
+  `Signal distribution` = c("normal","normal","normal","normal",
+                            "beta","beta","beta","beta",
+                            "student_t","student_t","student_t","student_t",
+                            "cauchy","cauchy","cauchy","cauchy"),
+  `Signal params` = c("mean = 1.5, sd = 1",
+                      "mean = 1.5, sd = 1",
+                      "mean = 1.5, sd = 1",
+                      "mean = 1.5, sd = 1",
+                      "shape1 = 3, shape2 = 2 (mean ≈ 0.60)",
+                      "shape1 = 3, shape2 = 2 (mean ≈ 0.60)",
+                      "shape1 = 3, shape2 = 2 (mean ≈ 0.60)",
+                      "shape1 = 3, shape2 = 2 (mean ≈ 0.60)",
+                      "df = 5, loc = 1.5, scale = 1",
+                      "df = 5, loc = 1.5, scale = 1",
+                      "df = 5, loc = 1.5, scale = 1",
+                      "df = 5, loc = 1.5, scale = 1",
+                      "loc = 1.5, scale = 1",
+                      "loc = 1.5, scale = 1",
+                      "loc = 1.5, scale = 1",
+                      "loc = 1.5, scale = 1"),
+  `Noise distribution` = c("normal","beta","student_t","cauchy",
+                           "normal","beta","student_t","cauchy",
+                           "normal","beta","student_t","cauchy",
+                           "normal","beta","student_t","cauchy"),
+  `Noise params` = c("mean = 0, sd = 1",
+                     "shape1 = 2, shape2 = 3 (mean ≈ 0.40)",
+                     "df = 5, loc = 0, scale = 1",
+                     "loc = 0, scale = 1",
+                     "mean = 0, sd = 1",
+                     "shape1 = 2, shape2 = 3 (mean ≈ 0.40)",
+                     "df = 5, loc = 0, scale = 1",
+                     "loc = 0, scale = 1",
+                     "mean = 0, sd = 1",
+                     "shape1 = 2, shape2 = 3 (mean ≈ 0.40)",
+                     "df = 5, loc = 0, scale = 1",
+                     "loc = 0, scale = 1",
+                     "mean = 0, sd = 1",
+                     "shape1 = 2, shape2 = 3 (mean ≈ 0.40)",
+                     "df = 5, loc = 0, scale = 1",
+                     "loc = 0, scale = 1"),
+  stringsAsFactors = FALSE
+)
+
+# Render the table with gt
+gt_tbl <- gt(tbl_data) %>%
+  tab_options(
+    table.font.size = pct(60)   # scale font size to 60% of default
+  )
+
+gt_tbl
+
+
+```
+
+
+## Appendix B: Stress-test Simulation Parameters
+
+* Stress-testing:
+ * Increase noise scale (e.g., cauchy scale = 1.5–2) to inflate tails and FPR.
+ * Increase signal spread (sd/scale = 1.5–2) to reduce separability and flatten ROC.
+* For beta, consider signal mean ≈ 0.7 vs noise mean ≈ 0.3 by using shape pairs like (7,3) vs (3,7) to widen separation.
+
+
+```{r}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Show the code"
+
+# Create the data frame
+tbl_data2 <- data.frame(
+  Distribution = c("normal", "beta", "student_t", "cauchy"),
+  `Baseline defaults` = c(
+    "mean = 1.5, sd = 1",
+    "shape1 = 3, shape2 = 2 (mean ≈ 0.60)",
+    "df = 5, loc = 1.5, scale = 1",
+    "loc = 1.5, scale = 1"
+  ),
+  `Stress-test ranges` = c(
+    "mean ∈ [0.5, 2.5]; sd ∈ [1.5, 2]",
+    "(7,3) → mean ≈ 0.70; (3,7) → mean ≈ 0.30",
+    "df ∈ [2,10]; loc ∈ [0.5, 2.5]; scale ∈ [1.5, 2]",
+    "loc ∈ [0.5, 2.5]; scale ∈ [1.5, 2]"
+  ),
+  Notes = c(
+    "Lower mean reduces separation; larger sd increases overlap and flattens ROC",
+    "Adjusting shape parameters shifts mean; wider separation improves ROC",
+    "Lower df increases heavy tails; larger scale increases overlap",
+    "Heavy tails inflate FPR; larger scale exaggerates tail effects"
+  ),
+  stringsAsFactors = FALSE
+)
+
+# Render with gt
+gt_tbl2 <- gt(tbl_data2) %>%
+  tab_options(
+    table.font.size = pct(60)   # scale font size to 60% of default
+  )
+
+gt_tbl2
+
+```
+
+
+## Appendix C: User Parameters (customize here)
+
+You can adjust the following before running the atlas:
+
+* n_pos, n_neg: number of positive and negative samples. These control the prevalence ratio (e.g. `1000/1000` for balanced, `200/800` for 20% positives).  
+* signal_list / noise_list: baseline distribution parameters. Options include *normal*, *beta*, *student_t*, *cauchy*.  
+* signal_stress / noise_stress: stress-test parameters:  Heavier tails, larger variance, shifted means.  
+* Use `build_overlay_plot()` for individual plots, or run the atlas panels (`panel1–panel4`) to see all 16 combinations.
+* The code is modular: extend it with new distributions or prevalence scenarios by adding entries to the parameter lists and adjusting `internal_threshold()`.  
+* Remember: ROC geometry is invariant to prevalence, but predictive values (PPV, NPV) will change — use prevalence-shift overlays to visualize this distinction.  
+* **Example:** To make a single plot for `*Normal signal vs Beta noise*, call: `build_overlay_plot("normal", "beta")`
+
+
+
+
+

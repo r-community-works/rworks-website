@@ -2,14 +2,18 @@
 title: "ROC Curves, Arc Length, and Differential Geometry"
 subtitle: "A mathematical take on ROC curves"
 author: Joseph B. Rickert
-date: December 9, 2025
-description: "This post explores the application of differential geometry concepts to ROC curve analysis. It shows how to use splines to construct smooth versions of ROC curves, proposes arc length as a complementary metric to AUC, shows how the derivative of the ROC curve enables conducting likelihood ratio tests and shows how curvature may be useful in interpreting and selecting ROC curves in binary classification problems."
+date: December 12, 2025
+description: "This post proposes smoothing ROC curves make them into objects that can be studied with the calculus. It shows how taking derivatives of the ROC curve enables conducting likelihood ratio tests and explores how basic concepts from differential geometry such as curvature and arc length may be helpful in examining the behavior of ROC curves. Code is provided to illustrate the ideas presented and some trouble is taken to examine the effects of smoothing."
 format: html
 ---
 
-This post attempts to make the case that basic concepts from differential geometry could be helpful for analyzing ROC curves. None of this is either particularly difficult or profound, but it involves a little more mathematics than most machine learning analyses attempt. The fundamental insight is that using ideas from functional analysis to smooth ROC curves produces functional objects, smoothed curves that can be studied with calculus. This approach should be helpful for most of  ROC curves that you are likely to find in the wild. 
+A common use of ROC (Receiver Operating Characteristic) curves in data science is to evaluate performance of binary classifiers. In this use case, the data set is usually a sample from a population and so the ROC curve itself is a random object. Although it is not common to have multiple sample ROC curves constructed from applying the same classifier to multiple sample data sets from the same population, it would be interesting to be able to construct a mean ROC curve from multiple sample ROC curves. One way to go about this would be use the theory of [functional data analysis](https://rviews.rstudio.com/2021/05/04/functional-data-analysis-in-r/) (FDA) to construct curves form the sample points in such a way that the curves themselves become the random objects of study. The first step in the FDA process typically is to use splines to construct a set of basis functions to smooth the sample points into functional objects. In this post, I am going to explore this first step of smoothing ROC curves, and point out that once you have a smoothed ROC curve it is possible to use the calculus and concepts from basic differential geometry to analyze the curves. The flow of the post is as follows:
 
-The first insight from differential geometry comes from realizing that it is meaningful to compute arc length for smooth ROC curves. Arc length is not a useful concept for the stair-step like ROC curves since any curve that goes from (0,0) to (1,1) will have a length of 2. However for smooth ROC curves, arc length is a viable alternative to AUC for comparing multiple curves.
+* Select some data sets to analyze. (I am only going to work with one data set in this post, but I have set up the code so that you can choose between three available data sets if you want to explore on your own.)
+* Fit three different binary classifiers to the data set and compute the standard ROC curves and AUC values.
+* Use spline basis functions to smooth the ROC curves and compute AUC and arc length for the smoothed curves, and discuss some of the difficulties involve in smoothing ROC curves in a meaningful way.
+* Provide some basic analysis. 
+
 
 ```{r}
 #| message: FALSE
@@ -32,11 +36,9 @@ tidymodels_prefer()
 
 ## The Data
 
-Rather than only using synthetic data, I thought that the ideas in the post would make more of a positive impression if they were illustrated with small familiar data sets. So in addition to the `two_class_dat` artificial data set from the the `modeldata` package, I have included `Pima.tr` from the `MASS` package and a subset of the `aSAH` data set from the  `pROC` package. I have selected just two numeric features from each data set in order to process the with a single, minimal `tidymodels` workflow.
+Rather than only using synthetic data, I thought that the ideas in the post would make more of a positive impression if they were illustrated with small familiar data sets. So in addition to the `two_class_dat` artificial data set from the the `modeldata` package, I have included `Pima.tr` from the `MASS` package and the `aSAH` data set from the `pROC` package.  I am only going to use the `aSAH2` data set, a subset of `aSAH` in the rest of the post, but you can easily switch to one of the other two data sets by changing a single line of code. All three of these data sets contain three variables: two numeric features and a binary class label. I believe that these simple data sets are sufficient to provide a minimal viable demonstration of the issues I am going to discuss. Using simple data sets that conform to the same structure also makes it easy to fit multiple classification models with a single `tidymodels` workflow.
 
-The next section of code prepares these three data sets for processing. I am only going to use the `aSAH2` data set in the rest of the post, but you can easily switch to one of the other two data sets by changing a single line of code. I admit that this is a minimal effort on my part to show you that the ideas in this post are broadly applicable, but I hope it is sufficient to whet your appetite for running the code o your own data.
-
-
+This next section of code prepares the data sets. The way of selecting which data set to use should be clear.
 ```{r}
 #| message: FALSE
 #| warning: FALSE
@@ -64,19 +66,11 @@ aSAH2 <- aSAH %>% mutate(
                               "Poor" = "2")) %>%
                         select(c(s100b,ndka,Class))
 
-```
 
-This is the section where you can select which data set to explore by un-commenting the assignment to df that corresponds to the data set you want. Any one you choose will have two numeric features and a class label column `Class`. 
-
-```{r}
-#| message: FALSE
-#| warning: FALSE
-#| code-fold: TRUE
-#| code-summary: "Look here to select a data set"
 # Set a seed for reproducibility
 set.seed(123)
 
-# Select a data set
+# SELECT A DATA SET TO USE HERE
 
 #df<- two_class_dat2 # try FPC = 1, FNC = 10
 #df <- Pima.tr2 # try FPC = 10 , FNC = 1
@@ -219,30 +213,15 @@ color_values <- c(
 roc_data <- roc_data %>%
   mutate(model = factor(model, levels = auc_data$model))
 
-# An alternative plot with more elaborate formatting.
-# Plot raw step-function ROC curves
-#ggplot(roc_data, aes(x = 1 - specificity, y = sensitivity, color = model)) +
-  # geom_path(size = 1.4) +
-  # geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "grey50") +
-  # coord_fixed(ratio = 1, xlim = c(0,1), ylim = c(0,1), expand = FALSE) +
-  # labs(title = "ROC Curves for Multiple Classifiers",
-  #      x = "False Positive Rate (FPR)",
-  #      y = "True Positive Rate (TPR)",
-  #      color = NULL) +
-  # scale_color_manual(values = color_values, labels = legend_labels) +
-  # #theme_classic() +
-  # theme(
-  #   legend.position = c(0.65, 0.25),
-  #   legend.text = element_text(size = 9, lineheight = 1.1),
-  #   legend.background = element_rect(fill = alpha("white", 0.7), color = NA),
-  #   plot.margin = margin(20, 20, 20, 20)
-  # )
+
 
 ```
 
-## Smooth ROC Curves and Arc Length
+## Smooth ROC Curves
 
-In this section a spline bases is used to construct smoothed curves. AUC is computed for both raw and smoothed ROC curves. Arc length is only computed for the smoothed curves. The comments in the code provide some technical details about the methods used.
+In this section a spline bases is used to construct smoothed curves. AUC is computed for both raw and smoothed ROC curves. Arc length is only computed for the smoothed curves.  The major technical challenge in smoothing ROC curves is to ensure that the smoothed curves are monotone, not decreasing in both TPR and FPR. I have addressed this issue by using the "monoH.FC" method in R's `splinefun` function. This method which constructs a monotone Hermite cubic spline using the [Fritsch–Carlson](https://web.archive.org/web/20160212093324id_/http://www.ams.sunysb.edu:80/~jiao/teaching/ams527_spring16/lectures/SNA000238.pdf) method was designed to minimize the creation of artifacts that could jeopardize monotonicity. It adjusts slopes at knots to prevent oscillations while keeping the interpolation smooth
+
+A second problem is that the smoothing process affects the TPR and FPR values in a way that can affect the AUC values. We will examine both of these issues below.
 
 
 ```{r}
@@ -277,21 +256,17 @@ discrete_roc <- function(df) {
 }
 
 #   smooth_roc takes raw ROC points (FPR, TPR) and produces a smoothed ROC curve with:
-#      A monotone spline interpolation of TPR vs. FPR
-#.     A dense grid of points (n = 400 by default)
-#.     Computed AUC (area under the curve)
-#.     Computed arc length (geometric length of the ROC trajectory)
-#.  It returns a tibble with the smoothed ROC coordinates and the two summary metrics.  
+#     1. a monotone spline interpolation of TPR vs. FPR
+#.    2. a dense grid of points (n = 400 by default)
+#.    3. Computes  AUC (area under the curve)
+#.    4. Computes arc length (geometric length of the ROC trajectory)
+#.    5. Returns a tibble with the smoothed ROC coordinates and the two summary metrics.  
 # 
-# "monoH.FC" is a special option in R’s splinefun that stands for Monotone Hermite cubic spline (Fritsch–Carlson method).
-#. It guarantees that the interpolated function is monotone increasing if the data are monotone.
-#  Unlike ordinary cubic splines, which can overshoot and produce non‑monotone artifacts, 
-#. "monoH.FC" preserves the monotonicity of ROC curves (TPR should not decrease as FPR increases).
+# "monoH.FC" is a special option in R’s splinefun that stands for Monotone Hermite cubic spline
+# (Fritsch–Carlson method) that attempts to guarantee that the interpolated function is monotone increasing
+# if the data are monotone. Unlike ordinary cubic splines, which can overshoot and produce non‑monotone
+# artifacts, "monoH.FC" preserves the monotonicity of ROC curves (TPR should not decrease as FPR increases).
 #  The algorithm adjusts slopes at knots to prevent oscillations while keeping the interpolation smooth.
-#  This matters for ROC curves because:
-#.    ROC curves must be monotone (TPR should not decrease with increasing FPR).
-#     "monoH.FC" ensures the smoothed curve respects this property and avoids unrealistic wiggles 
-#.     that could distort AUC or arc length.
 
 
 smooth_roc <- function(FPR, TPR, n = 400) {
@@ -328,7 +303,7 @@ metrics <- smooth_results %>%
 ```
 
 
-This bloc of code overlays the smoothed and raw ROC curves for each model and adds a legend with raw AUC, smoothed AUC, and arc length for each model.
+Here we plot the smoothed ROC curves for each of the three classifiers overlaying them on the raw ROC curves. The legend includes raw AUC, smoothed AUC, and arc length for each model.
 
 ```{r}
 #| message: FALSE
@@ -460,96 +435,203 @@ ggplot(roc_results, aes(x=FPR, y=TPR,
 
 ```
 
-The first thing to observe that the smooth curves do not perfectly overlay the stair-step curves, as one might expect for curves with large steps. Nevertheless the AUC numbers are close, and in this case they preserve the order. Also note that selecting the curves passed on arc length would lead to the same results.
+The first thing to observe that the smooth curves do not perfectly overlay the stair-step curves, as one might expect for curves with large steps. Nevertheless the raw curve AUC numbers are close to the smoothed curve numbers. Whether they are close enough depends on the application. My intuition is that as the number of data points used to construct the raw curves increase, the smoothed curves will better fit the raw curves and the AUC values will be closer.  Also note that selecting the curves based on arc length would lead to the same results.
 
 
-### The Case for Arc Length
+The following code which looks at adjacent differences in the smoothed ROC curves flags a monotonicity violation for Logistic Regression TPR.
 
-The main insight is that ROC curve is the direct representation of the conditional probability distribution relating True Positive Rate (TPR) and False Positive Rate (FPR). Each point (x,y) on the ROC curve yields the conditional distribution of TPR given the distribution of FPR. $P(TPR \le y \mid FPR \le x)$. This to my mind a direct, clear,and as you will see below, useful probability statement. The area under the curve (AUC), on the other hand, is an indirect measure with the probability interpretation that is usually rendered something like the definition provided in [wikipedia](https://en.wikipedia.org/wiki/Receiver_operating_characteristic#:~:text=The%20area%20under%20the%20curve,ranks%20higher%20than%20'negative')
+```{r}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Show Code"
+# --- Check monotonicity of smoothed ROC curves ---
+check_monotone <- smooth_results %>%
+  group_by(model_norm) %>%
+  summarise(
+    monotone_TPR = all(diff(TPR) >= -1e-8),   # allow tiny numerical tolerance
+    monotone_FPR = all(diff(FPR) >= -1e-8),
+    .groups = "drop"
+  )
 
-> AUC is equal to the probability that a classifier will rank a randomly chosen positive instance higher than a randomly chosen negative one (assuming 'positive' ranks higher than 'negative'). 
+print(check_monotone)
 
-I always ask my self when would I want to perform this experiment, and never come up with a good answer. Also, I have never seen this probability invoked to clarify a practical analysis. 
+```
 
-It is also the case that arc length is a linear measure while AUC is an area. I may very well be be wrong about this, but I think most people have a better intuition of the practical significance of a linear difference of 0.3 inches than an area difference of 0.3 square inches.
+Looking further into these violations for the Logistic Regression models shows that there are on the order of $10^{-5}$, essentially numerical noise.
+```{r}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Show Code"
+violations <- smooth_results %>%
+  group_by(model_norm) %>%
+  mutate(
+    dFPR = c(NA, diff(FPR)),
+    dTPR = c(NA, diff(TPR)),
+    FPR_violation = dFPR < -1e-8,
+    TPR_violation = dTPR < -1e-8
+  ) %>%
+  filter(FPR_violation | TPR_violation)
 
-Arc length also mostly avoids the criticism of AUC that led to the development of [Partial Arc length](https://en.wikipedia.org/wiki/Partial_Area_Under_the_ROC_Curve). It is relatively easy to exclude segments of regions that are not important to the application. An unless the ROC curve pathologically crosses the diagonal at FPR > .5 and TPR < .5 it will not be troubled region of [low sensitivity and low specificity](https://en.wikipedia.org/wiki/Receiver_operating_characteristic#:~:text=The%20main%20criticism%20to%20the,the%20plot%20on%20the%20right.).
+print(violations)
 
-Finally, arc length is directly related to the geometry of the ROC curve and as I hope to convince you below, some basic ideas of differential geometry may be useful in interpreting the behavior of ROC curves. The following table is as close as I can come to a fair comparison of the two metrics. I hope you find it useful, however, I despair of ever seeing a clinical practitioner abandoning AUC.
+```
 
-### Table Comparing Arclength with AUC 
-
+As was mentioned above, the smoothing process slightly changes the FPR and TPR values because they are now calculated with respect to the dense grid to perform smoothing. To geta feel for how badly this process affects the FPR and TPR values we plot the distributions of TPR and FPR for both the raw and smoothed ROC curves. This next plot shows the distributions for the raw ROC curves.
 
 
 ```{r}
 #| message: FALSE
 #| warning: FALSE
 #| code-fold: TRUE
-#| code-summary: "Show the code to build the table"
-# --- Data for table ---
-tbl_data <- tribble(
-  ~Aspect, ~AUC, ~ArcLength,
-  "Definition",
-  "$\\int_0^1 f(x)\\,dx$",
-  "$\\int_0^1 \\sqrt{1+(f'(x))^2}\\,dx$",
-  
-  "Probabilistic meaning",
-  "Probability that a randomly chosen positive is ranked above a randomly chosen negative",
-  "Probability that TPR ≤ y given FPR ≤ x (joint distribution along ROC trajectory)",
-  
-  "Bounds",
-  "0.5 (random) to 1.0 (perfect)",
-  "$\\sqrt{2} \\approx 1.414$ (diagonal) to 2.0 (perfect staircase ROC)",
-  
-  "Interpretability",
-  "Widely used, intuitive for clinicians; benchmarks exist (e.g., >0.9 = excellent)",
-  "Linear measure, easier to visualize by eye; highlights curve geometry and trajectory",
-  
-  "Sensitivity to curve shape",
-  "Less sensitive — curves with different shapes can yield similar AUC",
-  "More sensitive — captures slope changes, curvature, and smoothness differences",
-  
-  "Partial evaluation",
-  "Partial AUC requires normalization; less visually obvious",
-  "It is easy to avoid problematic regions for most reasonable ROC curves",
-  
-  "Noise robustness",
-  "Relatively robust; integrates over curve",
-  "More sensitive to noise or jaggedness; small oscillations inflate length",
-  
-  "Clinical adoption",
-  "Standard metric with established thresholds",
-  "Novel metric; not yet widely adopted, requires new benchmarks",
-  
-  "Use cases",
-  "Ranking accuracy, overall discrimination power",
-  "Diagnostic trajectory, geometric comparison, highlighting regional performance differences"
+#| code-summary: "Show Code"
+
+# Define pastel colors
+model_colors <- c(
+  "Decision Tree"        = "#fcae91",  # pastel red
+  "Logistic Regression"  = "#a1d99b",  # pastel green
+  "SVM"                  = "#9ecae1"   # pastel blue
 )
 
-gt_tbl <- tbl_data %>%
-  gt() %>%
-  tab_header(title = "Comparison of ROC Metrics: AUC vs. Arc Length") %>%
-  cols_label(
-    Aspect = "Aspect",
-    AUC = "AUC (Area Under Curve)",
-    ArcLength = "Arc Length (ROC Curve Length)"
-  ) %>%
-  fmt_markdown(columns = everything()) %>%
-  tab_options(
-    table.font.size = px(12),   # smaller text
-    data_row.padding = px(2)    # tighter row spacing
-  )
+# --- Plotting function for one model ---
+plot_distributions <- function(df, model_label, color_hex) {
+  n_samples <- nrow(df)
+  fpr_mean  <- round(mean(df$FPR, na.rm = TRUE), 3)
+  fpr_sd    <- round(sd(df$FPR, na.rm = TRUE), 3)
+  tpr_mean  <- round(mean(df$TPR, na.rm = TRUE), 3)
+  tpr_sd    <- round(sd(df$TPR, na.rm = TRUE), 3)
 
+  p_fpr <- ggplot(df, aes(x = FPR)) +
+    geom_histogram(aes(y = after_stat(density)), bins = 20,
+                   fill = color_hex, alpha = 0.4, color = "white") +
+    geom_density(color = color_hex, linewidth = 0.9) +
+    labs(
+      title = paste(model_label, "— FPR distribution"),
+      subtitle = paste0("n=", n_samples,
+                        " | mean=", fpr_mean,
+                        " | sd=", fpr_sd),
+      x = "False Positive Rate", y = "Density"
+    ) +
+    theme_minimal(base_size = 10) +
+    theme(
+      plot.title = element_text(size = 9, face = "bold"),
+      plot.subtitle = element_text(size = 8)
+    )
 
+  p_tpr <- ggplot(df, aes(x = TPR)) +
+    geom_histogram(aes(y = after_stat(density)), bins = 20,
+                   fill = color_hex, alpha = 0.4, color = "white") +
+    geom_density(color = color_hex, linewidth = 0.9) +
+    labs(
+      title = paste(model_label, "— TPR distribution"),
+      subtitle = paste0("n=", n_samples,
+                        " | mean=", tpr_mean,
+                        " | sd=", tpr_sd),
+      x = "True Positive Rate", y = "Density"
+    ) +
+    theme_minimal(base_size = 10) +
+    theme(
+      plot.title = element_text(size = 9, face = "bold"),
+      plot.subtitle = element_text(size = 8)
+    )
 
-gt_tbl
+  p_fpr + p_tpr  # side by side
+}
+
+# --- Build plots for each model ---
+plots <- roc_results %>%
+  split(.$model_norm) %>%
+  imap(function(df, model_label) {
+    plot_distributions(df, model_label, model_colors[[model_label]])
+  })
+
+# --- Arrange vertically: one row per model ---
+final_plot <- wrap_plots(plots, ncol = 1)
+print(final_plot)
+
 
 ```
+
+And here are the distributions for the smoothed curves.
+```{r}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Show Code"
+
+# Define pastel colors
+model_colors <- c(
+  "Decision Tree"        = "#fcae91",  # pastel red
+  "Logistic Regression"  = "#a1d99b",  # pastel green
+  "SVM"                  = "#9ecae1"   # pastel blue
+)
+
+# --- Plotting function for smoothed results ---
+plot_smooth_distributions <- function(df, model_label, color_hex) {
+  n_samples <- nrow(df)
+  fpr_mean  <- round(mean(df$FPR, na.rm = TRUE), 3)
+  fpr_sd    <- round(sd(df$FPR, na.rm = TRUE), 3)
+  tpr_mean  <- round(mean(df$TPR, na.rm = TRUE), 3)
+  tpr_sd    <- round(sd(df$TPR, na.rm = TRUE), 3)
+
+  p_fpr <- ggplot(df, aes(x = FPR)) +
+    geom_histogram(aes(y = after_stat(density)), bins = 30,
+                   fill = color_hex, alpha = 0.4, color = "white") +
+    geom_density(color = color_hex, linewidth = 0.9) +
+    labs(
+      title = paste(model_label, "— Smoothed FPR distribution"),
+      subtitle = paste0("n=", n_samples,
+                        " | mean=", fpr_mean,
+                        " | sd=", fpr_sd),
+      x = "False Positive Rate", y = "Density"
+    ) +
+    theme_minimal(base_size = 10) +
+    theme(
+      plot.title = element_text(size = 9, face = "bold"),
+      plot.subtitle = element_text(size = 8)
+    )
+
+  p_tpr <- ggplot(df, aes(x = TPR)) +
+    geom_histogram(aes(y = after_stat(density)), bins = 30,
+                   fill = color_hex, alpha = 0.4, color = "white") +
+    geom_density(color = color_hex, linewidth = 0.9) +
+    labs(
+      title = paste(model_label, "— Smoothed TPR distribution"),
+      subtitle = paste0("n=", n_samples,
+                        " | mean=", tpr_mean,
+                        " | sd=", tpr_sd),
+      x = "True Positive Rate", y = "Density"
+    ) +
+    theme_minimal(base_size = 10) +
+    theme(
+      plot.title = element_text(size = 9, face = "bold"),
+      plot.subtitle = element_text(size = 8)
+    )
+
+  p_fpr + p_tpr  # side by side
+}
+
+# --- Build plots for each model ---
+smooth_plots <- smooth_results %>%
+  split(.$model_norm) %>%
+  imap(function(df, model_label) {
+    plot_smooth_distributions(df, model_label, model_colors[[model_label]])
+  })
+
+# --- Arrange vertically: one row per model ---
+final_smooth_plot <- wrap_plots(smooth_plots, ncol = 1)
+print(final_smooth_plot)
+
+
+```
+
+They look to be pretty close. How close could be quantified, but again are they close enough would depend on the application.
 
 
 ## A Little Calculus with ROC curves
 
-This next plot shows the ROC curves for the three classifiers in the left column and the derivative of TPR with respect to FPR, $d(TPR) / d(FPR)$ in the right hand column for each classifier showing how the slopes of the ROC curves change as FPR increases. Comments in the code provide some details on the hows and whys of building the splines, and the Appendix at the end of the post writes out the equations for the derivatives.
+In this section we examine what we can do using a little calculus on the smoothed ROC curves. We begin by computing some derivatives. This next plot shows the ROC curves for the three classifiers in the left column and the corresponding derivative of TPR with respect to FPR, $d(TPR) / d(FPR)$ in the right hand column.
 
 
 ```{r}
@@ -665,7 +747,7 @@ print(grid_plot)
 
 ```
 
-It a well known result from mathematical statistics, not usually emphasized in a machine learning context, that the slope of the tangent to the ROC curve at any point is equal to the the instantaneous likelihood ratio at that point. [Choi (1998)](https://academic.oup.com/aje/article-abstract/148/11/1127/123231?redirectedFrom=PDF). This is exactly what is plotted in the second column. However, to understand the connection with differential geometry, the following section of code re derives the plot by considering ROC curves parameterized by threshold $t \in [0,1]$ so the curve is the set of points $(FPR(t),TPR(t))$. This point of view is preferred for analyzing likelihood ratios and connecting with diagnostic test theory. In both cases the likelihood ratio is identical since likelihood is a property of the curve and $\frac{d(TPR)}{d(FPR)} = \frac{d(TPR)/dt))}{d(FPR)/dt}$
+It a well known result from mathematical statistics, not usually emphasized in a machine learning context, that the slope of the tangent to the ROC curve at any point is equal to the the instantaneous likelihood ratio at that point. [Choi (1998)](https://academic.oup.com/aje/article-abstract/148/11/1127/123231?redirectedFrom=PDF). This is exactly what is plotted in the second column. However, to understand the connection with differential geometry, the following section of code re-derives the plot by considering ROC curves parameterized by threshold $t \in [0,1]$. The curve is expressed as the set of points $(FPR(t),TPR(t))$. This point of view is preferred for analyzing likelihood ratios and connecting with diagnostic test theory. In both cases the likelihood ratio is identical since likelihood is a property of the curve and $\frac{d(TPR)}{d(FPR)} = \frac{d(TPR)/dt))}{d(FPR)/dt}$.
 
 
 ```{r}
@@ -828,10 +910,11 @@ A standard interpretation for a diagnostic test is that LR+ values above 10 are 
 
 ## Curvature
 
-Our final topic will be to take a brief look at curvature. The curvature, $\kappa(t)$ of a two dimensional planer curve, like an ROC curve, measures how sharply the curve bends at a given threshold, $t$. Computing it involves computing second derivatives as the equations in the Appendix show. High curvature implies rapidly changing slope while low curvature indicates that slope is changing slowly. The derivative of curvature (a third derivative) indicates how fast the changing slope itself is changing. Large positive values of $d\kappa(t)/dt$ can indicate threshold zone where small changes in the decision rule can produce large changes in discrimination. Large negative values of $d\kappa(t)/dt$ can indicate zones where slope changes are stabilizing suggesting diminishing returns for tightening or loosening the decision rules. Zones with values near zero indicate regions that are relatively stable with respect of threshold. The following code calculates $\kappa(t)$ and $d\kappa(t)/dt$ for each of the three models and plots them side by side.
+We continue exploring ROC curves with ideas from elementary differential geometry. As was noted above, a smoothed ROC curve is a two dimensional planar curve parameterized by threshold $t$ which also directly represents the relationship between TPR and FPR. Each point (x,y) on the ROC curve yields the conditional distribution of TPR given the distribution of FPR. $P(TPR \le y \mid FPR \le x)$.
 
-These ideas my be helpful in understanding the trade offs involved is selecting a threshold for a particular application.
+Curvature, $\kappa(x) = \frac{|y''(x)|}{\left(1 + \left[y'(x)\right]^2\right)^{3/2}}$ of a two dimensional planer curve, measures how sharply the curve bends at a given threshold, $t$. High values of curvature imply a rapidly changing slope while low curvature indicates that slope is changing slowly. 
 
+So curvature and its derivative with respect to threshold may be helpful in selecting threshold values for a particular application. Large positive values of $d\kappa(t)/dt$ can indicate threshold zone where small changes in the decision rule can produce large changes in discrimination. Large negative values of $d\kappa(t)/dt$ can indicate zones where slope changes are stabilizing suggesting diminishing returns for tightening or loosening the decision rules. Zones with values near zero indicate regions that are relatively stable with respect of threshold. The following code calculates $\kappa(t)$ and $d\kappa(t)/dt$ for each of the three models and plots them side by side.
 
 ```{r}
 #| message: FALSE
@@ -975,7 +1058,7 @@ plot_roc_geometry_grid <- function(smooth_results, n_grid = 1001) {
 }
 
 # --- Usage ---
-derivative_df <- make_derivative_df(smooth_results, n_grid = 2001)
+curvature_df <- make_derivative_df(smooth_results, n_grid = 2001)
 #head(derivative_df)
 grid_plot <- plot_roc_geometry_grid(smooth_results, n_grid = 2001)
 
@@ -984,29 +1067,106 @@ grid_plot
 
 ```
 
-Using curvature in ROC studies is a relatively new idea. However, it seems to be an idea that holds some promise. In their 2022 paper, [Definign the extent of gene function using ROC curvature](https://academic.oup.com/bioinformatics/article/38/24/5390/6769888?login=false), Fischer and Gillis introduce the curvature of ROC curves as a method to evaluate gene function prediction. They write:
+The first thing that you may notice about the plots is that curvature for the decision trees model looks smooth and stable. This is to be expected because the ROC curve for decision trees is piece wise linear with a small number of segments. The curvature is zero everywhere except at the corners where it is undefined. The smoothing spline used here smooths out the corners producing a smooth curve with small curvature values.
+
+The areas around threshold values $t=0.5$ appear to behave differently for the Logistic Regression and SVM models. The question is: in an application where the underlying decision problem about the relative utility of TPR and FPR rates be useful choosing between models that have similar AUC values?
+
+There do not to appear to be many studies proposing the use of curvature. Using curvature in ROC studies is a relatively new idea. However, it seems to be an idea that holds some promise. In their 2022 paper, [Definign the extent of gene function using ROC curvature](https://academic.oup.com/bioinformatics/article/38/24/5390/6769888?login=false), Fischer and Gillis introduce the curvature of ROC curves as a method to evaluate gene function prediction. They write:
 > We identify Functional Equivalence Classes (FECs), subsets of annotated and unannotated genes that jointly
-drive performance, by assessing the presence of straight lines in ROC curves built from gene-centric prediction
-tasks, such as function or interaction predictions.
+drive performance, by assessing the presence of straight lines in ROC curves built from gene-centric prediction tasks, such as function or interaction predictions.
 
-Maybe in genomics, the curvature of ROC curves will point to the shape of things to come.
 
-## Appendix
+### The Case for Arc Length
 
-Here are the equations for the some of derivatives implemented in the code above.
+Finally, I would like to make a case for using the arc length $\int_0^t \sqrt{1+(f'(x))^2}\,dx$ of a smoothed ROC curve as a metric for comparing classifiers that appears to be consistent and complementary to AUC. Arc length is not a useful concept for raw, stair-step ROC curves. Any stair-step curve that goes from (0,0) to (1,1) will have the same arc length of 2.0. However, the arc length for a viable smoothed ROC curve will range from $\sqrt2$ to 2. Arc length becomes a useful metric for smoothed ROC curves because it captures information about the geometry of the curve that AUC does not.
 
-$y'(x) = \frac{d\,\text{TPR}}{d\,\text{FPR}}$
+Arc length is more sensitive to the shape of the ROC curve than AUC. Two ROC curves with identical AUC values can have very different shapes and therefore very different arc lengths. Arc length captures information about the slope changes, curvature, and smoothness of the ROC curve that AUC does not. This could be important in applications where the shape of the ROC curve is relevant to decision-making.
 
-$y'(x) = \frac{d\,\text{TPR}}{d\,\text{FPR}}$
+Because the trajectory of most viable ROC curves will stay well above the diagonal from (0,0) to (1,1), arc length mostly avoids the criticism of AUC that led to the development of [Partial Arc length](https://en.wikipedia.org/wiki/Partial_Area_Under_the_ROC_Curve). It is relatively easy to exclude segments of regions that are not important to the application. An unless the ROC curve pathologically crosses the diagonal at FPR > .5 and TPR < .5 it will not be troubled region of [low sensitivity and low specificity](https://en.wikipedia.org/wiki/Receiver_operating_characteristic#:~:text=The%20main%20criticism%20to%20the,the%20plot%20on%20the%20right.).
 
-$y''(x) = \frac{d^2\,\text{TPR}}{d\,\text{FPR}^2}$
+It is also the case that arc length is a linear measure while AUC is an area. I may very well be be wrong about this, but I think most people have a better intuition of the practical significance of a linear difference of 0.3 inches than an area difference of 0.3 square inches. The following table contrasts AUS and arc length.
+
+### Table Comparing Arclength with AUC 
+
+
+```{r}
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Show the code to build the table"
+# --- Data for table ---
+tbl_data <- tribble(
+  ~Aspect, ~AUC, ~ArcLength,
+  "Definition",
+  "$\\int_0^1 f(x)\\,dx$",
+  "$\\int_0^t \\sqrt{1+(f'(x))^2}\\,dx$",
+  
+  "Bounds",
+  "0.5 (random) to 1.0 (perfect)",
+  "$\\sqrt{2} \\approx 1.414$ (diagonal) to 2.0 (perfect staircase ROC)",
+  
+  "Interpretability",
+  "Widely used, intuitive for clinicians; benchmarks exist (e.g., >0.9 = excellent)",
+  "Linear measure, easier to visualize by eye; highlights curve geometry and trajectory",
+  
+  "Sensitivity to curve shape",
+  "Less sensitive — curves with different shapes can yield similar AUC",
+  "More sensitive — captures slope changes, curvature, and smoothness differences",
+  
+  "Partial evaluation",
+  "Partial AUC requires normalization; less visually obvious",
+  "It is easy to avoid problematic regions for most reasonable ROC curves",
+  
+  "Noise robustness",
+  "Relatively robust; integrates over curve",
+  "More sensitive to noise or jaggedness; small oscillations inflate length",
+  
+  "Clinical adoption",
+  "Standard metric with established thresholds",
+  "Novel metric; not yet widely adopted, requires new benchmarks",
+  
+  "Use cases",
+  "Ranking accuracy, overall discrimination power",
+  "Diagnostic trajectory, geometric comparison, highlighting regional performance differences"
+)
+
+gt_tbl <- tbl_data %>%
+  gt() %>%
+  tab_header(title = "Comparison of ROC Metrics: AUC vs. Arc Length") %>%
+  cols_label(
+    Aspect = "Aspect",
+    AUC = "AUC (Area Under Curve)",
+    ArcLength = "Arc Length (ROC Curve Length)"
+  ) %>%
+  fmt_markdown(columns = everything()) %>%
+  tab_options(
+    table.font.size = px(12),   # smaller text
+    data_row.padding = px(2)    # tighter row spacing
+  )
+
+
+
+gt_tbl
+
+```
+
+
+
+### Conclusion
+
+ROC curves, fundamental tools in evaluating binary classifiers, are naturally express as parameterized curves. However, especially for small samples, the raw ROC curves are stair-step functions that are not differentiable. Smoothing techniques, such as cubic splines, can produce smooth ROC curves that are differentiable and amenable to analysis beyond computing the area under the curve (AUC). Moreover, ideas from elementary differential geometry, such as curvature and arc length, may provide additional insights into the performance and behavior of classifiers that are not captured by AUC alone.
+
+## Appendix: Equations for Derivatives
+
+#### Derivatives of equations expressed in (x,y) coordinates
+
+$y'(x) = \frac{d\,\text{TPR}}{d\,\text{FPR}}$, $y''(x) = \frac{d^2\,\text{TPR}}{d\,\text{FPR}^2}$
 
 $y'''(x) = \frac{d^3\,\text{TPR}}{d\,\text{FPR}^3}$
 
-$\kappa(x) = \frac{|y''(x)|}{\left(1 + \left[y'(x)\right]^2\right)^{3/2}}$
+$\kappa(x) = \frac{|y''(x)|}{\left(1 + \left[y'(x)\right]^2\right)^{3/2}}$,  $\frac{d\kappa}{dx} = \frac{y'''(x)\,\left(1 + \left[y'(x)\right]^2\right) - 3\,y'(x)\,\left(y''(x)\right)^2}{\left(1 + \left[y'(x)\right]^2\right)^{5/2}}$
 
-$\frac{d\kappa}{dx} = \frac{y'''(x)\,\left(1 + \left[y'(x)\right]^2\right) - 3\,y'(x)\,\left(y''(x)\right)^2}{\left(1 + \left[y'(x)\right]^2\right)^{5/2}}$
-
+#### Derivatives of equations expressed in parametric (t) coordinates
 $x'(t) = \frac{dx}{dt}, \quad y'(t) = \frac{dy}{dt}$
 
 $x''(t) = \frac{d^2x}{dt^2}, \quad y''(t) = \frac{d^2y}{dt^2}$
@@ -1015,5 +1175,7 @@ $\kappa(t) = \frac{\left|\,x'(t)\,y''(t) - y'(t)\,x''(t)\,\right|}{\big(x'(t)^2 
 
 $\frac{d\kappa}{dt} = \operatorname{sgn}\!\big(x'(t) y''(t) - y'(t) x''(t))\big)\cdot$
 $\frac{\Big(x'(t) y^{(3)}(t) - y'(t) x^{(3)}(t) + x''(t) y''(t) - y''(t) x''(t)\Big)\,(x'(t)^2 + y'(t)^2)^{3/2} - \big(x'(t) y''(t) - y'(t) x''(t)\big)\,\tfrac{3}{2}(x'(t)^2 + y'(t)^2)^{1/2}\,(2x'(t)x''(t) + 2y'(t)y''(t))}{\big(x'(t)^2 + y'(t)^2\big)^3}$
+
+
 
 
