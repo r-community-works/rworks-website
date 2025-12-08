@@ -478,7 +478,7 @@ print(violations)
 
 ```
 
-As was mentioned above, the smoothing process slightly changes the FPR and TPR values because they are now calculated with respect to the dense grid to perform smoothing. To geta feel for how badly this process affects the FPR and TPR values we plot the distributions of TPR and FPR for both the raw and smoothed ROC curves. This next plot shows the distributions for the raw ROC curves.
+As was mentioned above, the smoothing process slightly changes the FPR and TPR values because they are now calculated with respect to the dense grid to perform smoothing. To get a feel for how this process may affect the FPR and TPR values we plot the distributions of TPR and FPR for both the raw and smoothed ROC curves. This next plot shows the distributions for the raw ROC curves.
 
 
 ```{r}
