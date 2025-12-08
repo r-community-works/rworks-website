@@ -3,7 +3,7 @@ title: "ROC Curves, Arc Length, and Differential Geometry"
 subtitle: "A mathematical take on ROC curves"
 author: Joseph B. Rickert
 date: December 12, 2025
-description: "This post proposes smoothing ROC curves make them into objects that can be studied with the calculus. It shows how taking derivatives of the ROC curve enables conducting likelihood ratio tests and explores how basic concepts from differential geometry such as curvature and arc length may be helpful in examining the behavior of ROC curves. Code is provided to illustrate the ideas presented and some trouble is taken to examine the effects of smoothing."
+description: "This post proposes smoothing ROC curves to make them into objects that can be studied with the calculus. It shows how taking derivatives of the ROC curve enables conducting likelihood ratio tests and explores how basic concepts from differential geometry such as curvature and arc length may be helpful in examining the behavior of ROC curves. Code is provided to illustrate the ideas presented and some trouble is taken to examine the effects of smoothing."
 format: html
 ---
 
