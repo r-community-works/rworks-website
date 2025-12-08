@@ -3,11 +3,11 @@ title: "ROC Curves, Arc Length, and Differential Geometry"
 subtitle: "A mathematical take on ROC curves"
 author: Joseph B. Rickert
 date: December 10, 2025
-description: "This post proposes smoothing ROC curves to make them into objects that can be studied with the calculus. It shows how taking derivatives of the ROC curve enables conducting likelihood ratio tests and explores how basic concepts from differential geometry such as curvature and arc length may be helpful in examining the behavior of ROC curves. Code is provided to illustrate the ideas presented and some trouble is taken to examine the effects of smoothing."
+description: "This post proposes smoothing ROC curves to make them into objects that can be studied with calculus. It shows how taking derivatives of the ROC curve enables conducting likelihood ratio tests and explores how basic concepts from differential geometry such as curvature and arc length may be helpful in examining the behavior of ROC curves. Code is provided to illustrate the ideas presented and some trouble is taken to examine the effects of smoothing."
 format: html
 ---
 
-A common use of ROC (Receiver Operating Characteristic) curves in data science is to evaluate performance of binary classifiers. In this use case, the data set is usually a sample from a population and so the ROC curve itself is a random object. Although it is not common to have multiple sample ROC curves constructed from applying the same classifier to multiple sample data sets from the same population, it would be interesting to be able to construct a mean ROC curve from multiple sample ROC curves. One way to go about this would be use the theory of [functional data analysis](https://rviews.rstudio.com/2021/05/04/functional-data-analysis-in-r/) (FDA) to construct curves form the sample points in such a way that the curves themselves become the random objects of study. The first step in the FDA process typically is to use splines to construct a set of basis functions to smooth the sample points into functional objects. In this post, I am going to explore this first step of smoothing ROC curves, and point out that once you have a smoothed ROC curve it is possible to use the calculus and concepts from basic differential geometry to analyze the curves. The flow of the post is as follows:
+A common use of ROC (Receiver Operating Characteristic) curves in data science is to evaluate performance of binary classifiers. In this use case, the data set is usually a sample from a population and so the ROC curve itself is a random object. Although it is not common to have multiple sample ROC curves constructed from applying the same classifier to multiple sample data sets from the same population, it would be interesting to be able to construct a mean ROC curve from multiple sample ROC curves. One way to go about this would be use the theory of [functional data analysis](https://rviews.rstudio.com/2021/05/04/functional-data-analysis-in-r/) (FDA) to construct curves form the sample points in such a way that the curves themselves become the random objects of study. The first step in the FDA process typically is to use splines to construct a set of basis functions to smooth the sample points into functional objects. In this post, I am going to explore this first step of smoothing ROC curves, and point out that once you have a smoothed ROC curve it is possible to use calculus and concepts from basic differential geometry to analyze the curves. The flow of the post is as follows:
 
 * Select some data sets to analyze. (I am only going to work with one data set in this post, but I have set up the code so that you can choose between three available data sets if you want to explore on your own.)
 * Fit three different binary classifiers to the data set and compute the standard ROC curves and AUC values.
@@ -36,7 +36,7 @@ tidymodels_prefer()
 
 ## The Data
 
-Rather than only using synthetic data, I thought that the ideas in the post would make more of a positive impression if they were illustrated with small familiar data sets. So in addition to the `two_class_dat` artificial data set from the the `modeldata` package, I have included `Pima.tr` from the `MASS` package and the `aSAH` data set from the `pROC` package.  I am only going to use the `aSAH2` data set, a subset of `aSAH` in the rest of the post, but you can easily switch to one of the other two data sets by changing a single line of code. All three of these data sets contain three variables: two numeric features and a binary class label. I believe that these simple data sets are sufficient to provide a minimal viable demonstration of the issues I am going to discuss. Using simple data sets that conform to the same structure also makes it easy to fit multiple classification models with a single `tidymodels` workflow.
+Rather than only using synthetic data, I thought that the ideas in the post would make more of a positive impression if they were illustrated with small, familiar data sets. So in addition to the `two_class_dat` artificial data set from the the `modeldata` package, I have included `Pima.tr` from the `MASS` package and the `aSAH` data set from the `pROC` package.  I am  going to use the `aSAH2` data set, a subset of `aSAH` in the rest of the post, but you can easily switch to one of the other two data sets by changing a single line of code. All three of these data sets contain three variables: two numeric features and a binary class label. I believe that these simple data sets are sufficient to provide a minimal viable demonstration of the issues I am going to discuss. Using simple data sets that conform to the same structure also makes it easy to fit multiple classification models with a single `tidymodels` workflow.
 
 This next section of code prepares the data sets. The way of selecting which data set to use should be clear.
 ```{r}
@@ -85,7 +85,7 @@ test_data <- testing(data_split)
 ```
 
 ## The Classifiers
-The workflows use three classifiers to fit the models: logistic regression, SVM, and decision tree.
+The workflows use three classifiers to fit the models: Logistic Regression, SVM, and Decision Trees.
 
 ```{r}
 #| message: FALSE
@@ -219,7 +219,7 @@ roc_data <- roc_data %>%
 
 ## Smooth ROC Curves
 
-In this section a spline bases is used to construct smoothed curves. AUC is computed for both raw and smoothed ROC curves. Arc length is only computed for the smoothed curves.  The major technical challenge in smoothing ROC curves is to ensure that the smoothed curves are monotone, not decreasing in both TPR and FPR. I have addressed this issue by using the "monoH.FC" method in R's `splinefun` function. This method which constructs a monotone Hermite cubic spline using the [Fritsch–Carlson](https://web.archive.org/web/20160212093324id_/http://www.ams.sunysb.edu:80/~jiao/teaching/ams527_spring16/lectures/SNA000238.pdf) method was designed to minimize the creation of artifacts that could jeopardize monotonicity. It adjusts slopes at knots to prevent oscillations while keeping the interpolation smooth
+In this section, a spline bases is used to construct smoothed curves. AUC is computed for both raw and smoothed ROC curves. Arc length is only computed for the smoothed curves.  The major technical challenge in smoothing ROC curves is to ensure that the smoothed curves are monotone, non-decreasing in both TPR and FPR. I have addressed this issue by using the "monoH.FC" method in R's `splinefun` function. This method which constructs a monotone Hermite cubic spline using the [Fritsch–Carlson](https://web.archive.org/web/20160212093324id_/http://www.ams.sunysb.edu:80/~jiao/teaching/ams527_spring16/lectures/SNA000238.pdf) method was designed to minimize the creation of artifacts that could jeopardize monotonicity. It adjusts slopes at knots to prevent oscillations while keeping the interpolation smooth
 
 A second problem is that the smoothing process affects the TPR and FPR values in a way that can affect the AUC values. We will examine both of these issues below.
 
@@ -303,7 +303,7 @@ metrics <- smooth_results %>%
 ```
 
 
-Here we plot the smoothed ROC curves for each of the three classifiers overlaying them on the raw ROC curves. The legend includes raw AUC, smoothed AUC, and arc length for each model.
+Here we plot the smoothed ROC curves for each of the three classifiers overlaying them on the raw ROC curves. For each classifier, the legend includes AUC for both the raw and smoothed ROC curves, and arc length for the smoothed curves.
 
 ```{r}
 #| message: FALSE
@@ -435,10 +435,10 @@ ggplot(roc_results, aes(x=FPR, y=TPR,
 
 ```
 
-The first thing to observe that the smooth curves do not perfectly overlay the stair-step curves, as one might expect for curves with large steps. Nevertheless the raw curve AUC numbers are close to the smoothed curve numbers. Whether they are close enough depends on the application. My intuition is that as the number of data points used to construct the raw curves increase, the smoothed curves will better fit the raw curves and the AUC values will be closer.  Also note that selecting the curves based on arc length would lead to the same results.
+The first thing to observe that the smooth curves do not perfectly overlay the stair-step, raw curves, as one might expect for curves with large steps. Nevertheless, the smooth curve AUC numbers are close to the raw curve numbers. Whether they are close enough depends on the application. My intuition is that as the number of data points used to construct the raw curves increase, the smoothed curves will better fit the raw curves and the AUC values will be closer.  Also note that selecting the curves based on arc length would lead to the same results.
 
 
-The following code which looks at adjacent differences in the smoothed ROC curves flags a monotonicity violation for Logistic Regression TPR.
+The following code which looks at adjacent differences in the smoothed ROC curves flags monotonicity violations for Logistic Regression TPR.
 
 ```{r}
 #| message: FALSE
@@ -1071,20 +1071,18 @@ The first thing that you may notice about the plots is that curvature for the de
 
 The areas around threshold values $t=0.5$ appear to behave differently for the Logistic Regression and SVM models. The question is: in an application where the underlying decision problem about the relative utility of TPR and FPR rates be useful choosing between models that have similar AUC values?
 
-There do not to appear to be many studies proposing the use of curvature. Using curvature in ROC studies is a relatively new idea. However, it seems to be an idea that holds some promise. In their 2022 paper, [Definign the extent of gene function using ROC curvature](https://academic.oup.com/bioinformatics/article/38/24/5390/6769888?login=false), Fischer and Gillis introduce the curvature of ROC curves as a method to evaluate gene function prediction. They write:
+Using curvature in ROC studies is a relatively new idea, and it does not appear to be well studied. However, evaluating the curvature of ROC curves seems to be an idea that holds some promise. In their 2022 paper, [Definign the extent of gene function using ROC curvature](https://academic.oup.com/bioinformatics/article/38/24/5390/6769888?login=false), Fischer and Gillis introduce the curvature of ROC curves as a method to evaluate gene function prediction. They write:
 > We identify Functional Equivalence Classes (FECs), subsets of annotated and unannotated genes that jointly
 drive performance, by assessing the presence of straight lines in ROC curves built from gene-centric prediction tasks, such as function or interaction predictions.
 
 
 ### The Case for Arc Length
 
-Finally, I would like to make a case for using the arc length $\int_0^t \sqrt{1+(f'(x))^2}\,dx$ of a smoothed ROC curve as a metric for comparing classifiers that appears to be consistent and complementary to AUC. Arc length is not a useful concept for raw, stair-step ROC curves. Any stair-step curve that goes from (0,0) to (1,1) will have the same arc length of 2.0. However, the arc length for a viable smoothed ROC curve will range from $\sqrt2$ to 2. Arc length becomes a useful metric for smoothed ROC curves because it captures information about the geometry of the curve that AUC does not.
+Finally, I would like to make a case for using the arc length $\int_0^t \sqrt{1+(f'(x))^2}\,dx$ of a smoothed ROC curve as a metric for comparing classifiers that appears to be consistent and complementary to AUC. Arc length is not a useful concept for raw, stair-step ROC curves. Any stair-step curve that goes from (0,0) to (1,1) will have the same arc length of 2.0. However, the arc length for a viable smoothed ROC curve will range from $\sqrt2$ to 2, and may be a useful metric for smoothed ROC curves because it captures information about the geometry of the curve that AUC does not.
 
-Arc length is more sensitive to the shape of the ROC curve than AUC. Two ROC curves with identical AUC values can have very different shapes and therefore very different arc lengths. Arc length captures information about the slope changes, curvature, and smoothness of the ROC curve that AUC does not. This could be important in applications where the shape of the ROC curve is relevant to decision-making.
+Arc length is more sensitive to the shape of the ROC curve than AUC. Two ROC curves with identical AUC values can have very different shapes and therefore very different arc lengths. Arc length captures information about the slope changes, curvature, and smoothness of the ROC curve that AUC does not. This could be important in applications where the shape of the ROC curve is relevant to decision-making. For example, because the trajectory of most viable ROC curves will stay well above the diagonal from (0,0) to (1,1), arc length mostly avoids the criticism of AUC that led to the development of [Partial Arc length](https://en.wikipedia.org/wiki/Partial_Area_Under_the_ROC_Curve). It is relatively easy to exclude segments of regions that are not important to the application. And, unless the ROC curve pathologically crosses the diagonal below FPR = 0 .5 it will not enter the region of [low sensitivity and low specificity](https://en.wikipedia.org/wiki/Receiver_operating_characteristic#:~:text=The%20main%20criticism%20to%20the,the%20plot%20on%20the%20right.).
 
-Because the trajectory of most viable ROC curves will stay well above the diagonal from (0,0) to (1,1), arc length mostly avoids the criticism of AUC that led to the development of [Partial Arc length](https://en.wikipedia.org/wiki/Partial_Area_Under_the_ROC_Curve). It is relatively easy to exclude segments of regions that are not important to the application. An unless the ROC curve pathologically crosses the diagonal at FPR > .5 and TPR < .5 it will not be troubled region of [low sensitivity and low specificity](https://en.wikipedia.org/wiki/Receiver_operating_characteristic#:~:text=The%20main%20criticism%20to%20the,the%20plot%20on%20the%20right.).
-
-It is also the case that arc length is a linear measure while AUC is an area. I may very well be be wrong about this, but I think most people have a better intuition of the practical significance of a linear difference of 0.3 inches than an area difference of 0.3 square inches. The following table contrasts AUS and arc length.
+It is also the case that arc length is a linear measure while AUC is an area. I may very well be be wrong about this, but I think most people have a better intuition of the practical significance of a linear difference of 0.3 inches than an area difference of 0.3 square inches. The following table contrasts AUC and arc length.
 
 ### Table Comparing Arclength with AUC 
 
