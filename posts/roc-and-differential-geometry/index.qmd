@@ -1084,7 +1084,7 @@ grid_plot
 
 The first thing that you may notice about the plots is that the curvature for the decision trees model looks smooth and stable. This is to be expected because the ROC curve for decision trees is piece wise linear with a small number of segments. The curvature is zero everywhere except at the corners, where it is undefined. The smoothing spline used here smooths out the corners, producing a smooth curve with small curvature values.
 
-The areas around threshold values $t=0.5$ appear to behave differently for the Logistic Regression and SVM models. The question is: in an application where the underlying decision problem about the relative utility of TPR and FPR rates be useful choosing between models that have similar AUC values?
+The areas around threshold values $t=0.5$ appear to behave differently for the Logistic Regression and SVM models. However, it is not clear that these differences would make any practical difference in selecting thresholds for these models. 
 
 Using curvature in ROC studies is a relatively new idea, and it does not appear to be well studied. However, evaluating the curvature of ROC curves seems to be an idea that holds some promise. In their 2022 paper, [Defining the extent of gene function using ROC curvature](https://academic.oup.com/bioinformatics/article/38/24/5390/6769888?login=false), Fischer and Gillis introduce the curvature of ROC curves as a method to evaluate gene function prediction. They write:
 > We identify Functional Equivalence Classes (FECs), subsets of annotated and unannotated genes that jointly
