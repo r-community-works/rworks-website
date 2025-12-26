@@ -1,0 +1,102 @@
+---
+title: "November 2025 Top 40 New CRAN Packages"
+author: "Joseph Rickert"
+date: 2025-11-28
+description: "Here are my picks for the best of the two hundred and four new packages that landed on CRAN in November. Packages are organized into fifteen categories: Data, Decision Analysis, Ecology, Econometrics, Finance, Genomics, Logic, Machine Learning, Mathematics, Medical Statistics, Statistics, Time Series, Utilities, and Visualization."
+image: ""
+image-alt: ""
+categories: "Top 40"
+editor: source
+---
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+
+![](.png){fig-alt=""}
+
+
+
+### Data
+
+
+### Epidemiology
+
+[healthiar](https://cran.r-project.org/package=healthiar) v0.2.1: Provides functions to quantify and monetize the health impacts of environmental stressors (air pollution & noise). See the document [WHO (2003a)](https://www.who.int/publications/i/item/9241546204): "Assessing the environmental burden of disease at national and local levels" for background and the [vignette](https://cran.r-project.org/web/packages/healthiar/vignettes/intro_to_healthiar.html) for examples.
+
+![](healthiar.png){fig-alt="Package Overview"}
+
+[vaccinationimpact](https://cran.r-project.org/package=vaccinationimpact) v0.1.0: Provides tools to estimate the impact of vaccination campaigns at population level (number of events averted, number of avertable events, number needed to vaccinate). Inspired by the methodology proposed by [Foppa et al. (2015)](https://www.sciencedirect.com/science/article/pii/S0264410X15002315?via%3Dihub) and [Machado et al. (2019)](https://www.eurosurveillance.org/content/10.2807/1560-7917.ES.2019.24.45.1900268) for influenza vaccination impact. See the [vignette](https://cran.r-project.org/web/packages/vaccinationimpact/vignettes/vaccination_impact_estimates.html) for examples.
+
+![](vacimpact.png){fig-alt="Plot of vacciation impact over time"}
+
+### Machine Learning
+
+[autotab](https://cran.r-project.org/package=autotab) v0.1.1: Provides tools to build and train a variational autoencoder (VAE) for mixed-type tabular data (continuous, binary, categorical). Models are implemented using `TensorFlow` and `Keras` via the `reticulate` interface, enabling reproducible VAE training for heterogeneous tabular datasets. See [README](https://cran.r-project.org/web/packages/autotab/readme/README.html) to get started.
+
+[fairGATE](https://cran.r-project.org/package=fairGATE) v0.1.1: Provides tools for training and analysing fairness-aware gated neural networks for subgroup-aware prediction and interpretation in clinical datasets. Methods draw on prior work in mixture-of-experts neural networks by [Jordan and Jacobs (1994)](https://link.springer.com/chapter/10.1007/978-1-4471-2097-1_113), fairness-aware learning by [Hardt, Price, and Srebro (2016)](https://arxiv.org/abs/1610.02413), and personalised treatment prediction for depression by [Iniesta, Stahl, and McGuffin (2016)](https://www.sciencedirect.com/science/article/pii/S0022395616300541?via%3Dihub). See the [vignette](https://cran.r-project.org/web/packages/fairGATE/vignettes/introduction-to-fairGATE.html).
+
+![](fairGATE.png){fig-alt="Plot of gate weight distribution by subgroup"}
+
+
+
+### Medical Statistics
+
+[carts](https://cran.r-project.org/package=carts) v0.1.0: Implements a Monte Carlo simulation framework for different randomized clinical trial designs with a special emphasis on estimators based on covariate adjustment. Functions include a regression-based covariate adjustment based on [Rosenblum & van der Laan (2010)](https://www.degruyterbrill.com/document/doi/10.2202/1557-4679.1138/html) a one-step estimator based on [Van Lancker et al (2024)](https://arxiv.org/abs/2404.11150) for trials with continuous, binary and count outcomes and functions to estimate the minimum sample-size required to reach a specified statistical power for a given estimator, [Robbins-Monro (1951)](https://projecteuclid.org/journals/annals-of-mathematical-statistics/volume-22/issue-3/A-Stochastic-Approximation-Method/10.1214/aoms/1177729586.full). There are two vignettes [Getting Started](https://cran.r-project.org/web/packages/carts/vignettes/gettingstarted.html) and [Parametrization of the negative binomial and gamma distributions](https://cran.r-project.org/web/packages/carts/vignettes/param.html).
+
+![](carts.png){fig-alt="Workflow diagram"}
+
+[cgmguru](https://cran.r-project.org/package=cgmguru) v0.1.0: Provides tools for advanced analysis of continuous glucose monitoring (CGM) time-series, implementing GRID (Glucose Rate Increase Detector) and GRID-based algorithms for postprandial peak detection, and detection of hypoglycemic and hyperglycemic episodes (Levels 1/2/Extended) aligned with international consensus CGM metrics. There are ninteen vignetttes including [Complete CGM Analysis Workflow](https://cran.r-project.org/web/packages/cgmguru/vignettes/intro.html) and [detect all events](https://cran.r-project.org/web/packages/cgmguru/vignettes/detect_all_events.html).
+
+
+
+[twoCoprimary](https://cran.r-project.org/package=twoCoprimary) v1.0.0: Provides functions to calculate sample size and power for clinical trials with two co-primary endpoints that support five endpoint combinations: two continuous endpoints ([Sozu et al. (2011)](https://www.tandfonline.com/doi/full/10.1080/10543406.2011.551329), two binary endpoints using asymptotic methods ([Sozu et al. (2010)](https://onlinelibrary.wiley.com/doi/10.1002/sim.3972) exact methods ([Homma and Yoshida (2025)](https://journals.sagepub.com/doi/10.1177/09622802251368697), mixed continuous and binary endpoints ([Sozu et al. (2012)](https://onlinelibrary.wiley.com/doi/10.1002/bimj.201100221), and mixed count and continuous endpoints ([Homma and Yoshida (2024)](https://onlinelibrary.wiley.com/doi/10.1002/pst.2337). There are six vignettes including an [Overview](https://cran.r-project.org/web/packages/twoCoprimary/vignettes/overview.html) and [Mixed and COntinuous Co-Primary Endpoints](https://cran.r-project.org/web/packages/twoCoprimary/vignettes/mixed-count-continuous.html).
+
+![](twoCoprimary.png){fig-alt="Power contours for different effect sizes"}
+
+[whatifbandit](https://cran.r-project.org/package=whatifbandit) v0.3.0: Provides functions to simulate the results of completed randomized controlled trials, as if they had been conducted as adaptive Multi-Arm Bandit (MAB) trials instead. Uses augmented inverse probability weighted estimation (AIPW), outlined by [Hadad et al. (2021)](https://www.pnas.org/doi/full/10.1073/pnas.2014602118) to estimate the probability of success for each treatment arm under the adaptive design. See [Offer-Westort et al. (2021)](https://onlinelibrary.wiley.com/doi/10.1111/ajps.12597) for background and the [vignette](https://cran.r-project.org/web/packages/whatifbandit/vignettes/whatifbandit.html) for examples.
+
+![](whatifbandit.png){fig-alt="Plot of Thompson sampling over time"}
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+
+
+
+
+
+
+### Visualization
+
+[colorify](https://cran.r-project.org/package=colorify) v0.1.2: Provides one-stop shop for intuitive and dependency-free color and palette creation and modification. Includes palettes and functionality from popular packages such as `viridis`, `RColorBrewer`, and base R `grDevices`, as well as `ggplot2` plot bindings. Users can generate perceptually uniform and colorblind-friendly palettes, adjust palettes in HSL and RGB color spaces, map color gradients to value ranges, and create color-generating functions. See the [vignette](https://cran.r-project.org/web/packages/colorify/vignettes/colorify.html).
+
+![](colorify.png){fig-alt="Sample palettes"}
+
+[GGenemy](https://cran.r-project.org/package=GGenemy) v0.1.0: Audits `ggplot2` visualizations for accessibility issues, misleading practices, and readability problems. Checks for color accessibility concerns including colorblind-unfriendly palettes, misleading scale manipulations such as truncated axes and dual y-axes, text readability issues like small fonts and overlapping labels, and general accessibility barriers. Provides comprehensive audit reports with actionable suggestions for improvement. Color vision deficiency simulation uses methods from the `colorspace` package [Zeileis et al. (2020)](https://www.jstatsoft.org/article/view/v096i01) <doi:10.18637/jss.v096.i01>. Contrast calculations follow [WCAG 2.1 guidelines (W3C 2018)](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum). See the [vignette](https://cran.r-project.org/web/packages/GGenemy/vignettes/getting-started.html).
+
+![](GGenemy.png){fig-alt="Simulated deutananopia view of a ggplot2 scatter plot"}
+
+[ggincerta](https://cran.r-project.org/package=ggincerta) v0.1.0: Extends `ggplot2` with Layers and Scales for Spatial Uncertainty Visualization. See [README](https://cran.r-project.org/web/packages/ggincerta/readme/README.html).
+
+![](ggincerta.png){fig-alt="Example glyph map"}
+
+
+[poisonfrogs](https://cran.r-project.org/package=poisonfrogs) v1.0.2: Provides a collection of color palettes inspired by the enormous diversity of skin colors in Neotropical poison frog species. Suitable for use with `ggplot2` and base R graphics. See [README](https://cran.r-project.org/web/packages/poisonfrogs/readme/README.html)
+
+![](poisonfrogs.png){fig-alt="Poison frogs pallettes"}
+
+
+
+:::
+
+
+
+::::
+
