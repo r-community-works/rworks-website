@@ -59,6 +59,18 @@ editor: source
 
 ![](whatifbandit.png){fig-alt="Plot of Thompson sampling over time"}
 
+
+
+
+
+
+
+
+
+
+
+
+
 :::
 
 ::: {.column width="10%"}
@@ -69,8 +81,40 @@ editor: source
 
 
 
+### Statistics
+
+[aramappings](https://cran.r-project.org/package=aramappings) v0.1.2: Computes low-dimensional point representations of high-dimensional numerical data according to the data visualization method Adaptable Radial Axes described in: Rubio-Sánchez et al. (2017)](https://onlinelibrary.wiley.com/doi/10.1111/cgf.13196). See the [vignette](https://cran.r-project.org/web/packages/aramappings/vignettes/intro_to_aramappings.html).
+
+![](aramappings.jpeg){fig-alt="Example of ARA Plot"}
+
+[deepspat](https://cran.r-project.org/package=deepspat) v0.3.1: Deep compositional spatial models are standard spatial covariance models coupled with an injective warping function of the spatial domain. The warping function is constructed through a composition of multiple elemental injective functions in a deep-learning framework. The package implements two cases for the univariate setting; first, when these warping functions are known up to some weights that need to be estimated, and, second, when the weights in each layer are random. Estimation and inference is done using `tensorflow`, which makes use of graphics processing units. For more details see [Zammit-Mangion et al. (2022)](https://www.tandfonline.com/doi/full/10.1080/01621459.2021.1887741), [Vu et al. (2022)](https://www3.stat.sinica.edu.tw/statistica/oldpdf/A32n415.pdf) and [Shao et al. (2025)](https://arxiv.org/abs/2505.12548). See [README]( for an example.)
+
+![](deepspat.png){fig-alt="Deepspat images"}
 
 
+[fmi](https://cran.r-project.org/package=fmi) v0.1.7: Provides functions to test for Functional Measurement Invariance between two groups. Implements hierarchical permutation tests for configural, metric, and scalar invariance, adapting concepts from Multi-Group Confirmatory Factor Analysis to functional data. Methods are based on concepts from: [Meredith, W. (1993)](https://www.cambridge.org/core/journals/psychometrika/article/abs/measurement-invariance-factor-analysis-and-factorial-invariance/914A4C29515ACA7E0554B9E79F20D36C), [Yao et al. (2005)](https://www.tandfonline.com/doi/abs/10.1198/016214504000001745) and [Lee  &  Li (2022)](https://www.tandfonline.com/doi/abs/10.1198/016214504000001745). See the [vignette](https://cran.r-project.org/web/packages/fmi/vignettes/introduction-to-fmi.html).
+
+[gkwdist](https://cran.r-project.org/package=gkwdist) v1.1.1: Implements the five-parameter Generalized Kumaraswamy distribution proposed by [Carrasco, Ferrari and Cordeiro (2010)](https://arxiv.org/abs/1004.0911) and its seven nested sub-families for modeling bounded continuous data on the unit interval (0,1).  Provides density, distribution, quantile, and random generation functions, along with analytical log-likelihood, gradient, and Hessian functions. See the [Introduction](https://cran.r-project.org/web/packages/gkwdist/vignettes/into-gkwdist.html) and the vignette on [Statistical Properties](https://cran.r-project.org/web/packages/gkwdist/vignettes/into-gkwdist.html).
+
+![](gkwdist.png){fig-alt="Plot of density comparisons"}
+
+
+
+[grasps](https://cran.r-project.org/package=grasps) v0.1.0: Provides a unified framework for sparse-group regularization and precision matrix estimation in Gaussian graphical models and implements multiple sparse-group penalties, including sparse-group lasso, sparse-group adaptive lasso, sparse-group SCAD, and sparse-group MCP. The package is designed for high-dimensional network inference where both sparsity and group structure are present. There are two vignettes: [Selection Criteria](https://cran.r-project.org/web/packages/grasps/vignettes/crit.html) and [Penal Precision Matrix Estimation]https://cran.r-project.org/web/packages/grasps/vignettes/pen_est.html).
+
+![](grasps.png){fig-alt="Plot comparing derivatives of various penalties"}
+
+[PCBN](https://cran.r-project.org/package=PCBN) v0.1.1: Provides functions to create fit and sample Pair-Copula Bayesian networks (PCBN) under some restrictions on the underlying Directed Acyclic Graph (DAG), that is, no active cycles nor interfering v-structures. See [Derumigny, Horsman and Kurowicka (2025)]() for background and the vignettes [B-sets and interfering v-structures](https://cran.r-project.org/web/packages/PCBN/vignettes/Bsets-v-structs.html) and [How to use the estimation procedures](https://cran.r-project.org/web/packages/PCBN/vignettes/internals-estimation.html)
+
+![](PCBN.png){fig-alt="Saple DAG"}
+
+
+[SelectBoost.gamlss](https://cran.r-project.org/package=SelectBoost.gamlss) v0.2.2: Extends the `SelectBoost` approach to Generalized Additive Models for Location, Scale and Shape (GAMLSS). Implements bootstrap stability-selection across parameter-specific formulas (mu, sigma, nu, tau) via gamlss::stepGAIC(). Includes optional standardization of predictors and helper functions for corrected AIC calculation. See [Bertrand and Maumy (2024)](ttps://hal.science/hal-05352041) for details on correlation-aware resampling to improve variable selection for GAMLSS and quantile regression. There are nine vignettes including [Advanced data examples](https://cran.r-project.org/web/packages/SelectBoost.gamlss/vignettes/advanced-real-data-examples.html) and [Confidence Functionals](https://cran.r-project.org/web/packages/SelectBoost.gamlss/vignettes/confidence-functionals.html).
+
+
+[SCoRES](https://cran.r-project.org/package=SCoRES) v0.1.2: Provides computational tools for estimating inverse regions and constructing the corresponding simultaneous outer and inner confidence regions for logistic, functional, and spatial generalized least squares regression models. Functions are also available for constructing simultaneous confidence bands. See [Sommerfeld et al. (2018)](https://www.tandfonline.com/doi/full/10.1080/01621459.2017.1341838) for the definition of a simultaneous confidence region, and see [Ren et al. (2024)](https://academic.oup.com/jrsssc/article/73/4/1082/7685821?login=false), [Crainiceanu et al. (2024)](https://www.taylorfrancis.com/books/mono/10.1201/9781003278726/functional-data-analysis-ciprian-crainiceanu-jeff-goldsmith-andrew-leroux-erjia-cui), and [Telschow et al. (2022)](https://www.sciencedirect.com/science/article/abs/pii/S0378375821000598?via%3Dihub) for background. There are four vignettes including [Methods](https://cran.r-project.org/web/packages/SCoRES/vignettes/Methods.html) and Functional Data Example](https://cran.r-project.org/web/packages/SCoRES/vignettes/Functional_Data_Example.html).
+
+![](SCoRES.png){fig-alt="Plot ofconfidence regions"}
 
 
 ### Visualization
