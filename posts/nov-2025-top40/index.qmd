@@ -15,6 +15,10 @@ editor: source
 
 
 ![](.png){fig-alt=""}
+### AI
+
+[btw](https://cran.r-project.org/package=btw) v1.1.0: Implements a toolkit for connecting `R` environments with Large Language Models (LLMs). Provides utilities for describing `R` objects, package documentation, and workspace state in plain text formats optimized for LLM consumption. Supports multiple workflows: interactive copy-paste to external chat interfaces, programmatic tool registration with `ellmer` chat clients, batteries-included chat applications via `shinychat`, and exposure to external coding agents through the Model Context Protocol. Project configuration files enable stable, repeatable conversations with project-specific context and preferred LLM settings. See [README](https://cran.r-project.org/web/packages/btw/readme/README.html).
+
 
 
 
@@ -115,7 +119,24 @@ editor: source
 [SCoRES](https://cran.r-project.org/package=SCoRES) v0.1.2: Provides computational tools for estimating inverse regions and constructing the corresponding simultaneous outer and inner confidence regions for logistic, functional, and spatial generalized least squares regression models. Functions are also available for constructing simultaneous confidence bands. See [Sommerfeld et al. (2018)](https://www.tandfonline.com/doi/full/10.1080/01621459.2017.1341838) for the definition of a simultaneous confidence region, and see [Ren et al. (2024)](https://academic.oup.com/jrsssc/article/73/4/1082/7685821?login=false), [Crainiceanu et al. (2024)](https://www.taylorfrancis.com/books/mono/10.1201/9781003278726/functional-data-analysis-ciprian-crainiceanu-jeff-goldsmith-andrew-leroux-erjia-cui), and [Telschow et al. (2022)](https://www.sciencedirect.com/science/article/abs/pii/S0378375821000598?via%3Dihub) for background. There are four vignettes including [Methods](https://cran.r-project.org/web/packages/SCoRES/vignettes/Methods.html) and Functional Data Example](https://cran.r-project.org/web/packages/SCoRES/vignettes/Functional_Data_Example.html).
 
 ![](SCoRES.png){fig-alt="Plot ofconfidence regions"}
+![](maki.png){fig-alt="Time series plot with regime shift"}
 
+
+### Time Series
+
+[BLSloadR](https://cran.r-project.org/package=BLSloadR) v0.2: Implements an interface for downloading data from the [U.S. Bureau of Labor Statistics](https://www.bls.gov). Files include employment, unemployment, wages, prices, industry and occupational data at a national, state, and sub-state level, depending on the series. Individual functions are included for those programs which have data available at the state level. The core functions provide direct access to the Current Employment Statistics [CES](https://www.bls.gov/ces/), Local Area Unemployment Statistics [LAUS](https://www.bls.gov/lau/), Occupational Employment and Wage Statistics [OEWS](https://www.bls.gov/oes/), and Alternative Measures of Labor Underutilization [SALT](https://www.bls.gov/lau/stalt.htm). See the [vignette](https://cran.r-project.org/web/packages/BLSloadR/vignettes/BLSloadR-intro.html)
+
+[makicoint](https://cran.r-project.org/package=makicoint) v1.0.0: Implements the [Maki (2012)](https://www.sciencedirect.com/science/article/abs/pii/S0264999312001162) cointegration test that allows for an unknown number of structural breaks. The test detects cointegration relationships in the presence of up to five structural breaks in the intercept and/or slope coefficients. Four different model specifications are supported: level shifts, level shifts with trend, regime shifts, and trend with regime shifts. See the [vignette](https://cran.r-project.org/web/packages/makicoint/vignettes/introduction.html).
+
+
+
+[organik](https://cran.r-project.org/package=organik) v1.0.1: Provides functions to train per-horizon probabilistic ensembles from a univariate time series. It supports `rpart`, `glmnet`, and `kNN` engines with flexible residual distributions and heteroscedastic scale models, weighting variants by calibration-aware scores. A Gaussian/t copula couples the marginals to simulate joint forecast paths, returning quantiles, means, and step increments across horizons. Look [here](https://rpubs.com/giancarlo_vercellino/organik) for the details.
+
+![](organik.png){fig-alt="The organik process"}
+
+[trendseries](https://cran.r-project.org/package=trendseries) v1.1.0: Provides functions to extract trends from monthly and quarterly economic time series: `augment_trends()` for pipe-friendly `tibble` workflows and `extract_trends()` for direct time series analysis. Includes key econometric filters and modern parameter experimentation tools. There are three vignettes: [Getting Started](https://cran.r-project.org/web/packages/trendseries/vignettes/trendseries.html), [Moving Averages](https://cran.r-project.org/web/packages/trendseries/vignettes/moving-averages.html), and [Economic Filters for Business Cycle Analysis](https://cran.r-project.org/web/packages/trendseries/vignettes/economic-filters.html).
+
+![](trendseries.png){fig-alt="Plot of HP filter with different lambda values"}
 
 ### Visualization
 
