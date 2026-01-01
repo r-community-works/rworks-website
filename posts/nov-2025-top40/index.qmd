@@ -20,9 +20,31 @@ editor: source
 [btw](https://cran.r-project.org/package=btw) v1.1.0: Implements a toolkit for connecting `R` environments with Large Language Models (LLMs). Provides utilities for describing `R` objects, package documentation, and workspace state in plain text formats optimized for LLM consumption. Supports multiple workflows: interactive copy-paste to external chat interfaces, programmatic tool registration with `ellmer` chat clients, batteries-included chat applications via `shinychat`, and exposure to external coding agents through the Model Context Protocol. Project configuration files enable stable, repeatable conversations with project-specific context and preferred LLM settings. See [README](https://cran.r-project.org/web/packages/btw/readme/README.html).
 
 
+### Astronomy
 
+[marsrad](https://CRAN.R-project.org/package=marsrad) v1.0.0: A set of functions to calculate solar irradiance and insolation on Mars horizontal and inclined surfaces. Based on NASA Technical Memoranda 102299, 103623, 105216, 106321, and 106700, i.e. the canonical Mars solar radiation papers. (JBR: Should be useful for all of you going with Elon). See [README](https://cran.r-project.org/web/packages/marsrad/readme/README.html) for examples.
+
+
+### Causal Inference
+
+[infocausality](https://cran.r-project.org/package=infocausality) v1.0: Provides methods for quantifying temporal and spatial causality through information flow, and decomposing it into unique, redundant, and synergistic components, following the framework described in [Martinez-Sanchez et al. (2024)](https://www.nature.com/articles/s41467-024-53373-4). See the [vignette](https://cran.r-project.org/web/packages/infocausality/vignettes/surd.html).
+
+![](infocausality.png){fig-alt="Time series of air pollutants and confirmed CVD cases in Hong Kong from March 1995 to November 1997."}
 
 ### Data
+
+[MaddisonData](https://cran.r-project.org/package=MaddisonData) v1.0.2: Provides access to to Maddison project data, which collates all the credible data on population and GDP for 169 countries, with some dating back to the year 1. `MaddisonLeaders` makes it easy to find the leaders for each year, allowing users to delete countries like OPEC with narrow economies to focus on the technology leaders. 'ggplotPath' makes it easy to plot data for only selected countries or years. See the vignettes [Industrial Revolution](https://cran.r-project.org/web/packages/MaddisonData/vignettes/IndustrialRevolution.html) and [Update Madison Data](https://cran.r-project.org/web/packages/MaddisonData/vignettes/UpdateMaddisonData.html).
+
+![](Maddison.png){fig-alt="Plot of sources for leader countries."}
+
+[traktok](https://cran.r-project.org/package=traktok) v0.1.1: Provides functions for getting [TikTok](https://www.tiktok.com/) through the official and unofficial APIs—in other words, you can track TikTok. See the vignettes [research api](https://cran.r-project.org/web/packages/traktok/vignettes/research-api.html) and [unofficial api](https://cran.r-project.org/web/packages/traktok/vignettes/unofficial-api.html).
+
+
+### Ecology
+
+[estar](https://cran.r-project.org/package=estar) v1.0-1: Standardises established stability properties used to assess systems’ responses to press or pulse disturbances at different ecological levels (e.g. population, community). There are two sets of functions. The first set corresponds to functions that measure stability at any level of organisation. The second set of functions when applied to Jacobian matrices measure the stability of a community at short and long time scales. See [Figueiredo et al. (2025)](https://ecoevorxiv.org/repository/view/8592/) for the theory. There are two vignettes: [Functional stability properties]() and [Jacobian stability properties](https://cran.r-project.org/web/packages/estar/vignettes/jacobian_stability_properties.html)  .
+
+![](estar.png){fig-alt="Organism count (mean +- sd in grey) of the five functional groups over the course of ecotoxicological experiment. ."}
 
 
 ### Epidemiology
@@ -112,6 +134,9 @@ editor: source
 
 ![](PCBN.png){fig-alt="Saple DAG"}
 
+[PublicationBiasBenchmark](https://cran.r-project.org/package=PublicationBiasBenchmark) v0.1.3: Implements a unified interface for benchmarking meta-analytic publication bias correction methods through simulation studies which provide predefined data-generating mechanisms from the literature, functions for running meta-analytic methods on simulated data, pre-simulated datasets and pre-computed results for reproducible benchmarks, and tools for visualizing and comparing method performance. See [Bartoš et al.(2025)](https://arxiv.org/abs/2510.19489) for background. There seven vignettes including [Computing Method Measures](https://cran.r-project.org/web/packages/PublicationBiasBenchmark/vignettes/Computing_Method_Measures.html) and [Adding New Methods](https://cran.r-project.org/web/packages/PublicationBiasBenchmark/vignettes/Adding_New_Methods.html).
+
+
 
 [SelectBoost.gamlss](https://cran.r-project.org/package=SelectBoost.gamlss) v0.2.2: Extends the `SelectBoost` approach to Generalized Additive Models for Location, Scale and Shape (GAMLSS). Implements bootstrap stability-selection across parameter-specific formulas (mu, sigma, nu, tau) via gamlss::stepGAIC(). Includes optional standardization of predictors and helper functions for corrected AIC calculation. See [Bertrand and Maumy (2024)](ttps://hal.science/hal-05352041) for details on correlation-aware resampling to improve variable selection for GAMLSS and quantile regression. There are nine vignettes including [Advanced data examples](https://cran.r-project.org/web/packages/SelectBoost.gamlss/vignettes/advanced-real-data-examples.html) and [Confidence Functionals](https://cran.r-project.org/web/packages/SelectBoost.gamlss/vignettes/confidence-functionals.html).
 
@@ -121,8 +146,14 @@ editor: source
 ![](SCoRES.png){fig-alt="Plot ofconfidence regions"}
 ![](maki.png){fig-alt="Time series plot with regime shift"}
 
+[UGarima](https://cran.r-project.org/package=UGarima) v0.1.0: Provides density, distribution function, quantile function, and random generating function of the Unit-Garima distribution based on [Ayuyuen & Bodhisuwan (2024)](https://pjsor.com/pjsor/article/view/4307).
+
+![](UGarima.png){fig-alt="Plots of the pdf and cdf of X∼UGa-W(α,θ,k,λ)"}
+
 
 ### Time Series
+
+[aplms](https://cran.r-project.org/package=aplms) v0.1.0: Provides tools for fitting the additive partial linear models with symmetric autoregressive errors of order p, or APLMS-AR(p) enabling the modeling of a time series response variable using linear and nonlinear structures of a set of explanatory variables, with nonparametric components approximated by natural cubic splines or P-splines. Functions include various error distributions, such as normal, generalized normal, Student's t, generalized Student's t, power-exponential, and Cauchy distributions. [Chou-Chen et al. (2024)](https://link.springer.com/article/10.1007/s00362-024-01590-w) for background. Look [here](https://github.com/shuwei325/aplms) for examples.
 
 [BLSloadR](https://cran.r-project.org/package=BLSloadR) v0.2: Implements an interface for downloading data from the [U.S. Bureau of Labor Statistics](https://www.bls.gov). Files include employment, unemployment, wages, prices, industry and occupational data at a national, state, and sub-state level, depending on the series. Individual functions are included for those programs which have data available at the state level. The core functions provide direct access to the Current Employment Statistics [CES](https://www.bls.gov/ces/), Local Area Unemployment Statistics [LAUS](https://www.bls.gov/lau/), Occupational Employment and Wage Statistics [OEWS](https://www.bls.gov/oes/), and Alternative Measures of Labor Underutilization [SALT](https://www.bls.gov/lau/stalt.htm). See the [vignette](https://cran.r-project.org/web/packages/BLSloadR/vignettes/BLSloadR-intro.html)
 
@@ -137,6 +168,15 @@ editor: source
 [trendseries](https://cran.r-project.org/package=trendseries) v1.1.0: Provides functions to extract trends from monthly and quarterly economic time series: `augment_trends()` for pipe-friendly `tibble` workflows and `extract_trends()` for direct time series analysis. Includes key econometric filters and modern parameter experimentation tools. There are three vignettes: [Getting Started](https://cran.r-project.org/web/packages/trendseries/vignettes/trendseries.html), [Moving Averages](https://cran.r-project.org/web/packages/trendseries/vignettes/moving-averages.html), and [Economic Filters for Business Cycle Analysis](https://cran.r-project.org/web/packages/trendseries/vignettes/economic-filters.html).
 
 ![](trendseries.png){fig-alt="Plot of HP filter with different lambda values"}
+
+### Utilities
+
+[hdf5lib](https://cran.r-project.org/package=hdf5lib) v2.0.0.4:  [HDF5](https://www.hdfgroup.org/) (Hierarchical Data Format 5) is a high-performance library and file format for storing and managing large, complex data. This package, which provides the static libraries and headers for the `HDF5` `C` library (release 2.0.0), is intended for developers to use in the LinkingTo field, which eliminates the need for users to install system-level dependencies. This build is compiled with thread-safety enabled and supports dynamic loading of external compression filters. Look [here](https://cmmr.github.io/hdf5lib/) for more information.
+
+
+[privacyR](https://cran.r-project.org/package=privacyR) v1.0.1: Provides tools for anonymizing sensitive patient and research data. Helps protect privacy while keeping data useful for analysis. Anonymizes IDs, names, dates, locations, and ages while maintaining referential integrity. Methods based on: [Sweeney (2002)](https://www.worldscientific.com/doi/abs/10.1142/S0218488502001648), [Dwork et al. (2006)](https://link.springer.com/chapter/10.1007/11681878_14), [El Emam et al. (2011)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0028071), and [Fung et al. (2010)](https://dl.acm.org/doi/10.1145/1749603.1749605). See the [vignette](https://cran.r-project.org/web/packages/privacyR/vignettes/privacyR.html).
+
+
 
 ### Visualization
 
