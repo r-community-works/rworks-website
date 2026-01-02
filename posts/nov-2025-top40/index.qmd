@@ -9,6 +9,7 @@ categories: "Top 40"
 editor: source
 ---
 
+
 :::: {.columns}
 
 ::: {.column width="45%"}
@@ -57,6 +58,13 @@ editor: source
 
 ![](vacimpact.png){fig-alt="Plot of vacciation impact over time"}
 
+### Genomics
+
+[XYomics](https://cran.r-project.org/package=XYomics) v0.1.2: Provides tools to analyze sex differences in omics data for complex diseases. It includes functions for differential expression analysis using the limma method as described in [Ritchie et al. (2015)](https://academic.oup.com/nar/article/43/7/e47/2414268), interaction testing between sex and disease, pathway enrichment with `clusterProfiler` [Yu et al. (2012)](https://journals.sagepub.com/doi/10.1089/omi.2011.0118) <doi:10.1089/omi.2011.0118>, and gene regulatory network construction and analysis using `igraph`. See the vignettes [Bulk RNA-Seq Example](https://cran.r-project.org/web/packages/XYomics/vignettes/XYomics_bulk_example.html) and [Single Cell Example](https://cran.r-project.org/web/packages/XYomics/vignettes/XYomics_sc_example.html)
+
+![](XYomics.png){fig-alt="Plot of cell clusters"}
+
+
 ### Machine Learning
 
 [autotab](https://cran.r-project.org/package=autotab) v0.1.1: Provides tools to build and train a variational autoencoder (VAE) for mixed-type tabular data (continuous, binary, categorical). Models are implemented using `TensorFlow` and `Keras` via the `reticulate` interface, enabling reproducible VAE training for heterogeneous tabular datasets. See [README](https://cran.r-project.org/web/packages/autotab/readme/README.html) to get started.
@@ -65,6 +73,9 @@ editor: source
 
 ![](fairGATE.png){fig-alt="Plot of gate weight distribution by subgroup"}
 
+### Marketing
+
+[rbranding](https://cran.r-project.org/package=rbranding) v0.1.1: Implements a  tool for building projects that are visually consistent, accessible, and easy to maintain. It provides functions for managing branding assets, applying organization-wide themes using [`brand.yml`](https://posit-dev.github.io/brand-yml/), and setting up new projects with accessibility features and correct branding. It supports `quarto`, `shiny`, and `rmarkdown` projects, and integrates with `ggplot2`. The accessibility features are based on the [Web Content Accessibility Guidelines](https://www.w3.org/WAI/WCAG22/quickref/?versions=2.1) and [Accessible Rich Internet Applications specifications](https://www.w3.org/WAI/ARIA/apg/). There are three vignettes including [rebranding](https://cran.r-project.org/web/packages/rbranding/vignettes/rbranding.html) and [Templates](https://cran.r-project.org/web/packages/rbranding/vignettes/templates.html).
 
 
 ### Medical Statistics
