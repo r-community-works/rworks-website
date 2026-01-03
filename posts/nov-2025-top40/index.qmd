@@ -96,7 +96,27 @@ editor: source
 
 ![](whatifbandit.png){fig-alt="Plot of Thompson sampling over time"}
 
+### Risk Analysis
 
+[raptools](https://cran.r-project.org/package=raptools) v1.23.0: Provides tools for assessing the comparative performance of two logistic regression models or results of such models or classification models. Discrimination metrics include Integrated Discrimination Improvement, Net Reclassification Improvement,difference in Area Under the Curves, and Brier scores and Brier skill. Methods are described in [Pencina et al. (2008)](https://onlinelibrary.wiley.com/doi/10.1002/sim.2929). Look [here](https://researchverse.github.io/raptools/) for examples.
+
+
+![](raptools.png){fig-alt="Risk assessment plot"}
+
+### Shiny
+
+[pandemonium](https://cran.r-project.org/package=pandemonium) v0.2.4: Implements a `shiny` GUI that performs high dimensional cluster analysis. This tool performs data preparation, clustering and visualisation within a dynamic GUI. With interactive methods allowing the user to change settings all without having to to leave the GUI. See [Laa and Valencia (2022)](https://link.springer.com/article/10.1140/epjp/s13360-021-02310-1) for background. There are seven vignettes including [Data Analysis](https://cran.r-project.org/web/packages/pandemonium/vignettes/analysis-pages.html) and [dimReduction](https://cran.r-project.org/web/packages/pandemonium/vignettes/dim-reduction.html).
+
+![](pandemonium.png){fig-alt="Shiny page with cluster analysis plots"}
+
+
+[rAccess](https://cran.r-project.org/package=rAccess) v0.1.1.3: Provides a framework for implementing hierarchical access control in 'shiny' applications. Features include user permission management through a two-tier system of access panels and units, pluggable `shiny` module for administrative interfaces, and support for multiple storage backends (local, `AWS S3`, `Posit Connect`). The system enables fine-grained control over application features, with built-in audit trails and user management capabilities. See the [Tutorial](https://cran.r-project.org/web/packages/rAccess/vignettes/Tutorial.html).
+
+![](rAccess.png){fig-alt="Workflow Diagram"}
+
+
+
+[shinyOAuth](https://CRAN.R-project.org/package=shinyOAuth) v0.1.4: Provides a  configurable, provider-agnostic `OAuth 2.0` and `OpenID Connect` authentication framework for `shiny` applications using S7 classes. Defines providers, clients, and tokens, as well as various supporting functions and a 'shiny' module. Features include cross-site request forgery protection, state encryption, Proof Key for Code Exchange handling, validation of OIDC identity tokens, automatic user info retrieval, asynchronous flows, and hooks for audit logging. There are four vignettes including [Usage](https://cran.r-project.org/web/packages/shinyOAuth/vignettes/usage.html) and [Example: Spotify login](https://cran.r-project.org/web/packages/shinyOAuth/vignettes/example-spotify.html).
 
 
 
