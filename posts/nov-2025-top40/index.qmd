@@ -2,20 +2,17 @@
 title: "November 2025 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
 date: 2025-11-28
-description: "Here are my picks for the best of the two hundred and four new packages that landed on CRAN in November. Packages are organized into fifteen categories: Data, Decision Analysis, Ecology, Econometrics, Finance, Genomics, Logic, Machine Learning, Mathematics, Medical Statistics, Statistics, Time Series, Utilities, and Visualization."
-image: ""
-image-alt: ""
+description: " One hundred eighty-three new packages made it to CRAN in November 2025. Here are my picks organized into Sixteen categories: AI, Astronomy, Causal Inference, Data, Ecology, Epidemiology, Genomics, Machine Learning, Marketing, Medical Statistics, Risk Analysis, Shiny, Statistics, Time Series, Utilities, and Visualization."
+image: "poisonfrogs.png"
+image-alt: "Color palettes based on poison frogs"
 categories: "Top 40"
 editor: source
 ---
-
 
 :::: {.columns}
 
 ::: {.column width="45%"}
 
-
-![](.png){fig-alt=""}
 ### AI
 
 [btw](https://cran.r-project.org/package=btw) v1.1.0: Implements a toolkit for connecting `R` environments with Large Language Models (LLMs). Provides utilities for describing `R` objects, package documentation, and workspace state in plain text formats optimized for LLM consumption. Supports multiple workflows: interactive copy-paste to external chat interfaces, programmatic tool registration with `ellmer` chat clients, batteries-included chat applications via `shinychat`, and exposure to external coding agents through the Model Context Protocol. Project configuration files enable stable, repeatable conversations with project-specific context and preferred LLM settings. See [README](https://cran.r-project.org/web/packages/btw/readme/README.html).
@@ -23,7 +20,7 @@ editor: source
 
 ### Astronomy
 
-[marsrad](https://CRAN.R-project.org/package=marsrad) v1.0.0: A set of functions to calculate solar irradiance and insolation on Mars horizontal and inclined surfaces. Based on NASA Technical Memoranda 102299, 103623, 105216, 106321, and 106700, i.e. the canonical Mars solar radiation papers. (JBR: Should be useful for all of you going with Elon). See [README](https://cran.r-project.org/web/packages/marsrad/readme/README.html) for examples.
+[marsrad](https://CRAN.R-project.org/package=marsrad) v1.0.0: A set of functions to calculate solar irradiance and insolation on Mars horizontal and inclined surfaces. Based on NASA Technical Memoranda 102299, 103623, 105216, 106321, and 106700, i.e. the canonical Mars solar radiation papers. See [README](https://cran.r-project.org/web/packages/marsrad/readme/README.html) for examples.
 
 
 ### Causal Inference
@@ -34,7 +31,7 @@ editor: source
 
 ### Data
 
-[MaddisonData](https://cran.r-project.org/package=MaddisonData) v1.0.2: Provides access to to Maddison project data, which collates all the credible data on population and GDP for 169 countries, with some dating back to the year 1. `MaddisonLeaders` makes it easy to find the leaders for each year, allowing users to delete countries like OPEC with narrow economies to focus on the technology leaders. 'ggplotPath' makes it easy to plot data for only selected countries or years. See the vignettes [Industrial Revolution](https://cran.r-project.org/web/packages/MaddisonData/vignettes/IndustrialRevolution.html) and [Update Madison Data](https://cran.r-project.org/web/packages/MaddisonData/vignettes/UpdateMaddisonData.html).
+[MaddisonData](https://cran.r-project.org/package=MaddisonData) v1.0.2: Provides access to to Maddison project data, which collates all the credible data on population and GDP for 169 countries. `MaddisonLeaders` makes it easy to find the leaders for each year, allowing users to delete countries like OPEC with narrow economies to focus on the technology leaders. `ggplotPath` makes it easy to plot data for only selected countries or years. See the vignettes [Industrial Revolution](https://cran.r-project.org/web/packages/MaddisonData/vignettes/IndustrialRevolution.html) and [Update Madison Data](https://cran.r-project.org/web/packages/MaddisonData/vignettes/UpdateMaddisonData.html).
 
 ![](Maddison.png){fig-alt="Plot of sources for leader countries."}
 
@@ -60,7 +57,7 @@ editor: source
 
 ### Genomics
 
-[XYomics](https://cran.r-project.org/package=XYomics) v0.1.2: Provides tools to analyze sex differences in omics data for complex diseases. It includes functions for differential expression analysis using the limma method as described in [Ritchie et al. (2015)](https://academic.oup.com/nar/article/43/7/e47/2414268), interaction testing between sex and disease, pathway enrichment with `clusterProfiler` [Yu et al. (2012)](https://journals.sagepub.com/doi/10.1089/omi.2011.0118) <doi:10.1089/omi.2011.0118>, and gene regulatory network construction and analysis using `igraph`. See the vignettes [Bulk RNA-Seq Example](https://cran.r-project.org/web/packages/XYomics/vignettes/XYomics_bulk_example.html) and [Single Cell Example](https://cran.r-project.org/web/packages/XYomics/vignettes/XYomics_sc_example.html)
+[XYomics](https://cran.r-project.org/package=XYomics) v0.1.2: Provides tools to analyze sex differences in omics data for complex diseases. It includes functions for differential expression analysis using the limma method as described in [Ritchie et al. (2015)](https://academic.oup.com/nar/article/43/7/e47/2414268), interaction testing between sex and disease, pathway enrichment with `clusterProfiler` [Yu et al. (2012)](https://journals.sagepub.com/doi/10.1089/omi.2011.0118), and gene regulatory network construction and analysis using `igraph`. See the vignettes [Bulk RNA-Seq Example](https://cran.r-project.org/web/packages/XYomics/vignettes/XYomics_bulk_example.html) and [Single Cell Example](https://cran.r-project.org/web/packages/XYomics/vignettes/XYomics_sc_example.html)
 
 ![](XYomics.png){fig-alt="Plot of cell clusters"}
 
@@ -75,7 +72,7 @@ editor: source
 
 ### Marketing
 
-[rbranding](https://cran.r-project.org/package=rbranding) v0.1.1: Implements a  tool for building projects that are visually consistent, accessible, and easy to maintain. It provides functions for managing branding assets, applying organization-wide themes using [`brand.yml`](https://posit-dev.github.io/brand-yml/), and setting up new projects with accessibility features and correct branding. It supports `quarto`, `shiny`, and `rmarkdown` projects, and integrates with `ggplot2`. The accessibility features are based on the [Web Content Accessibility Guidelines](https://www.w3.org/WAI/WCAG22/quickref/?versions=2.1) and [Accessible Rich Internet Applications specifications](https://www.w3.org/WAI/ARIA/apg/). There are three vignettes including [rebranding](https://cran.r-project.org/web/packages/rbranding/vignettes/rbranding.html) and [Templates](https://cran.r-project.org/web/packages/rbranding/vignettes/templates.html).
+[rbranding](https://cran.r-project.org/package=rbranding) v0.1.1: Implements a  tool for building projects that are visually consistent, accessible, and easy to maintain. It provides functions for managing branding assets, applying organization-wide themes using [`brand.yml`](https://posit-dev.github.io/brand-yml/), and setting up new projects with accessibility features and correct branding, and supports `quarto`, `shiny`, and `rmarkdown` projects, and integrates with `ggplot2`. The accessibility features are based on the [Web Content Accessibility Guidelines](https://www.w3.org/WAI/WCAG22/quickref/?versions=2.1) and [Accessible Rich Internet Applications specifications](https://www.w3.org/WAI/ARIA/apg/). There are three vignettes including [rebranding](https://cran.r-project.org/web/packages/rbranding/vignettes/rbranding.html) and [Templates](https://cran.r-project.org/web/packages/rbranding/vignettes/templates.html).
 
 
 ### Medical Statistics
@@ -92,13 +89,13 @@ editor: source
 
 ![](twoCoprimary.png){fig-alt="Power contours for different effect sizes"}
 
-[whatifbandit](https://cran.r-project.org/package=whatifbandit) v0.3.0: Provides functions to simulate the results of completed randomized controlled trials, as if they had been conducted as adaptive Multi-Arm Bandit (MAB) trials instead. Uses augmented inverse probability weighted estimation (AIPW), outlined by [Hadad et al. (2021)](https://www.pnas.org/doi/full/10.1073/pnas.2014602118) to estimate the probability of success for each treatment arm under the adaptive design. See [Offer-Westort et al. (2021)](https://onlinelibrary.wiley.com/doi/10.1111/ajps.12597) for background and the [vignette](https://cran.r-project.org/web/packages/whatifbandit/vignettes/whatifbandit.html) for examples.
+[whatifbandit](https://cran.r-project.org/package=whatifbandit) v0.3.0: Provides functions to simulate the results of completed randomized controlled trials, as if they had been conducted as adaptive Multi-Arm Bandit trials instead. Uses augmented inverse probability weighted estimation, outlined by [Hadad et al. (2021)](https://www.pnas.org/doi/full/10.1073/pnas.2014602118) to estimate the probability of success for each treatment arm under the adaptive design. See [Offer-Westort et al. (2021)](https://onlinelibrary.wiley.com/doi/10.1111/ajps.12597) for background and the [vignette](https://cran.r-project.org/web/packages/whatifbandit/vignettes/whatifbandit.html) for examples.
 
 ![](whatifbandit.png){fig-alt="Plot of Thompson sampling over time"}
 
 ### Risk Analysis
 
-[raptools](https://cran.r-project.org/package=raptools) v1.23.0: Provides tools for assessing the comparative performance of two logistic regression models or results of such models or classification models. Discrimination metrics include Integrated Discrimination Improvement, Net Reclassification Improvement,difference in Area Under the Curves, and Brier scores and Brier skill. Methods are described in [Pencina et al. (2008)](https://onlinelibrary.wiley.com/doi/10.1002/sim.2929). Look [here](https://researchverse.github.io/raptools/) for examples.
+[raptools](https://cran.r-project.org/package=raptools) v1.23.0: Provides tools for assessing the comparative performance of two logistic regression models or results of such models or classification models. Discrimination metrics include integrated discrimination improvement, net reclassification improvement, difference in area under curves, and Brier scores. Methods are described in [Pencina et al. (2008)](https://onlinelibrary.wiley.com/doi/10.1002/sim.2929). Look [here](https://researchverse.github.io/raptools/) for examples.
 
 
 ![](raptools.png){fig-alt="Risk assessment plot"}
@@ -110,13 +107,13 @@ editor: source
 ![](pandemonium.png){fig-alt="Shiny page with cluster analysis plots"}
 
 
-[rAccess](https://cran.r-project.org/package=rAccess) v0.1.1.3: Provides a framework for implementing hierarchical access control in 'shiny' applications. Features include user permission management through a two-tier system of access panels and units, pluggable `shiny` module for administrative interfaces, and support for multiple storage backends (local, `AWS S3`, `Posit Connect`). The system enables fine-grained control over application features, with built-in audit trails and user management capabilities. See the [Tutorial](https://cran.r-project.org/web/packages/rAccess/vignettes/Tutorial.html).
+[rAccess](https://cran.r-project.org/package=rAccess) v0.1.1.3: Provides a framework for implementing hierarchical access control in `shiny` applications. Features include user permission management through a two-tier system of access panels and units, pluggable `shiny` module for administrative interfaces, and support for multiple storage backends (local, `AWS S3`, `Posit Connect`). The system enables fine-grained control over application features, with built-in audit trails and user management capabilities. See the [Tutorial](https://cran.r-project.org/web/packages/rAccess/vignettes/Tutorial.html).
 
 ![](rAccess.png){fig-alt="Workflow Diagram"}
 
 
 
-[shinyOAuth](https://CRAN.R-project.org/package=shinyOAuth) v0.1.4: Provides a  configurable, provider-agnostic `OAuth 2.0` and `OpenID Connect` authentication framework for `shiny` applications using S7 classes. Defines providers, clients, and tokens, as well as various supporting functions and a 'shiny' module. Features include cross-site request forgery protection, state encryption, Proof Key for Code Exchange handling, validation of OIDC identity tokens, automatic user info retrieval, asynchronous flows, and hooks for audit logging. There are four vignettes including [Usage](https://cran.r-project.org/web/packages/shinyOAuth/vignettes/usage.html) and [Example: Spotify login](https://cran.r-project.org/web/packages/shinyOAuth/vignettes/example-spotify.html).
+[shinyOAuth](https://CRAN.R-project.org/package=shinyOAuth) v0.1.4: Provides a  configurable, provider-agnostic `OAuth 2.0` and `OpenID Connect` authentication framework for `shiny` applications using S7 classes. Defines providers, clients, and tokens, as well as various supporting functions and a `shiny` module. Features include cross-site request forgery protection, state encryption, Proof Key for Code Exchange handling, validation of OIDC identity tokens, automatic user info retrieval, asynchronous flows, and hooks for audit logging. There are four vignettes including [Usage](https://cran.r-project.org/web/packages/shinyOAuth/vignettes/usage.html) and [Example: Spotify login](https://cran.r-project.org/web/packages/shinyOAuth/vignettes/example-spotify.html).
 
 
 
@@ -140,7 +137,7 @@ editor: source
 
 ### Statistics
 
-[aramappings](https://cran.r-project.org/package=aramappings) v0.1.2: Computes low-dimensional point representations of high-dimensional numerical data according to the data visualization method Adaptable Radial Axes described in: Rubio-Sánchez et al. (2017)](https://onlinelibrary.wiley.com/doi/10.1111/cgf.13196). See the [vignette](https://cran.r-project.org/web/packages/aramappings/vignettes/intro_to_aramappings.html).
+[aramappings](https://cran.r-project.org/package=aramappings) v0.1.2: Computes low-dimensional point representations of high-dimensional numerical data according to the data visualization method Adaptable Radial Axes described in: [Rubio-Sánchez et al. (2017)](https://onlinelibrary.wiley.com/doi/10.1111/cgf.13196). See the [vignette](https://cran.r-project.org/web/packages/aramappings/vignettes/intro_to_aramappings.html).
 
 ![](aramappings.jpeg){fig-alt="Example of ARA Plot"}
 
@@ -149,7 +146,7 @@ editor: source
 ![](deepspat.png){fig-alt="Deepspat images"}
 
 
-[fmi](https://cran.r-project.org/package=fmi) v0.1.7: Provides functions to test for Functional Measurement Invariance between two groups. Implements hierarchical permutation tests for configural, metric, and scalar invariance, adapting concepts from Multi-Group Confirmatory Factor Analysis to functional data. Methods are based on concepts from: [Meredith, W. (1993)](https://www.cambridge.org/core/journals/psychometrika/article/abs/measurement-invariance-factor-analysis-and-factorial-invariance/914A4C29515ACA7E0554B9E79F20D36C), [Yao et al. (2005)](https://www.tandfonline.com/doi/abs/10.1198/016214504000001745) and [Lee  &  Li (2022)](https://www.tandfonline.com/doi/abs/10.1198/016214504000001745). See the [vignette](https://cran.r-project.org/web/packages/fmi/vignettes/introduction-to-fmi.html).
+[fmi](https://cran.r-project.org/package=fmi) v0.1.7: Provides functions to test for functional measurement invariance between two groups. Implements hierarchical permutation tests for configural, metric, and scalar invariance, adapting concepts from multi-group confirmatory factor analysis to functional data. Methods are based on concepts from: [Meredith, W. (1993)](https://www.cambridge.org/core/journals/psychometrika/article/abs/measurement-invariance-factor-analysis-and-factorial-invariance/914A4C29515ACA7E0554B9E79F20D36C), [Yao et al. (2005)](https://www.tandfonline.com/doi/abs/10.1198/016214504000001745) and [Lee  &  Li (2022)](https://www.tandfonline.com/doi/abs/10.1198/016214504000001745). See the [vignette](https://cran.r-project.org/web/packages/fmi/vignettes/introduction-to-fmi.html).
 
 [gkwdist](https://cran.r-project.org/package=gkwdist) v1.1.1: Implements the five-parameter Generalized Kumaraswamy distribution proposed by [Carrasco, Ferrari and Cordeiro (2010)](https://arxiv.org/abs/1004.0911) and its seven nested sub-families for modeling bounded continuous data on the unit interval (0,1).  Provides density, distribution, quantile, and random generation functions, along with analytical log-likelihood, gradient, and Hessian functions. See the [Introduction](https://cran.r-project.org/web/packages/gkwdist/vignettes/into-gkwdist.html) and the vignette on [Statistical Properties](https://cran.r-project.org/web/packages/gkwdist/vignettes/into-gkwdist.html).
 
@@ -157,11 +154,11 @@ editor: source
 
 
 
-[grasps](https://cran.r-project.org/package=grasps) v0.1.0: Provides a unified framework for sparse-group regularization and precision matrix estimation in Gaussian graphical models and implements multiple sparse-group penalties, including sparse-group lasso, sparse-group adaptive lasso, sparse-group SCAD, and sparse-group MCP. The package is designed for high-dimensional network inference where both sparsity and group structure are present. There are two vignettes: [Selection Criteria](https://cran.r-project.org/web/packages/grasps/vignettes/crit.html) and [Penal Precision Matrix Estimation]https://cran.r-project.org/web/packages/grasps/vignettes/pen_est.html).
+[grasps](https://cran.r-project.org/package=grasps) v0.1.0: Provides a unified framework for sparse-group regularization and precision matrix estimation in Gaussian graphical models and implements multiple sparse-group penalties, including sparse-group lasso, sparse-group adaptive lasso, sparse-group SCAD, and sparse-group MCP. The package is designed for high-dimensional network inference where both sparsity and group structure are present. There are two vignettes: [Selection Criteria](https://cran.r-project.org/web/packages/grasps/vignettes/crit.html) and [Penal Precision Matrix Estimation](https://cran.r-project.org/web/packages/grasps/vignettes/pen_est.html).
 
 ![](grasps.png){fig-alt="Plot comparing derivatives of various penalties"}
 
-[PCBN](https://cran.r-project.org/package=PCBN) v0.1.1: Provides functions to create fit and sample Pair-Copula Bayesian networks (PCBN) under some restrictions on the underlying Directed Acyclic Graph (DAG), that is, no active cycles nor interfering v-structures. See [Derumigny, Horsman and Kurowicka (2025)]() for background and the vignettes [B-sets and interfering v-structures](https://cran.r-project.org/web/packages/PCBN/vignettes/Bsets-v-structs.html) and [How to use the estimation procedures](https://cran.r-project.org/web/packages/PCBN/vignettes/internals-estimation.html)
+[PCBN](https://cran.r-project.org/package=PCBN) v0.1.1: Provides functions to create fit and sample Pair-Copula Bayesian networks (PCBN) under some restrictions on the underlying Directed Acyclic Graph (DAG), that is, no active cycles nor interfering v-structures. See [Derumigny, Horsman and Kurowicka (2025)]() for background and the vignettes [B-sets and interfering v-structures](https://cran.r-project.org/web/packages/PCBN/vignettes/Bsets-v-structs.html) and [How to use the estimation procedures](https://cran.r-project.org/web/packages/PCBN/vignettes/internals-estimation.html).
 
 ![](PCBN.png){fig-alt="Saple DAG"}
 
@@ -169,10 +166,10 @@ editor: source
 
 
 
-[SelectBoost.gamlss](https://cran.r-project.org/package=SelectBoost.gamlss) v0.2.2: Extends the `SelectBoost` approach to Generalized Additive Models for Location, Scale and Shape (GAMLSS). Implements bootstrap stability-selection across parameter-specific formulas (mu, sigma, nu, tau) via gamlss::stepGAIC(). Includes optional standardization of predictors and helper functions for corrected AIC calculation. See [Bertrand and Maumy (2024)](ttps://hal.science/hal-05352041) for details on correlation-aware resampling to improve variable selection for GAMLSS and quantile regression. There are nine vignettes including [Advanced data examples](https://cran.r-project.org/web/packages/SelectBoost.gamlss/vignettes/advanced-real-data-examples.html) and [Confidence Functionals](https://cran.r-project.org/web/packages/SelectBoost.gamlss/vignettes/confidence-functionals.html).
+[SelectBoost.gamlss](https://cran.r-project.org/package=SelectBoost.gamlss) v0.2.2: Extends the `SelectBoost` approach to Generalized Additive Models for Location, Scale and Shape (GAMLSS). Implements bootstrap stability-selection across parameter-specific formulas (mu, sigma, nu, tau). Includes optional standardization of predictors and helper functions for corrected AIC calculation. See [Bertrand and Maumy (2024)](ttps://hal.science/hal-05352041) for details on correlation-aware resampling to improve variable selection for GAMLSS and quantile regression. There are nine vignettes including [Advanced data examples](https://cran.r-project.org/web/packages/SelectBoost.gamlss/vignettes/advanced-real-data-examples.html) and [Confidence Functionals](https://cran.r-project.org/web/packages/SelectBoost.gamlss/vignettes/confidence-functionals.html).
 
 
-[SCoRES](https://cran.r-project.org/package=SCoRES) v0.1.2: Provides computational tools for estimating inverse regions and constructing the corresponding simultaneous outer and inner confidence regions for logistic, functional, and spatial generalized least squares regression models. Functions are also available for constructing simultaneous confidence bands. See [Sommerfeld et al. (2018)](https://www.tandfonline.com/doi/full/10.1080/01621459.2017.1341838) for the definition of a simultaneous confidence region, and see [Ren et al. (2024)](https://academic.oup.com/jrsssc/article/73/4/1082/7685821?login=false), [Crainiceanu et al. (2024)](https://www.taylorfrancis.com/books/mono/10.1201/9781003278726/functional-data-analysis-ciprian-crainiceanu-jeff-goldsmith-andrew-leroux-erjia-cui), and [Telschow et al. (2022)](https://www.sciencedirect.com/science/article/abs/pii/S0378375821000598?via%3Dihub) for background. There are four vignettes including [Methods](https://cran.r-project.org/web/packages/SCoRES/vignettes/Methods.html) and Functional Data Example](https://cran.r-project.org/web/packages/SCoRES/vignettes/Functional_Data_Example.html).
+[SCoRES](https://cran.r-project.org/package=SCoRES) v0.1.2: Provides computational tools for estimating inverse regions and constructing the corresponding simultaneous outer and inner confidence regions for logistic, functional, and spatial generalized least squares regression models. Functions are also available for constructing simultaneous confidence bands. See [Sommerfeld et al. (2018)](https://www.tandfonline.com/doi/full/10.1080/01621459.2017.1341838) for the definition of a simultaneous confidence region, and see [Ren et al. (2024)](https://academic.oup.com/jrsssc/article/73/4/1082/7685821?login=false), [Crainiceanu et al. (2024)](https://www.taylorfrancis.com/books/mono/10.1201/9781003278726/functional-data-analysis-ciprian-crainiceanu-jeff-goldsmith-andrew-leroux-erjia-cui), and [Telschow et al. (2022)](https://www.sciencedirect.com/science/article/abs/pii/S0378375821000598?via%3Dihub) for background. There are four vignettes including [Methods](https://cran.r-project.org/web/packages/SCoRES/vignettes/Methods.html) and [Functional Data Example](https://cran.r-project.org/web/packages/SCoRES/vignettes/Functional_Data_Example.html).
 
 ![](SCoRES.png){fig-alt="Plot ofconfidence regions"}
 ![](maki.png){fig-alt="Time series plot with regime shift"}
@@ -186,7 +183,7 @@ editor: source
 
 [aplms](https://cran.r-project.org/package=aplms) v0.1.0: Provides tools for fitting the additive partial linear models with symmetric autoregressive errors of order p, or APLMS-AR(p) enabling the modeling of a time series response variable using linear and nonlinear structures of a set of explanatory variables, with nonparametric components approximated by natural cubic splines or P-splines. Functions include various error distributions, such as normal, generalized normal, Student's t, generalized Student's t, power-exponential, and Cauchy distributions. [Chou-Chen et al. (2024)](https://link.springer.com/article/10.1007/s00362-024-01590-w) for background. Look [here](https://github.com/shuwei325/aplms) for examples.
 
-[BLSloadR](https://cran.r-project.org/package=BLSloadR) v0.2: Implements an interface for downloading data from the [U.S. Bureau of Labor Statistics](https://www.bls.gov). Files include employment, unemployment, wages, prices, industry and occupational data at a national, state, and sub-state level, depending on the series. Individual functions are included for those programs which have data available at the state level. The core functions provide direct access to the Current Employment Statistics [CES](https://www.bls.gov/ces/), Local Area Unemployment Statistics [LAUS](https://www.bls.gov/lau/), Occupational Employment and Wage Statistics [OEWS](https://www.bls.gov/oes/), and Alternative Measures of Labor Underutilization [SALT](https://www.bls.gov/lau/stalt.htm). See the [vignette](https://cran.r-project.org/web/packages/BLSloadR/vignettes/BLSloadR-intro.html)
+[BLSloadR](https://cran.r-project.org/package=BLSloadR) v0.2: Implements an interface for downloading data from the [U.S. Bureau of Labor Statistics](https://www.bls.gov). Files include employment, unemployment, wages, prices, industry and occupational data at a national, state, and sub-state level, depending on the series. Individual functions are included for those programs which have data available at the state level. The core functions provide direct access to the Current Employment Statistics [CES](https://www.bls.gov/ces/), Local Area Unemployment Statistics [LAUS](https://www.bls.gov/lau/), Occupational Employment and Wage Statistics [OEWS](https://www.bls.gov/oes/), and Alternative Measures of Labor Underutilization [SALT](https://www.bls.gov/lau/stalt.htm). See the [vignette](https://cran.r-project.org/web/packages/BLSloadR/vignettes/BLSloadR-intro.html).
 
 [makicoint](https://cran.r-project.org/package=makicoint) v1.0.0: Implements the [Maki (2012)](https://www.sciencedirect.com/science/article/abs/pii/S0264999312001162) cointegration test that allows for an unknown number of structural breaks. The test detects cointegration relationships in the presence of up to five structural breaks in the intercept and/or slope coefficients. Four different model specifications are supported: level shifts, level shifts with trend, regime shifts, and trend with regime shifts. See the [vignette](https://cran.r-project.org/web/packages/makicoint/vignettes/introduction.html).
 
@@ -224,15 +221,13 @@ editor: source
 ![](ggincerta.png){fig-alt="Example glyph map"}
 
 
-[poisonfrogs](https://cran.r-project.org/package=poisonfrogs) v1.0.2: Provides a collection of color palettes inspired by the enormous diversity of skin colors in Neotropical poison frog species. Suitable for use with `ggplot2` and base R graphics. See [README](https://cran.r-project.org/web/packages/poisonfrogs/readme/README.html)
+[poisonfrogs](https://cran.r-project.org/package=poisonfrogs) v1.0.2: Provides a collection of color palettes inspired by the enormous diversity of skin colors in Neotropical poison frog species. Suitable for use with `ggplot2` and base R graphics. See [README](https://cran.r-project.org/web/packages/poisonfrogs/readme/README.html).
 
 ![](poisonfrogs.png){fig-alt="Poison frogs pallettes"}
 
 
-
 :::
 
-
-
 ::::
+
 
