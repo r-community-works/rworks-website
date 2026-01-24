@@ -8,7 +8,7 @@ image: "thumbnail.png"
 
 If you're like me, you might feel a bit overwhelmed by all the new AI tools for coding. There’s a lot out there, and it’s hard to know where to start. So, this post may be adding one more thing to your plate, but I promise to keep it as whelming as possible. 😄
 
-This is a (very) short roundup of Claude Skills created by members of the community that are especially helpful for R users. I’m still very much a newbie in this space. If I misrepresent anything, or if you know of another Skill that should be included, please reach out on [Bluesky](https://bsky.app/profile/ivelasq3.bsky.social). I’d love to learn more.
+This is a (very) short roundup of Claude Skills created by members of the community that are especially helpful for R users. Note that it won't show Claude output, but rather, point you to how to install and resources where to find Skills. I’m still very much a newbie in this space. If I misrepresent anything, or if you know of another Skill that should be included, please reach out on [Bluesky](https://bsky.app/profile/ivelasq3.bsky.social). I’d love to learn more.
 
 ## Quick definitions
 
@@ -24,7 +24,7 @@ Here are a few broad definitions to set the stage:
 If you haven't installed Claude Code yet, Anthropic has [great documentation](https://code.claude.com/docs/en/quickstart) to get you started.
 
 ::: callout-note
-A question that many (at least, I) have wondered is the difference between CLAUDE.md and Skills. Essentially, do you want Claude to know the information for every task in the project, or specific tasks? (thanks to my colleague Nick Pelikan for this explanation)
+A question many people (*cough* I *cough*) have wondered about is the difference between CLAUDE.md and Claude Skills. The key distinction is how broadly the information should apply and how much of Claude’s context window you want to use. If you want Claude to always be aware of certain information for every task in a project, use CLAUDE.md. This might include project conventions, coding style, or high-level rules. If the information is only relevant for specific tasks, Claude Skills are a better fit. Skills let you scope guidance to when it’s actually needed, instead of filling up the context window with instructions that don’t apply most of the time. (Thanks to my colleague Nick Pelikan for helping clarify this.)
 :::
 
 ## Claude Skills for R users: a roundup
@@ -39,7 +39,7 @@ Ever asked an LLM for R code and it kindly gives you a response that uses `resha
 
 Frustrated, I started a session just to teach R to Claude and summarize what it learned into a CLAUDE.md file gist.github.com/sj-io/3828d6...<br><br><a href="https://bsky.app/profile/did:plc:z37oae56a45bzgiybi23p4my/post/3lwvpothzjk2o?ref_src=embed">[image or embed]</a></p>&mdash; sarah (<a href="https://bsky.app/profile/did:plc:z37oae56a45bzgiybi23p4my?ref_src=embed">@sarahjohnson.io</a>) <a href="https://bsky.app/profile/did:plc:z37oae56a45bzgiybi23p4my/post/3lwvpothzjk2o?ref_src=embed">August 21, 2025 at 5:18 AM</a></blockquote><script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script></center>
 
-One nice follow-up suggestion comes from [Jeremy Allen](https://bsky.app/profile/jeremy-data.bsky.social/post/3mc3lucxbks2v), who recommends breaking this Skill into smaller ones if you don’t need all the guidance at once. He has also created a Skill that can pull in [recent updates]((https://github.com/jeremy-allen/claude-skills/tree/main/deliver-posit-news)) from Posit!
+One nice follow-up suggestion comes from [Jeremy Allen](https://bsky.app/profile/jeremy-data.bsky.social/post/3mc3lucxbks2v), who recommends breaking this Skill into smaller ones if you don’t need all the guidance at once. He has also created a Skill that can pull in [recent updates](https://github.com/jeremy-allen/claude-skills/tree/main/deliver-posit-news) from Posit!
 
 ### 2. Posit Claude Skills
 
@@ -76,7 +76,7 @@ If you’ve downloaded a Skill locally, you can install it directly from its fol
 
 You can also install a Skill by placing it directly in the appropriate directory:
 
-* For personal Skills: `~/.claude/skills/skill-name/`
+* For personal Skills: `~/.claude/skills/skill-name/` (in your home directory)
 * For project Skills: `.claude/skills/skill-name/` (in your project root)
 
 Once the files are in place, Claude Code will automatically discover and use the Skill when it’s relevant.
