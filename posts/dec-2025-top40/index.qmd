@@ -46,7 +46,14 @@ In December, NNnnn new packages made it to CRAN. Here are my Top 40 picks in eig
 
 ### Epidemiology
 
+[MetaRVM](https://cran.r-project.org/package=MetaRVM) v1.0.1: Simulates respiratory virus epidemics using meta-population compartmental models. Following [Fadikar et. al. (2025)](https://www.medrxiv.org/content/10.1101/2025.05.05.25327021v1) it implements a stochastic SEIRD (Susceptible-Exposed-Infected-Recovered-Dead) framework with demographic stratification by age, race, and geographic zones that supports complex epidemiological scenarios including asymptomatic and presymptomatic transmission, hospitalization dynamics, vaccination schedules, and time-varying contact patterns via mixing matrices. There are four vignettes including [Getting Started]() and [Running a Simulation](https://cran.r-project.org/web/packages/MetaRVM/vignettes/running-a-simulation.html).
+
+![](MetaRVM.png){fig-alt="Plot of hospitialization days by age group"}
+
+
 [sitrep](https://cran.r-project.org/package=sitrep) v0.4.0: Loads the complete sitrep ecosystem for applied epidemiology analysis. This package provides report templates and automatically loads companion packages, including `epitabulate` (for epidemiological tables), `epidict` (for data dictionaries), `epikit` (for epidemiological utilities), and `apyramid1 (for age-sex pyramids). There are seven vignettes including [Origin Story](https://cran.r-project.org/web/packages/sitrep/vignettes/Background.html) and [Guide: Measles Outbreak report](https://cran.r-project.org/web/packages/sitrep/vignettes/measles_intersectional_outbreak_guide.html).
+
+
 
 :::
 
