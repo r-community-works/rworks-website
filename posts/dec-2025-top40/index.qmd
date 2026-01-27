@@ -1,0 +1,75 @@
+
+---
+title: "December 2025 Top 40 New CRAN Packages"
+author: "Joseph Rickert"
+date: 2026-01-27
+description: "An attempt to capture the depth and breadth of what's new on CRAN."
+image: ""
+image-alt: ""
+categories: "Top 40"
+editor: source
+---
+
+In December, NNnnn new packages made it to CRAN. Here are my Top 40 picks in eighteen categories: Agriculture, Biology, Computational Methods, Data, Ecology, Epidemiology, Genomics, Healthcare, Health Technology Assessment, Machine Learning, Medicine, Networks, Statistics, Time Series, Utilities, and Visualization.
+
+![](.png){fig-alt=""}
+:::: {.columns}
+
+::: {.column width="45%"}
+
+### AI
+
+[gooseR](https://cran.r-project.org/package=gooseR) v0.1.1: Integrates [Goose AI](https://github.com/block/goose) capabilities including memory management, visualization enhancements, and workflow automation. Save `R` objects to `Goose` memory, apply Block branding to visualizations, and manage data science project workflows. There are six vignettes including [Getting Started](https://cran.r-project.org/web/packages/gooseR/vignettes/getting-started.html) and [Code Review and Testing](https://cran.r-project.org/web/packages/gooseR/vignettes/code-review-testing.html).
+
+
+[pairwiseLLM](https://cran.r-project.org/package=pairwiseLLM) v1.1.0: Provides a unified framework for generating, submitting, and analyzing pairwise comparisons of writing quality using large language models (LLMs). The package supports live and/or batch evaluation workflows across multiple providers (OpenAI, Anthropic, Google Gemini, Together AI, and locally-hosted Ollama models).  Results can be modeled using [Bradley–Terry (1952)](https://www.jstor.org/stable/2334029?origin=crossref) or Elo rating methods as described in [Clark et al. (2018)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0190393) to derive writing quality scores. For information on the method of pairwise comparisons, see [Thurstone (1927)](https://psycnet.apa.org/doiLanding?doi=10.1037%2Fh0070288) and [Heldsinger & Humphry (2010)](https://link.springer.com/article/10.1007/BF03216919). There are three vignettes including [Getting Started](https://cran.r-project.org/web/packages/pairwiseLLM/vignettes/getting-started.html) and [Advanced](https://cran.r-project.org/web/packages/pairwiseLLM/vignettes/advanced-batch-workflows.html).
+
+### Causal Inference
+
+[caugi](https://cran.r-project.org/package=caugi) v1.0.0: Implements a simple interface to build, structure, and examine causal relationships. There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/caugi/vignettes/get_started.html) and [Visualizing Causal Graphs](https://cran.r-project.org/web/packages/caugi/vignettes/visualization.html).
+
+![](caugi.png){fig-alt="Causal graph"}
+
+### Computational Methods
+
+[bigPLSR](https://cran.r-project.org/package=bigPLSR) v0.7.2: Provides fast partial least squares (PLS) for dense and out-of-core data that is optimized for `bigmemory`-backed matrices with streamed cross-products and chunked BLAS. For details see [Bertrand and Maumy (2023)](https://hal.science/hal-05352069), [Bertrand and Maumy (2023b)](https://hal.science/hal-05352069), and [Dayal and MacGregor (1997)](https://analyticalsciencejournals.onlinelibrary.wiley.com/doi/10.1002/%28SICI%291099-128X%28199701%2911%3A1%3C73%3A%3AAID-CEM435%3E3.0.CO%3B2-%23). Features nclude kernel logistic PLS with `C++`-accelerated alternating iteratively reweighted least squares (IRLS) updates, streamed reproducing kernel Hilbert space (RKHS) solvers with reusable centering statistics, and bootstrap diagnostics with graphical summaries for coefficients, scores, and cross-validation workflows. There are fourteen vignettes including [Automatic Algorithm Selection](https://cran.r-project.org/web/packages/bigPLSR/vignettes/bigPLSR-auto-selection.html) and [Visualizing PLS FIts](https://cran.r-project.org/web/packages/bigPLSR/vignettes/plotting-guide.html).
+
+![](bigPLSR.png){fig-alt="Bilot with groped individuals"}
+
+### Ecology
+
+[ambiR](https://cran.r-project.org/package=ambiR) v0.1.1: Provides functions to calculate [AZTI’s Marine Biotic Index](https://ambi.azti.es/) - AMBI of benthic fauna species according to their sensitivity to pollution. The Shannon Diversity Index H' and the Danish benthic fauna quality index DKI (Dansk Kvalitetsindeks) can also be calculated, as well as the multivariate M-AMBI index. See Borja et al. (2000)](https://www.sciencedirect.com/science/article/abs/pii/S0025326X00000618?via%3Dihub) for background. There are four vignettes including [Get Started](https://cran.r-project.org/web/packages/ambiR/vignettes/ambiR.html) and [The AMBI index](https://cran.r-project.org/web/packages/ambiR/vignettes/background.html).
+
+![](ambiR.png){fig-alt="Plot of Species groub vs. Ecological Group"}
+
+[SHARK4R](https://cran.r-project.org/package=SHARK4R) v1.0.3: Provides functions to retrieve, process, analyze, and quality-control marine physical, chemical, and biological data. The main focus is on Swedish monitoring data available through the [SHARK database](https://shark.smhi.se/en/), with additional API support for [Nordic Microalgae](https://nordicmicroalgae.org/), [Dyntaxa](https://artfakta.se/), World Register of Marine Species [WoRMS](https://www.marinespecies.org), [AlgaeBase](https://www.algaebase.org), OBIS [xylookup](https://iobis.github.io/xylookup/) web service, and Intergovernmental Oceanographic Commission (IOC) - UNESCO databases on [harmful algae](https://www.marinespecies.org/hab/) and [toxins](https://toxins.hais.ioc-unesco.org/). There are five vignettes including [Quality Control of SHARK4R Data](https://cran.r-project.org/web/packages/SHARK4R/vignettes/quality_control.html) and [Retrieve Data From SHARK](https://cran.r-project.org/web/packages/SHARK4R/vignettes/retrieve_shark_data.html).
+
+### Epidemiology
+
+[sitrep](https://cran.r-project.org/package=sitrep) v0.4.0: Loads the complete sitrep ecosystem for applied epidemiology analysis. This package provides report templates and automatically loads companion packages, including `epitabulate` (for epidemiological tables), `epidict` (for data dictionaries), `epikit` (for epidemiological utilities), and `apyramid1 (for age-sex pyramids). There are seven vignettes including [Origin Story](https://cran.r-project.org/web/packages/sitrep/vignettes/Background.html) and [Guide: Measles Outbreak report](https://cran.r-project.org/web/packages/sitrep/vignettes/measles_intersectional_outbreak_guide.html).
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+
+
+### Machine Learning
+
+
+end
+
+:::
+
+
+
+
+
+::::
+
+
+
