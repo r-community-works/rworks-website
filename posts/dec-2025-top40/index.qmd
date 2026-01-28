@@ -13,6 +13,8 @@ editor: source
 In December, NNnnn new packages made it to CRAN. Here are my Top 40 picks in eighteen categories: Agriculture, Biology, Computational Methods, Data, Ecology, Epidemiology, Genomics, Healthcare, Health Technology Assessment, Machine Learning, Medicine, Networks, Statistics, Time Series, Utilities, and Visualization.
 
 ![](.png){fig-alt=""}
+
+
 :::: {.columns}
 
 ::: {.column width="45%"}
@@ -53,6 +55,37 @@ In December, NNnnn new packages made it to CRAN. Here are my Top 40 picks in eig
 
 [sitrep](https://cran.r-project.org/package=sitrep) v0.4.0: Loads the complete sitrep ecosystem for applied epidemiology analysis. This package provides report templates and automatically loads companion packages, including `epitabulate` (for epidemiological tables), `epidict` (for data dictionaries), `epikit` (for epidemiological utilities), and `apyramid1 (for age-sex pyramids). There are seven vignettes including [Origin Story](https://cran.r-project.org/web/packages/sitrep/vignettes/Background.html) and [Guide: Measles Outbreak report](https://cran.r-project.org/web/packages/sitrep/vignettes/measles_intersectional_outbreak_guide.html).
 
+### Genetics
+
+[EZbakR](https://cran.r-project.org/package=EZbakR) v0.1.0: A complete rewrite and reimagining of `bakR`, [Vock et al. (2025)](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1013179), designed to support a wide array of analyses of nucleotide recoding RNA-seq datasets of any type, including TimeLapse-seq/SLAM-seq/TUC-seq, Start-TimeLapse-seq, TT-TimeLapse-seq, and subcellular NR-seq. It extends standard NR-seq standard NR-seq mutational modeling to support multi-label analyses, and implements an improved hierarchical model to better account for transcript-to-transcript variance in metabolic label incorporation, and also generalized dynamical systems modeling of NR-seq data to support analyses of premature mRNA processing and flow between subcellular compartments. There are seven vignettes including [Quickstart](https://cran.r-project.org/web/packages/EZbakR/vignettes/Quickstart.html) and [Linear Modeling](https://cran.r-project.org/web/packages/EZbakR/vignettes/Linear-modeling.html).
+
+![](EZbakR.png){fig-alt="Volcano plot showing a comparative analysis"}
+
+[gpyramid](https://cran.r-project.org/package=gpyramid) v0.0.1: Provides functins to identify efficient crossing schemes for gene pyramiding and calculates the cost of crossing in terms of the number of individuals and generations, which has been theoretically formulated by [Servin et al. (2004)](https://academic.oup.com/genetics/article-abstract/168/1/513/6059522?redirectedFrom=fulltext&login=false). The package has been designed for selecting appropriate parental genotypes and find the most efficient crossing scheme for gene pyramiding, especially for plant breeding. There is an [Introduction](https://cran.r-project.org/web/packages/gpyramid/vignettes/Introduction.html) and a [Tutorial](https://cran.r-project.org/web/packages/gpyramid/vignettes/Tutorial.html).
+
+![](gpyramid.png){fig-alt="Example gene pyramid plot"}
+
+[phylospatial](https://cran.r-project.org/package=phylospatial) v1.2.1: Provides functions to analyze spatial phylogenetic diversity patterns. Use your data on an evolutionary tree and geographic distributions of the terminal taxa to compute diversity and endemism metrics, test significance with null model randomization, analyze community turnover and biotic regionalization, and perform spatial conservation prioritizations. All functions support quantitative community data in addition to binary data. There are four vignettes including [phylospatial data](https://cran.r-project.org/web/packages/phylospatial/vignettes/phylospatial-data.html) and [Prioritization](https://cran.r-project.org/web/packages/phylospatial/vignettes/prioritization.html).
+
+![](phylospatial.png){fig-alt="Plots of Phylogenetic community ordination for first four PCA values"}
+
+### Genomics
+
+[CimpleG](https://cran.r-project.org/package=CimpleG) v1.0.1: Provides a method for the detection of small CpG methylation signatures used for cell-type classification and deconvolution that is time efficient and performs as well as top performing methods for cell-type classification of blood cells and other somatic cells. Predictions are based on a single DNA methylation site per cell type (but users can also select more sites if they so wish). Users can train cell type classifiers and directly apply these in a deconvolution of cell mixes context. See Maié [et al. (2023)](https://link.springer.com/article/10.1186/s13059-023-03000-0) for details and the vignettes [Genetic signatures](https://cran.r-project.org/web/packages/CimpleG/vignettes/generate-signatures.html) an [Quickly save and load large objects](https://cran.r-project.org/web/packages/CimpleG/vignettes/save_load_objects.html).
+
+### Mathematics
+
+[algebraic.dist](https://cran.r-project.org/package=algebraic.dist) v0.1.0: Provides an algebra over probability distributions enabling composition, sampling, and automatic simplification to closed forms. Supports normal, exponential, multivariate normal, and empirical distributions with operations like addition and subtraction that automatically simplify when mathematical identities apply (e.g., the sum of independent normal distributions is normal). 
+
+![](algebraic.png){fig-alt="Scatter plot of sampled vs. computed distribution values"}
+
+### Mediation Analysis
+
+[wsMed](https://cran.r-project.org/package=wsMed) v1.0.2: Provides tools for within-subject mediation analysis using structural equation modeling to examine how changes in an outcome variable between two conditions are mediated through one or more variables. Supports within-subject mediation analysis using the `lavaan` package by [Rosseel (2012)](https://www.jstatsoft.org/article/view/v048i02), and extends Monte Carlo confidence interval estimation to missing data scenarios using the `semmcci` package by [Pesigan and Cheung (2023)](https://doi.org/10.3758%2Fs13428-023-02114-4). There are six vignettes including [wsMed](https://cran.r-project.org/web/packages/wsMed/vignettes/WsMed.html) and introduction, and [GenerateModelIP](https://cran.r-project.org/web/packages/wsMed/vignettes/GenerateModelP.html).
+
+![](wsMed.png){fig-alt="Plot of moderation curve"}
+
+
 
 
 :::
@@ -68,7 +101,20 @@ In December, NNnnn new packages made it to CRAN. Here are my Top 40 picks in eig
 ### Machine Learning
 
 
-end
+
+### Statistics
+
+
+### Visualization
+
+[blockr.ggplot](https://cran.r-project.org/package=blockr.ggplot) v0.1.0: Extends `blockr.core` with interactive blocks for data visualization using `ggplot2`. Users can build charts through a graphical interface without writing code directly. Includes common chart types (bar charts, line charts, pie charts, scatter plots) as well as statistical plots (boxplots, histograms, density plots, violin plots) with rich customization options and intuitive user interfaces. See the [vignette](https://cran.r-project.org/web/packages/blockr.ggplot/vignettes/blockr-ggplot-showcase.html).
+
+![](blockr.png){fig-alt="Example plot"}
+
+
+[mapycusmaximus](https://cran.r-project.org/package=mapycusmaximus) v1.0.0: Provides focus-glue-context (FGC) fisheye transformations to two-dimensional coordinates and spatial vector geometries. Implements a smooth radial distortion that enlarges a focal region, transitions through a glue ring, and preserves outside context. Methods build on generalized fisheye views and focus+context mapping. See [Furnas (1986)](https://dl.acm.org/doi/10.1145/22339.22342), [Furnas (2006)](https://dl.acm.org/doi/10.1145/1124772.1124921), and [Yamamoto et al. (2009)](https://dl.acm.org/doi/10.1145/1653771.1653788) for details and the [vignette](https://cran.r-project.org/web/packages/mapycusmaximus/vignettes/Mapycus.html) for examples.
+
+![](mapy.png){fig-alt="Plot of Fisheye transformation"}
 
 :::
 
