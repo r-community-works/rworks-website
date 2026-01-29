@@ -79,6 +79,12 @@ In December, NNnnn new packages made it to CRAN. Here are my Top 40 picks in eig
 
 [CimpleG](https://cran.r-project.org/package=CimpleG) v1.0.1: Provides a method for the detection of small CpG methylation signatures used for cell-type classification and deconvolution that is time efficient and performs as well as top performing methods for cell-type classification of blood cells and other somatic cells. Predictions are based on a single DNA methylation site per cell type (but users can also select more sites if they so wish). Users can train cell type classifiers and directly apply these in a deconvolution of cell mixes context. See Maié [et al. (2023)](https://link.springer.com/article/10.1186/s13059-023-03000-0) for details and the vignettes [Genetic signatures](https://cran.r-project.org/web/packages/CimpleG/vignettes/generate-signatures.html) an [Quickly save and load large objects](https://cran.r-project.org/web/packages/CimpleG/vignettes/save_load_objects.html).
 
+### Machine Learning
+
+[snic](https://cran.r-project.org/package=snic) v0.6.1: Implements the Simple Non-Iterative Clustering algorithm for superpixel segmentation of multi-band images, as introduced by [Achanta and Susstrunk (2017)](https://ieeexplore.ieee.org/document/8100003) and supports both standard image arrays and geospatial raster objects, with a design that can be extended to other spatial data frameworks. The algorithm groups adjacent pixels into compact, coherent regions based on spectral similarity and spatial proximity. A high-performance implementation supports images with arbitrary spectral bands. See the vignettes about [Arrays](https://cran.r-project.org/web/packages/snic/vignettes/snic-array-pipeline.html) and [SpatRaster](https://cran.r-project.org/web/packages/snic/vignettes/snic-spatraster-pipeline.html) segmentation pipelines.
+
+![](snic.png){fig-alt="Clownfish image with superpixel segmentation boundaries overlaid."}
+
 ### Mathematics
 
 [algebraic.dist](https://cran.r-project.org/package=algebraic.dist) v0.1.0: Provides an algebra over probability distributions enabling composition, sampling, and automatic simplification to closed forms. Supports normal, exponential, multivariate normal, and empirical distributions with operations like addition and subtraction that automatically simplify when mathematical identities apply (e.g., the sum of independent normal distributions is normal). 
@@ -103,9 +109,6 @@ In December, NNnnn new packages made it to CRAN. Here are my Top 40 picks in eig
 ::: {.column width="45%"}
 
 
-
-### Machine Learning
-
 ### Medical Statistics
 
 [cifmodeling](https://cran.r-project.org/package=cifmodeling) v0.9.8: Implements a publication-ready toolkit for modern survival and competing risks analysis with a minimal, formula-based interface. Both nonparametric estimation and direct polytomous regression of cumulative incidence functions (CIFs) are supported. Functions estimate survival and CIF curves, produce high-quality graphics with risk tables, censoring and competing-risk marks, and multi-panel or inset layouts.  All core functions adopt a formula-and-data syntax and return tidy and extensible outputs. Key numerical routines are implemented in `C++`. There are seven vignettes including [Overview](https://cran.r-project.org/web/packages/cifmodeling/vignettes/v1_overview.html) and [Examples](https://cran.r-project.org/web/packages/cifmodeling/vignettes/v4_examples.html).
@@ -124,6 +127,15 @@ In December, NNnnn new packages made it to CRAN. Here are my Top 40 picks in eig
 
 
 ### Statistics
+
+[quantbayes](https://cran.r-project.org/package=quantbayes) v0.1.0: Implements the Quantification Evidence Standard algorithm for computing Bayesian evidence sufficiency from binary evidence matrices and provides posterior estimates, credible intervals, percentiles, and optional visual summaries. The method is universal, reproducible, and independent of any specific clinical or rule based framework. See [The Quantitative Omics Epidemiology Group et al. (2025)](https://www.medrxiv.org/content/10.64898/2025.12.02.25341503v3) for details and the [vignette](https://cran.r-project.org/web/packages/quantbayes/index.html) for examples. 
+
+![](quantbayes.png){fig-alt="Plot of posterior theta distribution"}
+
+[weightedsurv](https://cran.r-project.org/package=weightedsurv) v0.1.0: Provides survival analysis functions with support for time-dependent and subject-specific (e.g., propensity score) weighting. Implements weighted estimation for Cox models, Kaplan-Meier survival curves, and treatment differences with point-wise and simultaneous confidence bands. Includes restricted mean survival time comparisons evaluated across all potential truncation times with both point-wise and simultaneous confidence bands. See [Cole & Hernán (2004)](https://www.sciencedirect.com/science/article/abs/pii/S0169260703001378?via%3Dihub) for methodological background and the [vignette](https://cran.r-project.org/web/packages/weightedsurv/vignettes/weightedsurv_examples.html) for examples.
+
+![](weightedsurv.png){fig-alt="Plots of weighted and unweighted survival curves."}
+
 
 ### Time Series
 
