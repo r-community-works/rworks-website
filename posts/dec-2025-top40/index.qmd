@@ -40,11 +40,17 @@ In December, NNnnn new packages made it to CRAN. Here are my Top 40 picks in eig
 
 ### Ecology
 
-[ambiR](https://cran.r-project.org/package=ambiR) v0.1.1: Provides functions to calculate [AZTI’s Marine Biotic Index](https://ambi.azti.es/) - AMBI of benthic fauna species according to their sensitivity to pollution. The Shannon Diversity Index H' and the Danish benthic fauna quality index DKI (Dansk Kvalitetsindeks) can also be calculated, as well as the multivariate M-AMBI index. See Borja et al. (2000)](https://www.sciencedirect.com/science/article/abs/pii/S0025326X00000618?via%3Dihub) for background. There are four vignettes including [Get Started](https://cran.r-project.org/web/packages/ambiR/vignettes/ambiR.html) and [The AMBI index](https://cran.r-project.org/web/packages/ambiR/vignettes/background.html).
+[ambiR](https://cran.r-project.org/package=ambiR) v0.1.1: Provides functions to calculate [AZTI’s Marine Biotic Index](https://ambi.azti.es/) - AMBI of benthic fauna species according to their sensitivity to pollution. The Shannon Diversity Index H' and the Danish benthic fauna quality index DKI (Dansk Kvalitetsindeks) can also be calculated, as well as the multivariate M-AMBI index. See [Borja et al. (2000)](https://www.sciencedirect.com/science/article/abs/pii/S0025326X00000618?via%3Dihub) for background. There are four vignettes including [Get Started](https://cran.r-project.org/web/packages/ambiR/vignettes/ambiR.html) and [The AMBI index](https://cran.r-project.org/web/packages/ambiR/vignettes/background.html).
 
 ![](ambiR.png){fig-alt="Plot of Species groub vs. Ecological Group"}
 
 [SHARK4R](https://cran.r-project.org/package=SHARK4R) v1.0.3: Provides functions to retrieve, process, analyze, and quality-control marine physical, chemical, and biological data. The main focus is on Swedish monitoring data available through the [SHARK database](https://shark.smhi.se/en/), with additional API support for [Nordic Microalgae](https://nordicmicroalgae.org/), [Dyntaxa](https://artfakta.se/), World Register of Marine Species [WoRMS](https://www.marinespecies.org), [AlgaeBase](https://www.algaebase.org), OBIS [xylookup](https://iobis.github.io/xylookup/) web service, and Intergovernmental Oceanographic Commission (IOC) - UNESCO databases on [harmful algae](https://www.marinespecies.org/hab/) and [toxins](https://toxins.hais.ioc-unesco.org/). There are five vignettes including [Quality Control of SHARK4R Data](https://cran.r-project.org/web/packages/SHARK4R/vignettes/quality_control.html) and [Retrieve Data From SHARK](https://cran.r-project.org/web/packages/SHARK4R/vignettes/retrieve_shark_data.html).
+
+### Econometrics
+
+[gvcAnalyzer](https://cran.r-project.org/package=gvcAnalyzer) v0.1.1: Provides tools for decomposing Global Value Chain (GVC) participation and value-added trade. It implements the frameworks proposed by [Borin and Mancini (2023)](https://www.tandfonline.com/doi/abs/10.1080/09535314.2022.2153221) for source-based and sink-based decompositions, and by [Borin, Mancini, and Taglioni (2025)](https://academic.oup.com/wber/advance-article/doi/10.1093/wber/lhaf017/8237808) for tripartite and output-based GVC measures. There are three vignettes including an [Introduction](https://cran.r-project.org/web/packages/gvcAnalyzer/vignettes/gvcAnalyzer-intro.html) and [Trade vs Output Perspectives](https://cran.r-project.org/web/packages/gvcAnalyzer/vignettes/bm2023-vs-bm2025.html). 
+
+![](gvcA.png){fig-alt="Plot of trade-based vs. output-based GVC participation"}
 
 ### Epidemiology
 
@@ -100,9 +106,32 @@ In December, NNnnn new packages made it to CRAN. Here are my Top 40 picks in eig
 
 ### Machine Learning
 
+### Medical Statistics
+
+[cifmodeling](https://cran.r-project.org/package=cifmodeling) v0.9.8: Implements a publication-ready toolkit for modern survival and competing risks analysis with a minimal, formula-based interface. Both nonparametric estimation and direct polytomous regression of cumulative incidence functions (CIFs) are supported. Functions estimate survival and CIF curves, produce high-quality graphics with risk tables, censoring and competing-risk marks, and multi-panel or inset layouts.  All core functions adopt a formula-and-data syntax and return tidy and extensible outputs. Key numerical routines are implemented in `C++`. There are seven vignettes including [Overview](https://cran.r-project.org/web/packages/cifmodeling/vignettes/v1_overview.html) and [Examples](https://cran.r-project.org/web/packages/cifmodeling/vignettes/v4_examples.html).
+
+![](cifmodeling.png){fig-alt="Example of a survivl curve"}
+
+[eVCGsampler](https://cran.r-project.org/package=eVCGsampler) v0.9.2: Provides a principled framework for sampling Virtual Control Group (VCG) using energy distance-based covariate balancing and offers visualization tools to assess covariate balance and includes a permutation test to evaluate the statistical significance of observed deviations. See the [vignette](https://cran.r-project.org/web/packages/eVCGsampler/vignettes/eVCGsampler_user_guide.html)
+
+![](eVCGsampler.png){fig-alt="Plot of energy Balancing Results"}
+
+[fgdiR](https://cran.r-project.org/package=fgdiR) v0.1.0: provides tools for computing the Functional Gait Deviation Index, a novel index for quantifying gait pathology using multivariate functional principal component analysis and supports analysis at the level of both legs combined, individual legs, and individual joints/planes. It includes functions for functional data preprocessing, multivariate functional principal component decomposition, FGDI computation, and visualisation of gait abnormality scores. See [Minhas et al. (2025)](https://www.tandfonline.com/doi/full/10.1080/02664763.2025.2514150) for background and the vignettes [Amputee Gait Analysis](https://cran.r-project.org/web/packages/fgdiR/vignettes/fgdiR-amutee.html) and [Parkinson Gait Analysis](https://cran.r-project.org/web/packages/fgdiR/vignettes/fgdiR-parkinson.html).
+
+![](fgdiR.png){fig-alt="Plot of Pelvis Titl by % of Gait Cycle"}
+
+
 
 
 ### Statistics
+
+### Time Series
+
+[bpvars](https://cran.r-project.org/package=bpvars) v1.0: Provides Bayesian estimation and forecasting of dynamic panel data using Bayesian Panel Vector Autoregressions with hierarchical prior distributions. Models include country-specific VARs that share a global prior distribution that extend the model by [Jarociński (2010)](https://onlinelibrary.wiley.com/doi/10.1002/jae.1082). Functions provide model specification, estimation, and forecasting routines, facilitating coherent workflows and reproducibility and includes automated pseudo-out-of-sample forecasting and computation of forecasting performance measures and algorithms written in `C++`. See [README](https://cran.r-project.org/web/packages/bpvars/readme/README.html) to get started.
+
+[gctsc](https://cran.r-project.org/package=gctsc) V0.1.3: Implements Gaussian copula models for count time series. Includes simulation utilities, likelihood approximation, maximum-likelihood estimation, residual diagnostics, and predictive inference. Implements the Time Series Minimax Exponential Tilting method, an adaptation of Minimax Exponential Tilting [Botev, 2017](https://academic.oup.com/jrsssb/article/79/1/125/7041924?login=false) and the Vecchia-based tilting framework of [Cao and Katzfuss (2025)](https://www.tandfonline.com/doi/full/10.1080/01621459.2025.2546586).  Also provides a linear-cost implementation of the Geweke–Hajivassiliou–Keane simulator inspired by [Masarotto and Varin (2012)](https://projecteuclid.org/journals/electronic-journal-of-statistics/volume-6/issue-none/Gaussian-copula-marginal-regression/10.1214/12-EJS721.full), and the Continuous Extension approximation of [Nguyen and De Oliveira (2025)](https://www.tandfonline.com/doi/full/10.1080/02664763.2025.2498502). See the [vignette](https://cran.r-project.org/web/packages/gctsc/vignettes/gctsc_vignette.html).
+
+![](gctsc.png){fig-alt="Plot of weeklt campylobacter incidence"}
 
 
 ### Visualization
