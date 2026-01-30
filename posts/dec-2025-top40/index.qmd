@@ -26,6 +26,14 @@ In December, NNnnn new packages made it to CRAN. Here are my Top 40 picks in eig
 
 [pairwiseLLM](https://cran.r-project.org/package=pairwiseLLM) v1.1.0: Provides a unified framework for generating, submitting, and analyzing pairwise comparisons of writing quality using large language models (LLMs). The package supports live and/or batch evaluation workflows across multiple providers (OpenAI, Anthropic, Google Gemini, Together AI, and locally-hosted Ollama models).  Results can be modeled using [Bradley–Terry (1952)](https://www.jstor.org/stable/2334029?origin=crossref) or Elo rating methods as described in [Clark et al. (2018)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0190393) to derive writing quality scores. For information on the method of pairwise comparisons, see [Thurstone (1927)](https://psycnet.apa.org/doiLanding?doi=10.1037%2Fh0070288) and [Heldsinger & Humphry (2010)](https://link.springer.com/article/10.1007/BF03216919). There are three vignettes including [Getting Started](https://cran.r-project.org/web/packages/pairwiseLLM/vignettes/getting-started.html) and [Advanced](https://cran.r-project.org/web/packages/pairwiseLLM/vignettes/advanced-batch-workflows.html).
 
+
+### Audio Analysis
+
+[ReVAMP](https://cran.r-project.org/package=ReVAMP) v1.0.1: Provides an interface to the [Vamp](https://www.vamp-plugins.org/) audio analysis plugin system developed by Queen Mary University of London's Centre for Digital Music that enables loading and running `Vamp` plugins for various audio analysis tasks including tempo detection, onset detection, spectral analysis, and audio feature extraction. Supports mono and stereo audio with automatic channel adaptation and domain conversion. There is an [Introduction](https://cran.r-project.org/web/packages/ReVAMP/vignettes/introduction.html) and a vignette on [Managing Plugin Paths](https://cran.r-project.org/web/packages/ReVAMP/vignettes/vamp-paths.html).
+
+![](ReVAMP.png){fig-alt="Schema of VAMP plugin architecture"}
+
+
 ### Causal Inference
 
 [caugi](https://cran.r-project.org/package=caugi) v1.0.0: Implements a simple interface to build, structure, and examine causal relationships. There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/caugi/vignettes/get_started.html) and [Visualizing Causal Graphs](https://cran.r-project.org/web/packages/caugi/vignettes/visualization.html).
@@ -81,9 +89,12 @@ In December, NNnnn new packages made it to CRAN. Here are my Top 40 picks in eig
 
 ### Machine Learning
 
+[LBBNN](https://cran.r-project.org/package=LBBNN) v0.1.4: Implements an interface to the `LibTorch` backend to provide latent binary Bayesian neural networks via `torch`. Supports mean-field variational inference as well as flexible variational posteriors using normalizing flows. The standard LBBNN implementation follows [Hubin and Storvik (2024)](https://www.mdpi.com/2227-7390/12/6/788) and uses the local reparametrization trick as in [Skaaret-Lund et al. (2024)](https://openreview.net/pdf?id=d6kqUKzG3V). Input-skip connections are implemented as described in [Høyheim et al. (2025)](https://arxiv.org/abs/2503.10496). See the [vignette](https://cran.r-project.org/web/packages/LBBNN/vignettes/LBBNN_tutorial.html) to get started.
+
 [snic](https://cran.r-project.org/package=snic) v0.6.1: Implements the Simple Non-Iterative Clustering algorithm for superpixel segmentation of multi-band images, as introduced by [Achanta and Susstrunk (2017)](https://ieeexplore.ieee.org/document/8100003) and supports both standard image arrays and geospatial raster objects, with a design that can be extended to other spatial data frameworks. The algorithm groups adjacent pixels into compact, coherent regions based on spectral similarity and spatial proximity. A high-performance implementation supports images with arbitrary spectral bands. See the vignettes about [Arrays](https://cran.r-project.org/web/packages/snic/vignettes/snic-array-pipeline.html) and [SpatRaster](https://cran.r-project.org/web/packages/snic/vignettes/snic-spatraster-pipeline.html) segmentation pipelines.
 
 ![](snic.png){fig-alt="Clownfish image with superpixel segmentation boundaries overlaid."}
+
 
 ### Mathematics
 
@@ -123,6 +134,17 @@ In December, NNnnn new packages made it to CRAN. Here are my Top 40 picks in eig
 
 ![](fgdiR.png){fig-alt="Plot of Pelvis Titl by % of Gait Cycle"}
 
+### Pharma
+
+[aNCA](https://cran.r-project.org/package=aNCA) v0.1.0: Provides an interactive `shiny` application for performing non-compartmental analysis on pre-clinical and clinical pharmacokinetic data and provides interactive visualizations, CDISC outputs ('ADNCA', 'PP', 'ADPP') and configurable TLGs (tables, listings, and graphs).  Methods and core estimators are described in [Denney, Duvvuri, and Buckeridge (2015)](https://link.springer.com/article/10.1007/s10928-015-9432-2). There are three vignettes including a [User Guide](https://cran.r-project.org/web/packages/aNCA/vignettes/aNCA.html) and adding [Adding new TLGs](https://cran.r-project.org/web/packages/aNCA/vignettes/adding_tlg.html).
+
+![](aNCA.png){fig-alt="Shiny app screenshot"}
+
+[httkexamples](https://cran.r-project.org/package=httkexamples) v0.0.1:
+Provide examples as vignettes using High throughput toxicokinetics (HTTK) methods HTTK to solve various problems in bioinformatics, toxicology, and exposure science. In accordance with [Davidson-Fritz et al. (2025)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0321321), whenever a new HTTK model is developed, the code to generate the figures evaluating that model is added as a new vignettte.
+HTTKis the combination of  chemical-specific in vitro measurements or in silico predictions and generic mathematical models, to predict absorption, distribution, metabolism, and excretion by the body. See [Pearce et al. (2017)](https://www.jstatsoft.org/article/view/v079i04) and [Breen et al. (2021)](https://www.tandfonline.com/doi/full/10.1080/17425255.2021.1935867) for background. There are thirteen vignettes including [HTTK Basics](https://cran.r-project.org/web/packages/httkexamples/vignettes/Va_Pearce2017.html) and [Generating subpopulations](https://cran.r-project.org/web/packages/httkexamples/vignettes/Vb_Ring2017.html).
+
+![](httk.png){fig-alt="Plot of plasma concentration by day"}
 
 
 
@@ -144,6 +166,21 @@ In December, NNnnn new packages made it to CRAN. Here are my Top 40 picks in eig
 [gctsc](https://cran.r-project.org/package=gctsc) V0.1.3: Implements Gaussian copula models for count time series. Includes simulation utilities, likelihood approximation, maximum-likelihood estimation, residual diagnostics, and predictive inference. Implements the Time Series Minimax Exponential Tilting method, an adaptation of Minimax Exponential Tilting [Botev, 2017](https://academic.oup.com/jrsssb/article/79/1/125/7041924?login=false) and the Vecchia-based tilting framework of [Cao and Katzfuss (2025)](https://www.tandfonline.com/doi/full/10.1080/01621459.2025.2546586).  Also provides a linear-cost implementation of the Geweke–Hajivassiliou–Keane simulator inspired by [Masarotto and Varin (2012)](https://projecteuclid.org/journals/electronic-journal-of-statistics/volume-6/issue-none/Gaussian-copula-marginal-regression/10.1214/12-EJS721.full), and the Continuous Extension approximation of [Nguyen and De Oliveira (2025)](https://www.tandfonline.com/doi/full/10.1080/02664763.2025.2498502). See the [vignette](https://cran.r-project.org/web/packages/gctsc/vignettes/gctsc_vignette.html).
 
 ![](gctsc.png){fig-alt="Plot of weeklt campylobacter incidence"}
+
+### Utilities
+
+[fjoin](https://cran.r-project.org/package=fjoin) v0.1.0: Extends `data.table` join functionality, lets it work with any data frame class, and provides a familiar 'x'/'y'-style interface, enabling broad use across R. Offers NA-safe matching by default, on-the-fly column selection, multiple match-handling on both sides, 'x' or 'y' row order, and a row origin indicator. Performs inner, left, right, full, semi- and anti-joins with equality and inequality conditions, plus cross joins. Specific support for `data.table`, (grouped) tibble, and 'sf'/'sfc' objects and their attributes; returns a plain data frame otherwise. Avoids data-copying of inputs and outputs. Allows displaying the `data.table` code instead of (or as well as) executing it. See the [vignette](https://cran.r-project.org/web/packages/fjoin/vignettes/fjoin.html).
+
+![](fjoin.png){fig-alt="Median time to execute commo tasks"}
+
+
+[meetupr](https://cran.r-project.org/package=meetupr) v0.3.1: Provides programmatic access to the Meetup GraphQL API](https://www.meetup.com/graphql/), enabling users to retrieve information about groups, events, and members from [Meetup](https://www.meetup.com/). Supports authentication via `OAuth2` and includes functions for common queries and data manipulation tasks. There are four vignettes including [Getting Started](https://cran.r-project.org/web/packages/meetupr/vignettes/meetupr.html) and [Meetup API Schema Introspection](https://cran.r-project.org/web/packages/meetupr/vignettes/introspection.html).
+
+[svgedit](https://cran.r-project.org/package=svgedit) v1.0.0: Providesfunctions to edit SVG files created in `Inkscape` by replacing placeholders (e.g. a rectangle element or {} in a text box) by `ggplot2` objects, images or text. This helps automate the creation of figures with complex layouts. See the [vignette](https://cran.r-project.org/web/packages/svgedit/vignettes/multi-panel-figure.html).
+
+![](svgedit.svg){fig-alt="Edit of multipanel SVG figure"}
+
+[yaml12](yaml12) v0.1.0: Provides a fast, correct, safe, and ergonomic `YAML` 1.2 parser and generator written in `Rust` enabling conversion between `YAML` and simple `R` objects with full support for multi-document streams, tags, anchors, and aliases. Offers opt-in handlers for custom tag behavior and round-trips common `R` data structures. Implements the [`YAML` 1.2.2 specification](https://yaml.org/spec/1.2.2/). There are two vignettes [YAML in 2 minutes](https://cran.r-project.org/web/packages/yaml12/vignettes/yaml-2-minute-intro.html) and [YAML Tags](https://cran.r-project.org/web/packages/yaml12/vignettes/yaml-tags-and-advanced-features.html).
 
 
 ### Visualization
