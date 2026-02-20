@@ -18,9 +18,12 @@ In January, two hundred forty-three new packages made it to CRAN. Here are my To
 ::: {.column width="45%"}
 
 
-### Agriculture
+### Artificial Intelligence
 
-![](.png){fig-alt=""}
+[kuzco](https://cran.r-project.org/package=kuzco) v0.1.0: Provides functions to make  computer vision tasks approachable in `R` by leveraging Large Language Models including fine-tuned prompts, boilerplate functions, and input/output helpers for common computer vision workflows, such as classifying and describing images. Functions are designed to take images as input and return structured data, helping users build practical applications with minimal code. There are four vignettes including [getting started](https://cran.r-project.org/web/packages/kuzco/vignettes/getting-started.html) and [batch image processing](https://cran.r-project.org/web/packages/kuzco/vignettes/batch-image-processing.html).
+
+
+![](kuzco.png){fig-alt="A sad puppy start with kuzco."}
 
 
 ### Computational Methods
@@ -30,6 +33,11 @@ In January, two hundred forty-three new packages made it to CRAN. Here are my To
 
 [futurize](https://cran.r-project.org/package=futurize) v0.1.0: Provides a straightforward path to scalable parallel computing via the [`future` ecosystem](https://journal.r-project.org/articles/RJ-2021-048/index.html). The `futurize()` function which transpiles calls to sequential map-reduce functions is combined with R's native pipe operator to provide a way for speeding up iterative computations with minimal refactoring, e.g. `lapply(xs, fcn) |> futurize()`, `purrr::map(xs, fcn) |> futurize()`, and `foreach::foreach(x = xs) %do% { fcn(x) } |> futurize()`. Other map-reduce packages that can be "futurized" are `BiocParallel`, `plyr`, and `crossmap`. There is also support for growing set of domain-specific packages, including `boot`, `glmnet`, `mgcv`, `lme4`, and `tm`. See [README]() to get started. There are twelve vignettes including [Parallelize base-R apply functions](https://cran.r-project.org/web/packages/futurize/vignettes/futurize-11-apply.html) and [Parallelize `purrr` functions](https://cran.r-project.org/web/packages/futurize/vignettes/futurize-21-purrr.html).
 
+### Medical Applications
+
+[autoFlagR](https://cran.r-project.org/package=autoFlagR) v1.0.0: Provides automated data quality auditing using unsupervised machine learning and AI-driven anomaly detection for data quality assessment. Primarily designed for Electronic Health Records (EHR) data, with benchmarking capabilities for validation and publication. Methods based on: [Liu et al. (2008)](https://ieeexplore.ieee.org/document/4781136) and  [Breunig et al. (2000)](https://dl.acm.org/doi/10.1145/342009.335388). There are three vignettes including [Getting Started](https://cran.r-project.org/web/packages/autoFlagR/vignettes/getting-started.html) and [Healthcare Data Quality Example](https://cran.r-project.org/web/packages/autoFlagR/vignettes/healthcare-example.html).
+
+![](autoFlagR.png){fig-alt="Distribution of Anomaly Scores"}
 
 :::
 
@@ -64,7 +72,9 @@ In January, two hundred forty-three new packages made it to CRAN. Here are my To
 [uniLasso](https://cran.r-project.org/package=uniLasso) v2.11: Fits a univariate-guided sparse regression (lasso), by a two-stage procedure. The first stage fits p separate univariate models to the response. The second stage gives more weight to the more important univariate features, and preserves their signs. It returns an objects that inherit from class `glmnet`. See [Chatterjee, Hastie and Tibshirani (2025)](https://hdsr.mitpress.mit.edu/pub/3i97j340/release/4) for details.
 
 
+### Time Series
 
+[rjd3toolkit](https://cran.r-project.org/package=rjd3toolkit) v3.6.0: Implements an `R` interface to [`JDemetra+ 3.x`](https://github.com/jdemetra) R ecosystem of time series analysis software which provides functions to create outlier regressors, define calendar regressors, fit Unobserved Components AutoRegressive Integrated Moving Average (UCARIMA) models, to test the presence of trading days or seasonal effects and also to set specifications in pre-adjustment and benchmarking when using `rjd3x13` or `rjd3tramoseats`. See the `JDemetra` link above for details.
 
 
 
