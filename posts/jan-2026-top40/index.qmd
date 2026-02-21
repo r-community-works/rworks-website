@@ -28,6 +28,20 @@ In January, two hundred forty-three new packages made it to CRAN. Here are my To
 
 ### Computational Methods
 
+[couplr](https://cran.r-project.org/package=couplr) v1.0.10: Designed for matching plots, sites, samples, or any pairwise optimization problem, functions solve optimal pairing and matching problems using linear assignment algorithms. Several algorithms are provided including Hungarian method [Kuhn (1955)](https://onlinelibrary.wiley.com/doi/10.1002/nav.3800020109), the Jonker-Volgenant shortest path algorithm [Jonker and Volgenant (1987)](https://link.springer.com/article/10.1007/BF02278710), and  the auction algorithm [(Bertsekas (1988)](https://link.springer.com/article/10.1007/BF02186476). There are six vignettes including [Quick Start](https://cran.r-project.org/web/packages/couplr/vignettes/getting-started.html) and [The Algorithm Collection](https://cran.r-project.org/web/packages/couplr/vignettes/algorithms.html).
+
+![](couplr.png){fig-alt="Illustration of Hungarian method for optimal matching of two sets of points"}
+
+[hexify](https://cran.r-project.org/package=hexify) v0.3.10: Implements the ISEA discrete global grid system See [Sahr, White and Kimerling (2003)](https://utppublishing.com/doi/10.3138/27H7-8K88-4882-1752). Includes a fast `C++` core for projection and aperture quantization, and `sf`/`terra`-compatible R wrappers for grid generation and coordinate assignment. Output is compatible with `dggridR` for interoperability. There are three vignetes: [Quick Start](Includes a fast 'C++' core for projection and aperture quantization, and 'sf'/'terra'-compatible R wrappers for grid generation and coordinate assignment. Output is compatible with 'dggridR' for interoperability.), [Visualization](https://cran.r-project.org/web/packages/hexify/vignettes/visualization.html), and [Practical Workflows](https://cran.r-project.org/web/packages/hexify/vignettes/workflows.html).
+
+![](hexify.png){fig-alt="Map of Europe with hexagonal grid overlay"}
+
+### Dynmical Systems
+
+[blvim](https://cran.r-project.org/package=blvim) v0.1.1: Provides functions to estimate Boltzmann–Lotka–Volterra (BLV) interaction model efficiently. Enables programmatic and graphical exploration of the solution space of BLV models when parameters are varied.  See [Wilson, A. (2008)](https://royalsocietypublishing.org/rsif/article-abstract/5/25/865/65383/Boltzmann-Lotka-and-Volterra-and-spatial?redirectedFrom=fulltext) for background and the vignettes: [Systematic exploration of the BLV solution space]() and [Theoretical Background](https://cran.r-project.org/web/packages/blvim/vignettes/theory.html).
+
+![](blvim.png){fig-alt="Plots showing cluster variability"}
+
 
 ### High Performance Computing
 
@@ -38,6 +52,20 @@ In January, two hundred forty-three new packages made it to CRAN. Here are my To
 [autoFlagR](https://cran.r-project.org/package=autoFlagR) v1.0.0: Provides automated data quality auditing using unsupervised machine learning and AI-driven anomaly detection for data quality assessment. Primarily designed for Electronic Health Records (EHR) data, with benchmarking capabilities for validation and publication. Methods based on: [Liu et al. (2008)](https://ieeexplore.ieee.org/document/4781136) and  [Breunig et al. (2000)](https://dl.acm.org/doi/10.1145/342009.335388). There are three vignettes including [Getting Started](https://cran.r-project.org/web/packages/autoFlagR/vignettes/getting-started.html) and [Healthcare Data Quality Example](https://cran.r-project.org/web/packages/autoFlagR/vignettes/healthcare-example.html).
 
 ![](autoFlagR.png){fig-alt="Distribution of Anomaly Scores"}
+
+### Machine Learning
+
+[multiRL](https://cran.r-project.org/package=multiRL) v0.2.3: Provides general-purpose toolbox for implementing Rescorla-Wagner models in multi-armed bandit tasks. As the successor and functional extension of the `binaryRL` package, `multiRL` modularizes the Markov Decision Process (MDP) into six core components that enable users to construct custom models via intuitive if-else syntax and define latent learning rules for agents. See [Wilson & Collins (2019)](https://elifesciences.org/articles/49547) and look [here](https://yuki-961004.github.io/multiRL/) for an overview.
+
+
+[rCISSVAE](https://cran.r-project.org/package=rCISSVAE) v0.0.4: Implements the Clustering-Informed Shared-Structure Variational Autoencoder, a deep learning framework for missing data imputation introduced in [Khadem Charvadeh et al. (2025](https://onlinelibrary.wiley.com/doi/10.1002/sim.70335). The model accommodates all three types of missing data mechanisms: Missing Completely At Random, Missing At Random, and Missing Not At Random. There are seven vignettes including a [quick start guide](https://cran.r-project.org/web/packages/rCISSVAE/vignettes/vignette.html) and [Handling Binary and Categorical Variables](https://cran.r-project.org/web/packages/rCISSVAE/vignettes/binary_variables_tutorial.html).
+
+[slideimp](https://cran.r-project.org/package=slideimp) v0.5.4: Provides fast k-nearest neighbors (K-NN) and principal component analysis (PCA) imputation algorithms for missing values in high-dimensional numeric matrices, i.e., epigenetic data. For extremely high-dimensional data with ordered features, a sliding window approach for K-NN or PCA imputation is provided. Additional features include group-wise imputation (e.g., by chromosome), hyperparameter tuning with repeated cross-validation, multi-core parallelization, and optional subset imputation. See [Josse and Husson (2016)](https://www.jstatsoft.org/article/view/v070i01) for background and the [vignette](https://cran.r-project.org/web/packages/slideimp/vignettes/slideimp.html) for an example.
+
+[xplainfi](https://cran.r-project.org/package=xplainfi) v1.0.0: Provides a consistent interface for common feature importance methods as described in [Ewald et al. (2024)](https://link.springer.com/chapter/10.1007/978-3-031-63797-1_22) including permutation feature importance, conditional and relative feature importance, leave one covariate out, and Shapley additive global importance as well as feature sampling mechanisms to support conditional importance methods. See the vignettes [Getting Started](https://cran.r-project.org/web/packages/xplainfi/vignettes/xplainfi.html), [Feature Samplers](https://cran.r-project.org/web/packages/xplainfi/vignettes/feature-samplers.html), and [Simulation Settings](https://cran.r-project.org/web/packages/xplainfi/vignettes/simulation-settings.html).
+
+![](xplainfi.png){fig-alt="DAG for mediated effects DGP"}
+
 
 :::
 
@@ -68,6 +96,10 @@ In January, two hundred forty-three new packages made it to CRAN. Here are my To
 [pmrm](https://cran.r-project.org/package=pmrm) v0.0.2: A progression model for repeated measures is a continuous-time nonlinear mixed-effects model for longitudinal clinical trials in progressive diseases. Unlike mixed models for repeated measures which estimate treatment effects as linear combinations of additive effects on the outcome scale, PMRMs characterize treatment effects in terms of the underlying disease trajectory yielding clinically interpretable quantities. See [Raket (2022)](https://onlinelibrary.wiley.com/doi/10.1002/sim.9581) and [Kristensen (2016)](https://www.jstatsoft.org/article/view/v070i05) for background. There are three vighettes: [Models](https://cran.r-project.org/web/packages/pmrm/vignettes/models.html), [Usage](https://cran.r-project.org/web/packages/pmrm/vignettes/usage.html) and [Validation](https://cran.r-project.org/web/packages/pmrm/vignettes/validation.html).
 
 ![](pmrm.png){fig-alt="Predictions by trial arm"}
+
+[RSTr](https://cran.r-project.org/package=RSTr) v1.1.4: Implements a Gibbs Sampler for Poisson or Binomial discrete spatial data for a variety of Spatiotemporal Conditional Autoregressive (CAR) models. Includes measures to prevent estimate over-smoothing through a restriction of model informativeness for select models. Also provides tools to load output and get median estimates. Mmethods are from [Besag, York, and Mollié (1991)](https://link.springer.com/article/10.1007/BF00116466), [Gelfand and Vounatsou (2003)](https://academic.oup.com/biostatistics/article-abstract/4/1/11/246085?redirectedFrom=fulltext&login=false), [Quick et al. (2017)](https://projecteuclid.org/journals/annals-of-applied-statistics/volume-11/issue-4/Multivariate-spatiotemporal-modeling-of-age-specific-stroke-mortality/10.1214/17-AOAS1068.full), and [Quick et al. (2021)](https://www.sciencedirect.com/science/article/abs/pii/S1877584521000198?via%3Dihub). There are twelve vignettes including an [Introduction](https://cran.r-project.org/web/packages/RSTr/vignettes/RSTr.html) and the [CAR Models](https://cran.r-project.org/web/packages/RSTr/vignettes/RSTr-car.html).
+
+
 
 [uniLasso](https://cran.r-project.org/package=uniLasso) v2.11: Fits a univariate-guided sparse regression (lasso), by a two-stage procedure. The first stage fits p separate univariate models to the response. The second stage gives more weight to the more important univariate features, and preserves their signs. It returns an objects that inherit from class `glmnet`. See [Chatterjee, Hastie and Tibshirani (2025)](https://hdsr.mitpress.mit.edu/pub/3i97j340/release/4) for details.
 
