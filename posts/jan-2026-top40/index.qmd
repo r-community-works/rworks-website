@@ -66,6 +66,18 @@ In January, two hundred forty-three new packages made it to CRAN. Here are my To
 
 ![](xplainfi.png){fig-alt="DAG for mediated effects DGP"}
 
+### Medical Applications
+
+[repfun](https://cran.r-project.org/package=repfun) v0.1.2: Provides functions to mimic the style of traditional reporting macros for clinical trials. The purpose is to generate tables, listings and figures that support clinical research. This package is well suited for firms or individuals who wish to incorporate R without changing their ways of working as it follows a traditional clinical research workflow. Invoke functions (instead of macros) to summarize data and produce formatted reports. This package differs from others in that it includes tools (wrappers) for both analyzing and reporting data. There are twenty-seven vignettes including [Global Reporting Setup](https://cran.r-project.org/web/packages/repfun/vignettes/Global-Reporting-Setup.html) and [SAS Type Variable Expansion](https://cran.r-project.org/web/packages/repfun/vignettes/SAS-Type-Variable-Expansion.html).
+
+![](repfun.gif){fig-alt="R plot with clinical trial style footnotes and formatting"}
+
+
+### Networks
+
+[flownet](https://cran.r-project.org/package=flownet) v0.1.2: Provides high-performance tools for transport modeling: network processing, route enumeration, and traffic assignment. The package implements the Path-Sized Logit model for traffic assignment [Ben-Akiva and Bierlaire (1999)](https://link.springer.com/chapter/10.1007/978-1-4615-5203-1_2), an efficient route enumeration algorithm, and provides powerful utility functions for (multimodal) network generation, consolidation/contraction, and/or simplification. See the [vignette](https://cran.r-project.org/web/packages/flownet/vignettes/introduction.html).
+
+![](flownet.png){fig-alt="Visualization of assigned flows in a network"}
 
 :::
 
@@ -75,7 +87,9 @@ In January, two hundred forty-three new packages made it to CRAN. Here are my To
 
 ::: {.column width="45%"}
 
-### Medical Statistics Continued
+### Programming Utilities
+
+
 
 ### Statistics
 
@@ -110,7 +124,16 @@ In January, two hundred forty-three new packages made it to CRAN. Here are my To
 
 
 
-end
+### Visualization
+
+[gglycan](https://cran.r-project.org/package=gglycan) v0.0.3: Extends `ggplot2` to plot glycans following the Symbol Nomenclature for Glycans usingstandardized visual representation of glycan structures. See the [vignette](https://cran.r-project.org/web/packages/gglycan/vignettes/gglycan.html).
+
+
+![](gglycan.png){fig-alt="Sample glycal plot"}
+
+[ggsced](https://cran.r-project.org/package=ggsced) v0.1.6: Extends `ggplot2` to create publication-ready graphics with professional phase change lines, support for multiple baseline designs, and styling functions that follow Single-Case Experimental Design (SCED) visualization conventions. Key functions include adding phase change demarcation lines to existing plots and formatting axes with broken axis appearance commonly used in single-case research. See the [vignette](https://cran.r-project.org/web/packages/ggsced/vignettes/ggsced-vignette.html).
+
+![](ggsced.png){fig-alt="Plot of Responding by Session faceted by for multiple conditions faceted by participant"}
 
 
 :::
