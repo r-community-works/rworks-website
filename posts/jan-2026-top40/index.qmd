@@ -42,6 +42,18 @@ In January, two hundred forty-three new packages made it to CRAN. Here are my To
 
 ![](blvim.png){fig-alt="Plots showing cluster variability"}
 
+### Genetics
+
+[bifrost](https://cran.r-project.org/package=bifrost) v0.1.3: Implements methods for detecting and visualizing cladogenic shifts in multivariate trait data on phylogenies. Implements penalized-likelihood multivariate generalized least squares models, enabling analyses of high-dimensional trait datasets and large trees. Includes a greedy step-wise shift-search algorithm following approaches developed in [Smith et al. (2023)](https://nph.onlinelibrary.wiley.com/doi/10.1111/nph.19099, [Berv et al. (2024)](https://www.science.org/doi/10.1126/sciadv.adp0114), and methods described in [Clavel et al. (2019)](https://academic.oup.com/sysbio/article-abstract/68/1/93/5040209?redirectedFrom=fulltext&login=false). See the [vignette](https://cran.r-project.org/web/packages/bifrost/vignettes/jaw-shape-vignette.html).
+
+![](bifrost.png){fig-alt="Plot sgowing phylogenetic traitgram of the first principal component (PC1) of lower jaw shape in early osteichthyans (bony fishes)"}
+
+
+
+[visPedigree](https://cran.r-project.org/package=visPedigree) v1.0.1: Provides tools for tidying, analyzing, and visualizing animal pedigrees by modeling pedigrees as directed acyclic graphs. This ensures robust loop detection, efficient generation assignment, and optimal sub-population splitting. Key features include standardizing pedigree formats, flexible ancestry tracing, and generating legible vector-based PDF graphs. A unique compaction algorithm enables the visualization of massive pedigrees by grouping full-sib families. There are three vignettes including [2. How to draw a pedigree](https://cran.r-project.org/web/packages/visPedigree/vignettes/draw-pedigree.html) and [Calculation and visualization of relationship matrix](https://cran.r-project.org/web/packages/visPedigree/vignettes/relationship-matrix.html).
+
+![](visped.png){fig-alt="Pedigree plot"}
+
 
 ### High Performance Computing
 
@@ -126,6 +138,11 @@ In January, two hundred forty-three new packages made it to CRAN. Here are my To
 
 ### Visualization
 
+[ggguides](https://cran.r-project.org/package=ggguides) v1.1.4: Extends `ggplot2` by providing one-liner functions for common legend and guide operations in 'ggplot2'. Simplifies legend positioning, styling, wrapping, and collection across multi-panel plots created with `patchwork` or `cowplot`. There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/ggguides/vignettes/getting-started.html) and [Styling & Customization](https://cran.r-project.org/web/packages/ggguides/vignettes/styling.html).
+
+![](ggguides.png){fig-alt="Plot with rotated legend labels"}
+
+
 [gglycan](https://cran.r-project.org/package=gglycan) v0.0.3: Extends `ggplot2` to plot glycans following the Symbol Nomenclature for Glycans usingstandardized visual representation of glycan structures. See the [vignette](https://cran.r-project.org/web/packages/gglycan/vignettes/gglycan.html).
 
 
@@ -135,12 +152,21 @@ In January, two hundred forty-three new packages made it to CRAN. Here are my To
 
 ![](ggsced.png){fig-alt="Plot of Responding by Session faceted by for multiple conditions faceted by participant"}
 
+[ggskewboxplots](https://cran.r-project.org/package=ggskewboxplots) V1.0.0: Extends `ggplot2` for creating skewed boxplots using several statistical methods incuding those of [Kimber (1990)](https://www.jstor.org/stable/2347808?origin=crossref), [Hubert and Vandervieren (2008)](https://www.sciencedirect.com/science/article/abs/pii/S0167947307004434?via%3Dihub), [Adil et al. (2015)](https://www.pjsor.com/index.php/pjsor/article/view/500), [Babura et al., (2017)](https://pubs.aip.org/aip/acp/article-abstract/1842/1/030034/931355/Modified-boxplot-for-extreme-data?redirectedFrom=fulltext), and [Walker et al. (2018)](https://www.tandfonline.com/doi/full/10.1080/00031305.2018.1448891). See the [vignette](https://cran.r-project.org/web/packages/ggskewboxplots/vignettes/introduction.html).
+
+![](ggskew.png){fig-alt="Boxplot using the Walker method"}
+
+[vbracket](https://cran.r-project.org/package=vbracket) v1.1.0: Extends `ggplot2` by adding publication-quality custom legends with vertical brackets. Designed for displaying statistical comparisons between groups, commonly used in scientific publications for showing significance levels. Features include adaptive positioning, automatic bracket spacing for overlapping comparisons, font family inheritance, and support for asterisks, p-values, or custom labels. Look [here](https://github.com/h20gg702/vbracket)
+for examples.
+
+
+![](vbracket.png){fig-alt="Plots with brackets and statistical annotations"}
 
 :::
 
 
 
-
+v
 
 ::::
 
