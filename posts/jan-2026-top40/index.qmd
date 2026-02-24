@@ -38,6 +38,12 @@ In January, two hundred forty-three new packages made it to CRAN. Here are my To
 
 ### Data
 
+[dsBaseClient](https://cran.r-project.org/package=dsBaseClient) v6.3.5: Provides  client side base functions to the [DataSHIELD](https://wiki.datashield.org/en/home) software suite which allows non-disclosive federated analysis on sensitive data. Functions  have been designed to only share non disclosive summary statistics, with built in automated output checking based on statistical disclosure control with data sites setting the threshold values for the automated output checks. See [README](https://wiki.datashield.org/en/home) to get started.
+
+
+
+[mongolstats](https://cran.r-project.org/package=mongolstats) v0.1.1: Provides a `tidyverse`-friendly client for the National Statistics Office of Mongolia [PXWeb API](https://data.1212.mn/) with helpers to discover tables, variables, and fetch statistical data. Also includes utilities to retrieve Mongolia administrative boundaries (ADM0-ADM2) as `sf` objects from open sources for mapping and spatial analysis. There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/mongolstats/vignettes/getting-started.html) and [Discovering Public Health Data](https://cran.r-project.org/web/packages/mongolstats/vignettes/discovery.html).
+
 [read.abares](https://cran.r-project.org/package=read.abares) v2.0.0: Provides function to download and import agricultural data from the Australian Bureau of Agricultural and Resource Economics and Sciences [ABARES](https://www.agriculture.gov.au/abares) and Australian Bureau of Statistics [ABS](https://www.abs.gov.au). Data types serviced include spreadsheets, comma separated value (CSV) files, geospatial data including shape files and geotiffs covering topics including broadacre crops, livestock, soil data, commodities and more. See the vignettes [Setting Global Options](https://cran.r-project.org/web/packages/read.abares/vignettes/options.html) and [Working with spatial data](https://cran.r-project.org/web/packages/read.abares/vignettes/read.abares.html).
 
 
@@ -49,11 +55,23 @@ In January, two hundred forty-three new packages made it to CRAN. Here are my To
 
 ![](blvim.png){fig-alt="Plots showing cluster variability"}
 
+
+### Ecology
+
+[mrangr](https://CRAN.R-project.org/package=mrangr) v1.0.1: Implements a mechanistic, and spatially explicit simulator of metacommunities. It extends the `rangr` (see <https://github.com/ropensci/rangr>) by adding the ability to simulate multiple species interacting through an asymmetric matrix of pairwise relationships, allowing users to model all types of biotic interactions — competitive, facilitative, or neutral — within spatially explicit virtual environments. See the [vignette](https://cran.r-project.org/web/packages/mrangr/vignettes/mrangr.html).
+
+![](mranger.png){fig-alt="A sequence of plots that step through a species simulation"}
+
 ### Epidemiology
 
 [rsurvstat](https://cran.r-project.org/package=rsurvstat) v0.1.4 Provides an interface to the [SurvStat](https://tools.rki.de/SurvStat/SurvStatWebService.svc) web service from the Robert Koch Institute allowing downloads of disease time series stratified by pathogen type and subtype, age, and geography from notifiable disease reports in Germany. See the [vignette](https://cran.r-project.org/web/packages/rsurvstat/vignettes/rsurvstat.html).
 
 ![](rsurvstat.png){fig-alt="Plot of weekly incidence of Enterovirus"}
+
+### Economics
+
+[emburden](https://cran.r-project.org/package=emburden) v0.6.1: Provides functions to Calculate and analyze household energy burden using the Net Energy Return aggregation methodology. Functions support weighted statistical calculations across geographic and demographic cohorts, with utilities for formatting results into publication-ready tables. Methods are based on [Scheier & Kittner (2022)](https://www.nature.com/articles/s41467-021-27673-y). There are three vignettes including [Getting Started](https://cran.r-project.org/web/packages/emburden/vignettes/getting-started.html) and [Temporal Energy Burden Analysis](https://cran.r-project.org/web/packages/emburden/vignettes/jss-emburden.html).
+
 
 ### Finance
 
@@ -110,6 +128,9 @@ In January, two hundred forty-three new packages made it to CRAN. Here are my To
 [rCISSVAE](https://cran.r-project.org/package=rCISSVAE) v0.0.4: Implements the Clustering-Informed Shared-Structure Variational Autoencoder, a deep learning framework for missing data imputation introduced in [Khadem Charvadeh et al. (2025](https://onlinelibrary.wiley.com/doi/10.1002/sim.70335). The model accommodates all three types of missing data mechanisms: Missing Completely At Random, Missing At Random, and Missing Not At Random. There are seven vignettes including a [quick start guide](https://cran.r-project.org/web/packages/rCISSVAE/vignettes/vignette.html) and [Handling Binary and Categorical Variables](https://cran.r-project.org/web/packages/rCISSVAE/vignettes/binary_variables_tutorial.html).
 
 [slideimp](https://cran.r-project.org/package=slideimp) v0.5.4: Provides fast k-nearest neighbors (K-NN) and principal component analysis (PCA) imputation algorithms for missing values in high-dimensional numeric matrices, i.e., epigenetic data. For extremely high-dimensional data with ordered features, a sliding window approach for K-NN or PCA imputation is provided. Additional features include group-wise imputation (e.g., by chromosome), hyperparameter tuning with repeated cross-validation, multi-core parallelization, and optional subset imputation. See [Josse and Husson (2016)](https://www.jstatsoft.org/article/view/v070i01) for background and the [vignette](https://cran.r-project.org/web/packages/slideimp/vignettes/slideimp.html) for an example.
+
+
+[SportMiner](https://cran.r-project.org/package=SportMiner) v0.1.0: Provides a toolkit for mining, analyzing, and visualizing scientific literature in sport science and includes functions for retrieving abstracts from [Scopus](https://www.elsevier.com/products/scopus), preprocessing text data, performing advanced topic modeling using Latent Dirichlet Allocation, Structural Topic Models, and Correlated Topic Models, and for creating publication-ready visualizations including keyword co-occurrence networks and topic trends. See [Blei et al. (2003)](https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf), [Roberts et al. (2014)](https://onlinelibrary.wiley.com/doi/10.1111/ajps.12103), and [Blei and Lafferty (2007)](https://projecteuclid.org/journals/annals-of-applied-statistics/volume-1/issue-1/A-correlated-topic-model-of-Science/10.1214/07-AOAS114.full) for background. There are two vignettes: [Getting Started](https://cran.r-project.org/web/packages/SportMiner/vignettes/getting-started.html) and [Text Mining and Topic Modeling for Sport Science Literature](https://cran.r-project.org/web/packages/SportMiner/vignettes/SportMiner-JSS.html).
 
 [xplainfi](https://cran.r-project.org/package=xplainfi) v1.0.0: Provides a consistent interface for common feature importance methods as described in [Ewald et al. (2024)](https://link.springer.com/chapter/10.1007/978-3-031-63797-1_22) including permutation feature importance, conditional and relative feature importance, leave one covariate out, and Shapley additive global importance as well as feature sampling mechanisms to support conditional importance methods. See the vignettes [Getting Started](https://cran.r-project.org/web/packages/xplainfi/vignettes/xplainfi.html), [Feature Samplers](https://cran.r-project.org/web/packages/xplainfi/vignettes/feature-samplers.html), and [Simulation Settings](https://cran.r-project.org/web/packages/xplainfi/vignettes/simulation-settings.html).
 
