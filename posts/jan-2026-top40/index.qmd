@@ -36,16 +36,30 @@ In January, two hundred forty-three new packages made it to CRAN. Here are my To
 
 ![](hexify.png){fig-alt="Map of Europe with hexagonal grid overlay"}
 
-### Dynmical Systems
+### Data
+
+[read.abares](https://cran.r-project.org/package=read.abares) v2.0.0: Provides function to download and import agricultural data from the Australian Bureau of Agricultural and Resource Economics and Sciences [ABARES](https://www.agriculture.gov.au/abares) and Australian Bureau of Statistics [ABS](https://www.abs.gov.au). Data types serviced include spreadsheets, comma separated value (CSV) files, geospatial data including shape files and geotiffs covering topics including broadacre crops, livestock, soil data, commodities and more. See the vignettes [Setting Global Options](https://cran.r-project.org/web/packages/read.abares/vignettes/options.html) and [Working with spatial data](https://cran.r-project.org/web/packages/read.abares/vignettes/read.abares.html).
+
+
+![](ABARES.png){fig-alt="Maps showing ABARES regions"}
+
+### Dynamical Systems
 
 [blvim](https://cran.r-project.org/package=blvim) v0.1.1: Provides functions to estimate Boltzmann–Lotka–Volterra (BLV) interaction model efficiently. Enables programmatic and graphical exploration of the solution space of BLV models when parameters are varied.  See [Wilson, A. (2008)](https://royalsocietypublishing.org/rsif/article-abstract/5/25/865/65383/Boltzmann-Lotka-and-Volterra-and-spatial?redirectedFrom=fulltext) for background and the vignettes: [Systematic exploration of the BLV solution space]() and [Theoretical Background](https://cran.r-project.org/web/packages/blvim/vignettes/theory.html).
 
 ![](blvim.png){fig-alt="Plots showing cluster variability"}
+
 ### Epidemiology
 
 [rsurvstat](https://cran.r-project.org/package=rsurvstat) v0.1.4 Provides an interface to the [SurvStat](https://tools.rki.de/SurvStat/SurvStatWebService.svc) web service from the Robert Koch Institute allowing downloads of disease time series stratified by pathogen type and subtype, age, and geography from notifiable disease reports in Germany. See the [vignette](https://cran.r-project.org/web/packages/rsurvstat/vignettes/rsurvstat.html).
 
-![](rsurvstat.png){fig-alt="Plot of weekly incidence of Enterovirus
+![](rsurvstat.png){fig-alt="Plot of weekly incidence of Enterovirus"}
+
+### Finance
+
+[OptimalBinningWoE](https://cran.r-project.org/package=OptimalBinningWoE) v1.0.8 Implements 36 high-performance binning algorithms for Weight of Evidence transformation in credit scoring and risk modeling including advanced methods such as Mixed Integer Linear Programming, Genetic Algorithms, Simulated Annealing, and Monotonic Regression. Features automatic method selection based on information value  maximization, strict monotonicity enforcement, and efficient handling of large datasets. Fully integrated with the `tidymodels` ecosystem for building robust machine learning pipelines. Based on methods described in [Siddiqi (2006)](https://onlinelibrary.wiley.com/doi/book/10.1002/9781119201731) and [Navas-Palencia (2020)](https://arxiv.org/abs/2001.08025). The [vignette](https://cran.r-project.org/web/packages/OptimalBinningWoE/vignettes/introduction.html) demonstrates practical applications using real-world credit data.
+
+![](OptBin.png){fig-alt="Plot of Scorecard ROC curve with optimal binning"}
 "}
 
 
@@ -74,7 +88,11 @@ In January, two hundred forty-three new packages made it to CRAN. Here are my To
 
 ### Mathematics
 
-[EmpiricalDynamics]() vo.1.2: Implements a A comprehensive toolkit for discovering differential and difference equations from empirical time series data using symbolic regression. The package implements a complete workflow from data preprocessing including Total Variation Regularized differentiation for noisy economic data, visual exploration of dynamical structure, and symbolic equation discovery via genetic algorithms. Functions leveragea high-performance `Julia` backend, `SymbolicRegression.jl` to provide industrial-grade robustness, physics-informed constraints, and rigorous out-of-sample validation. Designed for economists, physicists, and researchers studying dynamical systems from observational data. See the [vignette](https://cran.r-project.org/web/packages/EmpiricalDynamics/vignettes/getting-started.html).
+[codyna](https://cran.r-project.org/package=codyna) v0.1.0: Perform analysis of complex dynamic systems with a focus on the temporal unfolding of patterns, changes, and state transitions in behavioral data. Supports both time series and sequence data and provides tools for the analysis and visualization of complexity, pattern identification, trends, regimes, sequence typology as well as early warning signals. See the [vignette](https://cran.r-project.org/web/packages/codyna/vignettes/codyna.html).
+
+![](codyna.jpeg){fig-alt="Plot of time series with detected warnings"}
+
+[EmpiricalDynamics](https://cran.r-project.org/package=EmpiricalDynamics) v0.1.2: Implements a A comprehensive toolkit for discovering differential and difference equations from empirical time series data using symbolic regression. The package implements a complete workflow from data preprocessing including Total Variation Regularized differentiation for noisy economic data, visual exploration of dynamical structure, and symbolic equation discovery via genetic algorithms. Functions leveragea high-performance `Julia` backend, `SymbolicRegression.jl` to provide industrial-grade robustness, physics-informed constraints, and rigorous out-of-sample validation. Designed for economists, physicists, and researchers studying dynamical systems from observational data. See the [vignette](https://cran.r-project.org/web/packages/EmpiricalDynamics/vignettes/getting-started.html).
 
 
 
@@ -154,6 +172,9 @@ In January, two hundred forty-three new packages made it to CRAN. Here are my To
 [rjd3toolkit](https://cran.r-project.org/package=rjd3toolkit) v3.6.0: Implements an `R` interface to [`JDemetra+ 3.x`](https://github.com/jdemetra) R ecosystem of time series analysis software which provides functions to create outlier regressors, define calendar regressors, fit Unobserved Components AutoRegressive Integrated Moving Average (UCARIMA) models, to test the presence of trading days or seasonal effects and also to set specifications in pre-adjustment and benchmarking when using `rjd3x13` or `rjd3tramoseats`. See the `JDemetra` link above for details.
 
 ### Utilities
+
+[automerge](https://cran.r-project.org/package=automerge) v0.3.1: Provides R bindings to the [Automerge](https://automerge.org/docs/hello/) Conflict-free Replicated Data Type (CRDT) library which enables automatic merging of concurrent changes without conflicts, making it ideal for distributed systems, collaborative applications, and offline-first architectures. See [Kleppmann et al. (2019)](https://dl.acm.org/doi/10.1145/3359591.3359737) for background. There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/automerge/vignettes/automerge.html) and [Understanding CRDTs in Automerge](https://cran.r-project.org/web/packages/automerge/vignettes/crdt-concepts.html).
+
 
 [h5lite](https://cran.r-project.org/package=h5lite) v2.0.0.2: Implements an interface for the Hierarchical Data Format 5 [HDF5](ttps://www.hdfgroup.org/) library that bundles the necessary system libraries to ensure easy installation on all platforms. Features smart defaults that automatically map R objects (vectors, matrices, data frames) to efficient `HDF5` types, removing the need to manage low-level details like dataspaces or property lists. There are nine vignettes including [Getting Started](https://cran.r-project.org/web/packages/h5lite/vignettes/h5lite.html) and [Parallel Processing](https://cran.r-project.org/web/packages/h5lite/vignettes/parallel-io.html).
 
