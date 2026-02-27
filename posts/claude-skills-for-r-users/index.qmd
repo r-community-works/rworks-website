@@ -6,13 +6,13 @@ description: "The community has come together to create some great Claude Skills
 image: "thumbnail.png"
 ---
 
-If you're like me, you might feel a bit overwhelmed by all the new AI tools for coding. There’s a lot out there, and it’s hard to know where to start. So, this post may be adding one more thing to your plate, but I promise to keep it as whelming as possible. 😄
+If you're like me, you might be feeling a bit overwhelmed by all the new AI tools for coding. So, this post may be adding one more thing to your plate, but I promise to keep it as whelming as possible. 😄
 
-This is a (very) short roundup of Claude Skills created by members of the community that are especially helpful for R users. Note that it won't show Claude output, but rather, point you to how to install and resources where to find Skills. I’m still very much a newbie in this space. If I misrepresent anything, or if you know of another Skill that should be included, please reach out on [Bluesky](https://bsky.app/profile/ivelasq3.bsky.social). I’d love to learn more.
+This is a (very) short roundup of Skills created by members of the community that are especially helpful for R users. Note that I won't show Claude output, but rather, point you to resources on where to find Skills. I'm still very much a newbie in this space. If I misrepresent anything, or if you know of another Skill that should be included, please reach out on [Bluesky](https://bsky.app/profile/ivelasq3.bsky.social).
 
 ## Quick definitions
 
-Here are a few broad definitions to set the stage:
+If you haven't installed Claude Code yet, Anthropic has [great documentation](https://code.claude.com/docs/en/quickstart) to get you started. Here are a few broad definitions to set the stage:
 
 - [Anthropic](https://www.anthropic.com/): An AI company that builds AI systems.
 - [Claude](https://claude.ai/): An AI assistant created by Anthropic that can help with a wide range of tasks, including coding.
@@ -21,25 +21,24 @@ Here are a few broad definitions to set the stage:
 - [CLAUDE.md](https://claude.com/blog/using-claude-md-files): A configuration file where you can give Claude Code project-specific context, preferences, and instructions.
 - [Claude Skills](https://claude.com/skills): Reusable, specialized commands that help Claude handle common development tasks more consistently.
 
-If you haven't installed Claude Code yet, Anthropic has [great documentation](https://code.claude.com/docs/en/quickstart) to get you started.
 
 ::: callout-note
-A question many people (*cough* I *cough*) have wondered about is the difference between CLAUDE.md and Claude Skills. The key distinction is how broadly the information should apply and how much of Claude’s context window you want to use. If you want Claude to always be aware of certain information for every task in a project, use CLAUDE.md. This might include project conventions, coding style, or high-level rules. If the information is only relevant for specific tasks, Claude Skills are a better fit. Skills let you scope guidance to when it’s actually needed, instead of filling up the context window with instructions that don’t apply most of the time. (Thanks to my colleague Nick Pelikan for helping clarify this.)
+A question many people (*cough* I *cough*) have wondered about is the difference between CLAUDE.md and Claude Skills. The key distinction is how broadly the information should apply and how much of Claude's context window you want to use. If you want Claude to always be aware of certain information for every task in a project, use CLAUDE.md. This might include project conventions, coding style, or high-level rules. If the information is only relevant for specific tasks, Claude Skills are a better fit. Skills let you scope guidance to when it's actually needed, instead of filling up the context window with instructions that don't apply most of the time. (Thanks to my colleague Nick Pelikan for helping clarify this.)
 :::
 
 ## Claude Skills for R users: a roundup
 
 ### 1.  Claude R Tidyverse Expert by Sarah Johnson
 
-Ever asked an LLM for R code and it kindly gives you a response that uses `reshape()` (deprecated 2010)?
+Ever asked an LLM for R code and it kindly gives you a response that uses `spread()` (deprecated 2010)?
 
-[Sarah Johnson](https://sarahjohnson.io/) created the Claude R Tidyverse Expert Skill to help Claude Code behave like a modern R user. Among other things, it guides Claude to prefer tidyverse-style solutions, use recent versions of packages like dplyr 1.1.0+, and avoid outdated patterns. Never see `cast()` again!
+[Sarah Johnson](https://sarahjohnson.io/) created the [Modern R Development Guide](https://gist.github.com/sj-io/3828d64d0969f2a0f05297e59e6c15ad) to help Claude Code behave like a modern R user. Among other things, it guides Claude to prefer tidyverse-style solutions, use recent versions of packages like dplyr 1.1.0+, and avoid outdated patterns. Never see `cast()` again!
 
 <center><blockquote class="bluesky-embed" data-bluesky-uri="at://did:plc:z37oae56a45bzgiybi23p4my/app.bsky.feed.post/3lwvpothzjk2o" data-bluesky-cid="bafyreifbf5heboqaalqpo25ovz532myn6gsucfj7bxlwjzqoik6yakqkca" data-bluesky-embed-color-mode="system"><p lang="en">I was loving Claude Code... until I tried it with #rstats. Constant errors, wouldn&#x27;t use the tidyverse even when asked, &quot;optimized&quot; functions were slower. 
 
 Frustrated, I started a session just to teach R to Claude and summarize what it learned into a CLAUDE.md file gist.github.com/sj-io/3828d6...<br><br><a href="https://bsky.app/profile/did:plc:z37oae56a45bzgiybi23p4my/post/3lwvpothzjk2o?ref_src=embed">[image or embed]</a></p>&mdash; sarah (<a href="https://bsky.app/profile/did:plc:z37oae56a45bzgiybi23p4my?ref_src=embed">@sarahjohnson.io</a>) <a href="https://bsky.app/profile/did:plc:z37oae56a45bzgiybi23p4my/post/3lwvpothzjk2o?ref_src=embed">August 21, 2025 at 5:18 AM</a></blockquote><script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script></center>
 
-One nice follow-up suggestion comes from [Jeremy Allen](https://bsky.app/profile/jeremy-data.bsky.social/post/3mc3lucxbks2v), who recommends breaking this Skill into smaller ones if you don’t need all the guidance at once. He has also created a Skill that can pull in [recent updates](https://github.com/jeremy-allen/claude-skills/tree/main/deliver-posit-news) from Posit!
+One nice follow-up suggestion comes from [Jeremy Allen](https://bsky.app/profile/jeremy-data.bsky.social/post/3mc3lucxbks2v), who recommends breaking this Skill into smaller ones if you don't need all the guidance at once. He has also created a Skill that can pull in [recent updates](https://github.com/jeremy-allen/claude-skills/tree/main/deliver-posit-news) from Posit!
 
 ### 2. Posit Claude Skills
 
@@ -66,7 +65,7 @@ This is a good option if you want to pull in a maintained set of Skills all at o
 
 ### 2. Install from a local directory
 
-If you’ve downloaded a Skill locally, you can install it directly from its folder:
+If you've downloaded a Skill locally, you can install it directly from its folder:
 
 ```bash
 /plugin add /path/to/skill-directory
@@ -79,7 +78,7 @@ You can also install a Skill by placing it directly in the appropriate directory
 * For personal Skills: `~/.claude/skills/skill-name/` (in your home directory)
 * For project Skills: `.claude/skills/skill-name/` (in your project root)
 
-Once the files are in place, Claude Code will automatically discover and use the Skill when it’s relevant.
+Once the files are in place, Claude Code will automatically discover and use the Skill when it's relevant.
 
 ## Create your own Skill
 
@@ -87,6 +86,6 @@ Anthropic has [documentation](https://code.claude.com/docs/en/skills#create-your
 
 ## More on using Claude Code for R development
 
-If you want examples of Claude Code in action with R, Simon Couch has a couple of great blog posts on the subject: [Post 1](https://www.simonpcouch.com/blog/2025-03-26-claude-code/), [Post 2](https://www.simonpcouch.com/blog/2025-07-17-claude-code-2/). They’re a great complement to this roundup and show what this can look like in real workflows.
+If you want examples of Claude Code in action with R, Simon Couch has a couple of great blog posts on the subject: [Post 1](https://www.simonpcouch.com/blog/2025-03-26-claude-code/), [Post 2](https://www.simonpcouch.com/blog/2025-07-17-claude-code-2/). They're a great complement to this roundup and show what this can look like in real workflows.
 
-New features and techniques are popping up all the time. If you’re experimenting with Claude Code for R and find something useful, please reach out anytime!
+New features and techniques are popping up all the time. If you're experimenting with Claude Code for R and find something useful, please reach out anytime!
