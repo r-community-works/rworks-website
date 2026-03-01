@@ -52,6 +52,10 @@ One nice follow-up suggestion comes from [Jeremy Allen](https://bsky.app/profile
 
 [Alistair Bailey](https://bsky.app/profile/ab604.uk) used and built upon Sarah's (and others') Skills above to create [Claude Code R Skills](https://github.com/ab604/claude-code-r-skills?tab=readme-ov-file#token-optimization). I particularly enjoy the section on [recommended workflow](https://github.com/ab604/claude-code-r-skills?tab=readme-ov-file#recommended-workflow), which provides a specific order for Claude to follow when writing code.
 
+<center>
+<blockquote class="bluesky-embed" data-bluesky-uri="at://did:plc:xlq5qg6yjvwxfa26oizvy43u/app.bsky.feed.post/3mdusyrw3ek26" data-bluesky-cid="bafyreicphe726tkqdttywpftnq7xpmy37ffevvuopvb4spb3zpkkgrboge" data-bluesky-embed-color-mode="system"><p lang="en">Based on others work, I&#x27;ve created Claude Code configurations for R: modular skills (tidyverse, rlang, performance, OOP, testing), enforcement rules (security, testing, git workflow), workflow commands (planning, code review, TDD), and context management hooks. #claudecode #rstats<br><br><a href="https://bsky.app/profile/did:plc:xlq5qg6yjvwxfa26oizvy43u/post/3mdusyrw3ek26?ref_src=embed">[image or embed]</a></p>&mdash; Alistair Bailey (<a href="https://bsky.app/profile/did:plc:xlq5qg6yjvwxfa26oizvy43u?ref_src=embed">@ab604.uk</a>) <a href="https://bsky.app/profile/did:plc:xlq5qg6yjvwxfa26oizvy43u/post/3mdusyrw3ek26?ref_src=embed">February 2, 2026 at 12:12 PM</a></blockquote><script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
+</center>
+
 ### 3. Posit Claude Skills
 
 Several folks at Posit have been experimenting with Claude Skills and sharing them in this [GitHub repository](https://github.com/posit-dev/skills). A couple that may be especially interesting for R users include:
