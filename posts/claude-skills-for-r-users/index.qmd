@@ -73,6 +73,10 @@ Here are a few Skills for you to create your `_brand.yml` file:
 - [brand.yml Skill by posit-dev](https://github.com/posit-dev/skills/blob/main/brand-yml/SKILL.md)
 - [brand.yml Skill by Stephen Turner](https://github.com/stephenturner/skill-brand-yml): [Stephen Turner](https://bsky.app/profile/stephenturner.us) walks through the process of developing this skill in his post, [A Claude Skill for _brand.yml, and sharing with Quarto 1.9](https://blog.stephenturner.us/p/brand-yml-claude-skill-uva-sds-quarto).
 
+<center>
+<blockquote class="bluesky-embed" data-bluesky-uri="at://did:plc:ppvxhapnptcy5v6cih3ynmzg/app.bsky.feed.post/3mfreyzjbok2q" data-bluesky-cid="bafyreiclocg2ivthqgnieq6nbchqcvymua3qqmjp4iae2mjs7oss7eyh6y" data-bluesky-embed-color-mode="system"><p lang="en">I created a Claude Skill to make _brand.yml files for your organization, and with the upcoming Quarto 1.9 release you can share brand.yml files via GitHub and `quarto use brand`. More details and how to use it: blog.stephenturner.us/p/brand-yml-... #Rstats 1/ 🧵<br><br><a href="https://bsky.app/profile/did:plc:ppvxhapnptcy5v6cih3ynmzg/post/3mfreyzjbok2q?ref_src=embed">[image or embed]</a></p>&mdash; Stephen Turner (<a href="https://bsky.app/profile/did:plc:ppvxhapnptcy5v6cih3ynmzg?ref_src=embed">@stephenturner.us</a>) <a href="https://bsky.app/profile/did:plc:ppvxhapnptcy5v6cih3ynmzg/post/3mfreyzjbok2q?ref_src=embed">February 26, 2026 at 2:14 PM</a></blockquote><script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
+</center>
+
 ### 5. Learning Opportunities: A Claude Code Skill for Deliberate Skill Development by Cat Hicks
 
 If you are worried about all these Skills deteriorating your R coding skills, check out [Learning Opportunities: A Claude Code Skill for Deliberate Skill Development](https://github.com/DrCatHicks/learning-opportunities) from [Cat Hicks](https://bsky.app/profile/grimalkina.bsky.social). It uses a "dynamic textbook" approach to help you deliberately work your coding muscles **while** you're using LLM tools.
