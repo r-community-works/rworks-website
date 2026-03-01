@@ -82,7 +82,7 @@ Self-regulation isn&#x27;t new, but it is a vital skill for developers now.</p>&
 ## How to add a Claude Skill
 
 ::: callout-note
-While you can use Claude Code in RStudio, I have been using [Positron](https://positron.posit.co/).
+While you can use Claude Code in RStudio, I have been using [Positron](https://positron.posit.co/). Posit has started rolling out [Posit AI](https://posit.co/products/ai/) in RStudio, which also supports Skills.
 :::
 
 ### 1. Install from a GitHub repository
