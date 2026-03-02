@@ -1,0 +1,133 @@
+---
+title: "A Few Claude Skills for R Users"
+author: "Isabella Velásquez"
+date: "2026-03-02"
+description: "The community has come together to create some great Claude Skills that you can try out today."
+image: "thumbnail.png"
+format:
+  html: 
+    link-external-newwindow: true
+---
+
+If you're like me, you might be feeling a bit overwhelmed by all the new AI tools for coding. So, this post may be adding one more thing to your plate, but I promise to keep it as whelming as possible. 😄
+
+This is a (very) short roundup of Skills created by members of the community that are especially helpful for R users. Note that I won't show Claude output, but rather, point you to resources on where to find Skills. I'm still very much a newbie in this space. If I misrepresent anything, or if you know of another Skill that should be included, please reach out on [Bluesky](https://bsky.app/profile/ivelasq3.bsky.social).
+
+::: callout-note
+## Does it have to be Claude?
+
+Although I mention "Claude Skills" throughout this post, other providers have adopted similar features for modular, task-specific capabilities in their LLM tools. They often use the same `SKILL.md` format, with the AI tools designed to look for a folder (often called `.skills/`) containing these Markdown-based instructions.
+:::
+
+## Quick definitions
+
+If you haven't installed Claude Code yet, Anthropic has [great documentation](https://code.claude.com/docs/en/quickstart) to get you started. Here are a few broad definitions to set the stage:
+
+- [Anthropic](https://www.anthropic.com/): An AI company that builds AI systems.
+- [Claude](https://claude.ai/): An AI assistant created by Anthropic that can help with a wide range of tasks, including coding.
+- Claude Models: Different versions of Claude, such as [Claude Opus 4.5](https://www.anthropic.com/claude/opus), [Claude Sonnet 4.5](https://www.anthropic.com/claude/sonnet), and [Claude Haiku 4.5](https://www.anthropic.com/claude/haiku). Each model offers different trade-offs between performance, speed, and cost.
+- [Claude Code](https://claude.com/product/claude-code): A command-line interface (CLI) that brings Claude into your terminal.
+- [CLAUDE.md](https://claude.com/blog/using-claude-md-files): A configuration file where you can give Claude Code project-specific context, preferences, and instructions.
+- [Claude Skills](https://claude.com/skills): Reusable, specialized commands that help Claude handle common development tasks more consistently.
+
+::: callout-note
+A question many people (*cough* I *cough*) have wondered about is the difference between CLAUDE.md and Claude Skills. The key distinction is how broadly the information should apply and how much of Claude's context window you want to use. If you want Claude to always be aware of certain information for every task in a project, use CLAUDE.md. This might include project conventions, coding style, or high-level rules. If the information is only relevant for specific tasks, Claude Skills are a better fit. Skills let you scope guidance to when it's actually needed, instead of filling up the context window with instructions that don't apply most of the time. (Thanks to my colleague Nick Pelikan for helping clarify this.)
+:::
+
+## Claude Skills for R users: a roundup
+
+### 1.  Claude R Tidyverse Expert by Sarah Johnson
+
+Ever asked an LLM for R code and it kindly gives you a response that uses `spread()` (deprecated 2010)?
+
+[Sarah Johnson](https://sarahjohnson.io/) created the [Modern R Development Guide](https://gist.github.com/sj-io/3828d64d0969f2a0f05297e59e6c15ad) to help Claude Code behave like a modern R user. Among other things, it guides Claude to prefer tidyverse-style solutions, use recent versions of packages like dplyr 1.1.0+, and avoid outdated patterns. Never see `cast()` again!
+
+<center><blockquote class="bluesky-embed" data-bluesky-uri="at://did:plc:z37oae56a45bzgiybi23p4my/app.bsky.feed.post/3lwvpothzjk2o" data-bluesky-cid="bafyreifbf5heboqaalqpo25ovz532myn6gsucfj7bxlwjzqoik6yakqkca" data-bluesky-embed-color-mode="system"><p lang="en">I was loving Claude Code... until I tried it with #rstats. Constant errors, wouldn&#x27;t use the tidyverse even when asked, &quot;optimized&quot; functions were slower. 
+
+Frustrated, I started a session just to teach R to Claude and summarize what it learned into a CLAUDE.md file gist.github.com/sj-io/3828d6...<br><br><a href="https://bsky.app/profile/did:plc:z37oae56a45bzgiybi23p4my/post/3lwvpothzjk2o?ref_src=embed">[image or embed]</a></p>&mdash; sarah (<a href="https://bsky.app/profile/did:plc:z37oae56a45bzgiybi23p4my?ref_src=embed">@sarahjohnson.io</a>) <a href="https://bsky.app/profile/did:plc:z37oae56a45bzgiybi23p4my/post/3lwvpothzjk2o?ref_src=embed">August 21, 2025 at 5:18 AM</a></blockquote><script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script></center>
+
+One nice follow-up suggestion comes from [Jeremy Allen](https://bsky.app/profile/jeremy-data.bsky.social/post/3mc3lucxbks2v), who recommends breaking this Skill into smaller ones if you don't need all the guidance at once. He has also created a Skill that can pull in [recent updates](https://github.com/jeremy-allen/claude-skills/tree/main/deliver-posit-news) from Posit!
+
+### 2. Claude Code R Skills by Alistair Bailey
+
+[Alistair Bailey](https://bsky.app/profile/ab604.uk) used and built upon Sarah's (and others') Skills above to create [Claude Code R Skills](https://github.com/ab604/claude-code-r-skills?tab=readme-ov-file#token-optimization). I particularly enjoy the section on [recommended workflow](https://github.com/ab604/claude-code-r-skills?tab=readme-ov-file#recommended-workflow), which provides a specific order for Claude to follow when writing code.
+
+<center>
+<blockquote class="bluesky-embed" data-bluesky-uri="at://did:plc:xlq5qg6yjvwxfa26oizvy43u/app.bsky.feed.post/3mdusyrw3ek26" data-bluesky-cid="bafyreicphe726tkqdttywpftnq7xpmy37ffevvuopvb4spb3zpkkgrboge" data-bluesky-embed-color-mode="system"><p lang="en">Based on others work, I&#x27;ve created Claude Code configurations for R: modular skills (tidyverse, rlang, performance, OOP, testing), enforcement rules (security, testing, git workflow), workflow commands (planning, code review, TDD), and context management hooks. #claudecode #rstats<br><br><a href="https://bsky.app/profile/did:plc:xlq5qg6yjvwxfa26oizvy43u/post/3mdusyrw3ek26?ref_src=embed">[image or embed]</a></p>&mdash; Alistair Bailey (<a href="https://bsky.app/profile/did:plc:xlq5qg6yjvwxfa26oizvy43u?ref_src=embed">@ab604.uk</a>) <a href="https://bsky.app/profile/did:plc:xlq5qg6yjvwxfa26oizvy43u/post/3mdusyrw3ek26?ref_src=embed">February 2, 2026 at 12:12 PM</a></blockquote><script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
+</center>
+
+### 3. Posit Claude Skills
+
+Several folks at Posit have been experimenting with Claude Skills and sharing them in this [GitHub repository](https://github.com/posit-dev/skills). A couple that may be especially interesting for R users include:
+
+- [Quarto Authoring Skill](https://github.com/posit-dev/skills/blob/main/quarto/README.md#quarto-authoring-skill): Helpful for converting existing R Markdown projects to Quarto.
+- [Create an R Package Release Checklist Skill](https://github.com/posit-dev/skills/blob/main/open-source/create-release-checklist/SKILL.md): Create a release checklist and GitHub issue for an R package, with automatic version calculation and customizable checklist generation.
+- [Modern Shiny Apps with bslib Skill](https://github.com/posit-dev/skills/blob/main/shiny/shiny-bslib/SKILL.md): Build modern Shiny dashboards using bslib with Bootstrap 5 layouts, cards, value boxes, navigation, theming, and modern inputs. Includes migration guide from legacy Shiny patterns
+
+### 4. `_brand.yml` Skills
+
+[brand.yml](https://posit-dev.github.io/brand-yml/) allows you to create reports, apps, dashboards, plots, and more that match your company’s brand guidelines with a single YAML file. It is currently supported in Quarto and Shiny (for R and Python).
+
+Here are a few Skills for you to create your `_brand.yml` file:
+
+- [brand.yml Skill by posit-dev](https://github.com/posit-dev/skills/blob/main/brand-yml/SKILL.md)
+- [brand.yml Skill by Stephen Turner](https://github.com/stephenturner/skill-brand-yml): [Stephen Turner](https://bsky.app/profile/stephenturner.us) walks through the process of developing this skill in his post, [A Claude Skill for _brand.yml, and sharing with Quarto 1.9](https://blog.stephenturner.us/p/brand-yml-claude-skill-uva-sds-quarto).
+
+<center>
+<blockquote class="bluesky-embed" data-bluesky-uri="at://did:plc:ppvxhapnptcy5v6cih3ynmzg/app.bsky.feed.post/3mfreyzjbok2q" data-bluesky-cid="bafyreiclocg2ivthqgnieq6nbchqcvymua3qqmjp4iae2mjs7oss7eyh6y" data-bluesky-embed-color-mode="system"><p lang="en">I created a Claude Skill to make _brand.yml files for your organization, and with the upcoming Quarto 1.9 release you can share brand.yml files via GitHub and `quarto use brand`. More details and how to use it: blog.stephenturner.us/p/brand-yml-... #Rstats 1/ 🧵<br><br><a href="https://bsky.app/profile/did:plc:ppvxhapnptcy5v6cih3ynmzg/post/3mfreyzjbok2q?ref_src=embed">[image or embed]</a></p>&mdash; Stephen Turner (<a href="https://bsky.app/profile/did:plc:ppvxhapnptcy5v6cih3ynmzg?ref_src=embed">@stephenturner.us</a>) <a href="https://bsky.app/profile/did:plc:ppvxhapnptcy5v6cih3ynmzg/post/3mfreyzjbok2q?ref_src=embed">February 26, 2026 at 2:14 PM</a></blockquote><script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
+</center>
+
+### 5. Learning Opportunities: A Claude Code Skill for Deliberate Skill Development by Cat Hicks
+
+If you are worried about all these Skills deteriorating your R coding skills, check out [Learning Opportunities: A Claude Code Skill for Deliberate Skill Development](https://github.com/DrCatHicks/learning-opportunities) from [Cat Hicks](https://bsky.app/profile/grimalkina.bsky.social). It uses a "dynamic textbook" approach to help you deliberately work your coding muscles **while** you're using LLM tools.
+
+<center>
+<blockquote class="bluesky-embed" data-bluesky-uri="at://did:plc:yjvayj5thzisljwor7yykhlx/app.bsky.feed.post/3mevvbm3a6s26" data-bluesky-cid="bafyreigsjkiynnec4bfmouz7gfo34v7qyv67yn2px3rouxswkz7xezb7fa" data-bluesky-embed-color-mode="system"><p lang="en">Can you learn AND offload? Yes. We do it all the time across our days. You just cannot do every single thing at once, and have to think about the structural support for different (sometimes competing) goals.
+
+Self-regulation isn&#x27;t new, but it is a vital skill for developers now.</p>&mdash; Cat Hicks (<a href="https://bsky.app/profile/did:plc:yjvayj5thzisljwor7yykhlx?ref_src=embed">@grimalkina.bsky.social</a>) <a href="https://bsky.app/profile/did:plc:yjvayj5thzisljwor7yykhlx/post/3mevvbm3a6s26?ref_src=embed">February 15, 2026 at 3:51 PM</a></blockquote><script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
+</center>
+
+## How to add a Claude Skill
+
+::: callout-note
+While you can use Claude Code in RStudio, I have been using [Positron](https://positron.posit.co/). Posit has started rolling out [Posit AI](https://posit.co/products/ai/) in RStudio, which also supports Skills.
+:::
+
+### 1. Install from a GitHub repository
+
+As shown in the [Posit Claude Skills README](https://github.com/posit-dev/skills?tab=readme-ov-file#installation), you can install Skills directly from a GitHub repository using a Claude Code command. For example, this installs all of the Quarto-related Skills from the Posit Claude Skills repo:
+
+```bash
+/plugin install quarto@posit-dev-skills
+``` 
+
+This is a good option if you want to pull in a maintained set of Skills all at once.
+
+### 2. Install from a local directory
+
+If you've downloaded a Skill locally, you can install it directly from its folder:
+
+```bash
+/plugin add /path/to/skill-directory
+```
+
+### 3. Manual installation
+
+You can also install a Skill by placing it directly in the appropriate directory:
+
+* For personal Skills: `~/.claude/skills/skill-name/` (in your home directory)
+* For project Skills: `.claude/skills/skill-name/` (in your project root)
+
+Once the files are in place, Claude Code will automatically discover and use the Skill when it's relevant.
+
+## Create your own Skill
+
+Anthropic has [documentation](https://code.claude.com/docs/en/skills#create-your-first-skill) on creating your own Claude Skill. I enjoy looking through other people's Skills to see how they organize and develop them. Trying them out and further tweaking them is a great way of creating a customized Skill of your own.
+
+As both Stephen and [Sarah note](https://bsky.app/profile/sarahjohnson.io/post/3lwxvrldnjc2o), you can give Claude Code examples, documentation, and guidance, then ask it to help generate the Skill for you. Perhaps there's a good Skill out there for creating Skills. It's Skills all the way down!
+
+## More on using Claude Code for R development
+
+If you want examples of Claude Code in action with R, Simon Couch has a couple of great blog posts on the subject: [Post 1](https://www.simonpcouch.com/blog/2025-03-26-claude-code/), [Post 2](https://www.simonpcouch.com/blog/2025-07-17-claude-code-2/). They're a great complement to this roundup and show what this can look like in real workflows.
+
+New features and techniques are popping up all the time. If you're experimenting with Claude Code for R and find something useful, please reach out anytime!
