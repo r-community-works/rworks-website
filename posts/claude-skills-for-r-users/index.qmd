@@ -62,7 +62,7 @@ Several folks at Posit have been experimenting with Claude Skills and sharing th
 
 - [Quarto Authoring Skill](https://github.com/posit-dev/skills/blob/main/quarto/README.md#quarto-authoring-skill): Helpful for converting existing R Markdown projects to Quarto.
 - [Create an R Package Release Checklist Skill](https://github.com/posit-dev/skills/blob/main/open-source/create-release-checklist/SKILL.md): Create a release checklist and GitHub issue for an R package, with automatic version calculation and customizable checklist generation.
-- [Modern Shiny Apps with bslib Skill](https://github.com/posit-dev/skills/blob/main/shiny/shiny-bslib/SKILL.md): Build modern Shiny dashboards using bslib with Bootstrap 5 layouts, cards, value boxes, navigation, theming, and modern inputs. Includes migration guide from legacy Shiny patterns
+- [Modern Shiny Apps with bslib Skill](https://github.com/posit-dev/skills/blob/main/shiny/shiny-bslib/SKILL.md): Build modern Shiny dashboards using bslib with Bootstrap 5 layouts, cards, value boxes, navigation, theming, and modern inputs. Includes migration guide from legacy Shiny patterns.
 
 ### 4. `_brand.yml` Skills
 
@@ -127,6 +127,8 @@ Anthropic has [documentation](https://code.claude.com/docs/en/skills#create-your
 As both Stephen and [Sarah note](https://bsky.app/profile/sarahjohnson.io/post/3lwxvrldnjc2o), you can give Claude Code examples, documentation, and guidance, then ask it to help generate the Skill for you. Perhaps there's a good Skill out there for creating Skills. It's Skills all the way down!
 
 ## More on using Claude Code for R development
+
+A huge thank you to the awesome creators who developed and shared their Skills, best practices, and more!
 
 If you want examples of Claude Code in action with R, Simon Couch has a couple of great blog posts on the subject: [Post 1](https://www.simonpcouch.com/blog/2025-03-26-claude-code/), [Post 2](https://www.simonpcouch.com/blog/2025-07-17-claude-code-2/). They're a great complement to this roundup and show what this can look like in real workflows.
 
