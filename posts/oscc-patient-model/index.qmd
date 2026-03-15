@@ -290,8 +290,6 @@ jump_P <- matrix(0, 8, 8,
 # S1 (Surgery) -> {S3=no high-risk, S4=PORT, S5=POCRT, S8=peri-op death}
 # ~20-30% high-risk features -> PORT (Tassone et al. 2023, NCDB n=53,503; DOI:10.1002/ohn.205)
 # ~10-15% ECE/pos margins -> POCRT; peri-operative mortality ~1-2% (Nathan et al. 2025, NSQIP n=866; DOI:10.18203/issn.2454-5929.ijohns20252980)
-# NB: S8 revised from 0.05 to 0.015 — the original 5% exceeded the literature range of 1-2%;
-# freed mass (0.035) reallocated to S3 (residual no-adjuvant group), S4 and S5 unchanged.
 jump_P[1, c(3, 4, 5, 8)] <- c(0.585, 0.25, 0.15, 0.015)
 
 # S2 (DefinitiveRT) -> {S6=NED, S7=treatment failure, S8=death}
