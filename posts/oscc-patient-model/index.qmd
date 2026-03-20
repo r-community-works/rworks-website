@@ -2,8 +2,8 @@
 title: "Stage II OSCC — Health Economics Model"
 subtitle: "Analysis from the patient's perspective"
 author: "Joseph Rickert"
-date: 20256-03-15
-description: "This post presents a proof of concept for Healthcare Economics Models constructed from a patient's perspective. Using inputs derived from the literature, it builds an eight state continuous time Markov chain to construct a synthetic cohort of patients undergoing treatment for stage II squamous cell carcinoma. The total expected time in each treatment health state for two treatment arms are computed from and paired with EQ-5D utilities derived from the literature. The resulting health economics model compares the QALYs associated with each treatment arm. It is envisioned that future models of this sort constructed under the supervision of physicians and health care professionals would be useful both to clinicians and patient care teams both in formalizing and documenting the treatment decision process and in communicating with patients."
+date: 2026-03-25
+description: "This post presents a proof of concept for Healthcare Economics Models constructed from a patient's perspective. Using inputs derived from the literature, it builds an eight state continuous time Markov chain to construct a synthetic cohort of patients undergoing treatment for stage II squamous cell carcinoma. The total expected time in each treatment health state for two treatment arms are computed and paired with EQ-5D utilities derived from the literature. The resulting model presents the QALYs associated with each treatment arm. It is envisioned that future models of this sort, constructed under the supervision of physicians and health care professionals, would be useful to clinicians both in documenting the treatment decision process and in communicating with patients."
 editor: source
 format: html
 ---
