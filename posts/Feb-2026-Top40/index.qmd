@@ -1,0 +1,53 @@
+
+---
+title: "February 2026 Top 40 New CRAN Packages"
+author: "Joseph Rickert"
+date: 2026-02-27
+description: "An attempt to capture the depth and breadth of what's new on CRAN."
+image: ""
+image-alt: ""
+categories: "Top 40"
+editor: source
+---
+
+Two hundred forty-one of the new packages submitted to CRAN in February were still there in mid-March. Here are my Top 40 picks in nineteen categories: Artificial Intelligence, Computational Methods, Data, Dynamical Systems, Ecology, Economics, Epidemiology, Finance, Genetics, Genomics, High Performance Computing,  Mathematics, Machine Learning, Medical Application, Networks, Statistics, Time Series, Utilities, and Visualization.
+
+
+
+![](.png){fig-alt=""}
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+### Artificial Intelligence
+
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+
+
+### Machine Learning
+
+
+
+### Visualization
+
+[nomiShape](https://cran.r-project.org/package=nomiShape) v1.0.1: Provides tools for visualizing and analyzing the shape of discrete nominal frequency distributions and introduces centered frequency plots, in which nominal categories are ordered from the most frequent category at the center toward less frequent categories on both sides, facilitating the detection of distributional patterns such as uniformity, dominance, symmetry, skewness, and long-tail behavior. In addition, the package supports Pareto charts for the study of dominance and cumulative frequency structure in nominal data. There are twelve vignettes including [Visualizing and Analyzing Distributions of Nominal Variables](https://cran.r-project.org/web/packages/nomiShape/vignettes/nominal_distribution_shapes.html) and [Pareto Plots for Nominal Distributions](https://cran.r-project.org/web/packages/nomiShape/vignettes/pareto.html).
+
+![](nomiShape.png){fig-alt="Example of a Pareto Plot"}
+
+
+:::
+
+
+
+
+
+::::
