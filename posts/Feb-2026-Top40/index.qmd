@@ -35,6 +35,21 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 
 ### Machine Learning
 
+[nadir](https://cran.r-project.org/package=nadir) v0.0.1: Provides a functional programming implementation of the super learner algorithm, [van der Laan et al. (2007)](https://biostats.bepress.com/ucbbiostat/paper222/), with an emphasis on supporting the use of formulas to specify learners. Includes the ability to use random-effects specified in formulas e.g. (y ~ (age | strata) + ...) and to construct new learners by passing a functions. See the [vignette](https://cran.r-project.org/web/packages/nadir/vignettes/Basic-Examples.html) for basic examples.
+
+
+### Statistics
+
+[dtms](https://cran.r-project.org/package=dtms) v0.4.2: Implements discrete-time multistate models, several ways of estimating parametric and nonparametric multistate models, and an extensive set of Markov chain methods which use transition probabilities derived from the multistate model. See [Schneider et al. (2024)](https://www.tandfonline.com/doi/full/10.1080/00324728.2023.2176535), [Dudel (2021)](https://journals.sagepub.com/doi/10.1177/0049124118782541), [Dudel & Myrskylä (2020)](https://link.springer.com/article/10.1186/s12963-020-00217-0), and  [van den Hout (2017)](https://www.taylorfrancis.com/books/mono/10.1201/9781315374321/multi-state-survival-models-interval-censored-data-ardo-van-den-hout) for background and [README](https://cran.r-project.org/web/packages/dtms/readme/README.html) to get started.
+
+
+![](dtms.png){fig-alt="Plot of evolution of transition probabilities"}
+
+[rblimp](https://cran.r-project.org/package=rblimp) v1.0.: Provides an interface to [`Blimp`](https://www.appliedmissingdata.com/blimp) software for Bayesian latent variable modeling, missing data analysis, and multiple imputation. The package generates `Blimp` syntax, executes `Blimp` models, and imports results back into `R` as structured objects with methods for visualization and analysis. See [README](https://cran.r-project.org/web/packages/rblimp/readme/README.html) to get started.
+
+[rareflow](https://cran.r-project.org/package=rareflow) v0.1.0: Provides variational flow-based methods for modeling rare events using Kullback–Leibler (KL) divergence, normalizing flows, Girsanov change of measure, and Freidlin–Wentzell action functionals and tools for rare-event inference, minimum-action paths, and quasi-potential computation in stochastic dynamical systems. Methods are based on [Rezende and Mohamed (2015)](https://arxiv.org/abs/1505.05770), [Girsanov (1960)](https://epubs.siam.org/doi/10.1137/1105027),  and [Freidlin and Wentzell (2012)](https://link.springer.com/book/10.1007/978-3-642-25847-3). See the [vignette](https://cran.r-project.org/web/packages/rareflow/vignettes/rareflow.html).
+
+![](rareflow.png){fig-alt="2D potential plot"}
 
 
 ### Visualization
