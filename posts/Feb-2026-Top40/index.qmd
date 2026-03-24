@@ -23,6 +23,19 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 ### Artificial Intelligence
 
 
+### Biostats
+
+[BioGSP](https://cran.r-project.org/package=BioGSP) v1.0.0: Implementation of Graph Signal Processing methods including Spectral Graph Wavelet Transform for analyzing spatial patterns in biological data and provides tools for multi-scale analysis of biology spatial signals, including forward and inverse transforms, energy analysis, and visualization functions tailored for biological applications. See [Hammond, Vandergheynst, and Gribonval (2011)](https://www.sciencedirect.com/science/article/pii/S1063520310000552?via%3Dihub), [Yao et al. (2024)](https://www.biorxiv.org/content/10.1101/2024.12.20.629650v1) for  biological application example, and the [vignette](https://cran.r-project.org/web/packages/BioGSP/vignettes/sgwt_simulation_demo.html) to get started.
+
+![](BioGSP.png){fig-alt="Plots of Fourier Modes"}
+
+### Computational Methods
+
+[compositional.mle](https://cran.r-project.org/package=compositional.mle) v2.0.0: Provides composable optimization strategies for maximum likelihood estimation (MLE). Solvers are first-class functions that combine via sequential chaining, parallel racing, and random restarts. Implements gradient ascent, Newton-Raphson, quasi-Newton (BFGS), and derivative-free methods with support for constrained optimization and tracing. Returns `mle` objects compatible with `algebraic.mle` for downstream analysis. Methods based on [Nocedal J, Wright SJ (2006)](https://link.springer.com/book/10.1007/978-0-387-40065-5). There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/compositional.mle/vignettes/getting-started.html) and [Theory and Intuition Behind Numerical MLE](https://cran.r-project.org/web/packages/compositional.mle/vignettes/theory-and-intuition.html).
+
+![](compmle.png){fig-alt="Plot of log-likelihood surface"}
+
+
 :::
 
 ::: {.column width="10%"}
@@ -75,7 +88,38 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 ![](sshist.png){fig-alt="Plots showing optimal histogram for cost minimization"}
 
 
+### Surveys
+
+[heaping](https://cran.r-project.org/package=heaping) v0.1.0: Provides methods for correcting heaping (digit preference) in survey data at the individual record level. Age heaping, where respondents disproportionately report ages ending in 0 or 5, is a common phenomenon that can distort demographic analyses. Unlike traditional smoothing methods that only correct aggregated statistics, this package corrects individual values by replacing a calculated proportion of heaped observations with draws from fitted truncated distributions. See the [vignette](https://cran.r-project.org/web/packages/heaping/vignettes/heaping-intro.html).
+
+![](heaping.png){fig-alt="Plots showing corrections for heaping"}
+
+[metasurvey](https://cran.r-project.org/package=metasurvey) v0.0.21: Provides a step-based pipeline for reproducible survey data processing, building on the `survey` package for complex sampling designs. Supports rotating panels with bootstrap replicate weights, and provides a recipe system for sharing and reproducing data transformation workflows across survey editions. There are thirteen vignettes including [Getting Started](https://cran.r-project.org/web/packages/metasurvey/vignettes/getting-started.html) and [Survey design and Validation](https://cran.r-project.org/web/packages/metasurvey/vignettes/complex-designs.html).
+
+
+### Time Series
+
+
+[mhpfilter](https://cran.r-project.org/package=mhpfilter) v0.1.0: Implements the Modified Hodrick-Prescott Filter for decomposing macroeconomic time series into trend and cyclical components via efficient `C++` routines. Unlike the standard HP filter, functions estimate series-specific lambda values that minimize the GCV criterion. See [Choudhary, Hanif and Iqbal (2014)](https://www.tandfonline.com/doi/abs/10.1080/00036846.2014.894631), and [Coe and McDermott (1997)](https://www.elibrary.imf.org/view/journals/024/1997/001/article-A003-en.xml) for background. There is an [Introduction](https://cran.r-project.org/web/packages/mhpfilter/vignettes/introduction.html) and a vignette on [Modified HP Filter Theory](https://cran.r-project.org/web/packages/mhpfilter/vignettes/methodology.html).
+
+![](mhpfilter.png){fig-alt="Plots showing effects of lambda"}
+
+
+
+[RegimeChange](https://cran.r-project.org/package=RegimeChange) v0.1.1: Implements a unified framework for detecting regime changes (changepoints) in time series data. that include both frequentist and Bayesian methods that handle univariate and multivariate series with detection of changes in mean, variance, trend, and distributional properties. See [Page (1954)](https://academic.oup.com/biomet/article-abstract/41/1-2/100/456627?redirectedFrom=fulltext&login=false), [Killick, Fearnhead, and Eckley (2012)](https://www.tandfonline.com/doi/full/10.1080/01621459.2012.737745) for frequentist methods and [Adams and MacKay (2007)](https://arxiv.org/abs/0710.3742). for Bayesian menthds. There are three vignettes including and [Introduction](https://cran.r-project.org/web/packages/RegimeChange/vignettes/introduction.html) and [Bayesian Changepoint Detection](https://cran.r-project.org/web/packages/RegimeChange/vignettes/bayesian-methods.html).
+
+![](RegimeChange.png){fig-alt="Plot of changepoint detection with PELT"}
+
 ### Visualization
+
+[dtGAP](https://cran.r-project.org/package=dtGAP) v0.0.2: Provides supervised generalized association plots based on decision trees and enhances decision tree visualization by incorporating Generalized Association Plots (GAP) through matrix-based visualizations including confusion matrix maps, decision tree matrix maps, and predicted class membership maps. See [README](https://cran.r-project.org/web/packages/dtGAP/readme/README.html).
+
+![](dtGAP.png){fig-alt="Plot of decision tree with heatmap"}
+
+
+[ggInterval](https://cran.r-project.org/package=ggInterval) v0.2.4: Implements an extension of `ggplot2` (formerly 'ggESDA') to  visualize symbolic interval-valued data with various plots via more general and flexible input arguments. Additionally, it provides a function to transform classical data into symbolic data using both clustering algorithms and customized methods. See the [vignette](https://cran.r-project.org/web/packages/ggInterval/vignettes/ggInterval_Intro.html).
+
+![](ggInterval.png){fig-alt="Plot of Index Image-Column Condition"}
 
 [nomiShape](https://cran.r-project.org/package=nomiShape) v1.0.1: Provides tools for visualizing and analyzing the shape of discrete nominal frequency distributions and introduces centered frequency plots, in which nominal categories are ordered from the most frequent category at the center toward less frequent categories on both sides, facilitating the detection of distributional patterns such as uniformity, dominance, symmetry, skewness, and long-tail behavior. In addition, the package supports Pareto charts for the study of dominance and cumulative frequency structure in nominal data. There are twelve vignettes including [Visualizing and Analyzing Distributions of Nominal Variables](https://cran.r-project.org/web/packages/nomiShape/vignettes/nominal_distribution_shapes.html) and [Pareto Plots for Nominal Distributions](https://cran.r-project.org/web/packages/nomiShape/vignettes/pareto.html).
 
