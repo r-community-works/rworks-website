@@ -40,16 +40,39 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 
 ### Statistics
 
+[BCFM](https://cran.r-project.org/package=BCFM) v1.0.0: Implements the Bayesian Clustering Factor Models for simultaneous clustering and latent factor analysis of multivariate longitudinal data. The model accounts for within-cluster dependence through shared latent factors while allowing heterogeneity across clusters, enabling flexible covariance modeling in high-dimensional settings.  The methodology is described in [Shin, Ferreira, and Tegge (2018)](https://onlinelibrary.wiley.com/doi/10.1002/sim.70350). See the [vignette](https://cran.r-project.org/web/packages/BCFM/vignettes/introduction-to-BCFM.html) for examples.
+
+![](BCFM.png){fig-alt="Plot of posterior densities for cluster probabilities"}
+
+
+[clmstan](https://cran.r-project.org/package=clmstan) v0.1.1: Provides functions to fit cumulative link models for ordinal categorical data using `CmdStanR`. Supports various link functions including logit, probit, cloglog, loglog, cauchit, and flexible parametric links such as Generalized Extreme Value (GEV), Asymmetric Exponential Power (AEP), and Symmetric Power.  Methods are described in [Agresti (2010)](https://onlinelibrary.wiley.com/doi/10.1111/j.1467-842X.2011.00601.x), [Wang and Dey (2011)](https://link.springer.com/article/10.1007/s10651-010-0154-8), and [Naranjo, Perez, and Martin (2015)](https://dl.acm.org/doi/abs/10.1007/s11222-014-9449-1).See the [vignette](https://cran.r-project.org/web/packages/clmstan/vignettes/getting-started.html) to get started.
+
+
+
 [dtms](https://cran.r-project.org/package=dtms) v0.4.2: Implements discrete-time multistate models, several ways of estimating parametric and nonparametric multistate models, and an extensive set of Markov chain methods which use transition probabilities derived from the multistate model. See [Schneider et al. (2024)](https://www.tandfonline.com/doi/full/10.1080/00324728.2023.2176535), [Dudel (2021)](https://journals.sagepub.com/doi/10.1177/0049124118782541), [Dudel & Myrskylä (2020)](https://link.springer.com/article/10.1186/s12963-020-00217-0), and  [van den Hout (2017)](https://www.taylorfrancis.com/books/mono/10.1201/9781315374321/multi-state-survival-models-interval-censored-data-ardo-van-den-hout) for background and [README](https://cran.r-project.org/web/packages/dtms/readme/README.html) to get started.
 
 
 ![](dtms.png){fig-alt="Plot of evolution of transition probabilities"}
+
+[GAReg](https://cran.r-project.org/package=GAReg) v0.1.0: Provides a genetic algorithm framework for regression problems requiring discrete optimization over model spaces with unknown or varying dimension, where gradient-based methods and exhaustive enumeration are impractical. The computation is built on the *GA* engine of [Scrucca (2017)](https://journal.r-project.org/articles/RJ-2017-008/index.html), and *changepointGA* engine from [Li and Lu (2024)](https://arxiv.org/abs/2410.15571). In challenging high-dimensional settings, functions enable efficient search and delivers near-optimal solutions. See the [vignette](https://cran.r-project.org/web/packages/GAReg/vignettes/vignette.html).
+
+![](GAReg.png){fig-alt="Plot showing spline options"}
+
+[mixpower](https://cran.r-project.org/package=mixpower) v0.1.0: Implements a simulation-based toolkit for power and sample-size analysis for linear and generalized linear mixed-effects models (LMMs and GLMMs). Supports Gaussian, binomial, Poisson, and negative binomial families via `lme4`; Wald and likelihood-ratio tests; multi-parameter sensitivity grids; power curves and minimum sample-size solvers; parallel evaluation with deterministic seeds; and functions for reproducibility. Run time diagnostics include failure rate, singular-fit rate, effective N and publication-ready summary tables. There are five brief vignettes including an [Introduction](https://cran.r-project.org/web/packages/mixpower/vignettes/mixpower-intro.html) and [Running simulations](https://cran.r-project.org/web/packages/mixpower/vignettes/mixpower-simulations.html).
+
+
+
+
 
 [rblimp](https://cran.r-project.org/package=rblimp) v1.0.: Provides an interface to [`Blimp`](https://www.appliedmissingdata.com/blimp) software for Bayesian latent variable modeling, missing data analysis, and multiple imputation. The package generates `Blimp` syntax, executes `Blimp` models, and imports results back into `R` as structured objects with methods for visualization and analysis. See [README](https://cran.r-project.org/web/packages/rblimp/readme/README.html) to get started.
 
 [rareflow](https://cran.r-project.org/package=rareflow) v0.1.0: Provides variational flow-based methods for modeling rare events using Kullback–Leibler (KL) divergence, normalizing flows, Girsanov change of measure, and Freidlin–Wentzell action functionals and tools for rare-event inference, minimum-action paths, and quasi-potential computation in stochastic dynamical systems. Methods are based on [Rezende and Mohamed (2015)](https://arxiv.org/abs/1505.05770), [Girsanov (1960)](https://epubs.siam.org/doi/10.1137/1105027),  and [Freidlin and Wentzell (2012)](https://link.springer.com/book/10.1007/978-3-642-25847-3). See the [vignette](https://cran.r-project.org/web/packages/rareflow/vignettes/rareflow.html).
 
 ![](rareflow.png){fig-alt="2D potential plot"}
+
+[sshist](https://cran.r-project.org/package=sshist) v0.1.3: Implements the Shimazaki-Shinomoto method for optimizing the bin width of a histogram. This method minimizes the mean integrated squared error and features a `C++` backend for high performance and shift-averaging to remove edge-position bias. Ideally suits for time-dependent rate estimation and identifying intrinsic data structures. Supports both 1D and 2D data distributions. See [Shimazaki and Shinomoto (2007)](https://direct.mit.edu/neco/article-abstract/19/6/1503/7188/A-Method-for-Selecting-the-Bin-Size-of-a-Time?redirectedFrom=fulltext) for more details and the [vignette](https://cran.r-project.org/web/packages/sshist/vignettes/introduction.html) for an introduction. 
+
+![](sshist.png){fig-alt="Plots showing optimal histogram for cost minimization"}
 
 
 ### Visualization
