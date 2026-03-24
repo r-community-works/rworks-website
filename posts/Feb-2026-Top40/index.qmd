@@ -22,6 +22,8 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 
 ### Artificial Intelligence
 
+[quallmer](https://cran.r-project.org/package=quallmer) v0.3.0: Provides tools for AI-assisted qualitative data coding using large language models ('LLMs') via the `ellmer` package, supporting providers including *OpenAI*, *Anthropic*, *Google*, *Azure*, and local models via *Ollama* including built-in *codebooks* for common applications such as sentiment analysis and policy coding. Functions enable creating custom notebooks, support systematic replication across models and settings, compute inter-coder reliability statistics and validation metrics, and provide audit trails for documenting coding workflows following [Lincoln and Guba's (1985)](https://www.amazon.com/Naturalistic-Inquiry-Yvonna-S-Lincoln/dp/0803924313) framework for establishing trustworthiness in qualitative research. See the [vignette](https://cran.r-project.org/web/packages/quallmer/vignettes/getting-started.html) to get started.
+
 
 ### Biostats
 
@@ -35,6 +37,11 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 
 ![](compmle.png){fig-alt="Plot of log-likelihood surface"}
 
+### Buddhism
+
+[tipitaka.critical](https://cran.r-project.org/package=tipitaka.critical) v1.0.0: A lemmatized critical edition of the complete Pali Canon (Tipitaka), the canonical scripture of Theravadin Buddhism. Based on a five-witness collation of the Pali Text Society (PTS) edition (via 'GRETIL'), 'SuttaCentral', the Vipassana Research Institute (VRI) Chattha Sangayana edition, the Buddha Jayanti Tipitaka (BJT), and the Thai Royal Edition. All text is lemmatized using the 'Digital Pali Dictionary', grouping inflected forms by dictionary headword. Covers all three pitakas (Sutta, Vinaya, Abhidhamma) with 5,777 individual text units. The companion package 'tipitaka' provides the original VRI edition data and Pali text tools. For background on the collation method, see [Zigmond (2026)](https://github.com/dangerzig/tipitaka.critical) and the [vignette](https://cran.r-project.org/web/packages/tipitaka.critical/vignettes/tipitaka-critical.html).
+
+![](tipitaka.png){fig-alt="PCA plot of all Tipitaka texts"}
 
 :::
 
