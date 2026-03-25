@@ -71,6 +71,9 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 
 ![](spacemodR.png){fig-alt="Plot of OCS GE (Occupation du Sol à Grande Échelle) data set"}
 
+
+
+
 :::
 
 ::: {.column width="10%"}
