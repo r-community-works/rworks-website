@@ -25,11 +25,30 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 [quallmer](https://cran.r-project.org/package=quallmer) v0.3.0: Provides tools for AI-assisted qualitative data coding using large language models ('LLMs') via the `ellmer` package, supporting providers including *OpenAI*, *Anthropic*, *Google*, *Azure*, and local models via *Ollama* including built-in *codebooks* for common applications such as sentiment analysis and policy coding. Functions enable creating custom notebooks, support systematic replication across models and settings, compute inter-coder reliability statistics and validation metrics, and provide audit trails for documenting coding workflows following [Lincoln and Guba's (1985)](https://www.amazon.com/Naturalistic-Inquiry-Yvonna-S-Lincoln/dp/0803924313) framework for establishing trustworthiness in qualitative research. See the [vignette](https://cran.r-project.org/web/packages/quallmer/vignettes/getting-started.html) to get started.
 
 
-### Biostats
+### Biology
 
 [BioGSP](https://cran.r-project.org/package=BioGSP) v1.0.0: Implementation of Graph Signal Processing methods including Spectral Graph Wavelet Transform for analyzing spatial patterns in biological data and provides tools for multi-scale analysis of biology spatial signals, including forward and inverse transforms, energy analysis, and visualization functions tailored for biological applications. See [Hammond, Vandergheynst, and Gribonval (2011)](https://www.sciencedirect.com/science/article/pii/S1063520310000552?via%3Dihub), [Yao et al. (2024)](https://www.biorxiv.org/content/10.1101/2024.12.20.629650v1) for  biological application example, and the [vignette](https://cran.r-project.org/web/packages/BioGSP/vignettes/sgwt_simulation_demo.html) to get started.
 
 ![](BioGSP.png){fig-alt="Plots of Fourier Modes"}
+
+[RuHere](https://cran.r-project.org/package=RuHere) v1.0.1: Automatically flags common spatial errors in biological collection data using metadata, a six stage workflow and functions that specifically integrate specialist-curated range information to identify geographic errors and introductions that often escape standard automated validation procedures. For details on the methodology see [Trindade & Caron (2026)](https://www.biorxiv.org/content/10.64898/2026.02.02.703373v1). There are five vignettes including [Reducing sampling bias](https://cran.r-project.org/web/packages/RuHere/vignettes/sampling_bias.html) and [Enuring spatial consistency](https://cran.r-project.org/web/packages/RuHere/vignettes/spatial_consistency.html).
+
+![](RuHere.jpeg){fig-alt="Snapshot of interactive map"}
+
+
+
+
+### Buddhism
+
+[tipitaka.critical](https://cran.r-project.org/package=tipitaka.critical) v1.0.0: A lemmatized critical edition of the complete Pali Canon (Tipitaka), the canonical scripture of Theravadin Buddhism. Based on a five-witness collation of the Pali Text Society (PTS) edition (via 'GRETIL'), 'SuttaCentral', the Vipassana Research Institute (VRI) Chattha Sangayana edition, the Buddha Jayanti Tipitaka (BJT), and the Thai Royal Edition. All text is lemmatized using the 'Digital Pali Dictionary', grouping inflected forms by dictionary headword. Covers all three pitakas (Sutta, Vinaya, Abhidhamma) with 5,777 individual text units. The companion package 'tipitaka' provides the original VRI edition data and Pali text tools. For background on the collation method, see [Zigmond (2026)](https://github.com/dangerzig/tipitaka.critical) and the [vignette](https://cran.r-project.org/web/packages/tipitaka.critical/vignettes/tipitaka-critical.html).
+
+![](tipitaka.png){fig-alt="PCA plot of all Tipitaka texts"}
+
+
+### Climate Science
+
+[tidyextreme](https://cran.r-project.org/package=tidyextreme) v1.00: Provides functions to calculate [Expert Team on Climate Change Detection and Indices](https://www.wcrp-climate.org/etccdi) from daily or hourly temperature and precipitation data along with functions for flexible data handling. See the [vignette](https://cran.r-project.org/web/packages/tidyextreme/vignettes/tidyextreme-tutorial.html).
+
 
 ### Computational Methods
 
@@ -37,11 +56,20 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 
 ![](compmle.png){fig-alt="Plot of log-likelihood surface"}
 
-### Buddhism
+[nabla](https://cran.r-project.org/package=nabla) v0.7.1: Enables exact automatic differentiation for R functions and provides a composable derivative operator D that computes gradients, Hessians, Jacobians, and arbitrary-order derivative tensors at machine precision. D(D(f)) gives Hessians, D(D(D(f))) gives third-order tensors for skewness of maximum likelihood estimators, and so on to any order. Works through any R code including loops, branches, and control flow. There are five vignettes including an [Introduction](https://cran.r-project.org/web/packages/nabla/vignettes/introduction.html) and [Gradient andHessian Computation](https://cran.r-project.org/web/packages/nabla/vignettes/mle-workflow.html).
 
-[tipitaka.critical](https://cran.r-project.org/package=tipitaka.critical) v1.0.0: A lemmatized critical edition of the complete Pali Canon (Tipitaka), the canonical scripture of Theravadin Buddhism. Based on a five-witness collation of the Pali Text Society (PTS) edition (via 'GRETIL'), 'SuttaCentral', the Vipassana Research Institute (VRI) Chattha Sangayana edition, the Buddha Jayanti Tipitaka (BJT), and the Thai Royal Edition. All text is lemmatized using the 'Digital Pali Dictionary', grouping inflected forms by dictionary headword. Covers all three pitakas (Sutta, Vinaya, Abhidhamma) with 5,777 individual text units. The companion package 'tipitaka' provides the original VRI edition data and Pali text tools. For background on the collation method, see [Zigmond (2026)](https://github.com/dangerzig/tipitaka.critical) and the [vignette](https://cran.r-project.org/web/packages/tipitaka.critical/vignettes/tipitaka-critical.html).
+![](nabla.png){fig-alt="Plot of log-likelihood and gradient"}
 
-![](tipitaka.png){fig-alt="PCA plot of all Tipitaka texts"}
+
+[rLifting](https://cran.r-project.org/package=rLifting) v0.9.0: Performs Wavelet Lifting Transforms focusing on signal denoising and functional data analysis (FDA). Implements a hybrid architecture with a zero-allocation `C++` core for high-performance processing. Features include unified offline (batch) denoising, causal (real-time) filtering using a ring buffer engine, and adaptive recursive thresholding. There are five vignettes including an [Introduction](https://cran.r-project.org/web/packages/rLifting/vignettes/introduction.html) and [Real-time signal smoothing](https://cran.r-project.org/web/packages/rLifting/vignettes/realtime.html).
+
+![](rLifting.png){fig-alt="Plot showing real-time denoising of a noisy sine wave"}
+
+### Ecology
+
+[spacemodR](https://cran.r-project.org/package=spacemodR) v0.1.3: Provides tools for modeling food web transfer based on an initial ground raster. It provides a directed acyclic graph structure for a set of rasters representing the flow of elements (e.g., food, energy, contaminants). It also includes tools for working with dispersal algorithms, enabling the combination of flux data with population movement. See the [tutorial](https://cran.r-project.org/web/packages/spacemodR/vignettes/Tutorial.html).
+
+![](spacemodR.png){fig-alt="Plot of OCS GE (Occupation du Sol à Grande Échelle) data set"}
 
 :::
 
