@@ -70,6 +70,19 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 
 ![](setweaver.png){fig-alt="Logistic Regression Effect Probability Network"}
 
+### Data
+
+[geobounds](https://cran.r-project.org/package=geobounds) v0.1.1: Provides tools to download data from [geoBoundaries](https://www.geoboundaries.org/). Several administration levels available. See [Runfola, D. et al. (2020)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0231866) for background and the [vignette](https://cran.r-project.org/web/packages/geobounds/vignettes/geobounds.html) for examples.
+
+![](geobounds.png){fig-alt="World Bank Income Group LatinAmerica andthe Caribbean"}
+
+[healthbR](https://cran.r-project.org/package=healthbR) v0.2.0: Provides easy access to Brazilian public health data from multiple sources including VIGITEL (Surveillance of Risk Factors for Chronic Diseases by Telephone Survey), PNS (National Health Survey), 'PNAD' Continua (Continuous National Household Sample Survey), 'POF' (Household Budget Survey with food security and consumption data), 'Censo Demografico' (population denominators via 'SIDRA' API), SIM (Mortality Information System), SINASC (Live Birth Information System) and several other repositories. Data is downloaded from the Brazilian Ministry of Health and is returned in tidy format following tidyverse conventions. There are seventeen vignettes including an [Introduction](https://cran.r-project.org/web/packages/healthbR/vignettes/healthbR.html) amd [Chronic Disease Risk Factors](https://cran.r-project.org/web/packages/healthbR/vignettes/vigitel-telephone-survey.html).
+
+
+[nhanesdata](https://cran.r-project.org/package=nhanesdata) v4.1.0: Instant access to harmonized National Health and Nutrition Examination Survey [NHANES](https://www.cdc.gov/nchs/nhanes/) data spanning 1999-2023. Retrieve pre-processed datasets from reliable cloud storage with automatic type reconciliation and integrated search tools for variables and datasets. Simplifies NHANES data workflows by handling cycle management and maintaining data consistency across survey waves. There are four vignettes including [Getting Started](https://cran.r-project.org/web/packages/nhanesdata/vignettes/getting-started.html) and [Available NAHANES Datasets](https://cran.r-project.org/web/packages/nhanesdata/vignettes/getting-started.html).
+
+![](NHANES.png){fig-alt="Plots of NHANES Age Distribution bySurvey Cycle"}
+
 ### Ecology
 
 [spacemodR](https://cran.r-project.org/package=spacemodR) v0.1.3: Provides tools for modeling food web transfer based on an initial ground raster. It provides a directed acyclic graph structure for a set of rasters representing the flow of elements (e.g., food, energy, contaminants). It also includes tools for working with dispersal algorithms, enabling the combination of flux data with population movement. See the [tutorial](https://cran.r-project.org/web/packages/spacemodR/vignettes/Tutorial.html).
