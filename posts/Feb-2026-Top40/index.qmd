@@ -2,19 +2,17 @@
 ---
 title: "February 2026 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
-date: 2026-02-27
+date: 2026-03-26
 description: "An attempt to capture the depth and breadth of what's new on CRAN."
-image: ""
-image-alt: ""
+image: "archipelago.png"
+image-alt: " Example of an archipelago plot"
 categories: "Top 40"
 editor: source
 ---
 
-Two hundred forty-one of the new packages submitted to CRAN in February were still there in mid-March. Here are my Top 40 picks in nineteen categories: Artificial Intelligence, Computational Methods, Data, Dynamical Systems, Ecology, Economics, Epidemiology, Finance, Genetics, Genomics, High Performance Computing,  Mathematics, Machine Learning, Medical Application, Networks, Statistics, Time Series, Utilities, and Visualization.
+Two hundred and fifty-five of the new packages submitted to CRAN in February were still there in mid-March. Here are my Top 40 picks in seventeen categories: Artificial Intelligence, Biology, Buddhism, Climate Science, Computational Methods, Data, Ecology, Epidemiology, Genomics, Machine Learning, Medical Applications, Physics, Statistics, Surveys, Time Series, Utilities, and Visualization.
 
 
-
-![](.png){fig-alt=""}
 
 :::: {.columns}
 
@@ -27,11 +25,11 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 
 ### Biology
 
-[BioGSP](https://cran.r-project.org/package=BioGSP) v1.0.0: Implementation of Graph Signal Processing methods including Spectral Graph Wavelet Transform for analyzing spatial patterns in biological data and provides tools for multi-scale analysis of biology spatial signals, including forward and inverse transforms, energy analysis, and visualization functions tailored for biological applications. See [Hammond, Vandergheynst, and Gribonval (2011)](https://www.sciencedirect.com/science/article/pii/S1063520310000552?via%3Dihub), [Yao et al. (2024)](https://www.biorxiv.org/content/10.1101/2024.12.20.629650v1) for  biological application example, and the [vignette](https://cran.r-project.org/web/packages/BioGSP/vignettes/sgwt_simulation_demo.html) to get started.
+[BioGSP](https://cran.r-project.org/package=BioGSP) v1.0.0: Implementation of Graph Signal Processing methods including Spectral Graph Wavelet Transform for analyzing spatial patterns in biological data and provides tools for multi-scale analysis of biology spatial signals, including forward and inverse transforms, energy analysis, and visualization functions tailored for biological applications. See [Hammond, Vandergheynst, and Gribonval (2011)](https://www.sciencedirect.com/science/article/pii/S1063520310000552?via%3Dihub) and [Yao et al. (2024)](https://www.biorxiv.org/content/10.1101/2024.12.20.629650v1) for  biological application examples, and the [vignette](https://cran.r-project.org/web/packages/BioGSP/vignettes/sgwt_simulation_demo.html) to get started.
 
 ![](BioGSP.png){fig-alt="Plots of Fourier Modes"}
 
-[RuHere](https://cran.r-project.org/package=RuHere) v1.0.1: Automatically flags common spatial errors in biological collection data using metadata, a six stage workflow and functions that specifically integrate specialist-curated range information to identify geographic errors and introductions that often escape standard automated validation procedures. For details on the methodology see [Trindade & Caron (2026)](https://www.biorxiv.org/content/10.64898/2026.02.02.703373v1). There are five vignettes including [Reducing sampling bias](https://cran.r-project.org/web/packages/RuHere/vignettes/sampling_bias.html) and [Enuring spatial consistency](https://cran.r-project.org/web/packages/RuHere/vignettes/spatial_consistency.html).
+[RuHere](https://cran.r-project.org/package=RuHere) v1.0.1: Automatically flags common spatial errors in biological data using metadata, a six stage workflow, and functions that specifically integrate specialist-curated range information to identify geographic errors and introductions that often escape standard automated validation procedures. For details on the methodology see [Trindade & Caron (2026)](https://www.biorxiv.org/content/10.64898/2026.02.02.703373v1). There are five vignettes including [Reducing sampling bias](https://cran.r-project.org/web/packages/RuHere/vignettes/sampling_bias.html) and [Ensuring spatial consistency](https://cran.r-project.org/web/packages/RuHere/vignettes/spatial_consistency.html).
 
 ![](RuHere.jpeg){fig-alt="Snapshot of interactive map"}
 
@@ -40,7 +38,7 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 
 ### Buddhism
 
-[tipitaka.critical](https://cran.r-project.org/package=tipitaka.critical) v1.0.0: A lemmatized critical edition of the complete Pali Canon (Tipitaka), the canonical scripture of Theravadin Buddhism. Based on a five-witness collation of the Pali Text Society (PTS) edition (via 'GRETIL'), 'SuttaCentral', the Vipassana Research Institute (VRI) Chattha Sangayana edition, the Buddha Jayanti Tipitaka (BJT), and the Thai Royal Edition. All text is lemmatized using the 'Digital Pali Dictionary', grouping inflected forms by dictionary headword. Covers all three pitakas (Sutta, Vinaya, Abhidhamma) with 5,777 individual text units. The companion package 'tipitaka' provides the original VRI edition data and Pali text tools. For background on the collation method, see [Zigmond (2026)](https://github.com/dangerzig/tipitaka.critical) and the [vignette](https://cran.r-project.org/web/packages/tipitaka.critical/vignettes/tipitaka-critical.html).
+[tipitaka.critical](https://cran.r-project.org/package=tipitaka.critical) v1.0.0: A lemmatized critical edition of the complete Pali Canon (Tipitaka), the canonical scripture of Theravadin Buddhism. Based on a five-witness collation of the Pali Text Society edition via GRETIL, SuttaCentral, the Vipassana Research Institute Chattha Sangayana edition, the Buddha Jayanti Tipitaka, and the Thai Royal Edition. All text is lemmatized using the Digital Pali Dictionary, grouping inflected forms by dictionary headword. Covers all three pitakas, Sutta, Vinaya, Abhidhamma, with 5,777 individual text units.  For background on the collation method, see [Zigmond (2026)](https://github.com/dangerzig/tipitaka.critical) and the [vignette](https://cran.r-project.org/web/packages/tipitaka.critical/vignettes/tipitaka-critical.html).
 
 ![](tipitaka.png){fig-alt="PCA plot of all Tipitaka texts"}
 
@@ -52,31 +50,31 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 
 ### Computational Methods
 
-[compositional.mle](https://cran.r-project.org/package=compositional.mle) v2.0.0: Provides composable optimization strategies for maximum likelihood estimation (MLE). Solvers are first-class functions that combine via sequential chaining, parallel racing, and random restarts. Implements gradient ascent, Newton-Raphson, quasi-Newton (BFGS), and derivative-free methods with support for constrained optimization and tracing. Returns `mle` objects compatible with `algebraic.mle` for downstream analysis. Methods based on [Nocedal J, Wright SJ (2006)](https://link.springer.com/book/10.1007/978-0-387-40065-5). There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/compositional.mle/vignettes/getting-started.html) and [Theory and Intuition Behind Numerical MLE](https://cran.r-project.org/web/packages/compositional.mle/vignettes/theory-and-intuition.html).
+[compositional.mle](https://cran.r-project.org/package=compositional.mle) v2.0.0: Provides composable optimization strategies for maximum likelihood estimation. Solvers are first-class functions that combine via sequential chaining, parallel racing, and random restarts. Implements gradient ascent, Newton-Raphson, quasi-Newton (BFGS), and derivative-free methods with support for constrained optimization and tracing. Returns `mle` objects compatible with `algebraic.mle` for downstream analysis. Methods are based on [Nocedal J, Wright SJ (2006)](https://link.springer.com/book/10.1007/978-0-387-40065-5). There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/compositional.mle/vignettes/getting-started.html) and [Theory and Intuition Behind Numerical MLE](https://cran.r-project.org/web/packages/compositional.mle/vignettes/theory-and-intuition.html).
 
 ![](compmle.png){fig-alt="Plot of log-likelihood surface"}
 
-[nabla](https://cran.r-project.org/package=nabla) v0.7.1: Enables exact automatic differentiation for R functions and provides a composable derivative operator D that computes gradients, Hessians, Jacobians, and arbitrary-order derivative tensors at machine precision. D(D(f)) gives Hessians, D(D(D(f))) gives third-order tensors for skewness of maximum likelihood estimators, and so on to any order. Works through any R code including loops, branches, and control flow. There are five vignettes including an [Introduction](https://cran.r-project.org/web/packages/nabla/vignettes/introduction.html) and [Gradient andHessian Computation](https://cran.r-project.org/web/packages/nabla/vignettes/mle-workflow.html).
+[nabla](https://cran.r-project.org/package=nabla) v0.7.1: Enables exact automatic differentiation for `R` functions and provides a composable derivative operator D that computes gradients, Hessians, Jacobians, and arbitrary-order derivative tensors at machine precision. D(D(f)) gives Hessians, D(D(D(f))) gives third-order tensors for skewness of maximum likelihood estimators, and so on to any order. Works through any R code including loops, branches, and control flow. There are five vignettes including an [Introduction](https://cran.r-project.org/web/packages/nabla/vignettes/introduction.html) and [Gradient andHessian Computation](https://cran.r-project.org/web/packages/nabla/vignettes/mle-workflow.html).
 
 ![](nabla.png){fig-alt="Plot of log-likelihood and gradient"}
 
 
-[rLifting](https://cran.r-project.org/package=rLifting) v0.9.0: Performs Wavelet Lifting Transforms focusing on signal denoising and functional data analysis (FDA). Implements a hybrid architecture with a zero-allocation `C++` core for high-performance processing. Features include unified offline (batch) denoising, causal (real-time) filtering using a ring buffer engine, and adaptive recursive thresholding. There are five vignettes including an [Introduction](https://cran.r-project.org/web/packages/rLifting/vignettes/introduction.html) and [Real-time signal smoothing](https://cran.r-project.org/web/packages/rLifting/vignettes/realtime.html).
+[rLifting](https://cran.r-project.org/package=rLifting) v0.9.0: Performs Wavelet Lifting Transforms focusing on signal denoising and functional data analysis (FDA). Implements a hybrid architecture with a zero-allocation `C++` core for high-performance processing. Features include unified offline (batch) denoising, causal, real-time filtering using a ring buffer engine, and adaptive recursive thresholding. There are five vignettes including an [Introduction](https://cran.r-project.org/web/packages/rLifting/vignettes/introduction.html) and [Real-time signal smoothing](https://cran.r-project.org/web/packages/rLifting/vignettes/realtime.html).
 
 ![](rLifting.png){fig-alt="Plot showing real-time denoising of a noisy sine wave"}
 
-[setweaver](https://cran.r-project.org/package=setweaver) v1.0.0: Create sets of variables based on a mutual information approach. In this context, a set is a collection of distinct elements (e.g., variables) that can also be treated as a single entity. Mutual information, quantifies the dependence between two variables by expressing how much information about one variable can be gained from observing the other. See the [vignette](https://cran.r-project.org/web/packages/setweaver/vignettes/setweaver.html).
+[setweaver](https://cran.r-project.org/package=setweaver) v1.0.0: Create sets of variables based on a mutual information. In this context, a set is a collection of distinct elements (e.g., variables) that can also be treated as a single entity. Mutual information, quantifies the dependence between two variables by expressing how much information about one variable can be gained from observing the other. See the [vignette](https://cran.r-project.org/web/packages/setweaver/vignettes/setweaver.html).
 
 
 ![](setweaver.png){fig-alt="Logistic Regression Effect Probability Network"}
 
 ### Data
 
-[geobounds](https://cran.r-project.org/package=geobounds) v0.1.1: Provides tools to download data from [geoBoundaries](https://www.geoboundaries.org/). Several administration levels available. See [Runfola, D. et al. (2020)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0231866) for background and the [vignette](https://cran.r-project.org/web/packages/geobounds/vignettes/geobounds.html) for examples.
+[geobounds](https://cran.r-project.org/package=geobounds) v0.1.1: Provides tools for downloading data from [geoBoundaries](https://www.geoboundaries.org/). Several administration levels are available. See [Runfola, D. et al. (2020)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0231866) for background and the [vignette](https://cran.r-project.org/web/packages/geobounds/vignettes/geobounds.html) for examples.
 
 ![](geobounds.png){fig-alt="World Bank Income Group LatinAmerica andthe Caribbean"}
 
-[healthbR](https://cran.r-project.org/package=healthbR) v0.2.0: Provides easy access to Brazilian public health data from multiple sources including VIGITEL (Surveillance of Risk Factors for Chronic Diseases by Telephone Survey), PNS (National Health Survey), 'PNAD' Continua (Continuous National Household Sample Survey), 'POF' (Household Budget Survey with food security and consumption data), 'Censo Demografico' (population denominators via 'SIDRA' API), SIM (Mortality Information System), SINASC (Live Birth Information System) and several other repositories. Data is downloaded from the Brazilian Ministry of Health and is returned in tidy format following tidyverse conventions. There are seventeen vignettes including an [Introduction](https://cran.r-project.org/web/packages/healthbR/vignettes/healthbR.html) amd [Chronic Disease Risk Factors](https://cran.r-project.org/web/packages/healthbR/vignettes/vigitel-telephone-survey.html).
+[healthbR](https://cran.r-project.org/package=healthbR) v0.2.0: Provides easy access to Brazilian public health data from multiple sources including VIGITEL (Surveillance of Risk Factors for Chronic Diseases by Telephone Survey), PNS (National Health Survey), PNAD Continua (Continuous National Household Sample Survey), POF (Household Budget Survey with food security and consumption data), Censo Demografico (population denominators), SIM (Mortality Information System), SINASC (Live Birth Information System) and several other repositories. Data is downloaded from the Brazilian Ministry of Health and is returned in tidy format following tidyverse conventions. There are seventeen vignettes including an [Introduction](https://cran.r-project.org/web/packages/healthbR/vignettes/healthbR.html) and [Chronic Disease Risk Factors](https://cran.r-project.org/web/packages/healthbR/vignettes/vigitel-telephone-survey.html).
 
 
 [nhanesdata](https://cran.r-project.org/package=nhanesdata) v4.1.0: Instant access to harmonized National Health and Nutrition Examination Survey [NHANES](https://www.cdc.gov/nchs/nhanes/) data spanning 1999-2023. Retrieve pre-processed datasets from reliable cloud storage with automatic type reconciliation and integrated search tools for variables and datasets. Simplifies NHANES data workflows by handling cycle management and maintaining data consistency across survey waves. There are four vignettes including [Getting Started](https://cran.r-project.org/web/packages/nhanesdata/vignettes/getting-started.html) and [Available NAHANES Datasets](https://cran.r-project.org/web/packages/nhanesdata/vignettes/getting-started.html).
@@ -94,7 +92,7 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 
 ### Epidemiology
 
-[baselinenowcast](https://cran.r-project.org/package=baselinenowcast) v0.2.0: Provides nowcasting methods based on using empirical delay distributions and uncertainty from past performance as well as a baseline method for developers of new nowcasting methods.  The package supports standard data frame inputs as well as the direct use of reporting triangles, and is compatible with 'epinowcast' objects and accommodates a wide spectrum of reporting schedules, including mixed patterns of reference and reporting (daily-weekly, weekly-daily). For background see [Johnson et al. (2026)](https://wellcomeopenresearch.org/articles/10-614). There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/baselinenowcast/vignettes/baselinenowcast.html) and [Mathematical Methods]().
+[baselinenowcast](https://cran.r-project.org/package=baselinenowcast) v0.2.0: Provides nowcasting methods based on using empirical delay distributions and uncertainty from past performance as well as a baseline method for developers of new nowcasting methods.  The package supports standard data frame inputs as well as the direct use of reporting triangles, and is compatible with [epinowcast](https://www.epinowcast.org/) objects and accommodates a wide spectrum of reporting schedules, including mixed patterns of reference and reporting (daily-weekly, weekly-daily). For background see [Johnson et al. (2026)](https://wellcomeopenresearch.org/articles/10-614). There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/baselinenowcast/vignettes/baselinenowcast.html) and [Mathematical Methods]().
 
 ![](nowcast.png){fig-alt="Plot comparing initially reported with subsequently observed cases"}
 
@@ -105,11 +103,11 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 
 ### Genomics
 
-[archipelago](https://cran.r-project.org/package=archipelago) v0.1.0: Provides a graphical method for joint visualisation of Variant Set Association Test results and individual variant association statistics. The Archipelago method assigns genomic coordinates to variant set statistics, allowing simultaneous display of variant-level and set-level signals in a unified plot supporting interpretation of both collective and individual variant contributions. For more see [Lawless et al. (2026)](https://onlinelibrary.wiley.com/doi/10.1002/gepi.70025) and the [vignette](https://cran.r-project.org/web/packages/archipelago/vignettes/archipelago-intro.html).
+[archipelago](https://cran.r-project.org/package=archipelago) v0.1.0: Provides a graphical method for joint visualization of Variant Set Association Test results and individual variant association statistics. The Archipelago method assigns genomic coordinates to variant set statistics, allowing simultaneous display of variant-level and set-level signals in a unified plot supporting interpretation of both collective and individual variant contributions. For more see [Lawless et al. (2026)](https://onlinelibrary.wiley.com/doi/10.1002/gepi.70025) and the [vignette](https://cran.r-project.org/web/packages/archipelago/vignettes/archipelago-intro.html).
 
 ![](archipelago.png){fig-alt="Example of an Archipelago plot"}
 
-[SVG](https://cran.r-project.org/web/packages/SVG/vignettes/SVG-introduction.html) v1.0.0: Implements a unified framework for detecting spatially variable genes in spatial transcriptomics data. SVG detection methods including MERINGUE (Moran's I based spatial autocorrelation), Giotto binSpect (binary spatial enrichment test), SPARK-X (non-parametric kernel-based test), and nnSVG (nearest-neighbor Gaussian processes) which are described in [Miller et al. (2021)](https://genome.cshlp.org/content/31/10/1843, [Dries et al. (2021)](https://link.springer.com/article/10.1186/s13059-021-02286-2), [Zhu et al. (2021)](https://link.springer.com/article/10.1186/s13059-021-02404-0), and [Weber et al. (2023)](https://www.nature.com/articles/s41467-023-39748-z). See the [vignette](https://cran.r-project.org/web/packages/SVG/vignettes/SVG-introduction.html) for examples.
+[SVG](https://cran.r-project.org/web/packages/SVG/vignettes/SVG-introduction.html) v1.0.0: Implements a unified framework for detecting spatially variable genes in spatial transcriptomics data. SVG detection methods including MERINGUE (Moran's I based spatial autocorrelation), Giotto binSpect (binary spatial enrichment test), SPARK-X (non-parametric kernel-based test), and nnSVG (nearest-neighbor Gaussian processes) which are described in [Miller et al. (2021)](https://genome.cshlp.org/content/31/10/1843), [Dries et al. (2021)](https://link.springer.com/article/10.1186/s13059-021-02286-2), [Zhu et al. (2021)](https://link.springer.com/article/10.1186/s13059-021-02404-0), and [Weber et al. (2023)](https://www.nature.com/articles/s41467-023-39748-z). See the [vignette](https://cran.r-project.org/web/packages/SVG/vignettes/SVG-introduction.html) for examples.
 
 ![](SVG.png){fig-alt="Spatial pattern visualization"}
 
@@ -135,16 +133,16 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 
 ![](bfbin2arm.png){fig-alt="Power and Type 1 Error Rate Plots"}
 
-[neuromapr](https://cran.r-project.org/package=neuromapr) v0.2.1: Implements spatial null models and coordinate-space transformations for statistical comparison of brain maps, following the framework described in [Markello et al. (2022)](https://www.nature.com/articles/s41592-022-01625-w). Provides variogram-matching surrogates, Moran spectral randomization, and spin-based permutation tests. Includes an R interface to the [neuromaps](https://netneurolab.github.io/neuromaps/user_guide/annotations.html) annotation registry for browsing, downloading, and comparing brain map annotations from the Open Science Framework. There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/neuromapr/vignettes/neuromapr.html) and [Surface Geometry](https://cran.r-project.org/web/packages/neuromapr/vignettes/surface-geometry.html).
+[neuromapr](https://cran.r-project.org/package=neuromapr) v0.2.1: Implements spatial null models and coordinate-space transformations for statistical comparison of brain maps, following the framework described in [Markello et al. (2022)](https://www.nature.com/articles/s41592-022-01625-w). Provides variogram-matching surrogates, Moran spectral randomization, and spin-based permutation tests. Includes an `R` interface to the [neuromaps](https://netneurolab.github.io/neuromaps/user_guide/annotations.html) annotation registry for browsing, downloading, and comparing brain map annotations from the Open Science Framework. There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/neuromapr/vignettes/neuromapr.html) and [Surface Geometry](https://cran.r-project.org/web/packages/neuromapr/vignettes/surface-geometry.html).
 
 ![](neuromapr.png){fig-alt="Plot of Null Correlation Distributions"}
 
 
-### Phusics
+### Physics
 
-[HaDeX2](https://cran.r-project.org/package=HaDeX2) v1.0.0: Process, analyze and visualize Hydrogen Deuterium eXchange monitored by Mass Spectrometry experiments (HDX-MS) via a new standardized and reproducible workflow for the analysis of the HDX-MS data, including uncertainty propagation, data aggregation and visualization on 3D structure. Additional features include functions for data exploration, quality control and generation of publication-quality figures and a companion `Shiny` application. There are eleven vignettes including [Calculations](https://cran.r-project.org/web/packages/HaDeX2/vignettes/datafiles.html) and [Data Visualization](https://cran.r-project.org/web/packages/HaDeX2/vignettes/visualization.html).
+[HaDeX2](https://cran.r-project.org/package=HaDeX2) v1.0.0: Process, analyze and visualize Hydrogen Deuterium eXchange monitored by Mass Spectrometry experiments (HDX-MS) via a new reproducible workflow for the analysis of the HDX-MS data that includes uncertainty propagation, data aggregation and visualization on 3D structure, functions for data exploration, quality control and generation of publication-quality figures and a companion `Shiny` application. There are eleven vignettes including [Calculations](https://cran.r-project.org/web/packages/HaDeX2/vignettes/datafiles.html) and [Data Visualization](https://cran.r-project.org/web/packages/HaDeX2/vignettes/visualization.html).
 
-![](HaDeX2.png){fig-alt="Plot of Deuterium uptake vs Peptide ID"
+![](HaDeX2.png){fig-alt="Plot of Deuterium uptake vs Peptide ID"}
 
 
 ### Statistics
@@ -154,7 +152,7 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 ![](BCFM.png){fig-alt="Plot of posterior densities for cluster probabilities"}
 
 
-[clmstan](https://cran.r-project.org/package=clmstan) v0.1.1: Provides functions to fit cumulative link models for ordinal categorical data using `CmdStanR`. Supports various link functions including logit, probit, cloglog, loglog, cauchit, and flexible parametric links such as Generalized Extreme Value (GEV), Asymmetric Exponential Power (AEP), and Symmetric Power.  Methods are described in [Agresti (2010)](https://onlinelibrary.wiley.com/doi/10.1111/j.1467-842X.2011.00601.x), [Wang and Dey (2011)](https://link.springer.com/article/10.1007/s10651-010-0154-8), and [Naranjo, Perez, and Martin (2015)](https://dl.acm.org/doi/abs/10.1007/s11222-014-9449-1).See the [vignette](https://cran.r-project.org/web/packages/clmstan/vignettes/getting-started.html) to get started.
+[clmstan](https://cran.r-project.org/package=clmstan) v0.1.1: Provides functions to fit cumulative link models for ordinal categorical data using `CmdStanR`. Supports various link functions including logit, probit, cloglog, loglog, cauchit, and flexible parametric links such as Generalized Extreme Value, Asymmetric Exponential Power, and Symmetric Power.  Methods are described in [Agresti (2010)](https://onlinelibrary.wiley.com/doi/10.1111/j.1467-842X.2011.00601.x), [Wang and Dey (2011)](https://link.springer.com/article/10.1007/s10651-010-0154-8), and [Naranjo, Perez, and Martin (2015)](https://dl.acm.org/doi/abs/10.1007/s11222-014-9449-1). See the [vignette](https://cran.r-project.org/web/packages/clmstan/vignettes/getting-started.html) to get started.
 
 
 
@@ -172,11 +170,11 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 
 [rblimp](https://cran.r-project.org/package=rblimp) v1.0.: Provides an interface to [`Blimp`](https://www.appliedmissingdata.com/blimp) software for Bayesian latent variable modeling, missing data analysis, and multiple imputation. The package generates `Blimp` syntax, executes `Blimp` models, and imports results back into `R` as structured objects with methods for visualization and analysis. See [README](https://cran.r-project.org/web/packages/rblimp/readme/README.html) to get started.
 
-[rareflow](https://cran.r-project.org/package=rareflow) v0.1.0: Provides variational flow-based methods for modeling rare events using Kullback–Leibler (KL) divergence, normalizing flows, Girsanov change of measure, and Freidlin–Wentzell action functionals and tools for rare-event inference, minimum-action paths, and quasi-potential computation in stochastic dynamical systems. Methods are based on [Rezende and Mohamed (2015)](https://arxiv.org/abs/1505.05770), [Girsanov (1960)](https://epubs.siam.org/doi/10.1137/1105027),  and [Freidlin and Wentzell (2012)](https://link.springer.com/book/10.1007/978-3-642-25847-3). See the [vignette](https://cran.r-project.org/web/packages/rareflow/vignettes/rareflow.html).
+[rareflow](https://cran.r-project.org/package=rareflow) v0.1.0: Provides variational flow-based methods for modeling rare events using Kullback–Leibler divergence, normalizing flows, Girsanov change of measure, and Freidlin–Wentzell action functionals and tools for rare-event inference, minimum-action paths, and quasi-potential computation in stochastic dynamical systems. Methods are based on [Rezende and Mohamed (2015)](https://arxiv.org/abs/1505.05770), [Girsanov (1960)](https://epubs.siam.org/doi/10.1137/1105027),  and [Freidlin and Wentzell (2012)](https://link.springer.com/book/10.1007/978-3-642-25847-3). See the [vignette](https://cran.r-project.org/web/packages/rareflow/vignettes/rareflow.html).
 
 ![](rareflow.png){fig-alt="2D potential plot"}
 
-[sshist](https://cran.r-project.org/package=sshist) v0.1.3: Implements the Shimazaki-Shinomoto method for optimizing the bin width of a histogram. This method minimizes the mean integrated squared error and features a `C++` backend for high performance and shift-averaging to remove edge-position bias. Ideally suits for time-dependent rate estimation and identifying intrinsic data structures. Supports both 1D and 2D data distributions. See [Shimazaki and Shinomoto (2007)](https://direct.mit.edu/neco/article-abstract/19/6/1503/7188/A-Method-for-Selecting-the-Bin-Size-of-a-Time?redirectedFrom=fulltext) for more details and the [vignette](https://cran.r-project.org/web/packages/sshist/vignettes/introduction.html) for an introduction. 
+[sshist](https://cran.r-project.org/package=sshist) v0.1.3: Implements the Shimazaki-Shinomoto method for optimizing the bin width of a histogram. This method minimizes the mean integrated squared error and features a `C++` backend for high performance and shift-averaging to remove edge-position bias. Ideally suited for time-dependent rate estimation and identifying intrinsic data structures. Supports both 1D and 2D data distributions. See [Shimazaki and Shinomoto (2007)](https://direct.mit.edu/neco/article-abstract/19/6/1503/7188/A-Method-for-Selecting-the-Bin-Size-of-a-Time?redirectedFrom=fulltext) for more details and the [vignette](https://cran.r-project.org/web/packages/sshist/vignettes/introduction.html) for an introduction. 
 
 ![](sshist.png){fig-alt="Plots showing optimal histogram for cost minimization"}
 
@@ -199,13 +197,13 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 
 
 
-[RegimeChange](https://cran.r-project.org/package=RegimeChange) v0.1.1: Implements a unified framework for detecting regime changes (changepoints) in time series data. that include both frequentist and Bayesian methods that handle univariate and multivariate series with detection of changes in mean, variance, trend, and distributional properties. See [Page (1954)](https://academic.oup.com/biomet/article-abstract/41/1-2/100/456627?redirectedFrom=fulltext&login=false), [Killick, Fearnhead, and Eckley (2012)](https://www.tandfonline.com/doi/full/10.1080/01621459.2012.737745) for frequentist methods and [Adams and MacKay (2007)](https://arxiv.org/abs/0710.3742). for Bayesian menthds. There are three vignettes including and [Introduction](https://cran.r-project.org/web/packages/RegimeChange/vignettes/introduction.html) and [Bayesian Changepoint Detection](https://cran.r-project.org/web/packages/RegimeChange/vignettes/bayesian-methods.html).
+[RegimeChange](https://cran.r-project.org/package=RegimeChange) v0.1.1: Implements a unified framework for detecting regime changes (changepoints) in time series data that includes both frequentist and Bayesian methods for univariate and multivariate series with detection of changes in mean, variance, trend, and distributional properties. See [Page (1954)](https://academic.oup.com/biomet/article-abstract/41/1-2/100/456627?redirectedFrom=fulltext&login=false), [Killick, Fearnhead, and Eckley (2012)](https://www.tandfonline.com/doi/full/10.1080/01621459.2012.737745) for frequentist methods and [Adams and MacKay (2007)](https://arxiv.org/abs/0710.3742). for Bayesian methods. There are three vignettes including and [Introduction](https://cran.r-project.org/web/packages/RegimeChange/vignettes/introduction.html) and [Bayesian Changepoint Detection](https://cran.r-project.org/web/packages/RegimeChange/vignettes/bayesian-methods.html).
 
 ![](RegimeChange.png){fig-alt="Plot of changepoint detection with PELT"}
 
 ### Utilities
 
-[birddog](https://cran.r-project.org/package=birddog) v1.0.0: Provides a unified set of methods to detect scientific emergence and technological trajectories in academic papers and patents by combining citation network analysis with community detection and attribute extraction, also applying natural language processing (NLP) and structural topic modeling (STM) to uncover the contents of research communities.  Applications of the method include: [Souza et al. (2022)](https://regepe.org.br/regepe/article/view/1742) and [Maria et al. (2023)](https://www.mdpi.com/2071-1050/15/2/967). See [README] for the methodology and look [here](https://roneyfraga.com/birddog/articles/introduction_birddog.html) for and introduction ane examples.
+[birddog](https://cran.r-project.org/package=birddog) v1.0.0: Provides a unified set of methods to detect scientific emergence and technological trajectories in academic papers and patents by combining citation network analysis with community detection and attribute extraction, also applying natural language processing and structural topic modeling to uncover the contents of research communities.  Applications of the method include: [Souza et al. (2022)](https://regepe.org.br/regepe/article/view/1742) and [Maria et al. (2023)](https://www.mdpi.com/2071-1050/15/2/967). See [README](https://cran.r-project.org/web/packages/birddog/readme/README.html) for the methodology and look [here](https://roneyfraga.com/birddog/articles/introduction_birddog.html) for an introduction and examples.
 
 ![](birddog.svg){fig-alt="Methodology Workflow"}
 
@@ -215,12 +213,12 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 
 ### Visualization
 
-[dtGAP](https://cran.r-project.org/package=dtGAP) v0.0.2: Provides supervised generalized association plots based on decision trees and enhances decision tree visualization by incorporating Generalized Association Plots (GAP) through matrix-based visualizations including confusion matrix maps, decision tree matrix maps, and predicted class membership maps. See [README](https://cran.r-project.org/web/packages/dtGAP/readme/README.html).
+[dtGAP](https://cran.r-project.org/package=dtGAP) v0.0.2: Provides supervised generalized association plots based on decision trees and enhances decision tree visualization by incorporating Generalized Association Plots through matrix-based visualizations including confusion matrix maps, decision tree matrix maps, and predicted class membership maps. See [README](https://cran.r-project.org/web/packages/dtGAP/readme/README.html).
 
 ![](dtGAP.png){fig-alt="Plot of decision tree with heatmap"}
 
 
-[ggInterval](https://cran.r-project.org/package=ggInterval) v0.2.4: Implements an extension of `ggplot2` (formerly 'ggESDA') to  visualize symbolic interval-valued data with various plots via more general and flexible input arguments. Additionally, it provides a function to transform classical data into symbolic data using both clustering algorithms and customized methods. See the [vignette](https://cran.r-project.org/web/packages/ggInterval/vignettes/ggInterval_Intro.html).
+[ggInterval](https://cran.r-project.org/package=ggInterval) v0.2.4: Extends `ggplot2` to  visualize symbolic interval-valued data with various plots via more general and flexible input arguments, and provides a function to transform classical data into symbolic data using both clustering algorithms and customized methods. See the [vignette](https://cran.r-project.org/web/packages/ggInterval/vignettes/ggInterval_Intro.html).
 
 ![](ggInterval.png){fig-alt="Plot of Index Image-Column Condition"}
 
