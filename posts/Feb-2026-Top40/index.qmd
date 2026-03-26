@@ -65,6 +65,11 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 
 ![](rLifting.png){fig-alt="Plot showing real-time denoising of a noisy sine wave"}
 
+[setweaver](https://cran.r-project.org/package=setweaver) v1.0.0: Create sets of variables based on a mutual information approach. In this context, a set is a collection of distinct elements (e.g., variables) that can also be treated as a single entity. Mutual information, quantifies the dependence between two variables by expressing how much information about one variable can be gained from observing the other. See the [vignette](https://cran.r-project.org/web/packages/setweaver/vignettes/setweaver.html).
+
+
+![](setweaver.png){fig-alt="Logistic Regression Effect Probability Network"}
+
 ### Ecology
 
 [spacemodR](https://cran.r-project.org/package=spacemodR) v0.1.3: Provides tools for modeling food web transfer based on an initial ground raster. It provides a directed acyclic graph structure for a set of rasters representing the flow of elements (e.g., food, energy, contaminants). It also includes tools for working with dispersal algorithms, enabling the combination of flux data with population movement. See the [tutorial](https://cran.r-project.org/web/packages/spacemodR/vignettes/Tutorial.html).
@@ -166,6 +171,16 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 [RegimeChange](https://cran.r-project.org/package=RegimeChange) v0.1.1: Implements a unified framework for detecting regime changes (changepoints) in time series data. that include both frequentist and Bayesian methods that handle univariate and multivariate series with detection of changes in mean, variance, trend, and distributional properties. See [Page (1954)](https://academic.oup.com/biomet/article-abstract/41/1-2/100/456627?redirectedFrom=fulltext&login=false), [Killick, Fearnhead, and Eckley (2012)](https://www.tandfonline.com/doi/full/10.1080/01621459.2012.737745) for frequentist methods and [Adams and MacKay (2007)](https://arxiv.org/abs/0710.3742). for Bayesian menthds. There are three vignettes including and [Introduction](https://cran.r-project.org/web/packages/RegimeChange/vignettes/introduction.html) and [Bayesian Changepoint Detection](https://cran.r-project.org/web/packages/RegimeChange/vignettes/bayesian-methods.html).
 
 ![](RegimeChange.png){fig-alt="Plot of changepoint detection with PELT"}
+
+### Utilities
+
+[birddog](https://cran.r-project.org/package=birddog) v1.0.0: Provides a unified set of methods to detect scientific emergence and technological trajectories in academic papers and patents by combining citation network analysis with community detection and attribute extraction, also applying natural language processing (NLP) and structural topic modeling (STM) to uncover the contents of research communities.  Applications of the method include: [Souza et al. (2022)](https://regepe.org.br/regepe/article/view/1742) and [Maria et al. (2023)](https://www.mdpi.com/2071-1050/15/2/967). See [README] for the methodology and look [here](https://roneyfraga.com/birddog/articles/introduction_birddog.html) for and introduction ane examples.
+
+![](birddog.svg){fig-alt="Methodology Workflow"}
+
+
+[phinterval](https://cran.r-project.org/package=phinterval) v1.0.0: Implements the phinterval vector class for representing time spans that may contain gaps (disjoint intervals) or be empty. This class generalizes the `lubridate` package's interval class to support vectorized set operations (intersection, union, difference, complement) that always return a valid time span, even when disjoint or empty intervals are created. See the [vignette](https://cran.r-project.org/web/packages/phinterval/vignettes/phinterval.html). 
+
 
 ### Visualization
 
