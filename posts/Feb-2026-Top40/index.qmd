@@ -71,7 +71,26 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 
 ![](spacemodR.png){fig-alt="Plot of OCS GE (Occupation du Sol à Grande Échelle) data set"}
 
+### Epidemiology
 
+[baselinenowcast](https://cran.r-project.org/package=baselinenowcast) v0.2.0: Provides nowcasting methods based on using empirical delay distributions and uncertainty from past performance as well as a baseline method for developers of new nowcasting methods.  The package supports standard data frame inputs as well as the direct use of reporting triangles, and is compatible with 'epinowcast' objects and accommodates a wide spectrum of reporting schedules, including mixed patterns of reference and reporting (daily-weekly, weekly-daily). For background see [Johnson et al. (2026)](https://wellcomeopenresearch.org/articles/10-614). There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/baselinenowcast/vignettes/baselinenowcast.html) and [Mathematical Methods]().
+
+![](nowcast.png){fig-alt="Plot comparing initially reported with subsequently observed cases"}
+
+
+[multigroup.vaccine](https://cran.r-project.org/package=multigroup.vaccine) v0.1.1: Provides functions for modeling infectious disease dynamics in populations with multiple subgroups having different vaccination rates, transmission characteristics, and contact patterns. Enables calculating outbreak sizes, automatically fetching U.S. census data, and exploring vaccination scenarios with an interactive `shiny` dashboard. See [Nguyen et al. (2024)](https://www.valueinhealthjournal.com/article/S1098-3015(24)00154-2/fulltext?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS1098301524001542%3Fshowall%3Dtrue)  and [Duong et al. (2026)](https://academic.oup.com/ofid/article/13/Supplement_1/ofaf695.217/8420075?login=false) for background. There are four vignettes including [Getting Started](https://cran.r-project.org/web/packages/multigroup.vaccine/vignettes/run_model_on_command_line.html) and [Measles Age-Structured Model](https://cran.r-project.org/web/packages/multigroup.vaccine/vignettes/measles_agemodel.html).
+
+[ViroReportR](https://cran.r-project.org/package=ViroReportR) v1.0.4: Implements tools for reporting and forecasting viral respiratory infections, using case surveillance data. Report generation tools for short-term forecasts, and validation metrics for an arbitrary number of customizable respiratory viruses. Estimation of the effective reproduction number is based on the *EpiEstim* framework described in work by [Cori et al. (2013)](https://academic.oup.com/aje/article/178/9/1505/89262?login=false). See the [vignette](https://academic.oup.com/aje/article/178/9/1505/89262?login=false).
+
+### Genomics
+
+[archipelago](https://cran.r-project.org/package=archipelago) v0.1.0: Provides a graphical method for joint visualisation of Variant Set Association Test results and individual variant association statistics. The Archipelago method assigns genomic coordinates to variant set statistics, allowing simultaneous display of variant-level and set-level signals in a unified plot supporting interpretation of both collective and individual variant contributions. For more see [Lawless et al. (2026)](https://onlinelibrary.wiley.com/doi/10.1002/gepi.70025) and the [vignette](https://cran.r-project.org/web/packages/archipelago/vignettes/archipelago-intro.html).
+
+![](archipelago.png){fig-alt="Example of an Archipelago plot"}
+
+[SVG](https://cran.r-project.org/web/packages/SVG/vignettes/SVG-introduction.html) v1.0.0: Implements a unified framework for detecting spatially variable genes in spatial transcriptomics data. SVG detection methods including MERINGUE (Moran's I based spatial autocorrelation), Giotto binSpect (binary spatial enrichment test), SPARK-X (non-parametric kernel-based test), and nnSVG (nearest-neighbor Gaussian processes) which are described in [Miller et al. (2021)](https://genome.cshlp.org/content/31/10/1843, [Dries et al. (2021)](https://link.springer.com/article/10.1186/s13059-021-02286-2), [Zhu et al. (2021)](https://link.springer.com/article/10.1186/s13059-021-02404-0), and [Weber et al. (2023)](https://www.nature.com/articles/s41467-023-39748-z). See the [vignette](https://cran.r-project.org/web/packages/SVG/vignettes/SVG-introduction.html) for examples.
+
+![](SVG.png){fig-alt="Spatial pattern visualization"}
 
 
 :::
