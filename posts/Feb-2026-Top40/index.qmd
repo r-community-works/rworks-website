@@ -83,6 +83,9 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 
 ![](NHANES.png){fig-alt="Plots of NHANES Age Distribution bySurvey Cycle"}
 
+[roadDB](https://cran.r-project.org/package=roadDB) v1.1.0: Provides interface to the ROCEEH Out of Africa Database ([ROAD](https://www.roceeh.uni-tuebingen.de/roadweb/smarty_road_simple_search.php)), a comprehensive resource for archaeological, anthropological, paleoenvironmental and geographic data from Africa and Eurasia dating from 3,000,000 to 20,000 years BP. Users can retrieve data from the online database at different levels of detail and customize search requests. See [README](https://cran.r-project.org/web/packages/roadDB/readme/README.html) to get started.
+
+
 ### Ecology
 
 [spacemodR](https://cran.r-project.org/package=spacemodR) v0.1.3: Provides tools for modeling food web transfer based on an initial ground raster. It provides a directed acyclic graph structure for a set of rasters representing the flow of elements (e.g., food, energy, contaminants). It also includes tools for working with dispersal algorithms, enabling the combination of flux data with population movement. See the [tutorial](https://cran.r-project.org/web/packages/spacemodR/vignettes/Tutorial.html).
@@ -126,6 +129,24 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 [nadir](https://cran.r-project.org/package=nadir) v0.0.1: Provides a functional programming implementation of the super learner algorithm, [van der Laan et al. (2007)](https://biostats.bepress.com/ucbbiostat/paper222/), with an emphasis on supporting the use of formulas to specify learners. Includes the ability to use random-effects specified in formulas e.g. (y ~ (age | strata) + ...) and to construct new learners by passing a functions. See the [vignette](https://cran.r-project.org/web/packages/nadir/vignettes/Basic-Examples.html) for basic examples.
 
 
+### Medical Applications
+
+[bfbin2arm](https://cran.r-project.org/package=bfbin2arm) v0.1.0: Provides tools to design and analyze two-arm binomial clinical (phase II) trials using Bayes factors. Implements Bayes factors for point-null and directional hypotheses, predictive densities under different hypotheses, and power and sample size calibration with optional frequentist type-I error and power. See the [vignette](https://cran.r-project.org/web/packages/bfbin2arm/vignettes/bfbin2arm-intro.html).
+
+![](bfbin2arm.png){fig-alt="Power and Type 1 Error Rate Plots"}
+
+[neuromapr](https://cran.r-project.org/package=neuromapr) v0.2.1: Implements spatial null models and coordinate-space transformations for statistical comparison of brain maps, following the framework described in [Markello et al. (2022)](https://www.nature.com/articles/s41592-022-01625-w). Provides variogram-matching surrogates, Moran spectral randomization, and spin-based permutation tests. Includes an R interface to the [neuromaps](https://netneurolab.github.io/neuromaps/user_guide/annotations.html) annotation registry for browsing, downloading, and comparing brain map annotations from the Open Science Framework. There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/neuromapr/vignettes/neuromapr.html) and [Surface Geometry](https://cran.r-project.org/web/packages/neuromapr/vignettes/surface-geometry.html).
+
+![](neuromapr.png){fig-alt="Plot of Null Correlation Distributions"}
+
+
+### Phusics
+
+[HaDeX2](https://cran.r-project.org/package=HaDeX2) v1.0.0: Process, analyze and visualize Hydrogen Deuterium eXchange monitored by Mass Spectrometry experiments (HDX-MS) via a new standardized and reproducible workflow for the analysis of the HDX-MS data, including uncertainty propagation, data aggregation and visualization on 3D structure. Additional features include functions for data exploration, quality control and generation of publication-quality figures and a companion `Shiny` application. There are eleven vignettes including [Calculations](https://cran.r-project.org/web/packages/HaDeX2/vignettes/datafiles.html) and [Data Visualization](https://cran.r-project.org/web/packages/HaDeX2/vignettes/visualization.html).
+
+![](HaDeX2.png){fig-alt="Plot of Deuterium uptake vs Peptide ID"
+
+
 ### Statistics
 
 [BCFM](https://cran.r-project.org/package=BCFM) v1.0.0: Implements the Bayesian Clustering Factor Models for simultaneous clustering and latent factor analysis of multivariate longitudinal data. The model accounts for within-cluster dependence through shared latent factors while allowing heterogeneity across clusters, enabling flexible covariance modeling in high-dimensional settings.  The methodology is described in [Shin, Ferreira, and Tegge (2018)](https://onlinelibrary.wiley.com/doi/10.1002/sim.70350). See the [vignette](https://cran.r-project.org/web/packages/BCFM/vignettes/introduction-to-BCFM.html) for examples.
@@ -147,9 +168,6 @@ Two hundred forty-one of the new packages submitted to CRAN in February were sti
 ![](GAReg.png){fig-alt="Plot showing spline options"}
 
 [mixpower](https://cran.r-project.org/package=mixpower) v0.1.0: Implements a simulation-based toolkit for power and sample-size analysis for linear and generalized linear mixed-effects models (LMMs and GLMMs). Supports Gaussian, binomial, Poisson, and negative binomial families via `lme4`; Wald and likelihood-ratio tests; multi-parameter sensitivity grids; power curves and minimum sample-size solvers; parallel evaluation with deterministic seeds; and functions for reproducibility. Run time diagnostics include failure rate, singular-fit rate, effective N and publication-ready summary tables. There are five brief vignettes including an [Introduction](https://cran.r-project.org/web/packages/mixpower/vignettes/mixpower-intro.html) and [Running simulations](https://cran.r-project.org/web/packages/mixpower/vignettes/mixpower-simulations.html).
-
-
-
 
 
 [rblimp](https://cran.r-project.org/package=rblimp) v1.0.: Provides an interface to [`Blimp`](https://www.appliedmissingdata.com/blimp) software for Bayesian latent variable modeling, missing data analysis, and multiple imputation. The package generates `Blimp` syntax, executes `Blimp` models, and imports results back into `R` as structured objects with methods for visualization and analysis. See [README](https://cran.r-project.org/web/packages/rblimp/readme/README.html) to get started.
