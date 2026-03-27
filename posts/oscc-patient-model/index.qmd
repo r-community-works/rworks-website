@@ -3,15 +3,15 @@ title: "Stage II OSCC — Health Economics Model"
 subtitle: "Analysis from the patient's perspective"
 author: "Joseph Rickert"
 date: 2026-03-25
-description: "This post presents a proof of concept for Healthcare Economics Models constructed from a patient's perspective. Using inputs derived from the literature, it builds an eight state continuous time Markov chain to construct a synthetic cohort of patients undergoing treatment for stage II squamous cell carcinoma. The total expected time in each treatment health state for two treatment arms are computed and paired with EQ-5D utilities derived from the literature. The resulting model presents the QALYs associated with each treatment arm. It is envisioned that future models of this sort, constructed under the supervision of physicians and health care professionals, would be useful to clinicians both in documenting the treatment decision process and in communicating with patients."
+description: "This post presents a proof of concept for constructing Healthcare Economics Models from a patient's perspective. Taking oral squamous cell carcinoma as a case study, it models the health states that a patient would visit after treatment as a continuous-time Markov chain. Estimates of jump-chain train transition probabilities and sojourn times are then used to construct a synthetic data set. Calculated values for the total expected amount of time that patients will spend it each health state for two treatment arms are combined with utilities for each health state derived from the literature  to compare the total quality adjusted life years for each treatment arm. It is envisioned that models of this sort, constructed under the supervision medical experts, would be useful to clinicians both in documenting the treatment decision process and in communicating with patients."
 editor: source
 format: html
 ---
 
 
-Most health care economics models are constructed from the perspective of a managed health care system such as those offered in Canada and several European countries, or from the perspective of some other third party such as an insurance company. Although the benefits of constructing models from the patient's perspective have been discussed in the literature, see for example [Ioannidis & Garber (2011)](https://pmc.ncbi.nlm.nih.gov/articles/PMC3134464/) and [Tai et al. (2016)](https://pubmed.ncbi.nlm.nih.gov/27712720/), few models have been published. Obvious reasons for this situation would include the privacy issues associated with obtaining patient specific data and the apparent lack of economic incentives to commit resources required to abstract individual patient trajectories from patient level data models.
+Most health care economics models are constructed from the perspective of a managed health care system such as those offered in Canada and several European countries, or from the perspective of some other third party such as an insurance company. Although the benefits of constructing models from the patient's perspective have been discussed in the literature, see for example [Ioannidis & Garber (2011)](https://pmc.ncbi.nlm.nih.gov/articles/PMC3134464/) and [Tai et al. (2016)](https://pubmed.ncbi.nlm.nih.gov/27712720/), few models have been published. Obvious reasons for this situation would include the privacy issues associated with obtaining patient specific data and the apparent lack of economic incentives to commit resources required to abstract individual patient trajectories from patient level data.
 
-This post explores the hypothesis that detailed, data-driven, patient-specific models may not be necessary in order to achieve most of the benefits of a health economics model from the patients perspective. I present a lightweight, cohort model that I believe captures the majority of the benefits to both physicians and patients that might result from a patient focused model.
+This post explores the hypothesis that detailed, data-driven, patient-specific models may not be necessary in order to achieve most of the benefits of a health economics model from the patients perspective. It present a lightweight, cohort model that captures the majority of the benefits to both physicians and patients that might result from a patient focused model.
 
 The model is intended to be a proof of concept, a minimal viable model that may be useful to physicians both in deciding on treatment options and in informing patients about the potential outcomes and how they may experience these outcomes. To see how the medical literature may be helpful for this kind of modeling I explore the specific case of choosing between surgery and definitive radiation therapy for patients with stage II oral squamous cell carcinoma (OSCC). 
 
@@ -22,23 +22,11 @@ The model is intended to be a proof of concept, a minimal viable model that may 
 
 ## Overview of the Model
 
-The model begins with the decision to select radiation or surgery and identifies eight health states that patient will pass through. The states visited and the order of visiting them depend on the initial decision. The next step uses the theory of continuous time Markov chains (CTMC) to construct a synthetic data set for a cohort of patients who vary in age and tumor size. The CTMC model is driven by The estimates for the jump-chain transition probabilities and mean state occupancy times. I have chosen this approach because I believe that these quantities will have intuitive appeal to clinicians and medical experts. I have attempted to abstract reasonable estimates for these parameters from the medical literature. If done correctly, these sorts of abstracted estimates should be helpful as default parameters which clinicians could change based on their experience and intuition. 
+The recovery of patients undergoing treatment OSCC, either surgery or radiation treatment, is conceived as a stochastic journey through various health states. The states visited, the sequence in which they are visited and the length of stay in each health state are modeled as random variables developing in in the framework of an eight=state, continuous-time Markov chain. Estimates of the transition probabilities among states and the mean time patients would remain in a state drive Markov chain. In the model below, these estimates are derived from the medical literature, however, it is conceivable that clinicians may feel comfortable in making their own estimates, or modifying the literature derived estimates according to their experience and their evaluations of their patients.
 
-The key insight here is that the synthetic data set is the underlying statistical model. Empirical survival curves and the time spent in each state and other useful quantities are then calculated from the synthetic data. The patient specific healthcare model is then constructed by estimating the utility of each health state to the patient. This is accomplished by constructing quality adjust life years (QALYs) based on [EQ-5D](https://www.ncbi.nlm.nih.gov/books/NBK565680/) values reported in the literature. 
+The next step uses the theory of continuous time Markov chains (CTMC) to construct a synthetic data set for a cohort of patients who vary in age and tumor size. The key insight here is that the synthetic data set is the underlying statistical model. Empirical survival curves and the time spent in each state and other useful quantities are then calculated from the synthetic data. The patient specific healthcare model is then constructed by estimating the utility of each health state to the patient. This is accomplished by constructing quality adjust life years (QALYs) based on [EQ-5D](https://www.ncbi.nlm.nih.gov/books/NBK565680/) values reported in the literature. 
 
-## Continuous Time Markov Chain Simulation
-
-This section builds a synthetic patient cohort for Stage II (T2 N0 M0) oral
-squamous cell carcinoma using a continuous-time Markov chain (CTMC). The
-simulation is driven by two clinician-interpret able inputs:
-
-- **Jump chain probabilities** `jump_P[i,j]`: given that a patient *leaves*
-  state *i*, the probability they transition directly to state *j*.
-- **Mean sojourn times** `mean_sojourn[i]`: the average time (months) a patient
-  spends in state *i* before transitioning.
-
-The sources for these quantities are identified by comments in the code. The complete references for these sources are given in the Reference section below.
-
+## State Diagram for a Continuous Time Markov Chain 
 
 ```{r}
 #| message: false
@@ -53,8 +41,6 @@ library(gt)
 ```
 
 
-### State Diagram
-
 It is my understanding that although most patients wit stage II OSCC are treated with surgery there are times when surgery is either not possible or not preferable and the in these exceptional cases, radiation treatment is the primary alternative. The following state diagram is an attempt to abstract both the health states a patient will experience following treatment and the probable paths that will be taken among them. Eight states seemed to me to be the minimum number of states required to represent the complexities of treatment.
 
 
@@ -62,7 +48,7 @@ It is my understanding that although most patients wit stage II OSCC are treated
 #| message: FALSE
 #| warning: FALSE
 #| code-fold: TRUE
-#| code-summary: "Show the code"
+#| code-summary: "Show code to build state diagram"
 # library(ggplot2)
 # library(grid)
 
@@ -230,7 +216,9 @@ Reduce("+", all_layers, init=base_plot)
 | S8    | Death                   | Absorbing state                                   |
 
 
-## Data Simulation
+## Synthetic Data Simulation
+
+This section builds a synthetic patient cohort for Stage II (T2 N0 M0) oral squamous cell carcinoma using a continuous-time Markov chain (CTMC). The first code block sets up of the simulation by defining the covariates: patient age and tumor size. Mean patient age is set at 62 years old. Tumor size ranges from tumor 2-4 cm, DOI 5-10 mm
 
 ```{r}
 #| message: false
@@ -263,13 +251,20 @@ treatment    <- ifelse(runif(N_PATIENTS) < surgery_prob, "Surgery", "DefinitiveR
 
 ### Clinician Inputs
 
-A continuous time Markov chain may be described by its jump chain and transition rate matrix. The jump chain may be thought of as an embedded discrete time Markov chain that gives the probabilities of which state the chain will jump to next when it is time to jump. The transition rates are mean rates at which of the probability distributions that determine when jumps will be made. The major assumption in this model is that the jump probabilities and the times that patients are likely to spend in each state which are inverted to obtain the transition rates will be intuitive to most practicing physicians. The values for these parameters have been derived from the literature, however, the model has been set up so that they can be easily changed if the physician disagrees with the with the values in general or thinks that a particular class of patients would be better represented by other values. The justifications for the default values for the parameters driving the model are provided in the comments in the code and in the references below.
+The simulation is driven by two sets of clinician-interpret able inputs that are entered at the beginning of this section of code:
+
+- **Jump chain probabilities** `jump_P[i,j]`: given that a patient *leaves*
+  state *i*, the probability they transition directly to state *j*.
+- **Mean sojourn times** `mean_sojourn[i]`: the average time (months) a patient
+  spends in state *i* before transitioning.
+
+The jump chain may be thought of as an embedded discrete time Markov chain that gives the probabilities of which state the chain will jump to next when it is time to jump. The sojourn times are inverted to obtain the transition rates. The values for these parameters have been derived from the literature, however, the model has been set up so that they can be easily changed if the physician thinks that a particular class of patients would be better represented by other values. The justifications for the default values for the parameters driving the model are provided in the comments in the code and in the references below.
 
 ```{r}
 #| message: false
 #| warning: false
 #| code-fold: true
-#| code-summary: "Clinician inputs: jump probabilities and mean sojourn times"
+#| code-summary: "Show code for clinician inouts"
 
 # == CLINICIAN INPUTS ==========================================================
 #
@@ -393,7 +388,7 @@ data.frame(
 
 ### Synthetic Data
 
-Here are the first few rows of the synthetic data set. Note that two covariates: age of patient and tumor size are included.
+This code block constructs the synthetic data and prints out the first few rows of the synthetic data set. 
 
 ```{r}
 #| message: false
@@ -480,6 +475,11 @@ write.csv(oscc2_data, "OSCC_HE_Synthetic_Data.csv", row.names = FALSE)
 head(oscc2_data, 10)
 ```
 
+Note that two covariates: age of patient and tumor size are included in the data ane encoded in the `make_Q` function used to create the synthetic data as follows:
+
+  * `age_eff  <- exp(0.025 * (age_i  - 60))   # older  -> higher mortality`
+  * `size_eff <- exp(0.180 * (size_i -  3.0))  # larger -> higher recurrence`
+
 ---
 
 ### Summary of Data Set
@@ -501,6 +501,7 @@ died <- oscc2_data |>
 # Main table: state visit counts
 as.data.frame(table(State = oscc2_data$state_label)) |>
   gt() |>
+  tab_options(table.font.size = px(12)) |>
   cols_label(State = "State", Freq = "Observations") |>
   tab_source_note(md(paste0(
     "**Dataset:** ", nrow(oscc2_data), " observations; ",
@@ -535,8 +536,7 @@ oscc2_data[oscc2_data$id == 1,
 
 ### Overall Survival
 
-The first plot shows overall survival (Kaplan-Meier) curves for patients in both treatment arms and the overall survival curves for the individual survival curves. Note that, as I believe would be expected, surgery exhibits a slightly better overall survival curve (Approximately 73% vs approximately 65% at 5 years). However, both curves show very good five year survival probabilities. 
-
+This next plot shows overall survival (Kaplan-Meier) curves for patients in both treatment arms. Note that surgery exhibits a slightly better overall survival curve (Approximately 73% vs approximately 65% at 5 years). However, both curves show very good five year survival probabilities. 
 
 Three external benchmark points are overlaid on the Kaplan–Meier curves as filled diamonds. 
 
@@ -544,12 +544,7 @@ Three external benchmark points are overlaid on the Kaplan–Meier curves as fil
 * Hosni et al. (2019) observed a three-year OS of 71% (95% CI 67–75%) in 601 OSCC patients receiving adjuvant PORT at Princess Margaret Cancer Centre, also plotted against the Surgery arm. 
 * Sher et al. (2011) reported a two-year OS of 63% in 12 oral cavity patients treated with definitive IMRT at Dana-Farber Cancer Institute, shown against the Definitive RT arm. 
 
-
-
-
-The second plot panel shows the overall survival curves by treatment for each of the four possible values of the covariates.
-
-
+While not validating the survival curves, the benchmark points indicate that they are a plausible starting point for analysis.
 
 
 
@@ -605,9 +600,10 @@ km_plot
 ```
 
 
-
-
 ### Survival by Age and Tumour Size
+
+This next panel of plots show the overall survival broken out byt the covariates age and tumor size. Each panel indicates the four possible values of the covariates.
+
 
 ```{r}
 #| message: false
@@ -754,10 +750,7 @@ n_rt_cov   <- length(unique(oscc2_data$id[oscc2_data$treatment == "DefinitiveRT"
   is associated with lower survival — but the small-n instability makes subgroup
   comparisons across treatment arms unreliable.
 
-Note that the covariate effects are encoded in the `make_Q` function used to create the synthetic data as follows:
 
-  * `age_eff  <- exp(0.025 * (age_i  - 60))   # older  -> higher mortality`
-  * `size_eff <- exp(0.180 * (size_i -  3.0))  # larger -> higher recurrence`
 
 
 ### Progression-Free Survival
@@ -967,7 +960,7 @@ The state occupancy plots show the probability of being in each state as time pr
 #| message: false
 #| warning: false
 #| code-fold: true
-#| code-summary: "Surgery arm occupancy plot"
+#| code-summary: "Surgery occupancy plot"
 plot_state_occupancy(
   Q            = Q_base,
   start_state  = 1,
@@ -990,7 +983,7 @@ plot_state_occupancy(
 #| message: false
 #| warning: false
 #| code-fold: true
-#| code-summary: "Definitive RT arm occupancy plot"
+#| code-summary: "Definitive RT  occupancy plot"
 plot_state_occupancy(
   Q            = Q_base,
   start_state  = 2,
@@ -1104,6 +1097,7 @@ rownames(df_utility) <- NULL
 
 df_utility |>
   gt() |>
+  tab_options(table.font.size = px(10)) |>
   cols_label(
     State        = "State",
     Label        = "Health State",
