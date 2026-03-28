@@ -2,7 +2,7 @@
 title: "Stage II OSCC — Health Economics Model"
 subtitle: "Analysis from the patient's perspective"
 author: "Joseph Rickert"
-date: 2026-03-25
+date: 2026-04-02
 description: "This post presents a proof of concept for constructing Healthcare Economics Models from a patient's perspective. Taking oral squamous cell carcinoma as a case study, it models the health states that a patient would visit after treatment as a continuous-time Markov chain. Estimates of jump-chain train transition probabilities and sojourn times are then used to construct a synthetic data set. Calculated values for the total expected amount of time that patients will spend it each health state for two treatment arms are combined with utilities for each health state derived from the literature  to compare the total quality adjusted life years for each treatment arm. It is envisioned that models of this sort, constructed under the supervision medical experts, would be useful to clinicians both in documenting the treatment decision process and in communicating with patients."
 editor: source
 format: html
@@ -227,7 +227,7 @@ This section builds a synthetic patient cohort for Stage II (T2 N0 M0) oral squa
 #| code-summary: "Simulation setup"
 set.seed(6413)
 
-N_PATIENTS <- 400
+N_PATIENTS <- 1000
 MAX_TIME   <- 60      # months (5-year follow-up)
 obs_base   <- c(0, 1, 2, 3, 6, 9, 12, 18, 24, 36, 48, 60)
 
@@ -264,7 +264,7 @@ The jump chain may be thought of as an embedded discrete time Markov chain that 
 #| message: false
 #| warning: false
 #| code-fold: true
-#| code-summary: "Show code for clinician inouts"
+#| code-summary: "Show code for model inputs"
 
 # == CLINICIAN INPUTS ==========================================================
 #
@@ -490,7 +490,7 @@ This table shows some of the meta-data describing the synthetic data set.
 #| message: false
 #| warning: false
 #| code-fold: true
-#| code-summary: "Cohort summary"
+#| code-summary: "Show code for cohort summary"
 # Collect components for footnotes
 trt_counts <- table(treatment)
 died <- oscc2_data |>
@@ -519,11 +519,13 @@ as.data.frame(table(State = oscc2_data$state_label)) |>
 ```
 ### First Patient Trajectory
 
+This data frame shows the complete trajectory of sates visited for the first synthetic patient.
+
 ```{r}
 #| message: false
 #| warning: false
 #| code-fold: true
-#| code-summary: "Show trajectory"
+#| code-summary: "Show code for trajectory"
 oscc2_data[oscc2_data$id == 1,
            c("id", "time", "state", "state_label", "treatment",
              "age", "tumor_size_cm", "DOI_mm")]
@@ -602,7 +604,7 @@ km_plot
 
 ### Survival by Age and Tumour Size
 
-This next panel of plots show the overall survival broken out byt the covariates age and tumor size. Each panel indicates the four possible values of the covariates.
+This next panel of plots show the overall survival broken out by the covariates age and tumor size. Each panel indicates the four possible values of the covariates.
 
 
 ```{r}
@@ -698,7 +700,7 @@ ggplot(surv_tidy, aes(x = time, y = estimate,
 ```
 ---
 
-### What the curves show:
+### What the subgroup curves show:
 
 ```{r}
 #| echo: false
@@ -734,21 +736,16 @@ n_rt_cov   <- length(unique(oscc2_data$id[oscc2_data$treatment == "DefinitiveRT"
 * **Surgery arm** (n = `r n_surg_cov`): age is the dominant predictor of survival.
   The youngest, smallest-tumour subgroup (Age < 62, Tumour < 3 cm; dark blue) reaches
   `r s5_surg_y_s` at 5 years, while the youngest with larger tumours (Age < 62,
-  Tumour ≥ 3 cm; light blue) reaches `r s5_surg_y_l` — an ordering that likely
-  reflects sampling variation in the synthetic cohort rather than a true protective
-  effect of tumour size.
+  Tumour ≥ 3 cm; light blue) reaches `r s5_surg_y_l` 
   Among older patients (Age ≥ 62), those with smaller tumours (Tumour < 3 cm; orange)
   fare worst at `r s5_surg_o_s`, while those with larger tumours (dark red) reach
-  `r s5_surg_o_l`, again with the caveat that synthetic-data variation can invert the
-  expected size effect within age strata.
+  `r s5_surg_o_l`. Even if these counter intuitive orderings are due to sampling variation and not a more fundamental underlying cause they may indicate a limitation of the this particular synthetic data set. 
 
 * **Definitive RT arm** (n = `r n_rt_cov`): the four subgroups together contain only
   `r n_rt_cov` patients, yielding wide confidence bands and coarse staircase steps;
   point estimates (`r s5_rt_y_s`, `r s5_rt_y_l`, `r s5_rt_o_s`, `r s5_rt_o_l`
   for the dark-blue, light-blue, orange, and dark-red subgroups respectively) should
-  be interpreted with caution. The broad pattern mirrors the Surgery arm — older age
-  is associated with lower survival — but the small-n instability makes subgroup
-  comparisons across treatment arms unreliable.
+  be interpreted with caution. The broad pattern mirrors the Surgery arm in that older age is associated with lower survival,  but the small-n instability makes subgroup comparisons across treatment arms unreliable.
 
 
 
@@ -866,7 +863,7 @@ pfs_gap_12  <- pfs_surg_12 - pfs_rt_12
 * Surgery achieves notably higher early PFS: approximately `r pfs_surg_12`% at 12 months versus `r pfs_rt_12`% for Definitive RT — a `r pfs_gap_12` percentage point difference driven by the higher probability of early locoregional treatment failure in the RT arm.
 * The gap narrows progressively over the 60-month horizon, with Surgery at `r pfs_surg_60`% and Definitive RT at `r pfs_rt_60`% at month 60.
 * The wider confidence band on the Definitive RT curve reflects the smaller sample size in that arm.
-* **Interpretation note:** because `oscc2_data` is synthetic data generated from the model's own transition probabilities, these PFS curves are an internal consistency check rather than independent clinical calibration data.
+
 
 ## Time Patients Spend in Each Health State
 
@@ -1001,50 +998,40 @@ plot_state_occupancy(
 
 ## Health Economic Evaluation — Patient Perspective
 
-The health Economics model presented here focus on QALYs calculated with with help of EQ-5D utilities. Although the utilities are abstractions without meaning to most patients they do provide a measure, however imperfect, of how "on average" others with the same disease have rated the ensemble of unpleasant experiences related to each possible health state. To be truly helpful physicians and their care teams need tell the story surrounding each state explaining the side effects of the treatments experienced in each health state along with the strategies that previous patients have employed to cope with them.
+The health Economics model presented uses QALYs calculated with with EQ-5D utilities. Although these utilities are abstractions they do provide a measure, however imperfect, of how patients treated for OSCC have rated the ensemble of experiences related to each possible health state. 
 
-The model does not calculate costs under the assumption that, in most cases, cost would not be directly relevant to patients. Moreover in the United States, such calculations would be impossible. The U.S. health care system is set up so that the cost of treatments are only made known to patients after the treatments have be received.
+The model does not to calculate financial costs for the following reasons:
+
+1. In the United States, there is no practical way to estimate the final direct cost to patients who are covered by private insurance or Medicare. The U.S. health care system is set up so that the final cost of treatments borne by patients are only made known after the treatments have be received.
+2. For patients with adequate insurance it is not likely cost would not be directly relevant to patient decisions. 
+3. For patients without insurance, the financial burden of treatment would dominate all other considerations.
+4. From a patient's point of view, there is merit in clarifying the quality of life to be expected after undergoing a particular treatment. For example, it is not difficult to imagine that elderly patients would choose palliative care over a course of chemotherapy.
+
+
 
 ### Quality-Adjusted Life Years (QALYs)
 
-A Quality-Adjusted Life Year (QALY) combines the quantity and quality of life
-into a single metric. One QALY represents one year lived in perfect health;
-a year spent in a health state with diminished quality counts for less than
-one QALY in proportion to that state's utility weight.
+A Quality-Adjusted Life Year (QALY) combines the quantity and quality of life into a single metric. One QALY represents one year lived in perfect health; a year spent in a health state with diminished quality counts for less than one QALY in proportion to that state's utility weight.
 
 In this model, QALYs are calculated in three steps:
 
-1. **Assign utility weights.** Each of the eight health states is assigned
-   an EQ-5D utility value between 0 (death) and 1 (perfect health), drawn
-   from peer-reviewed literature on head-and-neck cancer patients.
+1. **Assign utility weights:** Each of the eight health states is assigned an EQ-5D utility value between 0 (death) and 1 (perfect health), drawn from peer-reviewed literature on head-and-neck cancer patients.
 
-2. **Estimate time in each state.** The continuous-time Markov chain (CTMC)
-   simulation provides the expected number of months the cohort spends in
-   each state over a 60-month horizon, separately for the Surgery arm and
-   the Definitive Radiation Therapy arm.
+2. **Estimate time in each state:** The continuous-time Markov chain (CTMC) simulation provides the expected number of months the cohort spends in each state over a 60-month horizon, separately for the Surgery arm and the Definitive Radiation Therapy arm.
 
-3. **Compute utility-weighted life years.** For each state, the time (in months)
-   is multiplied by its utility weight and the products are summed across all
-   states. Dividing by 12 converts the result to years:
+3. **Compute utility-weighted life years:** For each state, the time (in months) is multiplied by its utility weight and the products are summed across all states. Dividing by 12 converts the result to years:
 
 $$
 \text{Total QALYs} = \frac{1}{12} \sum_{i=1}^{8} \text{time}_i \times u_i
 $$
 
-where $\text{time}_i$ is the expected months in state $i$ and $u_i$ is its
-EQ-5D utility. The two treatment arms are evaluated on the same 60-month
-horizon, allowing a direct QALY comparison from the patient's perspective.
-
-
-Health state utility values (HSUVs) map each model state to a preference-based
-quality-of-life weight on the 0–1 scale (0 = death, 1 = perfect health).
-The weights below are EQ-5D-based defaults drawn from the published literature.
-S6 (NED) carries the highest utility among living states and serves as the
-reference; a NED-normalized column (NED = 1.00) is included for sensitivity work.
-
+where $\text{time}_i$ is the expected months in state $i$ and $u_i$ is its EQ-5D utility. The two treatment arms are evaluated on the same 60-month horizon, allowing a direct QALY comparison from the patient's perspective.
 
 
 ### Utility Values
+
+Health state utility values map each model state to a preference-based quality-of-life weight on the 0–1 scale (0 = death, 1 = perfect health). The weights below are EQ-5D-based defaults drawn from the published literature. S6 (NED) carries the highest utility among living states and serves as the
+reference; a NED-normalized column (NED = 1.00) is included for sensitivity work.
 
 The sources for the utility values are provided as comments in the code below. Complete references are provided in the Reference section at the end.
 ```{r}
@@ -1260,9 +1247,12 @@ ggplot(df_qaly, aes(x = Arm, y = QALY_mo / 12, fill = State)) +
 
 ## Discussion
 
-The intended users of the class of models I am proposing are physicians and their support teams who are making decisions about patient treatments and explaining the possible consequences of the treatments to their patients. In the first use case, physicians may find the formality of the model and its baseline estimates useful in finalizing their decisions and documenting their decision making process. Having a model to inform treatment decisions should be especially helpful in situations where multiple physicians collaborate on deciding treatment options. At the very least a model would be useful in verifying shared assumptions.
 
-The second use of the model to help physicians and their care teams communicate with patients about the consequences of various treatment options is more speculative. But at the very least the exercise of explaining a journey through various states and interpreting the QALY's may be useful in structuring patient conversations and setting expectations. 
+
+
+The intended users of the class of models I am proposing are physicians and their support teams who are making treatment decisions and explaining the possible consequences of the treatments to their patients. In the first use case, physicians may find the formality of the model and its baseline estimates useful in finalizing their decisions and documenting their decision making process. Having a model to inform treatment decisions should be especially helpful in situations where multiple physicians collaborate on deciding treatment options. At the very least, a model would be useful in verifying shared assumptions.
+
+The second use of the model to help physicians and their care teams communicate with patients about the consequences of various treatment options is more speculative. To be truly helpful to patients physicians and their care teams must generate a compelling narrative for each health state explaining the side effects of the treatments experienced in each health state along with the strategies that previous patients have employed to cope with them. At the very least the exercise of explaining a journey through various states and interpreting the QALY's may be useful in structuring patient conversations and setting expectations. 
 
 ## Technical Notes
 
@@ -1288,7 +1278,7 @@ Absolute five-year OS is then obtained as:
 
 $$\text{OS}_{\text{abs}} = r \times \bar{S}^{(5)} = 0.84 \times 0.920 = 0.773$$
 
-where $r = 0.84$ is the SEER five-year relative survival for localised oral cavity cancer
+where $r = 0.84$ is the SEER five-year relative survival for localized oral cavity cancer
 (Siegel et al. 2024, *CA Cancer J Clin*, Figure 5). The code below details this calculation
 and provides a sensitivity check at age 65 (note: age-65 values are pending verification).
 
@@ -1308,7 +1298,7 @@ surv_female_62 <- 0.9436  # 5-yr background survival, females age 62; SSA 2021 p
 prop_male <- 0.70
 expected_survival_5yr <- prop_male * surv_male_62 + (1 - prop_male) * surv_female_62
 
-# SEER 5-year relative survival for localised oral cavity (Siegel 2024, Fig. 5)
+# SEER 5-year relative survival for localized oral cavity (Siegel 2024, Fig. 5)
 relative_survival_5yr <- 0.84
 
 # Absolute OS = relative survival × expected (background) survival
