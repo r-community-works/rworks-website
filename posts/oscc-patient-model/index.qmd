@@ -2,7 +2,7 @@
 title: "Stage II OSCC — Health Economics Model"
 subtitle: "Analysis from the patient's perspective"
 author: "Joseph Rickert"
-date: 2026-04-02
+date: 2026-04-16
 description: "This post presents a proof of concept for constructing Healthcare Economics Models from a patient's perspective. Taking oral squamous cell carcinoma as a case study, it models the health states that a patient would visit after treatment as a continuous-time Markov chain. Estimates of jump-chain train transition probabilities and sojourn times are then used to construct a synthetic data set. Calculated values for the total expected amount of time that patients will spend it each health state for two treatment arms are combined with utilities for each health state derived from the literature  to compare the total quality adjusted life years for each treatment arm. It is envisioned that models of this sort, constructed under the supervision medical experts, would be useful to clinicians both in documenting the treatment decision process and in communicating with patients."
 editor: source
 format: html
