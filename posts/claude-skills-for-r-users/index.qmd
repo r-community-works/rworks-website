@@ -133,3 +133,7 @@ A huge thank you to the awesome creators who developed and shared their Skills, 
 If you want examples of Claude Code in action with R, Simon Couch has a couple of great blog posts on the subject: [Post 1](https://www.simonpcouch.com/blog/2025-03-26-claude-code/), [Post 2](https://www.simonpcouch.com/blog/2025-07-17-claude-code-2/). They're a great complement to this roundup and show what this can look like in real workflows.
 
 New features and techniques are popping up all the time. If you're experimenting with Claude Code for R and find something useful, please reach out anytime!
+
+::: callout-note
+Shortly after publishing this post, Christopher Kenny started the [Awesome R Stats Skills](https://github.com/christopherkenny/awesome-rstats-skills) repo. Check it out for more Skills that you can use in your workflows!
+:::
