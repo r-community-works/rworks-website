@@ -35,6 +35,12 @@ and [Survival Analysis](https://cran.r-project.org/web/packages/causaldef/vignet
 
 ![](flexcausal.png){fig-alt="Schematic of workflow"}
 
+### Data
+
+
+[fred](https://cran.r-project.org/package=fred) v0.2.0: Provides tidy access to economic data from the [Federal Reserve Economic Data' (FRED) API](https://fred.stlouisfed.org/docs/api/fred/) which is maintained by the Federal Reserve Bank of St. Louis and contains over 800,000 time series from 118 sources covering GDP, employment, inflation, interest rates, trade, and more. Functions include fetch series observations, search for series, browse categories, releases, and tags, and retrieve series metadata. Real-time and vintage helpers built on [ALFRED](https://alfred.stlouisfed.org/) return a series as it appeared on a given date, the first-release version, every revision, or a panel of selected vintages. Look [here](https://github.com/charlescoverdale/fred) for an introduction. 
+
+[readmoaa](https://cran.r-project.org/package=readnoaa) v0.1.1: Provides tidy access to climate and weather data from the National Oceanic and Atmospheric Administration (**NOAA**) via the [National Centers for Environmental Information' (NCEI) Data Service API](https://www.ncei.noaa.gov/access/services/data/v1). Covers daily weather observations, monthly and annual summaries, and 30-year climate normals from over 100,000 stations across 180 countries. No API key is required. Dedicated functions handle the most common datasets, while a generic fetcher provides access to all NCEI datasets. See [README](https://cran.r-project.org/web/packages/readnoaa/readme/README.html) to get started.
 
 :::
 
