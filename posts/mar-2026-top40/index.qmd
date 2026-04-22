@@ -1,0 +1,62 @@
+---
+title: "March 2026 Top 40 New CRAN Packages"
+author: "Joseph Rickert"
+date: 2026-03-26
+description: "An attempt to capture the depth and breadth of what's new on CRAN."
+image: ""
+image-alt: ""
+categories: "Top 40"
+editor: source
+format: html
+---
+
+X
+ of the new packages submitted to CRAN in March were still there in mid-March. Here are my Top 40 picks in seventeen categories: Artificial Intelligence, Biology, Buddhism, Climate Science, Computational Methods, Data, Ecology, Epidemiology, Genomics, Machine Learning, Medical Applications, Physics, Statistics, Surveys, Time Series, Utilities, and Visualization.
+
+
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+![](.png){fig-alt=""}
+
+### Causal Inference
+
+[causaldef](https://cran.r-project.org/package=causaldef) v0.2.0: Implements Le Cam deficiency theory for causal inference, as described in [Akdemir (2026)](https://zenodo.org/records/18367347). Provides theorem-backed bounds together with computable proxy diagnostics for information loss from confounding, selection bias, and distributional shift. Supports continuous, binary, count, survival, and competing risks outcomes. Key features include propensity-score total-variation deficiency proxies, negative control diagnostics, policy regret bounds, and sensitivity analysis via confounding frontiers. There are eleven vignettes including [Introduction](https://cran.r-project.org/web/packages/causaldef/index.html)
+and [Survival Analysis](https://cran.r-project.org/web/packages/causaldef/vignettes/survival_analysis.html).
+
+[CausalSpline](https://cran.r-project.org/package=CausalSpline) v0.1.0: Estimates nonlinear causal dose-response functions for continuous treatments using spline-based methods under standard causal assumptions (unconfoundedness / ignorability). Implements three identification strategies: Inverse Probability Weighting via the generalised propensity score, G-computation (outcome regression), and a doubly-robust combination.  Pointwise confidence bands andfragility diaanostics are provided. See [Hirano and Imbens (2004)](https://onlinelibrary.wiley.com/doi/10.1111/j.1468-0262.2004.00481.x) for background and the [vignette](https://cran.r-project.org/web/packages/CausalSpline/vignettes/introduction.html) for examples.
+
+![](CausalSpline.png){fig-alt="Example of causal dose response curve"}
+
+
+[flexCausal](https://cran.r-project.org/package=flexCausal) v0.1.0: Provides doubly robust one-step and targeted maximum likelihood estimators for average causal effects in acyclic directed mixed graphs with unmeasured variables. Automatically determines whether the treatment effect is identified via backdoor adjustment or the extended front-door functional, and dispatches to the appropriate estimator. Supports incorporation of machine learning algorithms via `SuperLearner` and cross-fitting for nuisance estimation. Methods are described in [Guo and Nabi (2024)](https://arxiv.org/abs/2409.03962). See the [vignette](https://cran.r-project.org/web/packages/flexCausal/vignettes/introduction.html).
+
+![](flexcausal.png){fig-alt="Schematic of workflow"}
+
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+
+
+### Machine Learning
+
+
+end
+
+
+:::
+
+
+
+
+
+::::
+
