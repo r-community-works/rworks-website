@@ -42,6 +42,35 @@ and [Survival Analysis](https://cran.r-project.org/web/packages/causaldef/vignet
 
 [readmoaa](https://cran.r-project.org/package=readnoaa) v0.1.1: Provides tidy access to climate and weather data from the National Oceanic and Atmospheric Administration (**NOAA**) via the [National Centers for Environmental Information' (NCEI) Data Service API](https://www.ncei.noaa.gov/access/services/data/v1). Covers daily weather observations, monthly and annual summaries, and 30-year climate normals from over 100,000 stations across 180 countries. No API key is required. Dedicated functions handle the most common datasets, while a generic fetcher provides access to all NCEI datasets. See [README](https://cran.r-project.org/web/packages/readnoaa/readme/README.html) to get started.
 
+
+### Ecology
+
+[FuelDeep3D](https://cran.r-project.org/package=FuelDeep3D) v0.1.1: Provides tools for preprocessing, feature extraction, and segmentation of three-dimensional forest point clouds derived from terrestrial laser scanning. Functions support creating height-above-ground (HAG) metrics, tiling, and sampling point clouds, generating training datasets, applying trained models to new point clouds, and producing per-point fuel classes such as stems, branches, foliage, and surface fuels. Deep learning segmentation relies on the PointNeXt architecture described by [Qian et al. (2022)](https://arxiv.org/abs/2206.04670) while ground classification utilizes the Cloth Simulation Filter algorithm by [Zhang et al. (2016)](https://www.mdpi.com/2072-4292/8/6/501). See [README](https://cran.r-project.org/web/packages/FuelDeep3D/readme/README.html) for examples.
+
+![](FuelDeep3D.png){fig-alt="Example of Ras Las plot"}
+
+[soilFlux](https://cran.r-project.org/package=soilFlux) v0.1.5: Implements a physics-informed one-dimensional convolutional neural network (CNN1D-PINN) for estimating the complete soil water retention curve (SWRC) as a continuous function of matric potential, from soil texture, organic carbon, bulk density, and depth. The network architecture ensures strict monotonic decrease of volumetric water content with increasing suction by construction, through cumulative integration of non-negative slope outputs (monotone integral architecture). Four physics-based residual constraints adapted from [Norouzi et al. (2025)](https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2024WR038149). See [README](https://cran.r-project.org/web/packages/soilFlux/readme/README.html) and the [vignette](https://cran.r-project.org/web/packages/soilFlux/vignettes/introduction.html).
+
+![](soilFlux.png){fig-alt="Plot of predicted versus observed values"}
+
+### Healt Technology Assessment
+
+
+[drMAIC](https://cran.r-project.org/package=drMAIC) v0.1.0: Implements Doubly Robust Matching-Adjusted Indirect Comparison for population-adjusted indirect treatment comparisons in health technology appraisal. Features include standard MAIC via entropy balancing, augmented/doubly robust MAIC combining inverse probability weighting with outcome regression, comprehensive covariate balance diagnostics, Love plots, sensitivity analyses, bootstrap confidence intervals and submission-ready outputs aligned with NICE Decision Support Unit Technical Support Document 18, Cochrane Handbook guidance on indirect comparisons, and ISPOR best practice guidelines. See the [vignette](https://cran.r-project.org/web/packages/drMAIC/vignettes/drMAIC_intro.html).
+
+### Medical Statistics
+
+[epicR](https://cran.r-project.org/package=epicR) v1.0.1: Implements a Discrete Event Simulation model that simulates health outcomes of patients with Chronic Obstructive Pulmonary Disease (COPD) based on demographics and individual-level risk factors, based on the model published in [Sadatsafavi et al. (2019)](https://journals.sagepub.com/doi/10.1177/0272989X18824098). There are four vignettes including [Getting Started](https://cran.r-project.org/web/packages/epicR/vignettes/GettingStarted.html) and [Background](https://cran.r-project.org/web/packages/epicR/vignettes/BackgroundEPIC.html).
+
+[forestsearch](https://cran.r-project.org/package=forestsearch) v0.1.0: Designed for clinical researchers conducting exploratory subgroup analyses in randomized controlled trials, particularly for multi-regional clinical trials requiring regional consistency evaluation the package implements statistical methods for exploratory subgroup identification in clinical trials with survival endpoints. Features include machine learning tools for identifying patient subgroups with differential treatment effects and bootstrap bias correction methods using the infinitesimal jackknife methods to address selection bias in post-hoc analyses. See [León et al. (2024)](https://onlinelibrary.wiley.com/doi/10.1002/sim.10163) for backgound and the [vignette](https://cran.r-project.org/web/packages/forestsearch/vignettes/forestsearch.html).
+
+![](forestsearch.png){fig-alt="Kaplan-Meier curves by subgroups"}
+
+
+[mrddGlobal](https://cran.r-project.org/package=mrddGlobal) v0.1.0: Provides functions for global testing for regression discontinuity designs with more than one running variable including functions for testing whether there exist non-zero treatment effects along the boundary of the treated region, and testing whether there exist discontinuities in the joint density of the running variables along the boundary of the treated region. See [Samiahulin (2026)](https://arxiv.org/abs/2602.03819) for background and the [vignette](https://cran.r-project.org/web/packages/mrddGlobal/vignettes/mrddGlobal_vignette.html) for examples.
+
+![](mrddGlobal.png){fig-alt="3D Boundary Plot"}
+
 :::
 
 ::: {.column width="10%"}
