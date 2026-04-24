@@ -2,16 +2,15 @@
 title: "March 2026 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
 date: 2026-03-26
-description: "An attempt to capture the depth and breadth of what's new on CRAN."
-image: ""
-image-alt: ""
+description: "An idiosyncratic, unabashedily biased, time constrained attempt to capture the depth and breath of the new packeges submitted to CRAN in a single month entirely without the use of AI: clearly unsustainable, but maybe entertaining and somewhat useful."
+image: "opensimplex2.gif"
+image-alt: "Simulated Flames"
 categories: "Top 40"
 editor: source
 format: html
 ---
 
-X
- of the new packages submitted to CRAN in March were still there in mid-March. Here are my Top 40 picks in seventeen categories: Artificial Intelligence, Biology, Buddhism, Climate Science, Computational Methods, Data, Ecology, Epidemiology, Genomics, Machine Learning, Medical Applications, Physics, Statistics, Surveys, Time Series, Utilities, and Visualization.
+Three hundred seventy-one of the new packages submitted to CRAN in March were still there in mid-April. Here are my Top 40 picks in fifteen categories: Causal Inference, Computational Methods, Data, Ecology, Health Technology Assessment, Mathematics, Medical Statistics, Probability Programming, Public Health, Risk Analysis, Statistics, Time Series, Utilities, and Visualization.
 
 
 
@@ -37,11 +36,17 @@ and [Survival Analysis](https://cran.r-project.org/web/packages/causaldef/vignet
 
 ### Computational Methods
 
+[opensimplex2](https://cran.r-project.org/package=opensimplex2) v0.0.3: Provides a function to generate 2, 3 or 4-dimensional gradient noise. The noise function is comparable to classic Perlin noise, but with less directional artefacts and lower computational overhead. It can have applications in procedural generation or (flow fields) simulations. See the [vignette](https://cran.r-project.org/web/packages/opensimplex2/vignettes/opensimplex-on-fire.html).
+
+![](opensimplex2.gif){fig-alt="Simulation of flames"}
+
 [ROOT](https://cran.r-project.org/package=ROOT)nv0.1.1: Implements a general framework for globally optimizing user-specified objective functionals over interpretable binary weight functions represented as sparse decision trees, called ROOT (Rashomon Set of Optimal Trees). It searches over candidate trees to construct a Rashomon set of near-optimal solutions and derives a summary tree highlighting stable patterns in the optimized weights. ROOT includes a built-in generalizability mode for identifying subgroups in trial settings for transportability analyses [Parikh et al. (2025)](https://www.tandfonline.com/doi/full/10.1080/01621459.2025.2495319). There are three vignettes including [Quickstart Guide](https://cran.r-project.org/web/packages/ROOT/vignettes/quickstart.html) and [Optimization Path Example](https://cran.r-project.org/web/packages/ROOT/vignettes/optimization_path_example.html).
 
 ![](ROOT.png){fig-alt="Plot of tree from the Rashomon set"}
 
 ### Data
+
+[edgarfundamentals](https://cran.r-project.org/package=edgarfundamentals) v0.1.2: Provides a simple, ticker-based interface for retrieving fundamental financial data from the United States Securities and Exchange Commission's EDGAR XBRL API](https://www.sec.gov/edgar/sec-api-documentation). Functions return key financial ratios including earnings per share, return on equity, return on assets, debt-to-equity, current ratio, gross margin, operating margin, net margin, price-to-earnings, price-to-book, and dividend yield for any publicly traded U.S. company. Data is sourced directly from company 10-K annual filings, requiring no API key or paid subscription. Designed for use in quantitative finance courses and research workflows. See the [vignette](https://cran.r-project.org/web/packages/edgarfundamentals/vignettes/edgarfundamentals.html).
 
 
 [fred](https://cran.r-project.org/package=fred) v0.2.0: Provides tidy access to economic data from the [Federal Reserve Economic Data' (FRED) API](https://fred.stlouisfed.org/docs/api/fred/) which is maintained by the Federal Reserve Bank of St. Louis and contains over 800,000 time series from 118 sources covering GDP, employment, inflation, interest rates, trade, and more. Functions include fetch series observations, search for series, browse categories, releases, and tags, and retrieve series metadata. Real-time and vintage helpers built on [ALFRED](https://alfred.stlouisfed.org/) return a series as it appeared on a given date, the first-release version, every revision, or a panel of selected vintages. Look [here](https://github.com/charlescoverdale/fred) for an introduction. 
@@ -72,6 +77,14 @@ and [Survival Analysis](https://cran.r-project.org/web/packages/causaldef/vignet
 
 
 [drMAIC](https://cran.r-project.org/package=drMAIC) v0.1.0: Implements Doubly Robust Matching-Adjusted Indirect Comparison for population-adjusted indirect treatment comparisons in health technology appraisal. Features include standard MAIC via entropy balancing, augmented/doubly robust MAIC combining inverse probability weighting with outcome regression, comprehensive covariate balance diagnostics, Love plots, sensitivity analyses, bootstrap confidence intervals and submission-ready outputs aligned with NICE Decision Support Unit Technical Support Document 18, Cochrane Handbook guidance on indirect comparisons, and ISPOR best practice guidelines. See the [vignette](https://cran.r-project.org/web/packages/drMAIC/vignettes/drMAIC_intro.html).
+
+
+### Mathematics
+
+[wkpool](https://cran.r-project.org/package=wkpool) v0.3.0: Provides functions to establish and maintain vertex pool topology for geometry characterized by the [`Well-known text`](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) markup language. In this framework, segments are the atomic unit, vertices are shared via integer references into a pool. Topology is made discoverable via coincident vertex detection while not requiring modification of the input data. Topological data models follow principles described in [Worboys and Duckham (2004)](https://www.amazon.com/GIS-Computing-Perspective-Michael-Worboys/dp/0415283752). The edge-based topology geometry decomposed into vertices and directed edge pairs is a simplification of the quad-edge case in [Guibas & Stolfi (1985)](https://dl.acm.org/doi/10.1145/282918.282923). See the vignettes [Segments: the atoms of geometry](https://cran.r-project.org/web/packages/wkpool/vignettes/wkpool-vignette-segments.html) and [wkpool: Topology-based Geometry Handling](https://cran.r-project.org/web/packages/wkpool/vignettes/wkpool.html).
+
+
+
 
 ### Medical Statistics
 
@@ -113,7 +126,10 @@ and [Survival Analysis](https://cran.r-project.org/web/packages/causaldef/vignet
 
 
 
-### Machine Learning
+### Probability
+
+[ZeroOneDists]() v1.0.0: Implements a new statistical distributions in (0, 1) interval. Each distribution includes the traditional functions as well as an additional function called the family function, which can be used to estimate parameters using Generalized Additive Models for Location, Scale and Shape, GAMLSS by [Rigby & Stasinopoulos (2005)](https://academic.oup.com/jrsssc/article-abstract/54/3/507/7113027?redirectedFrom=fulltext&login=false).
+
 
 ### Programming
 
@@ -148,6 +164,8 @@ and [Survival Analysis](https://cran.r-project.org/web/packages/causaldef/vignet
 
 ![](maskedcauses.png){fig-alt="Plot of conditional cause of failure probability"}
 
+[mmbcv](https://cran.r-project.org/package=mmbcv) v0.3.0: Provides a fucntion to compute a  robust and bias-corrected sandwich variance estimators for multi-state Cox models with clustered time-to-event data. The methodology extends the marginal Cox model bias-correction framework of [Wang et al. (2023)](https://onlinelibrary.wiley.com/doi/10.1002/bimj.202200113) to the multi-state setting. See the [vignette](https://cran.r-project.org/web/packages/mmbcv/vignettes/mmbcv-intro.html).
+
 
 [osktnorm](https://cran.r-project.org/package=osktnorm) v1.1.2: Implements a moment-targeting normality transformation based on the simultaneous optimization of Tukey g-h distribution parameters designed to minimize both asymmetry (skewness) and excess peakedness (kurtosis) in non-normal data by mapping it to a standard normal distribution as described by [Cebeci et al (2026)](https://www.mdpi.com/2073-8994/18/3/458). Optimization is performed by minimizing an objective function derived from the Anderson-Darling goodness-of-fit statistic with Stephens's correction factor, utilizing the L-BFGS-B algorithm for robust parameter estimation. This approach provides an effective alternative to power transformations like Box-Cox and Yeo-Johnson, particularly for data requiring precise tail-behavior adjustment. See the vignettes [OSKT: Normality Transformation via Optimized Skewness and Kurtosis](https://cran.r-project.org/web/packages/osktnorm/vignettes/osktnorm1.html) and [A Practical Example for Working with Datasets](https://cran.r-project.org/web/packages/osktnorm/vignettes/osktnorm2.html).
 
@@ -171,13 +189,30 @@ and [Survival Analysis](https://cran.r-project.org/web/packages/causaldef/vignet
 
 ![](reviser.png){fig-alt="Line plot showing GDP vintages over the publication date dimension"}
 
+### Utilities
 
-end
+[RDesk](https://cran.r-project.org/package=RDesk) v1.0.5: Allows `R` developers to build native `Windows` desktop applications using `R` and `WebView` and create professional, standalone desktop tools with modern web-based user interfaces while maintaining a pure `R` backend. Provides a robust `R6`-based event loop, asynchronous background task management via `mirai` and `callr`, and a native `Win32` message bridge for seamless `R`-to-user-interface communication without listening ports or network overhead. There are seven vignettes including [Getting Started](https://cran.r-project.org/web/packages/RDesk/vignettes/getting-started.html) and [Cookbook](https://cran.r-project.org/web/packages/RDesk/vignettes/cookbook.html).
 
+![](RDesk.png){fig-alt="Sample application interface"}
+
+[starburst](https://cran.r-project.org/package=starburst) v0.3.8: Implements a `future` backend that enables seamless execution of parallel R workloads on [Amazon Web Services ('AWS')](https://aws.amazon.com), including `EC2` and `Fargate` that handles environment synchronization, data transfer, quota management, and worker orchestration automatically, allowing users to scale from local execution to 100+ cloud workers with a single line of code change. There are twelve vignettes including [Getting Started](https://cran.r-project.org/web/packages/starburst/vignettes/getting-started.html) and [Example: Parallel Portfolio Risk Modeling](https://cran.r-project.org/web/packages/starburst/vignettes/example-risk-modeling.html).
+
+### Visualization
+
+[BayesVolcano](https://cran.r-project.org/package=BayesVolcano) v1.0.1: Bayesian models are used to estimate effect sizes (e.g., gene expression changes, protein abundance differences, drug response effects) while accounting for uncertainty, small sample sizes, and complex experimental designs. However, Bayesian posteriors of models with many parameters are often difficult to interpret at a glance. One way to quickly identify important biological changes based on frequentist analysis are volcano plots (using fold-changes and p-values). Bayesian volcano plots bring together the explicit treatment of uncertainty in Bayesian models and the familiar visualization of volcano plots. See [Sousa (2020)](https://www.sciencedirect.com/science/article/abs/pii/S0003267019313492?via%3Dihub) for background and the [vignette](https://cran.r-project.org/web/packages/BayesVolcano/vignettes/BayesVolcano.html) for examples.
+
+![](BayesVolcano.png){fig-alt="Bayesian Volcano Plot"}
+
+
+[forrest](https://cran.r-project.org/package=forrest) v0.3.0: Provides a function to create publication-ready forest plots from any tabular data containing point estimates and confidence intervals. Suitable for visualising results from regression models, meta-analyses, subgroup analyses, or any comparative study. Supports group and subgroup headings, summary estimates displayed as diamonds, grouped estimates with automatic colour and shape mapping, vertical dodging of multiple estimates within the same row, customisable text columns alongside the plot, and optional row striping. Provides a helper to export plots to PDF, PNG, SVG, or TIFF. Built on 'tinyplot' for clean, consistent visual styling with a minimal dependency footprint. There are four vignettes including [Introduction to forrest](https://cran.r-project.org/web/packages/forrest/vignettes/intro.html) and [How forrest works](https://cran.r-project.org/web/packages/forrest/vignettes/internals.html).
+
+![](forrest.png){fig-alt="Sample forrest plot"}
+
+[HeatmapR](https://cran.r-project.org/package=HeatmapR) v1.0.0: Provides a lightweight framework for creating high quality, complex heatmaps using base graphics. Supports hierarchical clustering with dendrograms, column and row scaling, cluster sub-divisions, customizable cell colours, shapes and sizes, legends, and flexible layouts for arranging multiple heatmaps. Designed to return plot objects that can be easily arranged with other plots without sacrificing resolution. Methods for hierarchical clustering and distance computations are described in [Murtagh and Contreras (2012)](https://wires.onlinelibrary.wiley.com/doi/10.1002/wics.53). Dendrogram visualisation methods are based on the `ggdendro` package by [de Vries and Ripley (2020)](https://CRAN.R-project.org/package=ggdendro). See the [vignette](https://cran.r-project.org/web/packages/HeatmapR/vignettes/HeatmapR.html).
+
+![](HeatmapR.png){fig-alt="Sample heatmap"}
 
 :::
-
-
 
 
 
