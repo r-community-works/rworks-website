@@ -161,6 +161,16 @@ and [Survival Analysis](https://cran.r-project.org/web/packages/causaldef/vignet
 
 ![](SuperSurv.png){fig-alt="Plot of SHAP summary of top five features"}
 
+### Time Series
+
+[betaARMA](https://cran.r-project.org/package=betaARMA) v1.1.0: Provides functions to fit  Beta Autoregressive Moving Average (BARMA) models for time series data distributed in the standard unit interval (0, 1). The estimation is performed via the conditional maximum likelihood method using the Broyden-Fletcher-Goldfarb-Shanno (BFGS) quasi-Newton algorithm. The package includes tools for model fitting, diagnostic checking, and forecasting. Based on the work of [Rocha and Cribari-Neto (2009)](https://link.springer.com/article/10.1007/s11749-008-0112-z) and the associated erratum [Rocha and Cribari-Neto (2017)](https://link.springer.com/article/10.1007/s11749-017-0528-4). Look [here](https://github.com/Everton-da-Costa/betaARMA) to get started.
+
+[boundedur](https://cran.r-project.org/package=boundedur) v1.0.1: Implements unit root tests for bounded time series following [Cavaliere and Xu (2014)](https://www.sciencedirect.com/science/article/abs/pii/S0304407613001620?via%3Dihub). Standard unit root tests (ADF, Phillips-Perron) have non-standard limiting distributions when the time series is bounded. This package provides modified ADF and M-type tests (MZ-alpha, MZ-t, MSB) with p-values computed via Monte Carlo simulation of bounded Brownian motion. Supports one-sided (lower bound only) and two-sided bounds, with automatic lag selection using the MAIC criterion of [Ng and Perron (2001)](https://onlinelibrary.wiley.com/doi/10.1111/1468-0262.00256). See [README](https://cran.r-project.org/web/packages/boundedur/readme/README.html) to get started.
+ 
+[reviser](https://cran.r-project.org/package=reviser) v0.1.1: Analyzes revisions in real-time time series vintages. Functions convert between wide revision triangles and tidy long vintages, extract selected releases, compute revision series, visualize vintage paths, and summarize revision properties such as bias, dispersion, autocorrelation, and news-noise diagnostics. There are also functions to identify efficient releases and estimates state-space models for revision nowcasting. Methods are based on [Howrey (1978)](https://www.jstor.org/stable/1924972?origin=crossref), [Jacobs and Van Norden (2011)](https://www.sciencedirect.com/science/article/abs/pii/S0304407610002526?via%3Dihub), and [Kishor and Koenig (2012)](https://www.tandfonline.com/doi/full/10.1198/jbes.2010.08169). There are seven vignettes including [Introduction](https://cran.r-project.org/web/packages/reviser/vignettes/reviser.html) and [revision analysis](https://cran.r-project.org/web/packages/reviser/vignettes/revision-analysis.html).
+
+![](reviser.png){fig-alt="Line plot showing GDP vintages over the publication date dimension"}
+
 
 end
 
