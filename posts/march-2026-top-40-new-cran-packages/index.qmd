@@ -12,13 +12,9 @@ format: html
 
 Three hundred seventy-one of the new packages submitted to CRAN in March were still there in mid-April. Here are my Top 40 picks in fifteen categories: Causal Inference, Computational Methods, Data, Ecology, Health Technology Assessment, Mathematics, Medical Statistics, Probability Programming, Public Health, Risk Analysis, Statistics, Time Series, Utilities, and Visualization.
 
-
-
 :::: {.columns}
 
 ::: {.column width="45%"}
-
-![](.png){fig-alt=""}
 
 ### Causal Inference
 
@@ -40,7 +36,7 @@ and [Survival Analysis](https://cran.r-project.org/web/packages/causaldef/vignet
 
 ![](opensimplex2.gif){fig-alt="Simulation of flames"}
 
-[ROOT](https://cran.r-project.org/package=ROOT)nv0.1.1: Implements a general framework for globally optimizing user-specified objective functionals over interpretable binary weight functions represented as sparse decision trees, called ROOT (Rashomon Set of Optimal Trees). It searches over candidate trees to construct a Rashomon set of near-optimal solutions and derives a summary tree highlighting stable patterns in the optimized weights. ROOT includes a built-in generalizability mode for identifying subgroups in trial settings for transportability analyses [Parikh et al. (2025)](https://www.tandfonline.com/doi/full/10.1080/01621459.2025.2495319). There are three vignettes including [Quickstart Guide](https://cran.r-project.org/web/packages/ROOT/vignettes/quickstart.html) and [Optimization Path Example](https://cran.r-project.org/web/packages/ROOT/vignettes/optimization_path_example.html).
+[ROOT](https://cran.r-project.org/package=ROOT) v0.1.1: Implements a general framework for globally optimizing user-specified objective functionals over interpretable binary weight functions represented as sparse decision trees, called ROOT (Rashomon Set of Optimal Trees). It searches over candidate trees to construct a Rashomon set of near-optimal solutions and derives a summary tree highlighting stable patterns in the optimized weights. ROOT includes a built-in generalizability mode for identifying subgroups in trial settings for transportability analyses [Parikh et al. (2025)](https://www.tandfonline.com/doi/full/10.1080/01621459.2025.2495319). There are three vignettes including [Quickstart Guide](https://cran.r-project.org/web/packages/ROOT/vignettes/quickstart.html) and [Optimization Path Example](https://cran.r-project.org/web/packages/ROOT/vignettes/optimization_path_example.html).
 
 ![](ROOT.png){fig-alt="Plot of tree from the Rashomon set"}
 
@@ -65,7 +61,7 @@ and [Survival Analysis](https://cran.r-project.org/web/packages/causaldef/vignet
 ![](pep725.png){fig-alt="Plot of Sequential Mann-Kendall Trend Analysis"}
 
 
-[simpowa](https://cran.r-project.org/package=simpowa) v1.0.3: Uses simulations from generalized linear mixed-effects models to incorporate random effects across multiple sources and levels of variation, and a dispersion parameter to account for overdispersion and capture unexplained variability. Covers design scenarios for both short-term and long-term trials evaluating the impact of single or combined vector control interventions. Methods build on [Kipingu et al. (2025)](https://link.springer.com/article/10.1186/s12936-025-05454-y) and [Johnson et al. (2015)](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.12306). See [REDME](https://cran.r-project.org/web/packages/simpowa/readme/README.html) to get started.
+[simpowa](https://cran.r-project.org/package=simpowa) v1.0.3: Uses simulations from generalized linear mixed-effects models to incorporate random effects across multiple sources and levels of variation, and a dispersion parameter to account for overdispersion and capture unexplained variability. Covers design scenarios for both short-term and long-term trials evaluating the impact of single or combined vector control interventions. Methods build on [Kipingu et al. (2025)](https://link.springer.com/article/10.1186/s12936-025-05454-y) and [Johnson et al. (2015)](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.12306). See [README](https://cran.r-project.org/web/packages/simpowa/readme/README.html) to get started.
 
 ![](simpowa.png){fig-alt="Plot of power vs number of chambers per treatment"}
 
@@ -128,7 +124,7 @@ and [Survival Analysis](https://cran.r-project.org/web/packages/causaldef/vignet
 
 ### Probability
 
-[ZeroOneDists]() v1.0.0: Implements new statistical distributions on the (0, 1) interval. Each distribution includes the traditional functions as well as an additional function called the family function, which can be used to estimate parameters using Generalized Additive Models for location, scale and shape, GAMLSS by [Rigby & Stasinopoulos (2005)](https://academic.oup.com/jrsssc/article-abstract/54/3/507/7113027?redirectedFrom=fulltext&login=false).
+[ZeroOneDists](https://cran.r-project.org/web/packages/ZeroOneDists/readme/README.html) v1.0.0: Implements new statistical distributions on the (0, 1) interval. Each distribution includes the traditional functions as well as an additional function called the family function, which can be used to estimate parameters using Generalized Additive Models for location, scale and shape, GAMLSS by [Rigby & Stasinopoulos (2005)](https://academic.oup.com/jrsssc/article-abstract/54/3/507/7113027?redirectedFrom=fulltext&login=false).
 
 
 ### Programming
