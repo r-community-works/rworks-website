@@ -1034,16 +1034,16 @@ $$\hat{A} = \sum_i \delta A_i = \frac{\pi}{k} \sum_i r_{k,i}^2 \approx 4\pi$$
 
 This *purely ambient* $\mathbb{R}^3$ computation does not say anything about curvature or charts. It just measures how densely points are packed locally on the sphere.
 
-The second part of the estimate uses a *pullback* operation to compute the Gaussian Curvature $K(x_i)$. To understand what is going on here let's look at what's going on geometrically. The chart map goes in **two directions**:
+The second part of the estimate uses a *pullback* operation to compute the Gaussian Curvature $K(x_i)$. To understand what is going on here note that the chart map goes in two directions:
 
 $$\phi_j : U_j \subset M \to \mathbb{R}^2 \qquad \text{(project to flat coords)}$$
 $$\phi_j^{-1} : \mathbb{R}^2 \to U_j \subset M \subset \mathbb{R}^3 \qquad \text{(embed back into 3D)}$$
 
-$J$ is the Jacobian of $\phi_j^{-1}$, the **embedding direction**. Concretely, if $\xi = (\xi_1, \xi_2)$ are the flat chart coordinates, then $\phi_j^{-1}(\xi)$ is a point in $\mathbb{R}^3$, and:
+$J$ is the Jacobian of $\phi_j^{-1}$, the embedding direction. If $\xi = (\xi_1, \xi_2)$ are the flat chart coordinates, then $\phi_j^{-1}(\xi)$ is a point in $\mathbb{R}^3$, and:
 
 $$J = \frac{\partial \phi_j^{-1}}{\partial \xi} = \begin{pmatrix} \frac{\partial x_1}{\partial \xi_1} & \frac{\partial x_1}{\partial \xi_2} \\[4pt] \frac{\partial x_2}{\partial \xi_1} & \frac{\partial x_2}{\partial \xi_2} \\[4pt] \frac{\partial x_3}{\partial \xi_1} & \frac{\partial x_3}{\partial \xi_2} \end{pmatrix}$$
 
-This is a $3 \times 2$ matrix. Its **columns** are the two tangent vectors to the surface at $x_i$, one for each chart coordinate direction. So $J$ tells how small steps in $\mathbb{R}^2$ chart space translate into steps on the surface in $\mathbb{R}^3$.
+This is a $3 \times 2$ matrx whose columns are the two tangent vectors to the surface at $x_i$, one for each chart coordinate direction. So $J$ tells how small steps in $\mathbb{R}^2$ chart space translate into steps on the surface in $\mathbb{R}^3$.
 
 So we have:
 
@@ -1056,7 +1056,7 @@ $g = J^\top J$ is the metric that tells you how to measure distances and areas o
 
 $$K = \frac{\det(II)}{\det(g)}$$
 
-This is sometimes called the Brioschi formula (Brioschi's 1852 result gave an explicit expression for $K$ purely in terms of $g_{ab}$ and their derivatives, but the ratio form above is the standard coordinate expression). The intuition is that $\det(II)$ measures intrinsic bending of the surface while $\det(g)$ measures how distorted the coordinate system itself is
+This is sometimes called the [Brioschi formula](https://en.wikipedia.org/wiki/Gaussian_curvature). The intuition is that $\det(II)$ measures intrinsic bending of the surface while $\det(g)$ measures how distorted the coordinate system itself is
 
 In an orthonormal frame ($g = I$, so $\det(g) = 1$), the formula collapses to $K = \det(II)$, which is why the earlier `curvature_df` code could skip the correction. But at a general point $x_i$ away from the chart centre, the chart coordinates are no longer orthonormal, so $\det(g) \neq 1$ and the correction matters:
 
@@ -1084,8 +1084,9 @@ $$K \, dA \bigg|_{x_i} = \frac{\det(II)}{\underbrace{\det(J^\top J)}_{\text{metr
 $$\sum_i K_i \cdot \delta A_i \;\longrightarrow\; 4\pi$$
 
 
-The k-NN area estimator and the chart pullback are **independent pipelines** that only meet at the final multiplication `K_i * dA_i` — which is exactly what makes this a clean numerical verification of the theorem.
+Because the k-NN area estimator and the chart pullback are independent calculations, the fact that their product closely estimates the theoretical result provides some verification for the Atlas-Learn methods.
 
+## Results
 
 ### Implementation of Gauss-Bonnet Calculations
 
@@ -1267,7 +1268,7 @@ chi_euler <- chi_GB / (2 * pi)
 ```
 
 
-### Per-chart contributions
+The following charts shows the results of the per chart calculations of the product $K_i dA_i$ for each of the twenty-five charts. 
 
 ```{r}
 #| message: false
@@ -1319,7 +1320,6 @@ ggplot(gb_by_chart, aes(x = chart, y = K_A_j)) +
   theme(panel.grid.minor = element_blank())
 ```
 
-### Results
 
 The Gauss-Bonnet check yields:
 
