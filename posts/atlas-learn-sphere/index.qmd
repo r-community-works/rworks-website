@@ -1,11 +1,11 @@
 ---
 title: "Introducing the Atlas-Learn Approach to the Manifold Hypothesis"
 subtitle: "An R implementation of Atlas-Learn for a 2D surface in R³, with validation checks"
-date: "2026-05-03"
+date: "2026-05-18"
 code-fold: true
 code-summary: "Show the code"
-description: "This post provides an R implementation of the tools and data structures developed in the 2025 paper by Robinett et al.: 'Atlas-based Manifole Representations for Interpretable Riemannian Machine Learning'. It explains some of the basic underlying ideas from differential geometry required to understand methodes developed in the paper, and test the accuracy of those methods by consructing an atlas of charts from a point cloud of random samples from a two-dimensional sphere."
-categories: ""
+description: "This post provides an R implementation of the tools and data structures developed in the 2025 paper by Robinett et al.: 'Atlas-based Manifold Representations for Interpretable Riemannian Machine Learning' that approaches the Manifold Hypothesis from first principles. The post presents some of the basic ideas from differential geometry required to understand the methods developed in the paper and tests the accuracy of those methods by applying them to a point cloud of random samples from a two-dimensional sphere."
+categories: "Differential Geometry"
 image: ""
 image-alt: ""
 format:
@@ -46,7 +46,7 @@ The Atlas-Learn algorithm proceeds in four steps for each chart:
 ## Step 1: Partitioning via k-medoids
 
 The point cloud is partitioned into $k$ clusters using the $k$-medoids algorithm (PAM).
-Unlike $k$-means, PAM selects actual data points as cluster centres (medoids), which makes the
+Unlike $k$-means, PAM selects actual data points as cluster centers (medoids), which makes the
 partition robust to outliers and avoids projection artefacts.  Each point $x_i$ receives a chart
 label $j(i) \in \{1,\ldots,k\}$, and the points belonging to chart $j$ together with their
 centroid are
@@ -204,7 +204,7 @@ quad_jacobian <- function(xi) {
 # PART 2: Core chart operations
 # ---------------------------------------------------------------------------
 # Each chart stores:
-#   mean  : R^3 — chart centre (centroid of the cluster)
+#   mean  : R^3 — chart center (centroid of the cluster)
 #   L     : R^{3x2} — orthonormal tangent basis (columns = v1, v2 from SVD)
 #   M     : R^{3x1} — unit surface normal (v3 from SVD; scalar normal because D-d=1)
 #   K     : R^{1x3} — quadratic curvature coefficients (1 row because D-d=1)
@@ -282,14 +282,14 @@ atlas_learn <- function(X, k, ellipsoid_scale = 1.1) {
   charts <- seq_len(k) |>
     purrr::map(\(j) {
 
-      # --- (a) Extract the cluster and centre it ----------------------------
+      # --- (a) Extract the cluster and center it ----------------------------
       idx <- which(km$clustering == j)
       Xj  <- X[idx, , drop = FALSE]   # N_j x 3 matrix of cluster points
-      m   <- colMeans(Xj)             # chart centre (3-vector)
-      Xc  <- sweep(Xj, 2, m)         # centred cluster: N_j x 3
+      m   <- colMeans(Xj)             # chart center (3-vector)
+      Xc  <- sweep(Xj, 2, m)         # centered cluster: N_j x 3
 
       # --- (b) Local PCA: tangent plane and normal -------------------------
-      # SVD of the centred cluster reveals local geometry:
+      # SVD of the centered cluster reveals local geometry:
       #   - first two right singular vectors (v1, v2) span the tangent plane
       #   - third right singular vector (v3) is the surface normal
       # d=2, D=3: we always take nv=3 because D=3 (fully determined).
@@ -302,7 +302,7 @@ atlas_learn <- function(X, k, ellipsoid_scale = 1.1) {
       # exactly ONE normal direction and M is a column vector, not a matrix.
       M   <- sv$v[, 3, drop = FALSE]
 
-      # Project each centred point into tangent / normal coordinates.
+      # Project each centered point into tangent / normal coordinates.
       # tau: N_j x 2 — tangent coordinates (2D because d=2)
       # nu:  N_j x 1 — normal offsets (scalar because D-d=1)
       tau <- Xc %*% L    # N_j x 2
@@ -393,8 +393,8 @@ print.atlas <- function(x, ...) {
 # ===========================================================================
 
 # Return the index of the nearest chart whose domain contains x.
-# Falls back to the globally nearest chart centre if none qualify.
-# Checking only the 6 nearest charts (by Euclidean centre distance) is
+# Falls back to the globally nearest chart center if none qualify.
+# Checking only the 6 nearest charts (by Euclidean center distance) is
 # sufficient in practice and avoids an O(k) domain test at every step.
 find_chart <- function(atlas, x) {
   dists      <- map_dbl(atlas$charts, \(ch) sum((x - ch$mean)^2))
@@ -553,7 +553,7 @@ atlas_endpoint_error <- function(atlas, p, q, step_size = 0.02) {
 
 # Construct the Atlas
 
-This section of code constructs the sphere point cloud by sampling 2,000 points uniformly from $S^2$ using the standard parametrisation $(\theta, \phi)$ with $\cos\phi$ drawn uniformly on $[-1,1]$, which avoids the pole-crowding that arises from drawing $\phi$ uniformly.
+This section of code constructs the sphere point cloud by sampling 2,000 points uniformly from $S^2$ using the standard parametrization $(\theta, \phi)$ with $\cos\phi$ drawn uniformly on $[-1,1]$, which avoids the pole-crowding that arises from drawing $\phi$ uniformly.
 
 ```{r}
 #| message: false
@@ -850,7 +850,7 @@ We recover the radius of curvature for the manifold from the atlas by calculatin
 
 $$\nu(\xi) = k_1 \xi_1^2 + k_2 \xi_1 \xi_2 + k_3 \xi_2^2 + \cdots$$
 
-where $\xi = (\xi_1, \xi_2)$ are the local chart coordinates and $\nu$ is the normal displacement (height function over the tangent plane). The coefficients $k_1, k_2, k_3$ are stored directly in `ch$K`. At the chart centre $\xi = 0$ the inverse chart map is
+where $\xi = (\xi_1, \xi_2)$ are the local chart coordinates and $\nu$ is the normal displacement (height function over the tangent plane). The coefficients $k_1, k_2, k_3$ are stored directly in `ch$K`. At the chart center $\xi = 0$ the inverse chart map is
 
 $$\varphi_j^{-1}(\xi) = \bar{x}_j + L_j\,\xi + m_j\,K_j\,\phi(\xi),
 \qquad \phi(\xi) = [\xi_1^2,\;\xi_1\xi_2,\;\xi_2^2]^\top.$$
@@ -887,7 +887,7 @@ The next block of code provides a local quadratic model of the surface by calcul
 
 Because the `atlas_learn` algorithm fits the quadratic model **without** an intercept (the
 zero-order term in $\nu$ is absorbed into $\bar{x}_j$, the chart mean). Because the
-chart mean lies *inside* the sphere rather than on it, the centred normal offsets
+chart mean lies *inside* the sphere rather than on it, the centered normal offsets
 $\nu_i = (x_i - \bar{x}_j)\cdot m_j$ contain a constant shift
 $c_j \approx \tfrac{1}{2}\,\mathbb{E}[\|\tau\|^2]$.  Regressing $\nu$ on $\phi(\tau)$
 without an intercept confounds $c_j$ with the quadratic coefficients, biasing $K_j$
@@ -1043,7 +1043,7 @@ $J$ is the Jacobian of $\phi_j^{-1}$, the embedding direction. If $\xi = (\xi_1,
 
 $$J = \frac{\partial \phi_j^{-1}}{\partial \xi} = \begin{pmatrix} \frac{\partial x_1}{\partial \xi_1} & \frac{\partial x_1}{\partial \xi_2} \\[4pt] \frac{\partial x_2}{\partial \xi_1} & \frac{\partial x_2}{\partial \xi_2} \\[4pt] \frac{\partial x_3}{\partial \xi_1} & \frac{\partial x_3}{\partial \xi_2} \end{pmatrix}$$
 
-This is a $3 \times 2$ matrx whose columns are the two tangent vectors to the surface at $x_i$, one for each chart coordinate direction. So $J$ tells how small steps in $\mathbb{R}^2$ chart space translate into steps on the surface in $\mathbb{R}^3$.
+This is a $3 \times 2$ matrix whose columns are the two tangent vectors to the surface at $x_i$, one for each chart coordinate direction. So $J$ tells how small steps in $\mathbb{R}^2$ chart space translate into steps on the surface in $\mathbb{R}^3$.
 
 So we have:
 
@@ -1058,11 +1058,11 @@ $$K = \frac{\det(II)}{\det(g)}$$
 
 This is sometimes called the [Brioschi formula](https://en.wikipedia.org/wiki/Gaussian_curvature). The intuition is that $\det(II)$ measures intrinsic bending of the surface while $\det(g)$ measures how distorted the coordinate system itself is
 
-In an orthonormal frame ($g = I$, so $\det(g) = 1$), the formula collapses to $K = \det(II)$, which is why the earlier `curvature_df` code could skip the correction. But at a general point $x_i$ away from the chart centre, the chart coordinates are no longer orthonormal, so $\det(g) \neq 1$ and the correction matters:
+In an orthonormal frame ($g = I$, so $\det(g) = 1$), the formula collapses to $K = \det(II)$, which is why the earlier `curvature_df` code could skip the correction. But at a general point $x_i$ away from the chart center, the chart coordinates are no longer orthonormal, so $\det(g) \neq 1$ and the correction matters:
 
 $$K(x_i) = \frac{\det(II_j)}{\det(J^\top J \big|_{\xi_i})}$$
 
-The $\det(II)$ is constant per chart (fitted once at the centre), while $\det(g) = \det(J^\top J)$ varies point by point within a chart as the embedding distortion changes across the chart's extent.
+The $\det(II)$ is constant per chart (fitted once at the center), while $\det(g) = \det(J^\top J)$ varies point by point within a chart as the embedding distortion changes across the chart's extent.
 
 Putting everything together, the full formula for Gaussian curvature in a non-orthonormal frame is:
 
@@ -1143,24 +1143,24 @@ A_total_hat <- pi / k_gb * sum(r_k_sq)
 
 # ── Build II_j for every chart ────────────────────────────────────────────────
 # The second fundamental form II_j is a 2×2 symmetric matrix fitted ONCE
-# per chart at the chart centre. It is shared by all points assigned to
+# per chart at the chart center. It is shared by all points assigned to
 # chart j when computing K(xᵢ) below.
 #
 # We refit here (rather than reusing atlas_s2$charts[[j]]$K) because we
 # want the WITH-intercept regression, which gives intercept-corrected
-# quadratic coefficients — essential for centring the height function ν
+# quadratic coefficients — essential for centering the height function ν
 # correctly at μ_j.
 II_list <- purrr::map(atlas_s2$charts, function(ch) {
 
-  # Step 1 — Centre the chart points in ℝ³.
+  # Step 1 — Center the chart points in ℝ³.
   # Xc[i,] = X_sphere[ch$idx[i],] − μ_j
   # μ_j (ch$mean) is the empirical centroid of the chart's point cloud.
-  # After centering, the origin of ℝ³ coincides with the chart centre.
+  # After centering, the origin of ℝ³ coincides with the chart center.
   Xc <- sweep(X_sphere[ch$idx, ], 2, ch$mean)
 
   # Step 2 — Project onto the tangent plane (the chart map φ_j).
   # ch$L is a 3×2 matrix whose columns are orthonormal tangent vectors.
-  # τ = Xc L  maps each centred point to 2D tangent-plane coordinates ξ.
+  # τ = Xc L  maps each centered point to 2D tangent-plane coordinates ξ.
   # This IS the pullback φ_j : U_j → ℝ².
   tau <- Xc %*% ch$L          # N_j × 2  tangent-plane (chart) coordinates
 
@@ -1173,7 +1173,7 @@ II_list <- purrr::map(atlas_s2$charts, function(ch) {
 
   # Step 4 — Build the quadratic design matrix Q.
   # We regress ν on {1, ξ₁², ξ₁ξ₂, ξ₂²}.
-  # The intercept column absorbs any residual normal offset at the centre;
+  # The intercept column absorbs any residual normal offset at the center;
   # without it the quadratic coefficients would be biased.
   # Note: curvature overestimate source #2: the quadratic model
   #     ν(ξ) ≈ k₁ξ₁² + k₂ξ₁ξ₂ + k₃ξ₂² is a second-order Taylor
@@ -1225,7 +1225,7 @@ gauss_bonnet_pts <- purrr::map_dfr(seq_len(N), function(i) {
   # i.e. the dot products of tangent vectors, measuring how the chart map
   # distorts lengths and areas relative to flat ℝ².
   # At the chart CENTRE g ≈ I₂ (orthonormal frame), but away from the
-  # centre the distortion grows and det(g) departs from 1.
+  # center the distortion grows and det(g) departs from 1.
   J <- chart_jacobian(ch, xi)
   g <- crossprod(J)          # J^T J — 2×2 pullback metric tensor at xᵢ
 
@@ -1236,11 +1236,11 @@ gauss_bonnet_pts <- purrr::map_dfr(seq_len(N), function(i) {
   #
   # det(II) — bending of the surface (constant across chart j, fitted above).
   # det(g)  — area distortion of the chart coordinates AT xᵢ (varies per
-  #            point). Dividing removes the coordinate artefact so K is an
+  #            point). Dividing removes the coordinate artifact so K is an
   #            intrinsic geometric quantity independent of the chart chosen.
   #
   #   Note: curvature overestimate interplay: det(II) is slightly inflated
-  #     (source #2 above) while det(g) ≈ 1 near the centre; the ratio
+  #     (source #2 above) while det(g) ≈ 1 near the center; the ratio
   #     therefore slightly over-estimates K(xᵢ) for points near chart edges.
   K_i <- det(II_list[[j]]) / det(g)
 
@@ -1433,7 +1433,7 @@ $\xi$.  At each step the algorithm:
    the one at $x_{t+1}$, not $x_t$.
 
 Step 3 is the key: updating $J$ at each iteration implicitly steers $\tau$ to remain
-in the tangent plane of the *current* point.  This is a discretised version of the
+in the tangent plane of the *current* point.  This is a discretized version of the
 condition $\dot\gamma \in T_{\gamma(t)}\mathcal{M}$ for all $t$, which, combined with
 the unit-speed normalization of $\tau$, gives a curve that approximates a geodesic to
 first order in $\varepsilon$.  The approximation becomes the true geodesic in the limit
