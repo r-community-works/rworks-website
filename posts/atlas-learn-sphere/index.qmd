@@ -4,7 +4,7 @@ subtitle: "An R Implementation"
 date: "2026-05-20"
 code-fold: true
 code-summary: "Show the code"
-description: "The 2025 paper by Robinett et al., 'Atlas-based Manifold Representations for Interpretable Riemannian Machine Learning', provides an algorithm for fitting a low dimensional manifold from a point cloud by means of a novel algorithm for approximating an atlas of charts. This post illustrates the Atlas-Learn method by reconstructing a sphere from an R^3 point cloud of naive random samples. The post also presents brief explanations of some of the key ideas  from differential geometry that underly the algorithms"
+description: "The 2025 paper by Robinett et al., 'Atlas-based Manifold Representations for Interpretable Riemannian Machine Learning', provides an algorithm for fitting a low dimensional manifold from a point cloud by means of a novel algorithm for approximating an atlas of charts. This post illustrates the Atlas-Learn method by reconstructing a sphere from a 3D point cloud of naive random samples and works through some checks on accuracy."
 categories: "Differential Geometry"
 image: "geo.png"
 image-alt: "Approximation of Geodesic"
