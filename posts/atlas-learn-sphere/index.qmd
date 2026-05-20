@@ -1,13 +1,13 @@
 ---
-title: "Introducing the Atlas-Learn Approach to the Manifold Hypothesis"
-subtitle: "An R implementation of Atlas-Learn for a 2D surface in R³, with validation checks"
-date: "2026-05-18"
+title: "The Atlas-Learn Approach to the Manifold Hypothesis"
+subtitle: "An R Implementation"
+date: "2026-05-20"
 code-fold: true
 code-summary: "Show the code"
-description: "This post provides an R implementation of the tools and data structures developed in the 2025 paper by Robinett et al.: 'Atlas-based Manifold Representations for Interpretable Riemannian Machine Learning' that approaches the Manifold Hypothesis from first principles. The post presents some of the basic ideas from differential geometry required to understand the methods developed in the paper and tests the accuracy of those methods by applying them to a point cloud of random samples from a two-dimensional sphere."
+description: "The 2025 paper by Robinett et al., 'Atlas-based Manifold Representations for Interpretable Riemannian Machine Learning', provides an algorithm for fitting a low dimensional manifold from a point cloud by means of a novel algorithm for approximating an atlas of charts. This post illustrates the Atlas-Learn method by reconstructing a sphere from an R^3 point cloud of naive random samples. The post also presents brief explanations of some of the key ideas  from differential geometry that underly the algorithms"
 categories: "Differential Geometry"
-image: ""
-image-alt: ""
+image: "geo.png"
+image-alt: "Approximation of Geodesic"
 format:
   html:
     toc: true
