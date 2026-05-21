@@ -1,6 +1,7 @@
 ---
 title: "The Atlas-Learn Approach to the Manifold Hypothesis"
 subtitle: "An R Implementation"
+author: "Joseph Rickert"
 date: "2026-05-20"
 code-fold: true
 code-summary: "Show the code"
