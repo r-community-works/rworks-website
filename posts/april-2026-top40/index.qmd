@@ -76,21 +76,42 @@ Three hundred seventy-one of the new packages submitted to CRAN in March were st
 
 ![](sereoconstruct.png){fig-alt="Plots of antibody rise and waning"}
 
-### Meta Analysis
 
-
-[drmeta](https://cran.r-project.org/package=drmeta) v0.1.0: Implements a variance-function random-effects framework in which between-study heterogeneity is modeled as a function of a study-level design robustness index, allowing heterogeneity to depend systematically on study quality or design strength rather than being treated as a single nuisance parameter. The framework nests classical fixed-effects and standard random-effects meta-analysis as special cases, making it a strict generalisation of existing approaches. See the [Getting Started Guide](https://cran.r-project.org/web/packages/drmeta/vignettes/getting-started.html).
-
-
-![](drmeta.png){fig-alt="Funnel plot showing Standard error vs Effect Size"}
 ### Finance
+
+[finlabR](https://cran.r-project.org/package=finlabR) v1.0.0: Provides tools for portfolio construction and risk analytics, including mean-variance optimization, conditional value at risk (expected shortfall) minimization, risk parity, regime clustering, correlation analysis, Monte Carlo simulation, and option pricing. Includes utilities for portfolio evaluation, clustering, and risk reporting. Methods are based in part on [Markowitz (1952)](https://onlinelibrary.wiley.com/doi/10.1111/j.1540-6261.1952.tb01525.x), [Rockafellar and Uryasev (2000)](https://www.risk.net/journal-risk/2161159/optimization-conditional-value-risk), [Maillard et al. (2010)](https://www.pm-research.com/content/iijpormgmt/36/4/60), [Black and Scholes (1973)](https://www.journals.uchicago.edu/doi/10.1086/260062), and [Cox et al. (1979)](https://www.sciencedirect.com/science/article/abs/pii/0304405X79900151?via%3Dihub). See the vignettes [Portfolio Analytics and Simulation](https://cran.r-project.org/web/packages/finlabR/vignettes/finlabR-intro.html) and [End-to-End Workflow](https://cran.r-project.org/web/packages/finlabR/vignettes/finlabR-workflow.html)
+
+![](finlabR.png){fig-alt="Plot of Efficient Frontier"}
+
 
 [talib](https://cran.r-project.org/package=talib) v0.9-2: Implemants an interface nterface to the `TA-Lib` (Technical Analysis Library) `C` library, providing access to 150+ indicators (e.g. Average Directional Movement Index (ADX), Moving Average Convergence Divergence (MACD), Relative Strength Index (RSI), Stochastic Oscillator, Bollinger Bands), candlestick pattern recognition, and rolling-window utilities. Core computations are implemented in `C` for fast Open-High-Low-Close-Volume time-series feature engineering and rule-based signal generation. There are three vignettes including [Candlestick Pattern Recognition](https://cran.r-project.org/web/packages/talib/vignettes/candlestick.html) and [Financial Charts](https://cran.r-project.org/web/packages/talib/vignettes/charting.html).
 
 ![](talib.png){fig-alt="Stock chart with indicators"}
 
+### Genomics
+
+[AbSolution](https://cran.r-project.org/package=AbSolution) v1.0.1: Implements an interactive framework, a Shiny Application, for the exploration and analysis of adaptive immune receptor repertoire sequencing data in a manner that facilitates reproducible research. It enables large-scale computation and integrated analysis of sequence-derived features, including physicochemical properties, amino acid descriptor sets, sequence motifs, compositional patterns, and somatic hypermutation metrics. See the [GitHub Repository](https://github.com/EDS-Bioinformatics-Laboratory/AbSolution) and the [vignette](https://cran.r-project.org/web/packages/AbSolution/vignettes/AbSolution.html) for more details.
+
+![](ABsolution.png){fig-alt="Snapshot of Shiny page for Exploratory Analysis"}
+
+
+
+[IOBR](https://cran.r-project.org/package=IOBR) v2.2.2: Provides six modules for tumor microenvironment (TME) analysis based on multi-omics data. These modules cover data preprocessing, TME estimation, TME infiltrating patterns, cellular interactions, genome and TME interaction, and visualization for TME relevant features, as well as modelling based on key features. In addition to providing a way to construct gene signatures from single-cell RNA-seq data, it also provides a way to construct a reference matrix for TME deconvolution from single-cell RNA-seq data. See [Zeng et al. (2024)](https://www.cell.com/cell-reports-methods/fulltext/S2667-2375(24)00300-X?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS266723752400300X%3Fshowall%3Dtrue) and [Fang et al. (2025)](https://onlinelibrary.wiley.com/doi/10.1002/mdr2.70001) for background and the [vignette](https://cran.r-project.org/web/packages/IOBR/vignettes/IOBR-user-manual.html) for a detailed tutorial.
+
+![](IOBR.jpeg){fig-alt="Diagram of Workflow"}
+
+### Health Technology Assessment
+
+[htaBIM](https://cran.r-project.org/package=htaBIM) v0.1.0: Implements a structured, reproducible framework, a Shiny Application, for budget impact modelling (BIM) in health technology assessment (HTA), following the ISPOR Task Force guidelines [(Sullivan et al. (2014)](https://www.valueinhealthjournal.com/article/S1098-3015(13)04235-6/fulltext?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS1098301513042356%3Fshowall%3Dtrue) and [Mauskopf et al. (2007)](https://www.valueinhealthjournal.com/article/S1098-3015(10)60471-8/pdf?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS1098301510604718%3Fshowall%3Dtrue) that provides functions for epidemiology-driven population estimation, market share modelling with flexible uptake dynamics, per-patient cost calculation across multiple cost categories, multi-year budget projections, payer perspective analysis, deterministic sensitivity analysis, and probabilistic sensitivity analysis. Produces submission-quality outputs including ISPOR-aligned summary tables, scenario comparison tables, per-patient cost breakdowns, tornado diagrams, PSA histograms, and text and HTML reports compatible with NICE, CADTH, and EU-HTA dossier formats. See the vignettes [Introduction](https://cran.r-project.org/web/packages/htaBIM/vignettes/htaBIM-introduction.html) and [Interactive Shiny Dashboard](https://cran.r-project.org/web/packages/htaBIM/vignettes/shiny-app.html).
+
+![](htaBMI.png){fig-alt="Plot of Probabilistic Sensitivity Analysis"}
+
+
 ### Medical Statistics
 
+[BayesianQDM](https://gosukehommaex.github.io/BayesianQDM/) v0.1.0: Provides comprehensive methods to calculate posterior probabilities, posterior predictive probabilities, and Go/NoGo/Gray decision probabilities for quantitative decision-making under a Bayesian paradigm in clinical trials. Supports both single and two-endpoint analyses for binary and continuous outcomes, with controlled, uncontrolled, and external designs. External designs incorporate historical data through power priors using exact conjugate representations to significantly reduces computational burden while preserving complete Bayesian rigor. See [Kang, Yamaguchi, and Han (2026)](https://www.tandfonline.com/doi/full/10.1080/10543406.2026.2655410) for the methodological framework. There are five vignettes incluting [Overview](https://cran.r-project.org/web/packages/BayesianQDM/vignettes/overview.html) and [Two Continuous Endpoints](https://cran.r-project.org/web/packages/BayesianQDM/vignettes/two-continuous.html).
+
+![](BayesianQDM.png){fig-alt="An Optimal Threshold Plot"}
 
 :::
 
@@ -102,8 +123,24 @@ Three hundred seventy-one of the new packages submitted to CRAN in March were st
 
 
 
-### Probability
+### Meta Analysis
+
+[confMeta](https://cran.r-project.org/package=confMeta) v0.1.0: Provides tools for the combination of individual study results in meta-analyses using *p-value* functions. Implements various combination methods including those by Fisher, Stouffer, Tippett, Edgington along with weighted generalizations. Contains functionality for the visualization and calculation of confidence curves and drapery plots to summarize evidence across studies. See the [vignette](https://cran.r-project.org/web/packages/confMeta/vignettes/confMeta-usage.html).
+
+![](confMeta.png){fig-alt="Combined p=value and effects plots"}
+
+
+[drmeta](https://cran.r-project.org/package=drmeta) v0.1.0: Implements a variance-function random-effects framework in which between-study heterogeneity is modeled as a function of a study-level design robustness index, allowing heterogeneity to depend systematically on study quality or design strength rather than being treated as a single nuisance parameter. The framework nests classical fixed-effects and standard random-effects meta-analysis as special cases, making it a strict generalisation of existing approaches. See the [Getting Started Guide](https://cran.r-project.org/web/packages/drmeta/vignettes/getting-started.html).
+
+
+![](drmeta.png){fig-alt="Funnel plot showing Standard error vs Effect Size"}
 
 
 
 end
+
+:::
+
+
+
+::::
