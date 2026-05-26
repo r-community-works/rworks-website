@@ -106,6 +106,13 @@ Three hundred seventy-one of the new packages submitted to CRAN in March were st
 
 ![](htaBMI.png){fig-alt="Plot of Probabilistic Sensitivity Analysis"}
 
+### Machine Learning
+
+[AntsNet](https://cran.r-project.org/package=AntsNet) v1.0.0: Implements the full suite of simulation, visualization, and analysis tools for exploring the mathematical isomorphisms between ant colony decision-making and three major paradigms of machine learning: random forests (Part I: variance reduction through decorrelation), boosting (Part II: bias reduction through adaptive recruitment), and neural networks (Part III: gradient-based generational learning). See Fokoué, Babbitt, and Levental, (2026) [Part I](https://arxiv.org/abs/2603.20328) and [Part II](https://arxiv.org/abs/2604.00038) for background and [README](https://cran.r-project.org/web/packages/AntsNet/readme/README.html) to get started.
+
+
+[bigKNN](https://cran.r-project.org/package=bigKNN) v0.3.0: Implements exact nearest-neighbour and radius-search routines that operate directly on `bigmemory::big.matrix` objects. The package streams row blocks through `BLAS` kernels, supports self-search and external-query search, exposes prepared references for repeated queries, and can build exact k-nearest-neighbour, radius, mutual k-nearest-neighbour, and shared-nearest-neighbour graphs. There are seven vignettes including: [Quick Start](https://cran.r-project.org/web/packages/bigKNN/vignettes/bigknn-quickstart.html) and [Using bigKNN as Exact Ground Truth](https://cran.r-project.org/web/packages/bigKNN/vignettes/bigknn-evaluating-approximate-search.html).
+
 
 ### Medical Statistics
 
@@ -135,6 +142,22 @@ Three hundred seventy-one of the new packages submitted to CRAN in March were st
 
 ![](drmeta.png){fig-alt="Funnel plot showing Standard error vs Effect Size"}
 
+### Networks
+
+[sparsecommunity](https://cran.r-project.org/package=sparsecommunity) v0.1.1: Implements spectral clustering algorithms for community detection in sparse networks under the stochastic block model and degree-corrected stochastic block model  following the methods of [Lei and Rinaldo (2015)](https://projecteuclid.org/journals/annals-of-statistics/volume-43/issue-1/Consistency-of-spectral-clustering-in-stochastic-block-models/10.1214/14-AOS1274.full). Provides a regularized normalized Laplacian embedding, spherical k-median clustering, simulation utilities, and a misclustering rate evaluation metric along with the NCAA college football network of [Girvan and Newman (2002)](https://www.pnas.org/doi/full/10.1073/pnas.122653799) as a benchmark dataset, and the Bethe-Hessian community number estimator of [Hwang (2023)](https://www.tandfonline.com/doi/full/10.1080/01621459.2023.2223793). See the [vignette]().
+
+![](sparsecommunity.png){fig-alt="Plot of detetcted vs. true communities"}
+
+### Physics
+
+[orbitr](https://cran.r-project.org/package=orbitr) v0.3.0: Provides a  lightweight, fully vectorized N-body physics engine built for the R ecosystem. Simulate and visualize complex orbital mechanics, celestial trajectories, and gravitational interactions using tidy data principles. Features multiple numerical integration methods, including the energy-conserving velocity Verlet algorithm [Verlet (1967)](https://journals.aps.org/pr/abstract/10.1103/PhysRev.159.98) to ensure highly stable orbital propagation. Gravitational N-body methods follow [Aarseth (2003)](). There are twelve vignettes includint [{Quick Start Guide](https://cran.r-project.org/web/packages/orbitr/vignettes/keplerian-elements.html) and
+
+![](orbitr.png){fig-alt="Plot of planetary orbits"}
+
+
+### Programming
+
+[shard](https://cran.r-project.org/package=shard) v0.1.1: Provides  a parallel execution runtime for R that emphasizes deterministic memory behavior and efficient handling of large shared inputs which enables zero-copy parallel reads via shared/memory-mapped segments, encourages explicit output buffers to avoid large result aggregation, and supervises worker processes to mitigate memory drift via controlled recycling. Diagnostics report peak memory usage, end-of-run memory return, and hidden copy/materialization events to support reproducible performance benchmarking. See the [vignette](https://cran.r-project.org/web/packages/shard/vignettes/shard.html) to get started.
 
 
 end
