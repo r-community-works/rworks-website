@@ -59,12 +59,35 @@ Three hundred seventy-one of the new packages submitted to CRAN in March were st
 
 ![](rescomp.png){fig-alt="Plots showing behavior of three 'type 1' comusers on three essential resources over time"}
 
+### Environmental Studies
+
+[gleam](https://cran.r-project.org/package=gleam) v0.8.0: This official implementation of the [Global Livestock Environmental Assessment Model of the Food and Agriculture Organization of the United Nations](https://www.fao.org/gleam/en/) provides a modular, transparent framework for simulating livestock production systems and quantifying their environmental impacts. See [MacLeod et al. (2017)](https://www.sciencedirect.com/science/article/pii/S1751731117001847?via%3Dihub) for background There are four vignettes including an [Overview](https://cran.r-project.org/web/packages/gleam/vignettes/gleam-overview.html) and [Package Modules](https://cran.r-project.org/web/packages/gleam/vignettes/gleam-modules-overview.html).
+
+![](gleam.png){fig-alt="Plots showing behavior of three 'type 1' comusers on three essential resources over time"}
+
+
 ### Epidemiology
+
+[lineagefreq](https://cran.r-project.org/package=lineagefreq) v0.2.0: Provides functions to model pathogen lineage frequency dynamics from genomic surveillance count data. Includes a unified interface for multinomial logistic regression, hierarchical partial-pooling models, the Piantham approximation for relative reproduction number estimation and features such as rolling-origin backtesting, standardized forecast scoring. See  [Abousamra, Figgins, and Bedford (2024)](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1012443) for background. There are four vignettes including [Getting Started](https://cran.r-project.org/web/packages/lineagefreq/vignettes/introduction.html) and [Analyzing real CDC surveillance data](https://cran.r-project.org/web/packages/lineagefreq/vignettes/real-data-analysis.html).
+
+
+![](lineagefreq.png){fig-alt="Trajectories of several lineages"}
+[seroreconstruct](https://cran.r-project.org/package=seroreconstruct) v1.1.5: Implements a  Bayesian framework for inferring influenza infection status from serial antibody measurements. Jointly estimates season-specific infection probabilities, antibody boosting and waning after infection, and baseline hemagglutination inhibition (HAI) titer distributions. Supports multi-season analysis and subgroup comparisons via a group_by interface. See [Tsang et al. (2022)](https://www.nature.com/articles/s41467-022-29310-8) for methodological details and the two vignettes [Getting Started](https://cran.r-project.org/web/packages/seroreconstruct/vignettes/introduction.html) and [Statistical Methodology](https://cran.r-project.org/web/packages/seroreconstruct/vignettes/methodology.html).
+
+![](sereoconstruct.png){fig-alt="Plots of antibody rise and waning"}
+
+### Meta Analysis
+
 
 [drmeta](https://cran.r-project.org/package=drmeta) v0.1.0: Implements a variance-function random-effects framework in which between-study heterogeneity is modeled as a function of a study-level design robustness index, allowing heterogeneity to depend systematically on study quality or design strength rather than being treated as a single nuisance parameter. The framework nests classical fixed-effects and standard random-effects meta-analysis as special cases, making it a strict generalisation of existing approaches. See the [Getting Started Guide](https://cran.r-project.org/web/packages/drmeta/vignettes/getting-started.html).
 
 
 ![](drmeta.png){fig-alt="Funnel plot showing Standard error vs Effect Size"}
+### Finance
+
+[talib](https://cran.r-project.org/package=talib) v0.9-2: Implemants an interface nterface to the `TA-Lib` (Technical Analysis Library) `C` library, providing access to 150+ indicators (e.g. Average Directional Movement Index (ADX), Moving Average Convergence Divergence (MACD), Relative Strength Index (RSI), Stochastic Oscillator, Bollinger Bands), candlestick pattern recognition, and rolling-window utilities. Core computations are implemented in `C` for fast Open-High-Low-Close-Volume time-series feature engineering and rule-based signal generation. There are three vignettes including [Candlestick Pattern Recognition](https://cran.r-project.org/web/packages/talib/vignettes/candlestick.html) and [Financial Charts](https://cran.r-project.org/web/packages/talib/vignettes/charting.html).
+
+![](talib.png){fig-alt="Stock chart with indicators"}
 
 ### Medical Statistics
 
