@@ -19,6 +19,12 @@ Three hundred seventy-one of the new packages submitted to CRAN in March were st
 
 ::: {.column width="45%"}
 
+
+### Actuarial Analysis
+
+[mqriskR](https://cran.r-project.org/package=mqriskR) v0.1.0: Provides functions for actuarial risk modeling, including survival models, life annuities, multiple-decrement models, and mortality improvement projections. The package is designed to align with standard actuarial notation and supports teaching, exam preparation, and reproducible actuarial analysis. The methods are based on standard actuarial references including [Camilli, Duncan and London (2014)](https://www.amazon.com/Models-Quantifying-Risk-Richard-London/dp/1625423470),  and [Dickson, Hardy and Waters (2020)](https://www.amazon.com/Actuarial-Mathematics-Contingent-International-Science/dp/1108478085/ref=sr_1_1?dib=eyJ2IjoiMSJ9.o7GXBw5H5JYFDcvNeOrpM58_PZqcW-2pMEeMTdCpcmxkl8sSFgx9YEBiBMmqr-wWFWZPgpoWKfjvwnvE7ASss2GsLU84aE3P7YsnfFYbBbBBtlfbK0fTcwWnH23XKnJwV6JkxJMocNt2MQdIyCmdDsqWBHNyRILKd17PUpOZyPnMWkBsXn9kXX2qedo98iumU6HQiObaIzG8nmpm3U-RYVgnomDlUWq61OnCS37EDMc.Lb6GlPsG2422vJHe1j-GwV_1RSSDvznlhHe7cbX-g2I&dib_tag=se&keywords=Actuarial+Mathematics+for+Life+Contingent+Risks&qid=1779844083&s=books&sr=1-1). See the [vignette](https://cran.r-project.org/web/packages/mqriskR/vignettes/getting-started.html).
+
+
 ### Archaeology
 
 [palimpsestr](https://cran.r-project.org/package=palimpsestr) v0.10.0: Implements a probabilistic framework for the analysis of archaeological palimpsests based on the Stratigraphic Entanglement Field which integrates spatial proximity, stratigraphic depth, chronological overlap, and cultural similarity to estimate latent depositional phases via diagonal Gaussian mixture Expectation-Maximisation.  Includes simulation, diagnostics, phase-count selection, publication-quality plots, and Geographic Information System export via `sf`. Methods are described in [Cocca (2026)](https://github.com/enzococca/palimpsestr). See the [vignette](https://cran.r-project.org/web/packages/palimpsestr/vignettes/introduction.html).
@@ -120,6 +126,10 @@ Three hundred seventy-one of the new packages submitted to CRAN in March were st
 
 ![](BayesianQDM.png){fig-alt="An Optimal Threshold Plot"}
 
+[raretrans](https://cran.r-project.org/package=raretrans) v1.0.5: Provides functions to correct biased transition and fertility estimates in population projection matrices caused by small sample sizes. Small or short-term studies frequently produce structural zeros (biologically possible transitions never observed) and structural ones (transitions estimated at 100% survival, stasis, or mortality that are biologically implausible). Implements a multinomial-Dirichlet Bayesian prior for transition probabilities and a Gamma-Poisson prior for reproduction, allowing analysts to incorporate prior biological knowledge and regularise estimates from rare or unobserved events. Methods are described in [Tremblay et al. (2021)](https://www.sciencedirect.com/science/article/abs/pii/S0304380021000971?via%3Dihub). There are six vignettes including both a [Quick start](https://cran.r-project.org/web/packages/raretrans/vignettes/quick_start.html) and an [Introduction](https://cran.r-project.org/web/packages/raretrans/vignettes/introduction.html).
+
+![](raretrans.png){fig-alt="Plot showing effect of prior weight oncredible intervals"}
+
 :::
 
 ::: {.column width="10%"}
@@ -157,8 +167,38 @@ Three hundred seventy-one of the new packages submitted to CRAN in March were st
 
 ### Programming
 
+[mori](https://cran.r-project.org/package=mori) v0.2.0: Enables users to share R objects across processes on the same machine via a single copy in `POSIX` shared memory (Linux, macOS) or a `Win32` file mapping (Windows). Every process reads from the same physical pages through the R Alternative Representation (`ALTREP`) framework, giving lazy, zero-copy access. Shared objects serialize compactly as their shared memory name rather than their full contents. See [README](https://cran.r-project.org/web/packages/mori/readme/README.html) to get started.
+
+[progressify](https://cran.r-project.org/package=progressify) v0.1.0: The ``progressify()` function rewrites (transpiles) calls to sequential and parallel map-reduce functions such as `base::lapply()`, `purrr::map()`, `foreach::foreach()`, and `plyr::llply()` to signal progress updates. By combining this function with R's native pipe operator, you have a straightforward way to report progress on iterative computations with minimal refactoring, e.g. `lapply(x, fcn) |> progressify()` and `purrr::map(x, fcn) |> progressify()`. It is compatible with the `futurize` package for parallelization, e.g. `lapply(x, fcn) |> progressify() |> futurize()` and `purrr::map(x, fcn) |> futurize() |> progressify()`. There are nine brief vignettes including [Progress updates for base-R apply functions](https://cran.r-project.org/web/packages/progressify/vignettes/progressify-11-base.html) and [Progress updates for 'purrr' functions](https://cran.r-project.org/web/packages/progressify/vignettes/progressify-21-purrr.html).
+
 [shard](https://cran.r-project.org/package=shard) v0.1.1: Provides  a parallel execution runtime for R that emphasizes deterministic memory behavior and efficient handling of large shared inputs which enables zero-copy parallel reads via shared/memory-mapped segments, encourages explicit output buffers to avoid large result aggregation, and supervises worker processes to mitigate memory drift via controlled recycling. Diagnostics report peak memory usage, end-of-run memory return, and hidden copy/materialization events to support reproducible performance benchmarking. See the [vignette](https://cran.r-project.org/web/packages/shard/vignettes/shard.html) to get started.
 
+### Statistics 
+
+[balnet](https://cran.r-project.org/package=balnet) v0.0.3: Provides pathwise estimation of regularized logistic propensity score models using covariate balancing loss functions rather than maximum likelihood. Regularization paths are fit via the `adelie` elastic-net solver with a `glmnet`-like interface, yielding balancing weights that target covariate balance for the ATE and ATT. Under lasso penalization, lambda bounds the maximum covariate imbalance, so the regularization path traces a sequence of decreasing imbalance tolerances. See [Sverdrup & Hastie (2026)](https://arxiv.org/abs/2602.18577) for details and the [vignette](https://cran.r-project.org/web/packages/balnet/vignettes/balnet.html) for an introduction.
+
+![](balnet.png){fig-alt="Plot showing model fit that aims to balance control covariate means toward those of the treated group"}
+
+
+
+[ngme2](https://cran.r-project.org/package=ngme2) v0.9.8: Functions to fit and analyze linear latent non-Gaussian models for temporal, spatial, and space-time data including autoregressive and Ornstein-Uhlenbeck processes, random walks, Matern fields based on stochastic partial differential equations, separable and non-separable space-time models, graph-based Matern models, bivariate type-G fields, and user-defined sparse operators. Latent fields and observation models can use Gaussian and non-Gaussian noise distributions. The modeling framework is described in [Bolin et al. (2026)](https://arxiv.org/abs/2602.23987). See the [vignette](https://davidbolin.github.io/ngme2/articles/tensor-product.html) forexceptionally well done documentation.
+
+![](ngme2.png){fig-alt="Simulated Space-Time Field"}
+
+[nowcastr](https://cran.r-project.org/package=nowcastr) v0.2.0: Implements tools for  performing nowcasting using the [Chain-Ladder method](https://en.wikipedia.org/wiki/Chain-ladder_method), and upports both non-cumulative delay-based estimation and model-based completeness fitting (e.g., using logistic or Gompertz curves) to predict final counts from partially reported data. See the vignettes [Getting Started]() and [Evaluate Past Nowcasts Accuracy](https://cran.r-project.org/web/packages/nowcastr/vignettes/eval.html).
+
+![](nowcastr.png){fig-alt="Nowcast Evaluation Plots"}
+
+
+[tidyfun](https://cran.r-project.org/package=tidyfun) v0.1.2: Builds on the `tf` package to rovide functions to represent, visualize, describe and wrangle functional data in tidy data frames as well as data types for functional observations that work as columns in data frames, enabling manipulation with `dplyr` verbs and visualization with `ggplot2` geoms designed for functional data. There are six vignettes including [tf Vectors and Operations](https://cran.r-project.org/web/packages/tidyfun/vignettes/x01_tf_Vectors.html) and [Visualization](https://cran.r-project.org/web/packages/tidyfun/vignettes/x04_Visualization.html).
+
+![](tidyfun.png){fig-alt="Plot of functional variables"}
+
+
+[TwoStepSDFM](https://cran.r-project.org/package=TwoStepSDFM) v0.2.2: Provides functions to estimate stimate a sparse Gaussian state-space model with mixed frequency data via sparse principal components analysis and the Kalman filter and smoother. For more details see [Franjic and Schweikert (2024)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4733872). The [vignette]
+(https://cran.r-project.org/web/packages/TwoStepSDFM/vignettes/IntroTwoStepSDFM.html) provides an introduction
+
+![](TwoStepSDFM.png){fig-alt="Plot of Quarterly and Monthly Data"}
 
 end
 
