@@ -50,6 +50,9 @@ Three hundred seventy-one of the new packages submitted to CRAN in March were st
 
 ![](nmfkc.png){fig-alt="Plot of topic proportions"}
 
+[symbolicr](https://cran.r-project.org/package=symbolicr) v1.0.0: Provides functions to find non-linear formulas that fits input data. Users can systematically explore and memorize the possible formulas and it's cross-validation performance, in an incremental fashion. Three main interoperable search functions are available: 1) `random.search()` performs a random exploration, 2) `genetic.search()` employs a genetic optimization algorithm, 3) `comb.search()` combines best results of the first two. For more details see [Tomasoni et al. (2026)](https://link.springer.com/article/10.1208/s12248-026-01232-z). There are three vignettes including [get-started](https://cran.r-project.org/web/packages/symbolicr/vignettes/get-started.html) and [formula-analysis](https://cran.r-project.org/web/packages/symbolicr/vignettes/formula-analysis.html).
+
+
 ### Ecology
 
 [CharAnalysis](https://cran.r-project.org/package=CharAnalysis) v2.0.3: Implements a program for reconstructing local fire histories from high-resolution, continuously sampled lake-sediment charcoal records. Functions decompose a charcoal record into low- and high-frequency components and use locally defined thresholds to separate fire signal from noise. See [Higuera et al. (2009)](https://esajournals.onlinelibrary.wiley.com/doi/10.1890/07-2019.1) and [Higuera et al. (2010)](https://connectsci.au/wf/article-abstract/19/8/996/23290/Peak-detection-in-sediment-charcoal-records?redirectedFrom=fulltext for background and the [vignette](https://cran.r-project.org/web/packages/CharAnalysis/vignettes/CharAnalysis_intro.html) to get started.
@@ -93,6 +96,18 @@ Three hundred seventy-one of the new packages submitted to CRAN in March were st
 [talib](https://cran.r-project.org/package=talib) v0.9-2: Implemants an interface nterface to the `TA-Lib` (Technical Analysis Library) `C` library, providing access to 150+ indicators (e.g. Average Directional Movement Index (ADX), Moving Average Convergence Divergence (MACD), Relative Strength Index (RSI), Stochastic Oscillator, Bollinger Bands), candlestick pattern recognition, and rolling-window utilities. Core computations are implemented in `C` for fast Open-High-Low-Close-Volume time-series feature engineering and rule-based signal generation. There are three vignettes including [Candlestick Pattern Recognition](https://cran.r-project.org/web/packages/talib/vignettes/candlestick.html) and [Financial Charts](https://cran.r-project.org/web/packages/talib/vignettes/charting.html).
 
 ![](talib.png){fig-alt="Stock chart with indicators"}
+
+### Functional Data Analysis
+
+[refundBayes](https://cran.r-project.org/package=refundBayes) v0.6.0: Provides tools to perform Bayesian regression with functional data, including regression with scalar, survival, or functional outcomes. The package allows regression with scalar and functional predictors. Methods are described in [Jiang et al. (2025)](https://onlinelibrary.wiley.com/doi/10.1002/sim.70265) "Tutorial on Bayesian Functional Regression Using Stan". There are six vignettes including [Bayesian Function-on-Function Regression](https://cran.r-project.org/web/packages/refundBayes/vignettes/fofr_bayes_vignette.html) and [Bayesian Functional Principal Component Analysis (FPCA)](https://cran.r-project.org/web/packages/refundBayes/vignettes/fpca_bayes_vignette.html).
+
+![](refundBayes.png){fig-alt="Plot of predictive accuracy on held-out validation set"}
+
+
+[tidyfun](https://cran.r-project.org/package=tidyfun) v0.1.2: Builds on the `tf` package to rovide functions to represent, visualize, describe and wrangle functional data in tidy data frames as well as data types for functional observations that work as columns in data frames, enabling manipulation with `dplyr` verbs and visualization with `ggplot2` geoms designed for functional data. There are six vignettes including [tf Vectors and Operations](https://cran.r-project.org/web/packages/tidyfun/vignettes/x01_tf_Vectors.html) and [Visualization](https://cran.r-project.org/web/packages/tidyfun/vignettes/x04_Visualization.html).
+
+![](tidyfun.png){fig-alt="Plot of functional variables"}
+
 
 ### Genomics
 
@@ -190,9 +205,7 @@ Three hundred seventy-one of the new packages submitted to CRAN in March were st
 ![](nowcastr.png){fig-alt="Nowcast Evaluation Plots"}
 
 
-[tidyfun](https://cran.r-project.org/package=tidyfun) v0.1.2: Builds on the `tf` package to rovide functions to represent, visualize, describe and wrangle functional data in tidy data frames as well as data types for functional observations that work as columns in data frames, enabling manipulation with `dplyr` verbs and visualization with `ggplot2` geoms designed for functional data. There are six vignettes including [tf Vectors and Operations](https://cran.r-project.org/web/packages/tidyfun/vignettes/x01_tf_Vectors.html) and [Visualization](https://cran.r-project.org/web/packages/tidyfun/vignettes/x04_Visualization.html).
 
-![](tidyfun.png){fig-alt="Plot of functional variables"}
 
 
 [TwoStepSDFM](https://cran.r-project.org/package=TwoStepSDFM) v0.2.2: Provides functions to estimate stimate a sparse Gaussian state-space model with mixed frequency data via sparse principal components analysis and the Kalman filter and smoother. For more details see [Franjic and Schweikert (2024)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4733872). The [vignette]
@@ -200,7 +213,28 @@ Three hundred seventy-one of the new packages submitted to CRAN in March were st
 
 ![](TwoStepSDFM.png){fig-alt="Plot of Quarterly and Monthly Data"}
 
-end
+### Time Series
+
+[MatchingPursuit](https://cran.r-project.org/package=MatchingPursuit) v1.0.1: Provides tools for analysing and decomposing time series data using the Matching Pursuit algorithm, a greedy signal decomposition technique that represents complex signals as a linear combination of simpler functions (called atoms) selected from a redundant dictionary. For more details see [Mallat and Zhang (1993)](https://ieeexplore.ieee.org/document/258082), [Pati et al. (1993)](https://ieeexplore.ieee.org/document/342465), [Elad (2010)](https://link.springer.com/book/10.1007/978-1-4419-7011-4), and [Różański (2024)](https://dl.acm.org/doi/10.1145/3674832). See the [vignette](https://cran.r-project.org/web/packages/MatchingPursuit/vignettes/MatchingPursuit.html).
+
+![](MatchingPursuit.png){fig-alt="Frequency plot of a time series"}
+
+[xiacf](https://cran.r-project.org/package=xiacf) v0.5.0: Computes Chatterjee's non-parametric correlation coefficient for time series data. It extends the original metric to time series analysis by providing the Xi-Autocorrelation Function and Xi-Cross-Correlation Function. Allows users to test for non-linear dependence using Iterative Amplitude Adjusted Fourier Transform  surrogate data with strict Family-Wise Error Rate control via Max-statistic approaches. Methodologies are based on [Chatterjee (2021)](https://www.tandfonline.com/doi/full/10.1080/01621459.2020.1758115) and surrogate data testing methods by [Schreiber and Schmitz (1996)](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.77.635). See [README](https://cran.r-project.org/web/packages/xiacf/readme/README.html) for examples.
+
+![](xiacf.png){fig-alt="Plot of mltivariate Xi correlation matrix"}
+
+
+### Utilities
+
+[abba](https://cran.r-project.org/package=abba) v0.2.0: Enables users to submit and monitor batch execution of R programs across distributed computing backends including `Kubernetes`, `SLURM`, and `Posit Workbench`. Provides end-user job submission functions, cluster interface functions using `kubectl` and `SLURM` commands, and a `plumber` API template for secure identity segregation. Supports parallel and sequential batch execution, file-based caching to skip unchanged programs, and `logrx` integration for execution logging. There are seven vignettes including [Kubernetes Batch Jobs](https://cran.r-project.org/web/packages/abba/vignettes/k8s_batch_job.html) and [SLURM Job Submission](https://cran.r-project.org/web/packages/abba/vignettes/slurm_job_submission.html).
+
+[vectra](https://cran.r-project.org/package=vectra) v0.6.2: Implements a minimal columnar query engine with lazy execution on datasets larger than RAM. Provides `dplyr`-like verbs (`filter()`, `select()`, `mutate()`, `group_by()`, `summarise()`, joins, window functions) and common aggregations (`n()`, `sum()`, `mean()`, `min()`, `max()`, `sd(`), `first()`,`last()`) backed by a pure `C11` pull-based execution engine and a custom on-disk format (`.vtr`). Reads and writes `GeoTIFF` (including tiled and `BigTIFF` layouts) and a tiled raster format (`.vec`) with overview pyramids and time cubes for larger-than-RAM raster data. There are eight vignettes including [Getting Started](https://cran.r-project.org/web/packages/vectra/vignettes/quickstart.html) and [String Operations and Fuzzy Matching](https://cran.r-project.org/web/packages/vectra/vignettes/string-ops.html).
+
+### Visualization
+
+[janusplot](https://cran.r-project.org/package=janusplot) v0.1.0: Provides functions to render a pairwise, asymmetric smoothed-association matrix of continuous variables. Each cell shows the fitted spline from an `mgcv` generalised additive model, with the upper triangle displaying `gam(x_j ~ s(x_i))` and the lower triangle `gam(x_i ~ s(x_j))`. Unlike Pearson's correlation matrix, the visualisation is intentionally asymmetric, revealing heteroscedasticity, leverage, and directional non-linearity that a single scalar correlation hides. An asymmetry index and a 24-category shape taxonomy quantify the directional difference and qualitative form of each fitted smooth. There are two vignettes, [Asymmetric Smoothed-Association Matrices](https://cran.r-project.org/web/packages/janusplot/vignettes/janusplot.html) and [Shape-recognition sensitivity study](https://cran.r-project.org/web/packages/janusplot/vignettes/shape-recognition-sensitivity.html).
+
+![](janusplot.png){fig-alt="Example of a janusplot"}
 
 :::
 
