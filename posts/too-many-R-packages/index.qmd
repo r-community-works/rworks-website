@@ -1,0 +1,56 @@
+---
+title: "Too Many CRAN Packages?"
+author: "Joseph Rickert"
+date: 2026-05-30
+description: "CRAN continues to be the most accessible repository for statistical knowledge on the planet, and the number of new packages being accepted by CRAN is growing faster than ever. But, is the R community really benefiting from this new growth? "
+image: ""
+image-alt: ""
+categories: "Top 40"
+editor: source
+format: html
+---
+
+If you follow [R-loggers](https://www.r-bloggers.com/) you will probably know that I have been publishing my selection of the "Top 40" new R packages on CRAN for quite some time. First as part of my work at Revolution Analytics, then on [R Views](https://rviews.rstudio.com/) for RStudio and Posit, and now on here on R Works. It used to take about a day's worth of pleasurable work spread out over a month. For a hundred or so packages I could look at all of the package webpages, download and and play with a small number of them. Now the "Top 40" has become a real hamster on the wheel project. The following plot shows my count of the number of new packages to stick to CRAN since I started R Works. (Stick to CRAN means I try to account for the small number of packages that are accepted by CRAN during the a month but are subsequently removed before the middle of the next month.)
+
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: true
+#| code-summary: "Show plot code"
+library(tidyverse)
+file_path <- "new-cran-pkgs.csv"
+
+if (!file.exists(file_path)) {
+  stop(paste("File not found! Please check the path:", file_path))
+}
+
+# Read text and numbers safely
+raw_data <- read.csv(file_path, colClasses = c("character", "numeric"), stringsAsFactors = FALSE)
+
+plot_data <- raw_data |> mutate(Date = my(Month)) |>
+  arrange(Date)
+
+new_pkg <- ggplot(plot_data, aes(x = Date, y = Num_pkgs, group = 1)) +
+  geom_line(color = "#1f77b4", size = 1) +
+  geom_point(color = "#d62728", size = 1.2) +
+
+  labs(
+    title = "Monthly Volume of New CRAN Packages",
+    x = "Date",
+    y = "Number of Packages",
+    caption = "Source: R Works monthly Top 40 posts"
+  ) +
+
+  theme(
+    plot.title = element_text(face = "bold"),
+    panel.grid.minor = element_blank(),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+
+new_pkg
+```
+
+What could possibly be going on? Well, I have a guess. But, the real question are most of these new packages a real contribution the the R Community, or are they part of an apparently general software trend identified by John Burn-Murdoch writing in the Financial Times.
+
+![](API.png){fig-alt="Vertical Phase Profile Plot"}
