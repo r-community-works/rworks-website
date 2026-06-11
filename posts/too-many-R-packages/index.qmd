@@ -1,16 +1,16 @@
 ---
 title: "New CRAN Packages: signal or noise?"
 author: "Joseph Rickert"
-date: 2026-05-30
+date: 2026-06-12
 description: "CRAN continues to be the most accessible repository for statistical knowledge on the planet, and the number of new packages being accepted by CRAN is growing faster than ever. But, is the R community really benefiting from this new growth?"
 image: ""
 image-alt: ""
-categories: "Top 40"
+categories: ""
 editor: source
 format: html
 ---
 
-If you follow [R-loggers](https://www.r-bloggers.com/) you will probably know that I have been publishing my selection of the "Top 40" new R packages on CRAN for quite some time. First as part of my work at Revolution Analytics, then on [R Views](https://rviews.rstudio.com/) for RStudio and Posit, and now on here on R Works. It used to take about a day's worth of pleasurable work spread out over a month to select forty interesting packages. For a hundred or so packages I could look at all of the package webpages, download and and play with a small number of them. Now, the "Top 40" has become a real hamster on the wheel project. The following plot shows my count of the number of new packages to make it to CRAN since I began publishing on R Works.
+If you reading this post on [R-loggers](https://www.r-bloggers.com/) you will probably know that I have been publishing my selection of the "Top 40" new R packages on CRAN for quite some time. First as part of my work at Revolution Analytics, then on [R Views](https://rviews.rstudio.com/) for RStudio and Posit, and now on here on R Works. It used to take about a day's worth of pleasurable work spread out over a month to select forty interesting packages. For a hundred or so packages I could look at all of the package webpages, download and and play with a small number of them. Now, the "Top 40" has become a real hamster on the wheel project. The following plot shows my count of the number of new packages to make it to CRAN since I began publishing on R Works.
 
 
 ```{r}
@@ -60,6 +60,6 @@ So let's ask the same kinds of questions about new R packages. Are most of them 
 
 My impression as an engaged dilettante is no: most new R packages are not making a contribution. One obvious indicator of quality is documentation. A significant number of new R packages don't provide sufficient documentation to explain what they offer. For example, in May 40 of the 323 new CRAN package had no README file, no vignettes, and no URL linking to a repository. To my way of thinking, with the possible exceptions of packages that have some sort of discoverable out of band documentation (e.g. a journal publication) or are not meant to be called by end users because they are infrastructure for some suite of packages; packages that don't describe what, why, and how they work are not contributions.
 
-As a hamster on the wheel I would be very pleased to hear what you have to say. If you are motivated, please leave a comment to [Issue #68](https://github.com/r-community-works/rworks-website/issues/68) on the R Works GitHub repository.
+As a hamster on the wheel I would be very pleased to hear what you have to say. If you are motivated, please leave a comment at [Issue #68](https://github.com/r-community-works/rworks-website/issues/68) on the R Works GitHub repository.
 
 
