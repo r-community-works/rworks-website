@@ -1,0 +1,72 @@
+---
+title: "May 2026 Top 40 New CRAN Packages"
+author: "Joseph Rickert"
+date: 2026-05-30
+description: "A personal, idiosyncratic, unabashedly biased, time-constrained attempt to capture the depth and breadth of the new packages submitted to CRAN in a single month."
+image: ""
+image-alt: ""
+categories: "Top 40"
+editor: source
+format: html
+---
+
+Three hundred twenty-three of the new packages submitted to CRAN in April were still there in mid-May. Here are my Top 40 picks in twenty-three categories: Actuarial Analysis, Archaeology, Biology, Causal Inference, Computational Methods, Ecology, Economics, Environmental Studies, Epidemiology, Finance, Functional Data Analysis, Health Technology Assessment, Machine Learning, Medical Statistics, Meta Analysis, Networks, Physics, Programming, Statistics, Time Series, Utilities, and Visualization.
+
+![](.png){fig-alt=""}
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+
+
+
+### Actuarial Analysis
+
+### Ecology
+
+[BRCore](https://cran.r-project.org/package=BRCore) v2.0.7: Implements a unified framework for identification and ecological interpretation of core microbiomes across time and space, enhancing robustness and reproducibility in microbiome data analysis. See [Shade A, Stopnisek N (2019)](https://www.sciencedirect.com/science/article/pii/S1369527419300426?via%3Dihub) for details on abundance-occupancy distributions, [Sloan et al. (2006)](https://enviromicro-journals.onlinelibrary.wiley.com/doi/10.1111/j.1462-2920.2005.00956.x) and [Burns et al. (2015)](https://academic.oup.com/ismej/article/10/3/655/7538159?login=false) for neutral models, and the [vignette](https://cran.r-project.org/web/packages/BRCore/vignettes/BRCore-vignette.html) for an introduction.
+
+![](BRCore.png){fig-alt="Core set occupancy heat map"}
+
+### Finance
+
+[contagionchannels] v0.1.3: Implements a two-stage framework for the joint detection-and-attribution of cross-border financial contagion. Stage one detects directional information flows between equity markets. Stage two attributes each significant directional link to one of five mutually exclusive transmission channels: trade, financial, Ggopolitical, behavioural, or monetary policy). The package also bundles datasets and scripts to reproduce the headline findings of [Bhandari, Parida and Sahu (2026)](https://arxiv.org/abs/2604.26546). There are three vignettes including [Using Custom Datasets](https://cran.r-project.org/web/packages/contagionchannels/vignettes/custom_data.html) and [Methodology Guide](https://cran.r-project.org/web/packages/contagionchannels/vignettes/methodology.html).
+
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+
+
+### Machine Learning
+
+### Surveys
+
+[surveycore] v1.0.0: Implements a modern, `S7`-based foundation for survey analysis spanning both probability and non-probability samples. Probability sample designs include Taylor series linearization, replicate weights (BRR, Fay, jackknife, bootstrap), and two-phase estimation, following [Lumley (2004)](https://www.jstatsoft.org/article/view/v009i08) <doi:10.18637/jss.v009.i08>. Non-probability sample designs support bootstrap and jackknife variance estimation for opt-in panels and convenience samples. There are three vignettes including [Getting Started](https://cran.r-project.org/web/packages/surveycore/vignettes/getting-started.html) and [surveycore vs. survey and srvyr](https://cran.r-project.org/web/packages/surveycore/vignettes/surveycore-vs-survey.html).
+
+
+### Statistics
+
+[glmbayes](https://cran.r-project.org/package=glmbaye) v0.9.5: Provides Bayesian linear and generalized linear model fitting with independent and identically distributed posterior samples. Features include functions that mirror `lm()` and `glm()` interfaces, prior family specifications for Gaussian, Poisson, binomial, and Gamma models with log-concave likelihoods, accept-reject sampling for non-conjugate priors, and optional `OpenCL` acceleration for larger models. See [Nygren and Nygren (2006)](https://www.tandfonline.com/doi/abs/10.1198/016214506000000357) accept-reject methods. There are thenty-seven vignettes including [Getting started](https://cran.r-project.org/web/packages/glmbayes/vignettes/Chapter-01.html) and [Foundations of GLMs](https://cran.r-project.org/web/packages/glmbayes/vignettes/Chapter-05.html).
+
+
+### Time Series
+
+[fable.bayesRecon](https://cran.r-project.org/package=fable.bayesRecon) v0.1.0: Implements probabilistic reconciliation methods within the `fable` framework for hierarchical time series forecasting following `fable` conventions. See the [vignett](https://cran.r-project.org/web/packages/fable.bayesRecon/vignettes/fable.bayesRecon.html) for examples and the following for methodological background: [Corani et al. (2021)](https://link.springer.com/chapter/10.1007/978-3-030-67664-3_13), [Zambon et al. (2024a)](https://link.springer.com/article/10.1007/s11222-023-10343-y), [Zambon et al. (2024b)](https://proceedings.mlr.press/v244/zambon24a.html), and [Carrara et al. (2025)](https://arxiv.org/abs/2506.19554). 
+
+![](bayesRecon.png){fig-alt="Aggregated time series with base and reconciled forecasts"}
+
+end
+
+:::
+
+
+
+::::
+
