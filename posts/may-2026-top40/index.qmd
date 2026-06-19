@@ -21,7 +21,10 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 
 
 
-### Actuarial Analysis
+### Computational Methods
+
+[combss](https://cran.r-project.org/package=combss) v0.1.0: Reformulates the NP-hard discrete subset selection problem as a continuous optimisation over the hypercube $[0,1]^p$, to besolved via a Frank-Wolfe homotopy algorithm with closed-form ridge inner solves. Supports linear (Gaussian), binary logistic, and multinomial regression. See [Moka et al. (2024)](https://link.springer.com/article/10.1007/s11222-024-10387-8) and [Mather et al. (2026)](https://arxiv.org/abs/2603.21952) for methodological details and the [vignette](https://cran.r-project.org/web/packages/combss/vignettes/combss.html) for an example.
+
 
 ### Ecology
 
@@ -46,7 +49,21 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 
 ### Machine Learning
 
+
+### Meta Analysis
+
+[MetaHunt](https://cran.r-project.org/package=MetaHunt) v0.1.0: Provides tools for privacy-preserving meta-analysis of function-valued quantities across heterogeneous studies. Implements a pipeline that includes the denoised functional Successive Projection Algorithm for basis hunting, constrained weight estimation, Dirichlet regression of weights on study-level covariates, target prediction, and split/cross conformal prediction intervals. The methodology described in [Shi, Imai, and Zhang (2026)](https://arxiv.org/abs/2604.23847). There are eight vignettes including [Get started](https://cran.r-project.org/web/packages/MetaHunt/vignettes/get-started.html) and [An Introduction](https://cran.r-project.org/web/packages/MetaHunt/vignettes/metahunt-intro.html).
+
+![](MetaHunt.png){fig-alt="Plot of predicted target functions"}
+
+
+
 ### Surveys
+
+[stepssurvey](https://cran.r-project.org/package=stepssurvey) v0.1.0: Provides a complete analysis pipeline for the WHO STEPwise Approach to NCD Risk Factor Surveillance (STEPS) as described in [Riley et al. (2016)](https://ajph.aphapublications.org/doi/full/10.2105/AJPH.2015.302962). Imports raw survey data (`CSV`, `Excel`, `Stata`, `SPSS`), applies WHO-standard cleaning and re-coding, sets up complex survey designs, computes all standard NCD indicators, and generates publication-ready tables, visualizations, and reports. There are four vignettes including [Preparing STEPS Data for Analysis](https://cran.r-project.org/web/packages/stepssurvey/vignettes/data-preparation.html) and [Interactive Analysis with the Shiny App](https://cran.r-project.org/web/packages/stepssurvey/vignettes/shiny-walkthrough.html).
+
+![](steps.png){fig-alt="Plot of NCD Risk Factor Analysis"}
+
 
 [surveycore] v1.0.0: Implements a modern, `S7`-based foundation for survey analysis spanning both probability and non-probability samples. Probability sample designs include Taylor series linearization, replicate weights (BRR, Fay, jackknife, bootstrap), and two-phase estimation, following [Lumley (2004)](https://www.jstatsoft.org/article/view/v009i08) <doi:10.18637/jss.v009.i08>. Non-probability sample designs support bootstrap and jackknife variance estimation for opt-in panels and convenience samples. There are three vignettes including [Getting Started](https://cran.r-project.org/web/packages/surveycore/vignettes/getting-started.html) and [surveycore vs. survey and srvyr](https://cran.r-project.org/web/packages/surveycore/vignettes/surveycore-vs-survey.html).
 
