@@ -56,7 +56,12 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 
 ![](MetaHunt.png){fig-alt="Plot of predicted target functions"}
 
+### Process Control
 
+[shewhartr](https://cran.r-project.org/package=shewhartr) v1.3.0: Provides  comprehensive toolkit for Statistical Process Control that combines the rigor of classical Shewhart methodology with modern tidyverse-native interfaces that includes classical control charts, regression-based control charts for processes with trend, Nelson runs tests, average run length simulation, process capability indices, and Box-Cox transformation guidance. See [Montgomery (2019)](https://www.tandfonline.com/doi/abs/10.1080/00224065.1984.11978921), [Nelson (1984)](https://www.tandfonline.com/doi/abs/10.1080/00224065.1984.11978921), and  [Woodall (2000)](https://www.tandfonline.com/doi/abs/10.1080/00224065.2000.11980013) for background. There are eleven vignettes including [Getting started](https://cran.r-project.org/web/packages/shewhartr/vignettes/getting-started.html) and [Regression-based control charts](https://cran.r-project.org/web/packages/shewhartr/vignettes/regression-charts.html).
+
+
+![](shewhartr.png){fig-alt="Regression Control Chart"}
 
 ### Surveys
 
@@ -78,6 +83,12 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 [fable.bayesRecon](https://cran.r-project.org/package=fable.bayesRecon) v0.1.0: Implements probabilistic reconciliation methods within the `fable` framework for hierarchical time series forecasting following `fable` conventions. See the [vignett](https://cran.r-project.org/web/packages/fable.bayesRecon/vignettes/fable.bayesRecon.html) for examples and the following for methodological background: [Corani et al. (2021)](https://link.springer.com/chapter/10.1007/978-3-030-67664-3_13), [Zambon et al. (2024a)](https://link.springer.com/article/10.1007/s11222-023-10343-y), [Zambon et al. (2024b)](https://proceedings.mlr.press/v244/zambon24a.html), and [Carrara et al. (2025)](https://arxiv.org/abs/2506.19554). 
 
 ![](bayesRecon.png){fig-alt="Aggregated time series with base and reconciled forecasts"}
+
+[VARcheck](https://cran.r-project.org/package=VARcheck) v0.1.0: Provides model-agnostic visual diagnostics for vector autoregressive models. Given empirical data, model predictions, residuals, and optionally simulated data, the package assembles a multi-panel diagnostic grid: empirical vs. predicted time series, residual inspection, residuals vs. predictions scatter, and posterior predictive style checks via simulated trajectories. See [Haslbeck et al. (2026)](https://osf.io/preprints/psyarxiv/k6uz4_v3) for the approach followed and the vignettes [Example analyses](https://cran.r-project.org/web/packages/VARcheck/vignettes/example-analyses.html) and [Getting Started](https://cran.r-project.org/web/packages/VARcheck/vignettes/getting-started.html). 
+
+
+![](VARcheck.png){fig-alt="Diagnostic plots on grid"}
+
 
 end
 
