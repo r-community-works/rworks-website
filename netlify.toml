@@ -1,2 +1,8 @@
+[build.environment]
+  NODE_VERSION = "22"
+
 [[plugins]]
-package = "@quarto/netlify-plugin-quarto"
+  package = "@quarto/netlify-plugin-quarto"
+
+  [plugins.inputs]
+    version = "1.7.15"
