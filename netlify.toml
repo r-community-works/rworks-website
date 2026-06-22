@@ -5,4 +5,4 @@
   package = "@quarto/netlify-plugin-quarto"
 
   [plugins.inputs]
-    version = "1.7.15"
+    version = "v1.7.15"
