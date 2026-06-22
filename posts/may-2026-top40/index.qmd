@@ -32,6 +32,11 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 
 ![](BRCore.png){fig-alt="Core set occupancy heat map"}
 
+### Education
+
+[bibnets](https://cran.r-project.org/package=bibnets) v0.6.0: Provides functionsto imports, construct, and export bibliometric networks from scholarly metadata. Reads *Scopus*, *Web of Science*, *BibTeX*, *RIS*, *OpenAlex*, *Lens.org*, *Dimensions*, and *Crossref* exports. Goes beyond standard co-networks with attention-weighted networks, position-aware counting, similarity and dissimilarity normalisations, temporal networks and local citation scoring. See [López-Pernas, Saqr & Apiola (2023)](https://link.springer.com/chapter/10.1007/978-3-031-25336-2_5) for the methode involved. Thee are four vignettes including [Getting Started](https://cran.r-project.org/web/packages/bibnets/vignettes/bibnets.html) and [Reading bibliometric data](https://cran.r-project.org/web/packages/bibnets/vignettes/reading-data.html).
+
+
 ### Finance
 
 [contagionchannels] v0.1.3: Implements a two-stage framework for the joint detection-and-attribution of cross-border financial contagion. Stage one detects directional information flows between equity markets. Stage two attributes each significant directional link to one of five mutually exclusive transmission channels: trade, financial, Ggopolitical, behavioural, or monetary policy). The package also bundles datasets and scripts to reproduce the headline findings of [Bhandari, Parida and Sahu (2026)](https://arxiv.org/abs/2604.26546). There are three vignettes including [Using Custom Datasets](https://cran.r-project.org/web/packages/contagionchannels/vignettes/custom_data.html) and [Methodology Guide](https://cran.r-project.org/web/packages/contagionchannels/vignettes/methodology.html).
@@ -49,12 +54,24 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 
 ### Machine Learning
 
+### Medicine
+
+[BSET](https://cran.r-project.org/package=BSET) v1.0: Implements the validity of surrogate markers in clinical trials and provides hypothesis testing tools to evaluate whether a surrogate can reliably estimate the causal effect of a treatment on a primary outcome.  Addresses key limitations of the frequentist method, including the lack of causal interpretability and the inability to adjust for covariates in the estimation process.See [Carlotti and Parast (2026)](https://arxiv.org/abs/2603.14381), [Parast et al. (2024)](https://academic.oup.com/biometrics/article/80/1/ujad035/7612597?login=false) for background and the [vignette](https://cran.r-project.org/web/packages/BSET/vignettes/BSET_tutorial.html) for a tutorial.
+
+![](BSET.png){fig-alt="The posterior distribution of 𝜃
+ from the BSET procedure without adjusting for covariates"}
+
 
 ### Meta Analysis
 
 [MetaHunt](https://cran.r-project.org/package=MetaHunt) v0.1.0: Provides tools for privacy-preserving meta-analysis of function-valued quantities across heterogeneous studies. Implements a pipeline that includes the denoised functional Successive Projection Algorithm for basis hunting, constrained weight estimation, Dirichlet regression of weights on study-level covariates, target prediction, and split/cross conformal prediction intervals. The methodology described in [Shi, Imai, and Zhang (2026)](https://arxiv.org/abs/2604.23847). There are eight vignettes including [Get started](https://cran.r-project.org/web/packages/MetaHunt/vignettes/get-started.html) and [An Introduction](https://cran.r-project.org/web/packages/MetaHunt/vignettes/metahunt-intro.html).
 
 ![](MetaHunt.png){fig-alt="Plot of predicted target functions"}
+
+### Probability
+
+[BetaDanish](https://cran.r-project.org/package=BetaDanish) v0.2.0: Implements the four-parameter Beta-Danish distribution and its three-parameter submodel for survival and reliability analysis, based on Ahmad and [Danish (2025)](https://reference-global.com/article/10.2478/jamsi-2025-0010), and provides functions for density, distribution, quantile, hazard, and random generation. There are five vignetes including [Introduction](https://cran.r-project.org/web/packages/BetaDanish/vignettes/BetaDanish_Introduction.html) and [Bayesian Estimation](https://cran.r-project.org/web/packages/BetaDanish/vignettes/bd-bayesian.html).
+
 
 ### Process Control
 
@@ -63,6 +80,12 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 
 ![](shewhartr.png){fig-alt="Regression Control Chart"}
 
+
+### Statistics
+
+
+
+
 ### Surveys
 
 [stepssurvey](https://cran.r-project.org/package=stepssurvey) v0.1.0: Provides a complete analysis pipeline for the WHO STEPwise Approach to NCD Risk Factor Surveillance (STEPS) as described in [Riley et al. (2016)](https://ajph.aphapublications.org/doi/full/10.2105/AJPH.2015.302962). Imports raw survey data (`CSV`, `Excel`, `Stata`, `SPSS`), applies WHO-standard cleaning and re-coding, sets up complex survey designs, computes all standard NCD indicators, and generates publication-ready tables, visualizations, and reports. There are four vignettes including [Preparing STEPS Data for Analysis](https://cran.r-project.org/web/packages/stepssurvey/vignettes/data-preparation.html) and [Interactive Analysis with the Shiny App](https://cran.r-project.org/web/packages/stepssurvey/vignettes/shiny-walkthrough.html).
@@ -70,7 +93,7 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 ![](steps.png){fig-alt="Plot of NCD Risk Factor Analysis"}
 
 
-[surveycore] v1.0.0: Implements a modern, `S7`-based foundation for survey analysis spanning both probability and non-probability samples. Probability sample designs include Taylor series linearization, replicate weights (BRR, Fay, jackknife, bootstrap), and two-phase estimation, following [Lumley (2004)](https://www.jstatsoft.org/article/view/v009i08) <doi:10.18637/jss.v009.i08>. Non-probability sample designs support bootstrap and jackknife variance estimation for opt-in panels and convenience samples. There are three vignettes including [Getting Started](https://cran.r-project.org/web/packages/surveycore/vignettes/getting-started.html) and [surveycore vs. survey and srvyr](https://cran.r-project.org/web/packages/surveycore/vignettes/surveycore-vs-survey.html).
+[surveycore](https://cran.r-project.org/package=surveycore) v1.0.0: Implements a modern, `S7`-based foundation for survey analysis spanning both probability and non-probability samples. Probability sample designs include Taylor series linearization, replicate weights (BRR, Fay, jackknife, bootstrap), and two-phase estimation, following [Lumley (2004)](https://www.jstatsoft.org/article/view/v009i08) <doi:10.18637/jss.v009.i08>. Non-probability sample designs support bootstrap and jackknife variance estimation for opt-in panels and convenience samples. There are three vignettes including [Getting Started](https://cran.r-project.org/web/packages/surveycore/vignettes/getting-started.html) and [surveycore vs. survey and srvyr](https://cran.r-project.org/web/packages/surveycore/vignettes/surveycore-vs-survey.html).
 
 
 ### Statistics
@@ -80,6 +103,9 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 
 ### Time Series
 
+[icomb](https://cran.r-project.org/package=icomb) v0.2.0: Implements the Information Combination (IComb) approach proposed by [Nguyen, Vahid and Wickramasuriya (2025)](https://www.monash.edu/business/ebs/research/publications/ebs/2025/wp11-2025.pdf) for hierarchical forecast reconciliation. The method combines information from base forecasts constructed using different information sets while ensuring coherence. See the [vignette](https://cran.r-project.org/web/packages/icomb/vignettes/icomb.html).
+
+
 [fable.bayesRecon](https://cran.r-project.org/package=fable.bayesRecon) v0.1.0: Implements probabilistic reconciliation methods within the `fable` framework for hierarchical time series forecasting following `fable` conventions. See the [vignett](https://cran.r-project.org/web/packages/fable.bayesRecon/vignettes/fable.bayesRecon.html) for examples and the following for methodological background: [Corani et al. (2021)](https://link.springer.com/chapter/10.1007/978-3-030-67664-3_13), [Zambon et al. (2024a)](https://link.springer.com/article/10.1007/s11222-023-10343-y), [Zambon et al. (2024b)](https://proceedings.mlr.press/v244/zambon24a.html), and [Carrara et al. (2025)](https://arxiv.org/abs/2506.19554). 
 
 ![](bayesRecon.png){fig-alt="Aggregated time series with base and reconciled forecasts"}
@@ -88,6 +114,10 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 
 
 ![](VARcheck.png){fig-alt="Diagnostic plots on grid"}
+
+
+### Utilities
+
 
 
 end

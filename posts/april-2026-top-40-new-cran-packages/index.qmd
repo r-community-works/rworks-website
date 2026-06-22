@@ -116,6 +116,13 @@ Three hundred seventy-six of the new packages submitted to CRAN in April were st
 
 ![](ABsolution.png){fig-alt="Snapshot of Shiny page for Exploratory Analysis"}
 
+[cclustr](https://cran.r-project.org/web/packages/cclustr/vignettes/cclustr-introduction.html) v0.1.1: Provides tools for performing consensus clustering on multiple imputed datasets that support arange of clustering algorithms across imputations, including hierarchical methods, partition-based approaches such as k-means, and methods for mixed or categorical data. Consensus solutions are derived via hierarchical clustering applied a dissimilarity matrix. The consensus clustering framework is based on [Monti et al. (2003)](https://link.springer.com/article/10.1023/A:1023949509487), rank aggregation methods follow [Pihur et al. (2007)](https://academic.oup.com/bioinformatics/article/23/13/1607/223480?login=false), and the proportion of ambiguous clustering metric is based on [Senbabaoglu et al. (2014)](https://www.nature.com/articles/srep06207). See the [vignette](https://cran.r-project.org/web/packages/cclustr/vignettes/cclustr-introduction.html).
+
+
+![](cclustr.png){fig-alt="Example of consenus matrix"}
+
+
+
 
 
 [IOBR](https://cran.r-project.org/package=IOBR) v2.2.2: Provides six modules for tumor microenvironment (TME) analysis based on multi-omics data. These modules cover data preprocessing, TME estimation, TME infiltrating patterns, cellular interactions, genome and TME interaction, and visualization for TME-relevant features, as well as modelling based on key features. In addition to providing a way to construct gene signatures from single-cell RNA-seq data, it also provides a way to construct a reference matrix for TME deconvolution from single-cell RNA-seq data. See [Zeng et al. (2024)](https://www.cell.com/cell-reports-methods/fulltext/S2667-2375(24)00300-X?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS266723752400300X%3Fshowall%3Dtrue) and [Fang et al. (2025)](https://onlinelibrary.wiley.com/doi/10.1002/mdr2.70001) for background and the [vignette](https://cran.r-project.org/web/packages/IOBR/vignettes/IOBR-user-manual.html) for a detailed tutorial.
