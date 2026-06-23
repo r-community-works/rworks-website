@@ -22,10 +22,18 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 
 [corteza](https://cran.r-project.org/package=corteza) v0.6.9: Implements an agent runtime that gives Large Language Models (LLMs) from [Anthropic](https://www.anthropic.com/), [OpenAI](https://openai.com/), [Moonshot](https://www.moonshot.ai/), and [Ollama](https://ollama.com/) direct access to a live R session with managed workspace state. Tools execute as R function calls with provenance tracking, and a deterministic retrieval system keeps relevant objects in context across turns. There are three entry points: a shell command-line interface, a console read-eval-print-loop via `chat()`, and a Model Context Protocol (MCP) server via `serve()` for external clients. There are four vignettes [Package as Skill](https://cran.r-project.org/web/packages/corteza/vignettes/package-as-skill.html) and [Skills](https://cran.r-project.org/web/packages/corteza/vignettes/skills.html).
 
+[ElicitationWizard](https://cran.r-project.org/package=ElicitationWizard) v0.1.0: Implements a `Shiny` application for eliciting Bayesian prior distributions using large language models (LLMs). Supports multiple LLM experts, linear opinion pooling, and the Delphi method for iterative consensus. For more details see [Falconer et al. (2022)](https://pubsonline.informs.org/doi/10.1287/deca.2022.0451) and [Selby et al. (2025)](https://onlinelibrary.wiley.com/doi/10.1002/sta4.70054). There is a [Getting Started](https://cran.r-project.org/web/packages/ElicitationWizard/vignettes/getting-started.html) vignette and a [Tutorial](https://cran.r-project.org/web/packages/ElicitationWizard/vignettes/tutorial.html).
+
+
 
 ### Computational Methods
 
 [combss](https://cran.r-project.org/package=combss) v0.1.0: Reformulates the NP-hard discrete subset selection problem as a continuous optimisation over the hypercube $[0,1]^p$, to besolved via a Frank-Wolfe homotopy algorithm with closed-form ridge inner solves. Supports linear (Gaussian), binary logistic, and multinomial regression. See [Moka et al. (2024)](https://link.springer.com/article/10.1007/s11222-024-10387-8) and [Mather et al. (2026)](https://arxiv.org/abs/2603.21952) for methodological details and the [vignette](https://cran.r-project.org/web/packages/combss/vignettes/combss.html) for an example.
+
+[diffcp](https://cran.r-project.org/package=diffcp) v0.1.1: Provides a port of the python `diffcp` package. Functions compute the derivative of the optimal solution map of a convex cone program, treating the program as an implicit function of its data (constraint matrix, offset, objective coefficients, and optionally a quadratic), mirroring [Agrawal et al. (2019)](https://arxiv.org/abs/1904.09043). See the [vignette](https://cran.r-project.org/web/packages/diffcp/vignettes/diffcp.html).
+
+[LangevinFlow](https://cran.r-project.org/package=LangevinFlow) v0.1.0: Provides lightweight, minimal dependency implementations of Langevin diffusion based Markov chain Monte Carlo samplers, including the Unadjusted Langevin Algorithm and the Metropolis-Adjusted Langevin Algorithm. The core sampling loops are written in `C++` via `Rcpp` and `RcppArmadillo`  Intended as a building block for Bayesian inference and stochastic optimization rather than a full probabilistic programming framework. Methods follow [Roberts and Tweedie (1996)](https://www.jstor.org/stable/3318418?origin=crossref) and [Roberts and Rosenthal (1998)](https://academic.oup.com/jrsssb/article-abstract/60/1/255/7083121?redirectedFrom=fulltext&login=false). See the [vignette](https://cran.r-project.org/web/packages/LangevinFlow/vignettes/introduction.html).
+
 
 
 ### Ecology
@@ -33,6 +41,12 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 [BRCore](https://cran.r-project.org/package=BRCore) v2.0.7: Implements a unified framework for identification and ecological interpretation of core microbiomes across time and space, enhancing robustness and reproducibility in microbiome data analysis. See [Shade A, Stopnisek N (2019)](https://www.sciencedirect.com/science/article/pii/S1369527419300426?via%3Dihub) for details on abundance-occupancy distributions, [Sloan et al. (2006)](https://enviromicro-journals.onlinelibrary.wiley.com/doi/10.1111/j.1462-2920.2005.00956.x) and [Burns et al. (2015)](https://academic.oup.com/ismej/article/10/3/655/7538159?login=false) for neutral models, and the [vignette](https://cran.r-project.org/web/packages/BRCore/vignettes/BRCore-vignette.html) for an introduction.
 
 ![](BRCore.png){fig-alt="Core set occupancy heat map"}
+
+[ELAplus](https://cran.r-project.org/package=ELAplus) v1.0.2: Provides tools for Energy landscape analysis, a systematic method for analyzing an energy landscape represented as a weighted network. Functions are especially designed to analyze ecological dynamics, i.e., transitions in community compositions. See [Suzuki et al. (2021)](https://esajournals.onlinelibrary.wiley.com/doi/10.1002/ecm.1469) for details about the analysis framework and the [vignette](https://cran.r-project.org/web/packages/ELAplus/vignettes/ELAplus-intro.html).
+
+![](ELAplus.png){fig-alt="A disconnectivity graph is a compact visualization of the global structure of an energy landscape"}
+
+
 
 ### Education
 
