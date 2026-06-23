@@ -18,7 +18,9 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 
 ::: {.column width="45%"}
 
+### Artifical Intelligence
 
+[corteza](https://cran.r-project.org/package=corteza) v0.6.9: Implements an agent runtime that gives Large Language Models (LLMs) from [Anthropic](https://www.anthropic.com/), [OpenAI](https://openai.com/), [Moonshot](https://www.moonshot.ai/), and [Ollama](https://ollama.com/) direct access to a live R session with managed workspace state. Tools execute as R function calls with provenance tracking, and a deterministic retrieval system keeps relevant objects in context across turns. There are three entry points: a shell command-line interface, a console read-eval-print-loop via `chat()`, and a Model Context Protocol (MCP) server via `serve()` for external clients. There are four vignettes [Package as Skill](https://cran.r-project.org/web/packages/corteza/vignettes/package-as-skill.html) and [Skills](https://cran.r-project.org/web/packages/corteza/vignettes/skills.html).
 
 
 ### Computational Methods
@@ -44,6 +46,10 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 ### Genomics
 
 [cclustr](https://cran.r-project.org/web/packages/cclustr/vignettes/cclustr-introduction.html) v0.1.1: Provides tools for performing consensus clustering on multiple imputed datasets that support arange of clustering algorithms across imputations, including hierarchical methods, partition-based approaches such as k-means, and methods for mixed or categorical data. Consensus solutions are derived via hierarchical clustering applied a dissimilarity matrix. The consensus clustering framework is based on [Monti et al. (2003)](https://link.springer.com/article/10.1023/A:1023949509487), rank aggregation methods follow [Pihur et al. (2007)](https://academic.oup.com/bioinformatics/article/23/13/1607/223480?login=false), and the proportion of ambiguous clustering metric is based on [Senbabaoglu et al. (2014)](https://www.nature.com/articles/srep06207). See the [vignette](https://cran.r-project.org/web/packages/cclustr/vignettes/cclustr-introduction.html).![](cclustr.png){fig-alt="Example of consenus matrix"}
+
+[IOBR](https://cran.r-project.org/package=IOBR) v2.2.2: Provides six modules for tumor microenvironment (TME) analysis based on multi-omics data. These modules cover data preprocessing, TME estimation, TME infiltrating patterns, cellular interactions, genome and TME interaction, and visualization for TME-relevant features, as well as modelling based on key features. In addition to providing a way to construct gene signatures from single-cell RNA-seq data, it also provides a way to construct a reference matrix for TME deconvolution from single-cell RNA-seq data. See [Zeng et al. (2024)](https://www.cell.com/cell-reports-methods/fulltext/S2667-2375(24)00300-X?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS266723752400300X%3Fshowall%3Dtrue) and [Fang et al. (2025)](https://onlinelibrary.wiley.com/doi/10.1002/mdr2.70001) for background and the [vignette](https://cran.r-project.org/web/packages/IOBR/vignettes/IOBR-user-manual.html)
+
+![](BRCore.png){fig-alt="Core set occupancy heat map"}
 
 
 :::
@@ -72,6 +78,7 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 
 ![](MetaHunt.png){fig-alt="Plot of predicted target functions"}
 
+
 ### Probability
 
 [BetaDanish](https://cran.r-project.org/package=BetaDanish) v0.2.0: Implements the four-parameter Beta-Danish distribution and its three-parameter submodel for survival and reliability analysis, based on Ahmad and [Danish (2025)](https://reference-global.com/article/10.2478/jamsi-2025-0010), and provides functions for density, distribution, quantile, hazard, and random generation. There are five vignetes including [Introduction](https://cran.r-project.org/web/packages/BetaDanish/vignettes/BetaDanish_Introduction.html) and [Bayesian Estimation](https://cran.r-project.org/web/packages/BetaDanish/vignettes/bd-bayesian.html).
@@ -87,7 +94,7 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 
 ### Statistics
 
-
+[glmbayes](https://cran.r-project.org/package=glmbaye) v0.9.5: Provides Bayesian linear and generalized linear model fitting with independent and identically distributed posterior samples. Features include functions that mirror `lm()` and `glm()` interfaces, prior family specifications for Gaussian, Poisson, binomial, and Gamma models with log-concave likelihoods, accept-reject sampling for non-conjugate priors, and optional `OpenCL` acceleration for larger models. See [Nygren and Nygren (2006)](https://www.tandfonline.com/doi/abs/10.1198/016214506000000357) accept-reject methods. There are thenty-seven vignettes including [Getting started](https://cran.r-project.org/web/packages/glmbayes/vignettes/Chapter-01.html) and [Foundations of GLMs](https://cran.r-project.org/web/packages/glmbayes/vignettes/Chapter-05.html).
 
 
 ### Surveys
@@ -100,9 +107,7 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 [surveycore](https://cran.r-project.org/package=surveycore) v1.0.0: Implements a modern, `S7`-based foundation for survey analysis spanning both probability and non-probability samples. Probability sample designs include Taylor series linearization, replicate weights (BRR, Fay, jackknife, bootstrap), and two-phase estimation, following [Lumley (2004)](https://www.jstatsoft.org/article/view/v009i08) <doi:10.18637/jss.v009.i08>. Non-probability sample designs support bootstrap and jackknife variance estimation for opt-in panels and convenience samples. There are three vignettes including [Getting Started](https://cran.r-project.org/web/packages/surveycore/vignettes/getting-started.html) and [surveycore vs. survey and srvyr](https://cran.r-project.org/web/packages/surveycore/vignettes/surveycore-vs-survey.html).
 
 
-### Statistics
 
-[glmbayes](https://cran.r-project.org/package=glmbaye) v0.9.5: Provides Bayesian linear and generalized linear model fitting with independent and identically distributed posterior samples. Features include functions that mirror `lm()` and `glm()` interfaces, prior family specifications for Gaussian, Poisson, binomial, and Gamma models with log-concave likelihoods, accept-reject sampling for non-conjugate priors, and optional `OpenCL` acceleration for larger models. See [Nygren and Nygren (2006)](https://www.tandfonline.com/doi/abs/10.1198/016214506000000357) accept-reject methods. There are thenty-seven vignettes including [Getting started](https://cran.r-project.org/web/packages/glmbayes/vignettes/Chapter-01.html) and [Foundations of GLMs](https://cran.r-project.org/web/packages/glmbayes/vignettes/Chapter-05.html).
 
 
 ### Time Series
