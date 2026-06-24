@@ -47,6 +47,10 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 ![](ELAplus.png){fig-alt="A disconnectivity graph is a compact visualization of the global structure of an energy landscape"}
 
 
+[fb4package](https://cran.r-project.org/package=fb4package) v2.1.0: Implements the 'Fish Bioenergetics 4.0' framework described in [Deslauriers et al. (2017)](https://academic.oup.com/fisheries/article-abstract/42/11/586/7833943?redirectedFrom=fulltext&login=false) and provides automated parameter optimization, multi-prey diet modeling, and comprehensive energy. Includes species-specific parameter databases and tools for modeling fish growth, consumption, and metabolism under varying environmental conditions. There are six vignettes including [Introduction](https://cran.r-project.org/web/packages/fb4package/vignettes/fb4-introduction.html) and [Temperature Sensitivity and Climate Change Scenarios](https://cran.r-project.org/web/packages/fb4package/vignettes/fb4-temperature-climate.html).
+
+![](fb4package.png){fig-alt="Plot of temperature and feeding effects on growth"}
+
 
 ### Education
 
@@ -57,6 +61,13 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 
 [contagionchannels](https://cran.r-project.org/package=contagionchnnels) v0.1.3: Implements a two-stage framework for the joint detection-and-attribution of cross-border financial contagion. Stage one detects directional information flows between equity markets. Stage two attributes each significant directional link to one of five mutually exclusive transmission channels: trade, financial, Ggopolitical, behavioural, or monetary policy). The package also bundles datasets and scripts to reproduce the headline findings of [Bhandari, Parida and Sahu (2026)](https://arxiv.org/abs/2604.26546). There are three vignettes including [Using Custom Datasets](https://cran.r-project.org/web/packages/contagionchannels/vignettes/custom_data.html) and [Methodology Guide](https://cran.r-project.org/web/packages/contagionchannels/vignettes/methodology.html).
 
+### Functional Data Analysis
+
+[SmoothPLS](https://cran.r-project.org/package=SmoothPLS) v0.1.5: Implements the the Partial Least-Squares algorithm for functional data through the concept of active area integration building upon the basis expansion methods described in [Aguilera et al. (2010)](https://www.sciencedirect.com/science/article/abs/pii/S0169743910001747?via%3Dihub). Functions handle both scalar and categorical functional Data and interpretable regression curves even for discrete state changes. There are six vignettes including [smoothPLS ScalarFD](https://cran.r-project.org/web/packages/SmoothPLS/vignettes/s02_SFD.html) and [SmoothPLS multi state](https://cran.r-project.org/web/packages/SmoothPLS/vignettes/s03_CFD_multistates.html),
+
+![](SmoothPLS.png){fig-alt="Model comparison plots"}
+
+
 ### Genomics
 
 [cclustr](https://cran.r-project.org/web/packages/cclustr/vignettes/cclustr-introduction.html) v0.1.1: Provides tools for performing consensus clustering on multiple imputed datasets that support arange of clustering algorithms across imputations, including hierarchical methods, partition-based approaches such as k-means, and methods for mixed or categorical data. Consensus solutions are derived via hierarchical clustering applied a dissimilarity matrix. The consensus clustering framework is based on [Monti et al. (2003)](https://link.springer.com/article/10.1023/A:1023949509487), rank aggregation methods follow [Pihur et al. (2007)](https://academic.oup.com/bioinformatics/article/23/13/1607/223480?login=false), and the proportion of ambiguous clustering metric is based on [Senbabaoglu et al. (2014)](https://www.nature.com/articles/srep06207). See the [vignette](https://cran.r-project.org/web/packages/cclustr/vignettes/cclustr-introduction.html).![](cclustr.png){fig-alt="Example of consenus matrix"}
@@ -64,6 +75,24 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 [IOBR](https://cran.r-project.org/package=IOBR) v2.2.2: Provides six modules for tumor microenvironment (TME) analysis based on multi-omics data. These modules cover data preprocessing, TME estimation, TME infiltrating patterns, cellular interactions, genome and TME interaction, and visualization for TME-relevant features, as well as modelling based on key features. In addition to providing a way to construct gene signatures from single-cell RNA-seq data, it also provides a way to construct a reference matrix for TME deconvolution from single-cell RNA-seq data. See [Zeng et al. (2024)](https://www.cell.com/cell-reports-methods/fulltext/S2667-2375(24)00300-X?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS266723752400300X%3Fshowall%3Dtrue) and [Fang et al. (2025)](https://onlinelibrary.wiley.com/doi/10.1002/mdr2.70001) for background and the [vignette](https://cran.r-project.org/web/packages/IOBR/vignettes/IOBR-user-manual.html)
 
 ![](BRCore.png){fig-alt="Core set occupancy heat map"}
+
+
+
+
+### Machine Learning
+
+[tmfast](https://cran.r-project.org/package=tmfast) 0.1.1: Provides functions to fit topic models using varimax-rotated principal component analysis, following the "vintage factor analysis" approach of [Rohe & Zheng (2020)](https://arxiv.org/abs/2004.05387) . Leverages truncated PCA via `irlba` for sparse matrices, enabling fast model fitting on large corpora. Includes an information-theoretic approach to vocabulary selection, `broom`-compatible tidiers for extracting word-topic and topic-document matrices into a tidy data workflow, and samplers for constructing simulated corpora for benchmarking and method evaluation. There are two vignettes [Fast topic modeling with real books](https://cran.r-project.org/web/packages/tmfast/vignettes/realbooks.html) and [Fitting topic models with tmfast](https://cran.r-project.org/web/packages/tmfast/vignettes/simulated.html).
+
+![](tmfast.png){fig-alt="t-SNE visualization of a topic model"}
+
+### Medicine
+ 
+[BSET](https://cran.r-project.org/package=BSET) v1.0: Implements the validity of surrogate markers in clinical trials and provides hypothesis testing tools to evaluate whether a surrogate can reliably estimate the causal effect of a treatment on a primary outcome.  Addresses key limitations of the frequentist method, including the lack of causal interpretability and the inability to adjust for covariates in the estimation process.See [Carlotti and Parast (2026)](https://arxiv.org/abs/2603.14381), [Parast et al. (2024)](https://academic.oup.com/biometrics/article/80/1/ujad035/7612597?login=false) for background and the [vignette](https://cran.r-project.org/web/packages/BSET/vignettes/BSET_tutorial.html) for a tutorial.
+
+![](BSET.png){fig-alt="The posterior distribution of 𝜃from the BSET procedure without adjusting for covariates"}
+ 
+
+[DICErClust](https://cran.r-project.org/package=DICErClust) v0.1.2: Implements the Deep Significance Clustering (DICE), a self-supervised learning framework designed to identify clinically meaningful and risk-stratified patient subgroups from electronic health record data. DICE jointly optimizes deep representation learning, clustering, and outcome prediction while enforcing statistical significance between predicted outcomes and cluster membership and produces subgroups that are both clinically coherent and predictive. [See Huang et al. (2021)](https://academic.oup.com/jamia/article-abstract/28/12/2641/6377084?redirectedFrom=fulltext&login=false) and the vignettes [Introduction](https://cran.r-project.org/web/packages/DICErClust/vignettes/DICEr-introduction.html) and [Heart Failure Risk Stratification](https://cran.r-project.org/web/packages/DICErClust/vignettes/heart-failure-example.html).
 
 
 :::
@@ -74,16 +103,6 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 
 ::: {.column width="45%"}
 
-
-
-### Machine Learning
-
-### Medicine
-
-[BSET](https://cran.r-project.org/package=BSET) v1.0: Implements the validity of surrogate markers in clinical trials and provides hypothesis testing tools to evaluate whether a surrogate can reliably estimate the causal effect of a treatment on a primary outcome.  Addresses key limitations of the frequentist method, including the lack of causal interpretability and the inability to adjust for covariates in the estimation process.See [Carlotti and Parast (2026)](https://arxiv.org/abs/2603.14381), [Parast et al. (2024)](https://academic.oup.com/biometrics/article/80/1/ujad035/7612597?login=false) for background and the [vignette](https://cran.r-project.org/web/packages/BSET/vignettes/BSET_tutorial.html) for a tutorial.
-
-![](BSET.png){fig-alt="The posterior distribution of 𝜃
- from the BSET procedure without adjusting for covariates"}
 
 
 ### Meta Analysis
