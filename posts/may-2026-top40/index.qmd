@@ -77,11 +77,6 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 
 [cclustr](https://cran.r-project.org/web/packages/cclustr/vignettes/cclustr-introduction.html) v0.1.1: Provides tools for performing consensus clustering on multiple imputed datasets that support arange of clustering algorithms across imputations, including hierarchical methods, partition-based approaches such as k-means, and methods for mixed or categorical data. Consensus solutions are derived via hierarchical clustering applied a dissimilarity matrix. The consensus clustering framework is based on [Monti et al. (2003)](https://link.springer.com/article/10.1023/A:1023949509487), rank aggregation methods follow [Pihur et al. (2007)](https://academic.oup.com/bioinformatics/article/23/13/1607/223480?login=false), and the proportion of ambiguous clustering metric is based on [Senbabaoglu et al. (2014)](https://www.nature.com/articles/srep06207). See the [vignette](https://cran.r-project.org/web/packages/cclustr/vignettes/cclustr-introduction.html).![](cclustr.png){fig-alt="Example of consenus matrix"}
 
-[IOBR](https://cran.r-project.org/package=IOBR) v2.2.2: Provides six modules for tumor microenvironment (TME) analysis based on multi-omics data. These modules cover data preprocessing, TME estimation, TME infiltrating patterns, cellular interactions, genome and TME interaction, and visualization for TME-relevant features, as well as modelling based on key features. In addition to providing a way to construct gene signatures from single-cell RNA-seq data, it also provides a way to construct a reference matrix for TME deconvolution from single-cell RNA-seq data. See [Zeng et al. (2024)](https://www.cell.com/cell-reports-methods/fulltext/S2667-2375(24)00300-X?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS266723752400300X%3Fshowall%3Dtrue) and [Fang et al. (2025)](https://onlinelibrary.wiley.com/doi/10.1002/mdr2.70001) for background and the [vignette](https://cran.r-project.org/web/packages/IOBR/vignettes/IOBR-user-manual.html)
-
-![](BRCore.png){fig-alt="Core set occupancy heat map"}
-
-
 
 
 ### Machine Learning
@@ -119,7 +114,11 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 
 ### Probability
 
-[BetaDanish](https://cran.r-project.org/package=BetaDanish) v0.2.0: Implements the four-parameter Beta-Danish distribution and its three-parameter submodel for survival and reliability analysis, based on Ahmad and [Danish (2025)](https://reference-global.com/article/10.2478/jamsi-2025-0010), and provides functions for density, distribution, quantile, hazard, and random generation. There are five vignetes including [Introduction](https://cran.r-project.org/web/packages/BetaDanish/vignettes/BetaDanish_Introduction.html) and [Bayesian Estimation](https://cran.r-project.org/web/packages/BetaDanish/vignettes/bd-bayesian.html).
+[BetaDanish](https://cran.r-project.org/package=BetaDanish) v0.2.0: Implements the four-parameter Beta-Danish distribution and its three-parameter submodel for survival and reliability analysis, based on Ahmad and [Danish (2025)](https://reference-global.com/article/10.2478/jamsi-2025-0010), and provides functions for density, distribution, quantile, hazard, and random generation. There are five vignetes including [Introduction](https://cran.r-project.org/web/packages/BetaDanish/vignettes/BetaDanish_Introduction.html) and [Bayesian Estimation](https://cran.r-project.org/web/packages/BetaDanish/vignettes/bd-bayesian.html). 
+
+[mhn](https://cran.r-project.org/package=mhn) v0.1.0: Provides density, distribution, quantile, and random generation functions for the Modified Half-Normal (MHN) distribution, along with moments, mode, and the Fox-Wright Psi function used as the normalizing constant. The MHN distribution arises as a conditional posterior in Bayesian MCMC and generalizes the half-normal, truncated normal, and square-root gamma distributions. Implements efficient sampling via the [Sun, Kong & Pal (2023)](https://www.tandfonline.com/doi/full/10.1080/03610926.2021.1934700) algorithms and the [Gao & Wang (2025)](https://www.tandfonline.com/doi/full/10.1080/03610918.2025.2524551) RTDR method. See the vignettes [Introduction](https://cran.r-project.org/web/packages/mhn/vignettes/introduction.html) and [Theoretical Background](https://cran.r-project.org/web/packages/mhn/vignettes/theory.html).
+
+![](mhn.png){fig-alt="MHN density curves for various parameter values"}
 
 
 ### Process Control
@@ -139,6 +138,10 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 
 ### Statistics
 
+[bvarnet](https://cran.r-project.org/package=bvarnet) v1.0.1: Provides functions for the Bayesian estimation of multilevel Vector Autoregression (VAR) models using Stan. Supports Gaussian, Binary, and Ordinal (adjacent category) outcome variables with random effects and customizable priors. There are six vignettes including an [introduction](https://cran.r-project.org/web/packages/bvarnet/vignettes/bvarnet.html) and [Mixed Model](https://cran.r-project.org/web/packages/bvarnet/vignettes/Mixed-Model.html)
+
+![](bvarnet.png){fig-alt="Network visualization of a model"}
+
 [glmbayes](https://cran.r-project.org/package=glmbaye) v0.9.5: Provides Bayesian linear and generalized linear model fitting with independent and identically distributed posterior samples. Features include functions that mirror `lm()` and `glm()` interfaces, prior family specifications for Gaussian, Poisson, binomial, and Gamma models with log-concave likelihoods, accept-reject sampling for non-conjugate priors, and optional `OpenCL` acceleration for larger models. See [Nygren and Nygren (2006)](https://www.tandfonline.com/doi/abs/10.1198/016214506000000357) accept-reject methods. There are thenty-seven vignettes including [Getting started](https://cran.r-project.org/web/packages/glmbayes/vignettes/Chapter-01.html) and [Foundations of GLMs](https://cran.r-project.org/web/packages/glmbayes/vignettes/Chapter-05.html).
 
 
@@ -157,6 +160,12 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 [sssvcqr](https://cran.r-project.org/package=sssvcqr) v0.0.4: Implements sparse-smooth spatially varying coefficient quantile regression combining the quantile regression of [Koenker and Bassett (1978)](https://www.jstor.org/stable/1913643?origin=crossref) with grouped variable selection of [Yuan and Lin (2006)](https://academic.oup.com/jrsssb/article/68/1/49/7110631?login=false), graph regularization, and the alternating direction method of multipliers of [Boyd et al. (2011)](https://www.emerald.com/ftmal/article-abstract/3/1/1/1331527/Distributed-Optimization-and-Statistical-Learning?redirectedFrom=fulltext). Functions provide graph-regularized estimation, spatially blocked cross-validation, prediction, diagnostics, and simulation helpers for global-local spatial quantile regression. See the vignettes [Getting Started](https://cran.r-project.org/web/packages/sssvcqr/vignettes/sssvcqr-introduction.html) and [Lucas County Housing Example](https://cran.r-project.org/web/packages/sssvcqr/vignettes/lucas-county-example.html).
 
 ![](sssvcqr.png){fig-alt="Visualization of codfficients"}
+
+[TemporalHazard](https://cran.r-project.org/package=TemporalHazard) v1.1.0:Provides native R implementations of the multiphase parametric hazard model of [Blackstone, Naftel, and Turner (1986)](https://www.tandfonline.com/doi/abs/10.1080/01621459.1986.10478314) with a focus on behavioral parity, transparent numerics, and reproducible validation against reference outputs from the original `C`/`SAS` HAZARD program, originally developed at the University of Alabama at Birmingham. The generalized temporal decomposition family extends to longitudinal mixed-effects settings [Rajeswaran et al. (2018)](https://journals.sagepub.com/doi/10.1177/0962280215623583). There are eight vignettes including [Mathematical Foundations](https://cran.r-project.org/web/packages/TemporalHazard/vignettes/mf-mathematical-foundations.html) and [Prediction & Visualization](https://cran.r-project.org/web/packages/TemporalHazard/vignettes/prediction-visualization.html).
+
+![](TemporalHazard.png){fig-alt="Plot of cumulative and instantaneous hazard functions"}
+
+
 
 ### Surveys
 
