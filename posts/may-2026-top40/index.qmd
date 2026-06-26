@@ -28,6 +28,11 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 
 ### Computational Methods
 
+[boids4R](https://cran.r-project.org/package=boids4R) v0.3.1: Provides deterministic two- and three-dimensional boids and swarm simulations implementing Reynolds-style separation, alignment, and cohesion rules with optional obstacles, attractors, predators, species parameters, and reproducible frame export. Simulation state is renderer-neutral; optional adapters can hand frame data to visualization packages such as `ggWebGL`. The model follows [Reynolds (1987)](https://dl.acm.org/doi/10.1145/37402.37406). There are five vignettes including [Getting Started]() and [Scenario Gallery](https://cran.r-project.org/web/packages/boids4R/vignettes/scenario-gallery.html).
+
+![](boids4R.png){fig-alt="Example of Swarm Art"}
+
+
 [combss](https://cran.r-project.org/package=combss) v0.1.0: Reformulates the NP-hard discrete subset selection problem as a continuous optimisation over the hypercube $[0,1]^p$, to besolved via a Frank-Wolfe homotopy algorithm with closed-form ridge inner solves. Supports linear (Gaussian), binary logistic, and multinomial regression. See [Moka et al. (2024)](https://link.springer.com/article/10.1007/s11222-024-10387-8) and [Mather et al. (2026)](https://arxiv.org/abs/2603.21952) for methodological details and the [vignette](https://cran.r-project.org/web/packages/combss/vignettes/combss.html) for an example.
 
 [diffcp](https://cran.r-project.org/package=diffcp) v0.1.1: Provides a port of the python `diffcp` package. Functions compute the derivative of the optimal solution map of a convex cone program, treating the program as an implicit function of its data (constraint matrix, offset, objective coefficients, and optionally a quadratic), mirroring [Agrawal et al. (2019)](https://arxiv.org/abs/1904.09043). See the [vignette](https://cran.r-project.org/web/packages/diffcp/vignettes/diffcp.html).
@@ -124,11 +129,34 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 
 ![](shewhartr.png){fig-alt="Regression Control Chart"}
 
+### Psychometrics
+
+[personnelSelectionUtility](https://cran.r-project.org/package=personnelSelectionUtility) v1.0.2: Implements classical and contemporary utility-analysis methods for personnel selection, organised by criterion scale (classification or continuous/monetary) and selection structure (compensatory or multiple-hurdle). Multiple ethods including Taylor-Russell classification [Taylor and Russell (1939)](https://psycnet.apa.org/doiLanding?doi=10.1037%2Fh0057079), and Brogden-Cronbach-Gleser monetary utility [Brogden (1949)](https://onlinelibrary.wiley.com/doi/10.1111/j.1744-6570.1949.tb01397.x) are provided. There are five vignettes including [Reproducing canonical examples from the literature](https://cran.r-project.org/web/packages/personnelSelectionUtility/vignettes/reproductions.html) and [Utility-analysis taxonomy for personnel selection](https://cran.r-project.org/web/packages/personnelSelectionUtility/vignettes/utility-analysis-taxonomy.html).
+
+
+
+
 
 ### Statistics
 
 [glmbayes](https://cran.r-project.org/package=glmbaye) v0.9.5: Provides Bayesian linear and generalized linear model fitting with independent and identically distributed posterior samples. Features include functions that mirror `lm()` and `glm()` interfaces, prior family specifications for Gaussian, Poisson, binomial, and Gamma models with log-concave likelihoods, accept-reject sampling for non-conjugate priors, and optional `OpenCL` acceleration for larger models. See [Nygren and Nygren (2006)](https://www.tandfonline.com/doi/abs/10.1198/016214506000000357) accept-reject methods. There are thenty-seven vignettes including [Getting started](https://cran.r-project.org/web/packages/glmbayes/vignettes/Chapter-01.html) and [Foundations of GLMs](https://cran.r-project.org/web/packages/glmbayes/vignettes/Chapter-05.html).
 
+
+[griddy](https://cran.r-project.org/package=griddy) v0.1.0: Provides tools including pooled and time-specific classification of longitudinal spatial values, classic discrete Markov transition matrices, spatial Markov matrices conditioned on spatial-lag classes, endpoint and adjacent rank mobility summaries, and `ggplot2` visualizations for exploratory geospatial distribution dynamics with `sf` objects. Methods follow [Rey (2001)](https://link.springer.com/article/10.1007/s10109-016-0234-x) and [Rey et al. (2016)](https://link.springer.com/article/10.1007/s10109-016-0234-x). See the [vignette](https://cran.r-project.org/web/packages/griddy/vignettes/griddy.html) to get started.
+
+![](griddy.png){fig-alt="Map of US showing pooled classes"}
+
+[RMeDPower2](https://cran.r-project.org/package=RMeDPower2) v1.0.2: Provides functions to analyse data from repeated measures experiments with hierarchical or crossed experimental designs and supports testing modeling assumptions, identifying outlier observations and experimental units, estimating statistical power, and performing sample size calculations. For details see [Shin et al. (2022)](https://www.biorxiv.org/content/10.1101/2022.07.18.500490v1) and [Bates et al. (2015)](https://www.jstatsoft.org/article/view/v067i01). See the [vignette](https://cran.r-project.org/web/packages/RMeDPower2/vignettes/ShortTutorial.html) for a tutorial.
+
+![](RMeDPower2.png){fig-alt="Flowchart illustrating Package capabilities"}
+
+[ROCsurvcomp](https://cran.r-project.org/package=ROCsurvcomp) v0.1.2: Implements nonparametric and semiparametric methods for comparing two survival distributions under non-proportional hazards. The methods are based on the Receiver Operating Characteristic (ROC) curve length described in [Bantis et al. (2021)](https://onlinelibrary.wiley.com/doi/10.1002/sim.8869) and the overlap coefficient method of [Franco-Pereira et al. (2021)](https://journals.sagepub.com/doi/10.1177/09622802211046386), as well as a joint ROC length-OVL-based approach. See the [vignette](https://cran.r-project.org/web/packages/ROCsurvcomp/vignettes/ROCsurvcomp.html).
+
+![](ROC.png){fig-alt="Plot illustrating vonvex hull Joint inference"}
+
+[sssvcqr](https://cran.r-project.org/package=sssvcqr) v0.0.4: Implements sparse-smooth spatially varying coefficient quantile regression combining the quantile regression of [Koenker and Bassett (1978)](https://www.jstor.org/stable/1913643?origin=crossref) with grouped variable selection of [Yuan and Lin (2006)](https://academic.oup.com/jrsssb/article/68/1/49/7110631?login=false), graph regularization, and the alternating direction method of multipliers of [Boyd et al. (2011)](https://www.emerald.com/ftmal/article-abstract/3/1/1/1331527/Distributed-Optimization-and-Statistical-Learning?redirectedFrom=fulltext). Functions provide graph-regularized estimation, spatially blocked cross-validation, prediction, diagnostics, and simulation helpers for global-local spatial quantile regression. See the vignettes [Getting Started](https://cran.r-project.org/web/packages/sssvcqr/vignettes/sssvcqr-introduction.html) and [Lucas County Housing Example](https://cran.r-project.org/web/packages/sssvcqr/vignettes/lucas-county-example.html).
+
+![](sssvcqr.png){fig-alt="Visualization of codfficients"}
 
 ### Surveys
 
