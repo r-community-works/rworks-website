@@ -1,7 +1,7 @@
 ---
 title: "May 2026 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
-date: 2026-05-30
+date: 2026-06-29
 description: "A personal, idiosyncratic, unabashedly biased, time-constrained attempt to capture the depth and breadth of the new packages submitted to CRAN in a single month."
 image: ""
 image-alt: ""
@@ -10,7 +10,7 @@ editor: source
 format: html
 ---
 
-Three hundred twenty-three of the new packages submitted to CRAN in April were still there in mid-May. Here are my Top 40 picks in twenty-three categories: Actuarial Analysis, Archaeology, Biology, Causal Inference, Computational Methods, Ecology, Economics, Environmental Studies, Epidemiology, Finance, Functional Data Analysis, Health Technology Assessment, Machine Learning, Medical Statistics, Meta Analysis, Networks, Physics, Programming, Statistics, Time Series, Utilities, and Visualization.
+Three hundred twenty-three of the new packages submitted to CRAN in April were still there in mid-May. Here are my Top 40 picks in eighteen categories: Artificial Intelligence, Computational Methods, Ecology, Education, Finance, Functional Data Analysis, Genomics, Machine Learning, Medical Statistics, Meta Analysis, Probability, Process Control, Psychometrics, Statistics, Surveys, Time Series, Utilities, and Visualization.
 
 ![](.png){fig-alt=""}
 
@@ -95,13 +95,7 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 [DICErClust](https://cran.r-project.org/package=DICErClust) v0.1.2: Implements the Deep Significance Clustering (DICE), a self-supervised learning framework designed to identify clinically meaningful and risk-stratified patient subgroups from electronic health record data. DICE jointly optimizes deep representation learning, clustering, and outcome prediction while enforcing statistical significance between predicted outcomes and cluster membership and produces subgroups that are both clinically coherent and predictive. [See Huang et al. (2021)](https://academic.oup.com/jamia/article-abstract/28/12/2641/6377084?redirectedFrom=fulltext&login=false) and the vignettes [Introduction](https://cran.r-project.org/web/packages/DICErClust/vignettes/DICEr-introduction.html) and [Heart Failure Risk Stratification](https://cran.r-project.org/web/packages/DICErClust/vignettes/heart-failure-example.html).
 
 
-:::
 
-::: {.column width="10%"}
-
-:::
-
-::: {.column width="45%"}
 
 
 
@@ -121,6 +115,8 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 ![](mhn.png){fig-alt="MHN density curves for various parameter values"}
 
 
+
+
 ### Process Control
 
 [shewhartr](https://cran.r-project.org/package=shewhartr) v1.3.0: Provides  comprehensive toolkit for Statistical Process Control that combines the rigor of classical Shewhart methodology with modern tidyverse-native interfaces that includes classical control charts, regression-based control charts for processes with trend, Nelson runs tests, average run length simulation, process capability indices, and Box-Cox transformation guidance. See [Montgomery (2019)](https://www.tandfonline.com/doi/abs/10.1080/00224065.1984.11978921), [Nelson (1984)](https://www.tandfonline.com/doi/abs/10.1080/00224065.1984.11978921), and  [Woodall (2000)](https://www.tandfonline.com/doi/abs/10.1080/00224065.2000.11980013) for background. There are eleven vignettes including [Getting started](https://cran.r-project.org/web/packages/shewhartr/vignettes/getting-started.html) and [Regression-based control charts](https://cran.r-project.org/web/packages/shewhartr/vignettes/regression-charts.html).
@@ -132,7 +128,13 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 
 [personnelSelectionUtility](https://cran.r-project.org/package=personnelSelectionUtility) v1.0.2: Implements classical and contemporary utility-analysis methods for personnel selection, organised by criterion scale (classification or continuous/monetary) and selection structure (compensatory or multiple-hurdle). Multiple ethods including Taylor-Russell classification [Taylor and Russell (1939)](https://psycnet.apa.org/doiLanding?doi=10.1037%2Fh0057079), and Brogden-Cronbach-Gleser monetary utility [Brogden (1949)](https://onlinelibrary.wiley.com/doi/10.1111/j.1744-6570.1949.tb01397.x) are provided. There are five vignettes including [Reproducing canonical examples from the literature](https://cran.r-project.org/web/packages/personnelSelectionUtility/vignettes/reproductions.html) and [Utility-analysis taxonomy for personnel selection](https://cran.r-project.org/web/packages/personnelSelectionUtility/vignettes/utility-analysis-taxonomy.html).
 
+:::
 
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
 
 
 
@@ -177,6 +179,7 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 [surveycore](https://cran.r-project.org/package=surveycore) v1.0.0: Implements a modern, `S7`-based foundation for survey analysis spanning both probability and non-probability samples. Probability sample designs include Taylor series linearization, replicate weights (BRR, Fay, jackknife, bootstrap), and two-phase estimation, following [Lumley (2004)](https://www.jstatsoft.org/article/view/v009i08) <doi:10.18637/jss.v009.i08>. Non-probability sample designs support bootstrap and jackknife variance estimation for opt-in panels and convenience samples. There are three vignettes including [Getting Started](https://cran.r-project.org/web/packages/surveycore/vignettes/getting-started.html) and [surveycore vs. survey and srvyr](https://cran.r-project.org/web/packages/surveycore/vignettes/surveycore-vs-survey.html).
 
 
+[surveyframe](https://cran.r-project.org/package=surveyframe) v0.3.2: Supports survey research workflows built around a typed instrument object, *the sframe*. Features include visual instrument design via a browser-based builder or `Shiny` studio, export to a self-contained static HTML survey, an embeddable `Shiny`module, SHA-256 integrity-checked serialisation, multi-page survey rendering, branching logic, response quality checking, scale scoring, psychometric diagnostics and more. There are seven vignettes including [analyzing survey responses](https://cran.r-project.org/web/packages/surveyframe/vignettes/analysing-survey-responses.html) and [Building a survey instrument](https://cran.r-project.org/web/packages/surveyframe/vignettes/building-survey-instrument.html).
 
 
 
@@ -189,6 +192,13 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 
 ![](bayesRecon.png){fig-alt="Aggregated time series with base and reconciled forecasts"}
 
+![](ModalForecast.png){fig-alt="Skew normal Modal (ARIMA (3,0,4) diagnostics"}
+
+[mixtime](https://cran.r-project.org/package=mixtime) v0.1.0: Provides flexible time classes for time series analysis and forecasting with mixed temporal granularities. Supports linear and cyclical time representations in discrete and continuous forms, with timezone support, across multiple calendar systems including Gregorian and ISO week date calendars. Calendrical arithmetic enables conversion between time granules (e.g. days to months) and calendar systems. Multi-unit arithmetic allows for temporal analysis with other granules of common calendars. Time vectors of different granularities (e.g. monthly and quarterly) can be combined in a single vector. See the vignettes [Extending mixtime](https://cran.r-project.org/web/packages/mixtime/vignettes/extending-mixtime.html) and [Time format strings](https://cran.r-project.org/web/packages/mixtime/vignettes/time-format-strings.html).
+
+
+[ModalForecast](https://cran.r-project.org/package=ModalForecast) v0.1.0: Implements parametric modal Autoregressive Integrated Moving Average (ARIMA) models utilizing the Skewed Distribution family. Supported distributions include the Skew-Normal, Skewed Student-t, and Skewed Laplace. Features includes comprehensive residual diagnostics, robustness options (heavy tails, asymmetry), robust parametric bootstrap prediction intervals, and classical asymptotic inference via the Fisher Information matrix. Methods are described in [Galarza et al. (2017)](https://onlinelibrary.wiley.com/doi/10.1002/sta4.140). Look [here](https://github.com/chedgala/ModalForecast) for an example.
+
 [VARcheck](https://cran.r-project.org/package=VARcheck) v0.1.0: Provides model-agnostic visual diagnostics for vector autoregressive models. Given empirical data, model predictions, residuals, and optionally simulated data, the package assembles a multi-panel diagnostic grid: empirical vs. predicted time series, residual inspection, residuals vs. predictions scatter, and posterior predictive style checks via simulated trajectories. See [Haslbeck et al. (2026)](https://osf.io/preprints/psyarxiv/k6uz4_v3) for the approach followed and the vignettes [Example analyses](https://cran.r-project.org/web/packages/VARcheck/vignettes/example-analyses.html) and [Getting Started](https://cran.r-project.org/web/packages/VARcheck/vignettes/getting-started.html). 
 
 
@@ -197,9 +207,21 @@ Three hundred twenty-three of the new packages submitted to CRAN in April were s
 
 ### Utilities
 
+[DT2](https://CRAN.R-project.org/package=DT2) v0.1.2: Implements a modern R binding for `DataTables` V2 with modular extension loading, `Bootstrap 5` styling, `Shiny` integration (proxy, events, inline inputs), server-side processing helpers, and standalone (non-Shiny) support. Configure `DataTables` options directly via R lists, a 1:1 mapping to the `JavaScript` API. There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/DT2/vignettes/getting-started.html) and [Shiny Integration](https://cran.r-project.org/web/packages/DT2/vignettes/shiny-integration.html).
 
+[gridmicrotex](https://cran.r-project.org/package=gridmicrotex) v0.0.4: Provides functions to render `LaTeX` math equations as native `R` grid graphics objects (grobs) using the `MicroTeX` `C++` library as the layout engine. Produces resolution-independent vector output that works on any `R` graphics device, with no external `LaTeX` installation required. See the vignettes [Introduction](https://cran.r-project.org/web/packages/gridmicrotex/vignettes/getting-started.html) and [Using LaTeX Math in ggplot2](https://cran.r-project.org/web/packages/gridmicrotex/vignettes/ggplot2-integration.html).
 
-end
+![](gridmicrotex.png){fig-alt="Regression plot with equation"}
+
+### Visualization
+
+[ggsql](https://cran.r-project.org/package=ggsql) v0.3.3: Provides functions to write queries that combine `SQL` (Structured Query Language) data retrieval with visualization specifications in a single, composable syntax, binds directly with the `ggsql` `Rust` library and offers `knitr` and `Shiny` integration. See the vignettes [Getting started](https://cran.r-project.org/web/packages/ggsql/vignettes/ggsql.html) [The ggsql knitr engine](https://cran.r-project.org/web/packages/ggsql/vignettes/engine.html).
+
+![](ggsql.png){fig-alt="ggplot2 rendering of a SQL query"}
+
+[mSigPlot](https://cran.r-project.org/package=mSigPlot) v2.0.38: Provides plotting functions for mutational signatures and mutational spectra, including single base substitutions, doublet base substitutions, and small insertions and deletions. Generates plots similar to those used previously in [Alexandrov et al. (2020)](https://www.nature.com/articles/s41586-020-1943-3) and [Rozen et al. (2026)](https://zenodo.org/records/20147372). See the [vignette](https://cran.r-project.org/web/packages/mSigPlot/vignettes/mSigPlot.html) for an example.
+
+![](mSigPlot.png){fig-alt="Plot of mutation classes"}
 
 :::
 
