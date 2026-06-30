@@ -28,7 +28,7 @@ Three hundred twenty-three of the new packages were submitted to CRAN in May. He
 
 ### Computational Methods
 
-[boids4R](https://cran.r-project.org/package=boids4R) v0.3.1: Provides deterministic two- and three-dimensional boids and swarm simulations implementing Reynolds-style separation, alignment, and cohesion rules with optional obstacles, attractors, predators, species parameters, and reproducible frame export. The simulation state is renderer-neutral, meaning that optional adapters can transfer data to visualization packages such as `ggWebGL`. The model follows [Reynolds (1987)](https://dl.acm.org/doi/10.1145/37402.37406). There are five vignettes, including [Getting Started]() and [Scenario Gallery](https://cran.r-project.org/web/packages/boids4R/vignettes/scenario-gallery.html).
+[boids4R](https://cran.r-project.org/package=boids4R) v0.3.1: Provides deterministic two- and three-dimensional boids and swarm simulations implementing Reynolds-style separation, alignment, and cohesion rules with optional obstacles, attractors, predators, species parameters, and reproducible frame export. The simulation state is renderer-neutral, meaning that optional adapters can transfer data to visualization packages such as `ggWebGL`. The model follows [Reynolds (1987)](https://dl.acm.org/doi/10.1145/37402.37406). There are five vignettes, including [Getting Started](https://cran.r-project.org/web/packages/boids4R/vignettes/getting-started.html) and [Scenario Gallery](https://cran.r-project.org/web/packages/boids4R/vignettes/scenario-gallery.html).
 
 ![](boids4R.png){fig-alt="Example of Swarm Art"}
 
@@ -43,7 +43,7 @@ Three hundred twenty-three of the new packages were submitted to CRAN in May. He
 
 ### Ecology
 
-[BRCore](https://cran.r-project.org/package=BRCore) v2.0.7: Implements a unified framework for the identification and ecological interpretation of core microbiomes across time and space, enhancing robustness and reproducibility in microbiome data analysis. See [Shade A, Stopnisek N (2019)](https://www.sciencedirect.com/science/article/pii/S1369527419300426?via%3Dihub). See [Sloan et al. (2006)](https://enviromicro-journals.onlinelibrary.wiley.com/doi/10.1111/j.1462-2920.2005.00956.x) for details on abundance-occupancy distributions and [Burns et al. (2015)](https://academic.oup.com/ismej/article/10/3/655/7538159?login=false) for neutral models. The [vignette](https://cran.r-project.org/web/packages/BRCore/vignettes/BRCore-vignette.html) provides an introduction.
+[BRCore](https://cran.r-project.org/package=BRCore) v2.0.7: Implements a unified framework for the identification and ecological interpretation of core microbiomes across time and space, enhancing robustness and reproducibility in microbiome data analysis. See [Shade A, Stopnisek N (2019)](https://www.sciencedirect.com/science/article/pii/S1369527419300426). See [Sloan et al. (2006)](https://enviromicro-journals.onlinelibrary.wiley.com/doi/10.1111/j.1462-2920.2005.00956.x) for details on abundance-occupancy distributions and [Burns et al. (2015)](https://academic.oup.com/ismej/article/10/3/655/7538159?login=false) for neutral models. The [vignette](https://cran.r-project.org/web/packages/BRCore/vignettes/BRCore-vignette.html) provides an introduction.
 
 ![](BRCore.png){fig-alt="Core set occupancy heat map"}
 
@@ -68,7 +68,7 @@ Three hundred twenty-three of the new packages were submitted to CRAN in May. He
 
 ### Functional Data Analysis
 
-[SmoothPLS](https://cran.r-project.org/package=SmoothPLS) v0.1.5: Implements the partial least-squares algorithm for functional data through the concept of active area integration by building upon the basis expansion methods described in [Aguilera et al. (2010)](https://www.sciencedirect.com/science/article/abs/pii/S0169743910001747?via%3Dihub). Functions handle both scalar and categorical functional data and interpretable regression curves, even for discrete state changes. There are six vignettes, including [smoothPLS ScalarFD](https://cran.r-project.org/web/packages/SmoothPLS/vignettes/s02_SFD.html) and [SmoothPLS multi state](https://cran.r-project.org/web/packages/SmoothPLS/vignettes/s03_CFD_multistates.html).
+[SmoothPLS](https://cran.r-project.org/package=SmoothPLS) v0.1.5: Implements the partial least-squares algorithm for functional data through the concept of active area integration by building upon the basis expansion methods described in [Aguilera et al. (2010)](https://www.sciencedirect.com/science/article/abs/pii/S0169743910001747). Functions handle both scalar and categorical functional data and interpretable regression curves, even for discrete state changes. There are six vignettes, including [smoothPLS ScalarFD](https://cran.r-project.org/web/packages/SmoothPLS/vignettes/s02_SFD.html) and [SmoothPLS multi state](https://cran.r-project.org/web/packages/SmoothPLS/vignettes/s03_CFD_multistates.html).
 
 ![](SmoothPLS.png){fig-alt="Model comparison plots"}
 
