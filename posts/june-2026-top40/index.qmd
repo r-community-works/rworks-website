@@ -1,0 +1,67 @@
+---
+title: "June 2026 Top 40 New CRAN Packages"
+author: "Joseph Rickert"
+date: 2026-06-30
+description: "A personal, idiosyncratic, unabashedly biased, time-constrained attempt to capture the depth and breadth of the new packages submitted to CRAN in a single month."
+image: ".png"
+image-alt: ""
+categories: "Top 40"
+editor: source
+format: html
+---
+
+Four hundred twelve new packages were submitted to CRAN in June. Here are my Top 40 picks in xxxx categories: Artificial Intelligence, Computational Methods, Ecology, Education, Finance, Functional Data Analysis, Genomics, Machine Learning, Medical Statistics, Meta Analysis, Probability, Process Control, Psychometrics, Statistics, Surveys, Time Series, Utilities, and Visualization.
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+
+![](.png){fig-alt=""}
+
+### Bioarchaeology
+
+[baytaAAR](https://cran.r-project.org/package=baytaAAR) v1.0.3: Provides Bayesian age estimation for bioarchaeological skeletal data using ordinal probit regression models implemented in `JAGS` and `NIMBLE`. The package is designed to handle multiple ordinal traits of adult individuals and incorporates a Gompertz prior on age to reflect population-level mortality. It accounts for estimation uncertainties and supports full customization of model parameters and Markov Chain Monte Carlo settings. For more details see [Müller-Scheeßel et al. (2026)](https://onlinelibrary.wiley.com/doi/10.1002/ajpa.70289). There are five vignetes including [Introduction](https://cran.r-project.org/web/packages/baytaAAR/vignettes/baytaAAR.html) and [Mathematical background](https://cran.r-project.org/web/packages/baytaAAR/vignettes/mathematical_background.html).
+
+
+![](baytoAAR.png){fig-alt="Plot of distribution of age to death"}
+
+
+### Computational Methods
+
+
+[momst](https://cran.r-project.org/package=momst) v0.1.1: Provides functions to solve the Multi-Criteria Minimum Spanning Tree problem on complete weighted graphs by combining the Non-dominated Sorting Genetic Algorithm II with optional Pareto local search operators. Chromosomes are represented as Prufer sequences so that every random individual decodes to a valid spanning tree (Cayley's theorem), avoiding repair operators. Four solver variants are provided: pure NSGA-II, Path Relinking, Pareto Local Search, and Tabu Search. See Parraga-Alava et al. (2017)](https://ieeexplore.ieee.org/document/7969432) for background. There are two vignettes: [Getting Started](https://cran.r-project.org/web/packages/momst/vignettes/getting-started.html) and [Comparing the Four MO-MST Variants](https://cran.r-project.org/web/packages/momst/vignettes/momst-variants.html).
+
+![](momst.png){fig-alt="Graphs of spanning tree variants"}
+
+
+[nmathopencl](https://cran.r-project.org/package=nmathopencl) v0.8.3: Ships statistical and mathematical routines from the `R` internal [`nmath`](https://github.com/SurajGupta/r-source/blob/master/src/nmath/nmath.h)  (`Mathlib`) as [`OpenCL`](https://en.wikipedia.org/wiki/OpenCL) C sources under directory `inst/cl/`, with `R` wrappers that use the GPU when `OpenCL` is available at compile time and fall back to `stats` equivalents otherwise. Aimed at package developers building custom kernels (for example Bayesian GLMs via suggested package `glmbayes`) using `opencltools` kernel loaders and related helpers. There are thirteen vignetttes including [Package Overview](https://cran.r-project.org/web/packages/nmathopencl/vignettes/Chapter-00.html) and [Case study](https://cran.r-project.org/web/packages/nmathopencl/vignettes/Chapter-10.html).
+
+
+[StochSimR](https://cran.r-project.org/package=StochSimR) v1.1.0: Implements a modular simulation engine for a wide range of stochastic processes. Provides exact and approximate simulation methods for Poisson processes (homogeneous and inhomogeneous), Brownian motion (standard, drifted, and bridge), discrete- and continuous-time Markov chains, birth-death processes, the Yule pure-birth process, infinitesimal generator matrix utilities, Markovian queuing systems (M/M/1, M/M/c, M/M/c/K) with exact steady-state statistics, Levy processes (gamma, normal inverse Gaussian, variance-gamma, alpha-stable), Merton jump-diffusion models, Hawkes self-exciting processes, geometric Brownian motion, and Ornstein-Uhlenbeck mean-reverting diffusions. See [Glasserman (2003)](https://link.springer.com/book/10.1007/978-0-387-21617-1) and [Asmussen & Glynn (2007)](https://link.springer.com/book/10.1007/978-0-387-69033-9) for background and the [vignette](https://cran.r-project.org/web/packages/StochSimR/vignettes/introduction.html) for an introduction.
+
+![](StochSimR.png){fig-alt="Plot of simulated Brownian Motion"}
+
+[Uno](https://cran.r-project.org/web/packages/Uno/vignettes/Uno.html) v2.7.4: Provides bindings to [Uno](https://unosolver.readthedocs.io/en/latest/) (Unifying Nonlinear Optimization), a C++ solver for smooth nonlinearly constrained optimization. 'Uno' unifies Lagrange-Newton methods, including sequential quadratic programming and interior-point methods, by decomposing them into interacting building blocks (constraint-relaxation, inequality-handling, Hessian, and globalization strategies) that can be freely combined. The framework is described in [Vanaret and Leyffer (2024)](https://arxiv.org/abs/2406.13454). See the [vignette](https://cran.r-project.org/web/packages/Uno/vignettes/Uno.html) for an example.
+
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+
+
+### Statistics
+
+
+END
+
+:::
+
+
+
+::::
