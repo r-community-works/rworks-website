@@ -45,6 +45,25 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 [Uno](https://cran.r-project.org/web/packages/Uno/vignettes/Uno.html) v2.7.4: Provides bindings to [Uno](https://unosolver.readthedocs.io/en/latest/) (Unifying Nonlinear Optimization), a C++ solver for smooth nonlinearly constrained optimization. 'Uno' unifies Lagrange-Newton methods, including sequential quadratic programming and interior-point methods, by decomposing them into interacting building blocks (constraint-relaxation, inequality-handling, Hessian, and globalization strategies) that can be freely combined. The framework is described in [Vanaret and Leyffer (2024)](https://arxiv.org/abs/2406.13454). See the [vignette](https://cran.r-project.org/web/packages/Uno/vignettes/Uno.html) for an example.
 
 
+### Ecology
+
+[nicheR](https://cran.r-project.org/package=nicheR) v0.1.0: Provides tools for researchers and modelers to construct and define virtual ecological niches using ellipsoid geometries. It enables the identification and extraction of suitable environmental areas, simulation of species occurrence points with various sampling strategies, and visualization of niche boundaries and simulated occurrences in both environmental and geographic space. See [Etherington et al. (2009)](https://onlinelibrary.wiley.com/doi/10.1111/j.1365-2699.2008.02041.x) and [Qiao et al. (2015)](https://nsojournals.onlinelibrary.wiley.com/doi/10.1111/ecog.01961) for background. There are six vignettes including [Visualizing ellipsoids in environmental space](https://cran.r-project.org/web/packages/nicheR/vignettes/plotting_vignette.html) and [Virtual community simulation](https://cran.r-project.org/web/packages/nicheR/vignettes/virtual_communities.html).
+
+![](nicheR.png){fig-alt="Stability Plot"}
+
+[spacc](https://cran.r-project.org/package=spacc) v0.8.3: Implements `kNN` and `kNCN` sampling methods with a `C++` backend to compute spatial species accumulation curves. Supports Hill numbers, beta diversity partitioning, coverage-based rarefaction and extrapolation, phylogenetic diversity (Faith's PD, mean pairwise distance, mean nearest taxon distance), functional diversity accumulation, diversity-area relationships, endemism-area curves, sampling-effort correction and fragmentation analysis, and species-area relationship models based on extreme value theory. See [Chao et al. (2014)](https://esajournals.onlinelibrary.wiley.com/doi/10.1890/13-0133.1) and [Baselga (2010)](https://onlinelibrary.wiley.com/doi/10.1111/j.1466-8238.2009.00490.x) for background. There are seven vignettes including [Getting Started](https://cran.r-project.org/web/packages/spacc/vignettes/quickstart.html) and [Diversity Accumulation](https://cran.r-project.org/web/packages/spacc/vignettes/diversity.html).
+
+![](spacc.svg){fig-alt="Plot of saptial Hill number accumulation"}
+
+[TemporalModelR](https://cran.r-project.org/package=TemporalModelR) v0.3.0: Provides functions to assist with three major steps for building temporally-explicit ecological niche and species distribution models: (i) preprocessing species and environmental data, (ii) building a niche model and generating temporally-explicit predictions, and (iii) model postprocessing to explore spatiotemporal trends. See [Ingenloff and Peterson (2021](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13564) and [Blonder (2018)](https://nsojournals.onlinelibrary.wiley.com/doi/10.1111/ecog.03187) for the methodological and theoretical foundations. Modeling with a [GLM](https://cran.r-project.org/web/packages/TemporalModelR/vignettes/V3a_GLM.html) and [Modeling with a Random Forest](https://cran.r-project.org/web/packages/TemporalModelR/vignettes/V3c_RF.html).
+
+
+![](Temporal.png){fig-alt="Random Forest Marginal Prediction Curves"}
+
+
+
+
+
 :::
 
 ::: {.column width="10%"}
