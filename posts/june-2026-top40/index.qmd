@@ -66,6 +66,11 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 
 ![](Temporal.png){fig-alt="Random Forest Marginal Prediction Curves"}
 
+### Economics
+
+
+
+
 ### Epidemiology
 
 [SmokingHistoryGenerator](https://cran.r-project.org/package=SmokingHistoryGenerator) v7.00: Implements an interface to the Cancer Intervention and Surveillance Modeling Network ([CISNET](https://cisnet.cancer.gov/resources/model-registry/lung-models/)) Smoking History Generator microsimulation engine, which synthesizes individual smoking histories (initiation, cessation, intensity) and ages at death from calibrated initiation, cessation, cigarettes-per-day, and mortality tables. See [Jeon et al. (2012)](https://onlinelibrary.wiley.com/doi/10.1111/j.1539-6924.2011.01775.x) for background and look [here](https://github.com/NCI-CISNET/shg-r) to get started.
@@ -78,9 +83,35 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 
 ### Finance
 
+[CamelRatiosIndex](https://cran.r-project.org/package=CamelRatiosIndex) v1.0.0: Computes a composite year-on-year index for bank performance assessment using the CAMEL framework (Capital Adequacy, Asset Quality, Management Efficiency, Earnings, Liquidity). The multivariate weighting scheme employs factor analysis with robust covariance estimation to derive communality-based weights from the correlation matrix of CAMEL ratios. Provides functions for index computation, visualization, and comparison across banks and time periods.The methodology is described in [Ayimah et al. (2023a)](https://stm.bookpi.org/CMWCPIAAMR/article/view/10917) and [Ayimah et al. (2023b)](https://stm.bookpi.org/CMWCPIAAMR/issue/view/1083). See the [vignette](https://cran.r-project.org/web/packages/CamelRatiosIndex/vignettes/introduction.html) for an introduction.
 
+![](Camel.png){fig-alt="Plot of CAMEL index"}
 
+[JumpDiffSim](https://cran.r-project.org/package=JumpDiffSim) v0.1.0: Implements the [Merton (1976)](https://www.sciencedirect.com/science/article/abs/pii/0304405X76900222?via%3Dihub) and [Kou (2002)](https://pubsonline.informs.org/doi/10.1287/mnsc.48.8.1086.166) jump-diffusion models through a unified S4 object-oriented interface. Provides exact compound-Poisson asset price simulation, maximum likelihood parameter estimation with Hessian-based standard errors, Wald-type confidence intervals, European option pricing via the Merton analytic series expansion, and publication-quality diagnostic plots. All functionality operates entirely offline without market data dependencies. See the [vignette](https://cran.r-project.org/web/packages/JumpDiffSim/vignettes/JumpDiffSim-intro.html).
 
+![](Jump.png){fig-alt="Plot of simulated asset price"}
+
+### Medicine
+
+[BayesTSM](https://cran.r-project.org/package=BayesTSM) v1.0.1: In screening programs, individuals are usually followed up and tested (screened) for the development of a disease. The target disease often develops progressively in stages; for example healthy (state 1), pre-state disease (state 2), and the disease state (state 3). When the pre-state disease is found during screening it is intervened upon, for example by surgical removal of a lesion, so that the progression of the pre-state disease to disease is interrupted. `BayesTSM` functions estimate a progressive three-state model with censoring due to intervention using Bayesian estimation methods, as described in [Klausch et al. (2023)](https://projecteuclid.org/journals/annals-of-applied-statistics/volume-17/issue-2/A-Bayesian-accelerated-failure-time-model-for-interval-censored-three/10.1214/22-AOAS1669.full). See the [vignette](https://cran.r-project.org/web/packages/BayesTSM/vignettes/bayestsm-userguide.html).
+
+![](BayesTSM.png){fig-alt="Plot of posterior predictive priors"}
+
+[bayprior](https://cran.r-project.org/package=bayprior) v0.2.12: Provides a toolkit for constructing, validating, and justifying Bayesian priors in clinical trial settings. Implements expert elicitation via quantile matching, the roulette method, and moment matching across six distribution families, linear and logarithmic expert pooling, prior-data conflict diagnostics including the Box p-value, surprise index, information divergence, and Mahalanobis distance, sensitivity analyses with tornado and influence heatmap plots, sceptical, robust, and power priors, and automated prior justification reports. Includes a fully modular `Shiny` application.for interactive use. See [Box (1980)](https://www.jstor.org/stable/2982063?origin=crossref) and [Oakley and O'Hagan (2010)](https://shelf.sites.sheffield.ac.uk/) for background. There are six vignettes including [Introduction](https://cran.r-project.org/web/packages/bayprior/vignettes/bayprior-introduction.html) and [Robust, Sceptical, and Power Priors](https://cran.r-project.org/web/packages/bayprior/vignettes/robust-priors.html).
+
+![](bayprior.png){fig-alt="Plot of Bayes factor vs power prior weight"}
+
+### Machine Learning
+
+[yaap](https://cran.r-project.org/package=yaap) v1.0.0: Fits archetypal analysis models, including Euclidean, probabilistic, kernel, and directional variants. Methods include classical archetypal analysis from [Cutler and Breiman (1994)](https://www.tandfonline.com/doi/abs/10.1080/00401706.1994.10485840), PCHA and kernel variants from [Mørup and Hansen (2012)](https://www.sciencedirect.com/science/article/abs/pii/S0925231211006060?via%3Dihub), probabilistic archetypal analysis from [Seth and Eugster (2016](https://link.springer.com/article/10.1007/s10994-015-5498-8), directional archetypal analysis from [Olsen et al. (2022)](https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2022.911034/full), AA++ initialization from [Mair and Sjölund (2023)](https://proceedings.neurips.cc/paper_files/paper/2019/file/7f278ad602c7f47aa76d1bfc90f20263-Paper.pdf), coreset-style initialization from [Mair and Brefeld (2019)](https://proceedings.neurips.cc/paper_files/paper/2019/file/7f278ad602c7f47aa76d1bfc90f20263-Paper.pdf), and adapted AIC from [Suleman (2017)](https://ieeexplore.ieee.org/document/8015385). There are four vignettes including an [Introduction](https://cran.r-project.org/web/packages/yaap/vignettes/introduction.html) and [Tidymodels Workflows](https://cran.r-project.org/web/packages/yaap/vignettes/tidymodels.html).
+
+![](yaap.png){fig-alt="Plot of archetype positions in feature space"}
+
+### Networks
+
+[netify](https://cran.r-project.org/package=netify) v1.5.3: Provides functions to build, validate, analyze, and visualize network data from dyadic, event, matrix, `igraph`, and `network` inputs. Supports cross-sectional, longitudinal, bipartite, and multi-layer networks, with conversion helpers for common modeling workflows and plotting utilities for exploratory analysis. Network methods are described in [Wasserman and Faust (1994)](https://www.amazon.com/Social-Network-Analysis-Applications-Structural/dp/0521387078), [Cranmer et al. (2021)](https://www.cambridge.org/highereducation/books/inferential-network-analysis/A7797D36A24647AA1F900CE7EF694C7E#overview), and [Minhas et al. (2022)](https://www.cambridge.org/core/journals/political-science-research-and-methods/article/abs/taking-dyads-seriously/823804FA29B988156A574C3F44280317). There are four vignettes including [Quickstart](https://cran.r-project.org/web/packages/netify/vignettes/quickstart_inference.html) and [Internals](https://cran.r-project.org/web/packages/netify/vignettes/internals.html).
+
+![](netify.png){fig-alt="Plots of network over time"}
 
 :::
 
@@ -93,6 +124,17 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 
 
 ### Statistics
+
+[ernest](https://cran.r-project.org/package=ernest) v1.2.5: Bayesian evidence estimation and posterior inference with the nested sampling algorithm, described in [Skilling (2006)](https://projecteuclid.org/journals/bayesian-analysis/volume-1/issue-4/Nested-sampling-for-general-Bayesian-computation/10.1214/06-BA127.full) and [Buchner (2023)](https://projecteuclid.org/journals/statistics-surveys/volume-17/issue-none/Nested-sampling-methods/10.1214/23-SS144.full), along with S3 methods for simulating uncertainty and creating visualizations. See the vignettes [Nested Sampling](https://cran.r-project.org/web/packages/ernest/vignettes/nested-sampling-with-ernest.html) and [More Examples](https://cran.r-project.org/web/packages/ernest/vignettes/more-ernest-runs.html).
+
+
+![](ernest.png){fig-alt="Plot showing ability to properly integrate across multimodal likelihood surfaces. "}
+
+
+
+
+
+
 
 
 END
