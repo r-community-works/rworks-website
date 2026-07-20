@@ -47,6 +47,12 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 
 ### Ecology
 
+[BayesFR](https://cran.r-project.org/package=BayesFR) v1.0.1: Enables fitting various functional response models for single- and multi-prey experiments by providing nonlinear prediction functions for `brms` and provides a framework for easily testing hypotheses on trophic interactions. Models can incorporate covariates such as temperature gradients, experimental treatment variables, or random effects that account for grouping in experimental units. See [Rosenbaum and Rall (2018)](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.14372) and [Rosenbaum et al. (2024)](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13039) for background and the [vignette](https://cran.r-project.org/web/packages/BayesFR/vignettes/bayesfr-intro.html) to get started.
+
+![](BayesFR.png){fig-alt="Plot of number of eaten prey against prey abundance "}
+
+
+
 [nicheR](https://cran.r-project.org/package=nicheR) v0.1.0: Provides tools for researchers and modelers to construct and define virtual ecological niches using ellipsoid geometries. It enables the identification and extraction of suitable environmental areas, simulation of species occurrence points with various sampling strategies, and visualization of niche boundaries and simulated occurrences in both environmental and geographic space. See [Etherington et al. (2009)](https://onlinelibrary.wiley.com/doi/10.1111/j.1365-2699.2008.02041.x) and [Qiao et al. (2015)](https://nsojournals.onlinelibrary.wiley.com/doi/10.1111/ecog.01961) for background. There are six vignettes including [Visualizing ellipsoids in environmental space](https://cran.r-project.org/web/packages/nicheR/vignettes/plotting_vignette.html) and [Virtual community simulation](https://cran.r-project.org/web/packages/nicheR/vignettes/virtual_communities.html).
 
 ![](nicheR.png){fig-alt="Stability Plot"}
@@ -59,6 +65,18 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 
 
 ![](Temporal.png){fig-alt="Random Forest Marginal Prediction Curves"}
+
+### Epidemiology
+
+[SmokingHistoryGenerator](https://cran.r-project.org/package=SmokingHistoryGenerator) v7.00: Implements an interface to the Cancer Intervention and Surveillance Modeling Network ([CISNET](https://cisnet.cancer.gov/resources/model-registry/lung-models/)) Smoking History Generator microsimulation engine, which synthesizes individual smoking histories (initiation, cessation, intensity) and ages at death from calibrated initiation, cessation, cigarettes-per-day, and mortality tables. See [Jeon et al. (2012)](https://onlinelibrary.wiley.com/doi/10.1111/j.1539-6924.2011.01775.x) for background and look [here](https://github.com/NCI-CISNET/shg-r) to get started.
+
+### Functional Data Analysis
+
+[fda.vi](https://cran.r-project.org/package=fda.vi) v1.0.0: Implements a variational Expectation-Maximization algorithm for smoothing one or multiple functional observations via basis function selection. The algorithm estimates all model parameters simultaneously and automatically, while accounting for within-curve correlation to provide a flexible and computationally efficient framework for smoothing correlated functional data. See [da Cruz et al. (2024)](https://arxiv.org/abs/2405.20758) for a description of the algorithm and the [vignette]() for examples. 
+
+![](fdavi.png){fig-alt="Plot of VEM curve"}
+
+### Finance
 
 
 
