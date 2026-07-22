@@ -187,6 +187,11 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 
 ![](muse.png){fig-alt="Time series with forecst"}
 
+### Utilities
+
+[ahocorasick](https://cran.r-project.org/package=ahocorasick) v0.2.0: Provides fast multi-pattern string matching using the '`Aho-Corasick` algorithm, powered by the `Rust` `aho-corasick` crate. It builds reusable automatons for detecting matches, counting matches, locating character, extracting matched text, and replacing matches in character vectors. See [Aho and Corasick (1975)](https://dl.acm.org/doi/10.1145/360825.360855) for more information on the  `Aho-Corasick` algorithm and the [vignette](https://cran.r-project.org/web/packages/ahocorasick/vignettes/benchmarks.html) for an example.
+
+[pkgmatch](https://cran.r-project.org/package=pkgmatch) v0.5.4: Provides functions to find `R` packages from `CRAN`, `rOpenSci`, or `Bioconductor` corpora. Packages can be matched to general text descriptions, to names of installed packages, or to local paths to entire source repositories. The package is used to list the most similar packages for each new submission to the `rOpenSci` software [peer-review program](https://zenodo.org/records/18885936). There are three vignettes including an [introduction](https://cran.r-project.org/web/packages/pkgmatch/vignettes/pkgmatch.html) and [Example applications](https://cran.r-project.org/web/packages/pkgmatch/vignettes/A_extended-use-case.html).
 
 
 END
