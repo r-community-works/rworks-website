@@ -113,6 +113,30 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 
 ![](netify.png){fig-alt="Plots of network over time"}
 
+### Pharmacokinetics
+
+[admixr2](https://cran.r-project.org/package=admixr2) v0.2.0: Provides functions to fit pharmacokinetic/pharmacodynamic (PK/PD) models to aggregate-level data (mean vector and covariance matrix per study) rather than individual-level data. Integrates with the `nlmixr2`/`rxode2` ecosystem via four estimation methods: a First-Order  analytical estimator, a Monte Carlo estimator, a Gauss-Hermite quadrature estimator, and an Iterative Reweighting Monte Carlo estimator. Methods are based on [Välitalo (2021)](https://link.springer.com/article/10.1007/s10928-021-09760-1)  software described in van de [Beek et al. (2025)](https://link.springer.com/article/10.1007/s10928-025-10011-w). See the [vignette](https://cran.r-project.org/web/packages/admixr2/vignettes/admixr2.html) to get started.
+
+![](admixr2.png){fig-alt="Study diagnostic plots"}
+
+### Programming
+
+[rsgl](https://cran.r-project.org/package=rsgl) v0.1.0: Generates plots from a database connection and a `SGL` statement. `SGL` is a graphics language designed to look and feel like `SQL` and is especially useful for those familiar with `SQL` who want to specify plots in a similar manner. The `SGL` language is described in [Chapman (2025)](https://arxiv.org/abs/2505.14690). See the vignettes [Get strted](https://cran.r-project.org/web/packages/rsgl/vignettes/rsgl.html) and [Example gallery](https://cran.r-project.org/web/packages/rsgl/vignettes/example-gallery.html).
+
+![](rsgl.png){fig-alt="Visualization of age as an angle "}
+
+### Psychometrics
+
+[easyRasch2](https://cran.r-project.org/package=easyRasch2) v1.1.0: Streamlines reproducible Rasch measurement theory analyses for ordinal item-response data, combining estimation routines from `eRm`, `psychotool`, `mirt`, `iarm`, and `lavaan` with consistent diagnostic, plotting, and reporting layers. Covers the four basic psychometric criteria summarised by [Christensen et al. (2021)](https://onlinelibrary.wiley.com/doi/10.1111/sms.13908): unidimensionality, local independence, ordered response category thresholds, and invariance across subgroups together with item fit, targeting, reliability, category functioning, and descriptive item-response plots. A distinguishing feature is the use of simulation-based critical values to replace rule-of-thumb cutoffs. See the [vignette](https://cran.r-project.org/web/packages/easyRasch2/vignettes/easyRasch2.html).
+
+![](easyRasch2.png){fig-alt="Plot of latent trait probabilities"}
+
+### Risk Analysis
+
+[riskutility](https://cran.r-project.org/package=riskutility) v0.1.0: Provides comprehensive methods to measure disclosure risk and data utility for anonymized and synthetic data. Implements attribution-based risk metrics including Correct Attribution Probability, Targeted CAP, Within Equivalence Class Attribution Probability, and Risk of Attribute Prediction-Induced Disclosure. Also provides distance-based privacy metrics such as Distance to Closest Record, Nearest Neighbor Distance Ratio, and Identical Match Share . Utility assessment includes propensity score analysis, distribution comparisons, and various statistical tests. Methods are based on [Taub et al. (2018)](https://link.springer.com/chapter/10.1007/978-3-319-99771-1_9). See the [vignette](https://cran.r-project.org/web/packages/riskutility/vignettes/riskutility.html).
+
+![](riskutility.png){fig-alt="histogram of distance to cloest record"}
+
 :::
 
 ::: {.column width="10%"}
@@ -125,15 +149,22 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 
 ### Statistics
 
+[bayesqm](https://cran.r-project.org/package=bayesqm) v0.1.0: Provides a Bayesian factor-analytic framework for Q methodology. Fits a low-rank factor model to Q-sort data with a Student-t likelihood and a hierarchical normal prior on loadings, samples the posterior with Stan, resolves rotational ambiguity via the MatchAlign post-processing of [Poworoznek et al. (2025)](https://projecteuclid.org/journals/bayesian-analysis/volume--1/issue--1/Efficiently-Resolving-Rotational-Ambiguity-in-Bayesian-Matrix-Sampling-with-Matching/10.1214/25-BA1544.full) and returns posterior summaries including credible intervals for loadings and factor scores, probabilistic dominant-factor membership, distinguishing and consensus statements, and PSIS-LOO-based factor enumeration following [Vehtari et al. (2017)](https://link.springer.com/article/10.1007/s11222-016-9696-4) with the [Sivula et al. (2025)](https://projecteuclid.org/journals/bayesian-analysis/volume--1/issue--1/Uncertainty-in-Bayesian-Leave-One-Out-Cross-Validation-Based-Model/10.1214/25-BA1569.full) parsimony rule. See the [vignette](https://cran.r-project.org/web/packages/bayesqm/vignettes/bayesqm-intro.html) to get started.
+
+![](bayesqm.png){fig-alt="Plot of ELPD peak vs. K"}
+
+
+[dppca](https://cran.r-project.org/package=dppca) v0.1.0: Provides tools for differentially private principal component analysis visualization and includes functions for estimating private principal component directions, constructing private scree and proportion of variance explained summaries, and visualizing two-dimensional PCA score summaries using additive and sparse histogram mechanisms. Group-wise score visualizations and an interactive `shiny` app are also provided. See [Kim and Jung (2025)](https://onlinelibrary.wiley.com/doi/10.1002/sam.70053),  [Dwork and Roth (2014)](https://www.emerald.com/fttcs/article-abstract/9/3-4/211/1332491/The-Algorithmic-Foundations-of-Differential?redirectedFrom=fulltext) and [Ramsay and Spicker (2025)](https://arxiv.org/abs/2501.14095) for background. There are four vignettes including [Algorithms](https://cran.r-project.org/web/packages/dppca/vignettes/algorithms.html) and [PC Directions in dppca](https://cran.r-project.org/web/packages/dppca/vignettes/pc_direction.html).
+
+
 [ernest](https://cran.r-project.org/package=ernest) v1.2.5: Bayesian evidence estimation and posterior inference with the nested sampling algorithm, described in [Skilling (2006)](https://projecteuclid.org/journals/bayesian-analysis/volume-1/issue-4/Nested-sampling-for-general-Bayesian-computation/10.1214/06-BA127.full) and [Buchner (2023)](https://projecteuclid.org/journals/statistics-surveys/volume-17/issue-none/Nested-sampling-methods/10.1214/23-SS144.full), along with S3 methods for simulating uncertainty and creating visualizations. See the vignettes [Nested Sampling](https://cran.r-project.org/web/packages/ernest/vignettes/nested-sampling-with-ernest.html) and [More Examples](https://cran.r-project.org/web/packages/ernest/vignettes/more-ernest-runs.html).
 
 
 ![](ernest.png){fig-alt="Plot showing ability to properly integrate across multimodal likelihood surfaces. "}
 
+[picreg](https://cran.r-project.org/package=picreg) v0.1.4 Implements the Pivotal Information Criterion  developed by [Sardy, van Cutsem, and van de Geer](https://arxiv.org/abs/2603.04172). PIC is a general framework to improve on BIC and LASSO for fitting sparse regression linear models in which the regularization parameter 𝜆is selected automatically from a pivotal statistic. Functions fit the resulting estimators across six response distributions, Gaussian, binomial, Poisson, exponential, Gumbel, and Cox, and three sparsity-inducing penalties; (LASSO), the Smoothly Clipped Absolute Deviation (SCAD), and Minimax Concave Penalty (MCP). See the [vignette](https://cran.r-project.org/web/packages/picreg/vignettes/vignette.html) for an introduction.
 
-
-
-
+![](picreg.png){fig-alt="Plot showing individual survival curves"}
 
 
 
