@@ -161,10 +161,31 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 
 
 ![](ernest.png){fig-alt="Plot showing ability to properly integrate across multimodal likelihood surfaces. "}
+[gkrreg](https://cran.r-project.org/package=gkrreg) v0.4.0: Implements the Gaussian Kernel Robust Regression method proposed by [De Carvalho, Lima Neto and Ferreira (2017)]() which re-weights observations iteratively using the Gaussian kernel so that poorly-fitted observations receive small weights, yielding resistance to Y-space outliers, X-space outliers and leverage points. Three estimators for the kernel width hyper-parameter are provided: Caputo, pairwise median, and residual variance. Inference is accomplished via an analytic sandwich variance estimator or via bootstrap. Six real datasets from the robust regression literature are included to facilitate reproducible comparisons. See the [vignette](https://cran.r-project.org/web/packages/gkrreg/vignettes/introduction.html).
+
+![](gkrreg.png){fig-alt="Three residual plots "}
+
+
 
 [picreg](https://cran.r-project.org/package=picreg) v0.1.4 Implements the Pivotal Information Criterion  developed by [Sardy, van Cutsem, and van de Geer](https://arxiv.org/abs/2603.04172). PIC is a general framework to improve on BIC and LASSO for fitting sparse regression linear models in which the regularization parameter 𝜆is selected automatically from a pivotal statistic. Functions fit the resulting estimators across six response distributions, Gaussian, binomial, Poisson, exponential, Gumbel, and Cox, and three sparsity-inducing penalties; (LASSO), the Smoothly Clipped Absolute Deviation (SCAD), and Minimax Concave Penalty (MCP). See the [vignette](https://cran.r-project.org/web/packages/picreg/vignettes/vignette.html) for an introduction.
 
 ![](picreg.png){fig-alt="Plot showing individual survival curves"}
+
+[SimplexRegression](https://cran.r-project.org/package=SimplexRegression) v0.1.5: Fits and analyzes simplex regression models with either fixed or parametric mean link functions. Implements the simplex probability density function, cumulative distribution function, quantile function, random number generation, and variance evaluation. Offers several fixed and parametric link functions for the mean submodel, tools for residual analysis and diagnostic plotting, hypothesis testing procedures, and influence measures such as Cook's distance and leverage. Includes the Scout Score criterion for model selection, enabling comprehensive inference and diagnostic analysis within the simplex regression framework. See [Barndorff-Nielsen and Jorgensen (1991)](https://www.sciencedirect.com/science/article/pii/0047259X9190008P?via%3Dihub) and [Justino and Cribari-Neto (2026)](https://www.sciencedirect.com/science/article/abs/pii/S0307904X25007863?via%3Dihub) for more details and the [vignette](https://cran.r-project.org/web/packages/SimplexRegression/vignettes/relative-humidity.html) for examples.
+
+
+### Time Series
+
+[bvars](https://cran.r-project.org/package=bvars) v1.0: Provides fast and efficient procedures for Bayesian estimation and forecasting using state-of-the-art vector autoregressions. Includes the model proposed by [Chan (2020)](https://www.tandfonline.com/doi/full/10.1080/07350015.2018.1451336), a Bayesian vector autoregression with Minnesota priors and a flexible structure of the error term that permits conditional multivariate normal or Student’s t distributions, as well as homoskedastic or heteroskedastic specifications with a common volatility modelled by centred or non-centred Stochastic Volatility. Additional features include predictive analyses using density forecasting and forecast-error variance decompositions. See [README](https://cran.r-project.org/web/packages/bvars/readme/README.html) for an example.
+
+
+[fable.intermittent](https://cran.r-project.org/package=fable.intermittent) v0.1.1: Extends the `fable` framework to support forecasting methods specifically designed for intermittent time series data, where demand occurs sporadically with many zero values. All methods produce probabilistic forecasts returned as 'distributional' objects. The returned forecasts can be used to evaluate accuracy, plot and print the results. Methods include:[Harvey, Fernandes (1989)](https://www.tandfonline.com/doi/abs/10.1080/07350015.1989.10509750), [Willemain, Smart, Schwarz (2004)](https://www.sciencedirect.com/science/article/abs/pii/S016920700300013X?via%3Dihub) and several others. See the [vignette](https://cran.r-project.org/web/packages/fable.intermittent/vignettes/fable.intermittent.html).
+
+![](fable.png){fig-alt="Time series with multiple forecasts"}
+
+[muse](https://cran.r-project.org/package=muse) v0.1.0: Implements the Power / Trend / Seasonal (PTS) model, a unified state-space framework based on the Multiple Source of Error model. It brings the trend, seasonal and irregular component models of [Harvey (1989)](https://www.cambridge.org/core/books/forecasting-structural-time-series-models-and-the-kalman-filter/CE5E112570A56960601760E786A5E631), [Durbin and Koopman (2012)](https://academic.oup.com/book/16563?login=false) and others together under a single estimation, selection and forecasting interface, with an optional Box-Cox power transformation. Models are estimated by maximum likelihood through the Kalman filter and smoother, with automatic component selection by information criteria. See the [vignette](https://cran.r-project.org/web/packages/muse/vignettes/pts.html).
+
+![](muse.png){fig-alt="Time series with forecst"}
 
 
 
