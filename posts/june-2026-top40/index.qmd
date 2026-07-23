@@ -17,7 +17,6 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 ::: {.column width="45%"}
 
 
-![](.png){fig-alt=""}
 
 ### Bioarchaeology
 
@@ -26,16 +25,28 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 
 ![](baytoAAR.png){fig-alt="Plot of distribution of age to death"}
 
+### Biology
+
+[power.nb](https://cran.r-project.org/package=power.nb) v0.1.0: Provides functions for estimating statistical power and required sample sizes in differential abundance microbiome studies using negative binomial models. The methods are based on [Agronah and Bolker (2025)]https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0318820) including tools for simulation-based power analysis and sample size estimation using generalized additive models (GAMs), and visualization utilities for exploring the relationship between power, effect size, abundance, and sample size. See the [vignette](https://cran.r-project.org/web/packages/power.nb/vignettes/stub.html).
+
+![](powervb.png){fig-alt="Contour plot showing power for various combinations of mean abundance and fold change"}
+
+### Climate Studies
+
+[clim4health](https://cran.r-project.org/package=clim4health) v0.1.0: Provides functons to obtain, transform and export climate data including reanalyses, seasonal forecasts and hindcasts, and weather stations for their use in epidemiological analyses. Features include downscaling, verification, spatiotemporal aggregation and threshold-based indicators. See [Duzenli et al. (2026)](https://www.nature.com/articles/s41598-026-45067-2) for downscaling methods and [Manubens et al. (2018)](https://www.sciencedirect.com/science/article/abs/pii/S1364815217302219?via%3Dihub) for verification methods. There are six vignettes including [Introduction](https://cran.r-project.org/web/packages/clim4health/vignettes/clim4health_s2dv_cubes.html) and [Overview](https://cran.r-project.org/web/packages/clim4health/vignettes/clim4health_overview.html).
 
 ### Computational Methods
 
 
-[momst](https://cran.r-project.org/package=momst) v0.1.1: Provides functions to solve the Multi-Criteria Minimum Spanning Tree problem on complete weighted graphs by combining the Non-dominated Sorting Genetic Algorithm II with optional Pareto local search operators. Chromosomes are represented as Prufer sequences so that every random individual decodes to a valid spanning tree (Cayley's theorem), avoiding repair operators. Four solver variants are provided: pure NSGA-II, Path Relinking, Pareto Local Search, and Tabu Search. See Parraga-Alava et al. (2017)](https://ieeexplore.ieee.org/document/7969432) for background. There are two vignettes: [Getting Started](https://cran.r-project.org/web/packages/momst/vignettes/getting-started.html) and [Comparing the Four MO-MST Variants](https://cran.r-project.org/web/packages/momst/vignettes/momst-variants.html).
+[momst](https://cran.r-project.org/package=momst) v0.1.1: Provides functions to solve the Multi-Criteria Minimum Spanning Tree problem on complete weighted graphs by combining the Non-dominated Sorting Genetic Algorithm II with optional Pareto local search operators. Chromosomes are represented as Prufer sequences so that every random individual decodes to a valid spanning tree (Cayley's theorem), avoiding repair operators. Four solver variants are provided: NSGA-II, Path Relinking, Pareto Local Search, and Tabu Search. See [Parraga-Alava et al. (2017)](https://ieeexplore.ieee.org/document/7969432) for background. There are two vignettes: [Getting Started](https://cran.r-project.org/web/packages/momst/vignettes/getting-started.html) and [Comparing the Four MO-MST Variants](https://cran.r-project.org/web/packages/momst/vignettes/momst-variants.html).
 
 ![](momst.png){fig-alt="Graphs of spanning tree variants"}
 
 
 [nmathopencl](https://cran.r-project.org/package=nmathopencl) v0.8.3: Ships statistical and mathematical routines from the `R` internal [`nmath`](https://github.com/SurajGupta/r-source/blob/master/src/nmath/nmath.h)  (`Mathlib`) as [`OpenCL`](https://en.wikipedia.org/wiki/OpenCL) C sources under directory `inst/cl/`, with `R` wrappers that use the GPU when `OpenCL` is available at compile time and fall back to `stats` equivalents otherwise. Aimed at package developers building custom kernels (for example Bayesian GLMs via suggested package `glmbayes`) using `opencltools` kernel loaders and related helpers. There are thirteen vignetttes including [Package Overview](https://cran.r-project.org/web/packages/nmathopencl/vignettes/Chapter-00.html) and [Case study](https://cran.r-project.org/web/packages/nmathopencl/vignettes/Chapter-10.html).
+
+
+[sparsediff](https://cran.r-project.org/package=sparsediff) v0.4.0: Implements bindings for the `SparseDiffEngine` `C` library, the sparse Jacobian and Hessian differentiation backend used by `CVXPY` for its Disciplined Nonlinear Programming  extension. Provides low-level routines for building nonlinear expression graphs and evaluating sparse derivatives, intended as a backend for higher-level modeling layers such as `CVXR`. This is the `R` analog of the `sparsediffpy` `Python` package and wraps the same `C` library. See the [vignette](https://cran.r-project.org/web/packages/sparsediff/vignettes/sparsediff.html).
 
 
 [StochSimR](https://cran.r-project.org/package=StochSimR) v1.1.0: Implements a modular simulation engine for a wide range of stochastic processes. Provides exact and approximate simulation methods for Poisson processes (homogeneous and inhomogeneous), Brownian motion (standard, drifted, and bridge), discrete- and continuous-time Markov chains, birth-death processes, the Yule pure-birth process, infinitesimal generator matrix utilities, Markovian queuing systems (M/M/1, M/M/c, M/M/c/K) with exact steady-state statistics, Levy processes (gamma, normal inverse Gaussian, variance-gamma, alpha-stable), Merton jump-diffusion models, Hawkes self-exciting processes, geometric Brownian motion, and Ornstein-Uhlenbeck mean-reverting diffusions. See [Glasserman (2003)](https://link.springer.com/book/10.1007/978-0-387-21617-1) and [Asmussen & Glynn (2007)](https://link.springer.com/book/10.1007/978-0-387-69033-9) for background and the [vignette](https://cran.r-project.org/web/packages/StochSimR/vignettes/introduction.html) for an introduction.
@@ -66,10 +77,6 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 
 ![](Temporal.png){fig-alt="Random Forest Marginal Prediction Curves"}
 
-### Economics
-
-
-
 
 ### Epidemiology
 
@@ -91,21 +98,44 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 
 ![](Jump.png){fig-alt="Plot of simulated asset price"}
 
+
+
+
+
+### Machine Learning
+
+[svmodt](https://cran.r-project.org/package=svmodt) v0.1.0: Implements Support Vector Machine Oblique Decision Trees. Recursively builds classification trees using linear Support Vector Machines hyperplanes at each node instead of axis-parallel splits, creating oblique decision boundaries. Features include multiple feature selection methods, dynamic feature subset strategies, class weight support for imbalanced datasets, pruning and feature penalization. See the [vignette](https://cran.r-project.org/web/packages/svmodt/vignettes/introduction.html).
+
+![](svmodt.png){fig-alt="Scatterplot showing SVM decision boundary"}
+
+[yaap](https://cran.r-project.org/package=yaap) v1.0.0: Fits archetypal analysis models, including Euclidean, probabilistic, kernel, and directional variants. Methods include classical archetypal analysis from [Cutler and Breiman (1994)](https://www.tandfonline.com/doi/abs/10.1080/00401706.1994.10485840), PCHA and kernel variants from [Mørup and Hansen (2012)](https://www.sciencedirect.com/science/article/abs/pii/S0925231211006060?via%3Dihub), probabilistic archetypal analysis from [Seth and Eugster (2016](https://link.springer.com/article/10.1007/s10994-015-5498-8), directional archetypal analysis from [Olsen et al. (2022)](https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2022.911034/full), AA++ initialization from [Mair and Sjölund (2023)](https://proceedings.neurips.cc/paper_files/paper/2019/file/7f278ad602c7f47aa76d1bfc90f20263-Paper.pdf), coreset-style initialization from [Mair and Brefeld (2019)](https://proceedings.neurips.cc/paper_files/paper/2019/file/7f278ad602c7f47aa76d1bfc90f20263-Paper.pdf), and adapted AIC from [Suleman (2017)](https://ieeexplore.ieee.org/document/8015385). There are four vignettes including an [Introduction](https://cran.r-project.org/web/packages/yaap/vignettes/introduction.html) and [Tidymodels Workflows](https://cran.r-project.org/web/packages/yaap/vignettes/tidymodels.html).
+
+![](yaap.png){fig-alt="Plot of archetype positions in feature space"}
+
+
+
+
 ### Medicine
 
 [BayesTSM](https://cran.r-project.org/package=BayesTSM) v1.0.1: In screening programs, individuals are usually followed up and tested (screened) for the development of a disease. The target disease often develops progressively in stages; for example healthy (state 1), pre-state disease (state 2), and the disease state (state 3). When the pre-state disease is found during screening it is intervened upon, for example by surgical removal of a lesion, so that the progression of the pre-state disease to disease is interrupted. `BayesTSM` functions estimate a progressive three-state model with censoring due to intervention using Bayesian estimation methods, as described in [Klausch et al. (2023)](https://projecteuclid.org/journals/annals-of-applied-statistics/volume-17/issue-2/A-Bayesian-accelerated-failure-time-model-for-interval-censored-three/10.1214/22-AOAS1669.full). See the [vignette](https://cran.r-project.org/web/packages/BayesTSM/vignettes/bayestsm-userguide.html).
 
 ![](BayesTSM.png){fig-alt="Plot of posterior predictive priors"}
 
-[bayprior](https://cran.r-project.org/package=bayprior) v0.2.12: Provides a toolkit for constructing, validating, and justifying Bayesian priors in clinical trial settings. Implements expert elicitation via quantile matching, the roulette method, and moment matching across six distribution families, linear and logarithmic expert pooling, prior-data conflict diagnostics including the Box p-value, surprise index, information divergence, and Mahalanobis distance, sensitivity analyses with tornado and influence heatmap plots, sceptical, robust, and power priors, and automated prior justification reports. Includes a fully modular `Shiny` application.for interactive use. See [Box (1980)](https://www.jstor.org/stable/2982063?origin=crossref) and [Oakley and O'Hagan (2010)](https://shelf.sites.sheffield.ac.uk/) for background. There are six vignettes including [Introduction](https://cran.r-project.org/web/packages/bayprior/vignettes/bayprior-introduction.html) and [Robust, Sceptical, and Power Priors](https://cran.r-project.org/web/packages/bayprior/vignettes/robust-priors.html).
+
+
+
+[bayprior](https://cran.r-project.org/package=bayprior) v0.2.12: Provides a toolkit for constructing, validating, and justifying Bayesian priors in clinical trial settings. Implements expert elicitation via quantile matching, the roulette method, and moment matching, linear and logarithmic expert pooling, prior-data conflict diagnostics. Includes a fully modular `Shiny` application.for interactive use. See [Box (1980)](https://www.jstor.org/stable/2982063?origin=crossref) and [Oakley and O'Hagan (2010)](https://shelf.sites.sheffield.ac.uk/) for background. There are six vignettes including [Introduction](https://cran.r-project.org/web/packages/bayprior/vignettes/bayprior-introduction.html) and [Robust, Sceptical, and Power Priors](https://cran.r-project.org/web/packages/bayprior/vignettes/robust-priors.html).
 
 ![](bayprior.png){fig-alt="Plot of Bayes factor vs power prior weight"}
 
-### Machine Learning
+:::
 
-[yaap](https://cran.r-project.org/package=yaap) v1.0.0: Fits archetypal analysis models, including Euclidean, probabilistic, kernel, and directional variants. Methods include classical archetypal analysis from [Cutler and Breiman (1994)](https://www.tandfonline.com/doi/abs/10.1080/00401706.1994.10485840), PCHA and kernel variants from [Mørup and Hansen (2012)](https://www.sciencedirect.com/science/article/abs/pii/S0925231211006060?via%3Dihub), probabilistic archetypal analysis from [Seth and Eugster (2016](https://link.springer.com/article/10.1007/s10994-015-5498-8), directional archetypal analysis from [Olsen et al. (2022)](https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2022.911034/full), AA++ initialization from [Mair and Sjölund (2023)](https://proceedings.neurips.cc/paper_files/paper/2019/file/7f278ad602c7f47aa76d1bfc90f20263-Paper.pdf), coreset-style initialization from [Mair and Brefeld (2019)](https://proceedings.neurips.cc/paper_files/paper/2019/file/7f278ad602c7f47aa76d1bfc90f20263-Paper.pdf), and adapted AIC from [Suleman (2017)](https://ieeexplore.ieee.org/document/8015385). There are four vignettes including an [Introduction](https://cran.r-project.org/web/packages/yaap/vignettes/introduction.html) and [Tidymodels Workflows](https://cran.r-project.org/web/packages/yaap/vignettes/tidymodels.html).
+::: {.column width="10%"}
 
-![](yaap.png){fig-alt="Plot of archetype positions in feature space"}
+:::
+
+::: {.column width="45%"}
+
 
 ### Networks
 
@@ -118,6 +148,14 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 [admixr2](https://cran.r-project.org/package=admixr2) v0.2.0: Provides functions to fit pharmacokinetic/pharmacodynamic (PK/PD) models to aggregate-level data (mean vector and covariance matrix per study) rather than individual-level data. Integrates with the `nlmixr2`/`rxode2` ecosystem via four estimation methods: a First-Order  analytical estimator, a Monte Carlo estimator, a Gauss-Hermite quadrature estimator, and an Iterative Reweighting Monte Carlo estimator. Methods are based on [Välitalo (2021)](https://link.springer.com/article/10.1007/s10928-021-09760-1)  software described in van de [Beek et al. (2025)](https://link.springer.com/article/10.1007/s10928-025-10011-w). See the [vignette](https://cran.r-project.org/web/packages/admixr2/vignettes/admixr2.html) to get started.
 
 ![](admixr2.png){fig-alt="Study diagnostic plots"}
+
+
+### Probability
+
+[GLBFP](https://cran.r-project.org/package=GLBFP) v0.5.2: Implements nonparametric density estimation with Averaged Shifted Histogram, Linear Blend Frequency Polygon, and General Linear Blend Frequency Polygon estimators and provides pointwise and grid-based estimation workflows, sparse-prefix grid-count computation, plotting helpers, and plug-in bandwidth selection. Methodological background follows [Scott (1992)](https://onlinelibrary.wiley.com/doi/book/10.1002/9780470316849), [Terrell and Scott (1985)](https://www.tandfonline.com/doi/abs/10.1080/01621459.1985.10477163), and [Carbon and Duchesne (2024)](https://link.springer.com/article/10.1007/s10463-023-00883-5). There are nine vignettes including [Getting started](https://cran.r-project.org/web/packages/GLBFP/vignettes/getting-started.html) and [Package overview](https://cran.r-project.org/web/packages/GLBFP/vignettes/GLBFP_introduction.html).
+
+![](GLBFP.png){fig-alt="Density plot"}
+
 
 ### Programming
 
@@ -137,13 +175,6 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 
 ![](riskutility.png){fig-alt="histogram of distance to cloest record"}
 
-:::
-
-::: {.column width="10%"}
-
-:::
-
-::: {.column width="45%"}
 
 
 
@@ -152,6 +183,10 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 [bayesqm](https://cran.r-project.org/package=bayesqm) v0.1.0: Provides a Bayesian factor-analytic framework for Q methodology. Fits a low-rank factor model to Q-sort data with a Student-t likelihood and a hierarchical normal prior on loadings, samples the posterior with Stan, resolves rotational ambiguity via the MatchAlign post-processing of [Poworoznek et al. (2025)](https://projecteuclid.org/journals/bayesian-analysis/volume--1/issue--1/Efficiently-Resolving-Rotational-Ambiguity-in-Bayesian-Matrix-Sampling-with-Matching/10.1214/25-BA1544.full) and returns posterior summaries including credible intervals for loadings and factor scores, probabilistic dominant-factor membership, distinguishing and consensus statements, and PSIS-LOO-based factor enumeration following [Vehtari et al. (2017)](https://link.springer.com/article/10.1007/s11222-016-9696-4) with the [Sivula et al. (2025)](https://projecteuclid.org/journals/bayesian-analysis/volume--1/issue--1/Uncertainty-in-Bayesian-Leave-One-Out-Cross-Validation-Based-Model/10.1214/25-BA1569.full) parsimony rule. See the [vignette](https://cran.r-project.org/web/packages/bayesqm/vignettes/bayesqm-intro.html) to get started.
 
 ![](bayesqm.png){fig-alt="Plot of ELPD peak vs. K"}
+
+[depthR](https://cran.r-project.org/package=depthR) v0.1.8: Provides efficient implementations multivariate statistical depth functions in arbitrary dimension. Implements Mahalanobis depth, Tukey halfspace depth, Liu simplicial depth, projection depth, spatial depth, depth-based medians, central regions, outlier detection, and depth-depth plots. `C++` backends via `Rcpp` and `RcppEigen` ensure performance at large n and d. See [Liu (1990)](https://projecteuclid.org/journals/annals-of-statistics/volume-18/issue-1/On-a-Notion-of-Data-Depth-Based-on-Random-Simplices/10.1214/aos/1176347507.full), [Serfling and Zuo (2000)](https://projecteuclid.org/journals/annals-of-statistics/volume-28/issue-2/General-notions-of-statistical-depth-function/10.1214/aos/1016218226.full), and [Vardi and Zhang (2000)](https://www.pnas.org/doi/abs/10.1073/pnas.97.4.1423) for background, and the [vignette](https://cran.r-project.org/web/packages/depthR/vignettes/depthR.html) for and introduction.
+
+![](depthR.png){fig-alt="The depth-depth plot is the multivariate analog of the QQ-plot"}
 
 
 [dppca](https://cran.r-project.org/package=dppca) v0.1.0: Provides tools for differentially private principal component analysis visualization and includes functions for estimating private principal component directions, constructing private scree and proportion of variance explained summaries, and visualizing two-dimensional PCA score summaries using additive and sparse histogram mechanisms. Group-wise score visualizations and an interactive `shiny` app are also provided. See [Kim and Jung (2025)](https://onlinelibrary.wiley.com/doi/10.1002/sam.70053),  [Dwork and Roth (2014)](https://www.emerald.com/fttcs/article-abstract/9/3-4/211/1332491/The-Algorithmic-Foundations-of-Differential?redirectedFrom=fulltext) and [Ramsay and Spicker (2025)](https://arxiv.org/abs/2501.14095) for background. There are four vignettes including [Algorithms](https://cran.r-project.org/web/packages/dppca/vignettes/algorithms.html) and [PC Directions in dppca](https://cran.r-project.org/web/packages/dppca/vignettes/pc_direction.html).
@@ -166,12 +201,16 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 ![](gkrreg.png){fig-alt="Three residual plots "}
 
 
-
 [picreg](https://cran.r-project.org/package=picreg) v0.1.4 Implements the Pivotal Information Criterion  developed by [Sardy, van Cutsem, and van de Geer](https://arxiv.org/abs/2603.04172). PIC is a general framework to improve on BIC and LASSO for fitting sparse regression linear models in which the regularization parameter 𝜆is selected automatically from a pivotal statistic. Functions fit the resulting estimators across six response distributions, Gaussian, binomial, Poisson, exponential, Gumbel, and Cox, and three sparsity-inducing penalties; (LASSO), the Smoothly Clipped Absolute Deviation (SCAD), and Minimax Concave Penalty (MCP). See the [vignette](https://cran.r-project.org/web/packages/picreg/vignettes/vignette.html) for an introduction.
 
 ![](picreg.png){fig-alt="Plot showing individual survival curves"}
 
 [SimplexRegression](https://cran.r-project.org/package=SimplexRegression) v0.1.5: Fits and analyzes simplex regression models with either fixed or parametric mean link functions. Implements the simplex probability density function, cumulative distribution function, quantile function, random number generation, and variance evaluation. Offers several fixed and parametric link functions for the mean submodel, tools for residual analysis and diagnostic plotting, hypothesis testing procedures, and influence measures such as Cook's distance and leverage. Includes the Scout Score criterion for model selection, enabling comprehensive inference and diagnostic analysis within the simplex regression framework. See [Barndorff-Nielsen and Jorgensen (1991)](https://www.sciencedirect.com/science/article/pii/0047259X9190008P?via%3Dihub) and [Justino and Cribari-Neto (2026)](https://www.sciencedirect.com/science/article/abs/pii/S0307904X25007863?via%3Dihub) for more details and the [vignette](https://cran.r-project.org/web/packages/SimplexRegression/vignettes/relative-humidity.html) for examples.
+
+[vbm](https://cran.r-project.org/package=vbm) v0.1.0: Provides methods for variance-based sensitivity analysis and weighting estimators in observational studies based on methodology by [Huang & Pimentel (2025)](https://academic.oup.com/biomet/article-abstract/112/1/asae040/7731116?redirectedFrom=fulltext&login=false) Includes bootstrap inference, bias bounds estimation, and visualization tools for sensitivity parameters. See the [vignette](https://cran.r-project.org/web/packages/vbm/vignettes/vbm.html).
+
+![](vbm.png){fig-alt="Plot showing variables that should be prioritized for adjustment based on both treatment and outcome, while traditional love plot only considers treatment imbalance"}
+
 
 
 ### Time Series
@@ -191,10 +230,12 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 
 [ahocorasick](https://cran.r-project.org/package=ahocorasick) v0.2.0: Provides fast multi-pattern string matching using the '`Aho-Corasick` algorithm, powered by the `Rust` `aho-corasick` crate. It builds reusable automatons for detecting matches, counting matches, locating character, extracting matched text, and replacing matches in character vectors. See [Aho and Corasick (1975)](https://dl.acm.org/doi/10.1145/360825.360855) for more information on the  `Aho-Corasick` algorithm and the [vignette](https://cran.r-project.org/web/packages/ahocorasick/vignettes/benchmarks.html) for an example.
 
+[mx.crypto](https://cran.r-project.org/package=mx.crypto) v0.2.0: Provides `Olm` and `Megolm` encryption ratchet primitives for the [Matrix messaging protocol](https://matrix.org/), wrapping the `vodozemac` `Rust` crate. Provides device-key generation, one-time-key management, 1:1 `Olm` sessions, and `Megolm` group sessions. Pairs with the `mx.api` package, which handles `Matrix HTTP` transport. See the [vignette](https://cran.r-project.org/web/packages/mx.crypto/vignettes/security-audit.html).
+
+
 [pkgmatch](https://cran.r-project.org/package=pkgmatch) v0.5.4: Provides functions to find `R` packages from `CRAN`, `rOpenSci`, or `Bioconductor` corpora. Packages can be matched to general text descriptions, to names of installed packages, or to local paths to entire source repositories. The package is used to list the most similar packages for each new submission to the `rOpenSci` software [peer-review program](https://zenodo.org/records/18885936). There are three vignettes including an [introduction](https://cran.r-project.org/web/packages/pkgmatch/vignettes/pkgmatch.html) and [Example applications](https://cran.r-project.org/web/packages/pkgmatch/vignettes/A_extended-use-case.html).
 
 
-END
 
 :::
 
