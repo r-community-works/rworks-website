@@ -1,16 +1,16 @@
 ---
 title: "June 2026 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
-date: 2026-06-30
+date: 2026-07-27
 description: "A personal, idiosyncratic, unabashedly biased, time-constrained attempt to capture the depth and breadth of the new packages submitted to CRAN in a single month."
-image: ".png"
-image-alt: ""
+image: "momst.png"
+image-alt: "Graphs of spanning tree variants"
 categories: "Top 40"
 editor: source
 format: html
 ---
 
-Four hundred twelve new packages were submitted to CRAN in June. Here are my Top 40 picks in xxxx categories: Artificial Intelligence, Computational Methods, Ecology, Education, Finance, Functional Data Analysis, Genomics, Machine Learning, Medical Statistics, Meta Analysis, Probability, Process Control, Psychometrics, Statistics, Surveys, Time Series, Utilities, and Visualization.
+Four hundred twelve new packages were submitted to CRAN in June. Here are my Top 40 picks in nineteen categories: Bioarchaeology, Biology, Climate Studies, Computational Methods, Ecology, Epidemiology, Finance, Functional Data Analysis, Machine Learning, Medical Statistics, Networks, Pharmacokinetics, Probability, Programming, Psychometrics, Risk Analysis, Statistics, Time Series, and Utilities.
 
 :::: {.columns}
 
@@ -20,20 +20,20 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 
 ### Bioarchaeology
 
-[baytaAAR](https://cran.r-project.org/package=baytaAAR) v1.0.3: Provides Bayesian age estimation for bioarchaeological skeletal data using ordinal probit regression models implemented in `JAGS` and `NIMBLE`. The package is designed to handle multiple ordinal traits of adult individuals and incorporates a Gompertz prior on age to reflect population-level mortality. It accounts for estimation uncertainties and supports full customization of model parameters and Markov Chain Monte Carlo settings. For more details see [Müller-Scheeßel et al. (2026)](https://onlinelibrary.wiley.com/doi/10.1002/ajpa.70289). There are five vignetes including [Introduction](https://cran.r-project.org/web/packages/baytaAAR/vignettes/baytaAAR.html) and [Mathematical background](https://cran.r-project.org/web/packages/baytaAAR/vignettes/mathematical_background.html).
+[baytaAAR](https://cran.r-project.org/package=baytaAAR) v1.0.3: Provides Bayesian age estimation for bioarchaeological skeletal data using ordinal probit regression models implemented in `JAGS` and `NIMBLE`. The package is designed to handle multiple ordinal traits of adult individuals and incorporates a Gompertz prior on age to reflect population-level mortality. It accounts for estimation uncertainties and supports full customization of model parameters and Markov Chain Monte Carlo settings. For more details see [Müller-Scheeßel et al. (2026)](https://onlinelibrary.wiley.com/doi/10.1002/ajpa.70289). There are five vignettes including [Introduction](https://cran.r-project.org/web/packages/baytaAAR/vignettes/baytaAAR.html) and [Mathematical background](https://cran.r-project.org/web/packages/baytaAAR/vignettes/mathematical_background.html).
 
 
 ![](baytoAAR.png){fig-alt="Plot of distribution of age to death"}
 
 ### Biology
 
-[power.nb](https://cran.r-project.org/package=power.nb) v0.1.0: Provides functions for estimating statistical power and required sample sizes in differential abundance microbiome studies using negative binomial models. The methods are based on [Agronah and Bolker (2025)]https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0318820) including tools for simulation-based power analysis and sample size estimation using generalized additive models (GAMs), and visualization utilities for exploring the relationship between power, effect size, abundance, and sample size. See the [vignette](https://cran.r-project.org/web/packages/power.nb/vignettes/stub.html).
+[power.nb](https://cran.r-project.org/package=power.nb) v0.1.0: Provides functions for estimating statistical power and required sample sizes in differential abundance microbiome studies using negative binomial models and includes tools for simulation-based power analysis and sample size estimation using generalized additive models (GAMs), and visualization utilities for exploring the relationship between power, effect size, abundance, and sample size. The methods are based on [Agronah and Bolker (2025)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0318820). See the [vignette](https://cran.r-project.org/web/packages/power.nb/vignettes/stub.html).
 
 ![](powervb.png){fig-alt="Contour plot showing power for various combinations of mean abundance and fold change"}
 
 ### Climate Studies
 
-[clim4health](https://cran.r-project.org/package=clim4health) v0.1.0: Provides functons to obtain, transform and export climate data including reanalyses, seasonal forecasts and hindcasts, and weather stations for their use in epidemiological analyses. Features include downscaling, verification, spatiotemporal aggregation and threshold-based indicators. See [Duzenli et al. (2026)](https://www.nature.com/articles/s41598-026-45067-2) for downscaling methods and [Manubens et al. (2018)](https://www.sciencedirect.com/science/article/abs/pii/S1364815217302219?via%3Dihub) for verification methods. There are six vignettes including [Introduction](https://cran.r-project.org/web/packages/clim4health/vignettes/clim4health_s2dv_cubes.html) and [Overview](https://cran.r-project.org/web/packages/clim4health/vignettes/clim4health_overview.html).
+[clim4health](https://cran.r-project.org/package=clim4health) v0.1.0: Provides functions to obtain, transform and export climate data including reanalyses, seasonal forecasts and hindcasts, and weather stations for their use in epidemiological analyses. Features include downscaling, verification, spatiotemporal aggregation and threshold-based indicators. See [Duzenli et al. (2026)](https://www.nature.com/articles/s41598-026-45067-2) for downscaling methods and [Manubens et al. (2018)](https://www.sciencedirect.com/science/article/abs/pii/S1364815217302219?via%3Dihub) for verification methods. There are six vignettes including [Introduction](https://cran.r-project.org/web/packages/clim4health/vignettes/clim4health_s2dv_cubes.html) and [Overview](https://cran.r-project.org/web/packages/clim4health/vignettes/clim4health_overview.html).
 
 ### Computational Methods
 
@@ -43,17 +43,17 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 ![](momst.png){fig-alt="Graphs of spanning tree variants"}
 
 
-[nmathopencl](https://cran.r-project.org/package=nmathopencl) v0.8.3: Ships statistical and mathematical routines from the `R` internal [`nmath`](https://github.com/SurajGupta/r-source/blob/master/src/nmath/nmath.h)  (`Mathlib`) as [`OpenCL`](https://en.wikipedia.org/wiki/OpenCL) C sources under directory `inst/cl/`, with `R` wrappers that use the GPU when `OpenCL` is available at compile time and fall back to `stats` equivalents otherwise. Aimed at package developers building custom kernels (for example Bayesian GLMs via suggested package `glmbayes`) using `opencltools` kernel loaders and related helpers. There are thirteen vignetttes including [Package Overview](https://cran.r-project.org/web/packages/nmathopencl/vignettes/Chapter-00.html) and [Case study](https://cran.r-project.org/web/packages/nmathopencl/vignettes/Chapter-10.html).
+[nmathopencl](https://cran.r-project.org/package=nmathopencl) v0.8.3: Ships statistical and mathematical routines from the `R` internal [`nmath`](https://github.com/SurajGupta/r-source/blob/master/src/nmath/nmath.h)  (`Mathlib`) as [`OpenCL`](https://en.wikipedia.org/wiki/OpenCL) `C` sources under directory `inst/cl/`, with `R` wrappers. Uses the GPU when `OpenCL` is available at compile time and fall back to `stats` equivalents otherwise. Aimed at package developers building custom kernels (for example Bayesian GLMs via suggested package `glmbayes`) using `opencltools` kernel loaders and related helpers. There are thirteen vignettes including [Package Overview](https://cran.r-project.org/web/packages/nmathopencl/vignettes/Chapter-00.html) and [Case study](https://cran.r-project.org/web/packages/nmathopencl/vignettes/Chapter-10.html).
 
 
 [sparsediff](https://cran.r-project.org/package=sparsediff) v0.4.0: Implements bindings for the `SparseDiffEngine` `C` library, the sparse Jacobian and Hessian differentiation backend used by `CVXPY` for its Disciplined Nonlinear Programming  extension. Provides low-level routines for building nonlinear expression graphs and evaluating sparse derivatives, intended as a backend for higher-level modeling layers such as `CVXR`. This is the `R` analog of the `sparsediffpy` `Python` package and wraps the same `C` library. See the [vignette](https://cran.r-project.org/web/packages/sparsediff/vignettes/sparsediff.html).
 
 
-[StochSimR](https://cran.r-project.org/package=StochSimR) v1.1.0: Implements a modular simulation engine for a wide range of stochastic processes. Provides exact and approximate simulation methods for Poisson processes (homogeneous and inhomogeneous), Brownian motion (standard, drifted, and bridge), discrete- and continuous-time Markov chains, birth-death processes, the Yule pure-birth process, infinitesimal generator matrix utilities, Markovian queuing systems (M/M/1, M/M/c, M/M/c/K) with exact steady-state statistics, Levy processes (gamma, normal inverse Gaussian, variance-gamma, alpha-stable), Merton jump-diffusion models, Hawkes self-exciting processes, geometric Brownian motion, and Ornstein-Uhlenbeck mean-reverting diffusions. See [Glasserman (2003)](https://link.springer.com/book/10.1007/978-0-387-21617-1) and [Asmussen & Glynn (2007)](https://link.springer.com/book/10.1007/978-0-387-69033-9) for background and the [vignette](https://cran.r-project.org/web/packages/StochSimR/vignettes/introduction.html) for an introduction.
+[StochSimR](https://cran.r-project.org/package=StochSimR) v1.1.0: Implements a modular simulation engine for a wide range of stochastic processes. Provides exact and approximate simulation methods for Poisson processes, Brownian motion, discrete- and continuous-time Markov chains, birth-death processes, the Yule pure-birth process, infinitesimal generator matrix utilities, Markovian queuing systems with exact steady-state statistics, Levy processes, Merton jump-diffusion models, Hawkes self-exciting processes, geometric Brownian motion, and Ornstein-Uhlenbeck mean-reverting diffusions. See [Glasserman (2003)](https://link.springer.com/book/10.1007/978-0-387-21617-1) and [Asmussen & Glynn (2007)](https://link.springer.com/book/10.1007/978-0-387-69033-9) for background and the [vignette](https://cran.r-project.org/web/packages/StochSimR/vignettes/introduction.html) for an introduction.
 
 ![](StochSimR.png){fig-alt="Plot of simulated Brownian Motion"}
 
-[Uno](https://cran.r-project.org/web/packages/Uno/vignettes/Uno.html) v2.7.4: Provides bindings to [Uno](https://unosolver.readthedocs.io/en/latest/) (Unifying Nonlinear Optimization), a C++ solver for smooth nonlinearly constrained optimization. 'Uno' unifies Lagrange-Newton methods, including sequential quadratic programming and interior-point methods, by decomposing them into interacting building blocks (constraint-relaxation, inequality-handling, Hessian, and globalization strategies) that can be freely combined. The framework is described in [Vanaret and Leyffer (2024)](https://arxiv.org/abs/2406.13454). See the [vignette](https://cran.r-project.org/web/packages/Uno/vignettes/Uno.html) for an example.
+[Uno](https://cran.r-project.org/web/packages/Uno/vignettes/Uno.html) v2.7.4: Provides bindings to [Uno](https://unosolver.readthedocs.io/en/latest/) (Unifying Nonlinear Optimization), a `C++` solver for smooth nonlinearly constrained optimization that unifies Lagrange-Newton methods, including sequential quadratic programming and interior-point methods, by decomposing them into interacting building blocks (constraint-relaxation, inequality-handling, Hessian, and globalization strategies). The framework is described in [Vanaret and Leyffer (2024)](https://arxiv.org/abs/2406.13454). See the [vignette](https://cran.r-project.org/web/packages/Uno/vignettes/Uno.html) for an example.
 
 
 ### Ecology
@@ -64,7 +64,7 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 
 
 
-[nicheR](https://cran.r-project.org/package=nicheR) v0.1.0: Provides tools for researchers and modelers to construct and define virtual ecological niches using ellipsoid geometries. It enables the identification and extraction of suitable environmental areas, simulation of species occurrence points with various sampling strategies, and visualization of niche boundaries and simulated occurrences in both environmental and geographic space. See [Etherington et al. (2009)](https://onlinelibrary.wiley.com/doi/10.1111/j.1365-2699.2008.02041.x) and [Qiao et al. (2015)](https://nsojournals.onlinelibrary.wiley.com/doi/10.1111/ecog.01961) for background. There are six vignettes including [Visualizing ellipsoids in environmental space](https://cran.r-project.org/web/packages/nicheR/vignettes/plotting_vignette.html) and [Virtual community simulation](https://cran.r-project.org/web/packages/nicheR/vignettes/virtual_communities.html).
+[nicheR](https://cran.r-project.org/package=nicheR) v0.1.0: Provides tools to construct and define virtual ecological niches using ellipsoid geometries. It enables the identification and extraction of suitable environmental areas, simulation of species occurrence points with various sampling strategies, and visualization of niche boundaries and simulated occurrences in both environmental and geographic space. See [Etherington et al. (2009)](https://onlinelibrary.wiley.com/doi/10.1111/j.1365-2699.2008.02041.x) and [Qiao et al. (2015)](https://nsojournals.onlinelibrary.wiley.com/doi/10.1111/ecog.01961) for background. There are six vignettes including [Visualizing ellipsoids in environmental space](https://cran.r-project.org/web/packages/nicheR/vignettes/plotting_vignette.html) and [Virtual community simulation](https://cran.r-project.org/web/packages/nicheR/vignettes/virtual_communities.html).
 
 ![](nicheR.png){fig-alt="Stability Plot"}
 
@@ -80,13 +80,9 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 
 ### Epidemiology
 
-[SmokingHistoryGenerator](https://cran.r-project.org/package=SmokingHistoryGenerator) v7.00: Implements an interface to the Cancer Intervention and Surveillance Modeling Network ([CISNET](https://cisnet.cancer.gov/resources/model-registry/lung-models/)) Smoking History Generator microsimulation engine, which synthesizes individual smoking histories (initiation, cessation, intensity) and ages at death from calibrated initiation, cessation, cigarettes-per-day, and mortality tables. See [Jeon et al. (2012)](https://onlinelibrary.wiley.com/doi/10.1111/j.1539-6924.2011.01775.x) for background and look [here](https://github.com/NCI-CISNET/shg-r) to get started.
+[SmokingHistoryGenerator](https://cran.r-project.org/package=SmokingHistoryGenerator) v7.0.0: Implements an interface to the Cancer Intervention and Surveillance Modeling Network ([CISNET](https://cisnet.cancer.gov/resources/model-registry/lung-models/)) Smoking History Generator microsimulation engine, which synthesizes individual smoking histories (initiation, cessation, intensity) and ages at death from calibrated initiation, cessation, cigarettes-per-day, and mortality tables. See [Jeon et al. (2012)](https://onlinelibrary.wiley.com/doi/10.1111/j.1539-6924.2011.01775.x) for background and look [here](https://github.com/NCI-CISNET/shg-r) to get started.
 
-### Functional Data Analysis
 
-[fda.vi](https://cran.r-project.org/package=fda.vi) v1.0.0: Implements a variational Expectation-Maximization algorithm for smoothing one or multiple functional observations via basis function selection. The algorithm estimates all model parameters simultaneously and automatically, while accounting for within-curve correlation to provide a flexible and computationally efficient framework for smoothing correlated functional data. See [da Cruz et al. (2024)](https://arxiv.org/abs/2405.20758) for a description of the algorithm and the [vignette]() for examples. 
-
-![](fdavi.png){fig-alt="Plot of VEM curve"}
 
 ### Finance
 
@@ -98,7 +94,11 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 
 ![](Jump.png){fig-alt="Plot of simulated asset price"}
 
+### Functional Data Analysis
 
+[fda.vi](https://cran.r-project.org/package=fda.vi) v1.0.0: Implements a variational Expectation-Maximization algorithm for smoothing one or multiple functional observations via basis function selection. The algorithm estimates all model parameters simultaneously and automatically, while accounting for within-curve correlation to provide a flexible and computationally efficient framework for smoothing correlated functional data. See [da Cruz et al. (2024)](https://arxiv.org/abs/2405.20758) for a description of the algorithm and the [vignette]() for examples. 
+
+![](fdavi.png){fig-alt="Plot of VEM curve"}
 
 
 
@@ -115,9 +115,9 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 
 
 
-### Medicine
+### Medical Statistics
 
-[BayesTSM](https://cran.r-project.org/package=BayesTSM) v1.0.1: In screening programs, individuals are usually followed up and tested (screened) for the development of a disease. The target disease often develops progressively in stages; for example healthy (state 1), pre-state disease (state 2), and the disease state (state 3). When the pre-state disease is found during screening it is intervened upon, for example by surgical removal of a lesion, so that the progression of the pre-state disease to disease is interrupted. `BayesTSM` functions estimate a progressive three-state model with censoring due to intervention using Bayesian estimation methods, as described in [Klausch et al. (2023)](https://projecteuclid.org/journals/annals-of-applied-statistics/volume-17/issue-2/A-Bayesian-accelerated-failure-time-model-for-interval-censored-three/10.1214/22-AOAS1669.full). See the [vignette](https://cran.r-project.org/web/packages/BayesTSM/vignettes/bayestsm-userguide.html).
+[BayesTSM](https://cran.r-project.org/package=BayesTSM) v1.0.1: In screening programs, individuals are usually followed up and tested (screened) for the development of a disease. The target disease often develops progressively in stages; for example healthy (state 1), pre-state disease (state 2), and the disease state (state 3). When the pre-state disease is found during screening it an intervention may prevent disease progression.`BayesTSM` functions estimate a progressive three-state model with censoring due to intervention using Bayesian estimation methods, as described in [Klausch et al. (2023)](https://projecteuclid.org/journals/annals-of-applied-statistics/volume-17/issue-2/A-Bayesian-accelerated-failure-time-model-for-interval-censored-three/10.1214/22-AOAS1669.full). See the [vignette](https://cran.r-project.org/web/packages/BayesTSM/vignettes/bayestsm-userguide.html).
 
 ![](BayesTSM.png){fig-alt="Plot of posterior predictive priors"}
 
@@ -165,7 +165,7 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 
 ### Psychometrics
 
-[easyRasch2](https://cran.r-project.org/package=easyRasch2) v1.1.0: Streamlines reproducible Rasch measurement theory analyses for ordinal item-response data, combining estimation routines from `eRm`, `psychotool`, `mirt`, `iarm`, and `lavaan` with consistent diagnostic, plotting, and reporting layers. Covers the four basic psychometric criteria summarised by [Christensen et al. (2021)](https://onlinelibrary.wiley.com/doi/10.1111/sms.13908): unidimensionality, local independence, ordered response category thresholds, and invariance across subgroups together with item fit, targeting, reliability, category functioning, and descriptive item-response plots. A distinguishing feature is the use of simulation-based critical values to replace rule-of-thumb cutoffs. See the [vignette](https://cran.r-project.org/web/packages/easyRasch2/vignettes/easyRasch2.html).
+[easyRasch2](https://cran.r-project.org/package=easyRasch2) v1.1.0: Streamlines reproducible Rasch measurement theory analyses for ordinal item-response data, combining estimation routines from `eRm`, `psychotool`, `mirt`, `iarm`, and `lavaan` with consistent diagnostic, plotting, and reporting layers. Covers the four basic psychometric criteria summarized by [Christensen et al. (2021)](https://onlinelibrary.wiley.com/doi/10.1111/sms.13908): unidimensionality, local independence, ordered response category thresholds, and invariance across subgroups together with item fit, targeting, reliability, category functioning, and descriptive item-response plots. A distinguishing feature is the use of simulation-based critical values to replace rule-of-thumb cutoffs. See the [vignette](https://cran.r-project.org/web/packages/easyRasch2/vignettes/easyRasch2.html).
 
 ![](easyRasch2.png){fig-alt="Plot of latent trait probabilities"}
 
@@ -180,7 +180,7 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 
 ### Statistics
 
-[bayesqm](https://cran.r-project.org/package=bayesqm) v0.1.0: Provides a Bayesian factor-analytic framework for Q methodology. Fits a low-rank factor model to Q-sort data with a Student-t likelihood and a hierarchical normal prior on loadings, samples the posterior with Stan, resolves rotational ambiguity via the MatchAlign post-processing of [Poworoznek et al. (2025)](https://projecteuclid.org/journals/bayesian-analysis/volume--1/issue--1/Efficiently-Resolving-Rotational-Ambiguity-in-Bayesian-Matrix-Sampling-with-Matching/10.1214/25-BA1544.full) and returns posterior summaries including credible intervals for loadings and factor scores, probabilistic dominant-factor membership, distinguishing and consensus statements, and PSIS-LOO-based factor enumeration following [Vehtari et al. (2017)](https://link.springer.com/article/10.1007/s11222-016-9696-4) with the [Sivula et al. (2025)](https://projecteuclid.org/journals/bayesian-analysis/volume--1/issue--1/Uncertainty-in-Bayesian-Leave-One-Out-Cross-Validation-Based-Model/10.1214/25-BA1569.full) parsimony rule. See the [vignette](https://cran.r-project.org/web/packages/bayesqm/vignettes/bayesqm-intro.html) to get started.
+[bayesqm](https://cran.r-project.org/package=bayesqm) v0.1.0: Provides a Bayesian factor-analytic framework for Q methodology. Fits a low-rank factor model to Q-sort data with a Student-t likelihood and a hierarchical normal prior on loadings, samples the posterior with `Stan`, resolves rotational ambiguity via the MatchAlign post-processing of [Poworoznek et al. (2025)](https://projecteuclid.org/journals/bayesian-analysis/volume--1/issue--1/Efficiently-Resolving-Rotational-Ambiguity-in-Bayesian-Matrix-Sampling-with-Matching/10.1214/25-BA1544.full) and returns posterior summaries including credible intervals for loadings and factor scores, probabilistic dominant-factor membership, distinguishing and consensus statements, and PSIS-LOO-based factor enumeration following [Vehtari et al. (2017)](https://link.springer.com/article/10.1007/s11222-016-9696-4) with the [Sivula et al. (2025)](https://projecteuclid.org/journals/bayesian-analysis/volume--1/issue--1/Uncertainty-in-Bayesian-Leave-One-Out-Cross-Validation-Based-Model/10.1214/25-BA1569.full) parsimony rule. See the [vignette](https://cran.r-project.org/web/packages/bayesqm/vignettes/bayesqm-intro.html) to get started.
 
 ![](bayesqm.png){fig-alt="Plot of ELPD peak vs. K"}
 
@@ -196,12 +196,13 @@ Four hundred twelve new packages were submitted to CRAN in June. Here are my Top
 
 
 ![](ernest.png){fig-alt="Plot showing ability to properly integrate across multimodal likelihood surfaces. "}
-[gkrreg](https://cran.r-project.org/package=gkrreg) v0.4.0: Implements the Gaussian Kernel Robust Regression method proposed by [De Carvalho, Lima Neto and Ferreira (2017)]() which re-weights observations iteratively using the Gaussian kernel so that poorly-fitted observations receive small weights, yielding resistance to Y-space outliers, X-space outliers and leverage points. Three estimators for the kernel width hyper-parameter are provided: Caputo, pairwise median, and residual variance. Inference is accomplished via an analytic sandwich variance estimator or via bootstrap. Six real datasets from the robust regression literature are included to facilitate reproducible comparisons. See the [vignette](https://cran.r-project.org/web/packages/gkrreg/vignettes/introduction.html).
+
+[gkrreg](https://cran.r-project.org/package=gkrreg) v0.4.0: Implements the Gaussian Kernel Robust Regression method proposed by [De Carvalho, Lima Neto and Ferreira (2017)](https://www.sciencedirect.com/science/article/abs/pii/S0925231216315508?via%3Dihub) which re-weights observations iteratively using the Gaussian kernel so that poorly-fitted observations receive small weights, yielding resistance to Y-space outliers, X-space outliers and leverage points. Provides three estimators for the kernel width hyper-parameter: Caputo, pairwise median, and residual variance. Inference is accomplished via an analytic sandwich variance estimator or via bootstrap. Six real datasets from the robust regression literature are included to facilitate reproducible comparisons. See the [vignette](https://cran.r-project.org/web/packages/gkrreg/vignettes/introduction.html).
 
 ![](gkrreg.png){fig-alt="Three residual plots "}
 
 
-[picreg](https://cran.r-project.org/package=picreg) v0.1.4 Implements the Pivotal Information Criterion  developed by [Sardy, van Cutsem, and van de Geer](https://arxiv.org/abs/2603.04172). PIC is a general framework to improve on BIC and LASSO for fitting sparse regression linear models in which the regularization parameter 𝜆is selected automatically from a pivotal statistic. Functions fit the resulting estimators across six response distributions, Gaussian, binomial, Poisson, exponential, Gumbel, and Cox, and three sparsity-inducing penalties; (LASSO), the Smoothly Clipped Absolute Deviation (SCAD), and Minimax Concave Penalty (MCP). See the [vignette](https://cran.r-project.org/web/packages/picreg/vignettes/vignette.html) for an introduction.
+[picreg](https://cran.r-project.org/package=picreg) v0.1.4 Implements the Pivotal Information Criterion  developed by [Sardy, van Cutsem, and van de Geer](https://arxiv.org/abs/2603.04172). PIC is a general framework to improve on BIC and LASSO for fitting sparse regression linear models in which the regularization parameter 𝜆 is selected automatically from a pivotal statistic. Functions fit the resulting estimators across six response distributions, Gaussian, binomial, Poisson, exponential, Gumbel, and Cox, and three sparsity-inducing penalties; (LASSO), the Smoothly Clipped Absolute Deviation (SCAD), and Minimax Concave Penalty (MCP). See the [vignette](https://cran.r-project.org/web/packages/picreg/vignettes/vignette.html) for an introduction.
 
 ![](picreg.png){fig-alt="Plot showing individual survival curves"}
 
