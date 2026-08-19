@@ -1,0 +1,70 @@
+---
+title: "July 2026 Top 40 New CRAN Packages"
+author: "Joseph Rickert"
+date: 2026-05-30
+description: "A personal, idiosyncratic, unabashedly biased, time-constrained attempt to capture the depth and breadth of the new packages submitted to CRAN in a single month."
+image: ""
+image-alt: ""
+categories: "Top 40"
+editor: source
+format: html
+---
+
+mmmmm new packages were submitted to CRAN in July. Here are my Top 40 picks in twenty-three categories: Actuarial Analysis, Archaeology, Biology, Causal Inference, Computational Methods, Ecology, Economics, Environmental Studies, Epidemiology, Finance, Functional Data Analysis, Health Technology Assessment, Machine Learning, Medical Statistics, Meta Analysis, Networks, Physics, Programming, Statistics, Time Series, Utilities, and Visualization.
+
+![](.png){fig-alt=""}
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+
+### Causal Inference
+
+[lingamr](https://cran.r-project.org/package=lingamr) v0.1.2: Implements `LiNGAM` (Linear Non-Gaussian Acyclic Model) algorithms for causal discovery, following [Shimizu et al. (2011)](https://www.jmlr.org/papers/v12/shimizu11a.html). Based on the `Python` implementation by [Ikeuchi et al. (2023)](https://github.com/cdt15/lingam). The `VAR-LiNGAM` residual diagnostics are inspired by the `VARLiNGAM` `R` code of [Moneta et al.](https://sites.google.com/site/dorisentner/publications/VARLiNGAM). See the [vignette](https://cran.r-project.org/web/packages/lingamr/vignettes/lingamr.html).
+
+![](lingamr.png){fig-alt="Estimated Causal DAG"}
+
+### Climate Studies
+
+[CDSimX](https://cran.r-project.org/package=CDSimX) v1.1.2: Provides advanced climate simulation, forecasting, visualization, export, and machine learning tools. Generates synthetic climate datasets for single or multiple weather stations using stochastic weather generation techniques by simulating daily climate variables including minimum and maximum temperature, rainfall, relative humidity, solar radiation, wind speed, wind direction, dew point temperature, and potential evapotranspiration. Methods are based on established stochastic weather generation approaches described in [Richardson (1981)](https://agupubs.onlinelibrary.wiley.com/doi/10.1029/WR017i001p00182), [Wilks (1999)](https://www.sciencedirect.com/science/article/pii/S0168192399000374?via%3Dihub), and [Osei et al. (2026)](https://openresearchsoftware.metajnl.com/articles/10.5334/jors.666). See the [vignette](https://cran.r-project.org/web/packages/CDSimX/vignettes/CDSimX-introduction.html).
+
+![](CDSIMX.png){fig-alt="Time series for individual station"}
+
+### Econometrics
+
+[didintrjl](https://cran.r-project.org/package=didintrjl) v0.2.6: Implements a  wrapper for the `Julia` package [`DiDInt.jl`](https://ebjamieson97.github.io/DiDInt.jl/stable/) which implements intersection difference-in-differences (DID-INT), a method developed by [Karim & Webb (2025)](https://arxiv.org/abs/2412.14447). Allows for unbiased estimation of the average effect of treatment on the treated (ATT) in cases when the common causal covariates assumption is violated. Also computes p-values for the ATT via the randomization inference procedure described in MacKinnon and [Webb (2020)]https://www.sciencedirect.com/science/article/abs/pii/S0304407620301445?via%3Dihub(). See the [vignette](https://cran.r-project.org/web/packages/didintrjl/vignettes/didintrjl.html).
+
+![](didintrjl.png){fig-alt="Plots of residuals by covariates over time"}
+
+
+::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+
+
+### Machine Learning
+
+
+### Time Series
+
+
+
+### Utilities
+
+
+
+end
+
+:::
+
+
+
+::::
+
+
