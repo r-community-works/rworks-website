@@ -37,6 +37,18 @@ mmmmm new packages were submitted to CRAN in July. Here are my Top 40 picks in t
 
 ![](didintrjl.png){fig-alt="Plots of residuals by covariates over time"}
 
+### Geomorphometry
+
+[blueterra](https://cran.r-project.org/package=blueterra) v0.1.0: Derives, organizes, summarizes, and visualizes terrain metrics from bathymetric and elevation rasters for submerged-landscape geomorphometry. Tools support terra-based raster preparation, slope and aspect decomposition, terrain position, rugosity, curvature, depth-band summaries, transect extraction, isobath-corridor analysis, and model-ready summaries for seafloor classification, habitat mapping, shelf-margin analysis, and spatial modeling. Methodological context for geomorphometric terrain analysis is provided by [Lindsay (2016)](https://www.sciencedirect.com/science/article/abs/pii/S0098300416301820?via%3Dihub). There are eight vignettes including [Getting started](https://cran.r-project.org/web/packages/blueterra/vignettes/blueterra.html) and [Visual proof](https://cran.r-project.org/web/packages/blueterra/vignettes/visual-proof.html).
+
+![](blueterra.png){fig-alt="Plot of slop over hillside"}
+
+### Mathematics
+
+[riemannianStats](https://cran.r-project.org/package=riemannianStats) v0.2.0: Provides tools for statistical analysis on Riemannian manifolds using local geometry derived from Uniform Manifold Approximation and Projection (UMAP), Isometric Mapping (Isomap), and Density-Based Spatial Clustering of Applications with Noise (DBSCAN). The package supports dimensionality reduction, visualization, Riemannian principal component analysis, and Riemannian linear regression for multivariate data analysis. Methods based on Uniform Manifold Approximation and Projection follow [McInnes et al. (2018)](https://joss.theoj.org/papers/10.21105/joss.00861). There are four vignettes including [Riemannian PCA](https://cran.r-project.org/web/packages/riemannianStats/vignettes/data10d250-pca-umap-step-by-step.html) and [Riemannian Linear Regression](https://cran.r-project.org/web/packages/riemannianStats/vignettes/riemannian-regression-umap-dbscan-isomap.html).
+
+![](riemannianStats.png){fig-alt="PCA Biplot"}
+
 
 ::
 
@@ -49,6 +61,8 @@ mmmmm new packages were submitted to CRAN in July. Here are my Top 40 picks in t
 
 
 ### Machine Learning
+
+[sdim](https://cran.r-project.org/package=sdim) v0.1.0: Implements five factor extraction methods for asset pricing and macroeconomic forecasting: principal component analysis (PCA), partial least squares (PLS), scaled PCA (sPCA) of [Huang et al. (2022)](https://pubsonline.informs.org/doi/10.1287/mnsc.2021.4020), the reduced-rank approach (RRA) of [He et al. (2023)](https://pubsonline.informs.org/doi/10.1287/mnsc.2022.4563), and Instrumented PCA (IPCA) of [Kelly et al. (2019)](https://www.sciencedirect.com/science/article/abs/pii/S0304405X19301151?via%3Dihub). There are four vignettes including [Getting started](https://cran.r-project.org/web/packages/sdim/vignettes/sdim.html) and [Replicating He et al. (2023)](https://cran.r-project.org/web/packages/sdim/vignettes/he2023-table3.html).
 
 
 ### Time Series
