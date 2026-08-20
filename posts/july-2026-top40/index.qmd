@@ -62,8 +62,24 @@ mmmmm new packages were submitted to CRAN in July. Here are my Top 40 picks in t
 
 ### Machine Learning
 
+[modelimportance](https://cran.r-project.org/package=modelimportance) v0.1.0: Provides metrics for quantifying the contribution of individual component models to the predictive accuracy of ensemble forecasts. The package implements the Leave-One-Model-Out and Leave-All-Subset-of-One-Model-Out model importance metrics, enabling users to assess the relative importance of component models and better understand the performance of ensemble forecasting systems. Methods are described in [Kim et al. (2026)](https://www.sciencedirect.com/science/article/abs/pii/S016920702500127X?via%3Dihub). See the vitnettes [modelimportance](https://cran.r-project.org/web/packages/modelimportance/vignettes/modelimportance-article.html) and [Simple working examples](https://cran.r-project.org/web/packages/modelimportance/vignettes/get-started.html).
+
+![](modelimportance.png){fig-alt="Plots showig model importance by task"}
+
 [sdim](https://cran.r-project.org/package=sdim) v0.1.0: Implements five factor extraction methods for asset pricing and macroeconomic forecasting: principal component analysis (PCA), partial least squares (PLS), scaled PCA (sPCA) of [Huang et al. (2022)](https://pubsonline.informs.org/doi/10.1287/mnsc.2021.4020), the reduced-rank approach (RRA) of [He et al. (2023)](https://pubsonline.informs.org/doi/10.1287/mnsc.2022.4563), and Instrumented PCA (IPCA) of [Kelly et al. (2019)](https://www.sciencedirect.com/science/article/abs/pii/S0304405X19301151?via%3Dihub). There are four vignettes including [Getting started](https://cran.r-project.org/web/packages/sdim/vignettes/sdim.html) and [Replicating He et al. (2023)](https://cran.r-project.org/web/packages/sdim/vignettes/he2023-table3.html).
 
+
+### Meta-Analysis
+
+[dtametaTMB](https://cran.r-project.org/package=dtametaTMB) v0.1.1: Fits the hierarchical summary receiver operating characteristic (HSROC) model of [Rutter & Gatsonis (2001)](https://onlinelibrary.wiley.com/doi/10.1002/sim.942), the bivariate binomial-normal model of [Reitsma et al. (2005)](https://www.jclinepi.com/article/S0895-4356(05)00162-9/abstract), the threshold-based bivariate time-to-event model of [Hoyer et al. (2018)](https://onlinelibrary.wiley.com/doi/10.1002/jrsm.1273), and the latent class extensions of [Liu et al. (2015)](https://academic.oup.com/biometrics/article-abstract/71/2/538/7511452?redirectedFrom=fulltext&login=false) for diagnostic studies without a perfect reference standard. Provides subgroup analyses, HSROC meta-regression, likelihood-ratio tests, summary ROC plots, and coupled forest plots. There are three vignettes including [Introduction](https://cran.r-project.org/web/packages/dtametaTMB/vignettes/dtametaTMB.pdf) and [Meta-Regeression](https://cran.r-project.org/web/packages/dtametaTMB/vignettes/Meta-Regression.pdf).
+
+![](dtameta.png){fig-alt="Forest Plot"}
+
+### Networks
+
+[osmnxr](https://cran.r-project.org/package=osmnxr) v0.1.1: Provides a `tidyverse`-friendly toolkit to download, model, simplify, analyze and visualize street networks and other geospatial features from `OpenStreetMap`. Build routable graphs from a place name, address, point or bounding box; simplify topology; compute shortest paths, isochrones and urban metrics (intersection density, circuity, street-orientation entropy, centrality); and export to `sf`, `sfnetworks` and `MapLibr`'. Heavy graph computation is performed by a bundled `Rust` core. There are eight vignettes including [Getting started](https://cran.r-project.org/web/packages/osmnxr/vignettes/getting-started.html) and [Urban Metrics](https://cran.r-project.org/web/packages/osmnxr/vignettes/urban-metrics.html).
+
+![](osmnxr.png){fig-alt="Examples of figure-ground diagrams"}
 
 ### Time Series
 
@@ -71,9 +87,9 @@ mmmmm new packages were submitted to CRAN in July. Here are my Top 40 picks in t
 
 ### Utilities
 
+[rtransparency](https://cran.r-project.org/package=rtransparency) v1.0.0; Use this package to identify indicators of transparency within the published literature. It can identify and extract text related to indicators of transparen`cy from specifically formatted `TXT` files and from PMC `XML` files (i.e. `XML files downloaded from the PubMed Central). It builds on the original rtransparent tool of [Serghiou et al. (2021)](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3001107). There are four vignettes including [Introduction](https://cran.r-project.org/web/packages/rtransparency/vignettes/rtransparency.html) and [Scope and Limitations](https://cran.r-project.org/web/packages/rtransparency/vignettes/scope-and-limitations.html).
 
 
-end
 
 :::
 
