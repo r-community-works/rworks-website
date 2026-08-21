@@ -71,6 +71,18 @@ mmmmm new packages were submitted to CRAN in July. Here are my Top 40 picks in t
 
 ![](didintrjl.png){fig-alt="Plots of residuals by covariates over time"}
 
+### Genomics
+
+[MosaiClusteR](https://cran.r-project.org/package=MosaiClusteR) v0.1.1: Provides an umbrella framework ("MoSaIC:" Multi-Omics Similarity Aggregation and Integrative Clustering in R) that unifies a large collection of multi-source / multi-omics clustering methodologies behind a single, consistent list-of-matrices interface. It spans five integration paradigms - direct, similarity-based, graph-based, voting-based consensus, and hierarchy-based - and bundles a complete downstream workflow for method comparison and evaluation. Enables the comparison of multiple algorithms on the same footing. a data-nugget based feature-weighting scheme as a robust, big-data-friendly. See [README](https://cran.r-project.org/web/packages/MosaiClusteR/readme/README.html) and the [vignette](https://cran.r-project.org/web/packages/MosaiClusteR/vignettes/MosaiClusteR.html) for more information.
+
+![](MosaiC.png){fig-alt="Plot for comparing clusters"}
+
+
+[rchime](https://cran.r-project.org/package=rchime) v0.1.2: Provides fuction to detect and remove chimeras from an amplicon sequence analysis using reference-based or de novo approaches that implement the *VSEARCH* algorithms described in [Rognes et al. (2016)](https://peerj.com/articles/2584/) which build on the work of [Edgar et al. (2011)](https://academic.oup.com/bioinformatics/article/27/16/2194/255262?login=false). There are four vignettes including [Getting Started](https://cran.r-project.org/web/packages/rchime/vignettes/rchime.html) and [chimera report](https://cran.r-project.org/web/packages/rchime/vignettes/chimera_report.html).
+
+
+
+
 ### Geomorphometry
 
 [blueterra](https://cran.r-project.org/package=blueterra) v0.1.0: Derives, organizes, summarizes, and visualizes terrain metrics from bathymetric and elevation rasters for submerged-landscape geomorphometry. Tools support terra-based raster preparation, slope and aspect decomposition, terrain position, rugosity, curvature, depth-band summaries, transect extraction, isobath-corridor analysis, and model-ready summaries for seafloor classification, habitat mapping, shelf-margin analysis, and spatial modeling. Methodological context for geomorphometric terrain analysis is provided by [Lindsay (2016)](https://www.sciencedirect.com/science/article/abs/pii/S0098300416301820?via%3Dihub). There are eight vignettes including [Getting started](https://cran.r-project.org/web/packages/blueterra/vignettes/blueterra.html) and [Visual proof](https://cran.r-project.org/web/packages/blueterra/vignettes/visual-proof.html).
