@@ -106,6 +106,10 @@ mmmmm new packages were submitted to CRAN in July. Here are my Top 40 picks in t
 
 ![](modelimportance.png){fig-alt="Plots showig model importance by task"}
 
+[ppforest2](https://cran.r-project.org/package=ppforest2) v0.1.2: Builds decision trees by splitting on linear combinations of randomly chosen variables and using projection pursuit to choose a projection of the variables that best separates the groups. Outperform traditional decision trees when the separation between groups occurs in combinations of variables. Single trees can be assembled into random forests. See [Lee et al. (2013)](https://projecteuclid.org/journals/electronic-journal-of-statistics/volume-7/issue-none/PPtree-Projection-pursuit-classification-tree/10.1214/13-EJS810.full) and [da Silva et al. (2021)](https://www.tandfonline.com/doi/full/10.1080/10618600.2020.1870480) for background. There are two vignettes: [Introduction](https://cran.r-project.org/web/packages/ppforest2/vignettes/introduction.html) and [Custom strategies](https://cran.r-project.org/web/packages/ppforest2/vignettes/custom-strategies.html).
+
+![](ppforest2.png){fig-alt="Plot of tree structure."}
+
 [sdim](https://cran.r-project.org/package=sdim) v0.1.0: Implements five factor extraction methods for asset pricing and macroeconomic forecasting: principal component analysis (PCA), partial least squares (PLS), scaled PCA (sPCA) of [Huang et al. (2022)](https://pubsonline.informs.org/doi/10.1287/mnsc.2021.4020), the reduced-rank approach (RRA) of [He et al. (2023)](https://pubsonline.informs.org/doi/10.1287/mnsc.2022.4563), and Instrumented PCA (IPCA) of [Kelly et al. (2019)](https://www.sciencedirect.com/science/article/abs/pii/S0304405X19301151?via%3Dihub). There are four vignettes including [Getting started](https://cran.r-project.org/web/packages/sdim/vignettes/sdim.html) and [Replicating He et al. (2023)](https://cran.r-project.org/web/packages/sdim/vignettes/he2023-table3.html).
 
 
@@ -115,6 +119,9 @@ mmmmm new packages were submitted to CRAN in July. Here are my Top 40 picks in t
 
 ![](SDALGCP2.png){fig-alt="Plot of covariates within regions"}
 
+[tooth](https://cran.r-project.org/package=tooth) v0.5.0: Computes dental caries indices (DMFT, DMFS, dmft, dmfs) from surface-level clinical examination data and produces odontogram heatmap visualizations of per-tooth-surface outcomes. Supports primary and permanent dentition with configurable teeth per quadrant (5 to 8), separate root and coronal caries tallying, long and wide input formats, stratified output, and FDI/Universal/quadrant tooth numbering conversion. See the [vignette](https://cran.r-project.org/web/packages/tooth/vignettes/introduction.html).
+
+![](tooth.png){fig-alt="Plot of polygon geometry for multiple teeth"}
 
 ### Meta-Analysis
 
@@ -170,9 +177,13 @@ mmmmm new packages were submitted to CRAN in July. Here are my Top 40 picks in t
 
 ![](stLLM.png){fig-alt="Plot of response as a function of longitude and latitude"}
 
+### Surveys
+
+[nonprobsampling](https://cran.r-project.org/package=nonprobsampling) v0.1.0: Provides pseudo-weighted estimates of means and prevalences for finite population inference from nonprobability samples using auxiliary information to be combined when no single survey contains all variables relevant to participation. Optional cumulative precalibration can be applied to align weighted totals of shared variables across surveys. For methods and backgroudn see [Landsman et al. (2026)](https://onlinelibrary.wiley.com/doi/10.1002/sim.70403), [Wang, Valliant, and Li (2021)](https://onlinelibrary.wiley.com/doi/10.1002/sim.9122), and [Chen, Li, and Wu (2020)](https://www.tandfonline.com/doi/full/10.1080/01621459.2019.1677241). See the [vignette](https://cran.r-project.org/web/packages/nonprobsampling/vignettes/nonprobsampling.html) to get started.
+
+ 
+
 ### Time Series
-
-
 
 
 [forecastdom](https://cran.r-project.org/package=forecastdom) v0.1.0: Implements a unified toolkit for out-of-sample forecast dominance testing. Covers unconditional and conditional equal and superior predictive ability, encompassing, and nested-model comparison. Implements the Diebold-Mariano test with the [Harvey, Leybourne, and Newbold (1997)](https://www.sciencedirect.com/science/article/abs/pii/S0169207096007194?via%3Dihub) small-sample correction; the Clark-West MSFE-adjusted statistic [Clark and West (2007)](https://www.sciencedirect.com/science/article/abs/pii/S0304407606000960?via%3Dihub) and multiple other statistics. There are eleven vignettes including [Get Starte](https://cran.r-project.org/web/packages/forecastdom/vignettes/forecastdom.html) and [Replicating Clark & McCraken](https://cran.r-project.org/web/packages/forecastdom/vignettes/cm2001-enc-new.html.
@@ -207,6 +218,10 @@ mmmmm new packages were submitted to CRAN in July. Here are my Top 40 picks in t
 [glydraw](https://cran.r-project.org/package=glydraw) v0.8.0: A `ggplot2`-native plotting engine for drawing reproducible beautiful Symbol Nomenclature for Glycans (SNFG) glycan cartoons from glycan structure objects or text notations, with support for batch export, structural highlighting, and deep appearance customization. It follows the [SNFG specification](https://www.ncbi.nlm.nih.gov/glycans/snfg.html). There are three vignettes including [Get Started](https://cran.r-project.org/web/packages/glydraw/vignettes/glydraw.html) and [gldraw with ComplexHeatmap](https://cran.r-project.org/web/packages/glydraw/vignettes/complex-heatmap.html).
 
 ![](glydraw.png){fig-alt="ggplot2 with glyphs"}
+[R6Nomogram](https://cran.r-project.org/package=R6Nomogram) v1.0: Nomograms are a type of plot for displaying linear models. A scale is plotted for each predictor in the model that translates values of the variable into "points", the sum of the "points" is then looked up on another scale to find the final prediction from the model. This package provides an R6 object constructor that does the computations for you to create an object representing the nomogram for the model. See [Harrell (2015)](https://link.springer.com/book/10.1007/978-3-319-19425-7) for background and the [vignette](https://cran.r-project.org/web/packages/R6Nomogram/vignettes/Basics.html) for examples.
+
+![](R6Nomogram.png){fig-alt="Example of a Nomogram"}
+
 :::
 
 
