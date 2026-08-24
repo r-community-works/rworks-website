@@ -10,7 +10,7 @@ editor: source
 format: html
 ---
 
-mmmmm new packages were submitted to CRAN in July. Here are my Top 40 picks in twenty-three categories: Actuarial Analysis, Archaeology, Biology, Causal Inference, Computational Methods, Ecology, Economics, Environmental Studies, Epidemiology, Finance, Functional Data Analysis, Health Technology Assessment, Machine Learning, Medical Statistics, Meta Analysis, Networks, Physics, Programming, Statistics, Time Series, Utilities, and Visualization.
+Three hundred fifty-three new packages were submitted to CRAN in July. Here are my Top 40 picks in nineteen categories: Causal Inference, Chemistry, Climate Studies, Computational Methods, Ecology, Economics, Econometrics, Genomics, Geomorphometry, Mathematics, Machine Learning, Medical Statistics, Meta-Analysis, Networks, Statistics, Surveys, Time Series, Utilities, and Visualization.
 
 ![](.png){fig-alt=""}
 
@@ -167,15 +167,25 @@ mmmmm new packages were submitted to CRAN in July. Here are my Top 40 picks in t
 
 ![](lagdynamics.png){fig-alt="Transition diagram"}
 
+[probcal](https://cran.r-project.org/package=probcal) v0.2.0: Provides S3 calibrators, metrics, and diagnostics for binary and multiclass probability calibration. Binary methods include Platt scaling, temperature scaling, beta calibration, histogram binning, and isotonic regression. Multiclass methods include temperature scaling, vector scaling, Dirichlet calibration, and a one-vs-rest wrapper for the binary calibrators. See [Zadrozny and Elkan (2002)](https://dl.acm.org/doi/10.1145/775047.775151) and [Guo et al. (2017)](https://proceedings.mlr.press/v70/guo17a.html) for background. Three are five vignettes including [Multiclass Calibration](https://cran.r-project.org/web/packages/probcal/vignettes/multiclass.html) and [Calibrating Binary Probabilities](https://cran.r-project.org/web/packages/probcal/vignettes/probcal.html).
+
+![](probcal.png){fig-alt="Reliability diagram"}
 
 [prova](https://cran.r-project.org/package=prova) v1.0.0: Provides functions Bayesian methods to calculate  posterior joint and conditional probabilities, probability distributions, and information-theoretic measures. Data imputation and Markov-chain Monte Carlo calculations are automatically handled. Applications range from statistical estimation and probabilistic hypothesis testing to evidence-based inference and decision making, in a wide range of disciplines from astrophysics to medicine. For more details and examples see for instance [Mana et al. (2026)](https://osf.io/preprints/osf/8nr56_v3) and [Dunson & Bhattacharya (2011)](https://academic.oup.com/book/1879/chapter-abstract/141635741?login=false&redirectedFrom=fulltext). See the vignettes [Introduction](https://cran.r-project.org/web/packages/prova/vignettes/intro.html) and [Associations among variates](https://cran.r-project.org/web/packages/prova/vignettes/mutualinfo.html).
 
 ![](prova.jpeg){fig-alt="Scatterplot showing mutual information"}
 
+[psAve](https://cran.r-project.org/package=psAve) v1.0.1: Constructs a model-averaged propensity score as a convex combination of candidate propensity score models, with mixing weights selected on a simplex grid to optimize covariate or prognostic-score balance, implementing the method of [Kabata, Stuart and Shintani (2024)](https://link.springer.com/article/10.1186/s12874-024-02350-y). Prognostic scores follow [Hansen (2008)](https://academic.oup.com/biomet/article-abstract/95/2/481/230183?redirectedFrom=fulltext&login=false) <doi:10.1093/biomet/asn004>: outcome models are fit on untreated units only. There are three vignettes including [Getting Started](https://cran.r-project.org/web/packages/psAve/vignettes/psAve.html) and [Method details](https://cran.r-project.org/web/packages/psAve/vignettes/method-details.html).
+
+![](psAve.png){fig-alt="Propensity score distributions for treated and control groups"}
 
 [stLMM](https://cran.r-project.org/package=stLMM) v0.0.3: Fits Bayesian linear mixed models for spatial and space-time data with fixed effects, independent and identically distributed grouped random effects, and structured latent processes. The formula interface supports first-order autoregressive effects, dense Gaussian processes, nearest-neighbor Gaussian processes, proper and Leroux conditional autoregressive effects, and more. The sampler supports sparse precision matrix calculations and includes latent process recovery, fitted values, prediction, pointwise log likelihoods, and posterior sample extraction. See [Datta et al. (2016)](https://www.tandfonline.com/doi/full/10.1080/01621459.2015.1044091) and  [Finley et al. (2019)](https://www.tandfonline.com/doi/full/10.1080/10618600.2018.1537924) for details. There are two vignettes [Getting started](https://cran.r-project.org/web/packages/stLMM/vignettes/v01-getting-started.html) and [Spatial NNGP models](https://cran.r-project.org/web/packages/stLMM/vignettes/v02-spatial-nngp.html).
 
 ![](stLLM.png){fig-alt="Plot of response as a function of longitude and latitude"}
+
+[TestREnlme](https://cran.r-project.org/package=TestREnlme) v0.1.0: Provides nonparametric permutation tests for testing all or any subset of random effects in linear and nonlinear mixed-effects models, without requiring normality or other distributional assumptions on random effects or errors. Implements three distribution-free variance-component estimators: Variance Least Squares, Method of Moments, and Method of Moments with First-Order Approximation. Methods are described in [Uwimpuhwe, Drikvandi, and Blozis (2026)](https://onlinelibrary.wiley.com/doi/10.1002/sim.70605). See the [vignette](https://cran.r-project.org/web/packages/TestREnlme/vignettes/TestREnlme.html).
+
+![](TestREnlme.png){fig-alt="Plots of permutation null distributions for three tests"}
 
 ### Surveys
 
@@ -194,6 +204,10 @@ mmmmm new packages were submitted to CRAN in July. Here are my Top 40 picks in t
 ### Utilities
 
 [crawlee](https://cran.r-project.org/package=crawlee) v0.1.0: Implements a tidy, pipe-friendly toolkit for reproducible web crawling and structured data collection, inspired by the architecture of the `Crawlee` library. Provides a unified crawler with a deduplicating, resumable request queue, content-type aware handlers, structured storage backends and rich console logging via `cli`. Supports crawling `HTM`L pages, sitemaps, `RSS` and `Atom` feeds and `PDF` documents, with optional headless-browser rendering and helpers for retrieval-augmented generation. There ae five vignettes including [Getting started](https://cran.r-project.org/web/packages/crawlee/vignettes/crawlee.html) and [Crawling a website](https://cran.r-project.org/web/packages/crawlee/vignettes/crawling-a-website.html).
+
+[livelink](https://cran.r-project.org/package=livelink) v0.1.1: Creates shareable links for 'R' code in `WebAssembly` (WASM) Read-Eval-Print Loop (REPL) environments like [`webR`](https://webr.r-wasm.org/) and for `Shiny` applications using [`Shinylive`](https://shinylive.io/). Supports single scripts, multi-file projects, exercise and solution pairs, and batch processing. Includes encoding, decoding, and previewing of links for both `R` and `Python` environments. There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/livelink/vignettes/getting-started.html) and [Teaching with livelink](https://cran.r-project.org/web/packages/livelink/vignettes/teaching.html).
+
+![](livelink.svg){fig-alt="Example"}
 
 
 [rtransparency](https://cran.r-project.org/package=rtransparency) v1.0.0; Use this package to identify indicators of transparency within the published literature. It can identify and extract text related to indicators of transparen`cy from specifically formatted `TXT` files and from PMC `XML` files (i.e. `XML files downloaded from the PubMed Central). It builds on the original rtransparent tool of [Serghiou et al. (2021)](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3001107). There are four vignettes including [Introduction](https://cran.r-project.org/web/packages/rtransparency/vignettes/rtransparency.html) and [Scope and Limitations](https://cran.r-project.org/web/packages/rtransparency/vignettes/scope-and-limitations.html).
