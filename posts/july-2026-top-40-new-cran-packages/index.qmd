@@ -1,7 +1,7 @@
 ---
 title: "July 2026 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
-date: 2026-08-28
+date: 2026-08-31
 description: "A personal, idiosyncratic, unabashedly biased, time-constrained attempt to capture the depth and breadth of the new packages submitted to CRAN in a single month."
 image: "deck.png"
 image-alt: "World map with overlays"
