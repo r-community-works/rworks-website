@@ -1,0 +1,69 @@
+---
+title: "Aug 2026 Top 40 New CRAN Packages"
+author: "Joseph Rickert"
+date: 2026-09-30
+description: "A personal, idiosyncratic, unabashedly biased, time-constrained attempt to capture the depth and breadth of the new packages submitted to CRAN in a single month."
+image: "deck.png"
+image-alt: "World map with overlays"
+categories: "Top 40"
+editor: source
+format: html
+---
+
+Three hundred fifty-three new packages were submitted to CRAN in July. Here are my Top 40 picks in nineteen categories: Causal Inference, Chemistry, Climate Studies, Computational Methods, Ecology, Economics, Econometrics, Genomics, Geomorphometry, Mathematics, Machine Learning, Medical Statistics, Meta-Analysis, Networks, Statistics, Surveys, Time Series, Utilities, and Visualization.
+
+![](.png){fig-alt=""}
+
+
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+### Agriculture
+
+[agridatasets](https://cran.r-project.org/package=agridatasets) v0.1.1: Offers a rich and diverse collection of datasets focused on agriculture, agronomy, animal science, and related fields. The package includes experimental, observational, and field-trial data on crops such as rice, wheat, corn, soybean, cotton, coffee, avocado, and orange, as well as forestry species including bamboo, eucalyptus, and timber. Datasets cover plant breeding and genetics, factorial and randomized block experiments, herbicide and insecticide efficacy trials, pest and disease infestation, soil characteristics and land suitability, plant growth regulators, seed germination, and crop yield modeling. See the [vignette](https://cran.r-project.org/web/packages/agridatasets/vignettes/agridatasets.html).
+
+![](agridatasets.png){fig-alt="Rice vs Wheat Time Series"}
+
+## Aartificial Intelligence
+
+[commons](https://cran.r-project.org/package=commons) v0.1.0: Implements trustworthy large language model agents. Connect raw data sources, a pool of trusted calculations, and a searchable context layer that demonstrates how to interpret them. Then, deploy data agents that answer questions, log interactions, and can be evaluated and improved over time. See the vignettes [Introduction](https://cran.r-project.org/web/packages/commons/vignettes/commons.html) and [Security and governamce](https://cran.r-project.org/web/packages/commons/vignettes/governance.html).
+
+
+### Climate Studies
+
+[topocast](https://cran.r-project.org/package=topocast) v0.0.5: Downscales coarse-resolution raster data to a finer grid by fitting local linear regressions of a response, such as a climate variable, on one or more fine-resolution predictors, such as elevation and other terrain indices, within a moving window.  Multiplicative and additive anomaly application downscale time series relative to a baseline climatology, following the regression-on-elevation approach used for high-resolution climate surfaces described in [Karger et al. (2017)](doi:10.1038/sdata.2017.122). See the vignettes [Getting started](https://cran.r-project.org/web/packages/topocast/vignettes/getting-started.html) and [How moving-window downscaling works](https://cran.r-project.org/web/packages/topocast/vignettes/how-it-works.html).
+
+
+![](topocast.svg){fig-alt="Heat map showing the result of downscaling"}
+
+### Medical Statistics
+
+[CausalState](https://cran.r-project.org/package=CausalState) v0.10.2: Implements Sequential Doubly Robust and infinite-dimensional Targeted Maximum Likelihood estimators for longitudinal modified treatment policies in settings with transitioning states, such as ICU, ward, or emergency department care episodes. Treatment is permitted in active states and becomes structurally inapplicable after a state transition (e.g. discharge or death). Methods based on [Diaz et al. (2021)](doi:10.1080/01621459.2021.1955691) and [Luedtke et al. (2017)](doi:10.48550/arXiv.1705.02459). There are three vignettes including [Getting started](https://cran.r-project.org/web/packages/CausalState/vignettes/getting-started.html) and [Wu-Benkeser density-ratio metalearner](https://cran.r-project.org/web/packages/CausalState/vignettes/wb-metalearner.html).
+
+[rdborrow](https://cran.r-project.org/package=rdborrow) v0.0.4.0: Implements causal inference methods for incorporating external control data into randomized controlled trials with longitudinal outcomes. Provides an analysis module supporting weighting-based methods such as inverse probability weighting  and augmented inverse probability weighting, difference-in-differences. Methods are based on [Zhou et al. (2024)](doi:10.1093/biostatistics/kxae012) and [Zhou et al. (2024)](doi:10.1080/01621459.2024.2395586). There are five vignettes including [Introduction]https://cran.r-project.org/web/packages/rdborrow/index.html) and [Primary Analysis Workflow](https://cran.r-project.org/web/packages/rdborrow/vignettes/primary_analysis_workflow.html).
+
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+
+
+### Networks
+
+### Statistics
+
+
+
+end
+
+:::
+
+
+::::
