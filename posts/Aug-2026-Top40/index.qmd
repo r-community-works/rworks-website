@@ -38,6 +38,21 @@ Three hundred fifty-three new packages were submitted to CRAN in July. Here are 
 
 ![](topocast.svg){fig-alt="Heat map showing the result of downscaling"}
 
+### Ecology
+
+
+[FINN](https://cran.r-project.org/package=FINN) v0.1.0: Implements a hybrid dynamic forest model that can be configured as a fully mechanitic, process-based model, like classic forest gap models, or with its demographic processes (growth, mortality, regeneration) replaced by deep neural networks, or any combination of the two. Provides functions to define a model and its mechanistic or empirical components, calibrate it to forest inventory data, and interpret the calibrated processes. FINN is implemented with the `torch` package but no knowledge of `torch` is required. The hybrid modeling approach is described in [Pichler and Käber (2026)](doi:10.1111/2041-210x.70347). There are five vignettes including [Introduction](https://cran.r-project.org/web/packages/FINN/vignettes/A-Introduction_to_FINN.html) and [Mortality: a binomial response and a neural-network process](https://cran.r-project.org/web/packages/FINN/vignettes/E-Mortality.html).
+
+![](FINN.jpeg){fig-alt="Illustration of how FINN works"}
+
+[gbif.range](https://cran.r-project.org/package=gbif.range) v1.9.2: Implements a end-to-end workflow to generate ecologically informed species range maps from sparse observations using environmental clustering and convex hulls. Serves as a standalone framework or complementary approach to Species Distribution Models (SDMs). By constraining estimated ranges within authoritative or custom ecoregion boundaries, the approach prevents spurious range over-prediction common in geometric hull methods. There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/gbif.range/vignettes/getting-started.html) and [Part 2: Ecoregion-Based Range Inference](https://cran.r-project.org/web/packages/gbif.range/vignettes/ecoregion-constrained-range-inference.html).
+
+![](gbif.png){fig-alt="Map showing 10 classes over the European Alps, using two CHELSA bioclimatic layers"}
+
+[PhysMove](https://cran.r-project.org/package=PhysMove) v1.2.5: Provides tools to analyse animal movement and space-use patterns from telemetry data using methods derived from statistical physics. Methods span displacement-based approaches, distribution fitting, space-use metrics (including the influence of correlations on space-use), network-based community detection, and measures of entropy and predictability. The package enables characterisation of these patterns across spatial and temporal scales. For applications of these methods in ecological studies see [Rodríguez et al. (2017)](doi:10.1038/s41598-017-00165-0) and [Sequeira et al. (2018)](doi:10.1073/pnas.1716137115). There are four vignettes including [Introduction](https://cran.r-project.org/web/packages/PhysMove/vignettes/pt1_introduction.html) and [Movement Patterns](https://cran.r-project.org/web/packages/PhysMove/vignettes/pt2_movement_patterns.html).
+
+![](PhysMove.png){fig-alt="Map showing simulated movement patterns"}
+
 ### Medical Statistics
 
 [CausalState](https://cran.r-project.org/package=CausalState) v0.10.2: Implements Sequential Doubly Robust and infinite-dimensional Targeted Maximum Likelihood estimators for longitudinal modified treatment policies in settings with transitioning states, such as ICU, ward, or emergency department care episodes. Treatment is permitted in active states and becomes structurally inapplicable after a state transition (e.g. discharge or death). Methods based on [Diaz et al. (2021)](doi:10.1080/01621459.2021.1955691) and [Luedtke et al. (2017)](doi:10.48550/arXiv.1705.02459). There are three vignettes including [Getting started](https://cran.r-project.org/web/packages/CausalState/vignettes/getting-started.html) and [Wu-Benkeser density-ratio metalearner](https://cran.r-project.org/web/packages/CausalState/vignettes/wb-metalearner.html).
