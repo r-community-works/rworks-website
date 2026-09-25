@@ -113,6 +113,24 @@ Three hundred fifty-three new packages were submitted to CRAN in July. Here are 
 
 ### Networks
 
+[idiographic](https://cran.r-project.org/package=idiographic) v0.3.4:  Provides functions to make person-specific and within-person network estimation from intensive longitudinal and panel data. Estimators include ordinary vector autoregression (VAR), graphical vector autoregression, multilevel vector autoregression, rolling ordinary and graphical VAR, native Bayesian VAR, multilevel Bayesian VAR, unified Structural Equation Modeling, and Group Iterative Multiple Model Estimation. Methods are described in [Saqr et al. 2025](doi:10.1007/978-3-031-95365-1_20) and [Epskamp et al. (2018)](doi:10.1080/00273171.2018.1454823). There are seven vignettes including an [introduction](https://cran.r-project.org/web/packages/idiographic/vignettes/idiographic.html) and  [Multilevel VAR](https://cran.r-project.org/web/packages/idiographic/vignettes/mlvar.html).
+
+![](idiographic.png){fig-alt="Example of within person netowrk"}
+
+
+
+
+[lame](https://cran.r-project.org/package=lame) v1.3.4: Implements additive and multiplicative effects models for both cross-sectional and longitudinal network analysis and supports square and rectangular network structures. Key features include: (1) Cross-sectional network analysis  with support for binary, continuous, ordinal, and count data; (2) Longitudinal network analysis  with additive sender/receiver and multiplicative latent-factor effects that can evolve over time through AR(1) processes' ([Sewell and Chen (2015)](doi:10.1080/01621459.2014.988214) and [Durante and Dunson (2014)](doi:10.1093/biomet/asu040)); (3) Handling of changing actor compositions across time periods in longitudinal models; and (4) Performance improvements. There are seven vignettes including [Overveiew](https://cran.r-project.org/web/packages/lame/vignettes/lame-overview.html) and [Getting Started](https://cran.r-project.org/web/packages/lame/vignettes/lame.html).
+
+![](lame.png){fig-alt="Circular plot showing multiplicative effects"}
+
+
+### Process Control
+
+[gpci](https://cran.r-project.org/package=gpci) v0.1.0: Implements a comprehensive, generalized framework for computing, estimating, and validating generalized process capability indices. Supports user-supplied probability density functions, cumulative distribution functions, survival functions, and quantile functions with uncensored data parameter estimation via Maximum Likelihood Estimation. Provides several classical and non-normal capability indices, including Cpy ([Maiti, Saha and Nanda, (2010)](doi:10.1080/16843703.2010.11673233), Spmk ([Dey and Saha (2019)](doi:10.1007/s41872-019-00081-4), CpTk ([Saha, Dey and Maiti (2019)](doi:10.1007/s13198-019-00789-7) and others. Functions also compute parametric and non-parametric bootstrap confidence intervals, confidence levels using percentile, highest posterior density intervals and Heidelberger-Welch convergence diagnostics. See [Maiti, Saha and Nanda (2010)](doi:10.1080/16843703.2010.11673233) and [Saha, Dey and Maiti (2018)](doi:10.1080/21681015.2018.1437793) for background. See the vignettes [Getting Started](https://cran.r-project.org/web/packages/gpci/vignettes/getting-started.html) and [Using Custom Distributions](https://cran.r-project.org/web/packages/gpci/vignettes/custom-distributions.html).
+
+![](gpci.png){fig-alt="Process run chart"}
+
 ### Statistics
 
 
