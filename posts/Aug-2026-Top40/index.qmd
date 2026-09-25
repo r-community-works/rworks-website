@@ -124,6 +124,10 @@ Three hundred fifty-three new packages were submitted to CRAN in July. Here are 
 
 ![](lame.png){fig-alt="Circular plot showing multiplicative effects"}
 
+[tabulergm](https://cran.r-project.org/package=tabulergm) v0.1.0: Creates publication-ready tables documenting exponential-family random graph models (ERGMs), a class of statistical models for social networks ([Robins et al. (2007)](doi:10.1016/j.socnet.2006.08.002)). Tables describe model terms through their definitions, mathematical representations, and graphical representations, and can be generated from ERGM formulas or from models fitted with the `ergm` package ([Hunter et al. (2008)](doi:10.18637/jss.v024.i03). Resulting tables can be integrated into `quarto` and `rmarkdown` documents.
+
+![](tabulergm.png){fig-alt="Table with glyphs and equations"}
+
 
 ### Process Control
 
@@ -147,7 +151,10 @@ Three hundred fifty-three new packages were submitted to CRAN in July. Here are 
 
 ![](chaidr.png){fig-alt="CHAID decision tree"}
 
+[citcdf](https://cran.r-project.org/package=citcdf) v1.1.0: Complex hypothesis testing through conditional cumulative distribution function estimation. Method is detailed in: [Gauthier et al. (2021)](doi:10.1101/2021.05.21.445165). See the [vignette](https://cran.r-project.org/web/packages/citcdf/vignettes/citcdf-userguide.html).
 
+
+![](citcdf.png){fig-alt="Plot of p-values sorted against BH threshold"}
 
 [falsifyr](https://cran.r-project.org/package=falsifyr) v1.0.0: Attacks fitted R model claims by searching for small plausible perturbations that make a target result disappear. The package focuses on claim-level fragility, smallest-kill reporting, and reproducible caveated robustness checks for ordinary fitted model objects. The methods draw on the fragility-index concept of [Walsh et al. (2014)](doi:10.1016/j.jclinepi.2013.10.019), multiverse analysis of [Steegen et al. (2016)](doi:10.1177/1745691616658637), specification-curve analysis of [Simonsohn et al. (2020)](doi:10.1038/s41562-020-0912-z), and robust covariance estimation of [Zeileis (2004)](doi:10.18637/jss.v011.i10). See the vignettes [Attacking a Regression Claim](https://cran.r-project.org/web/packages/falsifyr/vignettes/attacking-a-regression-claim.html) and [Interpreting Survival Scores](https://cran.r-project.org/web/packages/falsifyr/vignettes/interpreting-survival-scores.html).
 
@@ -157,9 +164,39 @@ Three hundred fifty-three new packages were submitted to CRAN in July. Here are 
 
 ![](LRErdd.png){fig-alt="Distribution plots for Fisher test."}
 
+[mvboxcox](https://cran.r-project.org/package=mvboxcox) v0.1.4: Fits bivariate logistic Box-Cox regression models for binary outcomes and positive continuous predictors. Transformation parameters are selected by cross-validated grid search with adaptive refinement and thin-plate spline smoothing. The package also provides prediction, empirical and sampling-weighted median effects, simulation tools, and sampling-weighted model fitting. The methodology extends the logistic Box-Cox approach of [Xing et al. (2021)](doi:10.1002/cjs.11587). See the [vignette](https://cran.r-project.org/web/packages/mvboxcox/vignettes/introduction.html).
 
 
-end
+### Surveys
+
+[sondage](https://cran.r-project.org/package=sondage) v0.9.1: Implements survey sampling algorithms for single-stage probability sampling from finite populations, written in `C`. Provides equal probability methods (simple random sampling, systematic, Bernoulli), unequal probability methods (conditional Poisson / maximum entropy, Sampford, Brewer, systematic PPS, Pareto, sequential Poisson, Poisson, Chromy's minimum replacement, multinomial), balanced sampling via the cube method, and spatially balanced sampling via the local pivotal method and spatially correlated Poisson sampling. Functions compute joint inclusion probabilities, pairwise expectations, and sampling covariances for variance estimation. See [Tillé (2006)]doi:10.1007/0-387-34240-0) for background. There are two vignettes [Getting Started](https://cran.r-project.org/web/packages/sondage/vignettes/sondage.html) and [Extending sondage with Custom Methods](https://cran.r-project.org/web/packages/sondage/vignettes/custom-methods.html).
+
+
+### Time Series
+
+[scanr](https://cran.r-project.org/package=scanr) v0.1.1: Detects change points in long univariate time series using the [SCAN framework](https://arxiv.org/html/2608.28110v1). The implementation uses a native `Rust` backend exposed to `R` via `extendr`. See the [vignette](https://cran.r-project.org/web/packages/scanr/vignettes/scanr-introduction.html).
+
+![](scanr.png){fig-alt="Plot of time series with detected change points"}
+
+### Visualization
+
+[ggmultiglyph](https://cran.r-project.org/package=ggmultiglyph) v0.1.0: Provides `ggplot2` geoms for visualizing multivariate data using glyphs. The package implements several established glyph designs described in the information visualization literature, including the review by [Borgo et al. (2013)](doi:10.2312/conf/EG2013/stars/039-063).
+
+![](ggmultiglyph.png){fig-alt="Glyphs"}
+
+
+[grip](https://cran.r-project.org/package=grip) v0.2.0: Implements GRIP multiscale graph layout with a unified choice between hop-count and geometry-aware edge-length graph metrics in 2D and 3D. Provides layout scoring, candidate comparison, multiscale trace diagnostics, synthetic graph families, and advanced experimental geodesic-KK utilities for weighted-layout evaluation and polish. Based on [Gajer and Kobourov (2002)](doi:10.7155/jgaa.00052) and [Gajer, Goodrich and Kobourov (2004)](doi:10.1016/j.comgeo.2004.03.014). There are four vignettes including [Getting Started](https://cran.r-project.org/web/packages/grip/vignettes/grip-examples.html) and [Weighted Graph Layouts](https://cran.r-project.org/web/packages/grip/vignettes/weighted-grip-intro.html).
+
+
+![](grip.png){fig-alt="Plots of large graph weighted patterns"}
+
+[orbis](https://cran.r-project.org/package=orbis) v0.1.0: Implements a layered grammar of graphics that compiles plots to a resolution-independent scene description and renders it through two back-ends: a self-contained SVG writer with embedded `JavaScript` for interactive figures (tooltips, hover highlighting, zoom, pan and legend toggling) and `R`s own graphics devices for publication-quality output at any resolution. Geographic layers are first class. The layered grammar follows [Wickham (2010)](doi:10.1198/jcgs.2009.07098); projections follow [Snyder (1987)](doi:10.3133/pp1395) and, for Equal Earth, [Savric, Patterson and Jenny (2019)](doi:10.1080/13658816.2018.1504949); line simplification uses [Douglas and Peucker (1973)](doi:10.3138/FM57-6770-U75U-7727); the default colour scales follow the guidance on perceptually uniform palettes of [Crameri, Shephard and Heron (2020)](doi:10.1038/s41467-020-19160-7). See the [vignette](https://cran.r-project.org/web/packages/orbis/vignettes/orbis.html)
+
+
+![](orbis.png){fig-alt="World choropleth: Robinson projection"}
+
+
+
 
 :::
 
