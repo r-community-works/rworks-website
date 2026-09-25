@@ -84,6 +84,12 @@ Three hundred fifty-three new packages were submitted to CRAN in July. Here are 
 
 ![](figsr.png){fig-alt="Visualization of the tree sum"}
 
+[NBvarsel](https://cran.r-project.org/package=NBvarsel) v0.1.1: Performs exhaustive or groupwise (backward elimination) variable selection for binary outcome prediction models using cross-validated Net Benefit as the optimization criterion. It supports predictor costs, restricted cubic splines, interaction terms, permutation importance, and parallel computation. It includes visualizations for model comparison and variable importance. References include [Vickers & Elkin (2006)](doi:10.1177/0272989X06295361) and [Van Calster et al. (2018)](doi:10.1016/j.eururo.2018.08.038). See the [vignette](https://cran.r-project.org/web/packages/NBvarsel/vignettes/nb-varsel-tutorial.html).
+
+![](NBvarsel.png){fig-alt="Adjusted net benefit for predictors"}
+
+
+
 ### Medical Statistics
 
 [CausalState](https://cran.r-project.org/package=CausalState) v0.10.2: Implements Sequential Doubly Robust and infinite-dimensional Targeted Maximum Likelihood estimators for longitudinal modified treatment policies in settings with transitioning states, such as ICU, ward, or emergency department care episodes. Treatment is permitted in active states and becomes structurally inapplicable after a state transition (e.g. discharge or death). Methods based on [Diaz et al. (2021)](doi:10.1080/01621459.2021.1955691) and [Luedtke et al. (2017)](doi:10.48550/arXiv.1705.02459). There are three vignettes including [Getting started](https://cran.r-project.org/web/packages/CausalState/vignettes/getting-started.html) and [Wu-Benkeser density-ratio metalearner](https://cran.r-project.org/web/packages/CausalState/vignettes/wb-metalearner.html).
@@ -91,16 +97,6 @@ Three hundred fifty-three new packages were submitted to CRAN in July. Here are 
 [expoquimR](https://cran.r-project.org/package=expoquimR) v0.1.0: Provides a unified toolkit for occupational chemical exposure risk assessment, implementing three internationally recognised methods: the qualitative control-banding methods COSHH Essentials (UK Health and Safety Executive) and the method of the French National Research and Safety Institute (INRS), together with the quantitative statistical procedure of the UNE-EN 689 standard for comparing measured exposure levels against occupational exposure limits. Every step of each method is implemented as a small, independently callable, and unit-tested function, so assessments are reproducible and auditable. Optional `shiny` applications provide a guided, interactive workflow. References: [UK Health and Safety Executive (2003)](https://www.hse.gov.uk/coshh/essentials/index.htm) and Mallet, Pilorget and Berne (2013), ISBN:978-2-7389-2166-2. There are three vignettes including [COSHH Essentials: Qualitative Chemical Risk Assessment](https://cran.r-project.org/web/packages/expoquimR/vignettes/coshh-essentials.html) and [INRS Method: Qualitative Inhalation Risk Assessment](https://cran.r-project.org/web/packages/expoquimR/vignettes/inrs-method.html)
 
 [rdborrow](https://cran.r-project.org/package=rdborrow) v0.0.4.0: Implements causal inference methods for incorporating external control data into randomized controlled trials with longitudinal outcomes. Provides an analysis module supporting weighting-based methods such as inverse probability weighting  and augmented inverse probability weighting, difference-in-differences. Methods are based on [Zhou et al. (2024)](doi:10.1093/biostatistics/kxae012) and [Zhou et al. (2024)](doi:10.1080/01621459.2024.2395586). There are five vignettes including [Introduction]https://cran.r-project.org/web/packages/rdborrow/index.html) and [Primary Analysis Workflow](https://cran.r-project.org/web/packages/rdborrow/vignettes/primary_analysis_workflow.html).
-
-
-:::
-
-::: {.column width="10%"}
-
-:::
-
-::: {.column width="45%"}
-
 
 
 
@@ -129,6 +125,15 @@ Three hundred fifty-three new packages were submitted to CRAN in July. Here are 
 [tabulergm](https://cran.r-project.org/package=tabulergm) v0.1.0: Creates publication-ready tables documenting exponential-family random graph models (ERGMs), a class of statistical models for social networks ([Robins et al. (2007)](doi:10.1016/j.socnet.2006.08.002)). Tables describe model terms through their definitions, mathematical representations, and graphical representations, and can be generated from ERGM formulas or from models fitted with the `ergm` package ([Hunter et al. (2008)](doi:10.18637/jss.v024.i03). Resulting tables can be integrated into `quarto` and `rmarkdown` documents.
 
 ![](tabulergm.png){fig-alt="Table with glyphs and equations"}
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
 
 
 ### Process Control
@@ -194,6 +199,11 @@ Three hundred fifty-three new packages were submitted to CRAN in July. Here are 
 
 
 ### Visualization
+
+[dgraphs](https://cran.r-project.org/web/packages/dgraphs/vignettes/data-derived-graph-workflow.html) v0.2.0: Constructs data-derived graphs from numerical observations using mutual, shared-neighbor, intersection, geodesic, radius, adaptive-radius, and minimum-spanning-tree completion methods. Provides graph conversion, pruning, diagnostics, spectral embedding, endpoint detection, and path utilities. The implemented graph constructions include methods described by [Jarvis and Patrick (1973)](doi:10.1109/T-C.1973.223640), [Brito et al. (1997)](doi:10.1016/S0167-7152(96)00213-1), [Berry and Sauer (2019)](doi:10.3934/fods.2019001), and [Gower and Ross (1969)](doi:10.2307/2346439). See the [vignette](https://cran.r-project.org/web/packages/dgraphs/vignettes/data-derived-graph-workflow.html).
+
+![](dgraphs.png){fig-alt="Continuous-kNN graph on the variable-density circular point cloud"}
+
 
 [gghotelling](https://cran.r-project.org/package=gghotelling) v0.2.1: Calculate Hotelling's T² ellipses and detect multivariate outliers both for base `R` plots and `ggplot2` plots. Optionally, uses robust covariance estimation to reduce the influence of outliers on the ellipses. Also included: bagplots, kernel density plots and outlier diagnostic plots. See the [vignette](https://cran.r-project.org/web/packages/gghotelling/vignettes/gghotelling.html).
 
