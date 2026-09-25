@@ -131,7 +131,31 @@ Three hundred fifty-three new packages were submitted to CRAN in July. Here are 
 
 ![](gpci.png){fig-alt="Process run chart"}
 
+### Programming
+
+[polyglotSQL](https://cran.r-project.org/package=polyglotSQL) v0.1.0: Provides functions to parse, tokenize, validate, format, analyze and translate SQL between more than 30 dialects (`PostgreSQL`, `MySQL`, `BigQuery`, `Snowflake`, `DuckDB`, `T-SQL`, and others) using `polyglot-sql` [Rust crate](ttps://github.com/tobilg/polyglot). All processing happens locally in the `R` session. Includes column-level lineage, structural query analysis, query optimization, `AST` diffing and `OpenLineage` facet generation. There are four vignettes including [Getting Started](https://cran.r-project.org/web/packages/polyglotSQL/vignettes/getting-started.html) and [Parsing, validation and lineage](https://cran.r-project.org/web/packages/polyglotSQL/vignettes/parsing-validation-lineage.html).
+
+### Public Transit
+
+[transittraj](https://cran.r-project.org/package=transittraj) v1.1.0: Today's public transit vehicles produce a large amount of automatic vehicle location (AVL) data. This data is very useful for planning and performance studies, but can be noisy, error-prone, and sparse. This package provides tools for cleaning AVL point data and turning it into continuous, differentiable, monotonic, and invertible vehicle trajectory functions, based on the work of [Robbennolt et al. (2025)](doi:10.48550/arXiv.2509.00119) and [Huang et al. (2023)](doi:10.1109/ITSC57777.2023.10422524). See the vignettes [Introduction](https://cran.r-project.org/web/packages/transittraj/vignettes/intro-trajectories.html) and [The AVL Cleaning Workflow](https://cran.r-project.org/web/packages/transittraj/vignettes/intro-trajectories.html).
+
+![](transittraj.png){fig-alt="Plot of LA E line vehicle trajectories"}
+
 ### Statistics
+
+[chaidr](https://cran.r-project.org/package=chaidr) v0.1.0: Implements the CHAID (Chi-squared Automatic Interaction Detection) decision tree algorithm of [Kass (1980)](doi:10.2307/2986296) and the Exhaustive CHAID variant of [Biggs, de Ville, and Suen (1991)](ithms documentation). Supports nominal, ordinal (with floating missing category), and continuous predictors, and nominal, ordinal, and continuous response variables using Pearson chi-squared, Goodman row-effects, and one-way ANOVA F tests respectively. Includes prediction, rule extraction, gains and lift analysis, validation on holdout data, and visualization via base graphics, `Graphviz` DOT, `plotly`, and conversion to `partykit` objects. See the [Introduction](https://cran.r-project.org/web/packages/chaidr/vignettes/chaidr.html) and the [Japanese tutorial](https://cran.r-project.org/web/packages/chaidr/vignettes/chaidr-ja.html).
+
+![](chaidr.png){fig-alt="CHAID decision tree"}
+
+
+
+[falsifyr](https://cran.r-project.org/package=falsifyr) v1.0.0: Attacks fitted R model claims by searching for small plausible perturbations that make a target result disappear. The package focuses on claim-level fragility, smallest-kill reporting, and reproducible caveated robustness checks for ordinary fitted model objects. The methods draw on the fragility-index concept of [Walsh et al. (2014)](doi:10.1016/j.jclinepi.2013.10.019), multiverse analysis of [Steegen et al. (2016)](doi:10.1177/1745691616658637), specification-curve analysis of [Simonsohn et al. (2020)](doi:10.1038/s41562-020-0912-z), and robust covariance estimation of [Zeileis (2004)](doi:10.18637/jss.v011.i10). See the vignettes [Attacking a Regression Claim](https://cran.r-project.org/web/packages/falsifyr/vignettes/attacking-a-regression-claim.html) and [Interpreting Survival Scores](https://cran.r-project.org/web/packages/falsifyr/vignettes/interpreting-survival-scores.html).
+
+
+
+[LRErdd](https://cran.r-project.org/package=LRErdd) v0.1.0: Provides functions for the design and analysis of Regression Discontinuity Designs as local randomized experiments within the potential outcome approach as formalized in [Li, Mattei and Mealli (2015)](doi:10.1214/15-AOAS809) including functions to implement the design phase of the study, where the focus is on the selection of suitable subpopulations for which valid causal inference can be drawn. These functions provide summary statistics of pre- and post-treatment variables by treatment status and select suitable subpopulations around the threshold where pre-treatment variables are well balanced between treatment groups. See the [vignette](https://cran.r-project.org/web/packages/LRErdd/vignettes/LRErdd.html)There is aslsa `Shiny` application.
+
+![](LRErdd.png){fig-alt="Distribution plots for Fisher test."}
 
 
 
