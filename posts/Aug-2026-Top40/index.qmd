@@ -1,18 +1,16 @@
 ---
 title: "Aug 2026 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
-date: 2026-09-30
-description: "A personal, idiosyncratic, unabashedly biased, time-constrained attempt to capture the depth and breadth of the new packages submitted to CRAN in a single month."
-image: "deck.png"
-image-alt: "World map with overlays"
+date: 2026-09-29
+description: "The CRAN Top 40 is an attempt to sort through the massive amount of new packages submitted to CRAN every month and find forty, `quality` packages that demonstrate the broad use of the R language, and appeal to a wide audience of potential users. If you take the time to scan through the post I hope you will find something interesting and maybe even useful."
+image: "gbif.png"
+image-alt: "Map showing 10 species classes over the European Alps, using two CHELSA bioclimatic layers"
 categories: "Top 40"
 editor: source
 format: html
 ---
 
-Three hundred fifty-three new packages were submitted to CRAN in July. Here are my Top 40 picks in nineteen categories: Causal Inference, Chemistry, Climate Studies, Computational Methods, Ecology, Economics, Econometrics, Genomics, Geomorphometry, Mathematics, Machine Learning, Medical Statistics, Meta-Analysis, Networks, Statistics, Surveys, Time Series, Utilities, and Visualization.
-
-![](.png){fig-alt=""}
+Three hundred twenty-nine new packages were submitted to CRAN in July. Here are my Top 40 picks in nineteen categories: Agriculture, Artificial Intelligence, Climate Studies, Computational Methods, Ecology, Epidemiology, Genomics, Machine Learning, Medical Statistics, Meta-Analysis, Networks, Process control, Programming, Public Transit, Statistics, Surveys, Time Series, Utilities, and Visualization.
 
 
 
@@ -25,6 +23,9 @@ Three hundred fifty-three new packages were submitted to CRAN in July. Here are 
 [agridatasets](https://cran.r-project.org/package=agridatasets) v0.1.1: Offers a rich and diverse collection of datasets focused on agriculture, agronomy, animal science, and related fields. The package includes experimental, observational, and field-trial data on crops such as rice, wheat, corn, soybean, cotton, coffee, avocado, and orange, as well as forestry species including bamboo, eucalyptus, and timber. Datasets cover plant breeding and genetics, factorial and randomized block experiments, herbicide and insecticide efficacy trials, pest and disease infestation, soil characteristics and land suitability, plant growth regulators, seed germination, and crop yield modeling. See the [vignette](https://cran.r-project.org/web/packages/agridatasets/vignettes/agridatasets.html).
 
 ![](agridatasets.png){fig-alt="Rice vs Wheat Time Series"}
+
+
+
 
 ## Artificial Intelligence
 
@@ -58,7 +59,7 @@ Three hundred fifty-three new packages were submitted to CRAN in July. Here are 
 
 [gbif.range](https://cran.r-project.org/package=gbif.range) v1.9.2: Implements a end-to-end workflow to generate ecologically informed species range maps from sparse observations using environmental clustering and convex hulls. Serves as a standalone framework or complementary approach to Species Distribution Models (SDMs). By constraining estimated ranges within authoritative or custom ecoregion boundaries, the approach prevents spurious range over-prediction common in geometric hull methods. There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/gbif.range/vignettes/getting-started.html) and [Part 2: Ecoregion-Based Range Inference](https://cran.r-project.org/web/packages/gbif.range/vignettes/ecoregion-constrained-range-inference.html).
 
-![](gbif.png){fig-alt="Map showing 10 classes over the European Alps, using two CHELSA bioclimatic layers"}
+![](gbif.png){fig-alt="Map showing 10 species classes over the European Alps, using two CHELSA bioclimatic layers"}
 
 [PhysMove](https://cran.r-project.org/package=PhysMove) v1.2.5: Provides tools to analyse animal movement and space-use patterns from telemetry data using methods derived from statistical physics. Methods span displacement-based approaches, distribution fitting, space-use metrics (including the influence of correlations on space-use), network-based community detection, and measures of entropy and predictability. The package enables characterisation of these patterns across spatial and temporal scales. For applications of these methods in ecological studies see [Rodríguez et al. (2017)](doi:10.1038/s41598-017-00165-0) and [Sequeira et al. (2018)](doi:10.1073/pnas.1716137115). There are four vignettes including [Introduction](https://cran.r-project.org/web/packages/PhysMove/vignettes/pt1_introduction.html) and [Movement Patterns](https://cran.r-project.org/web/packages/PhysMove/vignettes/pt2_movement_patterns.html).
 
@@ -84,15 +85,26 @@ Three hundred fifty-three new packages were submitted to CRAN in July. Here are 
 
 ![](figsr.png){fig-alt="Visualization of the tree sum"}
 
+[neuralsbi](https://cran.r-project.org/package=neuralsbi) v0.3.2: Provides a native R implementation of a neural simulation-based estimator that runs on the `torch` back end and is focused on Neural Posterior Estimation. Given a prior over parameters and a simulator, `neuralsbi` trains a conditional neural density estimator to approximate the Bayesian posterior, enabling amortized, likelihood-free inference. It targets applied researchers who want an approachable interface with sensible defaults and built-in posterior diagnostics. There are four vignettes including [Getting started](https://cran.r-project.org/web/packages/neuralsbi/vignettes/neuralsbi.html) and [Case study: inferring epidemic parameters (SIR)](https://cran.r-project.org/web/packages/neuralsbi/vignettes/sir-epidemic.html).
+
+![](neuralsbi.png){fig-alt="Plots showing fit of multi-modalestimator"}
+
 [NBvarsel](https://cran.r-project.org/package=NBvarsel) v0.1.1: Performs exhaustive or groupwise (backward elimination) variable selection for binary outcome prediction models using cross-validated Net Benefit as the optimization criterion. It supports predictor costs, restricted cubic splines, interaction terms, permutation importance, and parallel computation. It includes visualizations for model comparison and variable importance. References include [Vickers & Elkin (2006)](doi:10.1177/0272989X06295361) and [Van Calster et al. (2018)](doi:10.1016/j.eururo.2018.08.038). See the [vignette](https://cran.r-project.org/web/packages/NBvarsel/vignettes/nb-varsel-tutorial.html).
 
 ![](NBvarsel.png){fig-alt="Adjusted net benefit for predictors"}
 
 
 
+
+
 ### Medical Statistics
 
 [CausalState](https://cran.r-project.org/package=CausalState) v0.10.2: Implements Sequential Doubly Robust and infinite-dimensional Targeted Maximum Likelihood estimators for longitudinal modified treatment policies in settings with transitioning states, such as ICU, ward, or emergency department care episodes. Treatment is permitted in active states and becomes structurally inapplicable after a state transition (e.g. discharge or death). Methods based on [Diaz et al. (2021)](doi:10.1080/01621459.2021.1955691) and [Luedtke et al. (2017)](doi:10.48550/arXiv.1705.02459). There are three vignettes including [Getting started](https://cran.r-project.org/web/packages/CausalState/vignettes/getting-started.html) and [Wu-Benkeser density-ratio metalearner](https://cran.r-project.org/web/packages/CausalState/vignettes/wb-metalearner.html).
+
+[orthoMTL](https://cran.r-project.org/package=orthoMTL) v0.1.0: Fits regularised multi-task learning models where relationships between tasks are controlled via orthogonality or disjoint-support constraints. Supports regression, binary classification, and censored survival data. In survival mode, time-to-event outcomes are converted into binary labels at user-defined thresholds, enabling the discovery of features with time-varying effects that standard proportional-hazards models cannot detect. Implements the penalty described in [Vervier et al. (2014)](https://hal.science/hal-00985654). See the [vignette](https://cran.r-project.org/package=orthoMTL).
+
+![](orthoMTL.png){fig-alt="Heatmap showing coefficient weights across time thresholds"}
+
 
 [expoquimR](https://cran.r-project.org/package=expoquimR) v0.1.0: Provides a unified toolkit for occupational chemical exposure risk assessment, implementing three internationally recognised methods: the qualitative control-banding methods COSHH Essentials (UK Health and Safety Executive) and the method of the French National Research and Safety Institute (INRS), together with the quantitative statistical procedure of the UNE-EN 689 standard for comparing measured exposure levels against occupational exposure limits. Every step of each method is implemented as a small, independently callable, and unit-tested function, so assessments are reproducible and auditable. Optional `shiny` applications provide a guided, interactive workflow. References: [UK Health and Safety Executive (2003)](https://www.hse.gov.uk/coshh/essentials/index.htm) and Mallet, Pilorget and Berne (2013), ISBN:978-2-7389-2166-2. There are three vignettes including [COSHH Essentials: Qualitative Chemical Risk Assessment](https://cran.r-project.org/web/packages/expoquimR/vignettes/coshh-essentials.html) and [INRS Method: Qualitative Inhalation Risk Assessment](https://cran.r-project.org/web/packages/expoquimR/vignettes/inrs-method.html)
 
@@ -106,7 +118,13 @@ Three hundred fifty-three new packages were submitted to CRAN in July. Here are 
 [metaselection](https://cran.r-project.org/package=metaselection) v0.3.0: Fits a flexible class of p-value selection models for meta-analysis and meta-regression models, providing standard errors and confidence intervals based on either cluster-robust variance estimators (i.e., sandwich estimators) or cluster-level bootstrapping to handle dependent effect size estimates, as described in [Pustejovsky, Citkowicz, and Joshi (2025)](doi:10.31222/osf.io/qg5x6_v1) and [Citkowicz, Pustejovsky, and Joshi (2026)](doi:10.31222/osf.io/wjpxk_v1). Supported models include generalizations of the step-function selection model as proposed by [Vevea and Hedges (1995)](doi:10.1007/BF02294384) and the beta-function selection model as proposed by [Citkowicz and Vevea (2017)](doi:10.1037/met0000119). See the [vignette](https://cran.r-project.org/web/packages/metaselection/vignettes/selection-models.html).
 
 ![](metaselection.png){fig-alt="Distribution of one sided p-value"}
+:::
 
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
 
 
 ### Networks
@@ -126,14 +144,6 @@ Three hundred fifty-three new packages were submitted to CRAN in July. Here are 
 
 ![](tabulergm.png){fig-alt="Table with glyphs and equations"}
 
-:::
-
-::: {.column width="10%"}
-
-:::
-
-::: {.column width="45%"}
-
 
 
 ### Process Control
@@ -141,6 +151,9 @@ Three hundred fifty-three new packages were submitted to CRAN in July. Here are 
 [gpci](https://cran.r-project.org/package=gpci) v0.1.0: Implements a comprehensive, generalized framework for computing, estimating, and validating generalized process capability indices. Supports user-supplied probability density functions, cumulative distribution functions, survival functions, and quantile functions with uncensored data parameter estimation via Maximum Likelihood Estimation. Provides several classical and non-normal capability indices, including Cpy ([Maiti, Saha and Nanda, (2010)](doi:10.1080/16843703.2010.11673233), Spmk ([Dey and Saha (2019)](doi:10.1007/s41872-019-00081-4), CpTk ([Saha, Dey and Maiti (2019)](doi:10.1007/s13198-019-00789-7) and others. Functions also compute parametric and non-parametric bootstrap confidence intervals, confidence levels using percentile, highest posterior density intervals and Heidelberger-Welch convergence diagnostics. See [Maiti, Saha and Nanda (2010)](doi:10.1080/16843703.2010.11673233) and [Saha, Dey and Maiti (2018)](doi:10.1080/21681015.2018.1437793) for background. See the vignettes [Getting Started](https://cran.r-project.org/web/packages/gpci/vignettes/getting-started.html) and [Using Custom Distributions](https://cran.r-project.org/web/packages/gpci/vignettes/custom-distributions.html).
 
 ![](gpci.png){fig-alt="Process run chart"}
+
+
+
 
 ### Programming
 
