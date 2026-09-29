@@ -1,8 +1,8 @@
 ---
-title: "Aug 2026 Top 40 New CRAN Packages"
+title: "August 2026 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
 date: 2026-09-29
-description: "The CRAN Top 40 is an attempt to sort through the massive amount of new packages submitted to CRAN every month and find forty, `quality` packages that demonstrate the broad use of the R language, and appeal to a wide audience of potential users. If you take the time to scan through the post I hope you will find something interesting and maybe even useful."
+description: "The CRAN Top 40 is an attempt to sort through the massive amount of new packages submitted to CRAN every month and find forty, `quality` packages that demonstrate the broad use of the R language, and appeal to a wide audience of potential users. If you take the time to scan through the post, I hope you will find something interesting and maybe even useful."
 image: "gbif.png"
 image-alt: "Map showing 10 species classes over the European Alps, using two CHELSA bioclimatic layers"
 categories: "Top 40"
@@ -29,7 +29,7 @@ Three hundred twenty-nine new packages were submitted to CRAN in July. Here are 
 
 ## Artificial Intelligence
 
-[commons](https://cran.r-project.org/package=commons) v0.1.0: Implements trustworthy large language model agents. Connect raw data sources, provides a pool of trusted calculations, and a searchable context layer that demonstrates how to interpret them. Then, deploy data agents that answer questions, log interactions, and can be evaluated and improved over time. See the vignettes [Introduction](https://cran.r-project.org/web/packages/commons/vignettes/commons.html) and [Security and governamce](https://cran.r-project.org/web/packages/commons/vignettes/governance.html).
+[commons](https://cran.r-project.org/package=commons) v0.1.0: Implements trustworthy large language model agents. Connect raw data sources, provides a pool of trusted calculations, and a searchable context layer that demonstrates how to interpret them. Then, deploy data agents that answer questions, log interactions, and can be evaluated and improved over time. See the vignettes [Introduction](https://cran.r-project.org/web/packages/commons/vignettes/commons.html) and [Security and governance](https://cran.r-project.org/web/packages/commons/vignettes/governance.html).
 
 [diffuseR](https://cran.r-project.org/package=diffuseR) v0.2.2: A native `R` implementation of diffusion models providing a functional interface to state-of-the-art generative AI. Inspired by the `Python` library `diffusers` from [Hugging Face](https://huggingface.co/), functions generate and manipulate images from text prompts using models such as `Stable Diffusion`, with no `Python` dependency. Supports multiple diffusion schedulers and device acceleration. See the [vignette](https://cran.r-project.org/web/packages/diffuseR/vignettes/performance-levers.html) and [README](https://cran.r-project.org/web/packages/diffuseR/readme/README.html) for more information.
 
@@ -57,7 +57,7 @@ Three hundred twenty-nine new packages were submitted to CRAN in July. Here are 
 
 ![](FINN.jpeg){fig-alt="Illustration of how FINN works"}
 
-[gbif.range](https://cran.r-project.org/package=gbif.range) v1.9.2: Implements a end-to-end workflow to generate ecologically informed species range maps from sparse observations using environmental clustering and convex hulls. Serves as a standalone framework or complementary approach to species distribution models. By constraining estimated ranges within authoritative or custom ecoregion boundaries, the approach prevents spurious range over-prediction common in geometric hull methods. There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/gbif.range/vignettes/getting-started.html) and [Part 2: Ecoregion-Based Range Inference](https://cran.r-project.org/web/packages/gbif.range/vignettes/ecoregion-constrained-range-inference.html).
+[gbif.range](https://cran.r-project.org/package=gbif.range) v1.9.2: Implements an end-to-end workflow to generate ecologically informed species range maps from sparse observations using environmental clustering and convex hulls. Serves as a standalone framework or complementary approach to species distribution models. By constraining estimated ranges within authoritative or custom ecoregion boundaries, the approach prevents spurious range over-prediction common in geometric hull methods. There are five vignettes including [Getting Started](https://cran.r-project.org/web/packages/gbif.range/vignettes/getting-started.html) and [Part 2: Ecoregion-Based Range Inference](https://cran.r-project.org/web/packages/gbif.range/vignettes/ecoregion-constrained-range-inference.html).
 
 ![](gbif.png){fig-alt="Map showing 10 species classes over the European Alps, using two CHELSA bioclimatic layers"}
 
@@ -87,7 +87,7 @@ Three hundred twenty-nine new packages were submitted to CRAN in July. Here are 
 
 [neuralsbi](https://cran.r-project.org/package=neuralsbi) v0.3.2: Provides a native `R` implementation of a neural simulation-based estimator that runs on the `torch` back end and is focused on Neural Posterior Estimation. Given a prior over parameters and a simulator, functions train a conditional neural density estimator to approximate the Bayesian posterior, enabling amortized, likelihood-free inference. It targets applied researchers who want an approachable interface with sensible defaults and built-in posterior diagnostics. There are four vignettes including [Getting started](https://cran.r-project.org/web/packages/neuralsbi/vignettes/neuralsbi.html) and [Case study: inferring epidemic parameters (SIR)](https://cran.r-project.org/web/packages/neuralsbi/vignettes/sir-epidemic.html).
 
-![](neuralsbi.png){fig-alt="Plots showing fit of multi-modalestimator"}
+![](neuralsbi.png){fig-alt="Plots showing fit of multi-modal estimator"}
 
 [NBvarsel](https://cran.r-project.org/package=NBvarsel) v0.1.1: Performs exhaustive or groupwise (backward elimination) variable selection for binary outcome prediction models using cross-validated net benefit as the optimization criterion. It supports predictor costs, restricted cubic splines, interaction terms, permutation importance, and parallel computation. It includes visualizations for model comparison and variable importance. References include [Vickers & Elkin (2006)](doi:10.1177/0272989X06295361) and [Van Calster et al. (2018)](doi:10.1016/j.eururo.2018.08.038). See the [vignette](https://cran.r-project.org/web/packages/NBvarsel/vignettes/nb-varsel-tutorial.html).
 
@@ -131,12 +131,12 @@ Three hundred twenty-nine new packages were submitted to CRAN in July. Here are 
 
 [idiographic](https://cran.r-project.org/package=idiographic) v0.3.4:  Provides functions to make person-specific and within-person network estimation from intensive longitudinal and panel data. Estimators include ordinary vector autoregression (VAR), graphical vector autoregression, multilevel vector autoregression, rolling ordinary and graphical VAR, native Bayesian VAR, multilevel Bayesian VAR, unified Structural Equation Modeling, and Group Iterative Multiple Model Estimation. Methods are described in [Saqr et al. 2025](doi:10.1007/978-3-031-95365-1_20) and [Epskamp et al. (2018)](doi:10.1080/00273171.2018.1454823). There are seven vignettes including an [introduction](https://cran.r-project.org/web/packages/idiographic/vignettes/idiographic.html) and  [Multilevel VAR](https://cran.r-project.org/web/packages/idiographic/vignettes/mlvar.html).
 
-![](idiographic.png){fig-alt="Example of within person netowrk"}
+![](idiographic.png){fig-alt="Example of within person network"}
 
 
 
 
-[lame](https://cran.r-project.org/package=lame) v1.3.4: Implements additive and multiplicative effects models for both cross-sectional and longitudinal network analysis and supports square and rectangular network structures. Key features include: (1) Cross-sectional network analysis  with support for binary, continuous, ordinal, and count data; (2) Longitudinal network analysis  with additive sender/receiver and multiplicative latent-factor effects that can evolve over time through AR(1) processes' ([Sewell and Chen (2015)](doi:10.1080/01621459.2014.988214) and [Durante and Dunson (2014)](doi:10.1093/biomet/asu040)); (3) Handling of changing actor compositions across time periods in longitudinal models; and (4) Performance improvements. There are seven vignettes including [Overveiew](https://cran.r-project.org/web/packages/lame/vignettes/lame-overview.html) and [Getting Started](https://cran.r-project.org/web/packages/lame/vignettes/lame.html).
+[lame](https://cran.r-project.org/package=lame) v1.3.4: Implements additive and multiplicative effects models for both cross-sectional and longitudinal network analysis and supports square and rectangular network structures. Key features include: (1) Cross-sectional network analysis  with support for binary, continuous, ordinal, and count data; (2) Longitudinal network analysis  with additive sender/receiver and multiplicative latent-factor effects that can evolve over time through AR(1) processes' ([Sewell and Chen (2015)](doi:10.1080/01621459.2014.988214) and [Durante and Dunson (2014)](doi:10.1093/biomet/asu040)); (3) Handling of changing actor compositions across time periods in longitudinal models; and (4) Performance improvements. There are seven vignettes including [Overview](https://cran.r-project.org/web/packages/lame/vignettes/lame-overview.html) and [Getting Started](https://cran.r-project.org/web/packages/lame/vignettes/lame.html).
 
 ![](lame.png){fig-alt="Circular plot showing multiplicative effects"}
 
@@ -157,7 +157,7 @@ Three hundred twenty-nine new packages were submitted to CRAN in July. Here are 
 
 ### Programming
 
-[polyglotSQL](https://cran.r-project.org/package=polyglotSQL) v0.1.0: Provides functions to parse, tokenize, validate, format, analyze and translate SQL between more than 30 dialects (`PostgreSQL`, `MySQL`, `BigQuery`, `Snowflake`, `DuckDB`, `T-SQL`, and others) using `polyglot-sql` [Rust crate](ttps://github.com/tobilg/polyglot). All processing happens locally in the `R` session. Includes column-level lineage, structural query analysis, query optimization, `AST` diffing and `OpenLineage` facet generation. There are four vignettes including [Getting Started](https://cran.r-project.org/web/packages/polyglotSQL/vignettes/getting-started.html) and [Parsing, validation and lineage](https://cran.r-project.org/web/packages/polyglotSQL/vignettes/parsing-validation-lineage.html).
+[polyglotSQL](https://cran.r-project.org/package=polyglotSQL) v0.1.0: Provides functions to parse, tokenize, validate, format, analyze and translate SQL between more than 30 dialects (`PostgreSQL`, `MySQL`, `BigQuery`, `Snowflake`, `DuckDB`, `T-SQL`, and others) using `polyglot-sql` [Rust crate](https://github.com/tobilg/polyglot). All processing happens locally in the `R` session. Includes column-level lineage, structural query analysis, query optimization, `AST` diffing and `OpenLineage` facet generation. There are four vignettes including [Getting Started](https://cran.r-project.org/web/packages/polyglotSQL/vignettes/getting-started.html) and [Parsing, validation and lineage](https://cran.r-project.org/web/packages/polyglotSQL/vignettes/parsing-validation-lineage.html).
 
 ### Public Transit
 
@@ -167,7 +167,7 @@ Three hundred twenty-nine new packages were submitted to CRAN in July. Here are 
 
 ### Statistics
 
-[chaidr](https://cran.r-project.org/package=chaidr) v0.1.0: Implements the CHAID (Chi-squared Automatic Interaction Detection) decision tree algorithm of [Kass (1980)](doi:10.2307/2986296) and the Exhaustive CHAID variant of [Biggs, de Ville, and Suen (1991)](ithms documentation). Supports nominal, ordinal with floating missing category, and continuous predictors, and nominal, ordinal, and continuous response variables using Pearson chi-squared, Goodman row-effects, and one-way ANOVA F tests respectively. Includes prediction, rule extraction, gains and lift analysis, validation on holdout data, and visualization via base graphics, `Graphviz` DOT, `plotly`, and conversion to `partykit` objects. See the [Introduction](https://cran.r-project.org/web/packages/chaidr/vignettes/chaidr.html) and the [Japanese tutorial](https://cran.r-project.org/web/packages/chaidr/vignettes/chaidr-ja.html).
+[chaidr](https://cran.r-project.org/package=chaidr) v0.1.0: Implements the CHAID (Chi-squared Automatic Interaction Detection) decision tree algorithm of [Kass (1980)](doi:10.2307/2986296) and the Exhaustive CHAID variant of [Biggs, de Ville, and Suen (1991)](doi:10.1080/02664769100000005), as specified in the `IBM SPSS` Statistics Algorithms documentation. Supports nominal, ordinal with floating missing category, and continuous predictors, and nominal, ordinal, and continuous response variables using Pearson chi-squared, Goodman row-effects, and one-way ANOVA F tests respectively. Includes prediction, rule extraction, gains and lift analysis, validation on holdout data, and visualization via base graphics, `Graphviz` DOT, `plotly`, and conversion to `partykit` objects. See the [Introduction](https://cran.r-project.org/web/packages/chaidr/vignettes/chaidr.html) and the [Japanese tutorial](https://cran.r-project.org/web/packages/chaidr/vignettes/chaidr-ja.html).
 
 ![](chaidr.png){fig-alt="CHAID decision tree"}
 
@@ -234,7 +234,7 @@ Three hundred twenty-nine new packages were submitted to CRAN in July. Here are 
 
 ![](grip.png){fig-alt="Plots of large graph weighted patterns"}
 
-[orbis](https://cran.r-project.org/package=orbis) v0.1.0: Implements a layered grammar of graphics that compiles plots to a resolution-independent scene description and renders it through two back-ends: a self-contained SVG writer with embedded `JavaScript` for interactive figures (tooltips, hover highlighting, zoom, pan and legend toggling) and `R`s own graphics devices for publication-quality output at any resolution. Geographic layers are first class. The layered grammar follows [Wickham (2010)](doi:10.1198/jcgs.2009.07098); projections follow [Snyder (1987)](doi:10.3133/pp1395) and, for Equal Earth, [Savric, Patterson and Jenny (2019)](doi:10.1080/13658816.2018.1504949); line simplification uses [Douglas and Peucker (1973)](doi:10.3138/FM57-6770-U75U-7727); the default colour scales follow the guidance on perceptually uniform palettes of [Crameri, Shephard and Heron (2020)](doi:10.1038/s41467-020-19160-7). See the [vignette](https://cran.r-project.org/web/packages/orbis/vignettes/orbis.html)
+[orbis](https://cran.r-project.org/package=orbis) v0.1.0: Implements a layered grammar of graphics that compiles plots to a resolution-independent scene description and renders it through two back-ends: a self-contained SVG writer with embedded `JavaScript` for interactive figures (tooltips, hover highlighting, zoom, pan and legend toggling) and `R`'s own graphics devices for publication-quality output at any resolution. Geographic layers are first class. The layered grammar follows [Wickham (2010)](doi:10.1198/jcgs.2009.07098); projections follow [Snyder (1987)](doi:10.3133/pp1395) and, for Equal Earth, [Savric, Patterson and Jenny (2019)](doi:10.1080/13658816.2018.1504949); line simplification uses [Douglas and Peucker (1973)](doi:10.3138/FM57-6770-U75U-7727); the default colour scales follow the guidance on perceptually uniform palettes of [Crameri, Shephard and Heron (2020)](doi:10.1038/s41467-020-19160-7). See the [vignette](https://cran.r-project.org/web/packages/orbis/vignettes/orbis.html)
 
 
 ![](orbis.png){fig-alt="World choropleth: Robinson projection"}
