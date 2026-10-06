@@ -1,43 +1,45 @@
 ---
-title: "renv, rv, uvr, rix, ir: An explosion of R package and environment managers"
+title: "{renv}, {rix}, rv, uvr, ir: An explosion of R package and environment managers"
 author: "Isabella Velásquez"
 date: 2026-09-20
-description: "There has been an explosion of package/environment/platform managers in the R ecosystem recently. Here, we explore renv, rv, uvr, rix, ir."
+description: "There has been an explosion of package/environment/platform managers in the R ecosystem recently. Here, we explore {renv}, {rix}, rv, uvr, and ir."
 editor: source
 format: html
 ---
 
-There has been an explosion of package/environment/platform managers in the R ecosystem recently and their names create a fun [Spelling Bee game](https://mywordle.strivemath.com/spellbee?l=rgtvgicp):
+There has been an explosion of package/environment/platform managers in the R ecosystem recently,[^1] and R users are really reaping the rewards of so many ripe and riveting tools. But, I've found it rough[^2] to keep track of them all and understand what they are and how they are different!
 
-![](images/spelling-bee.png){width=40% fig-align="center" fig-alt="A Spelling Bee game made up of the letters RENUIX"}
+[^1]: Their names create a fun [Spelling Bee game](https://mywordle.strivemath.com/spellbee?l=rgtvgira):
 
-R is really reaping the rewards of so many ripe and riveting managers. But if you are like me, it’s been rough to keep track of them all and understand what they are and how they are different!
+    ![](images/spelling-bee.png){width=40% fig-align="center" fig-alt="A Spelling Bee game made up of the letters RENUIX"}
 
-I suspect I am not the only one. My colleague Libby Heeren and I recently held a [Data Science Lab](https://pos.it/dslab) with Eric Nantz to showcase {rix} and Nix (which was awesome! Keep an eye out on the [Posit YouTube channel](https://www.youtube.com/playlist?list=PL9HYL-VRX0oSeWeMEGQt0id7adYQXebhT) for when the recording is published), and the first three or so questions from the audience were all about how {rix} compares to X ({renv}, rv, uvr), and so I thought it’d be helpful to write a short summary of five tools that I’ve heard about: {renv}, rv, uvr, {rix}, and {ir}.[^1]
+[^2]: [ruff](https://docs.astral.sh/ruff/)? 😉 
 
-[^1]: I'm distinguishing between R packages and CLI tools by wrapping the R packages in `{}`.
+I suspect I am not the only one. My colleague Libby Heeren and I recently held a [Data Science Lab](https://pos.it/dslab) with Eric Nantz to showcase {rix} and Nix (which was awesome! Keep an eye out on the [Posit YouTube channel](https://www.youtube.com/playlist?list=PL9HYL-VRX0oSeWeMEGQt0id7adYQXebhT) for when the recording is published), and the first three or so questions from the audience were all about how {rix} compares to X ({renv}, rv, uvr), and so I thought it’d be helpful to write a short summary of five tools that I’ve heard about: [{renv}](https://rstudio.github.io/renv/), [{rix}](https://docs.ropensci.org/rix/), [rv](https://a2-ai.github.io/rv-docs/), [uvr](https://nbafrank.github.io/uvr/), and [ir](https://r-lib.github.io/ir/).[^3]
 
-The first thing to note is that while they're all about tracking or isolating dependencies, they don't all do the same thing. [TL;DR](https://en.wikipedia.org/wiki/TL;DR):
+[^3]: Since I'm listing both R packages and CLI tools, I am distinguishing them by wrapping the R packages in `{}`.
 
-- {renv}, rv, and uvr manage package dependencies within a single R project
-- rix operate one level up, snapshotting the entire system environment
-- {ir} operates one level down, handling dependencies for a single script rather than a project
+While they're all about tracking or isolating dependencies, they operate at a different "levels" from each other. [TL;DR](https://en.wikipedia.org/wiki/TL;DR):
+
+- {rix} snapshots the entire system environment
+- {renv}, rv, and uvr manage R package dependencies within a single R project
+- ir handles dependencies for a single R script rather than a project
 
 ![Graphic design is my passion.](images/managers.png){fig-align="center"}
 
-I don't want to/can't pass judgement on which is the best or which I recommend, because I honestly haven’t had the opportunity to explore all of them fully (a very diplomatic way of saying that I haven’t yet used all of them in a real-world context), but I would love to hear everybody else’s opinions on which they think is the best tool because BOY, I IMAGINE PEOPLE HAVE THEM! 😀
+I don't want to/can't pass judgement on which is the best or which I recommend, because I honestly haven’t had the opportunity to explore all of them fully (a very diplomatic way of saying that I haven’t yet used all of them in a real-world context), but I would love to hear everybody else’s opinions on which they think is the best tool because I imagine people have them! 😀
 
 It's an unsatisfactory proxy for quality/experience, but here is the GitHub star trajectory of each:
 
-![](images/star-history-2026920.png){width=60% fig-align="center"}
+[![Star History Chart](https://api.star-history.com/chart?repos=rstudio/renv%2Cropensci/rix%2Ca2-ai/rv%2Cnbafrank/uvr%2Cr-lib/ir&type=date&legend=top-left)](https://www.star-history.com/?repos=rstudio%2Frenv%2Cropensci%2Frix%2Ca2-ai%2Frv%2Cnbafrank%2Fuvr%2Cr-lib%2Fir&type=date&legend=top-left)
 
-(Take that as you will).
+(Mind the [recency bias](https://en.wikipedia.org/wiki/Recency_bias)).
 
-With that, let's begin!
+With that, let's begin, going chronologically by release!
 
 ## **{renv}**
 
-[Repo](https://github.com/rstudio/renv) | ⭐1.2k GitHub stars | ✅ Packages ❌ R version ❌ Environments
+[Repo](https://github.com/rstudio/renv) | [Docs](https://rstudio.github.io/renv/) | ⭐1.2k GitHub stars | ✅ Packages ❌ R version ❌ Environments
 
 ### Use case
 
@@ -76,7 +78,7 @@ This lockfile captures the exact versions of those packages:
 ```{.json filename="renv.lock"}
 {
   "R": {
-    "Version": "4.5.2",
+    "Version": "4.4.2",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -117,17 +119,75 @@ renv::restore()
 
 ### Some considerations
 
-Because renv is iterative and retrospective, you can accidentally install packages that conflict with the packages that you had installed earlier.
+Because {renv} is iterative and retrospective, you can accidentally install packages that conflict with the packages that you had installed earlier.
+
+While {renv} tracks your R version, it intentionally does not manage it. If you need to switch R versions, you'll want a tool like [rig](https://rig.r-lib.org/). See the [renv documentation](https://rstudio.github.io/renv/articles/renv.html#caveats) for the full list of caveats.
+
+## **{rix}**
+
+[Repo](https://github.com/ropensci/rix) | [Docs](https://docs.ropensci.org/rix/) | ⭐381 GitHub stars | ✅ Packages ✅ R version ✅ Environments
+
+### Use case
+
+{rix} operates one level up from the other tools on this list. Instead of managing packages within an R installation, {rix} uses [Nix](https://nixos.org/), a general-purpose package manager, to snapshot **an entire software environment**: R itself, packages, *and* any system-level dependencies they need.
+
+### How to use {rix}
+
+{rix} is retrospective but in a different sense than {renv}. You declare the environment you want up front, and Nix builds it from scratch (pulling from a package index rather than your currently-installed library).
+
+1. Install Nix and the {rix} package:
+
+```{.r filename="Terminal"}
+install.packages("rix")
+```
+
+2. Declare your environment:
+
+Write a small script (e.g., `generate_env.R`) describing the R version and packages you need:
+
+```{.r filename="generate_env.R"}
+library(rix)
+
+rix(
+  r_ver = "4.4.2",
+  r_pkgs = c("dplyr", "ggplot2"),
+  project_path = "."
+)
+```
+
+Running this script generates a `default.nix` file, a plain-text description of the environment.
+
+3. Build the environment:
+
+Running `nix-build` creates the environment stored in `/nix/store`:
+
+```{.bash filename="Terminal"}
+nix-build
+```
+
+Then, you can drop into this environment interactively by running `nix-shell`.
+
+From there, you can work normally by launching R, writing scripts, rendering Quarto docs, etc.
+
+When you want to add a new package, edit `generate_env.R` and rerun that script to regenerate `default.nix`, and then run `nix-build`/`nix-shell `again. 
+
+### How to share using {rix}
+
+Share the `default.nix` file (typically committed alongside your project). Anyone with Nix installed can rebuild the exact same environment, byte for byte, regardless of their operating system, by running `nix-build` or `nix-shell` against that file.
+
+### Some considerations
+
+Because {rix} depends on Nix, there's a bigger lift required to install and learn Nix itself. In exchange, you get reproducibility that extends beyond R packages to the R version and even system dependencies.
 
 ## **rv**
 
-[Repo](https://github.com/A2-ai/rv) | ⭐371 GitHub stars | ✅ Packages ❌ R version ❌ Environments
+[Repo](https://github.com/A2-ai/rv) | [Docs](https://a2-ai.github.io/rv-docs/) | ⭐378 GitHub stars | ✅ Packages ❌ R version ❌ Environments
 
 ### Use case
 
 This is a relatively new tool by A2-ai, written in the ever-so-popular [Rust](https://rust-lang.org/) language, used for **project-local R package management**. 
 
-It supports multiple package repositories with per-package source control (e.g., forcing a specific package to build from source vs. binary), and claims large speed improvements (20x+) over renv for installs.
+It supports multiple package repositories with per-package source control (e.g., forcing a specific package to build from source vs. binary), and claims large speed improvements (20x+) over {renv} for installs.
 
 rv is *declarative*: you write your desired packages and versions into a config file, and rv resolves the entire dependency graph upfront before installing anything.
 
@@ -167,14 +227,17 @@ hello_world/
 
 I don't want to just repeat the documentation because [it's quite excellent](https://a2-ai.github.io/rv-docs/intro/getting-started/), but essentially, you would fill in your packages as dependencies in `rproject.toml`:
 
-```bash
+```{.toml filename="rproject.toml"}
+r_version = "4.4.2"
+
 # A list of packages to install and any additional configuration
 # Examples:
     # "dplyr",
     # {name = "dplyr", repository = "CRAN"},
     # {name = "dplyr", git = "https://github.com/tidyverse/dplyr.git", tag = "v1.1.4"},
 dependencies = [
-
+    "dplyr",
+    "ggplot2"
 ]
 ```
 
@@ -210,19 +273,21 @@ If someone wants to open your rv project, they can clone your folder (including 
 
 ### Some considerations
 
-Because rv is declarative and resolves the whole dependency graph upfront, it's less forgiving of "install whatever you need as you go" exploratory work that renv accommodates; you're expected to know (or figure out) your dependencies before you can sync.
+Because rv is declarative and resolves the whole dependency graph upfront, it's less forgiving of "install whatever you need as you go" exploratory work that {renv} accommodates; you're expected to know (or figure out) your dependencies before you can sync.
 
-You may notice that rv's `rproject.toml` has an `r_version` field, but this does not actually manage the R version. During `rv init`, it records whatever R is found on your PATH (or is passed via `--r-version`), and then rv validates that the R you're running matches that pinned version. It does not download, install, or switch R versions for you. If this functionality is something you need, you may want to check out...
+You may notice that rv's `rproject.toml` has an `r_version` field, but this does not actually manage the R version. Like {renv}, rv does not download, install, or switch R versions for you (again, you'd want a tool like rig for that).
+
+If you want a single tool that tracks both your R packages and R version, and can actually switch R versions for you, you may want to check out...
 
 ## **uvr**
 
-[Repo](https://github.com/nbafrank/uvr) | ⭐343 GitHub stars | ✅ Packages ✅ R version ❌ Environments
+[Repo](https://github.com/nbafrank/uvr) | [Docs](https://nbafrank.github.io/uvr/) | ⭐350 GitHub stars | ✅ Packages ✅ R version ❌ Environments
 
 ### Use case
 
 uvr is built by nbafrank, an independent developer. Like rv, it's also written in Rust, and it is explicitly modeled on Python's [uv](https://docs.astral.sh/uv/), a.k.a., [the best thing to happen to the Python ecosystem in a decade](https://emily.space/posts/251023-uv).
 
-It bundles **package management and R version management** (two things that renv and rv treat separately), backed by a single lockfile (`uvr.lock`) that is meant to be the “source of truth” for a project.
+It bundles **R package management and R version management** (two things that {renv} and rv treat separately), backed by a single lockfile (`uvr.lock`) that is meant to be the “source of truth” for a project.
 
 ### How to use uvr
 
@@ -240,7 +305,7 @@ curl -fsSL https://raw.githubusercontent.com/nbafrank/uvr/main/install.sh | sh
 
 ```{.bash filename="Terminal"}
 mkdir my-project && cd my-project
-uvr init --r-version ">=4.3.0"
+uvr init --r-version ">=4.4.2"
 ```
 
 This creates a `uvr.toml` manifest in the project folder.
@@ -248,12 +313,10 @@ This creates a `uvr.toml` manifest in the project folder.
 3. Add packages:
 
 ```{.bash filename="Terminal"}
-uvr add ggplot2 dplyr
-uvr add DESeq2 --bioc
-uvr add user/repo@main
+uvr add dplyr ggplot2
 ```
 
-Each `add` updates `uvr.toml` and re-resolves `uvr.lock`.
+Each `add` updates `uvr.toml` and re-resolves `uvr.lock`. (uvr also supports Bioconductor and GitHub sources, e.g. `uvr add DESeq2 --bioc` or `uvr add user/repo@main`.)
 
 4. Install everything from the lockfile:
 
@@ -295,59 +358,9 @@ uvr sync --frozen
 
 `--frozen` will fail if the lockfile is stale.
 
-## **rix**
-
-[Repo](https://github.com/ropensci/rix) | ⭐381 GitHub stars | ✅ Packages ✅ R version ✅ Environments
-
-### Use case
-
-rix operates one level up from the other tools on this list. Instead of managing packages within an R installation, rix uses [Nix](https://nixos.org/), a general-purpose package manager, to snapshot **an entire software environment**: R itself, packages, *and* any system-level dependencies they need.
-
-### How to use rix
-
-rix is retrospective but in a different sense than renv. You declare the environment you want up front, and Nix builds it from scratch (pulling from a package index rather than your currently-installed library).
-
-1. Install Nix and the rix R package:
-
-```{.r filename="Terminal"}
-install.packages("rix")
-```
-
-2. Declare your environment:
-
-Write a small script (e.g., `generate_env.R`) describing the R version and packages you need:
-
-```{.r filename="generate_env.R"}
-library(rix)
-
-rix(
-  r_ver = "4.3.3",
-  r_pkgs = c("dplyr", "ggplot2"),
-  project_path = "."
-)
-```
-
-Running this script generates a `default.nix` file, a plain-text description of the environment.
-
-3. Build the environment:
-
-```{.bash filename="Terminal"}
-nix-build
-```
-
-or drop into it interactively with `nix-shell`.
-
-### How to share using rix
-
-Share the `default.nix` file (typically committed alongside your project). Anyone with Nix installed can rebuild the exact same environment, byte for byte, regardless of their operating system, by running `nix-build` or `nix-shell` against that file.
-
-### Some considerations
-
-Because rix depends on Nix, there's a bigger lift required to install and learn Nix itself. In exchange, you get reproducibility that extends beyond R packages to system dependencies and even R itself.
-
 ## **ir**
 
-[Repo](https://github.com/r-lib/ir) | ⭐65 GitHub stars | ✅ Packages ✅ R version ❌ Environments
+[Repo](https://github.com/r-lib/ir) | [Docs](https://r-lib.github.io/ir/) | ⭐65 GitHub stars | ✅ Packages ✅ R version ❌ Environments
 
 ### Use case
 
@@ -357,7 +370,11 @@ ir operates one level *down* from the project-level tools. It's built for single
 
 1. Install ir:
 
-Follow the [installation instructions in the repo](https://github.com/r-lib/ir).
+Follow the [installation instructions in the repo](https://github.com/r-lib/ir):
+
+```{.bash filename="Terminal"}
+curl -fsSL https://raw.githubusercontent.com/r-lib/ir/main/scripts/install.sh | sh
+```
 
 2. Declare requirements in the file itself:
 
@@ -367,14 +384,14 @@ Add frontmatter (for `.qmd`/`.Rmd`) or a header comment (for `.R` scripts) listi
 #!/usr/bin/env -S ir run
 #| packages:
 #|   - dplyr>=1.0
-#|   - tidyr
+#|   - ggplot2@4.0.2
 #| isolated: true
-#| exclude-newer: "2024-01-15"
+#| exclude-newer: "2025-05-15"
 
 library(dplyr)
-library(tidyr)
+library(ggplot2)
 
-mtcars |> count(cyl, gear) |> pivot_wider(names_from = gear, values_from = n)
+mtcars |> count(cyl, gear) |> ggplot(aes(x = cyl, y = gear)) + geom_col()
 ```
 
 ```{.r filename="report.qmd"}
@@ -383,7 +400,7 @@ title: My report
 ir:
   packages:
     - dplyr>=1.0
-    - gt@1.0
+    - ggplot2@4.0.2
   isolated: true
   exclude-newer: 2025-05-15
 ---
@@ -400,18 +417,18 @@ When you run or render the file, ir resolves the requirements, prepares cached p
 
 ### How to share using ir
 
-Send the single `.R` or `.qmd` file (there's no separate lockfile or project directory to keep track of). On first use, ir prepares its own resolver tooling in its cache, so the recipient doesn't need to pre-install pak or renv; they can run `ir run` or `ir render` and ir takes care of resolving and caching the right packages.
+Send the single `.R` or `.qmd` file (there's no separate lockfile or project directory to keep track of). On first use, ir prepares its own resolver tooling in its cache, so the recipient doesn't need to pre-install {pak} or {renv}; they can run `ir run` or `ir render` and ir takes care of resolving and caching the right packages.
 
 ### Some considerations
 
-ir is the newest tool here (first released mid-2026) and intentionally narrow in scope: it solves reproducibility for a *single* file, not a whole project. So, it's a complement to, not a replacement for, renv/rv/uvr/rix when you actually do need a shared project-level environment.
+ir is the newest tool here (first released mid-2026) and intentionally narrow in scope: it solves reproducibility for a *single* file, not a whole project. So, it's a complement to, not a replacement for, {renv}/{rix}/rv/uvr when you actually do need a shared project-level environment.
 
 ## Even more package and environment managers
 
-This is just the surface of what is available out there. The amazing Novica Nakov has created a [new R tooling webpage](https://r-devs.com/) to track new R tools as they show up. So, if you want to follow an evolving list, I recommend keeping an eye out there! As always, the R community abides.
+This is just the surface of what is available out there. The amazing Novica Nakov has created a [new R tooling webpage](https://r-devs.com/) to track new R tools as they show up. So, if you want to follow an evolving list, I recommend keeping an eye out there!
 
 While doing my research, I ran into a few more tools that I considered adding to this post and decided to not. Here are what they are, and why I left them out:
 
-- [devenv](https://devenv.sh/): a general-purpose Nix-based dev environment manager, not specifically for R. It shares rix's core mechanism but doesn't have rix's R-specific niceties like date-pinned CRAN/Bioconductor snapshots.
+- [devenv](https://devenv.sh/): a general-purpose Nix-based dev environment manager, not specifically for R. It shares {rix}'s core mechanism but doesn't have {rix}'s R-specific niceties like date-pinned CRAN/Bioconductor snapshots.
 - [rpx](https://github.com/rrepo-org/rpx), which I discovered on [this Reddit thread](https://www.reddit.com/r/rstats/comments/1wjvk8h/rpx_v200_why_package_managers_need_backtracking/) as I was writing this: I didn't add it because I'd waffled on finishing this post for too long and it would have messed up my Spelling Bee game. If anybody wants to write about it for R Works, let me know!
-- [rig](https://github.com/r-lib/rig):  a command-line tool for installing, listing, and switching between multiple R versions on your machine. I didn't add it because there's nothing to share with others, it's more a personal R version manager.
+- [rig](https://github.com/r-lib/rig):  a command-line tool for installing, listing, and switching between multiple R versions on your machine. I didn't add it because there's nothing to share with others (it's more a personal R version manager), but as noted earlier, can be used to conform to the pinned R versions tracked in tools like {renv} or rv.
