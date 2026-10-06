@@ -384,7 +384,7 @@ Add frontmatter (for `.qmd`/`.Rmd`) or a header comment (for `.R` scripts) listi
 #!/usr/bin/env -S ir run
 #| packages:
 #|   - dplyr>=1.0
-#|   - ggplot2@4.0.2
+#|   - ggplot2@3.5.1
 #| isolated: true
 #| exclude-newer: "2025-05-15"
 
@@ -400,7 +400,7 @@ title: My report
 ir:
   packages:
     - dplyr>=1.0
-    - ggplot2@4.0.2
+    - ggplot2@3.5.1
   isolated: true
   exclude-newer: 2025-05-15
 ---
