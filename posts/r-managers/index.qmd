@@ -1,7 +1,7 @@
 ---
 title: "{renv}, {rix}, rv, uvr, ir: An explosion of R package and environment managers"
 author: "Isabella Velásquez"
-date: 2026-09-20
+date: 2026-10-06
 description: "There has been an explosion of package/environment/platform managers in the R ecosystem recently. Here, we explore {renv}, {rix}, rv, uvr, and ir."
 editor: source
 format: html
