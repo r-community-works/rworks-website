@@ -2,7 +2,7 @@
 title: "A Bayesian Network to Explore Data Center Risks"
 subtitle: "An R Implementation"
 author: "Joseph Rickert"
-date: "2026-10-20"
+date: "2026-10-19"
 code-fold: true
 code-summary: "Show the code"
 description: "This post presents a template for constructing  Bayesian Network models to explore the risks that data centers pose to a community. It contains a DAG and a synthetic data generator which can be modified to suit a particular community. THe DAG contains both nodes that are thought to cause risks to the community as well as nodes that quantify various kinds of risk."
