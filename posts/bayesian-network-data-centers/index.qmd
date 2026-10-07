@@ -2,7 +2,7 @@
 title: "A Bayesian Network to Explore Data Center Risks"
 subtitle: "An R Implementation"
 author: "Joseph Rickert"
-date: "2026-05-20"
+date: "2026-10-20"
 code-fold: true
 code-summary: "Show the code"
 description: "This post presents a template for constructing  Bayesian Network models to explore the risks that data centers pose to a community. It contains a DAG and a synthetic data generator which can be modified to suit a particular community. THe DAG contains both nodes that are thought to cause risks to the community as well as nodes that quantify various kinds of risk."
@@ -10,17 +10,8 @@ categories: ""
 image: ""
 image-alt: " "
 format: html
-execute:
-  warning: false
-  message: false
----
 
 ---
-
----
-
-
-
 
 Data centers required to fuel the ambitions of Artificial Intelligence companies have sparked a nationwide conversation. AI companies are moving quickly to build out infrastructure and local communities are pushing back to resist what they see as the appropriation of public resources such as electricity and water to further enrich wealthy corporations. Moreover, the sentiment shared by both the political left and right is that data centers will significantly degrade the quality of life for those living adjacent to a data center and to the extended community as well. This post implements a non-trivial Bayesian Network to study the risks involved. I hope it is of some interest to a broad audience including, people interested in clarifying their thoughts about the risks that data centers may pose to their particular community and analysts curious about Bayesian Networks. However, I think the sample model built out in this post will be especially interesting to decision analysts who know quite a bit about Bayesian Networks but may be unfamiliar with the `R` programming language and unaware that there is capable opensource software which can provide capabilities beyond those offered by proprietary software systems.
 
@@ -835,14 +826,10 @@ ordering
 }
 
 
-
-
-
-
 ```
 
 
-**This code runs the risk generator function.**
+**This code runs the function to generate the synthetic data.** It is the place where changes can be made to increase the risk intensity of the probability distributions.
 
 ```{r}
 #| message: false
@@ -1467,10 +1454,6 @@ HRP[333,]
 ```
 
 
-
-
-
-
 ### Radar Plot
 
 Another way to gain some intuition about how these paths vary is through radar plots. The following plot picks out three random rows from the Overall Community Risk flat table ans plots them on a circular path leading to Overall Community Risk.
@@ -1709,6 +1692,7 @@ This code runs the plot code. The default settings produce the top three rows of
 #| code-fold: true
 #| code-summary: "Show the code to run the plot"
 #df <- sorted_risk_flat
+set.seed(456)
 df <- high_risk_probabilities
 
 plot_radar(
@@ -1931,7 +1915,9 @@ print(plot_density)
 
 ## Summary
 
-This post presents a model that is intended to serve as a template for building Bayesian Networks to explore the risk posed to a community from building a data center. It implements `R` code that includes a robust DAG, a synthetic data generator that can be customized to reflect the initial risk factors and initial risk distributions that could be elicited from community experts, tables and visualizations to evaluate multiple risk states. The main conclusion is that the complexity of the model can lead to no intuitive results. Human beings are not good at intuitively evaluating even very simple networks of conditional probabilities. A Bayesian Network may be helpful in exploring the propagation of risk over a complex intereependent set of risk factors.
+This post presents a model that is intended to serve as a template for building Bayesian Networks to explore the risk posed to a community from building a data center. It implements `R` code that includes a robust DAG, a synthetic data generator that can be customized to reflect the initial probability distributions and risk intensity settings. In a modeling effort for a particular community, these could be elicited from community experts, tables and visualizations to evaluate multiple risk states. 
+
+We human beings are notoriously bad at intuitively arriving at the correct logical conclusions to even the simplest conditional probability arguments. It is envisioned that main use of tool implemented in this post would be to help people organize their beliefs about the risks of building a data center in their community in a way that would enable them to test their assumptions and explore the probable consequences.  
 
 ## Next Steps
 
