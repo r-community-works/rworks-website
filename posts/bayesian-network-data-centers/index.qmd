@@ -488,7 +488,7 @@ $$P_{\text{final}}(\text{state})=\frac{P_{\text{raw}}(\text{state})}{\sum _{j\in
 
 This guarantees that the final array of weights for Low, Moderate, and High satisfies the fundamental probability axiom: $\sum _{j\in \text{States}}P_{\text{final}}(j)=1.00$
 
-The resulting vector is ready for the sample() function to execute a weighted random draw for that row.
+The resulting vector is ready for the `sample()` function to execute a weighted random draw for that row.
 
 ### Data Generator Code
 
@@ -1134,7 +1134,7 @@ fitted_bn <- bn.fit(
 ```
 
 
-This next code show how to directly query the model. For example: What is the overall community risk  when Scale is hyperscale?
+This next code show how to directly query the model. For example: What is the probality that overall community risk is "High" when Scale is hyperscale?
 
 ```{r}
 #| message: false
@@ -1150,6 +1150,22 @@ query <- cpquery(
 query
 
 ```
+
+Or, what is the probability that Quality of Life Risk when Distance = Adjacent?
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: true
+#| code-summary: "Show the code"
+cpquery(
+  fitted_bn,
+  event = (QualityOfLifeRisk == "High"),
+  evidence = (Distance == "Adjacent")
+)
+```
+
+
 
 Next we use the `bnlearn` predict function to bootstrap predictions of risk for each of the three risk states, "Low", "Medium", and "High", over which probabilitiy distributions are computed for each node. The function call uses the default method method of prediction, "parents", which computes the predicted values by "plugging in the new values for the parents
 of  node in the local probability distribution of node extracted from fitted."
@@ -1921,8 +1937,7 @@ We human beings are notoriously bad at intuitively arriving at the correct logic
 
 ## Next Steps
 
-I a follow up post, I hope to be able to provide and example of the inverse Bayesian Network problem of finding settings of the root risk factors such the value of Overall Community Risk hits a target risk score.
-
+I a follow up post, I hope to be able to provide more examples of additional inferences than can be made with this model.
 
 ## Appendix A: Counting Tables
 
