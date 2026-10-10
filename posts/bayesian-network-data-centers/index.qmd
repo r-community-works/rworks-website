@@ -1133,8 +1133,9 @@ fitted_bn <- bn.fit(
 
 ```
 
+### Query the Model
 
-This next code show how to directly query the model. For example: What is the probality that overall community risk is "High" when Scale is hyperscale?
+This next code show how to directly query the model. For example: What is the probability that overall community risk is "High" when Scale is hyperscale?
 
 ```{r}
 #| message: false
