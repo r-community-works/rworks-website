@@ -1107,9 +1107,9 @@ ggplot(
 
 So far, we have only been working with the raw synthetic data, evaluating the estimates of risk which were put into the model. We have not yet fit the Bayesian Network to the data. Fitting the data enables:
 
-* Estimating the conditional probability tables from the synthetic data
-* Making predictions
 * Making Bayesian Network inferences
+* Making predictions
+* Estimating the conditional probability tables from the synthetic data
 
 Note that the method "bayes" used in the fit function means that the network is fit using "the classic Bayesian posterior estimator with a uniform prior matching that in the Bayesian Dirichlet equivalent ("bde") score.#
 
@@ -1129,7 +1129,7 @@ fitted_bn <- bn.fit(
   iss = 10
 )
 
-## Inspect Overall Community Risk, or any other node directly from the object
+
 
 ```
 
@@ -1142,6 +1142,8 @@ This next code show how to directly query the model. For example: What is the pr
 #| warning: false
 #| code-fold: true
 #| code-summary: "Show the code"
+
+## Inspect Overall Community Risk, or any other node directly from the object
 query <- cpquery(
   fitted_bn,
   event = (OverallCommunityRisk == "High"),
@@ -1159,6 +1161,7 @@ Or, what is the probability that Quality of Life Risk when Distance = Adjacent?
 #| warning: false
 #| code-fold: true
 #| code-summary: "Show the code"
+#| 
 cpquery(
   fitted_bn,
   event = (QualityOfLifeRisk == "High"),
@@ -1166,7 +1169,7 @@ cpquery(
 )
 ```
 
-
+### Make Predictions
 
 Next we use the `bnlearn` predict function to bootstrap predictions of risk for each of the three risk states, "Low", "Medium", and "High", over which probabilitiy distributions are computed for each node. The function call uses the default method method of prediction, "parents", which computes the predicted values by "plugging in the new values for the parents
 of  node in the local probability distribution of node extracted from fitted."
