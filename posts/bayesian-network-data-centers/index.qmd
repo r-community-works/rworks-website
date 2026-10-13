@@ -5,7 +5,7 @@ author: "Joseph Rickert"
 date: "2026-10-19"
 code-fold: true
 code-summary: "Show the code"
-description: "This post presents a template for constructing  Bayesian Network models to explore the risks that data centers pose to a community. It contains a DAG and a synthetic data generator which can be modified to suit a particular community. THe DAG contains both nodes that are thought to cause risks to the community as well as nodes that quantify various kinds of risk."
+description: "This post presents a template for constructing  Bayesian Network models to explore the risks that data centers pose to a community. It contains a DAG and a synthetic data generator which can be modified to suit a particular community. The DAG contains both nodes that are thought to cause risks to the community as well as nodes that quantify various kinds of risk."
 categories: ""
 image: "dag.png"
 image-alt: "Acyclic graph: DAG "
@@ -427,7 +427,7 @@ node_statistics <- data.frame(
 
 ## Synthetic Data
 
-This code implements a custom structural risk-propagation simulator to generate synthetic data based on a Directed Acyclic Graph (DAG), estimates for the discrete probability distributions foverning the root nodes and influencer nodes, estimates of initial risk scores. Instead of relying on traditional Conditional Probability Tables this architecture utilizes a continuous, score-based risk-mapping framework.
+This code implements a custom structural risk-propagation simulator to generate synthetic data based on a Directed Acyclic Graph (DAG), estimates for the discrete probability distributions governing the root nodes and influencer nodes, estimates of initial risk scores. Instead of relying on traditional Conditional Probability Tables this architecture utilizes a continuous, score-based risk-mapping framework.
 The simulation engine evaluates the nodes observation-by-observation in a strict topological ordering (parents before children). For each node, it calculates a localized Target Risk Score bounded between 0 and 1 (where 0 represents lowest risk/exposure and 1 represents highest). It then converts this target risk into discrete state probabilities using an exponential distance formula. This allows the network to linearly model highly complex, multi-parent conditional relationships.
 
 ### Structure of the Data Generator
@@ -1111,7 +1111,7 @@ So far, we have only been working with the raw synthetic data, evaluating the es
 * Making predictions
 * Estimating the conditional probability tables from the synthetic data
 
-Note that the method "bayes" used in the fit function means that the network is fit using "the classic Bayesian posterior estimator with a uniform prior matching that in the Bayesian Dirichlet equivalent ("bde") score.#
+Note that the method "bayes" used in the fit function means that the network is fit using "the classic Bayesian posterior estimator with a uniform prior matching that in the Bayesian Dirichlet equivalent ("bde") score.
 
 ```{r}
 #| message: false
@@ -1171,7 +1171,7 @@ cpquery(
 
 ### Make Predictions
 
-Next we use the `bnlearn` predict function to bootstrap predictions of risk for each of the three risk states, "Low", "Medium", and "High", over which probabilitiy distributions are computed for each node. The function call uses the default method method of prediction, "parents", which computes the predicted values by "plugging in the new values for the parents
+Next we use the `bnlearn` predict function to bootstrap predictions of risk for each of the three risk states, "Low", "Medium", and "High", over which probability distributions are computed for each node. The function call uses the default method method of prediction, "parents", which computes the predicted values by "plugging in the new values for the parents
 of  node in the local probability distribution of node extracted from fitted."
 ```{r}
 #| message: false
@@ -2009,7 +2009,7 @@ Altogether, the this model produces a total of `{r} tot_tables ` tables.
 
 ## Appendix B: The Laplacian Radial Kernel
 
-This code plots the exponential RFB kernel used to set risk for derived, non-root nodes in the algorithm to generate synthetic data. 
+This code plots the exponential RBF kernel used to set risk for derived, non-root nodes in the algorithm to generate synthetic data. 
 
 $$P_{\text{raw}}(\text{state}) = e^{-c \cdot \vert{}\text{State Score} - \text{Target Risk}\vert{}}$$
 across our three standard derived states (Low = 0.15, Moderate = 0.50, High = 0.85). It dynamically plots how the final normalized probabilities shift as the calculated Target Risk moves from 0.00 to 1.00.
@@ -2119,13 +2119,13 @@ Nuance/Counter-Perspective: A working paper
 * The Brookings Institute report [New evidence on data center employment effects](https://www.brookings.edu/articles/new-evidence-on-data-center-employment-effects/) claims that wages are unaffected by data center builds while home prices rise 2%-5%.
 
 
-#### Noise and Air Quality and Environmental Polution
+#### Noise and Air Quality and Environmental Pollution
 
 * [An investigative report](https://www.theguardian.com/us-news/2026/sep/27/datacenter-developers-us-pollution-rules) by The Guardian exposed instances where tech developers skirted stringent clean air regulations by splitting massive facility configurations into multiple "minor" emission sources on paper to fast-track permitting. 
 
 * The IEEE Report [We Need to Talk About AI’s Impact on Public Health Data-center pollution is linked to asthma, heart attacks, and more](https://spectrum.ieee.org/data-centers-pollution) outlines a number of way that data centers adversely affect public health. For example, data center backup generators run on diesel fuel and emit 200 to 600 times more nitrogen oxides than an equivalent natural gas power plant. 
 
-* The the December 2024 report issued by the Virginia Joint Legislative Audit and Review Commission (JLARC), [Data Centers in Virginia (Report 598)](https://jlarc.virginia.gov/pdfs/reports/Rpt598.pdf) found that:
+* The December 2024 report issued by the Virginia Joint Legislative Audit and Review Commission (JLARC), [Data Centers in Virginia (Report 598)](https://jlarc.virginia.gov/pdfs/reports/Rpt598.pdf) found that:
   *  about one-third of operational data center properties in Virginia sit within 200 feet of residential zoned properties. 
   *  data centers emit a continuous, low-frequency hum generated by around-the-clock cooling infrastructure, HVAC systems, and mechanical fans. Because low-frequency sound waves travel further and penetrate residential structures more efficiently than higher-frequency sounds, they frequently trigger complaints regarding well-being and disrupted sleep patterns from nearby families
 
