@@ -43,7 +43,7 @@ ZZZZZ new packages were submitted to CRAN in September. Here are my Top 40 picks
 
 ### Computational Methods
 
-[koopman.dmd](https://cran.r-project.org/package=koopman.dmd) v0.2.2: Implements Dynamic Mode Decomposition (DMD) with Koopman operator theory extensions, powered by a Rust backend via `extendr`; standard DMD as described in [Schmid (2010)](doi:10.1017/S0022112010001217), DMD with control for forced linear systems following [Proctor, Brunton, and Kutz (2016)](doi:10.1137/15M1013857; and Extended DMD with lifting functions, Hankel-DMD via time-delay embedding, Generalized Laplace Analysis for direct eigenfunction computation, and harmonic time averages and mesochronic harmonic plots for phase space analysis as developed in [Mezic (2020)](doi:10.48550/arXiv.2009.05883). See the [vignette](https://cran.r-project.org/web/packages/koopman.dmd/vignettes/koopman-dmd.html).
+[koopman.dmd](https://cran.r-project.org/package=koopman.dmd) v0.2.2: Implements Dynamic Mode Decomposition (DMD) with Koopman operator theory extensions, powered by a Rust backend via `extendr`; standard DMD as described in [Schmid (2010)](doi:10.1017/S0022112010001217), DMD with control for forced linear systems following [Proctor, Brunton, and Kutz (2016)](doi:10.1137/15M1013857); and Extended DMD with lifting functions, Hankel-DMD via time-delay embedding, Generalized Laplace Analysis for direct eigenfunction computation, and harmonic time averages and mesochronic harmonic plots for phase space analysis as developed in [Mezic (2020)](doi:10.48550/arXiv.2009.05883). See the [vignette](https://cran.r-project.org/web/packages/koopman.dmd/vignettes/koopman-dmd.html).
 
 [RcppTrust](https://cran.r-project.org/package=RcppTrust) v0.1.0: Implements functions for local optimization using derivatives and trust regions which are guaranteed to converge to a local minimum of the objective function. This is a thread-safe `C++` port of the algorithm in the `trust` package exposed both as a drop-in `R` function and as a `C`-callable, thread-safe entry point in a manner so it can be used from parallel `C++` code such as in `nlmixr2est`. See the [vignette](https://cran.r-project.org/web/packages/trust/vignettes/trust.pdf).
 
@@ -52,6 +52,21 @@ ZZZZZ new packages were submitted to CRAN in September. Here are my Top 40 picks
 [WSwavelet](https://cran.r-project.org/package=WSwavelet) v0.1.0: Implements Bayesian wavelet denoising using a resolution-adaptive spike-and-slab prior whose continuous slab is a mixture of a compactly supported Wendland-type density and the semicircle density. Provides Gaussian and Laplace working-likelihood versions, empirical-Bayes fitting of resolution-specific slab weights, robust noise-scale estimation, posterior-mean coefficient shrinkage, reconstruction by the inverse discrete wavelet transform, and diagnostic tools. See the [vignette](https://cran.r-project.org/web/packages/WSwavelet/vignettes/WSwavelet_vignette.pdf).
 
 ![](WSwavelet.png){fig-alt="Gaussian Resconstruction of a Signal"}
+
+### Ecology
+
+[acousticTS](https://cran.r-project.org/package=acousticTS) v2.0.8: Acoustic target strength (TS) represents the intensity of an echo returning from an individual scatterer such as bubbles, fish, or zooplankton. TS can be used to convert integrated or volumetric backscatter collected from fisheries acoustic surveys into units of number density (e.g. animals per m^3), abundance (e.g. number of animals), and biomass (e.g. kg). This parameter can also be used to aid in classifying backscatter, such as separating likely echoes of large predatory fish (e.g. adult cod) from smaller prey (e.g. shrimp). Applications are described by [Lucca et al. (2023)](doi:10.1121/10.0022459), with fisheries-acoustics principles from [Simmonds and MacLennan (2005)](doi:10.1002/9780470995303). See the [vignette](https://cran.r-project.org/web/packages/acousticTS/vignettes/boundary_conditions.html).
+
+
+[SAMPLE](https://cran.r-project.org/package=SAMPLE) v1.0.1: Estimates the sampling effort needed to obtain stable species occurrence and prevalence rates from presence-absence data. The method repeatedly subsamples observations, evaluates changes in estimated rates, and reports the minimum stable sample size. For methodological details, see [Bravo et al. (2025)](doi:10.1002/ece3.70998). Look [here](https://github.com/yacinebenchehida/SAMPLE) to get started.
+
+![](SAMPLE.png){fig-alt="Plots showing how prefalence rate increases with sampling"}
+
+### Economics
+
+[PricingBandits](https://cran.r-project.org/package=PricingBandits) v2.1.0: Implements multi-armed bandit approaches for pricing experiments with an unknown demand curve, as developed in [Weaver, Kumar, and Jain (2025)](doi:10.1287/mksc.2022.0247). Includes Upper Confidence Bound and Thompson Sampling  baselines, Gaussian process variants, monotonic Gaussian process variants that constrain demand to be weakly decreasing in price, and heterogeneous-noise extensions. The willingness-to-pay distribution is fully user-specified via a vector of consumer valuations, so any demand environment can be simulated or replayed. See the [vignette](https://cran.r-project.org/web/packages/PricingBandits/vignettes/pricingbandits-intro.html).
+
+![](PricingBandits.png){fig-alt="Plots of cumulative revenus vs Consumers"}
 
 
 
