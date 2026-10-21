@@ -20,6 +20,7 @@ ZZZZZ new packages were submitted to CRAN in September. Here are my Top 40 picks
 
 ### Agriculture
 
+
 [HRRI](https://cran.r-project.org/package=HRRI) v1.0.9: Provides diagnostic functions for integrating longitudinal soil, plant and microbial observations during redox disturbance and recovery. Functions calculate stoichiometric potential oxygen demand, accessible electron capacity from explicitly supplied inventories and kinetic parameters, recovery signatures, fixed-reference domain scores, and exploratory multiblock scores with observation-coverage diagnostics. For background and methods see [Sander, Hofstetter and Gorski (2015)](doi:10.1021/acs.est.5b00006), [Kluepfel et al. (2014)](https://doi.org/10.1038%2Fngeo2084), and [Thompson et al. (2006)](https://doi.org/10.1016/j.gca.2005.12.005). There are three vignettes including [HRRI: Reading the Figures — A Worked Example](https://cran.r-project.org/web/packages/HRRI/vignettes/HRRI_gallery.html) and [HRRI: Reproduce All Six Paper Figures in R](https://cran.r-project.org/web/packages/HRRI/vignettes/HRRI_paper_figures.html).
 
 ![](HERRI.png){fig-alt="Plots showing identifiability, sensitivity and accounting"}
@@ -69,6 +70,11 @@ ZZZZZ new packages were submitted to CRAN in September. Here are my Top 40 picks
 ![](PricingBandits.png){fig-alt="Plots of cumulative revenus vs Consumers"}
 ### Epidemiology
 
+[ambre](https://cran.r-project.org/package=ambre) v2.1.2: Provides a Quantitative Microbial Risk Assessment framework for the reuse of treated wastewater in agricultural irrigation. Following a multi-barrier approach, the package simulates pathogen inflow and removal along a treatment train, estimates human exposure, and computes health risk indicators such as infection probability, illness probability, and Disability-Adjusted Life Years. It also supports an economic analysis of the treatment scenarios considered. For more details see [Thomas et al. (2024)](doi:10.36904/20240595). There are eight vignettes including [Get started](https://cran.r-project.org/web/packages/ambre/vignettes/a-get-started.html) and [Interpreting risk against the WHO target](https://cran.r-project.org/web/packages/ambre/vignettes/d-interpreting-risk.html)
+
+![](ambre.png){fig-alt="Plots of exposure distributions"}
+
+
 [tbl.now](https://cran.r-project.org/package=tbl.now) v1.2.0: Defines tidy data structures and package-agnostic workflows for epidemiological nowcasting. The `tbl_now` class records event, report, and revision dates alongside strata, covariates tagged by model component, censoring, and reporting-delay metadata while remaining compatible with `dplyr`. Tools support validation, manipulation, diagnostics, visualization, format conversion, retrospective evaluation, and multiple modelling engines. See the [vignette](https://cran.r-project.org/web/packages/tbl.now/vignettes/tbl.now.html).
 
 ![](tblnow.png){fig-alt="Automatic effects plots"}
@@ -108,6 +114,12 @@ ZZZZZ new packages were submitted to CRAN in September. Here are my Top 40 picks
 
 ### Networks
 
+[nethist](https://cran.r-project.org/package=nethist) v1.0.0: Estimates network histograms, a blockmodel approximation to the graphon underlying a network's connectivity pattern, for both single-layer and multilayer networks. Implements graphon estimation methods including the profile-likelihood method of [Olhede and Wolfe (2014)](oi:10.1073/pnas.1400374111) and the least-squares method of [Gao, Lu, and Zhou (2015)](doi:10.1214/15-AOS1354) for single-layer networks, and the multilayer extension of [Song and Olhede (2026)](doi:10.48550/arXiv.2608.14536). See the [vignette](https://cran.r-project.org/web/packages/nethist/vignettes/example.html).
+
+![](nethist.png){fig-alt="Violin plots summarizing network topology"}
+
+
+
 :::
 
 ::: {.column width="10%"}
@@ -116,6 +128,33 @@ ZZZZZ new packages were submitted to CRAN in September. Here are my Top 40 picks
 
 ::: {.column width="45%"}
 
+
+### Phylogenetics
+
+[ConsTree](https://cran.r-project.org/package=ConsTree) v1.0.0: Efficient construction of phylogenetic consensus trees. Methods include strict, majority-rule, majority-rule (+), loose (combinable component / semi-strict), greedy, Adams, frequency difference, R*, and local consensus. See the [vignette](https://cran.r-project.org/web/packages/ConsTree/vignettes/ConsTree.html).
+
+![](ConsTree.png){fig-alt="Plots of consensus trees"}
+
+### Statistics
+
+[FitVerse](https://cran.r-project.org/package=FitVerse) v1.0-2: Provides a unified interface for fitting parametric probability distributions to continuous univariate data that supports 52 distribution families spanning symmetric, right-skewed, heavy-tailed, bounded, and extreme-value shapes distributions, and three estimation methods. Automatic best-fit selection is performed using multiple criteria and tests. Includes publication-quality diagnostic plot,  histogram overlaid with density curves and optional interactive plots via `plotly`. Additional tools include bootstrap confidence intervals for parameter estimates and return levels, batch fitting across multiple columns and more. Functions support data characterisation in survey sampling, hydrology, and actuarial workflows. See [Hosking (1990)](doi:10.1111/j.2517-6161.1990.tb01775.x) for background and the [vignette](https://cran.r-project.org/web/packages/FitVerse/vignettes/fitverse-introduction.html) for examples.
+
+![](FitVerse.png){fig-alt="Plot of gitted Gumbell distribution fitted via MLE"}
+
+
+[HDElliptical](https://cran.r-project.org/package=HDElliptical) v0.1.3: Provides fast, documented implementations of robust estimation, testing, dimension reduction, classification, and clustering methods for high-dimensional elliptically symmetric data. Computational kernels use `Rcpp` and `RcppArmadillo`. The package follows methods reviewed in [Feng (2026)](https://github.com/flnankai/HDElliptical/releases). See the vignettes [Robust Directional Foundations](https://cran.r-project.org/web/packages/HDElliptical/vignettes/chapter-1-foundations.html) and [Location Tests](https://cran.r-project.org/web/packages/HDElliptical/vignettes/chapter-2-location-tests.html).
+
+[iop](https://cran.r-project.org/package=iop) v0.1.0: Provides estimation, inference, and quantities of interest for ordered probit and ordered logit models whose outcome contains an inflated category: a single ordered category that mixes observations generated by the ordered process with observations generated by a distinct split-population process. Fits the zero-inflated ordered probit of [Harris and Zhao (2007)](doi:10.1016/j.jeconom.2007.01.002) and its middle- and top-inflated extensions (See for example [Bagozzi, Joo and Mukherjee (2024)](doi:10.1093/fpa/orae006). Also provides analytic, robust, and cluster-robust standard errors, survey weights and offsets, model comparison, regime-specific predicted probabilities and first differences and additional features. There are four vignettes including [Getting started](https://cran.r-project.org/web/packages/iop/vignettes/iop.html) and [The model, identification, and estimation](https://cran.r-project.org/web/packages/iop/vignettes/model.html).
+
+
+
+[spfcICOMP](https://cran.r-project.org/package=spfcICOMP) v0.1.0: Implements shrinkage principal fitted components for sufficient dimension reduction in high-dimensional regression and classification. Provides regularised covariance estimation using Oracle Approximating Shrinkage and Maximum Entropy Covariance, structural-dimension selection using conventional and information-complexity criteria, response-guided feature screening, reduced-space prediction, and simulation utilities. Methodological foundations include [Cook and Forzani (2008)](doi:10.1214/08-STS275), [Chen et al. (2010)](doi:10.1109/TSP.2010.2053029), [Bozdogan (2000)](doi:10.1006/jmps.1999.1277), and [Olorede and Yahya (2019)](doi:10.48550/arXiv.1909.13017). See the [vignette](https://cran.r-project.org/web/packages/spfcICOMP/vignettes/getting-started.html).
+
+
+
+[sptrends](https://cran.r-project.org/package=sptrends) 1.6.3: Provides a unified and reproducible framework for statistical inference of spatiotemporal trends in gridded environmental data that addresses the interconnected challenges of serial correlation, spatial dependence and multiple testing that commonly arise when analysing gridded environmental time series. Core methods support serial-correlation treatment through trend-preserving prewhitening, pixel-wise and spatially explicit trend inference, slope estimation and multiple-testing correction. Dedicated workflows reproduce published methodologies, for example [Gutiérrez-Hernández and García (2025)](doi:10.1016/j.rsase.2024.101377) for True Significant Trends workflow and [Gutiérrez-Hernández and García (2024)](doi:10.3390/rs16203886) for Robust Trend Analysis workflow. Supporting utilities facilitate raster data import and inspection, anomaly calculation, spatial autocorrelation diagnostics, and more. There are six vignettes including: [Dealing with serial correlation](https://cran.r-project.org/web/packages/sptrends/vignettes/b-prewhitening.html) and [Trend magnitude estimation](https://cran.r-project.org/web/packages/sptrends/vignettes/d-slope-estimation.html).
+
+![](sptrends.png){fig-alt="Plot indicating serial correlation"}
 
 End
 
