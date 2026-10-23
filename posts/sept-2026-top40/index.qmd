@@ -137,6 +137,10 @@ ZZZZZ new packages were submitted to CRAN in September. Here are my Top 40 picks
 
 ### Statistics
 
+[attrition](https://cran.r-project.org/package=attrition) v1.0.0: Implements the double-sampling bounds estimator of [Coppock et al.(2017)](doi:10.1017/pan.2016.6) for randomized experiments with nonignorable missing outcomes. Provides worst-case (Manski) bounds, double-sampling bounds with analytic variance and Imbens-Manski confidence intervals, [Lee (2009)](doi:10.1111/j.1467-937X.2009.00536.x) trimming bounds with analytic and bootstrap standard errors, covariate adjustment via poststratification, and a sensitivity analysis for violations of the outcome stability assumption. See the [vignette](https://cran.r-project.org/web/packages/attrition/vignettes/attrition.html).
+
+![](attrition.png){fig-alt="Visualization of Bounds"}
+
 [FitVerse](https://cran.r-project.org/package=FitVerse) v1.0-2: Provides a unified interface for fitting parametric probability distributions to continuous univariate data that supports 52 distribution families spanning symmetric, right-skewed, heavy-tailed, bounded, and extreme-value shapes distributions, and three estimation methods. Automatic best-fit selection is performed using multiple criteria and tests. Includes publication-quality diagnostic plot,  histogram overlaid with density curves and optional interactive plots via `plotly`. Additional tools include bootstrap confidence intervals for parameter estimates and return levels, batch fitting across multiple columns and more. Functions support data characterisation in survey sampling, hydrology, and actuarial workflows. See [Hosking (1990)](doi:10.1111/j.2517-6161.1990.tb01775.x) for background and the [vignette](https://cran.r-project.org/web/packages/FitVerse/vignettes/fitverse-introduction.html) for examples.
 
 ![](FitVerse.png){fig-alt="Plot of gitted Gumbell distribution fitted via MLE"}
@@ -166,7 +170,9 @@ ZZZZZ new packages were submitted to CRAN in September. Here are my Top 40 picks
 [ZINB.GP](https://cran.r-project.org/package=ZINB.GP) v1.0.0: Fits Bayesian zero-inflated negative binomial regression models with Gaussian process random effects for spatial, temporal, or spatiotemporal count data. Provides Markov chain Monte Carlo sampling, configurable random effects in the zero-inflation and count components, and posterior predictive draws. Implements a full GP version of the methods described by [He and Huang (2024)](doi:10.1016/j.jspi.2023.106098). See the vignettes [Oregon Landslides](https://cran.r-project.org/web/packages/ZINB.GP/vignettes/oregon-landslides.html) and [Simulating and Fitting a Spatiotemporal ZINB-GP Model](https://cran.r-project.org/web/packages/ZINB.GP/vignettes/simulating-zinb-gp.html).
 
 ![](ZINBGP.png){fig-alt="Plots of At-Risk and Coditional spatial effects"}
+### Surveys
 
+[risq](https://cran.r-project.org/package=risq) v3.0.1: Calculate representativity indicators for survey quality based on survey data and response models. Use partial indicators to analyse the impact of individual variables and categories. Monitor changes in representativity during data collection. Improve representativity through adaptive survey design. Supports both R-indicators and coefficients of variation. See [Schouten, Cobben, Bethlehem (2009)](https://api.semanticscholar.org/CorpusID:33654901), [Shlomo, Skinner, Schouten (2012)](doi:10.1016/j.jspi.2011.07.008) and [Schouten, Shlomo (2017)](doi:10.1111/insr.12159). There are two vignettes: [Introduction](https://cran.r-project.org/web/packages/risq/vignettes/introduction.html) and [Theory](https://cran.r-project.org/web/packages/risq/vignettes/theory.pdf).
 
 End
 
