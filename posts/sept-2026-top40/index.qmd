@@ -174,8 +174,27 @@ ZZZZZ new packages were submitted to CRAN in September. Here are my Top 40 picks
 
 [risq](https://cran.r-project.org/package=risq) v3.0.1: Calculate representativity indicators for survey quality based on survey data and response models. Use partial indicators to analyse the impact of individual variables and categories. Monitor changes in representativity during data collection. Improve representativity through adaptive survey design. Supports both R-indicators and coefficients of variation. See [Schouten, Cobben, Bethlehem (2009)](https://api.semanticscholar.org/CorpusID:33654901), [Shlomo, Skinner, Schouten (2012)](doi:10.1016/j.jspi.2011.07.008) and [Schouten, Shlomo (2017)](doi:10.1111/insr.12159). There are two vignettes: [Introduction](https://cran.r-project.org/web/packages/risq/vignettes/introduction.html) and [Theory](https://cran.r-project.org/web/packages/risq/vignettes/theory.pdf).
 
-End
 
+### Utilities
+
+[dplyneage](https://cran.r-project.org/package=dplyneage) v0.3.1: Implements column lineage visualizations using `React Flow` for`'dplyr` and `dbplyr` pipelines. Provides a tidyverse-style interface for tracking data transformations through pipeline operations. There are two vignettes including [Getting Started with dplyneage](https://cran.r-project.org/web/packages/dplyneage/vignettes/getting-started.html) and [Building the React Flow Bundle](https://cran.r-project.org/web/packages/dplyneage/vignettes/building-reactflow.html).
+
+![](dplyneage.png){fig-alt="Diagram tracing outputs back to their sources"}
+
+
+
+[ducklake](https://cran.r-project.org/package=ducklake) v0.6.0: A `tidyverse`-friendly interface to [DuckLake](https://ducklake.select/), the `DuckDB` lakehouse format. Attach versioned data lakes from `R` and work with them using familiar `dplyr` verbs, with support for ACID transactions, time travel queries, snapshot audit trails, data inlining, encrypted storage, multiple catalog backends (`DuckDB`, `PostgreSQL`, `SQLite`, `MySQL`), and remote access over the 'Quack' protocol from `DuckDB`.  There are nine vignettes including [ducklake Cookbook
+](https://cran.r-project.org/web/packages/ducklake/vignettes/ducklake.html) and [Time Travel Queries](https://cran.r-project.org/web/packages/ducklake/vignettes/time-travel.html).
+
+
+
+
+[getaca](https://cran.r-project.org/package=getaca) v0.1.6: Provides functions to declare, retrieve, verify, track and actively manage external data dependencies too large or too fast-moving to ship inside a package. Resources are identified by package, name and version, pinned to a Secure Hash Algorithm (SHA-256) checksum, and resolved through an explicit policy so that the same installed package always resolves the same bytes. A registry served from a remote host may be signed with Ed25519 and verified against a key the declaring package ships, so the declaration and the key that vouches for it arrive by different routes. Designed for reproducible offline use and graceful behaviour during package checks. There are eight vignettes including [Quick Start](https://cran.r-project.org/web/packages/getaca/vignettes/quickstart.html) and [Policies and Channels](https://cran.r-project.org/web/packages/getaca/vignettes/policies.html).
+
+[icebergr](https://cran.r-project.org/package=icebergr) v0.2.0: Implements a  native client for `Apache Iceberg`, the open table format used by `Snowflake`, `Databricks`, `BigQuery`, `AWS` and `Dremio` that connects to `REST` and `AWS Glue` catalogs, lists namespaces and tables, reads the schema and partition specification of a table, scans data with predicates and projections pushed down, travels back through snapshot history, and appends new data. `Apache Arrow` is the interchange layer throughout. Ssee the [README](https://cran.r-project.org/web/packages/icebergr/readme/README.html) for the full matrix of supported and unsupported features. There are seven vignettes including [Getting Started](https://cran.r-project.org/web/packages/icebergr/vignettes/getting-started.html) and [What Iceberg Is, and What It Fixes
+](https://cran.r-project.org/web/packages/icebergr/vignettes/table-format.html).
+
+![](icebergr.png){fig-alt="icebergr data path"}
 
 
 :::
