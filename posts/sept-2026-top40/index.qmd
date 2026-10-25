@@ -155,6 +155,10 @@ ZZZZZ new packages were submitted to CRAN in September. Here are my Top 40 picks
 
 ![](normalblockr.png){fig-alt="Plot of model selection criteria"}
 
+[mvdpd](https://cran.r-project.org/package=mvdpd) v0.1-1: Provides robust multivariate estimation based on multivariate, composite and componentwise Density Power Divergence minimization in multivariate normal distribution for casewise and cellwise contamination and robust estimation for multivariate ordered gamma model using multivariate and composite DPD minimization. See [Ghosh, Agostinelli, and Basu (20260](doi:10.48550/arXiv.2608.18914> for full details). See the vignettes [mvnormDPD examples](https://cran.r-project.org/web/packages/mvdpd/vignettes/mvnormDPD_examples.html) and [mvogammaDPD examples](https://cran.r-project.org/web/packages/mvdpd/vignettes/twocenturies50_example.html).
+
+![](mvdpd.svg){fig-alt="Boxplot comparisons"}
+
 [pmsims](https:/./cran.r-project.org/package=pmsims) v1.0.0: Provides a flexible, simulation-based toolkit for exploring how much data are needed to develop reliable prediction models. It works by repeatedly generating data, fitting models, and evaluating performance to show how sample size affects predictive accuracy, calibration, and overfitting. The package supports continuous, binary, and time-to-event outcomes and can be used with both regression-based modelling approaches and machine-learning methods. Methods are described in [Olaniran et al. (2026)](doi:10.1186/s12874-026-02935-9) and [Shamsutdinova et al. (2026)](doi:10.48550/arXiv.2602.23507). See the [vignette](https://cran.r-project.org/web/packages/pmsims/vignettes/pmsims.html).
 
 ![](pmsims.png){fig-alt="Package workflow diagram"}
@@ -196,6 +200,20 @@ ZZZZZ new packages were submitted to CRAN in September. Here are my Top 40 picks
 
 ![](icebergr.png){fig-alt="icebergr data path"}
 
+
+[pkgcheck](https://cran.r-project.org/package=pkgcheck) v0.3.4: Check whether a package is ready for submission to the [rOpenSci](doi:10.5281/zenodo.2553043) peer review system. Incorporates the 'goodpractice' package and many additional checks, including aspects related to maintenance of online public code repositories.  There are four vignettes including [Current checks](https://cran.r-project.org/web/packages/pkgcheck/vignettes/list-checks.html) and [Adding or modifying checks
+](https://cran.r-project.org/web/packages/pkgcheck/vignettes/extending-checks.html).
+
+### Visualization
+
+[ggCheysson](https://cran.r-project.org/package=ggCheysson) v1.1.0: Implements for `ggplot2` the stylistic elements (fonts, hatched patterns, color palettes) used by 'Emile Cheysson' in the *Albums de Statistique Graphique*, sometimes called the pinnacle of the Golden Age of Statistical Graphics. There are three vignettes including [Getting Started](https://cran.r-project.org/web/packages/ggCheysson/vignettes/getting-started.html) and [Mapping Guerry's Moral Statistics with Cheysson Palettes](https://cran.r-project.org/web/packages/ggCheysson/vignettes/guerry-maps.html).
+
+![](ggCheysson.png){fig-alt="Map of France showing Xheysson colors"}
+
+
+[ggmosaic2](https://cran.r-project.org/package=ggmosaic2) v0.5.1: Extends `ggplot2` framework by providing the geom `geom_mosaic`. Allows fitted loglinear models which can be used to show patterns of association among variables in frequency tables. There are four vignettes including [Introducing ggmosaic2](https://cran.r-project.org/web/packages/ggmosaic2/vignettes/introducing-ggmosaic2.html) and [Three Forms of Frequency Tables](https://cran.r-project.org/web/packages/ggmosaic2/vignettes/frequency-table-forms.html).
+
+![](ggmosaic2.png){fig-alt="Example of a mosaic plot"}
 
 :::
 
