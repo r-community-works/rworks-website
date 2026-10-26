@@ -2,17 +2,15 @@
 title: "Sept 2026 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
 date: 2026-10-29
-description: "The CRAN Top 40 is an attempt to sort through the massive amount of new packages submitted to CRAN every month and find forty, `quality` packages that demonstrate the broad use of the R language, and appeal to a wide audience of potential users. If you take the time to scan through the post, I hope you will find something interesting and maybe even useful."
-image: ""
-image-alt: ""
-categories: ""
+description: "Four hundred seventy new packages were submitted to CRAN in September. Here are my Top 40 picks in seventeen categories: Agriculture, Causal Inference, Climate Studies, Computational Methods, Ecology, Economics, Epidemiology, Genomics, Machine Learning, Medical Statistics, Meta-Analysis, Networks, Phylogenetics, Statistics, Surveys, Utilities, and Visualization. The CRAN Top 40 is an attempt to sort through the massive amount of new packages submitted to CRAN every month and find forty, interesting packages that demonstrate the broad use of the R language, and appeal to a wide audience of potential users. If you take the time to scan through the post, I hope you will find something interesting and maybe even useful."
+image: "ggCheysson.png"
+image-alt: "Map of France iwht Cheysson colors"
+categories: "Top 40"
 editor: source
 format: html
 ---
 
-ZZZZZ new packages were submitted to CRAN in September. Here are my Top 40 picks in nineteen categories: Agriculture, Artificial Intelligence, Climate Studies, Computational Methods, Ecology, Epidemiology, Genomics, Machine Learning, Medical Statistics, Meta-Analysis, Networks, Process control, Programming, Public Transit, Statistics, Surveys, Time Series, Utilities, and Visualization.
 
-![](.png){fig-alt=""}
 
 :::: {.columns}
 
@@ -32,13 +30,13 @@ ZZZZZ new packages were submitted to CRAN in September. Here are my Top 40 picks
 
 ### Causal Inference
 
-[phdid](https://cran.r-project.org/package=phdid) v0.1.0: In staggered difference-in-differences designs the treatment effect is a vector of cohort-time effects. Estimating each separately is unbiased but imprecise when some are equal, while pooling them all is precise but biased under genuine heterogeneity. This package treats the choice as a partition-selection problem on the cohort-time cells and provides two estimators: a Dirichlet process mixture fitted by a collapsed Gibbs sampler and an *L0*-penalised estimator that returns a single partition. Methods are described in [Arora and Wagle (2026)](doi:10.2139/ssrn.7207083). There are two vignettes [Minimum wages and teen employment: recovering partial homogeneity](https://cran.r-project.org/web/packages/phdid/vignettes/mpdta.html) and [When partial homogeneity helps, and when it does not](https://cran.r-project.org/web/packages/phdid/vignettes/simulation.html).
+[phdid](https://cran.r-project.org/package=phdid) v0.1.0: In staggered difference-in-differences designs the treatment effect is a vector of cohort-time effects. Estimating each separately is unbiased but imprecise when some are equal, while pooling them all is precise but biased under genuine heterogeneity. This package treats the choice as a partition-selection problem on the cohort-time cells and provides two estimators: a Dirichlet process mixture fitted by a collapsed Gibbs sampler and an *L0*-penalized estimator that returns a single partition. Methods are described in [Arora and Wagle (2026)](doi:10.2139/ssrn.7207083). There are two vignettes [Minimum wages and teen employment: recovering partial homogeneity](https://cran.r-project.org/web/packages/phdid/vignettes/mpdta.html) and [When partial homogeneity helps, and when it does not](https://cran.r-project.org/web/packages/phdid/vignettes/simulation.html).
 
 ![](phdid.png){fig-alt="Plot of cohort effects"}
 
 ### Climate Studies
 
-[xaci](https://cran.r-project.org/package=xaci) v0.1.0: Computes the Actuarial Climate Index (ACI) and its components (temperature, precipitation, drought, wind, sea level) from gridded climate data ('NetCDF') and tide gauge records. Implements the methodology described in [Garrido, Milhaud & Olympio (2025)](https://hal.science/hal-04491982v2) for a French/European actuarial climate index, building on the American Academy of Actuaries framework, to any country in the world. There are seven vignettes ncluding [Get Started](https://cran.r-project.org/web/packages/xaci/vignettes/xaci-intro.html) and [Visualizing ACI Results](https://cran.r-project.org/web/packages/xaci/vignettes/xaci-visualization.html).
+[xaci](https://cran.r-project.org/package=xaci) v0.1.0: Computes the Actuarial Climate Index (ACI) and its components (temperature, precipitation, drought, wind, sea level) from gridded climate data ('NetCDF') and tide gauge records. Implements the methodology described in [Garrido, Milhaud & Olympio (2025)](https://hal.science/hal-04491982v2) for a French/European actuarial climate index, building on the American Academy of Actuaries framework, to any country in the world. There are seven vignettes including [Get Started](https://cran.r-project.org/web/packages/xaci/vignettes/xaci-intro.html) and [Visualizing ACI Results](https://cran.r-project.org/web/packages/xaci/vignettes/xaci-visualization.html).
 
 ![](xaci.png){fig-alt="ACI Summary Dashboard"}
 
@@ -56,18 +54,26 @@ ZZZZZ new packages were submitted to CRAN in September. Here are my Top 40 picks
 
 ### Ecology
 
-[acousticTS](https://cran.r-project.org/package=acousticTS) v2.0.8: Acoustic target strength (TS) represents the intensity of an echo returning from an individual scatterer such as bubbles, fish, or zooplankton. TS can be used to convert integrated or volumetric backscatter collected from fisheries acoustic surveys into units of number density (e.g. animals per m^3), abundance (e.g. number of animals), and biomass (e.g. kg). This parameter can also be used to aid in classifying backscatter, such as separating likely echoes of large predatory fish (e.g. adult cod) from smaller prey (e.g. shrimp). Applications are described by [Lucca et al. (2023)](doi:10.1121/10.0022459), with fisheries-acoustics principles from [Simmonds and MacLennan (2005)](doi:10.1002/9780470995303). See the [vignette](https://cran.r-project.org/web/packages/acousticTS/vignettes/boundary_conditions.html).
+[acousticTS](https://cran.r-project.org/package=acousticTS) v2.0.8: Acoustic target strength (TS) represents the intensity of an echo returning from an individual scatterer such as bubbles, fish, or zooplankton. TS can be used to convert integrated or volumetric backscatter collected from fisheries acoustic surveys into units of number density (e.g. animals per $m^3$), abundance (e.g. number of animals), and biomass (e.g. kg). This parameter can also be used to aid in classifying backscatter, such as separating likely echoes of large predatory fish (e.g. adult cod) from smaller prey (e.g. shrimp). Applications are described by [Lucca et al. (2023)](doi:10.1121/10.0022459), with fisheries-acoustics principles from [Simmonds and MacLennan (2005)](doi:10.1002/9780470995303). See the [vignette](https://cran.r-project.org/web/packages/acousticTS/vignettes/boundary_conditions.html).
 
 
 [SAMPLE](https://cran.r-project.org/package=SAMPLE) v1.0.1: Estimates the sampling effort needed to obtain stable species occurrence and prevalence rates from presence-absence data. The method repeatedly subsamples observations, evaluates changes in estimated rates, and reports the minimum stable sample size. For methodological details, see [Bravo et al. (2025)](doi:10.1002/ece3.70998). Look [here](https://github.com/yacinebenchehida/SAMPLE) to get started.
 
 ![](SAMPLE.png){fig-alt="Plots showing how prefalence rate increases with sampling"}
+[sptrends](https://cran.r-project.org/package=sptrends) 1.6.3: Provides a unified and reproducible framework for statistical inference of spatiotemporal trends in gridded environmental data that addresses the interconnected challenges of serial correlation, spatial dependence and multiple testing that commonly arise when analyzing gridded environmental time series. Core methods support serial-correlation treatment through trend-preserving prewhitening, pixel-wise and spatially explicit trend inference, slope estimation and multiple-testing correction. Dedicated workflows reproduce published methodologies, for example [Gutiérrez-Hernández and García (2025)](doi:10.1016/j.rsase.2024.101377) for True Significant Trends workflow and [Gutiérrez-Hernández and García (2024)](doi:10.3390/rs16203886) for Robust Trend Analysis workflow. Supporting utilities facilitate raster data import and inspection, anomaly calculation, spatial autocorrelation diagnostics, and more. There are six vignettes including: [Dealing with serial correlation](https://cran.r-project.org/web/packages/sptrends/vignettes/b-prewhitening.html) and [Trend magnitude estimation](https://cran.r-project.org/web/packages/sptrends/vignettes/d-slope-estimation.html).
+
+![](sptrends.png){fig-alt="Plot indicating serial correlation"}
+
+
 
 ### Economics
 
 [PricingBandits](https://cran.r-project.org/package=PricingBandits) v2.1.0: Implements multi-armed bandit approaches for pricing experiments with an unknown demand curve, as developed in [Weaver, Kumar, and Jain (2025)](doi:10.1287/mksc.2022.0247). Includes Upper Confidence Bound and Thompson Sampling  baselines, Gaussian process variants, monotonic Gaussian process variants that constrain demand to be weakly decreasing in price, and heterogeneous-noise extensions. The willingness-to-pay distribution is fully user-specified via a vector of consumer valuations, so any demand environment can be simulated or replayed. See the [vignette](https://cran.r-project.org/web/packages/PricingBandits/vignettes/pricingbandits-intro.html).
 
 ![](PricingBandits.png){fig-alt="Plots of cumulative revenus vs Consumers"}
+
+
+
 ### Epidemiology
 
 [ambre](https://cran.r-project.org/package=ambre) v2.1.2: Provides a Quantitative Microbial Risk Assessment framework for the reuse of treated wastewater in agricultural irrigation. Following a multi-barrier approach, the package simulates pathogen inflow and removal along a treatment train, estimates human exposure, and computes health risk indicators such as infection probability, illness probability, and Disability-Adjusted Life Years. It also supports an economic analysis of the treatment scenarios considered. For more details see [Thomas et al. (2024)](doi:10.36904/20240595). There are eight vignettes including [Get started](https://cran.r-project.org/web/packages/ambre/vignettes/a-get-started.html) and [Interpreting risk against the WHO target](https://cran.r-project.org/web/packages/ambre/vignettes/d-interpreting-risk.html)
@@ -105,12 +111,23 @@ ZZZZZ new packages were submitted to CRAN in September. Here are my Top 40 picks
 [rsmart](https://cran.r-project.org/package=rsmart) v0.1.0: Implements the interim augmented inverse probability weighted estimator for the value of treatment regimes embedded in sequential multiple assignment randomized trials. It subsumes both the inverse probability weighted estimator and the augmented inverse probability weighted estimator, enabling inference at interim and final analyses. Provides functions for value estimation, sandwich variance computation, group sequential stopping boundaries, and sample size determination for multi-stage SMARTs. See [Manschot, Laber, and Davidian (2023)](doi:10.1111/biom.13854) for additional details. There are four vignettes including [Getting Started](https://cran.r-project.org/web/packages/rsmart/vignettes/start-here.html) and [Full demo of IAIPWE](https://cran.r-project.org/web/packages/rsmart/vignettes/iaipwe.html).
 
 ![](rsmart.png){fig-alt="Diagram of SMART"}
+:::
 
-### MetaAnalysis
+::: {.column width="10%"}
 
-[metaGLMM](https://cran.r-project.org/package=metaGLMM) v1.0.0: Extends traditional random-effects meta-analysis by embedding it within a generalized linear mixed-effects model framework. The package supports covariate adjustment and non-normal responses using aggregate data, and provides likelihood-based inference with computationally efficient likelihood evaluation. The underlying methodology is described in [Hanada and Sugimoto (2026)](doi:10.1093/biomtc/ujag148). Thereare seven vignettes including [Getting started](https://cran.r-project.org/web/packages/metaGLMM/vignettes/getting-started.html) and [Prediction and forest plots](https://cran.r-project.org/web/packages/metaGLMM/vignettes/prediction-forest.html).
+:::
+
+::: {.column width="45%"}
+
+### Meta-analysis
+
+[metaGLMM](https://cran.r-project.org/package=metaGLMM) v1.0.0: Extends traditional random-effects meta-analysis by embedding it within a generalized linear mixed-effects model framework. The package supports covariate adjustment and non-normal responses using aggregate data, and provides likelihood-based inference with computationally efficient likelihood evaluation. The underlying methodology is described in [Hanada and Sugimoto (2026)](doi:10.1093/biomtc/ujag148). There are seven vignettes including [Getting started](https://cran.r-project.org/web/packages/metaGLMM/vignettes/getting-started.html) and [Prediction and forest plots](https://cran.r-project.org/web/packages/metaGLMM/vignettes/prediction-forest.html).
 
 ![](MetaGLMM.png){fig-alt="Forest plot showing effect size"}
+
+
+
+
 
 ### Networks
 
@@ -120,18 +137,11 @@ ZZZZZ new packages were submitted to CRAN in September. Here are my Top 40 picks
 
 
 
-:::
-
-::: {.column width="10%"}
-
-:::
-
-::: {.column width="45%"}
 
 
 ### Phylogenetics
 
-[ConsTree](https://cran.r-project.org/package=ConsTree) v1.0.0: Efficient construction of phylogenetic consensus trees. Methods include strict, majority-rule, majority-rule (+), loose (combinable component / semi-strict), greedy, Adams, frequency difference, R*, and local consensus. See the [vignette](https://cran.r-project.org/web/packages/ConsTree/vignettes/ConsTree.html).
+[ConsTree](https://cran.r-project.org/package=ConsTree) v1.0.0: Efficient construction of phylogenetic consensus trees. Methods include strict, majority-rule, majority-rule (+), loose (combinable component, semi-strict), greedy, Adams, frequency difference, R*, and local consensus. See the [vignette](https://cran.r-project.org/web/packages/ConsTree/vignettes/ConsTree.html).
 
 ![](ConsTree.png){fig-alt="Plots of consensus trees"}
 
@@ -141,7 +151,7 @@ ZZZZZ new packages were submitted to CRAN in September. Here are my Top 40 picks
 
 ![](attrition.png){fig-alt="Visualization of Bounds"}
 
-[FitVerse](https://cran.r-project.org/package=FitVerse) v1.0-2: Provides a unified interface for fitting parametric probability distributions to continuous univariate data that supports 52 distribution families spanning symmetric, right-skewed, heavy-tailed, bounded, and extreme-value shapes distributions, and three estimation methods. Automatic best-fit selection is performed using multiple criteria and tests. Includes publication-quality diagnostic plot,  histogram overlaid with density curves and optional interactive plots via `plotly`. Additional tools include bootstrap confidence intervals for parameter estimates and return levels, batch fitting across multiple columns and more. Functions support data characterisation in survey sampling, hydrology, and actuarial workflows. See [Hosking (1990)](doi:10.1111/j.2517-6161.1990.tb01775.x) for background and the [vignette](https://cran.r-project.org/web/packages/FitVerse/vignettes/fitverse-introduction.html) for examples.
+[FitVerse](https://cran.r-project.org/package=FitVerse) v1.0-2: Provides a unified interface for fitting parametric probability distributions to continuous univariate data that supports fifty-two distribution families spanning symmetric, right-skewed, heavy-tailed, bounded, and extreme-value shapes distributions, and three estimation methods. Automatic best-fit selection is performed using multiple criteria and tests. Includes publication-quality diagnostic plot,  histogram overlaid with density curves and optional interactive plots via `plotly`. Additional tools include bootstrap confidence intervals for parameter estimates and return levels, batch fitting across multiple columns and more. Functions support data characterization in survey sampling, hydrology, and actuarial workflows. See [Hosking (1990)](doi:10.1111/j.2517-6161.1990.tb01775.x) for background and the [vignette](https://cran.r-project.org/web/packages/FitVerse/vignettes/fitverse-introduction.html) for examples.
 
 ![](FitVerse.png){fig-alt="Plot of gitted Gumbell distribution fitted via MLE"}
 
@@ -155,7 +165,7 @@ ZZZZZ new packages were submitted to CRAN in September. Here are my Top 40 picks
 
 ![](normalblockr.png){fig-alt="Plot of model selection criteria"}
 
-[mvdpd](https://cran.r-project.org/package=mvdpd) v0.1-1: Provides robust multivariate estimation based on multivariate, composite and componentwise Density Power Divergence minimization in multivariate normal distribution for casewise and cellwise contamination and robust estimation for multivariate ordered gamma model using multivariate and composite DPD minimization. See [Ghosh, Agostinelli, and Basu (20260](doi:10.48550/arXiv.2608.18914> for full details). See the vignettes [mvnormDPD examples](https://cran.r-project.org/web/packages/mvdpd/vignettes/mvnormDPD_examples.html) and [mvogammaDPD examples](https://cran.r-project.org/web/packages/mvdpd/vignettes/twocenturies50_example.html).
+[mvdpd](https://cran.r-project.org/package=mvdpd) v0.1-1: Provides robust multivariate estimation based on multivariate, composite and componentwise Density Power Divergence minimization in multivariate normal distribution for casewise and cellwise contamination and robust estimation for multivariate ordered gamma model using multivariate and composite DPD minimization. See [Ghosh, Agostinelli, and Basu (20260](doi:10.48550/arXiv.2608.18914) for details) and the vignettes [mvnormDPD examples](https://cran.r-project.org/web/packages/mvdpd/vignettes/mvnormDPD_examples.html) and [mvogammaDPD examples](https://cran.r-project.org/web/packages/mvdpd/vignettes/twocenturies50_example.html).
 
 ![](mvdpd.svg){fig-alt="Boxplot comparisons"}
 
@@ -163,17 +173,17 @@ ZZZZZ new packages were submitted to CRAN in September. Here are my Top 40 picks
 
 ![](pmsims.png){fig-alt="Package workflow diagram"}
 
-[spfcICOMP](https://cran.r-project.org/package=spfcICOMP) v0.1.0: Implements shrinkage principal fitted components for sufficient dimension reduction in high-dimensional regression and classification. Provides regularised covariance estimation using Oracle Approximating Shrinkage and Maximum Entropy Covariance, structural-dimension selection using conventional and information-complexity criteria, response-guided feature screening, reduced-space prediction, and simulation utilities. Methodological foundations include [Cook and Forzani (2008)](doi:10.1214/08-STS275), [Chen et al. (2010)](doi:10.1109/TSP.2010.2053029), [Bozdogan (2000)](doi:10.1006/jmps.1999.1277), and [Olorede and Yahya (2019)](doi:10.48550/arXiv.1909.13017). See the [vignette](https://cran.r-project.org/web/packages/spfcICOMP/vignettes/getting-started.html).
+[spfcICOMP](https://cran.r-project.org/package=spfcICOMP) v0.1.0: Implements shrinkage principal fitted components for sufficient dimension reduction in high-dimensional regression and classification. Provides regularized covariance estimation using Oracle Approximating Shrinkage and Maximum Entropy Covariance, structural-dimension selection using conventional and information-complexity criteria, response-guided feature screening, reduced-space prediction, and simulation utilities. Methodological foundations include [Cook and Forzani (2008)](doi:10.1214/08-STS275), [Chen et al. (2010)](doi:10.1109/TSP.2010.2053029), [Bozdogan (2000)](doi:10.1006/jmps.1999.1277), and [Olorede and Yahya (2019)](doi:10.48550/arXiv.1909.13017). See the [vignette](https://cran.r-project.org/web/packages/spfcICOMP/vignettes/getting-started.html).
 
 
 
-[sptrends](https://cran.r-project.org/package=sptrends) 1.6.3: Provides a unified and reproducible framework for statistical inference of spatiotemporal trends in gridded environmental data that addresses the interconnected challenges of serial correlation, spatial dependence and multiple testing that commonly arise when analysing gridded environmental time series. Core methods support serial-correlation treatment through trend-preserving prewhitening, pixel-wise and spatially explicit trend inference, slope estimation and multiple-testing correction. Dedicated workflows reproduce published methodologies, for example [Gutiérrez-Hernández and García (2025)](doi:10.1016/j.rsase.2024.101377) for True Significant Trends workflow and [Gutiérrez-Hernández and García (2024)](doi:10.3390/rs16203886) for Robust Trend Analysis workflow. Supporting utilities facilitate raster data import and inspection, anomaly calculation, spatial autocorrelation diagnostics, and more. There are six vignettes including: [Dealing with serial correlation](https://cran.r-project.org/web/packages/sptrends/vignettes/b-prewhitening.html) and [Trend magnitude estimation](https://cran.r-project.org/web/packages/sptrends/vignettes/d-slope-estimation.html).
 
-![](sptrends.png){fig-alt="Plot indicating serial correlation"}
 
 [ZINB.GP](https://cran.r-project.org/package=ZINB.GP) v1.0.0: Fits Bayesian zero-inflated negative binomial regression models with Gaussian process random effects for spatial, temporal, or spatiotemporal count data. Provides Markov chain Monte Carlo sampling, configurable random effects in the zero-inflation and count components, and posterior predictive draws. Implements a full GP version of the methods described by [He and Huang (2024)](doi:10.1016/j.jspi.2023.106098). See the vignettes [Oregon Landslides](https://cran.r-project.org/web/packages/ZINB.GP/vignettes/oregon-landslides.html) and [Simulating and Fitting a Spatiotemporal ZINB-GP Model](https://cran.r-project.org/web/packages/ZINB.GP/vignettes/simulating-zinb-gp.html).
 
 ![](ZINBGP.png){fig-alt="Plots of At-Risk and Coditional spatial effects"}
+
+
 ### Surveys
 
 [risq](https://cran.r-project.org/package=risq) v3.0.1: Calculate representativity indicators for survey quality based on survey data and response models. Use partial indicators to analyse the impact of individual variables and categories. Monitor changes in representativity during data collection. Improve representativity through adaptive survey design. Supports both R-indicators and coefficients of variation. See [Schouten, Cobben, Bethlehem (2009)](https://api.semanticscholar.org/CorpusID:33654901), [Shlomo, Skinner, Schouten (2012)](doi:10.1016/j.jspi.2011.07.008) and [Schouten, Shlomo (2017)](doi:10.1111/insr.12159). There are two vignettes: [Introduction](https://cran.r-project.org/web/packages/risq/vignettes/introduction.html) and [Theory](https://cran.r-project.org/web/packages/risq/vignettes/theory.pdf).
@@ -193,22 +203,22 @@ ZZZZZ new packages were submitted to CRAN in September. Here are my Top 40 picks
 
 
 
-[getaca](https://cran.r-project.org/package=getaca) v0.1.6: Provides functions to declare, retrieve, verify, track and actively manage external data dependencies too large or too fast-moving to ship inside a package. Resources are identified by package, name and version, pinned to a Secure Hash Algorithm (SHA-256) checksum, and resolved through an explicit policy so that the same installed package always resolves the same bytes. A registry served from a remote host may be signed with Ed25519 and verified against a key the declaring package ships, so the declaration and the key that vouches for it arrive by different routes. Designed for reproducible offline use and graceful behaviour during package checks. There are eight vignettes including [Quick Start](https://cran.r-project.org/web/packages/getaca/vignettes/quickstart.html) and [Policies and Channels](https://cran.r-project.org/web/packages/getaca/vignettes/policies.html).
+[getaca](https://cran.r-project.org/package=getaca) v0.1.6: Provides functions to declare, retrieve, verify, track and actively manage external data dependencies too large or too fast-moving to ship inside a package. Resources are identified by package, name and version, pinned to a Secure Hash Algorithm (SHA-256) checksum, and resolved through an explicit policy so that the same installed package always resolves the same bytes. A registry served from a remote host may be signed with Ed25519 and verified against a key the declaring package ships, so the declaration and the key that vouches for it arrive by different routes. Designed for reproducible offline use and graceful behavior during package checks. There are eight vignettes including [Quick Start](https://cran.r-project.org/web/packages/getaca/vignettes/quickstart.html) and [Policies and Channels](https://cran.r-project.org/web/packages/getaca/vignettes/policies.html).
 
-[icebergr](https://cran.r-project.org/package=icebergr) v0.2.0: Implements a  native client for `Apache Iceberg`, the open table format used by `Snowflake`, `Databricks`, `BigQuery`, `AWS` and `Dremio` that connects to `REST` and `AWS Glue` catalogs, lists namespaces and tables, reads the schema and partition specification of a table, scans data with predicates and projections pushed down, travels back through snapshot history, and appends new data. `Apache Arrow` is the interchange layer throughout. Ssee the [README](https://cran.r-project.org/web/packages/icebergr/readme/README.html) for the full matrix of supported and unsupported features. There are seven vignettes including [Getting Started](https://cran.r-project.org/web/packages/icebergr/vignettes/getting-started.html) and [What Iceberg Is, and What It Fixes
+[icebergr](https://cran.r-project.org/package=icebergr) v0.2.0: Implements a  native client for `Apache Iceberg`, the open table format used by `Snowflake`, `Databricks`, `BigQuery`, `AWS` and `Dremio` that connects to `REST` and `AWS Glue` catalogs, lists namespaces and tables, reads the schema and partition specification of a table, scans data with predicates and projections pushed down, travels back through snapshot history, and appends new data. `Apache Arrow` is the interchange layer throughout. See the [README](https://cran.r-project.org/web/packages/icebergr/readme/README.html) for the full matrix of supported and unsupported features. There are seven vignettes including [Getting Started](https://cran.r-project.org/web/packages/icebergr/vignettes/getting-started.html) and [What Iceberg Is, and What It Fixes
 ](https://cran.r-project.org/web/packages/icebergr/vignettes/table-format.html).
 
 ![](icebergr.png){fig-alt="icebergr data path"}
 
 
-[pkgcheck](https://cran.r-project.org/package=pkgcheck) v0.3.4: Check whether a package is ready for submission to the [rOpenSci](doi:10.5281/zenodo.2553043) peer review system. Incorporates the 'goodpractice' package and many additional checks, including aspects related to maintenance of online public code repositories.  There are four vignettes including [Current checks](https://cran.r-project.org/web/packages/pkgcheck/vignettes/list-checks.html) and [Adding or modifying checks
+[pkgcheck](https://cran.r-project.org/package=pkgcheck) v0.3.4: Check whether a package is ready for submission to the [rOpenSci](doi:10.5281/zenodo.2553043) peer review system. Incorporates the `goodpractice` package and many additional checks, including aspects related to maintenance of online public code repositories.  There are four vignettes including [Current checks](https://cran.r-project.org/web/packages/pkgcheck/vignettes/list-checks.html) and [Adding or modifying checks
 ](https://cran.r-project.org/web/packages/pkgcheck/vignettes/extending-checks.html).
 
 ### Visualization
 
-[ggCheysson](https://cran.r-project.org/package=ggCheysson) v1.1.0: Implements for `ggplot2` the stylistic elements (fonts, hatched patterns, color palettes) used by 'Emile Cheysson' in the *Albums de Statistique Graphique*, sometimes called the pinnacle of the Golden Age of Statistical Graphics. There are three vignettes including [Getting Started](https://cran.r-project.org/web/packages/ggCheysson/vignettes/getting-started.html) and [Mapping Guerry's Moral Statistics with Cheysson Palettes](https://cran.r-project.org/web/packages/ggCheysson/vignettes/guerry-maps.html).
+[ggCheysson](https://cran.r-project.org/package=ggCheysson) v1.1.0: Implements for `ggplot2` the stylistic elements (fonts, hatched patterns, color palettes) used by *Emile Cheysson* in the *Albums de Statistique Graphique*, sometimes called the pinnacle of the Golden Age of Statistical Graphics. There are three vignettes including [Getting Started](https://cran.r-project.org/web/packages/ggCheysson/vignettes/getting-started.html) and [Mapping Guerry's Moral Statistics with Cheysson Palettes](https://cran.r-project.org/web/packages/ggCheysson/vignettes/guerry-maps.html).
 
-![](ggCheysson.png){fig-alt="Map of France showing Xheysson colors"}
+![](ggCheysson.png){fig-alt="Map of France showing Cheysson colors"}
 
 
 [ggmosaic2](https://cran.r-project.org/package=ggmosaic2) v0.5.1: Extends `ggplot2` framework by providing the geom `geom_mosaic`. Allows fitted loglinear models which can be used to show patterns of association among variables in frequency tables. There are four vignettes including [Introducing ggmosaic2](https://cran.r-project.org/web/packages/ggmosaic2/vignettes/introducing-ggmosaic2.html) and [Three Forms of Frequency Tables](https://cran.r-project.org/web/packages/ggmosaic2/vignettes/frequency-table-forms.html).
