@@ -1,7 +1,7 @@
 ---
 title: "September 2026 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
-date: 2026-10-29
+date: 2026-10-30
 description: "Four hundred seventy new packages were submitted to CRAN in September. Here are my Top 40 picks in seventeen categories: Agriculture, Causal Inference, Climate Studies, Computational Methods, Ecology, Economics, Epidemiology, Genomics, Machine Learning, Medical Statistics, Meta-Analysis, Networks, Phylogenetics, Statistics, Surveys, Utilities, and Visualization. The CRAN Top 40 is an attempt to sort through the massive amount of new packages submitted to CRAN every month and find forty, interesting packages that demonstrate the broad use of the R language, and appeal to a wide audience of potential users. If you take the time to scan through the post, I hope you will find something interesting and maybe even useful."
 image: "ggCheysson.png"
 image-alt: "Map of France with Cheysson colors"
