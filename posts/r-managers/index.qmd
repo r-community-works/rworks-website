@@ -15,7 +15,7 @@ There has been an explosion of package/environment/platform managers in the R ec
 
 [^2]: [ruff](https://docs.astral.sh/ruff/)? 😉 
 
-I suspect I am not the only one. My colleague Libby Heeren and I recently held a [Data Science Lab](https://pos.it/dslab) with Eric Nantz to showcase {rix} and Nix (which was awesome! Keep an eye out on the [Posit YouTube channel](https://www.youtube.com/playlist?list=PL9HYL-VRX0oSeWeMEGQt0id7adYQXebhT) for when the recording is published), and the first three or so questions from the audience were all about how {rix} compares to X ({renv}, rv, uvr), and so I thought it’d be helpful to write a short summary of five tools that I’ve heard about: [{renv}](https://rstudio.github.io/renv/), [{rix}](https://docs.ropensci.org/rix/), [rv](https://a2-ai.github.io/rv-docs/), [uvr](https://nbafrank.github.io/uvr/), and [ir](https://r-lib.github.io/ir/).[^3]
+I suspect I am not the only one. My colleague Libby Heeren and I recently held a [Data Science Lab](https://pos.it/dslab) with Eric Nantz to showcase {rix} and Nix (which was awesome! Check it out on the [Posit YouTube channel](https://www.youtube.com/watch?v=YXSSgnhnJ1M)), and the first three or so questions from the audience were all about how {rix} compares to X ({renv}, rv, uvr), and so I thought it’d be helpful to write a short summary of five tools that I’ve heard about: [{renv}](https://rstudio.github.io/renv/), [{rix}](https://docs.ropensci.org/rix/), [rv](https://a2-ai.github.io/rv-docs/), [uvr](https://nbafrank.github.io/uvr/), and [ir](https://r-lib.github.io/ir/).[^3]
 
 [^3]: Since I'm listing both R packages and CLI tools, I am distinguishing them by wrapping the R packages in `{}`.
 
