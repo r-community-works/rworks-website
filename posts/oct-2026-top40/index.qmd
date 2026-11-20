@@ -1,0 +1,104 @@
+---
+title: "October 2026 Top 40 New CRAN Packages"
+author: "Joseph Rickert"
+date: 2026-09-29
+description: "BBBBB packages were submitted to CRAN in September. Here are my Top 40 picks in seventeen categories: Agriculture, Causal Inference, Climate Studies, Computational Methods, Ecology, Economics, Epidemiology, Genomics, Machine Learning, Medical Statistics, Meta-Analysis, Networks, Phylogenetics, Statistics, Surveys, Utilities, and Visualization. The CRAN Top 40 is an attempt to sort through the massive amount of new packages submitted to CRAN every month and find forty, interesting packages that demonstrate the broad use of the R language, and appeal to a wide audience of potential users. If you take the time to scan through the post, I hope you will find something interesting and maybe even useful."
+image: ".png"
+image-alt: ""
+categories: "Top 40"
+editor: source
+format: html
+---
+
+![](.png){fig-alt=""}
+
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+### Agriculture
+
+### Climate Studies
+
+[ET0MassModels](https://cran.r-project.org/package=ET0MassModels) v1.0.0: Provides functions to estimate daily reference evapotranspiration  using 10 mass transfer-based empirical models, with the Food and Agriculture Organization Penman-Monteith method included as the standard reference for model comparison. Includes statistical evaluation metrics, such as Nash-Sutcliffe efficiency, root mean square error, mean absolute error, and mean bias error, and visualization tools. Based on [Singh et al. (2026)](doi:10.1016/j.ejrh.2026.103925). See the [vignette](https://cran.r-project.org/web/packages/ET0MassModels/vignettes/introduction.html).
+
+![](ET0.png){fig-alt="Taylor diagram - Mass Transfer-Based Models"}
+
+### Ecology
+
+[soilcnn](https://cran.r-project.org/package=soilcnn) v0.1.0: Implements a framework, built on `torch`, for mapping a soil property from point observations and a stack of aligned rasters with a convolutional network that reads the neighbourhood of each point. It extracts the patches; resamples by spatial blocks or by k-fold nearest neighbour distance matching, after [Linnenbrink et al. (2024)](doi:10.5194/gmd-17-5897-2024); tunes and selects under a noise floor and the one-standard-error rule; refits the selected configuration under several seeds; and predicts median, mean and interval maps over rasters of any extent. The map's centre is the ensemble median over seeds; the mean corrects its back-transformation by smearing, after [Duan (1983)](doi:10.1080/01621459.1983.10478017). See the [vignette](https://cran.r-project.org/web/packages/soilcnn/vignettes/soilcnn.html) to get started.
+
+![](soilcnn.png){fig-alt="Plot illustrating validation geometry"}
+
+### Epidemiology
+
+[epidist](https://cran.r-project.org/package=epidist) v1.0.0: Provides methods to address the key challenges in estimating epidemiological delay distributions which influence epidemic situational awareness, control strategies, and resource allocation. Includes truncation, interval censoring, and dynamical biases, following [Park et al. (2024)](doi:10.1101/2024.01.12.24301247) and [Charniga et al. (2024)](doi:10.1371/journal.pcbi.1012520). Built on top of `brms`, functions allow for flexible modelling including time-varying and spatial effects and partially pooled estimates of demographic characteristics. There arenine vignettes including [Getting started](https://cran.r-project.org/web/packages/epidist/vignettes/epidist.html) and [Model Guide](https://cran.r-project.org/web/packages/epidist/vignettes/model.html).
+
+![](epidist.png){fig-alt="Plots of true value and estimates distributions"}
+
+### Genomics
+
+[shaman](https://cran.r-project.org/package=shaman) v2.1.1: Generate expected Hi-C (genome-wide chromosome conformation capture) data maintaining marginal coverage, and the decay in contact probability with increasing genomic distance. Expected Hi-C data is used for normalization and graphical presentation of statistical significance of observed Hi-C contact enrichments. The method is described in [Mendelson Cohen et al. (2017)](doi:10.1101/187203). See the vignettes [Sampling HiC contAct Matrices for Aparametric Normalization](https://cran.r-project.org/web/packages/shaman/vignettes/shaman-package.html)] and [Import]().
+
+![](shaman.png){fig-alt="visualization of region with scores against hic_exp from shaman_score_hic_mat()"}
+
+### Machine Learning
+
+[gaussianprocesses](https://cran.r-project.org/package=gaussianprocesses) v1.0.0: Gaussian process regression, classification, and count models with explicit covariance kernels, exact Gaussian inference, Laplace approximations for non-Gaussian likelihoods, sparse approximations, marginal-likelihood optimization, derivatives, posterior sampling, calibration diagnostics, and time-series workflows. The implementation follows the core methodology of [Rasmussen and Williams (2006)](doi:10.7551/mitpress/3206.001.0001) and emphasizes numerical stability, transparent assumptions, and reproducible statistical workflows. There are seven vignettes including [Gaussian-Process Regression from First Principles](https://cran.r-project.org/web/packages/gaussianprocesses/vignettes/v01-gp-regression.html) and [Gaussian Processes for Time Series](https://cran.r-project.org/web/packages/gaussianprocesses/vignettes/v06-time-series.html).
+
+![](gaussianprocesses.png){fig-alt="Prior and posterior draws for GP regression"}
+
+### Mathematics
+
+[sundials](https://cran.r-project.org/package=sundials) v7.9.0-1: Bundles the pure-C part of the `SUNDIALS` suite (CVODE, CVODES, ARKODE, IDA, IDAS and KINSOL with the serial vector and the dense, band and iterative linear solvers) and builds it into a static library. `SUNDIALS` is described in [Hindmarsh et al. (2005)](doi:10.1145/1089014.1089020). Look [here](https://computing.llnl.gov/projects/sundials) for documentation.
+
+
+
+### Medical Statistics
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+### Networks
+
+### Statistics
+
+[ballast](https://cran.r-project.org/package=ballast) v0.7.4: Refits one pre-specified mixed model for repeated measures under families of data and analytic perturbations  and judges every refit against the pre-specified estimate, confidence interval and p-value. Classifies the result as robust, sensitive or fragile, with a separate flag for marginal significance, and estimates by simulation the probability that a planned design gives a significant and robust result. Fitting uses `mmrm` with `SAS` `PROC MIXED` conventions for the least-squares-mean contrast, Kenward-Roger adjustment and the corrected Akaike criterion. Reference-based multiple imputation follows [Carpenter, Roger and Kenward (2013)](doi:10.1080/10543406.2013.8349110 and was checked against `rbmi` [Gower-Page, Noci and Wolbers (2022)](doi:10.21105/joss.04251). There are six vignettes including [Quickstart](https://cran.r-project.org/web/packages/ballast/vignettes/quickstart.html) and [Interpreting the verdict](https://cran.r-project.org/web/packages/ballast/vignettes/interpreting.html).
+
+
+[lande](https://cran.r-project.org/package=lande) v0.1.0: Estimates selection differentials and linear, quadratic and correlational selection gradients on relative fitness following [Lande and Arnold (1983)](doi:10.1111/j.1558-5646.1983.tb00236.x), with p-values from the logistic model for survival and from a Poisson or negative binomial model for counts. Fits cubic spline fitness functions as in [Schluter (1988)](doi:10.1111/j.1558-5646.1988.tb02507.x) and two-trait fitness surfaces drawn only where there are data, and computes adaptive landscapes of mean fitness against the population mean for one or two traits, by period and for several groups on one surface. Includes bootstrap intervals, a combined results table and a `Shiny` app. See the [vignette](https://cran.r-project.org/web/packages/lande/vignettes/evolutionary-selection-analysis.html).
+
+![](lande.png){fig-alt="Plot of a correlated fitness surface"}
+
+
+[radiatR](https://cran.r-project.org/package=radiatR) v0.1.3: Implements a complete pipeline for analysing directional data, headings and trajectories on the unit disk. Supply a table of angles directly, or reconstruct headings from movement trajectories imported from tracking tools via a unified dialect-based loader system, including multi-bodypart pose estimation with likelihood-weighted centroid. Computes circular statistics including mean direction, resultant length, von Mises and wrapped Cauchy parametric fits, circular correlation, circular-linear regression. See [Fisher and Lee (1992)](doi:10.2307/2532334), [Fitak and Johnsen (2017)](doi:10.1242/jeb.167056), and [Landler et al.(2019)](doi:10.1186/s12898-019-0246-8) for background. There are five vignettes including [Circular Statistics and Distribution Overlays](https://cran.r-project.org/web/packages/radiatR/vignettes/circular-statistics.html) and [Guide for AI agents](https://cran.r-project.org/web/packages/radiatR/vignettes/agent-guide.html) as well as a `Shiny` app.
+
+![](radiatR.png){fig-alt="Circular statistics plot"}
+
+### Time Series
+
+[rjd3highfreq](https://cran.r-project.org/package=rjd3highfreq) v3.0.1: Implements an R interface to [JDemetra+ 3.x](https://github.com/jdemetra), the time series analysis software which provides functions for seasonal adjustment of higher-frequency data, including those with multiple or non-integer periodicities. It includes pre-adjustment via the extended airline model and several seasonal decomposition methods: extended airline model based decomposition, extended X-11, and augmented STL. See the [vignette](https://cran.r-project.org/web/packages/rjd3highfreq/vignettes/X11.html).
+
+![](rjd3highfreq.png){fig-alt="Seasonal decomposition"}
+
+
+### Visualization
+
+[ggfourfold](https://cran.r-project.org/package=ggfourfold) v0.1.0: Draws fourfold displays of 2 x 2 (x k) contingency tables as a `ggplot2` layer, following [Friendly (1994)](https://datavis.ca/papers/4fold/4fold.pdf) and [Friendly and Meyer (2016)](doi:10.1201/9781315374413). Cell frequencies are shown as quarter-circles or squares of proportional area, with confidence rings for the odds ratio and shading for the direction and strength of association. See the [vignette](https://cran.r-project.org/web/packages/ggfourfold/vignettes/ggfourfold.html).
+
+![](ggfourfold.png){fig-alt="Examples of four-fold plots"}
+
+
+END
+
+
+:::
+
+
+::::
