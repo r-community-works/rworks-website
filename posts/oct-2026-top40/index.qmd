@@ -27,6 +27,10 @@ format: html
 
 ### Ecology
 
+[aquats](https://cran.r-project.org/package=aquats) v1.2.2: Implements a comprehensive statistical and visualization toolkit tailored for  observational data in fisheries science and aquatic ecology. Provides ANOVA, ANCOVA, MANOVA, permutational multivariate analysis of variance, similarity percentages, generalized linear models, non-linear morphometric regressions, two-group hypothesis testing, and chi-square tests. Methodological formulations for multivariate permutation tests follow [Anderson (2001)](oi:10.1111/j.1442-9993.2001.01070.pp.x) Ecological community dissimilarity transformations follow [Legendre and Gallagher (2001)](doi:10.1007/s004420100716), and ecotoxicological contamination index models follow [Tomlinson et al. (1980)](doi:10.1007/BF02414780). See the [vignette](https://cran.r-project.org/web/packages/aquats/vignettes/aquats-tutorial.html) for examples.
+
+![](aquats.png){fig-alt="ANOVA plots"}
+
 [soilcnn](https://cran.r-project.org/package=soilcnn) v0.1.0: Implements a framework, built on `torch`, for mapping a soil property from point observations and a stack of aligned rasters with a convolutional network that reads the neighbourhood of each point. It extracts the patches; resamples by spatial blocks or by k-fold nearest neighbour distance matching, after [Linnenbrink et al. (2024)](doi:10.5194/gmd-17-5897-2024); tunes and selects under a noise floor and the one-standard-error rule; refits the selected configuration under several seeds; and predicts median, mean and interval maps over rasters of any extent. The map's centre is the ensemble median over seeds; the mean corrects its back-transformation by smearing, after [Duan (1983)](doi:10.1080/01621459.1983.10478017). See the [vignette](https://cran.r-project.org/web/packages/soilcnn/vignettes/soilcnn.html) to get started.
 
 ![](soilcnn.png){fig-alt="Plot illustrating validation geometry"}
@@ -49,6 +53,10 @@ format: html
 
 ![](gaussianprocesses.png){fig-alt="Prior and posterior draws for GP regression"}
 
+[SWORD](https://cran.r-project.org/package=SWORD) v0.1.0: Implements SWORD (Support vector machine Weighted Oblique Random Decision forests), a random forest method for regression based on TORS (Tree Oblique for Regression with weighted SVM) oblique regression trees. At each internal node a Weighted-SVM classifier with a linear kernel defines the oblique splitting hyperplane as a sparse linear combination of predictors. The `C++` coordinate-descent solver provides fast training. The TORS algorithm is described in [Carta and Frigau (2025)](doi:10.1007/s00180-025-01647-w). The weighted SVM is based on [Yang, Song and Cao (2005)](doi:10.1109/IJCNN.2005.1555965) and the `WeightSVM` package. See the [vignette](https://cran.r-project.org/web/packages/SWORD/vignettes/intro-sword.html)
+
+![](SWORD.png){fig-alt=" SWORD decision forest"}
+
 ### Mathematics
 
 [sundials](https://cran.r-project.org/package=sundials) v7.9.0-1: Bundles the pure-C part of the `SUNDIALS` suite (CVODE, CVODES, ARKODE, IDA, IDAS and KINSOL with the serial vector and the dense, band and iterative linear solvers) and builds it into a static library. `SUNDIALS` is described in [Hindmarsh et al. (2005)](doi:10.1145/1089014.1089020). Look [here](https://computing.llnl.gov/projects/sundials) for documentation.
@@ -67,6 +75,11 @@ format: html
 
 ### Networks
 
+### Probability
+
+[BiasedMatch](https://cran.r-project.org/package=BiasedMatch) v0.1.0: Provides tools for the two-urn biased sampling problems of [Puza and Bonfrer (2018)](doi:10.1080/03610926.2017.1300282). Two overlapping sets of items are sampled without replacement, with items common to both sets given a selection weight favouring their inclusion. Functions compute the probability mass function, mean and variance of the number of matching items using the univariate and bivariate Wallenius' non-central hypergeometric distributions, perform maximum likelihood and Bayesian inference for the bias parameter, and provide Metropolis-Hastings algorithms for hierarchical extensions. See the [vignette](https://cran.r-project.org/web/packages/BiasedMatch/vignettes/biasedmatch.html).
+
+
 ### Statistics
 
 [ballast](https://cran.r-project.org/package=ballast) v0.7.4: Refits one pre-specified mixed model for repeated measures under families of data and analytic perturbations  and judges every refit against the pre-specified estimate, confidence interval and p-value. Classifies the result as robust, sensitive or fragile, with a separate flag for marginal significance, and estimates by simulation the probability that a planned design gives a significant and robust result. Fitting uses `mmrm` with `SAS` `PROC MIXED` conventions for the least-squares-mean contrast, Kenward-Roger adjustment and the corrected Akaike criterion. Reference-based multiple imputation follows [Carpenter, Roger and Kenward (2013)](doi:10.1080/10543406.2013.8349110 and was checked against `rbmi` [Gower-Page, Noci and Wolbers (2022)](doi:10.21105/joss.04251). There are six vignettes including [Quickstart](https://cran.r-project.org/web/packages/ballast/vignettes/quickstart.html) and [Interpreting the verdict](https://cran.r-project.org/web/packages/ballast/vignettes/interpreting.html).
@@ -83,6 +96,9 @@ format: html
 
 ### Time Series
 
+[foresightr](https://cran.r-project.org/package=foresightr) v0.1.1: Implements time series forecasting via a rolling-origin backtest, [Tashman (2000)](doi:10.1016/S0169-2070(00)00065-0) which refits every candidate at each origin using out-of-sample error. Prediction intervals are quantiles of the errors actually observed, for each horizon and for totals of the next periods. Models include seasonal ARIMA by exact maximum likelihood with automatic orders, [Hyndman and Khandakar (2008)](doi:10.18637/jss.v027.i03); exponential smoothing in state space form, [Hyndman, Koehler, Snyder and Grose (2002)](doi:10.1016/S0169-2070(01)00110-8); the Theta method,  [Assimakopoulos and Nikolopoulos (2000)](doi:10.1016/S0169-2070(00)00066-2) and more.  The computations are done by the `Rust` crate `foresight`, bundled with the package. There are five vignettes including [Get started](https://cran.r-project.org/web/packages/foresightr/vignettes/foresightr.html) and [The Backtest and its intervals](https://cran.r-project.org/web/packages/foresightr/vignettes/backtest.html).
+
+![](foresightr.svg){fig-alt="Diagram illustrating how a model is chosen"}
 [rjd3highfreq](https://cran.r-project.org/package=rjd3highfreq) v3.0.1: Implements an R interface to [JDemetra+ 3.x](https://github.com/jdemetra), the time series analysis software which provides functions for seasonal adjustment of higher-frequency data, including those with multiple or non-integer periodicities. It includes pre-adjustment via the extended airline model and several seasonal decomposition methods: extended airline model based decomposition, extended X-11, and augmented STL. See the [vignette](https://cran.r-project.org/web/packages/rjd3highfreq/vignettes/X11.html).
 
 ![](rjd3highfreq.png){fig-alt="Seasonal decomposition"}
