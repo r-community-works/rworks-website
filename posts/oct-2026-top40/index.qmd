@@ -45,6 +45,14 @@ format: html
 
 ![](epidist.png){fig-alt="Plots of true value and estimates distributions"}
 
+
+### Finance
+
+[qdfauction](https://cran.r-project.org/package=qdfauction) v0.3.0: Provides nonparametric estimators of the quantile density function: kernel, boundary-corrected kernel, Poisson-weight and Bernstein-polynomial smoothers, indirect estimators, and linear, hard-thresholded and block-thresholded wavelet estimators with smoothing parameters chosen by biased, robust likelihood or least-squares cross-validation. The estimators are applied to the structural analysis of first-price sealed-bid auctions: recovery of private values for independent or affiliated values and risk-neutral or risk-averse bidders. See [Jones (1992)](https://www.ism.ac.jp/editsec/aism/pdf/044_4_0721.pdf), [Soni, Dewan and Jain (2012)](doi:10.1016/j.csda.2012.04.014), and [Chaubey, Dewan and Li (2024)](doi:10.1080/03610926.2023.2222922) for background and the [vignette](https://cran.r-project.org/web/packages/qdfauction/vignettes/timber.html) for examples.
+
+![](qdfauction.png){fig-alt="Plot of quantile estimates of bids"}
+
+
 ### Genomics
 
 [shaman](https://cran.r-project.org/package=shaman) v2.1.1: Generate expected Hi-C (genome-wide chromosome conformation capture) data maintaining marginal coverage, and the decay in contact probability with increasing genomic distance. Expected Hi-C data is used for normalization and graphical presentation of statistical significance of observed Hi-C contact enrichments. The method is described in [Mendelson Cohen et al. (2017)](doi:10.1101/187203). See the vignettes [Sampling HiC contAct Matrices for Aparametric Normalization](https://cran.r-project.org/web/packages/shaman/vignettes/shaman-package.html)] and [Import]().
@@ -92,6 +100,8 @@ format: html
 [lande](https://cran.r-project.org/package=lande) v0.1.0: Estimates selection differentials and linear, quadratic and correlational selection gradients on relative fitness following [Lande and Arnold (1983)](doi:10.1111/j.1558-5646.1983.tb00236.x), with p-values from the logistic model for survival and from a Poisson or negative binomial model for counts. Fits cubic spline fitness functions as in [Schluter (1988)](doi:10.1111/j.1558-5646.1988.tb02507.x) and two-trait fitness surfaces drawn only where there are data, and computes adaptive landscapes of mean fitness against the population mean for one or two traits, by period and for several groups on one surface. Includes bootstrap intervals, a combined results table and a `Shiny` app. See the [vignette](https://cran.r-project.org/web/packages/lande/vignettes/evolutionary-selection-analysis.html).
 
 ![](lande.png){fig-alt="Plot of a correlated fitness surface"}
+
+[lassoinf](https://cran.r-project.org/package=lassoinf) v0.1.0: Provides onfidence intervals and p-values for parameters chosen by the randomized)lasso, valid after selection. Implements the polyhedral approach of [Lee et al. (2016)](doi:10.1214/15-AOS1371), the randomized response of [Tian and Taylor (2018)](doi:10.1214/17-AOS1564) and the exact randomized inference of [Panigrahi, Fry and Taylor (2024)](doi:10.1093/biomet/asae019), with the truncated bivariate normal computations of [Liu (2023)](doi:10.48550/arXiv.2308.10346). Includes inference for user-specified estimands, screening of inactive variables and problems fitted by `glmnet`. Computations use a `C++` backend with matrix-free linear operators for wide designs. There are five vignettes including [Randomized LASSO](https://cran.r-project.org/web/packages/lassoinf/vignettes/gaussian_lasso.html) and [Inference after a glmnet fit](https://cran.r-project.org/web/packages/lassoinf/vignettes/glmnet_logistic.html).
 
 
 [radiatR](https://cran.r-project.org/package=radiatR) v0.1.3: Implements a complete pipeline for analysing directional data, headings and trajectories on the unit disk. Supply a table of angles directly, or reconstruct headings from movement trajectories imported from tracking tools via a unified dialect-based loader system, including multi-bodypart pose estimation with likelihood-weighted centroid. Computes circular statistics including mean direction, resultant length, von Mises and wrapped Cauchy parametric fits, circular correlation, circular-linear regression. See [Fisher and Lee (1992)](doi:10.2307/2532334), [Fitak and Johnsen (2017)](doi:10.1242/jeb.167056), and [Landler et al.(2019)](doi:10.1186/s12898-019-0246-8) for background. There are five vignettes including [Circular Statistics and Distribution Overlays](https://cran.r-project.org/web/packages/radiatR/vignettes/circular-statistics.html) and [Guide for AI agents](https://cran.r-project.org/web/packages/radiatR/vignettes/agent-guide.html) as well as a `Shiny` app.
