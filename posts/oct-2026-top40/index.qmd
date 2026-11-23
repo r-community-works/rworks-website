@@ -19,7 +19,11 @@ format: html
 
 ### Agriculture
 
-### Climate Studies
+### Environmental Studies
+
+[EnvRtype](https://cran.r-project.org/package=EnvRtype) 0.1.3: Provides an enviromics toolkit for genotype-by-environment analysis and envirotype-informed genomic prediction. Collects worldwide daily and hourly weather data, soil profiles, elevation and bioclimatic layers data, agro-ecological zone data, and downscaled climate scenarios, with checkpointed retrieval that can resume after an interrupted run. Derives agro-meteorological parameters and maps daily weather onto crop developmental stages. Fits Bayesian reaction-norm kernel models and predicts trained genotypes at untested locations and planting dates, with coverage diagnostics, spatial mapping and planting-window optimisation. Methods are described in [Costa-Neto et al. (2021)](doi:10.1093/g3journal/jkab040), and build on the Bayesian genotype-by-environment kernel sampler of [Granato et al(2018)](doi:10.1534/g3.118.200435). See the [vignette](https://cran.r-project.org/web/packages/EnvRtype/vignettes/EnvRtype.html).
+
+![](EnvRtype.png){fig-alt="Heat map of correlation among environmental incdices"}
 
 [ET0MassModels](https://cran.r-project.org/package=ET0MassModels) v1.0.0: Provides functions to estimate daily reference evapotranspiration  using 10 mass transfer-based empirical models, with the Food and Agriculture Organization Penman-Monteith method included as the standard reference for model comparison. Includes statistical evaluation metrics, such as Nash-Sutcliffe efficiency, root mean square error, mean absolute error, and mean bias error, and visualization tools. Based on [Singh et al. (2026)](doi:10.1016/j.ejrh.2026.103925). See the [vignette](https://cran.r-project.org/web/packages/ET0MassModels/vignettes/introduction.html).
 
@@ -94,6 +98,10 @@ format: html
 
 ![](radiatR.png){fig-alt="Circular statistics plot"}
 
+[spifa](https://cran.r-project.org/package=spifa) v0.1.0: Fits spatial item factor analysis models for binary responses, following [Chacón-Montalván et al. (2025)](doi:10.1214/25-AOAS2072), using full Bayesian inference via adaptive Metropolis-Hastings within Gibbs sampling and auxiliary variables with a probit link function. Latent factors are modelled as the sum of a predictor effect, a multivariate Gaussian process capturing spatial dependence, and a multivariate non-spatial term. Standard exploratory and confirmatory item factor analysis are supported as particular cases. There are five vignettes including [an Introduction](https://cran.r-project.org/web/packages/spifa/vignettes/spifa.html) and [Advanced Features](https://cran.r-project.org/web/packages/spifa/vignettes/vg03-advanced-features.html).
+
+![](spifa.png){fig-alt="Plot of traces and factor distributions"}
+
 ### Time Series
 
 [foresightr](https://cran.r-project.org/package=foresightr) v0.1.1: Implements time series forecasting via a rolling-origin backtest, [Tashman (2000)](doi:10.1016/S0169-2070(00)00065-0) which refits every candidate at each origin using out-of-sample error. Prediction intervals are quantiles of the errors actually observed, for each horizon and for totals of the next periods. Models include seasonal ARIMA by exact maximum likelihood with automatic orders, [Hyndman and Khandakar (2008)](doi:10.18637/jss.v027.i03); exponential smoothing in state space form, [Hyndman, Koehler, Snyder and Grose (2002)](doi:10.1016/S0169-2070(01)00110-8); the Theta method,  [Assimakopoulos and Nikolopoulos (2000)](doi:10.1016/S0169-2070(00)00066-2) and more.  The computations are done by the `Rust` crate `foresight`, bundled with the package. There are five vignettes including [Get started](https://cran.r-project.org/web/packages/foresightr/vignettes/foresightr.html) and [The Backtest and its intervals](https://cran.r-project.org/web/packages/foresightr/vignettes/backtest.html).
@@ -102,6 +110,14 @@ format: html
 [rjd3highfreq](https://cran.r-project.org/package=rjd3highfreq) v3.0.1: Implements an R interface to [JDemetra+ 3.x](https://github.com/jdemetra), the time series analysis software which provides functions for seasonal adjustment of higher-frequency data, including those with multiple or non-integer periodicities. It includes pre-adjustment via the extended airline model and several seasonal decomposition methods: extended airline model based decomposition, extended X-11, and augmented STL. See the [vignette](https://cran.r-project.org/web/packages/rjd3highfreq/vignettes/X11.html).
 
 ![](rjd3highfreq.png){fig-alt="Seasonal decomposition"}
+
+
+### Utilities
+
+[irelink](https://cran.r-project.org/package=irelink) v0.0.2: Performs fast, scalable probabilistic record linkage and deduplication using the Fellegi-Sunter model. Records lacking a shared unique identifier are compared across configurable dimensions using exact, fuzzy, and distance-based comparisons, with model parameters estimated via unsupervised Expectation-Maximization. Multiple `SQL` backends are supported through `DBI`, including execution via `DuckDB`. This package is a translation of the `Python` `splink` library by [Linacre et al. (2022)](doi:10.23889/ijpds.v7i3.1794) into idiomatic `R`. There are six vignettes including [Getting Started](https://cran.r-project.org/web/packages/irelink/vignettes/irelink.html) and 
+[Record Linkage Across Datasets](https://cran.r-project.org/web/packages/irelink/vignettes/record-linkage.html).
+
+![](irelink.png){fig-alt="Plot of match weights for a link-type model"}
 
 
 ### Visualization
