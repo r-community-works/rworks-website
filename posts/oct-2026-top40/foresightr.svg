@@ -1,0 +1,220 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620" role="img" aria-labelledby="t d">
+  <title id="t">How foresight chooses a model</title>
+  <desc id="d">1: at each of the last origins every candidate is fitted on the data before it and forecasts 1 to h periods ahead. 2: the errors are measured by horizon. 3: the candidates, and the average of the best, are ranked by their error and the best is chosen. 4: the intervals are quantiles of the relative errors, by horizon and for totals.</desc>
+  <defs>
+    <marker id="tip" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5d6478"/>
+    </marker>
+    <linearGradient id="core" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f1eeff"/><stop offset="1" stop-color="#e9f8f4"/>
+    </linearGradient>
+  </defs>
+  <rect x="0.75" y="0.75" width="998.5" height="618.5" rx="18" fill="#ffffff" stroke="#d9deea" stroke-width="1.5"/>
+  <text x="40" y="52" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#1f2430" text-anchor="start" >How a model is chosen</text>
+  <text x="40" y="78" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#5d6478" text-anchor="start" >Every candidate is refitted at every origin with the data before it, and judged on what came next.</text>
+  <text x="40" y="112" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2430" text-anchor="start" >1  Replay the past</text>
+  <rect x="40" y="134" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="58" y="134" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="76" y="134" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="94" y="134" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="112" y="134" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="130" y="134" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="148" y="134" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="166" y="134" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="184" y="134" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="202" y="134" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="220" y="134" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="238" y="134" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="256" y="134" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="274" y="134" width="15" height="15" rx="3" fill="#5b43d6" opacity="1"/>
+  <rect x="292" y="134" width="15" height="15" rx="3" fill="#5b43d6" opacity="1"/>
+  <rect x="310" y="134" width="15" height="15" rx="3" fill="#5b43d6" opacity="1"/>
+  <rect x="328" y="134" width="15" height="15" rx="3" fill="#5b43d6" opacity="1"/>
+  <rect x="346" y="134" width="15" height="15" rx="3" fill="#e7e9f0" opacity="1"/>
+  <rect x="364" y="134" width="15" height="15" rx="3" fill="#e7e9f0" opacity="1"/>
+  <rect x="382" y="134" width="15" height="15" rx="3" fill="#e7e9f0" opacity="1"/>
+  <rect x="400" y="134" width="15" height="15" rx="3" fill="#e7e9f0" opacity="1"/>
+  <rect x="418" y="134" width="15" height="15" rx="3" fill="#e7e9f0" opacity="1"/>
+  <rect x="436" y="134" width="15" height="15" rx="3" fill="#e7e9f0" opacity="1"/>
+  <rect x="454" y="134" width="15" height="15" rx="3" fill="#e7e9f0" opacity="1"/>
+  <text x="478" y="146" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5d6478" text-anchor="start" >origin 1</text>
+  <rect x="40" y="159" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="58" y="159" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="76" y="159" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="94" y="159" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="112" y="159" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="130" y="159" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="148" y="159" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="166" y="159" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="184" y="159" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="202" y="159" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="220" y="159" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="238" y="159" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="256" y="159" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="274" y="159" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="292" y="159" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="310" y="159" width="15" height="15" rx="3" fill="#5b43d6" opacity="1"/>
+  <rect x="328" y="159" width="15" height="15" rx="3" fill="#5b43d6" opacity="1"/>
+  <rect x="346" y="159" width="15" height="15" rx="3" fill="#5b43d6" opacity="1"/>
+  <rect x="364" y="159" width="15" height="15" rx="3" fill="#5b43d6" opacity="1"/>
+  <rect x="382" y="159" width="15" height="15" rx="3" fill="#e7e9f0" opacity="1"/>
+  <rect x="400" y="159" width="15" height="15" rx="3" fill="#e7e9f0" opacity="1"/>
+  <rect x="418" y="159" width="15" height="15" rx="3" fill="#e7e9f0" opacity="1"/>
+  <rect x="436" y="159" width="15" height="15" rx="3" fill="#e7e9f0" opacity="1"/>
+  <rect x="454" y="159" width="15" height="15" rx="3" fill="#e7e9f0" opacity="1"/>
+  <text x="478" y="171" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5d6478" text-anchor="start" >origin 2</text>
+  <rect x="40" y="184" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="58" y="184" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="76" y="184" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="94" y="184" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="112" y="184" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="130" y="184" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="148" y="184" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="166" y="184" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="184" y="184" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="202" y="184" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="220" y="184" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="238" y="184" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="256" y="184" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="274" y="184" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="292" y="184" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="310" y="184" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="328" y="184" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="346" y="184" width="15" height="15" rx="3" fill="#5b43d6" opacity="1"/>
+  <rect x="364" y="184" width="15" height="15" rx="3" fill="#5b43d6" opacity="1"/>
+  <rect x="382" y="184" width="15" height="15" rx="3" fill="#5b43d6" opacity="1"/>
+  <rect x="400" y="184" width="15" height="15" rx="3" fill="#5b43d6" opacity="1"/>
+  <rect x="418" y="184" width="15" height="15" rx="3" fill="#e7e9f0" opacity="1"/>
+  <rect x="436" y="184" width="15" height="15" rx="3" fill="#e7e9f0" opacity="1"/>
+  <rect x="454" y="184" width="15" height="15" rx="3" fill="#e7e9f0" opacity="1"/>
+  <text x="478" y="196" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5d6478" text-anchor="start" >origin 3</text>
+  <rect x="40" y="209" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="58" y="209" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="76" y="209" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="94" y="209" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="112" y="209" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="130" y="209" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="148" y="209" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="166" y="209" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="184" y="209" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="202" y="209" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="220" y="209" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="238" y="209" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="256" y="209" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="274" y="209" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="292" y="209" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="310" y="209" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="328" y="209" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="346" y="209" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="364" y="209" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="382" y="209" width="15" height="15" rx="3" fill="#5b43d6" opacity="1"/>
+  <rect x="400" y="209" width="15" height="15" rx="3" fill="#5b43d6" opacity="1"/>
+  <rect x="418" y="209" width="15" height="15" rx="3" fill="#5b43d6" opacity="1"/>
+  <rect x="436" y="209" width="15" height="15" rx="3" fill="#5b43d6" opacity="1"/>
+  <rect x="454" y="209" width="15" height="15" rx="3" fill="#e7e9f0" opacity="1"/>
+  <text x="478" y="221" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5d6478" text-anchor="start" >origin 4</text>
+  <rect x="40" y="234" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="58" y="234" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="76" y="234" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="94" y="234" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="112" y="234" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="130" y="234" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="148" y="234" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="166" y="234" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="184" y="234" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="202" y="234" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="220" y="234" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="238" y="234" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="256" y="234" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="274" y="234" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="292" y="234" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="310" y="234" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="328" y="234" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="346" y="234" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="364" y="234" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="382" y="234" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="400" y="234" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="418" y="234" width="15" height="15" rx="3" fill="#5b43d6" opacity="1"/>
+  <rect x="436" y="234" width="15" height="15" rx="3" fill="#5b43d6" opacity="1"/>
+  <rect x="454" y="234" width="15" height="15" rx="3" fill="#5b43d6" opacity="1"/>
+  <text x="478" y="246" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5d6478" text-anchor="start" >origin 5</text>
+  <rect x="40" y="259" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="58" y="259" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="76" y="259" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="94" y="259" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="112" y="259" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="130" y="259" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="148" y="259" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="166" y="259" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="184" y="259" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="202" y="259" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="220" y="259" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="238" y="259" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="256" y="259" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="274" y="259" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="292" y="259" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="310" y="259" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="328" y="259" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="346" y="259" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="364" y="259" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="382" y="259" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="400" y="259" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="418" y="259" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="436" y="259" width="15" height="15" rx="3" fill="#1f2430" opacity="0.85"/>
+  <rect x="454" y="259" width="15" height="15" rx="3" fill="#5b43d6" opacity="1"/>
+  <text x="478" y="271" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5d6478" text-anchor="start" >origin 6</text>
+  <rect x="40" y="298" width="12" height="12" rx="3" fill="#1f2430" opacity="0.85"/>
+  <text x="58" y="309" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#5d6478" text-anchor="start" >data used to fit</text>
+  <rect x="180" y="298" width="12" height="12" rx="3" fill="#5b43d6"/>
+  <text x="198" y="309" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#5d6478" text-anchor="start" >forecast, 1 to h periods ahead</text>
+  <line x1="542" y1="202" x2="546" y2="202" stroke="#5d6478" stroke-width="1.8" marker-end="url(#tip)"/>
+  <text x="560" y="112" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2430" text-anchor="start" >2  Measure the errors</text>
+  <rect x="560" y="130" width="400" height="150" rx="12" fill="#f6f7fb" stroke="#d9deea" stroke-width="1.5"/>
+  <text x="578" y="161" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#5d6478" text-anchor="start" >h = 1</text>
+  <rect x="640" y="150" width="160" height="14" rx="4" fill="#5b43d6" opacity="0.45"/>
+  <text x="808.0" y="161" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5d6478" text-anchor="start" >3.2%</text>
+  <text x="578" y="187" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#5d6478" text-anchor="start" >h = 2</text>
+  <rect x="640" y="176" width="180" height="14" rx="4" fill="#5b43d6" opacity="0.57"/>
+  <text x="828.0" y="187" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5d6478" text-anchor="start" >3.6%</text>
+  <text x="578" y="213" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#5d6478" text-anchor="start" >h = 3</text>
+  <rect x="640" y="202" width="200" height="14" rx="4" fill="#5b43d6" opacity="0.69"/>
+  <text x="848.0" y="213" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5d6478" text-anchor="start" >4.0%</text>
+  <text x="578" y="239" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="400" fill="#5d6478" text-anchor="start" >h = 4</text>
+  <rect x="640" y="228" width="215" height="14" rx="4" fill="#5b43d6" opacity="0.81"/>
+  <text x="863.0" y="239" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5d6478" text-anchor="start" >4.3%</text>
+  <text x="578" y="268" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#5d6478" text-anchor="start" >MAPE, bias, MAE, RMSE and MASE, by horizon</text>
+  <line x1="620" y1="284" x2="360" y2="334" stroke="#5d6478" stroke-width="1.8" marker-end="url(#tip)"/>
+  <line x1="760" y1="284" x2="760" y2="334" stroke="#5d6478" stroke-width="1.8" marker-end="url(#tip)"/>
+  <text x="40" y="356" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2430" text-anchor="start" >3  Choose</text>
+  <rect x="40" y="370" width="470" height="182" rx="12" fill="#f6f7fb" stroke="#d9deea" stroke-width="1.5"/>
+  <text x="58" y="401" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" fill="#1f2430" text-anchor="start" >mean(best two)</text>
+  <rect x="190" y="390" width="68" height="15" rx="4" fill="#5b43d6"/>
+  <text x="264.0" y="402" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5d6478" text-anchor="start" >3.4</text>
+  <text x="58" y="429" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#1f2430" text-anchor="start" >log ARIMA</text>
+  <rect x="190" y="418" width="74" height="15" rx="4" fill="#c9cddb"/>
+  <text x="270.0" y="430" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5d6478" text-anchor="start" >3.7</text>
+  <text x="58" y="457" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#1f2430" text-anchor="start" >ARIMA</text>
+  <rect x="190" y="446" width="78" height="15" rx="4" fill="#c9cddb"/>
+  <text x="274.0" y="458" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5d6478" text-anchor="start" >3.9</text>
+  <text x="58" y="485" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#1f2430" text-anchor="start" >Prophet</text>
+  <rect x="190" y="474" width="110" height="15" rx="4" fill="#c9cddb"/>
+  <text x="306.0" y="486" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5d6478" text-anchor="start" >5.5</text>
+  <text x="58" y="513" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#1f2430" text-anchor="start" >seasonal naive</text>
+  <rect x="190" y="502" width="230" height="15" rx="4" fill="#c9cddb"/>
+  <text x="426.0" y="514" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5d6478" text-anchor="start" >11.5</text>
+  <text x="58" y="540" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#5d6478" text-anchor="start" >The average of the best models competes too.</text>
+  <text x="560" y="356" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2430" text-anchor="start" >4  Take the intervals from the errors</text>
+  <rect x="560" y="370" width="400" height="182" rx="12" fill="#f6f7fb" stroke="#d9deea" stroke-width="1.5"/>
+  <polygon points="694,473 708,450 722,437 736,427 750,421 764,416 778,413 792,411 806,407 806,504 792,501 778,497 764,493 750,489 736,487 722,486 708,484 694,473" fill="#5b43d6" opacity="0.16"/>
+  <polygon points="694,473 708,457 722,447 736,440 750,435 764,432 778,431 792,430 806,427 806,483 792,482 778,479 764,477 750,475 736,474 722,475 708,477 694,473" fill="#5b43d6" opacity="0.32"/>
+  <polyline points="584,490 595,484 606,479 617,476 628,476 639,478 650,481 661,483 672,482 683,479 694,473" fill="none" stroke="#1f2430" stroke-width="2.2" stroke-linejoin="round"/>
+  <polyline points="694,473 708,467 722,461 736,457 750,455 764,454 778,455 792,456 806,455" fill="none" stroke="#5b43d6" stroke-width="2.6" stroke-linejoin="round"/>
+  <text x="822" y="412" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#5b43d6" text-anchor="start" >80% · 95%</text>
+  <text x="822" y="434" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#5d6478" text-anchor="start" >quantiles of the</text>
+  <text x="822" y="452" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#5d6478" text-anchor="start" >relative errors,</text>
+  <text x="822" y="470" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#5d6478" text-anchor="start" >horizon by horizon,</text>
+  <text x="822" y="488" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#5d6478" text-anchor="start" >and of totals</text>
+  <text x="822" y="506" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#5d6478" text-anchor="start" >of the next k</text>
+  <text x="822" y="524" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#5d6478" text-anchor="start" >periods</text>
+  <text x="40" y="594" font-family="Inter, 'Segoe UI', system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#5d6478" text-anchor="start" >No information criterion decides, and no distribution is assumed: both the choice and the intervals come from forecasts made without seeing the answer.</text>
+</svg>
