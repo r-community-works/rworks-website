@@ -35,6 +35,16 @@ format: html
 
 ![](aquats.png){fig-alt="ANOVA plots"}
 
+[b3gbi](https://cran.r-project.org/package=b3gbi) v1.1.3: Calculate general biodiversity indicators from species occurrence cubes, such as those produced by the Global Biodiversity Information Facility [occurrence cube service](https://techdocs.gbif.org/en/data-use/data-cubes). Indicators include observed and coverage-based rarefied species richness and Hill numbers, evenness, rarity, taxonomic distinctness, occupancy, turnover and sample completeness, and can be calculated over time or space, with bootstrap confidence intervals. For details see [Dove (2026)](doi:10.21105/joss.10963). See the vignettes [A Gentle Introduction](https://cran.r-project.org/web/packages/b3gbi/vignettes/b3gbi.html) and [Uncertainty in Biodiversity Indicators](https://cran.r-project.org/web/packages/b3gbi/vignettes/uncertainty.html).
+
+![](b3gbi.png){fig-alt="Map of observed mammal richness"}
+
+
+[flexsdm](https://cran.r-project.org/package=flexsdm) v1.4.2: Provides a flexible and comprehensive workflow for species distribution modeling, from data preparation to model fitting, tuning, evaluation, prediction, ensemble modeling, and post-processing. The package is described in [Velazco et al. (2022)](doi:10.1111/2041-210X.1387)>. Implemented methods include the Shape metric to measure model extrapolation of [Velazco et al. (2023)](doi:10.1111/ecog.06992), ensembles of small models of [Breiner et al. (2015)](doi:10.1111/2041-210X.12403), Gaussian process models of [Golding and Purse (2016)](doi:10.1111/2041-210X.12523), and occurrence-based constraints for post-processing predictions of [Mendes et al. (2020)](doi:10.1016/j.ecolmodel.2020.109180). There are eight vignettes including [Overview of Modeling functions](https://cran.r-project.org/web/packages/flexsdm/vignettes/v02_modeling.html) and [Red Fir example](https://cran.r-project.org/web/packages/flexsdm/vignettes/v04_Red_fir_example.html).
+
+![](flexsdm.png){fig-alt="Map with pseudo-absence background points"}
+
+
 [soilcnn](https://cran.r-project.org/package=soilcnn) v0.1.0: Implements a framework, built on `torch`, for mapping a soil property from point observations and a stack of aligned rasters with a convolutional network that reads the neighbourhood of each point. It extracts the patches; resamples by spatial blocks or by k-fold nearest neighbour distance matching, after [Linnenbrink et al. (2024)](doi:10.5194/gmd-17-5897-2024); tunes and selects under a noise floor and the one-standard-error rule; refits the selected configuration under several seeds; and predicts median, mean and interval maps over rasters of any extent. The map's centre is the ensemble median over seeds; the mean corrects its back-transformation by smearing, after [Duan (1983)](doi:10.1080/01621459.1983.10478017). See the [vignette](https://cran.r-project.org/web/packages/soilcnn/vignettes/soilcnn.html) to get started.
 
 ![](soilcnn.png){fig-alt="Plot illustrating validation geometry"}
@@ -83,6 +93,13 @@ format: html
 
 ### Medical Statistics
 
+[mirrorslope](https://cran.r-project.org/package=mirrorslope) 0.2.1: Creates mirrored slope plots comparing two treatment arms over a single observation interval. Both arms share a common x-axis and converge at a central endpoint, making the between-arm gap the primary visual quantity. Returns standard 'ggplot2' objects for full extensibility. The displat was designed by Kati Maharry and was first used in the supplementary appendix of [McDonald and colleagues (2026)](doi:10.1016/S0140-6736(26)01385-1). There are three vignettes including [Introduction](https://cran.r-project.org/web/packages/mirrorslope/vignettes/introduction.html) and [Clinical workflow with ADaM data](https://cran.r-project.org/web/packages/mirrorslope/vignettes/clinical-workflow.html).
+
+![](mirrorslope.png){fig-alt="Example of a mirrorslope plot"}
+
+
+[PheValuator](https://cran.r-project.org/package=PheValuator) v2.2.19: Evaluates phenotype algorithms by developing a diagnostic prediction model using a set of noisy positives and noisy negatives. It can then apply the model to a large cohort to create a set of subjects each with a predicted probability for the health outcome of interest. This cohort can then be used to evaluate phenotype algorithms through the calculation of the necessary performance characteristics - sensitivity, specificity, and positive and negative predictive value. Based on work by [Swerdel (2022)](doi:10.1016/j.jbi.2022.104177) and [Swerdel (2019)](doi:10.1016/j.jbi.2019.103258). See the [vignette](https://cran.r-project.org/web/packages/PheValuator/vignettes/EvaluatingPhenotypeAlgorithms.pdf).
+
 :::
 
 ::: {.column width="10%"}
@@ -109,6 +126,10 @@ format: html
 [bartisan](https://cran.r-project.org/package=bartisan) v0.1.0: Fits Bayesian additive regression trees (BART) models for likelihoods outside the conditionally conjugate Gaussian case, using the Laplace-approximation reversible-jump sampler of [Linero (2025)](doi:10.1080/01621459.2024.2337156). Supported response families include Gaussian, binomial, Poisson, negative binomial, gamma, beta, ordered beta, ordinal, multinomial, zero-inflated counts, a Tweedie compound Poisson for a non-negative response with a point mass at zero, accelerated failure time and proportional hazards models for right-censored survival data, location-scale regression, and a Dirichlet process mixture for the error distribution. Decision rules may be hard, as in standard BART, or soft, as in the SoftBart model of [Linero and Yang (2018)](doi:10.1111/rssb.12293), which yields smoother fits. There are eleven vignettes including [Getting Started](https://cran.r-project.org/web/packages/bartisan/vignettes/bartisan.html) and [Generalized BART](https://cran.r-project.org/web/packages/bartisan/vignettes/implementation.html).
 
 ![](bartisan.png){fig-alt="Plot P(death) vs Mean arterial BP"}
+
+[INLAcircular](https://cran.r-project.org/package=INLAcircular) v1.0.0: Provides a Bayesian regression framework for joint models with circular responses and covariates using integrated nested Laplace approximations, following [Ye, Van Niekerk and Rue (2026)](doi:10.48550/arXiv.2602.08413). The package supports link-adjusted von Mises likelihoods, shared latent predictors, structured latent effects, and optional LKJ-based multivariate covariance models. It also provides compiled circular densities and d/p/q/r penalized-complexity priors for von Mises, cardioid, and wrapped Cauchy concentration parameters as developed by [Ye, Van Niekerk and Rue (2026)](doi:10.1177/1471082X261453677). See the [vignette](https://cran.r-project.org/web/packages/INLAcircular/vignettes/INLAcircular-guide.html).
+
+![](INLAc.png){fig-alt="Plot of 3 circular density families with mean direction 0"}
 
 [lande](https://cran.r-project.org/package=lande) v0.1.0: Estimates selection differentials and linear, quadratic and correlational selection gradients on relative fitness following [Lande and Arnold (1983)](doi:10.1111/j.1558-5646.1983.tb00236.x), with p-values from the logistic model for survival and from a Poisson or negative binomial model for counts. Fits cubic spline fitness functions as in [Schluter (1988)](doi:10.1111/j.1558-5646.1988.tb02507.x) and two-trait fitness surfaces drawn only where there are data, and computes adaptive landscapes of mean fitness against the population mean for one or two traits, by period and for several groups on one surface. Includes bootstrap intervals, a combined results table and a `Shiny` app. See the [vignette](https://cran.r-project.org/web/packages/lande/vignettes/evolutionary-selection-analysis.html).
 
