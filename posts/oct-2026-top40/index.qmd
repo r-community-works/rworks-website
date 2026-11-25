@@ -1,16 +1,15 @@
 ---
 title: "October 2026 Top 40 New CRAN Packages"
 author: "Joseph Rickert"
-date: 2026-09-29
-description: "BBBBB packages were submitted to CRAN in September. Here are my Top 40 picks in seventeen categories: Agriculture, Causal Inference, Climate Studies, Computational Methods, Ecology, Economics, Epidemiology, Genomics, Machine Learning, Medical Statistics, Meta-Analysis, Networks, Phylogenetics, Statistics, Surveys, Utilities, and Visualization. The CRAN Top 40 is an attempt to sort through the massive amount of new packages submitted to CRAN every month and find forty, interesting packages that demonstrate the broad use of the R language, and appeal to a wide audience of potential users. If you take the time to scan through the post, I hope you will find something interesting and maybe even useful."
-image: ".png"
-image-alt: ""
+date: 2026-11-29
+description: "Four hundred Fifteen new ppackages were submitted to CRAN in October. Here are my Top 40 picks in seventeen categories: Agriculture, Control Charts, Decision THeory, Ecology, Epidemiology, Finance, Genomics, Machine Learning, Mathematics, Medical Statistics, Probability, Public Health, Statistics, Time Series, Utilities, and Visualization. The CRAN Top 40 is an attempt to sort through the massive amount of new packages submitted to CRAN every month and find forty, interesting packages that demonstrate the broad use of the R language, and appeal to a wide audience of potential users. If you take the time to scan through the post, I hope you will find something interesting and maybe even useful."
+image: "shaman.png"
+image-alt: "Visualization of region with scores"
 categories: "Top 40"
 editor: source
 format: html
 ---
 
-![](.png){fig-alt=""}
 
 
 :::: {.columns}
@@ -86,7 +85,7 @@ format: html
 
 [shaman](https://cran.r-project.org/package=shaman) v2.1.1: Generate expected Hi-C (genome-wide chromosome conformation capture) data maintaining marginal coverage, and the decay in contact probability with increasing genomic distance. Expected Hi-C data is used for normalization and graphical presentation of statistical significance of observed Hi-C contact enrichments. The method is described in [Mendelson Cohen et al. (2017)](doi:10.1101/187203). See the vignettes [Sampling HiC contAct Matrices for Aparametric Normalization](https://cran.r-project.org/web/packages/shaman/vignettes/shaman-package.html)] and [Import]().
 
-![](shaman.png){fig-alt="visualization of region with scores against hic_exp from shaman_score_hic_mat()"}
+![](shaman.png){fig-alt="visualization of region with scores"}
 
 ### Machine Learning
 
@@ -105,12 +104,30 @@ format: html
 
 [SWORD](https://cran.r-project.org/package=SWORD) v0.1.0: Implements SWORD (Support vector machine Weighted Oblique Random Decision forests), a random forest method for regression based on TORS (Tree Oblique for Regression with weighted SVM) oblique regression trees. At each internal node a Weighted-SVM classifier with a linear kernel defines the oblique splitting hyperplane as a sparse linear combination of predictors. The `C++` coordinate-descent solver provides fast training. The TORS algorithm is described in [Carta and Frigau (2025)](doi:10.1007/s00180-025-01647-w). The weighted SVM is based on [Yang, Song and Cao (2005)](doi:10.1109/IJCNN.2005.1555965) and the `WeightSVM` package. See the [vignette](https://cran.r-project.org/web/packages/SWORD/vignettes/intro-sword.html)
 
-![](SWORD.png){fig-alt=" SWORD decision forest"}
+![](SWORD.png){fig-alt="SWORD decision forest"}
+
+
+
+
 
 ### Mathematics
 
+[DistributionalDDA](https://cran.r-project.org/package=DistributionalDDA) v0.1.1: Enables statistical analysis of data sets whose observations are whole probability distributions, using Bayes space calculus. Distributions (provided as samples, histograms or density functions) are treated as elements of a Hilbert space, so that operations such as mean, variance, distance, principal component analysis and clustering carry over to densities. Reference measures defining the geometry of the space can be chosen and combined. The methodology was first published with peer review by van den [Boogaart, Egozcue and Pawlowsky-Glahn (2014)](doi:10.1111/anzs.12074). See the vignettes [How to](https://cran.r-project.org/web/packages/DistributionalDDA/vignettes/DistributionalDDA.html) and [PCA for Distributional Data](https://cran.r-project.org/web/packages/DistributionalDDA/vignettes/PCA_distributional_data.html).
+
+![](DDA.png){fig-alt="Plot of Distributions by Sex"}
+
 [sundials](https://cran.r-project.org/package=sundials) v7.9.0-1: Bundles the pure-C part of the `SUNDIALS` suite (CVODE, CVODES, ARKODE, IDA, IDAS and KINSOL with the serial vector and the dense, band and iterative linear solvers) and builds it into a static library. `SUNDIALS` is described in [Hindmarsh et al. (2005)](doi:10.1145/1089014.1089020). Look [here](https://computing.llnl.gov/projects/sundials) for documentation.
 
+
+
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
 
 
 ### Medical Statistics
@@ -125,15 +142,7 @@ format: html
 
 [PheValuator](https://cran.r-project.org/package=PheValuator) v2.2.19: Evaluates phenotype algorithms by developing a diagnostic prediction model using a set of noisy positives and noisy negatives. It can then apply the model to a large cohort to create a set of subjects each with a predicted probability for the health outcome of interest. This cohort can then be used to evaluate phenotype algorithms through the calculation of the necessary performance characteristics - sensitivity, specificity, and positive and negative predictive value. Based on work by [Swerdel (2022)](doi:10.1016/j.jbi.2022.104177) and [Swerdel (2019)](doi:10.1016/j.jbi.2019.103258). See the [vignette](https://cran.r-project.org/web/packages/PheValuator/vignettes/EvaluatingPhenotypeAlgorithms.pdf).
 
-:::
 
-::: {.column width="10%"}
-
-:::
-
-::: {.column width="45%"}
-
-### Networks
 
 ### Probability
 
@@ -163,7 +172,9 @@ format: html
 [lassoinf](https://cran.r-project.org/package=lassoinf) v0.1.0: Provides onfidence intervals and p-values for parameters chosen by the randomized)lasso, valid after selection. Implements the polyhedral approach of [Lee et al. (2016)](doi:10.1214/15-AOS1371), the randomized response of [Tian and Taylor (2018)](doi:10.1214/17-AOS1564) and the exact randomized inference of [Panigrahi, Fry and Taylor (2024)](doi:10.1093/biomet/asae019), with the truncated bivariate normal computations of [Liu (2023)](doi:10.48550/arXiv.2308.10346). Includes inference for user-specified estimands, screening of inactive variables and problems fitted by `glmnet`. Computations use a `C++` backend with matrix-free linear operators for wide designs. There are five vignettes including [Randomized LASSO](https://cran.r-project.org/web/packages/lassoinf/vignettes/gaussian_lasso.html) and [Inference after a glmnet fit](https://cran.r-project.org/web/packages/lassoinf/vignettes/glmnet_logistic.html).
 
 
+[latents](https://cran.r-project.org/package=latents) v1.1.9: Fits single-level and multilevel latent profile and class models, latent transition models, and mixture regression and growth models for studying unobserved heterogeneity. Accommodate continuous, categorical, ordinal, count and mixed indicators. Provides model comparison, parameter inference, classification diagnostics and graphical summaries. Observed-data likelihood methods are available for incomplete indicators, and supported transition models can be represented as networks using the 'tna' package. The multilevel latent class formulation follows [Vermunt (2003)](doi:10.1111/j.0081-1750.2003.t01-1-00131.x). See the vignettes [Two-level latent class analysis](https://cran.r-project.org/web/packages/latents/vignettes/lca.html) and [Multilevel latent profile analysis](https://cran.r-project.org/web/packages/latents/vignettes/lpa.html).
 
+![](latents.png){fig-alt="Plot of profile means across 5 indicators"}
 
 
 [metamixr](https://cran.r-project.org/package=metamixr) v0.1.0: Fits Bayesian random-effects meta-analytic mixture models in which the true study effects are drawn from a mixture of normal components with component-specific means and between-study heterogeneity. The mixture model can be combined with step-function selection models as in [Vevea and Hedges (1995)](doi:10.1007/BF02294384) to adjust for publication bias. Models are estimated by Hamiltonian Monte Carlo using `rstan` and returned as `stanfit` objects, so posterior summaries, posterior predictive checks and marginal likelihoods for model comparison are readily available. Also includes a data simulator and the nudging meta-analysis data of [Mertens et al. (2022)](doi:10.1073/pnas.2107346118). There are four vignettes including [Getting started](https://cran.r-project.org/web/packages/metamixr/vignettes/metamix.html) and [Application to Nudging](https://cran.r-project.org/web/packages/metamixr/vignettes/nudging.html).
@@ -198,6 +209,11 @@ format: html
 
 ### Utilities
 
+
+[controlledburn](https://cran.r-project.org/package[=controlledburn) v0.3.2: Rasterize polygon, line, and point geometry without materializing any pixel values. For polygons it computes exact coverage fractions for polygon-grid intersections, returning sparse tables: run-length encoded interior cells and individually weighted boundary cells. The scanline algorithm is O(perimeter) in both time and memory, using the scan line fill attributed to [Wylie et al. (1967)](doi:10.1145/1465611.1465619). Exact coverage fractions use the exactextract algorithm by Daniel Baston, vendored from the `exactextractr`. Derived from the `fasterize` package. See the vignettes[Algorithms](https://cran.r-project.org/web/packages/controlledburn/vignettes/algorithms.html) and [Architecture](https://cran.r-project.org/web/packages/controlledburn/vignettes/architecture.html).
+
+![](controlledburn.png){fig-alt="Polygon under teo different classification schemes"}
+
 [irelink](https://cran.r-project.org/package=irelink) v0.0.2: Performs fast, scalable probabilistic record linkage and deduplication using the Fellegi-Sunter model. Records lacking a shared unique identifier are compared across configurable dimensions using exact, fuzzy, and distance-based comparisons, with model parameters estimated via unsupervised Expectation-Maximization. Multiple `SQL` backends are supported through `DBI`, including execution via `DuckDB`. This package is a translation of the `Python` `splink` library by [Linacre et al. (2022)](doi:10.23889/ijpds.v7i3.1794) into idiomatic `R`. There are six vignettes including [Getting Started](https://cran.r-project.org/web/packages/irelink/vignettes/irelink.html) and 
 [Record Linkage Across Datasets](https://cran.r-project.org/web/packages/irelink/vignettes/record-linkage.html).
 
@@ -213,7 +229,7 @@ format: html
 ![](ggfourfold.png){fig-alt="Examples of four-fold plots"}
 
 
-END
+
 
 
 :::
