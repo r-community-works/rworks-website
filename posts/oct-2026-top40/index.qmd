@@ -19,6 +19,22 @@ format: html
 
 ### Agriculture
 
+[fieldopt](https://cran.r-project.org/package=fieldopt) v0.1.0: Facilitates the design of agricultural and other area-frame and dual-frame (area plus list) sample surveys that go to the field, with the real cost of field work including travel between sampling units plus interviews, next to the variance of the design-based estimator. Includes travel matrices from coordinates or a road network,  stratified spatially balanced or spatiallyordered systematic selection of segments with interpenetrating replicates, Horvitz-Thompson estimation with local-mean or replicate variances, cost-aware allocation across strata and more. The computational engine is the `Rust` crate `fieldopt-core`. There are seven vignettes including [Get started](https://cran.r-project.org/web/packages/fieldopt/vignettes/fieldopt.html) and [Routing for one or several teams](https://cran.r-project.org/web/packages/fieldopt/vignettes/routing-teams.html).
+
+![](fieldopt.png){fig-alt="Plot showing routes for two teams"}
+
+### Control Charts
+
+[edetect](https://cran.r-project.org/package=edetect) v0.1.0: Implements sequential change detection for process monitoring with e-detectors [Shin, Ramdas and Rinaldo (2024)](doi:10.51387/23-NEJSDS51): nonparametric, anytime-valid analogues of the CUSUM and Shiryaev-Roberts charts whose average run length to a false alarm is guaranteed for every distribution in a declared pre-change class (bounded, sub-Gaussian, Bernoulli or Poisson observations). Phase I/Phase II workflow, individual, p, c, u and regression charts, run-length simulation and auditable alarm reports. There are four vignettes including [Get started](https://cran.r-project.org/web/packages/edetect/vignettes/edetect.html) and [Regression chart for non-stationary processes](https://cran.r-project.org/web/packages/edetect/vignettes/regression-chart.html).
+
+![](edetect.png){fig-alt="Plot of control charts with change points"}
+
+### Decision Theory
+
+[paretoinfer](https://cran.r-project.org/package=paretoinfer) v0.1.0: Sequential identification of epsilon-Pareto-optimal alternatives among a finite set with noisy, possibly correlated objectives. Simultaneous anytime-valid confidence sequences for every objective of every alternative [Waudby-Smith and Ramdas (2024)](doi:10.1093/jrsssb/qkad009) certify, at any time, which alternatives are epsilon-dominated and which are not, report the estimated frontier, the plausible Pareto set and the certified-dominated set, propose the next alternative to evaluate, and record an auditable result contract. There are four vignettes including [Get started](https://cran.r-project.org/web/packages/paretoinfer/vignettes/paretoinfer.html) and [Heterogeneous cost and budgets](https://cran.r-project.org/web/packages/paretoinfer/vignettes/cost-and-budget.html).
+
+![](pareto.png){fig-alt="Plot showing most plausible alternatives"}
+
 ### Environmental Studies
 
 [EnvRtype](https://cran.r-project.org/package=EnvRtype) 0.1.3: Provides an enviromics toolkit for genotype-by-environment analysis and envirotype-informed genomic prediction. Collects worldwide daily and hourly weather data, soil profiles, elevation and bioclimatic layers data, agro-ecological zone data, and downscaled climate scenarios, with checkpointed retrieval that can resume after an interrupted run. Derives agro-meteorological parameters and maps daily weather onto crop developmental stages. Fits Bayesian reaction-norm kernel models and predicts trained genotypes at untested locations and planting dates, with coverage diagnostics, spatial mapping and planting-window optimisation. Methods are described in [Costa-Neto et al. (2021)](doi:10.1093/g3journal/jkab040), and build on the Bayesian genotype-by-environment kernel sampler of [Granato et al(2018)](doi:10.1534/g3.118.200435). See the [vignette](https://cran.r-project.org/web/packages/EnvRtype/vignettes/EnvRtype.html).
@@ -62,6 +78,9 @@ format: html
 
 ![](qdfauction.png){fig-alt="Plot of quantile estimates of bids"}
 
+[OptimalBinningWoE](https://cran.r-project.org/package=scorecraft) v0.3.2: Builds points scorecards for binary targets (credit risk, fraud, propensity) based on an optimal binning and weight of evidence engine. Variables are selected through optimal binning, eight admission rules, hold-out revalidation with frozen bins and a consensus of `glmnet`, `xgboost`, `lightgbm` and `ranger` models.  The scorecard is fitted with an explicit, auditable scale alignment. Population and characteristic stability indices are monitored with both the fixed and the sample-size-adjusted threshold. Functions compute expected loss, risk weights, regulatory capital and expected credit loss from parameter tables selected by framework preset. The heavy numeric kernels are compiled with `RcppArmadillo`. The scorecard methodology follows [Siddiqi (2017)](doi:10.1002/9781119282396) and [Thomas et al. (2017)](doi:10.1137/1.9781611974560). There are four vignettes including [Score studies](https://cran.r-project.org/web/packages/scorecraft/vignettes/score-studies.html) and [Scaling, alignment and challengers](https://cran.r-project.org/web/packages/scorecraft/vignettes/alignment-and-portfolio.html).
+
+
 
 ### Genomics
 
@@ -70,6 +89,9 @@ format: html
 ![](shaman.png){fig-alt="visualization of region with scores against hic_exp from shaman_score_hic_mat()"}
 
 ### Machine Learning
+
+[fullmetaphone](https://cran.r-project.org/package=fullmetaphone) v0.1.0: Encodes names and words as phonetic codes, so that names which sound alike but are spelled differently can be matched. Implements the Metaphone algorithm published by Philips (1990)], Computer Language magazine in 1990 and the Double Metaphone algorithm of [Philips (2000)](https://web.archive.org/web/20250702064845/https://drdobbs.com/the-double-metaphone-search-algorithm/184401251), which gives a primary and an alternate code for names of many language origins. Unlike most implementations, including `PGRdup`, the codes are not cut to four characters, which keeps long and multi-part names apart. Provides functions for record linkage, deduplication and name search, and includes a data set of common United States surnames. See the [vignette](https://cran.r-project.org/web/packages/fullmetaphone/vignettes/fullmetaphone.html).
+
 
 [gaussianprocesses](https://cran.r-project.org/package=gaussianprocesses) v1.0.0: Gaussian process regression, classification, and count models with explicit covariance kernels, exact Gaussian inference, Laplace approximations for non-Gaussian likelihoods, sparse approximations, marginal-likelihood optimization, derivatives, posterior sampling, calibration diagnostics, and time-series workflows. The implementation follows the core methodology of [Rasmussen and Williams (2006)](doi:10.7551/mitpress/3206.001.0001) and emphasizes numerical stability, transparent assumptions, and reproducible statistical workflows. There are seven vignettes including [Gaussian-Process Regression from First Principles](https://cran.r-project.org/web/packages/gaussianprocesses/vignettes/v01-gp-regression.html) and [Gaussian Processes for Time Series](https://cran.r-project.org/web/packages/gaussianprocesses/vignettes/v06-time-series.html).
 
@@ -97,6 +119,9 @@ format: html
 
 ![](mirrorslope.png){fig-alt="Example of a mirrorslope plot"}
 
+[PDRobust](https://cran.r-project.org/package=PDRobust) v0.3.8: Implements principal-stratification methods for estimating time-specific and pooled heterogeneous treatment effects in longitudinal studies where outcomes may be truncated by death. Supports continuous and binary outcomes, explicit data validation and standardization, and covariate-dependent treatment effects. Fits propensity-score, principal-score, and outcome models and provides subject-level bootstrap inference, covariate-balance diagnostics, principal-stratum summaries, treatment-group-specific survival odds ratios, and outcome-noise sensitivity analysis. Methodological background is provided in [Zhang et al. (2006)](doi:10.48550/arXiv.2608.06654). There are seven vignettes including [Diagnostics, profiling, and sensitivity analysis](https://cran.r-project.org/web/packages/PDRobust/vignettes/diagnostics-profiling-sensitivity.html) and [Treatment coding and interpretation](https://cran.r-project.org/web/packages/PDRobust/vignettes/method-and-coding.html).
+
+![](PDRobust.png){fig-alt="Sensitivity cuves"}
 
 [PheValuator](https://cran.r-project.org/package=PheValuator) v2.2.19: Evaluates phenotype algorithms by developing a diagnostic prediction model using a set of noisy positives and noisy negatives. It can then apply the model to a large cohort to create a set of subjects each with a predicted probability for the health outcome of interest. This cohort can then be used to evaluate phenotype algorithms through the calculation of the necessary performance characteristics - sensitivity, specificity, and positive and negative predictive value. Based on work by [Swerdel (2022)](doi:10.1016/j.jbi.2022.104177) and [Swerdel (2019)](doi:10.1016/j.jbi.2019.103258). See the [vignette](https://cran.r-project.org/web/packages/PheValuator/vignettes/EvaluatingPhenotypeAlgorithms.pdf).
 
@@ -145,6 +170,10 @@ format: html
 
 ![](metamixr.png){fig-alt="Comparison of posterior predictive and observed distributions"}
 
+
+
+
+
 [proxymix](https://cran.r-project.org/package=proxymix) v0.17.0: Fits multivariate Gaussian-mixture proxies to target distributions on real Euclidean space, given by a density, by samples, or by a characteristic function. Four fitting regimes are unified under one verb: (i) closed-form moment matching for a single component, (ii) classical expectation-maximisation when independent samples are available, (iii) importance-sampled expectation-maximisation that minimises the Kullback-Leibler divergence when the target can be evaluated point-wise but not sampled, and (iv) a least-squares fit to the characteristic function when only that is known, with numerical bounds on the Kolmogorov distance along one-dimensional projections. Implements the regime hierarchy of [van der Hoek and Elliott (2024)](doi:10.1080/07362994.2024.2372605). There are thirteen vignettes including [The closed-form operator calculus on a mixture](https://cran.r-project.org/web/packages/proxymix/vignettes/operator_calculus.html) and [How well a mixture proxies four awkward shapes](https://cran.r-project.org/web/packages/proxymix/vignettes/density_shapes.html).
 
 ![](proxymix.png){fig-alt="Plots of target shapes with fitted proxy contours"}
@@ -174,6 +203,8 @@ format: html
 
 ![](irelink.png){fig-alt="Plot of match weights for a link-type model"}
 
+[seqbench](https://cran.r-project.org/package=seqbench) v0.1.0: Provides sequential, anytime-valid comparison of algorithms on paired losses with a practical-equivalence margin. Confidence sequences for the mean paired difference, superiority/equivalence/continue decisions, cost accounting and auditable trajectories. See the [vignette](https://cran.r-project.org/web/packages/seqbench/vignettes/getting-started.html)
+.
 
 ### Visualization
 
